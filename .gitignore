@@ -2,6 +2,7 @@
 .github
 
 .DS_Store
+priv-*.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
