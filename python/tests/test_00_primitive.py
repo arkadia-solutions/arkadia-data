@@ -101,3 +101,39 @@ def test_decode_raw_string():
     assert node.fields["status"].value == "active"
 
     assert_roundtrip(node, '<color:string,status:string>("red","active")', True)
+
+
+def test_decode_escaped_quotes():
+    """Validates strings containing quotes that must be escaped."""
+    # Input: text: "say \"hello\"" -> In-memory value: say "hello"
+    # In AKD format it should look like: text: "say \"hello\""
+    text = '{text: "say \\"hello\\""}'
+
+    res = decode(text, debug=True)
+    assert not res.errors, f"Errors found: {res.errors}"
+
+    node = res.node
+    # Verify that the in-memory value is clean (contains inner quotes)
+    assert node.fields["text"].value == 'say "hello"'
+
+    # Roundtrip check: expect encoder to add backslashes before quotes
+    # <text:string>("say \"hello\"")
+    assert_roundtrip(node, '<text:string>("say \\"hello\\"")', True)
+
+
+def test_decode_escaped_backslashes():
+    """Validates strings containing backslashes and quotes mixed together."""
+    # Input: path: "C:\\Program Files" -> Value: C:\Program Files
+    # In AKD format: path: "C:\\Program Files"
+    text = '{path: "C:\\\\Program Files"}'
+
+    res = decode(text, debug=True)
+    assert not res.errors, f"Errors found: {res.errors}"
+
+    node = res.node
+    assert node.fields["path"].value == r"C:\Program Files"
+
+    # Roundtrip check:
+    # Encoder must replace \ with \\
+    # <path:string>("C:\\Program Files")
+    assert_roundtrip(node, '<path:string>("C:\\\\Program Files")', True)

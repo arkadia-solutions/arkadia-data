@@ -371,11 +371,19 @@ class Encoder:
         return self._c(str(v), Colors.NUMBER)
 
     def _string(self, v: str) -> str:
-        content = v
-        if self.escape_new_lines:
-            content = self._escape_newlines(content)
+        # 1. Escape backslashes first! (Critical step)
+        content = v.replace("\\", "\\\\")
+
+        # 2. Escape quotes
         content = content.replace('"', '\\"')
-        return self._c(f'"{content}"', Colors.STRING)
+
+        # 3. Handle newlines if needed
+        if self.escape_new_lines:
+            content = (
+                content.replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t")
+            )
+
+        return f'"{content}"'
 
     # -------------------------------------------------------------
     # PRIMITIVE LIST: ["a","b","c"]

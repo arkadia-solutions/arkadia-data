@@ -222,11 +222,12 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
     # --- INITIALIZATION ---
     results = []
-    keys = ["JSON", "AKCD", "AKD"]
-    if toon_format:
-        keys.append("TOON")
 
-    totals = {k: {"tokens": 0, "time": 0} for k in keys}
+    all_keys = ["JSON", "AKCD", "AKD"]
+    if toon_format:
+        all_keys.append("TOON")
+
+    totals = {k: {"tokens": 0, "time": 0} for k in all_keys}
 
     print(f"\n{C.BOLD}STARTING BENCHMARK{C.RESET}")
     print(f"Files: {len(files)} | Repeats: {repeats} | Model: {MODEL_NAME}\n")
@@ -237,7 +238,6 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
         with open(file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # Check for reference AKD file for decode check
         akd_file = file.with_suffix(".ak-data")
         has_akd_file = akd_file.exists()
         akd_content_ref = ""
@@ -253,64 +253,70 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
         # 3. DEBUG: Show Content (Optional)
         if debug:
             for fmt_name, func in formatters.items():
-                txt, _ = measure_encode(func, 1)  # Single run for display
-                tok = count_tokens(txt)
-                color = getattr(CFORMATS, fmt_name, CFORMATS.WHITE)
-                if fmt_name == "AKD":
-                    txt = ak.data.encode(
-                        data,
-                        {"compact": False, "escape_new_lines": False, "colorize": True},
+                try:
+                    txt, _ = measure_encode(func, 1)
+                    tok = count_tokens(txt)
+                    color = getattr(CFORMATS, fmt_name, CFORMATS.WHITE)
+                    if fmt_name == "AKD":
+                        txt = ak.data.encode(
+                            data,
+                            {
+                                "compact": False,
+                                "escape_new_lines": False,
+                                "colorize": True,
+                            },
+                        )
+                    print(
+                        f"{C.WHITE}{C.BOLD}[{fmt_name}] ({tok} tok){C.RESET}\n{color}{txt[:200]}...{C.RESET}\n"
                     )
-                print(
-                    f"{C.WHITE}{C.BOLD}[{fmt_name}] ({tok} tok){C.RESET}\n{color}{txt}{C.RESET}\n"
-                )
+                except Exception:
+                    pass
 
-        # 4. MEASURE (The heavy lifting - done ONLY ONCE)
-        # Dictionary to store stats for this specific file
+        # 4. MEASURE (The heavy lifting)
         file_stats = {"file": file.name}
-
-        # Temp storage for bar charts
         bar_data = {}
 
-        for name in keys:
+        for name in all_keys:
             func = formatters.get(name)
+
             if not func:
                 continue
 
-            text, ms = measure_encode(func, repeats=repeats)
-            tok = count_tokens(text)
+            try:
+                text, ms = measure_encode(func, repeats=repeats)
+                tok = count_tokens(text)
 
-            # Store for final table
-            file_stats[name] = (tok, ms)
+                file_stats[name] = (tok, ms)
+                bar_data[name] = {"tokens": tok, "time": ms}
 
-            # Store for visuals
-            bar_data[name] = {"tokens": tok, "time": ms}
+                totals[name]["tokens"] += tok
+                totals[name]["time"] += ms
 
-            # Update globals
-            totals[name]["tokens"] += tok
-            totals[name]["time"] += ms
+            except Exception:
+                pass
 
         # 5. VISUALIZE (Bar Charts)
-        # Calculate limits for this file
-        vals_tok = [s["tokens"] for s in bar_data.values()]
-        vals_time = [s["time"] for s in bar_data.values()]
-        min_tok, max_tok = min(vals_tok), max(vals_tok)
-        min_time, max_time = min(vals_time), max(vals_time)
+        if bar_data:
+            vals_tok = [s["tokens"] for s in bar_data.values()]
+            vals_time = [s["time"] for s in bar_data.values()]
+            min_tok, max_tok = min(vals_tok), max(vals_tok)
+            min_time, max_time = min(vals_time), max(vals_time)
 
-        for name in keys:
-            s = bar_data[name]
+            for name in all_keys:
+                if name not in bar_data:
+                    continue
 
-            t_col = color_val(s["tokens"], min_tok, max_tok)
-            tm_col = color_val(s["time"], min_time, max_time)
+                s = bar_data[name]
+                t_col = color_val(s["tokens"], min_tok, max_tok)
+                tm_col = color_val(s["time"], min_time, max_time)
+                t_bar = fixed_bar(s["tokens"], max_tok)
+                tm_bar = fixed_bar(s["time"], max_time)
 
-            t_bar = fixed_bar(s["tokens"], max_tok)
-            tm_bar = fixed_bar(s["time"], max_time)
+                print(
+                    f"{name:5} {t_col}{t_bar}{C.RESET} {s['tokens']:5} tok   {tm_col}{tm_bar}{C.RESET} {s['time']:6.3f} ms"
+                )
 
-            print(
-                f"{name:5} {t_col}{t_bar}{C.RESET} {s['tokens']:5} tok   {tm_col}{tm_bar}{C.RESET} {s['time']:6.3f} ms"
-            )
-
-        # 6. DECODE CHECK (Validation)
+        # 6. DECODE CHECK (Validation using REFERENCE FILE)
         if has_akd_file:
 
             def run_decode():
@@ -318,7 +324,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
             try:
                 decoded_tuple, decode_ms = measure_encode(run_decode, repeats=repeats)
-                decode_result = decoded_tuple  # ak.data.decode returns (Node, Errors)
+                decode_result = decoded_tuple
                 errors = decode_result.errors
 
                 valid = len(errors) == 0
@@ -348,9 +354,9 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
     print(f"\n{C.BOLD}GLOBAL PERFORMANCE REPORT{C.RESET}")
 
-    # ---  DETAILED TABLE
+    # Header
     header = f"{'FILE':28} "
-    for k in keys:
+    for k in all_keys:
         header += f"{k:>15} "
     header += f"{'SAVINGS (AKCD)':>20}"
 
@@ -360,24 +366,34 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     for r in results:
         line = f"{r['file'][:30]:30} "
 
-        # Calculate row min/max for coloring table cells
-        row_toks = [r[k][0] for k in keys]
+        # Obliczamy min/max TYLKO dla kluczy, które udało się policzyć (są w 'r')
+        row_toks = [r[k][0] for k in all_keys if k in r]
 
-        # Safe min/max (handle identical values)
+        if not row_toks:
+            row_toks = [0]
+
         min_t, max_t = min(row_toks), max(row_toks)
 
-        for k in keys:
+        for k in all_keys:
+            # --- ZMIANA: Sprawdzamy czy klucz istnieje, zamiast walić KeyError ---
+            if k not in r:
+                # Format zawiódł dla tego pliku -> myślnik
+                line += f"{C.DIM}{'-':^15}{C.RESET} "
+                continue
+
             tok, ms = r[k]
             c_tok = color_val(tok, min_t, max_t)
-            # Format: 1234t/12.5ms
             line += f"{c_tok}{tok:5}t{C.RESET}/{ms:4.1f}ms   "
 
-        # Savings % (AKCD vs JSON)
-        base = r["JSON"][0]
-        curr = r["AKCD"][0]
-        diff = ((curr - base) / base) * 100 if base > 0 else 0
-        c_diff = C.GREEN if diff < 0 else C.RED
-        line += f"{c_diff}{diff:>+10.1f}%{C.RESET}"
+        # Savings % (AKCD vs JSON) - tylko jeśli oba istnieją
+        if "JSON" in r and "AKCD" in r:
+            base = r["JSON"][0]
+            curr = r["AKCD"][0]
+            diff = ((curr - base) / base) * 100 if base > 0 else 0
+            c_diff = C.GREEN if diff < 0 else C.RED
+            line += f"{c_diff}{diff:>+10.1f}%{C.RESET}"
+        else:
+            line += f"{C.DIM}{'N/A':>10}{C.RESET}"
 
         print(line)
 
@@ -386,24 +402,25 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     print(f"\n{C.BOLD}BENCHMARK SUMMARY:{C.RESET}\n\n")
 
     # --- 1. GLOBAL VISUAL CHART ---
+    # ... (Reszta funkcji podsumowania - bez zmian w logice, bo totals są bezpieczne)
 
     # Calculate global min/max for scaling
-    all_toks = [totals[k]["tokens"] for k in keys]
-    all_times = [totals[k]["time"] for k in keys]
+    all_toks = [totals[k]["tokens"] for k in all_keys]
+    all_times = [totals[k]["time"] for k in all_keys]
 
-    # Avoid division by zero
     g_min_t, g_max_t = (min(all_toks), max(all_toks)) if all_toks else (0, 0)
     g_min_ms, g_max_ms = (min(all_times), max(all_times)) if all_times else (0, 0)
 
-    for k in keys:
+    for k in all_keys:
         t = totals[k]["tokens"]
         ms = totals[k]["time"]
 
-        # Colors
+        # Jeśli total tokenów = 0, to znaczy że format padł we wszystkich plikach
+        if t == 0:
+            continue
+
         c_t = color_val(t, g_min_t, g_max_t)
         c_ms = color_val(ms, g_min_ms, g_max_ms)
-
-        # Bars
         b_t = fixed_bar(t, g_max_t)
         b_ms = fixed_bar(ms, g_max_ms)
 
@@ -413,7 +430,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
     print("\n")
 
-    # --- 3. SUMMARY DASHBOARD
+    # --- 3. SUMMARY DASHBOARD ---
     print(
         f"   {'FORMAT':<10} {'TOKENS':<12} {'TIME (Total)':<15} {'AVG TIME/FILE':<15} {'VS JSON':<10}"
     )
@@ -422,21 +439,20 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     json_tot = totals["JSON"]["tokens"]
     file_count = len(files)
 
-    # Sort keys by token count (Leaderboard order)
-    sorted_keys = sorted(keys, key=lambda k: totals[k]["tokens"])
+    # Sort keys by token count, filter out failed ones
+    active_keys = [k for k in all_keys if totals[k]["tokens"] > 0]
+    sorted_keys = sorted(active_keys, key=lambda k: totals[k]["tokens"])
 
     for k in sorted_keys:
         tot_tok = totals[k]["tokens"]
         tot_time = totals[k]["time"]
         avg_time = tot_time / file_count if file_count > 0 else 0
 
-        # Calculate percentage difference vs JSON
         if json_tot > 0:
             saving_pct = ((tot_tok - json_tot) / json_tot) * 100
         else:
             saving_pct = 0.0
 
-        # Formatting
         c_fmt = C.WHITE
         if k == "AKCD":
             c_fmt = C.GREEN

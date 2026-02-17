@@ -94,3 +94,41 @@ describe('AK Data Primitives', () => {
     assertRoundtrip(node, '<color:string,status:string>("red","active")', false);
   });
 });
+
+describe('String Escaping', () => {
+  it('should decode string with escaped quotes', () => {
+    // Input: { text: "say \"hello\"" }
+    // In-memory value: say "hello"
+    // Note: In JS string literals, we need extra backslashes to represent a literal backslash.
+    const text = '{ text: "say \\"hello\\"" }';
+
+    const res = decode(text, { debug: false });
+    expect(res.errors).toHaveLength(0);
+
+    const node = res.node;
+    // Check in-memory value
+    expect(node.fields['text'].value).toBe('say "hello"');
+
+    // Roundtrip check:
+    // Encoder must add backslashes before quotes: "say \"hello\""
+    assertRoundtrip(node, '<text:string>("say \\"hello\\"")', false);
+  });
+
+  it('should decode string with escaped backslashes', () => {
+    // Input: { path: "C:\\Program Files" }
+    // In-memory value: C:\Program Files
+    // Note: "C:\\\\Program Files" in JS literal becomes C:\\Program Files in the string
+    const text = '{ path: "C:\\\\Program Files" }';
+
+    const res = decode(text, { debug: false });
+    expect(res.errors).toHaveLength(0);
+
+    const node = res.node;
+    // Check in-memory value (single backslash)
+    expect(node.fields['path'].value).toBe('C:\\Program Files');
+
+    // Roundtrip check:
+    // Encoder must escape the backslash: "C:\\Program Files"
+    assertRoundtrip(node, '<path:string>("C:\\\\Program Files")', false);
+  });
+});

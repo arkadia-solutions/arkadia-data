@@ -26,7 +26,10 @@ def show_main_help():
             "flags": "benchmark",
             "desc": "[BENCHMARK] Run performance and token usage tests",
         },
-        {"flags": "ai-benchmark", "desc": "[AI] Run AI understanding tests"},
+        {
+            "flags": "ai-benchmark",
+            "desc": "[AI] Run AI understanding tests [NOT IMPLEMENTED]",
+        },
     ]
     cli.print_options("Commands", commands)
 
