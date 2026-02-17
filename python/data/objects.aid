@@ -1,0 +1,35 @@
+<version:string, category:string, description:string, tests:[<name:string, input:<id:number, name:string, active:bool>, expected:string, specSection:string>]>
+("1.3", "encode", "Object encoding - simple objects, nested objects, key encoding", [
+  ("preserves key order in objects", (123, "Ada", true), "id: 123
+name: Ada
+active: true", "6")
+  ("encodes null values in objects", (123, null), "id: 123
+value: null", "6")
+  ("encodes empty objects as empty string", (), "", "6")
+  ("quotes string value with colon", ("a:b"), "note: \"a:b\"", "6")
+  ("quotes string value with comma", ("a,b"), "note: \"a,b\"", "6")
+  ("quotes string value with newline", ("line1
+line2"), "text: \"line1\nline2\"", "6")
+  ("quotes string value with embedded quotes", ("say \"hello\""), "text: \"say \\"hello\\"\"", "6")
+  ("quotes string value with leading space", (" padded "), "text: \" padded \"", "6")
+  ("quotes string value with only spaces", ("  "), "text: \"  \"", "6")
+  ("quotes string value that looks like true", ("true"), "v: \"true\"", "6")
+  ("quotes string value that looks like number", ("42"), "v: \"42\"", "6")
+  ("quotes string value that looks like negative decimal", ("-7.5"), "v: \"-7.5\"", "6")
+  ("quotes key with colon", (7), "\"order:id\": 7", "6")
+  ("quotes key with brackets", (5), "\"[index]\": 5", "6")
+  ("quotes key with braces", (5), "\"{key}\": 5", "6")
+  ("quotes key with comma", (1), "\"a,b\": 1", "6")
+  ("quotes key with spaces", ("Ada"), "\"full name\": Ada", "6")
+  ("quotes key with leading hyphen", (1), "\"-lead\": 1", "6")
+  ("quotes key with leading and trailing spaces", (1), "\" a \": 1", "6")
+  ("quotes numeric key", ("x"), "\"123\": x", "6")
+  ("quotes empty string key", (null), "\"\": 1", "6")
+  ("escapes newline in key", (1), "\"line\nbreak\": 1", "6")
+  ("escapes tab in key", (2), "\"tab\there\": 2", "6")
+  ("escapes quotes in key", (1), "\"he said \\"hi\\"\": 1", "6")
+  ("encodes deeply nested objects", ((("deep"))), "a:
+  b:
+    c: deep", "6")
+  ("encodes empty nested object", (()), "user:", "6")
+])

@@ -1,0 +1,71 @@
+<version:string, category:string, description:string, tests:[<name:string, input:<tags:[string]>, expected:string, options:<delimiter:string>, specSection:string>]>
+("1.3", "encode", "Delimiter options - tab and pipe delimiters, delimiter-aware quoting", [
+  ("encodes primitive arrays with tab delimiter", (["reading", "gaming", "coding"]), "tags[3	]: reading	gaming	coding", ("	"), "8")
+  ("encodes primitive arrays with pipe delimiter", (["reading", "gaming", "coding"]), "tags[3|]: reading|gaming|coding", ("|"), "8")
+  ("encodes primitive arrays with comma delimiter", (["reading", "gaming", "coding"]), "tags[3]: reading,gaming,coding", (","), "8")
+  ("encodes tabular arrays with tab delimiter", ([
+    ("A1", 2, 9.99)
+    ("B2", 1, 14.5)
+  ]), "items[2	]{sku	qty	price}:
+  A1	2	9.99
+  B2	1	14.5", ("	"), "8")
+  ("encodes tabular arrays with pipe delimiter", ([
+    ("A1", 2, 9.99)
+    ("B2", 1, 14.5)
+  ]), "items[2|]{sku|qty|price}:
+  A1|2|9.99
+  B2|1|14.5", ("|"), "8")
+  ("encodes nested arrays with tab delimiter", ([
+    ["a", "b"]
+    ["c", "d"]
+  ]), "pairs[2	]:
+  - [2	]: a	b
+  - [2	]: c	d", ("	"), "8")
+  ("encodes nested arrays with pipe delimiter", ([
+    ["a", "b"]
+    ["c", "d"]
+  ]), "pairs[2|]:
+  - [2|]: a|b
+  - [2|]: c|d", ("|"), "8")
+  ("encodes root arrays with tab delimiter", ["x", "y", "z"], "[3	]: x	y	z", ("	"), "8")
+  ("encodes root arrays with pipe delimiter", ["x", "y", "z"], "[3|]: x|y|z", ("|"), "8")
+  ("encodes root arrays of objects with tab delimiter", [
+    (1)
+    (2)
+  ], "[2	]{id}:
+  1
+  2", ("	"), "8")
+  ("encodes root arrays of objects with pipe delimiter", [
+    (1)
+    (2)
+  ], "[2|]{id}:
+  1
+  2", ("|"), "8")
+  ("quotes strings containing tab delimiter", (["a", "b	c", "d"]), "items[3	]: a	\"b\tc\"	d", ("	"), "8")
+  ("quotes strings containing pipe delimiter", (["a", "b|c", "d"]), "items[3|]: a|\"b|c\"|d", ("|"), "8")
+  ("does not quote commas with tab delimiter", (["a,b", "c,d"]), "items[2	]: a,b	c,d", ("	"), "8")
+  ("does not quote commas with pipe delimiter", (["a,b", "c,d"]), "items[2|]: a,b|c,d", ("|"), "8")
+  ("quotes tabular values containing comma delimiter", ([
+    (1, "a,b")
+    (2, "c,d")
+  ]), "items[2]{id,note}:
+  1,\"a,b\"
+  2,\"c,d\"", (","), "8")
+  ("does not quote commas in tabular values with tab delimiter", ([
+    (1, "a,b")
+    (2, "c,d")
+  ]), "items[2	]{id	note}:
+  1	a,b
+  2	c,d", ("	"), "8")
+  ("does not quote commas in object values with pipe delimiter", ("a,b"), "note: a,b", ("|"), "8")
+  ("does not quote commas in object values with tab delimiter", ("a,b"), "note: a,b", ("	"), "8")
+  ("quotes nested array values containing pipe delimiter", ([
+    ["a", "b|c"]
+  ]), "pairs[1|]:
+  - [2|]: a|\"b|c\"", ("|"), "8")
+  ("quotes nested array values containing tab delimiter", ([
+    ["a", "b	c"]
+  ]), "pairs[1	]:
+  - [2	]: a	\"b\tc\"", ("	"), "8")
+  ("preserves ambiguity quoting regardless of delimiter", (["true", "42", "-3.14"]), "items[3|]: \"true\"|\"42\"|\"-3.14\"", ("|"), "8")
+])

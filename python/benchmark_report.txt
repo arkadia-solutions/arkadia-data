@@ -1,0 +1,28 @@
+Running performance benchmark on 11 files (Repeats: 50)...
+...........
+
+FILE                                      JSON            AICD             AID            TOON  SAVINGS (AICD)
+[2m------------------------------------------------------------------------------------------[0m
+arrays-nested.json             [37m  675t[0m/ 0.0ms   [32m  567t[0m/ 0.2ms   [37m  643t[0m/ 0.2ms   [31m  841t[0m/ 0.2ms   [32m     -16.0%[0m
+arrays-objects.json            [37m 1023t[0m/ 0.0ms   [32m  822t[0m/ 0.3ms   [37m  937t[0m/ 0.3ms   [31m 1207t[0m/ 0.3ms   [32m     -19.6%[0m
+arrays-primitive.json          [37m  431t[0m/ 0.0ms   [32m  360t[0m/ 0.1ms   [37m  402t[0m/ 0.1ms   [31m  520t[0m/ 0.1ms   [32m     -16.5%[0m
+arrays-tabular.json            [37m  413t[0m/ 0.0ms   [32m  342t[0m/ 0.1ms   [37m  396t[0m/ 0.1ms   [31m  441t[0m/ 0.1ms   [32m     -17.2%[0m
+delimiters.json                [37m 1292t[0m/ 0.0ms   [32m  970t[0m/ 0.5ms   [37m 1094t[0m/ 0.4ms   [31m 1498t[0m/ 0.4ms   [32m     -24.9%[0m
+normalization.json             [37m  527t[0m/ 0.0ms   [32m  409t[0m/ 0.1ms   [37m  466t[0m/ 0.1ms   [31m  625t[0m/ 0.1ms   [32m     -22.4%[0m
+objects.json                   [37m  833t[0m/ 0.0ms   [32m  580t[0m/ 0.2ms   [37m  645t[0m/ 0.2ms   [31m 1041t[0m/ 0.2ms   [32m     -30.4%[0m
+options.json                   [37m  423t[0m/ 0.0ms   [32m  335t[0m/ 0.1ms   [37m  381t[0m/ 0.1ms   [31m  482t[0m/ 0.1ms   [32m     -20.8%[0m
+primitives.json                [37m 1015t[0m/ 0.0ms   [32m  732t[0m/ 0.3ms   [37m  844t[0m/ 0.4ms   [31m 1264t[0m/ 0.3ms   [32m     -27.9%[0m
+toon.json                      [31m  139t[0m/ 0.0ms   [37m  115t[0m/ 0.0ms   [37m  137t[0m/ 0.0ms   [32m  104t[0m/ 0.0ms   [32m     -17.3%[0m
+whitespace.json                [37m  143t[0m/ 0.0ms   [32m  135t[0m/ 0.0ms   [37m  149t[0m/ 0.0ms   [31m  165t[0m/ 0.0ms   [32m      -5.6%[0m
+[2m------------------------------------------------------------------------------------------[0m
+
+[1mBENCHMARK SUMMARY:[0m
+   FORMAT     TOKENS       TIME (Total)    AVG TIME/FILE   VS JSON   
+   ----------------------------------------------------------------------
+   [32mAICD      [0m 5367             2.04 ms        0.19 ms    [32m-22.4%[0m
+   [37mAID       [0m 6094             1.94 ms        0.18 ms    [32m-11.9%[0m
+   [36mJSON      [0m 6914             0.12 ms        0.01 ms    [2m+0.0%[0m
+   [37mTOON      [0m 8188             1.88 ms        0.17 ms    [31m+18.4%[0m
+
+
+[1mCONCLUSION:[0m Switching to [32mAICD[0m saves [32m1547[0m tokens (22.4%) compared to JSON.
