@@ -1,8 +1,8 @@
 # tests/utils.py
 from typing import Union
-from arkadia.ai.data.decode import decode
-from arkadia.ai.data.encode import encode
-from arkadia.ai.data import Node
+from arkadia.data.decode import decode
+from arkadia.data.encode import encode
+from arkadia.data import Node
 
 
 def assert_roundtrip(

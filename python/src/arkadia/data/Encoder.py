@@ -100,7 +100,7 @@ class Encoder:
         self, schema: Schema, indent: int = 2, include_meta: bool = True
     ) -> str:
         """
-        Encode Schema into AI.Data header form.
+        Encode Schema into AK Data header form.
         Supports: < [ ... ] >, / meta /, !required
         """
         if schema is None:

@@ -1,4 +1,4 @@
-from arkadia.ai.data.decode import decode
+from arkadia.data.decode import decode
 from utils import assert_roundtrip
 
 # ==================================================================================

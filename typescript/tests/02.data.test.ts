@@ -6,7 +6,7 @@ import { assertRoundtrip } from './utils';
 // 3. ENCODING TESTS (JS Object -> String)
 // ==================================================================================
 
-describe('AI Data Encoding', () => {
+describe('AK Data Encoding', () => {
 
     it('should encode simple dict', () => {
         /**

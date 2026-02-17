@@ -23,7 +23,7 @@ DEFAULT_CONFIG: Config = {
 
 def encode(data: object, config: Config = DEFAULT_CONFIG) -> str:
     """
-    Encode input data into valid **AI.Data** format.
+    Encode input data into valid **AK Data** format.
 
     The encoder can be customized using a configuration dictionary.
     All configuration keys are optional; missing values fall back
@@ -69,7 +69,7 @@ def encode(data: object, config: Config = DEFAULT_CONFIG) -> str:
     Returns
     -------
     str
-        Serialized AI.Data text.
+        Serialized AK Data text.
     """
     if not isinstance(data, Node):
         # Parse raw data into Node structure

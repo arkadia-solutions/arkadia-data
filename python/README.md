@@ -41,7 +41,7 @@
 Get started immediately with pip:
 
 ```bash
-pip install arkadia-ai-data-format
+pip install arkadia-data-format
 ```
 
 ## 🚀 Fast Example
@@ -49,7 +49,7 @@ pip install arkadia-ai-data-format
 **Encoding to AI.DATA:**
 
 ```bash
-echo '{ "data": 2}' | aid enc - -c
+echo '{ "data": 2}' | akd enc - -c
 # Output: <data:number>(2)
 
 ```
@@ -57,7 +57,7 @@ echo '{ "data": 2}' | aid enc - -c
 **Decoding back to JSON:**
 
 ```bash
-echo '<data:number>(2)' | aid dec - -f json
+echo '<data:number>(2)' | akd dec - -f json
 # Output: { "data": 2 }
 
 ```
@@ -66,46 +66,46 @@ echo '<data:number>(2)' | aid dec - -f json
 
 ## ⚡ Performance & Token Savings
 
-Why switch? Because every token counts. `AICD` (Arkadia Compressed Data) consistently outperforms standard formats in both token efficiency.
+Why switch? Because every token counts. `AKCD` (Arkadia Compressed Data) consistently outperforms standard formats in both token efficiency.
 
 ```text
 BENCHMARK SUMMARY:
 
 
    JSON  █████████████████████░░░░     6921 tok   ░░░░░░░░░░░░░░░░░░░░░░░░░     0.15 ms
-   AICD  ████████████████░░░░░░░░░     5416 tok   █████████████████████████     4.40 ms
-   AID   ███████████████████░░░░░░     6488 tok   ████████████████████████░     4.29 ms
+   AKCD  ████████████████░░░░░░░░░     5416 tok   █████████████████████████     4.40 ms
+   AKD   ███████████████████░░░░░░     6488 tok   ████████████████████████░     4.29 ms
    TOON  █████████████████████████     8198 tok   █████████████░░░░░░░░░░░░     2.36 ms
 
 
    FORMAT     TOKENS       TIME (Total)    AVG TIME/FILE   VS JSON
    ----------------------------------------------------------------------
-   AICD       5416             4.40 ms        0.37 ms    -21.7%
-   AID        6488             4.29 ms        0.36 ms    -6.3%
+   AKCD       5416             4.40 ms        0.37 ms    -21.7%
+   AKD        6488             4.29 ms        0.36 ms    -6.3%
    JSON       6921             0.15 ms        0.01 ms    +0.0%
    TOON       8198             2.36 ms        0.20 ms    +18.5%
 
 
-CONCLUSION: Switching to AICD saves 1505 tokens (21.7%) compared to JSON.
+CONCLUSION: Switching to AKCD saves 1505 tokens (21.7%) compared to JSON.
 ```
 
 ---
 
 ## 🛠 CLI Usage
 
-The package comes with a powerful CLI tool `aid` for encoding, decoding, and benchmarking.
+The package comes with a powerful CLI tool `akd` for encoding, decoding, and benchmarking.
 
 ```text
-   Arkadia AI DATA TOOL
+   Arkadia DATA TOOL
    --------------------------------------------------
-   Unified interface for AI Data Format operations.
+   Unified interface for AK Data Format operations.
 
 USAGE:
-   aid <command> [flags]
+   akd <command> [flags]
 
 COMMANDS:
-   enc             [ENCODE] Convert JSON/YAML/TOON to AI.Data format
-   dec             [DECODE] Parse AI.Data format back to JSON
+   enc             [ENCODE] Convert JSON/YAML/TOON to AK Data format
+   dec             [DECODE] Parse AK Data format back to JSON
    benchmark       [BENCHMARK] Run performance and token usage tests
    ai-benchmark    [AI] Run AI understanding tests (not implemented yet)
 
@@ -125,7 +125,7 @@ This section describes the **actual, currently implemented** syntax of AI.DATA-F
 
 A type defines a name and an ordered list of fields. Comments are allowed within the definition to assist the LLM.
 
-```aid
+```akd
 User</comment/ ={(23,"A",3) #tag1 #tag2} %[{ id: 4, b: "a", c: 43}]: id:number,
 b: string , c:number, >
 @Users
@@ -170,7 +170,7 @@ The format supports compact positional records and explicit named records.
 
 ### 3. Comments
 
-```aid
+```akd
 / this is a comment /
 
 ```
@@ -189,7 +189,7 @@ The format supports compact positional records and explicit named records.
 
 You can declare a type and immediately use it:
 
-```aid
+```akd
 @User<id:number name:string desc:string>
 
 value:@User(2,"Alice","Hello")
@@ -201,7 +201,7 @@ value2:@User(3,"Bob","World")
 
 Currently, nested types are allowed as structural definitions:
 
-```aid
+```akd
 @User<
   id:string
   name:string

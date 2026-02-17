@@ -12,5 +12,5 @@ class C:
     CYAN = "\033[36m"
     MAGENTA = "\033[35m"
 
-    AID_MAIN = "\033[38;5;34m"
-    AID_ACCENT = "\033[38;5;208m"
+    AKD_MAIN = "\033[38;5;34m"
+    AKD_ACCENT = "\033[38;5;208m"

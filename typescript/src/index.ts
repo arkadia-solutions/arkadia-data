@@ -15,7 +15,7 @@ export { Node, Schema, SchemaKind, DecodeResult, EncoderConfig,
 // =============================================================
 
 /**
- * Encode input data into valid **AI.Data** format.
+ * Encode input data into valid **AK Data** format.
  */
 export function encode(data: any | Node, config: Partial<EncoderConfig> = {}): string {
     let node: Node;
@@ -26,7 +26,7 @@ export function encode(data: any | Node, config: Partial<EncoderConfig> = {}): s
 }
 
 /**
- * Decode AI.Data format text into a Node structure.
+ * Decode AK Data format text into a Node structure.
  */
 export function decode(
     text: string,

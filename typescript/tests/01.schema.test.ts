@@ -6,7 +6,7 @@ import { assertRoundtrip } from './utils';
 // 2. SCHEMA DEFINITION & TYPING
 // ==================================================================================
 
-describe('AI Data Schema Definitions', () => {
+describe('AK Data Schema Definitions', () => {
 
     it('should handle schema definition and usage', () => {
         /**

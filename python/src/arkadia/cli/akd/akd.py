@@ -2,10 +2,10 @@ import sys
 import argparse
 import arkadia.cli as cli
 from arkadia.cli.colors import C
-import arkadia.cli.aid.benchmark as benchmark
-from arkadia.cli.aid.meta import MET_INFO, VERSION, TOOL_NAME, TOOL_CMD, DESCRIPTION
-import arkadia.cli.aid.encode as encode
-import arkadia.cli.aid.decode as decode
+import arkadia.cli.akd.benchmark as benchmark
+from arkadia.cli.akd.meta import MET_INFO, VERSION, TOOL_NAME, TOOL_CMD, DESCRIPTION
+import arkadia.cli.akd.encode as encode
+import arkadia.cli.akd.decode as decode
 
 
 def show_main_help():
@@ -19,8 +19,8 @@ def show_main_help():
     cli.print_usage(TOOL_CMD, "<command> [flags]", "")
 
     commands = [
-        {"flags": "enc", "desc": "[ENCODE] Convert JSON/YAML/TOON to AI.Data format"},
-        {"flags": "dec", "desc": "[DECODE] Parse AI.Data format back to JSON"},
+        {"flags": "enc", "desc": "[ENCODE] Convert JSON/YAML/TOON to AK Data format"},
+        {"flags": "dec", "desc": "[DECODE] Parse AK Data format back to JSON"},
         {
             "flags": "benchmark",
             "desc": "[BENCHMARK] Run performance and token usage tests",
