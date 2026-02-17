@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
 // Load package.json to get the real package name (e.g., @arkadia/data)
 const pkg = require('../package.json');
-const PACKAGE_NAME = pkg.name; 
+const PACKAGE_NAME = pkg.name;
 
 // --- CONFIGURATION ---
 const ROOT_DIR = path.resolve(__dirname, '..');
 const TEMP_DIR = path.join(ROOT_DIR, 'temp_smoke_test');
-const DIST_DIR = path.join(ROOT_DIR, 'dist'); 
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
 // Node.js modules we DO NOT want in the browser build
 const FORBIDDEN_IMPORTS = ['util', 'fs', 'path', 'child_process', 'os'];
@@ -20,80 +22,80 @@ const success = (msg) => console.log(`\x1b[32m[SUCCESS]\x1b[0m ${msg}`);
 const error = (msg) => console.error(`\x1b[31m[ERROR]\x1b[0m ${msg}`);
 
 function scanDirForForbiddenImports(dir) {
-    if (!fs.existsSync(dir)) return;
-    
-    const files = fs.readdirSync(dir);
-    
-    for (const file of files) {
-        const fullPath = path.join(dir, file);
-        const stat = fs.statSync(fullPath);
+  if (!fs.existsSync(dir)) return;
 
-        if (stat.isDirectory()) {
-            scanDirForForbiddenImports(fullPath);
-        } else if (file.endsWith('.js') || file.endsWith('.mjs')) {
-            const content = fs.readFileSync(fullPath, 'utf-8');
-            
-            FORBIDDEN_IMPORTS.forEach(mod => {
-                // Regex looks for: require('util') OR from 'util'
-                const regex = new RegExp(`(require\\(['"]${mod}['"]\\)|from\\s+['"]${mod}['"])`);
-                if (regex.test(content)) {
-                    throw new Error(
-                        `Found Node.js specific module '${mod}' in file: ${file}\n` +
-                        `This will crash in the browser! Please remove the import or use a polyfill.`
-                    );
-                }
-            });
+  const files = fs.readdirSync(dir);
+
+  for (const file of files) {
+    const fullPath = path.join(dir, file);
+    const stat = fs.statSync(fullPath);
+
+    if (stat.isDirectory()) {
+      scanDirForForbiddenImports(fullPath);
+    } else if (file.endsWith('.js') || file.endsWith('.mjs')) {
+      const content = fs.readFileSync(fullPath, 'utf-8');
+
+      FORBIDDEN_IMPORTS.forEach((mod) => {
+        // Regex looks for: require('util') OR from 'util'
+        const regex = new RegExp(`(require\\(['"]${mod}['"]\\)|from\\s+['"]${mod}['"])`);
+        if (regex.test(content)) {
+          throw new Error(
+            `Found Node.js specific module '${mod}' in file: ${file}\n` +
+              `This will crash in the browser! Please remove the import or use a polyfill.`,
+          );
         }
+      });
     }
+  }
 }
 
 // --- MAIN PROCESS ---
 
 try {
-    log(`🚀 Starting verification process for: ${PACKAGE_NAME}...`);
+  log(`🚀 Starting verification process for: ${PACKAGE_NAME}...`);
 
-    // 1. Cleanup
-    if (fs.existsSync(TEMP_DIR)) {
-        log('Cleaning up old test artifacts...');
-        fs.rmSync(TEMP_DIR, { recursive: true, force: true });
-    }
+  // 1. Cleanup
+  if (fs.existsSync(TEMP_DIR)) {
+    log('Cleaning up old test artifacts...');
+    fs.rmSync(TEMP_DIR, { recursive: true, force: true });
+  }
 
-    // 2. Build Project
-    log('1. Building project (npm run build)...');
-    try {
-        execSync('npm run build', { stdio: 'inherit', cwd: ROOT_DIR });
-    } catch (e) {
-        throw new Error("Build failed. Fix compilation errors first.");
-    }
+  // 2. Build Project
+  log('1. Building project (npm run build)...');
+  try {
+    execSync('npm run build', { stdio: 'inherit', cwd: ROOT_DIR });
+  } catch {
+    throw new Error('Build failed. Fix compilation errors first.');
+  }
 
-    // 3. BROWSER COMPATIBILITY CHECK
-    log('2. Checking for browser compatibility (No Node.js built-ins)...');
-    scanDirForForbiddenImports(DIST_DIR);
-    success('Browser compatibility check passed! No forbidden imports found.');
+  // 3. BROWSER COMPATIBILITY CHECK
+  log('2. Checking for browser compatibility (No Node.js built-ins)...');
+  scanDirForForbiddenImports(DIST_DIR);
+  success('Browser compatibility check passed! No forbidden imports found.');
 
-    // 4. Pack Project
-    log('3. Packaging (npm pack)...');
-    const packOutput = execSync('npm pack', { cwd: ROOT_DIR }).toString().trim();
-    // npm pack output might have multiple lines, take the last one (filename)
-    const tgzFileName = packOutput.split('\n').pop().trim();
-    const tgzPath = path.join(ROOT_DIR, tgzFileName);
-    
-    if (!fs.existsSync(tgzPath)) {
-        throw new Error(`Could not find packed file: ${tgzFileName}`);
-    }
-    log(`   📦 Created: ${tgzFileName}`);
+  // 4. Pack Project
+  log('3. Packaging (npm pack)...');
+  const packOutput = execSync('npm pack', { cwd: ROOT_DIR }).toString().trim();
+  // npm pack output might have multiple lines, take the last one (filename)
+  const tgzFileName = packOutput.split('\n').pop().trim();
+  const tgzPath = path.join(ROOT_DIR, tgzFileName);
 
-    // 5. Create Temp Environment
-    log('4. Creating temporary test environment...');
-    fs.mkdirSync(TEMP_DIR);
-    execSync('npm init -y', { cwd: TEMP_DIR, stdio: 'ignore' });
+  if (!fs.existsSync(tgzPath)) {
+    throw new Error(`Could not find packed file: ${tgzFileName}`);
+  }
+  log(`   📦 Created: ${tgzFileName}`);
 
-    // 6. Install Tarball
-    log(`5. Installing tarball into temp env...`);
-    execSync(`npm install "${tgzPath}"`, { cwd: TEMP_DIR, stdio: 'ignore' });
+  // 5. Create Temp Environment
+  log('4. Creating temporary test environment...');
+  fs.mkdirSync(TEMP_DIR);
+  execSync('npm init -y', { cwd: TEMP_DIR, stdio: 'ignore' });
 
-    // 7. Verify Script - USING FUNCTIONAL IMPORTS { decode, encode }
-    const verifyScript = `
+  // 6. Install Tarball
+  log(`5. Installing tarball into temp env...`);
+  execSync(`npm install "${tgzPath}"`, { cwd: TEMP_DIR, stdio: 'ignore' });
+
+  // 7. Verify Script - USING FUNCTIONAL IMPORTS { decode, encode }
+  const verifyScript = `
         const { decode, encode } = require('${PACKAGE_NAME}');
         
         console.log("   🧪 Running functional tests...");
@@ -171,32 +173,33 @@ try {
         }
     `;
 
-    fs.writeFileSync(path.join(TEMP_DIR, 'verify_script.js'), verifyScript);
+  fs.writeFileSync(path.join(TEMP_DIR, 'verify_script.js'), verifyScript);
 
-    // 8. Run Verification
-    log('6. Running functional verification...');
-    execSync('node verify_script.js', { cwd: TEMP_DIR, stdio: 'inherit' });
+  // 8. Run Verification
+  log('6. Running functional verification...');
+  execSync('node verify_script.js', { cwd: TEMP_DIR, stdio: 'inherit' });
 
-    // 9. Cleanup
-    log('7. Cleanup...');
-    fs.rmSync(TEMP_DIR, { recursive: true, force: true });
-    fs.unlinkSync(tgzPath); 
+  // 9. Cleanup
+  log('7. Cleanup...');
+  fs.rmSync(TEMP_DIR, { recursive: true, force: true });
+  fs.unlinkSync(tgzPath);
 
-    console.log('\n');
-    success('READY FOR PUBLISH! 🚀');
-    console.log(` - Package: ${PACKAGE_NAME}`);
-    console.log(' - Browser Compatible: YES');
-    console.log('\n');
-
+  console.log('\n');
+  success('READY FOR PUBLISH! 🚀');
+  console.log(` - Package: ${PACKAGE_NAME}`);
+  console.log(' - Browser Compatible: YES');
+  console.log('\n');
 } catch (e) {
-    console.log('\n');
-    error('VERIFICATION FAILED!');
+  console.log('\n');
+  error('VERIFICATION FAILED!');
+  console.error(e.message || e);
+
+  try {
+    const tgzFiles = fs.readdirSync(ROOT_DIR).filter((f) => f.endsWith('.tgz'));
+    tgzFiles.forEach((f) => fs.unlinkSync(path.join(ROOT_DIR, f)));
+  } catch (e) {
     console.error(e.message || e);
-    
-    try {
-        const tgzFiles = fs.readdirSync(ROOT_DIR).filter(f => f.endsWith('.tgz'));
-        tgzFiles.forEach(f => fs.unlinkSync(path.join(ROOT_DIR, f)));
-    } catch (cleanupErr) {}
-    
-    process.exit(1);
+  }
+
+  process.exit(1);
 }
