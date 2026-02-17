@@ -41,7 +41,7 @@
 Get started immediately with pip:
 
 ```bash
-pip install arkadia-data-format
+pip install arkadia-data
 ```
 
 ## 🚀 Fast Example

@@ -1,4 +1,4 @@
-# ARKADIA DATA
+# Arkadia Data Format (AKD)
 
 ```text
                                    ; i  :J                                      
@@ -27,26 +27,84 @@
                           uMW                                                   
                           WW                                                    
                           MW
+
 ```
+
+> **The High-Density, Token-Efficient Data Protocol for Large Language Models.**
+
+**Arkadia Data Format (AKD)** is a schema-first protocol designed specifically to optimize communication with LLMs. By stripping away redundant syntax (like repeated JSON keys) and enforcing strict typing, AKD offers **up to 30% token savings**, faster parsing, and a metadata layer invisible to your application logic but fully accessible to AI models.
+
+**This Python package includes the full core library and the `akd` CLI tool.**
 
 ---
 
-> **The High-Density, Token-Efficient Data Protocol for Large Language Models.**
-> Stop wasting context window on JSON braces. `AK-DATA` is a unified, schema-first data format designed specifically for AI understanding. It offers up to **25% token savings**, faster parsing, and human-readable structure that LLMs love.
+## ✨ Key Features
+
+* **📉 Token Efficiency:** Reduces context window usage by replacing verbose JSON objects with dense Positional Records (Tuples).
+* **🛡️ Type Safety:** Enforces types (`int`, `float`, `bool`, `string`) explicitly in the schema before data reaches the LLM.
+* **🧠 Metadata Injection:** Use `#tags` and `$attributes` to pass context (e.g., source confidence, deprecation warnings) to the LLM without polluting your data structure.
+* **🖥️ Powerful CLI:** Includes the `akd` terminal tool for encoding, decoding, and benchmarking files or streams.
+* **⚡ Zero Dependencies:** Pure Python implementation, lightweight and fast.
 
 ---
 
 ## 📦 Installation
 
-Get started immediately with pip:
+Install directly from PyPI:
 
 ```bash
 pip install arkadia-data
+
 ```
 
-## 🚀 Fast Example
+---
 
-**Encoding to AK-DATA:**
+## 🚀 Quick Start (Library)
+
+### Basic Usage
+
+```python
+import arkadia.data as akd
+
+# 1. Encode: Python Dict -> AKD String
+data = { "id": 1, "name": "Alice", "active": True }
+encoded = akd.encode(data)
+
+print(encoded)
+# Output: <id:number,name:string,active:bool>(1,"Alice",true)
+
+
+# 2. Decode: AKD String -> Python Dict
+input_str = '<score:number>(98.5)'
+result = akd.decode(input_str)
+
+if not result.errors:
+    print(result.node.value) # 98.5
+else:
+    print("Errors:", result.errors)
+
+```
+
+---
+
+## 🛠 CLI Usage
+
+The Python package installs the `akd` (alias: `ak-data`) command globally.
+
+```text
+USAGE:
+   akd / ak-data <command> [flags]
+
+COMMANDS:
+   enc             [ENCODE] Convert JSON/YAML to AK Data format
+   dec             [DECODE] Parse AK Data format back to JSON
+   benchmark       [BENCHMARK] Run performance and token usage tests
+
+```
+
+### Examples
+
+**1. Pipe JSON to AKD (Compact Mode):**
 
 ```bash
 echo '{ "data": 2}' | akd enc - -c
@@ -54,193 +112,140 @@ echo '{ "data": 2}' | akd enc - -c
 
 ```
 
-**Decoding back to JSON:**
+**2. Decode AKD file to JSON:**
 
 ```bash
-echo '<data:number>(2)' | akd dec - -f json
-# Output: { "data": 2 }
+akd dec payload.akd -f json
+
+```
+
+**3. Run Benchmarks on a directory:**
+
+```bash
+akd benchmark ./data_samples
 
 ```
 
 ---
 
-## ⚡ Performance & Token Savings
+## ⚡ Benchmarks
 
-Why switch? Because every token counts. `AKCD` (Arkadia Compressed Data) consistently outperforms standard formats in both token efficiency.
+Why switch? Because every token counts. **AKCD** (Arkadia Compressed Data) consistently outperforms standard formats.
 
 ```text
 BENCHMARK SUMMARY:
 
+   JSON  █████████████████████░░░░     6921 tok     0.15 ms
+   AKCD  ████████████████░░░░░░░░░     5416 tok     4.40 ms
+   AKD   ███████████████████░░░░░░     6488 tok     4.29 ms
+   TOON  █████████████████████████     8198 tok     2.36 ms
 
-   JSON  █████████████████████░░░░     6921 tok   ░░░░░░░░░░░░░░░░░░░░░░░░░     0.15 ms
-   AKCD  ████████████████░░░░░░░░░     5416 tok   █████████████████████████     4.40 ms
-   AKD   ███████████████████░░░░░░     6488 tok   ████████████████████████░     4.29 ms
-   TOON  █████████████████████████     8198 tok   █████████████░░░░░░░░░░░░     2.36 ms
-
-
-   FORMAT     TOKENS       TIME (Total)    AVG TIME/FILE   VS JSON
-   ----------------------------------------------------------------------
-   AKCD       5416             4.40 ms        0.37 ms    -21.7%
-   AKD        6488             4.29 ms        0.36 ms    -6.3%
-   JSON       6921             0.15 ms        0.01 ms    +0.0%
-   TOON       8198             2.36 ms        0.20 ms    +18.5%
-
+   FORMAT     TOKENS       VS JSON
+   ---------------------------------
+   AKCD       5416         -21.7%
+   AKD        6488         -6.3%
+   JSON       6921         +0.0%
+   TOON       8198         +18.5%
 
 CONCLUSION: Switching to AKCD saves 1505 tokens (21.7%) compared to JSON.
-```
-
----
-
-## 🛠 CLI Usage
-
-The package comes with a powerful CLI tool `akd` for encoding, decoding, and benchmarking.
-
-```text
-   Arkadia DATA TOOL
-   --------------------------------------------------
-   Unified interface for AK Data Format operations.
-
-USAGE:
-   ak-data / akd <command> [flags]
-
-COMMANDS:
-   enc             [ENCODE] Convert JSON/YAML/TOON to AK Data format
-   dec             [DECODE] Parse AK Data format back to JSON
-   benchmark       [BENCHMARK] Run performance and token usage tests
-   ai-benchmark    [AI] Run AI understanding tests (not implemented yet)
-
-GLOBAL OPTIONS:
-   -h, --help       Show this help message
-   -v, --version    Show version info
 
 ```
 
 ---
 
-## 📖 Syntax Specification (Current Version)
+## 📖 Syntax Specification
 
-This section describes the **actual, currently implemented** syntax of AI.DATA-FORMAT.
+AKD separates structure (Schema) from content (Data).
 
-### 1. Type Definition
+### 1. Primitives
 
-A type defines a name and an ordered list of fields. Comments are allowed within the definition to assist the LLM.
+Primitive values are automatically typed. Strings are quoted, numbers and booleans are bare.
 
-```akd
-User</comment/ ={(23,"A",3) #tag1 #tag2} %[{ id: 4, b: "a", c: 43}]: id:number,
-b: string , c:number, >
-@Users
-<
- @list 
- a: number,
- b: string
->
-[
-  @size=5
-  /example list of values/
-
-  (1,`text`,5)
-  (2,`Text can be
-
-multiline
-`,5)
-  {
-    id:3,
-    b: "text"
-  }
-]
-
-```
-
-**Key Rules:**
-
-* The type name (`@Name`) is optional but recommended.
-* The header `<...>` defines field names and their order.
-* Comments (`/ ... /`) are **allowed** in the header.
-
-### 2. Data Structures
-
-The format supports compact positional records and explicit named records.
-
-| Structure | Syntax | Description |
+| Type | Input | Encoded Output |
 | --- | --- | --- |
-| **Positional Record** | `(a,b,c)` | Must follow the exact order of fields in the type header. |
-| **Named Record** | `{key:value}` | Keys must match field names. No spaces allowed in keys/values. |
-| **List** | `[ ... ]` | Contains positional or named records. |
-| **Multiline Text** | ``text`` | Ends with a line containing only a backtick. |
+| **Integer** | `123` | `<number>123` |
+| **String** | `"hello"` | `<string>"hello"` |
+| **Boolean** | `true` | `<bool>true` |
+| **Null** | `null` | `<null>null` |
 
-### 3. Comments
+### 2. Schema Definition (`@Type`)
 
-```akd
-/ this is a comment /
-
-```
-
-* Allowed **only** inside type definitions.
-* Forbidden in raw data blocks to save space.
-
-### 4. General Rules
-
-1. **Data must contain NO spaces.** (Compactness is priority).
-2. Schema/Type definitions **may** contain spaces and comments.
-3. Named fields always use `key:value` without spaces.
-4. Positional order must exactly match the declared order.
-
-### 5. Inline Type Usage
-
-You can declare a type and immediately use it:
+Define the structure once to avoid repeating keys.
 
 ```akd
-@User<id:number name:string desc:string>
-
-value:@User(2,"Alice","Hello")
-value2:@User(3,"Bob","World")
-
-```
-
-### 6. Nested Types
-
-Currently, nested types are allowed as structural definitions:
-
-```akd
-@User<
-  id:string
-  name:string
-  profile: < level:number, score:number >
+/* Define a User type */
+@User <
+  id: number, 
+  name: string, 
+  role: string 
 >
-[
-  ("u1","Aga",{level:5,score:82})
-  ("u2","Marek",{level:7,score:91})
-]
+
+```
+
+### 3. Data Structures
+
+#### Positional Records (Tuples)
+
+The most efficient way to represent objects. Values must match the schema order.
+
+```akd
+/* Schema: <x:number, y:number> */
+(10, 20)
+
+```
+
+#### Named Records (Objects)
+
+Flexible key-value pairs, similar to JSON, used when schema is loose or data is sparse.
+
+```akd
+{
+  id: 1,
+  name: "Admin"
+}
+
+```
+
+#### Lists
+
+Dense arrays. Can be homogenous (list of strings) or mixed.
+
+```akd
+[ "active", "pending", "closed" ]
+
+```
+
+### 4. Metadata System
+
+AKD allows you to inject metadata that is **visible to the LLM** but **ignored by the parser** when decoding back to your application.
+
+#### Attributes (`$key=value`) & Tags (`#flag`)
+
+```akd
+@Product <
+  $version="2.0"
+  sku: string,
+  
+  /* Tagging a field as deprecated */
+  #deprecated
+  legacy_id: int
+>
 
 ```
 
 ---
 
-## 🔮 Futures / Roadmap
+## 🔮 Roadmap
 
-The following features are planned for future releases and are **not yet implemented**.
+* **Binary Types:** Hex (`~[hex]1A...~`) and Base64 (`~[b64]...~`) support.
+* **Pointers:** Reference existing objects by ID (`*User[1]`).
+* **Ranges:** Numeric range validation in schema (`score: 0..100`).
 
-* **Modifiers:**
-* `!required` - field must be included.
-* `?empty` - field must not be empty.
-* `=value` - default value.
-* `N..M` - numeric range validation.
-
-
-* **Binary Data Types:**
-* Hex: `~[hex]1A0F4F~`
-* Base64: `~[b64]ADFKDXKZK...~`
-
-
-* **Pointers/References:**
-* Reference existing objects by ID: `(1, "Alex", *User[2])`
-
+---
 
 ## 📄 License
 
-This project is licensed under the [MIT License].
-
----
+This project is licensed under the [MIT License]().
 
 <div align="center">
 <sub>Built by <strong>Arkadia Solutions</strong>. Engineering the kernel of distributed intelligence.</sub>

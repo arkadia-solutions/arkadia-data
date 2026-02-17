@@ -68,7 +68,7 @@ line-ending = "auto"
 
 [project]
 name = "arkadia-data"
-version = "0.1.7"
+version = "0.1.9"
 description = "Arkadia Data Format (AK-DATA) - A versatile data serialization format optimized for AI applications."
 readme = "README.md"
 authors = [
