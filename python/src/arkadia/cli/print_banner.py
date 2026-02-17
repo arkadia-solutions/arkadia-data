@@ -49,7 +49,7 @@ def print_banner(
     # 2. Print Header (Tool Name)
     # Arkadia prefix in Green, Tool name in White Bold
     print(
-        f"\n\n   {C.AKD_MAIN}Arkadia{C.RESET} {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
+        f"\n\n  {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
     )
     print(f"   {C.DIM}{'-' * 50}{C.RESET}")
 

@@ -1,6 +1,6 @@
 # encoder.py
 """
-Encoder for AI.DATA-FORMAT.
+Encoder for AK-DATA.
 
 Supports:
 - Primitive values

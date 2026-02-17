@@ -13,7 +13,7 @@ CYAN = "\033[36m"
 
 def colorize(text: str) -> str:
     """
-    Safe syntax highlighter for AI.DATA-FORMAT.
+    Safe syntax highlighter for AK-DATA.
     Only colors constructs that exist in the CURRENT specification.
     """
 

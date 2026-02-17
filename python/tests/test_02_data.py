@@ -8,7 +8,7 @@ from utils import assert_roundtrip
 
 
 def test_encode_simple_dict():
-    """Validates encoding a Python dict to AI.DATA format."""
+    """Validates encoding a Python dict to AK-DATA format."""
     data = {"x": 10, "y": 20}
     result = encode(data, config={"compact": True})
     expected = "<x:number,y:number>(10,20)"

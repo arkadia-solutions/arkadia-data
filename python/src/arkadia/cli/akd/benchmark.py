@@ -443,11 +443,11 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     print("\n")
 
     # 3. CONCLUSION
-    aicd_saved = json_tot - totals["AKCD"]["tokens"]
-    if aicd_saved > 0:
-        percent_saved = (aicd_saved / json_tot) * 100
+    akcd_saved = json_tot - totals["AKCD"]["tokens"]
+    if akcd_saved > 0:
+        percent_saved = (akcd_saved / json_tot) * 100
         print(
-            f"{C.BOLD}CONCLUSION:{C.RESET} Switching to {C.GREEN}AKCD{C.RESET} saves {C.GREEN}{aicd_saved}{C.RESET} tokens "
+            f"{C.BOLD}CONCLUSION:{C.RESET} Switching to {C.GREEN}AKCD{C.RESET} saves {C.GREEN}{akcd_saved}{C.RESET} tokens "
             f"({percent_saved:.1f}%) compared to JSON."
         )
     else:
