@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    /* --- Basic Language Configuration --- */
+    "target": "ES2020",                          /* JavaScript version to generate. ES2020 is safe for Node 14+ */
+    "module": "CommonJS",                        /* Module standard (Node.js uses CommonJS by default) */
+    "lib": ["ES2020"],                           /* Available libraries (e.g., Promise, Map, Set) */
+    "moduleResolution": "node",                  /* Module resolution strategy */
+
+    /* --- Output File Structure --- */
+    "outDir": "./dist",                          /* Where compiled files should go */
+    "rootDir": "./src",                          /* Source directory. Ensures strictly that only files inside src are compiled */
+    "declaration": true,                         /* Generate .d.ts files (required for npm libraries) */
+    "declarationMap": true,                      /* Allows editors (VS Code) to go to source definition */
+    "sourceMap": true,                           /* Generate source maps (.js.map) for debugging */
+    "removeComments": false,                     /* Do not remove comments (useful for JSDoc in IDEs) */
+
+    /* --- Interoperability --- */
+    "esModuleInterop": true,                     /* Allows importing CommonJS modules as default imports */
+    "forceConsistentCasingInFileNames": true,    /* Enforce consistent casing in file names */
+    "resolveJsonModule": true,                   /* Allows importing .json files in code */
+
+    /* --- Strict Type-Checking --- */
+    "strict": true,                              /* Enable all strict type-checking options */
+    "noImplicitAny": true,                       /* Error if type is not explicit and is 'any' */
+    "strictNullChecks": true,                    /* Error on unhandled null/undefined */
+    "strictPropertyInitialization": true,        /* Check if class properties are initialized in the constructor */
+    "noImplicitReturns": true,                   /* Every code path in a function must return a value */
+    "noFallthroughCasesInSwitch": true,          /* Prevent accidental fallthrough in switch cases */
+    
+    /* --- Code Cleanliness --- */
+    "noUnusedLocals": true,                      /* Report error for unused local variables */
+    "noUnusedParameters": true,                  /* Report error for unused function parameters */
+    
+    /* --- Compilation Optimization --- */
+    "skipLibCheck": true                         /* Skip type checking of declaration files (.d.ts) in external libs */
+  },
+  "include": [
+    "src/**/*"                                   /* Compile everything in the src folder */
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",                              /* Do not include tests in the production build */
+    "**/*.spec.ts"
+  ]
+}

@@ -1,0 +1,12 @@
+< 
+    /* commentm0 */ /* com1 /*com1.2*/ */
+    / $listAttr="GlobalList" $b=4  #tag /
+    /* comment4 */
+>
+
+/*
+<ab>
+{
+   ab:  ["a", "b", "c", 3]
+}
+*/

@@ -1,0 +1,6 @@
+<context:<task:string, location:string, season:string>, friends:[string], hikes:[<id:number, name:string, distanceKm:number, elevationGain:number, companion:string, wasSunny:bool>]>
+(("Our favorite hikes together", "Boulder", "spring_2025"), ["ana", "luis", "sam"], [
+  (1, "Blue Lake Trail", 7.5, 320, "ana", true)
+  (2, "Ridge Overlook", 9.2, 540, "luis", false)
+  (3, "Wildflower Loop", 5.1, 180, "sam", true)
+])

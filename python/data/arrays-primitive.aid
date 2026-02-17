@@ -1,0 +1,13 @@
+<version:string, category:string, description:string, tests:[<name:string, input:<tags:[string]>, expected:string, specSection:string>]>
+("1.3", "encode", "Primitive array encoding - inline arrays of strings, numbers, booleans", [
+  ("encodes string arrays inline", (["reading", "gaming"]), "tags[2]: reading,gaming", "7.1")
+  ("encodes number arrays inline", ([1, 2, 3]), "nums[3]: 1,2,3", "7.1")
+  ("encodes mixed primitive arrays inline", (["x", "y", true, 10]), "data[4]: x,y,true,10", "7.1")
+  ("encodes empty arrays", ([]), "items[0]:", "7.1")
+  ("encodes empty string in single-item array", ([""]), "items[1]: \"\"", "7.1")
+  ("encodes empty string in multi-item array", (["a", "", "b"]), "items[3]: a,\"\",b", "7.1")
+  ("encodes whitespace-only strings in arrays", ([" ", "  "]), "items[2]: \" \",\"  \"", "7.1")
+  ("quotes array strings with comma", (["a", "b,c", "d:e"]), "items[3]: a,\"b,c\",\"d:e\"", "7.1")
+  ("quotes strings that look like booleans in arrays", (["x", "true", "42", "-3.14"]), "items[4]: x,\"true\",\"42\",\"-3.14\"", "7.1")
+  ("quotes strings with structural meanings in arrays", (["[5]", "- item", "{key}"]), "items[3]: \"[5]\",\"- item\",\"{key}\"", "7.1")
+])

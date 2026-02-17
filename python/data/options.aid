@@ -1,0 +1,20 @@
+<version:string, category:string, description:string, tests:[<name:string, input:<tags:[string]>, expected:string, options:<lengthMarker:string>, specSection:string, note:string>]>
+("1.3", "encode", "Encoding options - lengthMarker option and combinations with delimiters", [
+  ("adds length marker to primitive arrays", (["reading", "gaming", "coding"]), "tags[#3]: reading,gaming,coding", ("#"), "3")
+  ("adds length marker to empty arrays", ([]), "items[#0]:", ("#"), "3")
+  ("adds length marker to tabular arrays", ([
+    ("A1", 2, 9.99)
+    ("B2", 1, 14.5)
+  ]), "items[#2]{sku,qty,price}:
+  A1,2,9.99
+  B2,1,14.5", ("#"), "3")
+  ("adds length marker to nested arrays", ([
+    ["a", "b"]
+    ["c", "d"]
+  ]), "pairs[#2]:
+  - [#2]: a,b
+  - [#2]: c,d", ("#"), "3")
+  ("combines length marker with pipe delimiter", (["reading", "gaming", "coding"]), "tags[#3|]: reading|gaming|coding", ("#", "|"), "3")
+  ("combines length marker with tab delimiter", (["reading", "gaming", "coding"]), "tags[#3	]: reading	gaming	coding", ("#", "	"), "3")
+  ("default lengthMarker is empty (no marker)", (["reading", "gaming", "coding"]), "tags[3]: reading,gaming,coding", (), "3", "Default behavior without lengthMarker option")
+])
