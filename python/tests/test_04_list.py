@@ -1,10 +1,8 @@
 import arkadia.ai as ai
 from arkadia.ai.data import SchemaKind
-import pytest
 from arkadia.ai.data.decode import decode
-from arkadia.ai.data.encode import encode
-from arkadia.ai.data import Node
 from utils import assert_roundtrip
+
 
 def test_decode_list_of_primitives():
     """Validates simple lists."""
@@ -109,6 +107,7 @@ def test_explicit_any_list_generates_tags_due_to_primitive_mismatch():
     excepted = '<tests:[string]>(["a","b","c",<number> 3])'
     assert_roundtrip(node, excepted, True)
 
+
 def test_inference_happy_path():
     """
     Theory: If a list has no type (or [any]), the first element ("a")
@@ -126,6 +125,7 @@ def test_inference_happy_path():
 
     excepted = '<[string]>["a","b"]'
     assert_roundtrip(node, excepted, True)
+
 
 def test_inference_mismatch():
     """
@@ -147,7 +147,7 @@ def test_inference_mismatch():
     assert_roundtrip(node, excepted, True)
 
 
-def test_inference_mismatch():
+def test_inference_mismatch_second():
     """
     Theory: First element "a" sets list to [string].
     The number 3 is mismatch and gets tagged.
@@ -164,6 +164,7 @@ def test_inference_mismatch():
 
     excepted = '<[number]>[3,<string> "a"]'
     assert_roundtrip(node, excepted, True)
+
 
 def test_schema_crash_fix_override_logic():
     """
@@ -188,6 +189,7 @@ def test_schema_crash_fix_override_logic():
 
     excepted = '<test:string>(<[string]> ["a","b"])'
     assert_roundtrip(node, excepted, True)
+
 
 def test_primitive_no_outupt():
     aid_text = """
@@ -226,7 +228,5 @@ def test_inner_list_types():
     errors = result.errors
     assert len(errors) == 0
 
-    excepted = '<[[number]]>[[2,3,4],[5,6,7]]'
+    excepted = "<[[number]]>[[2,3,4],[5,6,7]]"
     assert_roundtrip(node, excepted, True)
-
-

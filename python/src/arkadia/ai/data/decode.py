@@ -1,5 +1,4 @@
 from .Decoder import Decoder, DecodeResult
-from .Node import Node
 
 # =============================================================
 # PUBLIC API

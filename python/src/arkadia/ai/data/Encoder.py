@@ -10,9 +10,7 @@ Supports:
 - Inline type headers <a:number b:string c:string[]>
 """
 
-from email import header
-from typing import Any, Optional, Union
-from xml.etree.ElementTree import indent
+from typing import Any, Optional
 from .Node import Node
 from .Schema import Schema, SchemaKind
 from .Meta import Meta
@@ -30,7 +28,6 @@ class Colors:
     SCHEMA = "\033[91m"  # red (for @TypeName)
     TAG = "\033[91m"
     ATTR = "\033[93m"
-
 
 
 class Encoder:
@@ -65,15 +62,15 @@ class Encoder:
         # 2. Prepare Schema Header (e.g. <test: string>)
         schema_prefix = ""
         should_render_schema = (
-            include_schema 
-            and node.schema is not None 
-            and self.include_schema # Config check
+            include_schema
+            and node.schema is not None
+            and self.include_schema  # Config check
         )
-        
+
         if should_render_schema:
             s_txt = self.encode_schema(node.schema, base_indent).strip()
 
-            if  not s_txt.startswith("<") and not s_txt.startswith("@"): 
+            if not s_txt.startswith("<") and not s_txt.startswith("@"):
                 s_txt = f"<{s_txt}>"
 
             if s_txt:
@@ -82,26 +79,26 @@ class Encoder:
                 else:
                     # Newline formatting for schema header
                     schema_prefix = s_txt + "\n" + (" " * base_indent)
-                    
+
         # 3. Encode Data
         if node.is_list:
             data = self._list(node, base_indent, include_schema=False)
 
         elif node.is_primitive:
             data = self._primitive_node(node)
-        
+
         elif node.is_record:
             data = self._record(node, base_indent)
-        
+
         else:
             data = self._c("null", Colors.NULL)
 
         # Final Assembly: Meta -> Schema -> Data
-        return f"{schema_prefix}{data}" 
+        return f"{schema_prefix}{data}"
 
-
-
-    def encode_schema(self, schema: Schema, indent: int = 2, include_meta: bool = True) -> str:
+    def encode_schema(
+        self, schema: Schema, indent: int = 2, include_meta: bool = True
+    ) -> str:
         """
         Encode Schema into AI.Data header form.
         Supports: < [ ... ] >, / meta /, !required
@@ -111,16 +108,12 @@ class Encoder:
 
         ind = " " * indent
         prefix = ""
-        
+
         # Determine padding for brackets based on compact mode
         pad = "" if self.compact else " "
 
         # Avoid printing internal/default type names
-        if (
-            schema.type_name
-            and schema.kind == SchemaKind.RECORD
-            and not schema.is_any
-        ):
+        if schema.type_name and schema.kind == SchemaKind.RECORD and not schema.is_any:
             prefix = self._c(f"@{schema.type_name}", Colors.SCHEMA)
 
         meta = self._meta_wrapped(schema) if include_meta else ""
@@ -128,7 +121,11 @@ class Encoder:
         # --- PRIMITIVE ---
         if schema.is_primitive:
             meta_prefix = self._meta_inline(schema) if include_meta else ""
-            return ind + ((meta_prefix + " ") if meta_prefix else "") + self._c(schema.type_name, Colors.TYPE)
+            return (
+                ind
+                + ((meta_prefix + " ") if meta_prefix else "")
+                + self._c(schema.type_name, Colors.TYPE)
+            )
 
         # --- LIST ---
         if schema.is_list:
@@ -136,14 +133,26 @@ class Encoder:
             schema.apply_meta(schema.element)
             schema.element.clear_meta()
             list_meta = self._meta_wrapped(schema) if include_meta else ""
-            
+
             # Special Case: List of Records < [ ... ] >
             if schema.element and schema.element.is_record:
                 # We reuse the _record_fields logic but wrap in <[ ... ]>
                 inner_fields = self._encode_schema_fields(schema.element)
-    
+
                 # FIX: Use 'pad' variable to remove spaces in compact mode
-                return ind + prefix + "<" + pad + "[" + list_meta + inner_fields + pad + "]" + pad + ">"
+                return (
+                    ind
+                    + prefix
+                    + "<"
+                    + pad
+                    + "["
+                    + list_meta
+                    + inner_fields
+                    + pad
+                    + "]"
+                    + pad
+                    + ">"
+                )
 
             # Standard List [Type]
             inner = self.encode_schema(schema.element, 0, False).strip()
@@ -192,50 +201,51 @@ class Encoder:
 
             # 4. Field Type
             field_type = self.encode_schema(field, 0, False).strip()
-            
+
             last_idx = len(field_parts) - 1
-            
+
             # FIX: Logic to decide when to print the type signature.
-            # A. If it's a Structure (List/Record), ALWAYS print the type (e.g. [string]), 
+            # A. If it's a Structure (List/Record), ALWAYS print the type (e.g. [string]),
             #    ignoring the fact that type_name might be default "any".
             # B. If it's a Primitive, print it only if it's not "any" (and types are included).
             # C. Crucial: Ensure field_type is not empty (handles generic empty records).
             is_structure = not field.is_primitive
-            is_explicit_primitive = (self.include_type and field.type_name != "any")
-            
+            is_explicit_primitive = self.include_type and field.type_name != "any"
+
             if field_type and (is_structure or is_explicit_primitive):
                 field_parts[last_idx] += f":{self._c(field_type, Colors.TYPE)}"
-            
+
             parts.append(" ".join(field_parts))
 
         sep = f",{pad}"
         return sep.join(parts)
 
-
     # -------------------------------------------------------------
     # HELPER: SCHEMA COMPATIBILITY CHECK
     # -------------------------------------------------------------
-    
-    def _schemas_are_compatible(self, node_schema: Optional[Schema], expected_schema: Optional[Schema]) -> bool:
+
+    def _schemas_are_compatible(
+        self, node_schema: Optional[Schema], expected_schema: Optional[Schema]
+    ) -> bool:
         """
         Checks if the node's schema matches the parent's expected schema.
         Used to determine if we need to show an inline <type> override.
         """
         if not expected_schema or expected_schema.is_any:
             return True
-        
+
         if node_schema is None:
             return True
-        
+
         # Check general kind
         if node_schema.kind != expected_schema.kind:
             return False
-            
+
         # Check specific primitive type name (e.g. int vs string)
         if node_schema.is_primitive and expected_schema.is_primitive:
             # Loose equality: 'number' matches 'int'/'float' usually, but here we check exact name match
             return node_schema.type_name == expected_schema.type_name
-            
+
         return True
 
     def _get_type_label(self, schema: Schema) -> str:
@@ -250,19 +260,23 @@ class Encoder:
         # Fallback for complex inline records
         return "any"
 
-    def _apply_type_tag(self, val_str: str, node_schema: Optional[Schema], expected_schema: Optional[Schema]) -> str:
+    def _apply_type_tag(
+        self,
+        val_str: str,
+        node_schema: Optional[Schema],
+        expected_schema: Optional[Schema],
+    ) -> str:
         """
         Applies an inline type tag (e.g., <int>) if the schema does not match the expectation.
         This is the single source of truth for override formatting.
         """
         if self._schemas_are_compatible(node_schema, expected_schema):
             return val_str
-        
+
         # Mismatch detected -> Wrap with tag
         label = self._get_type_label(node_schema) if node_schema else "any"
         tag = self._c(f"<{label}>", Colors.SCHEMA)
         return f"{tag} {val_str}"
-
 
     # -------------------------------------------------------------
     # META AND COMMENTS (Unified Logic)
@@ -274,7 +288,7 @@ class Encoder:
         Combines Comments, Attributes, Tags, and Modifiers.
         """
         items = []
-        pad =  ""  if self.compact else " "
+        pad = "" if self.compact else " "
 
         # 1. Comments
         if self.include_comments and obj.comments:
@@ -283,7 +297,7 @@ class Encoder:
                 items.append(self._c(f"/*{pad}{cleaned}{pad}*/", Colors.NULL))
 
         # 2. Modifiers
-        if getattr(obj, 'required', False):
+        if getattr(obj, "required", False):
             items.append(self._c("!required", Colors.TAG))
 
         # 3. Attributes & Tags
@@ -301,14 +315,14 @@ class Encoder:
             return ""
 
         content = " ".join(items)
-        
+
         # Inline: /* c1 */ !req $a=1
         return content
 
     def _meta_inline(self, obj: Meta) -> str:
         """For Primitives/Fields: No wrappers."""
         return self._build_meta_string(obj)
-    
+
     def _meta_wrapped(self, obj: Meta) -> str:
         """For Containers/Schema Headers: Wrapped in /.../."""
         content = self._build_meta_string(obj)
@@ -317,13 +331,17 @@ class Encoder:
     def _wrap_meta(self, content: str):
         if not content:
             return ""
-        pad =  ""  if self.compact else " "
-        content = self._c(f"/{pad}", Colors.SCHEMA) + content + self._c(f"{pad}/", Colors.SCHEMA)
+        pad = "" if self.compact else " "
+        content = (
+            self._c(f"/{pad}", Colors.SCHEMA)
+            + content
+            + self._c(f"{pad}/", Colors.SCHEMA)
+        )
         if self.compact:
             return content + " " if content else ""
         else:
             return " " + content + " " if content else ""
-   
+
     # -------------------------------------------------------------
     # HELPERS
     # -------------------------------------------------------------
@@ -339,7 +357,6 @@ class Encoder:
         inner_meta = self._meta_inline(node)
         str = self._primitive(node.value)
         return (inner_meta + " " if inner_meta else "") + str
-        
 
     def _primitive(self, v: Any) -> str:
         if isinstance(v, str):
@@ -367,9 +384,7 @@ class Encoder:
         header = "["
         if self.include_array_size:
             # Prefer elemeents length if available
-            size = (
-                len(node.elements)
-            )
+            size = len(node.elements)
             header += f"{self._c('$size', Colors.KEY)}={self._c(str(size), Colors.NUMBER)}{self._c(':', Colors.TYPE)}"
         return header
 
@@ -397,7 +412,11 @@ class Encoder:
 
         # 1. Generate Header Schema (if requested)
         schema_header = ""
-        if include_schema and node.schema is not None and node.schema.element is not None:
+        if (
+            include_schema
+            and node.schema is not None
+            and node.schema.element is not None
+        ):
             # This generates the <[ id: int ]> part
             schema_header = self.encode_schema(node.schema.element, 0).strip()
         if schema_header:
@@ -409,7 +428,6 @@ class Encoder:
         if self.compact:
             items = []
 
-            
             for el in node.elements:
                 # IMPORTANT: We disable schema inclusion for elements to avoid duplication <...>
                 # unless types mismatch drastically.
@@ -423,7 +441,7 @@ class Encoder:
 
                 items.append(val)
 
-            return ind + "[" + inner_meta + schema_header  + ",".join(items) + "]"
+            return ind + "[" + inner_meta + schema_header + ",".join(items) + "]"
 
         # --- PRETTY MODE ---
         header = self._list_header(node)
@@ -452,8 +470,7 @@ class Encoder:
 
         out.append(ind + "]")
         return self._join(out, "\n")
-    
-  
+
     # -------------------------------------------------------------
     # RECORD: {key:value} -> (val1, val2) OR {key:value}
     # -------------------------------------------------------------

@@ -3,6 +3,7 @@ from enum import Enum
 from .Meta import Meta, MetaInfo
 from .Config import Config
 
+
 class SchemaKind(Enum):
     PRIMITIVE = "primitive"  # int, string, bool, null, etc.
     RECORD = "record"  # User, Point, or anonymous <...>
@@ -22,7 +23,6 @@ class Schema(Meta):
         element: "Schema" = None,
         key: "Schema" = None,
         value: "Schema" = None,
-
         # meta
         # list of comments associated with this node /* comment */ /* comment2 */
         comments: Optional[List[str]] = None,
@@ -31,13 +31,10 @@ class Schema(Meta):
         # Tags for meta #a #b #c
         tags: Optional[List[str]] = None,
         # is it required?
-        required: bool = False
+        required: bool = False,
     ):
-        super().__init__(
-            comments=comments, 
-            attr=attr, 
-            tags=tags)
-        
+        super().__init__(comments=comments, attr=attr, tags=tags)
+
         self.kind = kind
         self.type_name = type_name or "any"
         self.name = name or ""
@@ -55,18 +52,24 @@ class Schema(Meta):
                 self.add_field(f)
 
     @property
-    def is_primitive(self) -> bool: return self.kind == SchemaKind.PRIMITIVE
-    @property
-    def is_record(self) -> bool: return self.kind == SchemaKind.RECORD
-    @property
-    def is_list(self) -> bool: return self.kind == SchemaKind.LIST
-    @property
-    def is_any(self) -> bool: return (
-        self.kind == SchemaKind.ANY 
-        or (self.type_name == "any" and self.kind == SchemaKind.PRIMITIVE)
-        or (self.type_name == "any" and self.kind == SchemaKind.RECORD)
+    def is_primitive(self) -> bool:
+        return self.kind == SchemaKind.PRIMITIVE
 
-    )
+    @property
+    def is_record(self) -> bool:
+        return self.kind == SchemaKind.RECORD
+
+    @property
+    def is_list(self) -> bool:
+        return self.kind == SchemaKind.LIST
+
+    @property
+    def is_any(self) -> bool:
+        return (
+            self.kind == SchemaKind.ANY
+            or (self.type_name == "any" and self.kind == SchemaKind.PRIMITIVE)
+            or (self.type_name == "any" and self.kind == SchemaKind.RECORD)
+        )
 
     def clear_fields(self):
         self._fields_list: List["Schema"] = []
@@ -81,23 +84,25 @@ class Schema(Meta):
         self._fields_map[f_name] = field
 
     def __getitem__(self, key: Union[int, str]) -> "Schema":
-        if not self.is_record: raise TypeError(f"Schema kind {self.kind} is not subscriptable.")
-        if isinstance(key, int): return self._fields_list[key]
+        if not self.is_record:
+            raise TypeError(f"Schema kind {self.kind} is not subscriptable.")
+        if isinstance(key, int):
+            return self._fields_list[key]
         return self._fields_map[key]
-    
 
-    def __len__(self): return len(self._fields_list)
+    def __len__(self):
+        return len(self._fields_list)
 
     def __bool__(self):
         return True
 
     @property
-    def fields(self) -> List["Schema"]: return self._fields_list
+    def fields(self) -> List["Schema"]:
+        return self._fields_list
 
     # -----------------------------------------------------------
     # Replace field by name
     # -----------------------------------------------------------
-
 
     def replace_field(self, field: "Schema"):
         """
@@ -119,7 +124,7 @@ class Schema(Meta):
             except ValueError:
                 # Fallback safety if map/list synced incorrectly, append it
                 self._fields_list.append(field)
-            
+
             # 3. Update map
             self._fields_map[f_name] = field
         else:
@@ -129,7 +134,7 @@ class Schema(Meta):
     # -----------------------------------------------------------
     # Meta
     # -----------------------------------------------------------
-    
+
     def clear_meta(self):
         self.clear_common_meta()
         self.required = False
@@ -147,13 +152,17 @@ class Schema(Meta):
 
     # -----------------------------------------------------------
 
-    def encode(self, config: Config = {
-        "indent": 2,
-    }) -> str:
+    def encode(
+        self,
+        config: Config = {
+            "indent": 2,
+        },
+    ) -> str:
         """
         Debug fallback. Real encoder is in encoder.py.
         """
         from .Encoder import Encoder
+
         return Encoder(config).encode_schema(self)
 
     def __repr__(self):
@@ -166,11 +175,15 @@ class Schema(Meta):
 
         # Show type_name only if it is specific (e.g., 'User' or 'int'),
         # avoid redundancy if it is just 'any' or repeats the kind name.
-        if self.type_name and self.type_name != "any" and self.type_name != self.kind.value:
+        if (
+            self.type_name
+            and self.type_name != "any"
+            and self.type_name != self.kind.value
+        ):
             type_label = f":{self.type_name}"
         else:
             type_label = ""
-            
+
         header = f"<Schema({kind_str}{type_label})"
 
         # 2. Field Name (if this schema represents a named field in a parent)
@@ -184,12 +197,11 @@ class Schema(Meta):
         if self.required:
             details.append("!required")
         if self.attr:
-            details.append(f"attr={list(self.attr.keys())}") # Show keys only
+            details.append(f"attr={list(self.attr.keys())}")  # Show keys only
         if self.tags:
             details.append(f"tags={self.tags}")
         if self.comments:
             details.append(f"comments={len(self.comments)}")
-        
 
         # Structure: Record
         if self.is_record:
@@ -213,5 +225,5 @@ class Schema(Meta):
 
         # Assemble final string
         details_str = " " + " ".join(details) if details else ""
-        
+
         return f"{header}{name_str}{details_str}>"

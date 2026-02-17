@@ -1,10 +1,10 @@
-import sys
 import textwrap
 from .colors import C
 
+
 # --- LOGO (Raw f-string fix) ---
 def get_logo(color_accent=C.AID_ACCENT):
-    return fr"""{color_accent}                                                               
+    return rf"""{color_accent}                                                               
                                    ; i  :J                                      
                                U, .j..fraaM.  nl                                
                             b h.obWMkkWWMMWMCdkvz,k                             
@@ -32,22 +32,25 @@ def get_logo(color_accent=C.AID_ACCENT):
                           WW                                                    
                           MW{C.RESET}"""
 
+
 def print_banner(
-    tool_name: str, 
-    version: str, 
+    tool_name: str,
+    version: str,
     color: str = C.AID_MAIN,
-    description: str = "", 
-    metadata: dict = None
+    description: str = "",
+    metadata: dict = None,
 ):
     """
     Prints a standardized, responsive banner for Arkadia Tools.
     """
     # 1. Print Logo
     print(get_logo(color_accent=color))
-    
+
     # 2. Print Header (Tool Name)
     # Arkadia prefix in Green, Tool name in White Bold
-    print(f"\n\n   {C.AID_MAIN}Arkadia{C.RESET} {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}")
+    print(
+        f"\n\n   {C.AID_MAIN}Arkadia{C.RESET} {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
+    )
     print(f"   {C.DIM}{'-' * 50}{C.RESET}")
 
     # 3. Print Description (Wrapped)
@@ -60,10 +63,10 @@ def print_banner(
     # 4. Print Metadata (Version, Model, Stats, etc.)
     # Format:  Label:    Value
     print(f"   {C.DIM}Version:{C.RESET} \t{C.YELLOW}{version}{C.RESET}")
-    
+
     if metadata:
         for key, value in metadata.items():
             # Align keys if needed, but simple tab is usually fine
             print(f"   {C.DIM}{key}:{C.RESET} \t{C.CYAN}{value}{C.RESET}")
 
-    print("\n") # Extra spacing at bottom
+    print("\n")  # Extra spacing at bottom
