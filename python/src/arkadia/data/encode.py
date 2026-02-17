@@ -1,6 +1,6 @@
 # encode.py
 """
-High-level encoder entrypoint for AI.DATA-FORMAT (ADF).
+High-level encoder entrypoint for AK-DATA-FORMAT (ADF).
 """
 
 from .Encoder import Encoder, Config

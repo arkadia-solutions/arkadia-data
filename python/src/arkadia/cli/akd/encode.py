@@ -8,7 +8,7 @@ import arkadia.cli as cli
 from arkadia.cli.colors import C
 from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
-# Try importing Arkadia AI core
+# Try importing Arkadia core
 try:
     import arkadia as ak
 except ImportError:
@@ -40,7 +40,7 @@ def show_encode_help():
         tool_name=f"{TOOL_NAME} ENCODER",
         version=VERSION,
         color=C.CYAN,
-        description="Converts structured data (JSON, YAML, TOON, AKD) into Arkadia AK Data Format (AKD).",
+        description="Converts structured data (JSON, YAML, TOON, AKD) into Arkadia Data Format (AKD).",
     )
 
     cli.print_usage("akd enc", "[flags] [input_file]", "")
@@ -152,9 +152,9 @@ def load_data(file_path: pathlib.Path) -> Any:
 
     # 2. akd
     elif ext in [".ak-data", ".akd"]:
-        if ai is None:
+        if ak is None:
             raise ImportError(
-                "AI is not installed. Install it with: pip install arkadia-data"
+                "'Arkadia Data' is not installed. Install it with: pip install arkadia-data"
             )
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -257,7 +257,7 @@ def run(args):
 
     # 4. Encode
     try:
-        if ai is None:
+        if ak is None:
             print(f"{C.RED}Critical Error: arkadia module not found.{C.RESET}")
             sys.exit(1)
 

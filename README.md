@@ -1,4 +1,4 @@
-# ARKADIA AI.DATA-FORMAT
+# ARKADIA DATA FORMAT
 
 ```text
                                    ; i  :J                                      
@@ -32,7 +32,7 @@
 ---
 
 > **The High-Density, Token-Efficient Data Protocol for Large Language Models.**
-> Stop wasting context window on JSON braces. `AI.DATA` is a unified, schema-first data format designed specifically for AI understanding. It offers up to **25% token savings**, faster parsing, and human-readable structure that LLMs love.
+> Stop wasting context window on JSON braces. `AK-Data` is a unified, schema-first data format designed specifically for AI understanding. It offers up to **25% token savings**, faster parsing, and human-readable structure that LLMs love.
 
 ---
 
@@ -46,7 +46,7 @@ pip install arkadia-data-format
 
 ## 🚀 Fast Example
 
-**Encoding to AI.DATA:**
+**Encoding to AK-DATA:**
 
 ```bash
 echo '{ "data": 2}' | akd enc - -c
@@ -101,7 +101,7 @@ The package comes with a powerful CLI tool `akd` for encoding, decoding, and ben
    Unified interface for AK Data Format operations.
 
 USAGE:
-   akd <command> [flags]
+   ak-data / akd <command> [flags]
 
 COMMANDS:
    enc             [ENCODE] Convert JSON/YAML/TOON to AK Data format
@@ -119,7 +119,7 @@ GLOBAL OPTIONS:
 
 ## 📖 Syntax Specification (Current Version)
 
-This section describes the **actual, currently implemented** syntax of AI.DATA-FORMAT.
+This section describes the **actual, currently implemented** syntax of AK-DATA.
 
 ### 1. Type Definition
 
@@ -243,5 +243,5 @@ This project is licensed under the [MIT License].
 ---
 
 <div align="center">
-<sub>Built by <strong>Arkadia AI</strong>. Engineering the kernel of distributed intelligence.</sub>
+<sub>Built by <strong>Arkadia Solutions</strong>. Engineering the kernel of distributed intelligence.</sub>
 </div>

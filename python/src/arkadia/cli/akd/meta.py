@@ -13,8 +13,8 @@ BAR_WIDTH = 25
 
 
 VERSION = LIB_VERSION
-TOOL_CMD = "akd"
-TOOL_NAME = "AK Data Tool"
+TOOL_CMD = "ak-data / akd"
+TOOL_NAME = "Arkadia Data Tool"
 DESCRIPTION = "Unified interface for AK Data Format operations (Encoding, Decoding, Benchmarking)."
 
 MET_INFO = {"Model": MODEL, "Repeats": str(REPEATS), "Data Dir": str(DATA_DIR)}

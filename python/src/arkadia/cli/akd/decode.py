@@ -9,7 +9,7 @@ import arkadia.cli as cli
 from arkadia.cli.colors import C
 from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
-# Try importing Arkadia AI core
+# Try importing Arkadia core
 try:
     import arkadia as ak
 except ImportError:
@@ -203,7 +203,7 @@ def run(args):
         sys.exit(1)
 
     # 3. Decode (AKD -> Node)
-    if ai is None:
+    if ak is None:
         print(
             f"{C.RED}Critical Error: arkadia module not found.{C.RESET}",
             file=sys.stderr,
