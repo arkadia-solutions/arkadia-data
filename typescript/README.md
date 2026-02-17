@@ -1,4 +1,4 @@
-# @arkadia/ai-data-format
+# @arkadia/data
 
 ```
                                    ; i  :J                                      
@@ -30,12 +30,12 @@
 ```
 
 
-[![npm version](https://img.shields.io/npm/v/@arkadia/ai-data-format.svg)](https://www.npmjs.com/package/@arkadia/ai-data-format)
+[![npm version](https://img.shields.io/npm/v/@arkadia/data.svg)](https://www.npmjs.com/package/@arkadia/data)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Official Parser and Stringifier for the Arkadia AI Data Format (AID).**
+**Official Parser and Stringifier for the Arkadia Data Format (AKD).**
 
-AID is a schema-first, high-density data protocol designed specifically for **LLM context optimization**. It significantly reduces token usage compared to JSON by eliminating redundant syntax characters and enforcing strict typing via schemas.
+AKD is a schema-first, high-density data protocol designed specifically for **LLM context optimization**. It significantly reduces token usage compared to JSON by eliminating redundant syntax characters and enforcing strict typing via schemas.
 
 ## ✨ Features
 
@@ -47,7 +47,7 @@ AID is a schema-first, high-density data protocol designed specifically for **LL
 ## 📦 Installation
 
 ```bash
-npm install @arkadia/ai-data-format
+npm install @arkadia/data
 
 ```
 
@@ -56,13 +56,13 @@ npm install @arkadia/ai-data-format
 ### Importing
 
 ```typescript
-import { encode, decode } from '@arkadia/ai-data-format';
+import { encode, decode } from '@arkadia/data';
 
 ```
 
-### Encoding (JavaScript Object → AID String)
+### Encoding (JavaScript Object → AKD String)
 
-Converts standard JavaScript objects into the token-optimized AID string format.
+Converts standard JavaScript objects into the token-optimized AKD string format.
 
 ```typescript
 const data = {
@@ -72,16 +72,16 @@ const data = {
 };
 
 // Compact encoding (default)
-const aidString = encode(data);
+const akdString = encode(data);
 
-console.log(aidString);
+console.log(akdString);
 // Output: <id:number,name:string,active:bool>(1,"Alice",true)
 
 ```
 
-### Decoding (AID String → AST / Value)
+### Decoding (AKD String → AST / Value)
 
-Parses an AID string back into a usable node structure.
+Parses an AKD string back into a usable node structure.
 
 ```typescript
 const input = '<score:number>(98.5)';
@@ -102,7 +102,7 @@ if (result.errors.length === 0) {
 
 ## 📖 Syntax Guide
 
-The AID format uses a distinct syntax to separate schema definition from data values.
+The AKD format uses a distinct syntax to separate schema definition from data values.
 
 ### Primitives
 
@@ -127,7 +127,7 @@ Similar to JSON objects, but the keys are lifted into a schema definition.
 
 ```
 
-**Encoded (AID):**
+**Encoded (AKD):**
 
 ```text
 <id:number,name:string>(1,"Test")
@@ -145,7 +145,7 @@ Data without keys, where position determines meaning.
 
 ```
 
-**Encoded (AID):**
+**Encoded (AKD):**
 
 ```text
 <_0:number,_1:string>(10,"Alice")
@@ -156,7 +156,7 @@ Data without keys, where position determines meaning.
 
 ### `encode(input: any, options?: EncodeOptions): string`
 
-Serializes a JavaScript value into an AID string.
+Serializes a JavaScript value into an AKD string.
 
 * `input`: The data to encode.
 * `options`:
@@ -167,9 +167,9 @@ Serializes a JavaScript value into an AID string.
 
 ### `decode(text: string, options?: DecodeOptions): ParseResult`
 
-Parses an AID string.
+Parses an AKD string.
 
-* `text`: The AID string to parse.
+* `text`: The AKD string to parse.
 * `options`:
 * `debug`: (boolean) Enable detailed logging.
 

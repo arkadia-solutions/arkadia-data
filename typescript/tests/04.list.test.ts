@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { encode, decode, parse, SchemaKind } from '../src/index';
 import { assertRoundtrip } from './utils';
 
-describe('AI Data List Handling', () => {
+describe('AK List Handling', () => {
 
     it('should decode list of primitives', () => {
         /**
@@ -75,8 +75,8 @@ describe('AI Data List Handling', () => {
          * 3. Because "string" != "number" (for value 3), the Encoder sees a mismatch and adds explicit tags.
          */
 
-        // 1. Input in AID format
-        const aidText = `
+        // 1. Input in AKD format
+        const akdText = `
         <tests: [any]>
         (
             ["a", "b", "c", 3]
@@ -84,7 +84,7 @@ describe('AI Data List Handling', () => {
         `;
 
         // 2. Decode
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
 
@@ -167,14 +167,14 @@ describe('AI Data List Handling', () => {
          * This triggers 'needs_override' logic in the Encoder.
          */
         // Header says 'test' is a string, but body has a list
-        const aidText = `
+        const akdText = `
         <test: string>
         (
             ["a", "b"]
         )
         `;
 
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
 
@@ -184,14 +184,14 @@ describe('AI Data List Handling', () => {
     });
 
     it('should handle primitive list with implicit output', () => {
-        const aidText = `
+        const akdText = `
          <ab>
         {
             ab:  ["a", "b", "c", 3]
         }
         `;
 
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
 
@@ -200,9 +200,9 @@ describe('AI Data List Handling', () => {
     });
 
     it('should handle simple mixed types', () => {
-        const aidText = '["a", "b", "c", 3]';
+        const akdText = '["a", "b", "c", 3]';
 
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
 
@@ -212,9 +212,9 @@ describe('AI Data List Handling', () => {
 
     it('should handle inner list types', () => {
         // <[[int]]>[[2,3,4],[5,6,7]]
-        const aidText = '<[[int]]>[[2,3,4],[5,6,7]]';
+        const akdText = '<[[int]]>[[2,3,4],[5,6,7]]';
 
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
 

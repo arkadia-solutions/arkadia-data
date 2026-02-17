@@ -1,5 +1,5 @@
 /**
- * Configuration options for the AI Data Format Encoder.
+ * Configuration options for the AK Data Format Encoder.
  */
 export interface EncoderConfig {
     /**

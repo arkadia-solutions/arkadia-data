@@ -1,4 +1,4 @@
-import arkadia.ai as ai
+import arkadia as ak
 from utils import assert_roundtrip
 
 # ==============================================================================
@@ -7,14 +7,14 @@ from utils import assert_roundtrip
 
 
 def test_different_type_in_record():
-    aid_text = """
+    akd_text = """
     < 
       id: number
     >
     ( ["text"] )
     """
 
-    result = ai.data.decode(aid_text)
+    result = ak.data.decode(akd_text)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -27,9 +27,9 @@ def test_different_type_in_record():
 
 
 def test_simple_types():
-    aid_text = '{ a:"a", b:"b", c:"c", d: 3 }'
+    akd_text = '{ a:"a", b:"b", c:"c", d: 3 }'
     excepted = '<a:string,b:string,c:string,d:number>("a","b","c",3)'
-    assert_roundtrip(aid_text, excepted, True)
+    assert_roundtrip(akd_text, excepted, True)
 
 
 def test_record_named_type_mismatch():
@@ -44,8 +44,8 @@ def test_record_named_type_mismatch():
     Expected Output: (<number> 3)
     """
 
-    # 1. Input in AID format
-    aid_text = """
+    # 1. Input in AKD format
+    akd_text = """
 <tests: string>
 {
  tests: 3
@@ -53,7 +53,7 @@ def test_record_named_type_mismatch():
     """
 
     excepted = "<tests:string>(<number> 3)"
-    assert_roundtrip(aid_text, excepted, True)
+    assert_roundtrip(akd_text, excepted, True)
 
 
 def test_record_positional_type_mismatch():
@@ -68,11 +68,11 @@ def test_record_positional_type_mismatch():
     Expected Output: (<number> 3)
     """
 
-    # 1. Input in AID format
-    aid_text = """
+    # 1. Input in AKD format
+    akd_text = """
 <tests: string>
 (3)
     """
 
     excepted = "<tests:string>(<number> 3)"
-    assert_roundtrip(aid_text, excepted, True)
+    assert_roundtrip(akd_text, excepted, True)

@@ -1,6 +1,6 @@
-import arkadia.ai as ai
-from arkadia.ai.data import SchemaKind
-from arkadia.ai.data.decode import decode
+import arkadia as ak
+from arkadia.data import SchemaKind
+from arkadia.data.decode import decode
 from utils import assert_roundtrip
 
 
@@ -28,7 +28,7 @@ def test_infer_mixed_list_type_from_first_element():
 
     # 2. Encoding (inference happens here in _infer_primitive_type or parse_list)
     # Assuming default configuration is used
-    node = ai.data.parse(data)
+    node = ak.data.parse(data)
 
     assert node.schema is not None
     assert node.schema.is_record
@@ -45,7 +45,7 @@ def test_infer_mixed_list_type_from_first_element():
 
     assert tests_node.elements and len(tests_node.elements) == 4
 
-    output = ai.data.encode(data, {"compact": True, "colorize": False})
+    output = ak.data.encode(data, {"compact": True, "colorize": False})
 
     # We expect the list NOT to be [any], but [string] (implied or explicit),
     # so strings will be "clean", and the number will get a tag.
@@ -74,8 +74,8 @@ def test_explicit_any_list_generates_tags_due_to_primitive_mismatch():
     3. Because "string" != "any", the Encoder sees a mismatch and adds explicit tags.
     """
 
-    # 1. Input in AID format
-    aid_text = """
+    # 1. Input in AKD format
+    akd_text = """
     <tests: [any]>
     (
         ["a", "b", "c", 3]
@@ -83,7 +83,7 @@ def test_explicit_any_list_generates_tags_due_to_primitive_mismatch():
     """
 
     # 2. Decode
-    result = ai.data.decode(aid_text, debug=True)
+    result = ak.data.decode(akd_text, debug=True)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -115,7 +115,7 @@ def test_inference_happy_path():
     """
     data_str = '["a", "b"]'  # No header = SchemaKind.ANY
 
-    result = ai.data.decode(data_str)
+    result = ak.data.decode(data_str)
     node = result.node
     errors = result.errors
 
@@ -134,11 +134,11 @@ def test_inference_mismatch():
     """
     data_str = '["a", 3]'
 
-    result = ai.data.decode(data_str)
+    result = ak.data.decode(data_str)
     node = result.node
     errors = result.errors
 
-    assert len(errors) == 0  # Mismatch is valid in AID, just logged
+    assert len(errors) == 0  # Mismatch is valid in AKD, just logged
 
     # The list should have become [string] due to "a"
     assert node.schema.element.type_name == "string"
@@ -154,11 +154,11 @@ def test_inference_mismatch_second():
     """
     data_str = '[3, "a"]'
 
-    result = ai.data.decode(data_str)
+    result = ak.data.decode(data_str)
     node = result.node
     errors = result.errors
 
-    assert len(errors) == 0  # Mismatch is valid in AID, just logged
+    assert len(errors) == 0  # Mismatch is valid in AKD, just logged
     # The list should have become [string] due to "a"
     assert node.schema.element.type_name == "number"
 
@@ -175,14 +175,14 @@ def test_schema_crash_fix_override_logic():
     If you pass the NEW node_schema, this works and tags the output.
     """
     # Header says 'test' is a string, but body has a list
-    aid_text = """
+    akd_text = """
 <test: string>
 (
     ["a", "b"]
 )
     """
 
-    result = ai.data.decode(aid_text)
+    result = ak.data.decode(akd_text)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -192,14 +192,14 @@ def test_schema_crash_fix_override_logic():
 
 
 def test_primitive_no_outupt():
-    aid_text = """
+    akd_text = """
  <ab>
 {
     ab:  ["a", "b", "c", 3]
 }
     """
 
-    result = ai.data.decode(aid_text, debug=True)
+    result = ak.data.decode(akd_text, debug=True)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -209,9 +209,9 @@ def test_primitive_no_outupt():
 
 
 def test_simple_types():
-    aid_text = """["a", "b", "c", 3]"""
+    akd_text = """["a", "b", "c", 3]"""
 
-    result = ai.data.decode(aid_text, debug=True)
+    result = ak.data.decode(akd_text, debug=True)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -221,9 +221,9 @@ def test_simple_types():
 
 
 def test_inner_list_types():
-    aid_text = """<[[int]]>[[2,3,4],[5,6,7]]"""
+    akd_text = """<[[int]]>[[2,3,4],[5,6,7]]"""
 
-    result = ai.data.decode(aid_text, debug=True)
+    result = ak.data.decode(akd_text, debug=True)
     node = result.node
     errors = result.errors
     assert len(errors) == 0

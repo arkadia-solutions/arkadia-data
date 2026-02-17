@@ -1,5 +1,5 @@
-import arkadia.ai as ai
-from arkadia.ai.data import SchemaKind, Schema, Node
+import arkadia as ak
+from arkadia.data import SchemaKind, Schema, Node
 from utils import assert_roundtrip
 
 # ==================================================================================
@@ -11,7 +11,7 @@ def test_comments_handling():
     """Validates that comments /.../ are ignored or handled."""
     text = '@User<id:int /*primary key*/, name:string> @User(5, "Bob")'
     expected = '@User</*primary key*/ id:number,name:string>(5,"Bob")'
-    res = ai.data.decode(text)
+    res = ak.data.decode(text)
     assert not res.errors
     # If the parser attaches schema comments to fields correctly, good.
     # Here we just ensure data parsing works despite comments.
@@ -22,7 +22,7 @@ def test_comments_handling():
 
 
 def test_meta_header():
-    aid_text = """
+    akd_text = """
     $a0=5
     <
     /* c1 */
@@ -31,13 +31,13 @@ def test_meta_header():
     >
     ($a6 /*a*/ 3)
     """
-    print(aid_text)
+    print(akd_text)
     expected = "<//*c0*/ $a0=5 $a1=true/ /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6=true 3)"
-    assert_roundtrip(aid_text, expected)
+    assert_roundtrip(akd_text, expected)
 
 
 def test_meta():
-    aid_text = """
+    akd_text = """
     $attr=5
     <
     /* comm2 */
@@ -52,9 +52,9 @@ def test_meta():
     /*item2*/ {a:5},
     ]
     """
-    print(aid_text)
+    print(akd_text)
     expected = "<[//*comm2*/ /*comm1*/ $attr=5 $schema1=true/ a:number]>[//*meta for list*/ $attr=4/ (//*item1*/ $attr5=true/ $attr6=true 3),(//*item2*// 5)]"
-    assert_roundtrip(aid_text, expected)
+    assert_roundtrip(akd_text, expected)
 
 
 # ==============================================================================
@@ -69,7 +69,7 @@ def test_list_schema():
     2. Attributes ($key=val).
     3. Tags (#tag).
     """
-    aid_text = """
+    akd_text = """
     /* 0 */
     < 
       /* commentm0 */ /* com1 /*com1.2*/ */
@@ -87,7 +87,7 @@ def test_list_schema():
     /* b */
     """
 
-    result = ai.data.decode(aid_text, debug=True)
+    result = ak.data.decode(akd_text, debug=True)
     node = result.node
     errors = result.errors
 
@@ -119,7 +119,7 @@ def test_list_schema():
     assert "0" in schema.comments[0]
 
     expected = '<[//*0*/ $listAttr="GlobalList" $b=4 #tag/ number]>[//*a*/ /*b*/ $val=3 #tag1/ 1,2,3]'
-    assert_roundtrip(aid_text, expected)
+    assert_roundtrip(akd_text, expected)
 
 
 def test_empty_schema_encode():
@@ -170,7 +170,7 @@ def test_schema_round_trip_encode_decode():
     print("-" * 54)
 
     # 3. Decode back to Node
-    result = ai.data.decode(encoded_text, debug=True)
+    result = ak.data.decode(encoded_text, debug=True)
     decoded_node = result.node
     errors = result.errors
 
@@ -255,7 +255,7 @@ def test_meta_schema_list_vs_element():
     Outer: / $listAttr="GlobalList" /  -> Applies to the entire List
     Inner: / $elemAttr="InnerRecord" / -> Applies to the Element (Record) inside
     """
-    aid_text = """
+    akd_text = """
     < 
       /* comm-header-0 */ /* comm-header-1 /* comm-header-1.1*/ */
       / $listAttr="GlobalList" $b=4 /*com-in*/ /
@@ -268,7 +268,7 @@ def test_meta_schema_list_vs_element():
     [ /* comm-data-v1 */  (1) /* comm-data-v2 */ ]
     """
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     errors = results.errors
 
@@ -290,7 +290,7 @@ def test_meta_schema_list_vs_element():
     print(node.encode({"colorize": True, "compact": False}))
 
     expected = '<[//*com-in*/ /*comm-header-0*/ /*comm-header-1 /* comm-header-1.1*/*/ /*comm-after-header-0*/ /*comm-inside-header-0*/ $listAttr="GlobalList" $b=4 $elemAttr="InnerRecord" #elem0/ /*comm-inside-field-0*/ #elem1 id:number]>[(//*comm-data-v1*/ /*comm-data-v2*// 1)]'
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 def test_meta_schema_before():
@@ -299,7 +299,7 @@ def test_meta_schema_before():
     Outer: / $listAttr="GlobalList" /  -> Applies to the entire List
     Inner: / $elemAttr="InnerRecord" / -> Applies to the Element (Record) inside
     """
-    aid_text = """
+    akd_text = """
     < 
       /* header-com-0 */
       / #tag_header /
@@ -313,7 +313,7 @@ def test_meta_schema_before():
     ]
     """
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     errors = results.errors
     assert len(errors) == 0
@@ -326,7 +326,7 @@ def test_meta_schema_before():
     )
 
     expected = "<[/#tag_header/ number]>[/#tag_list/ /*comm-data-v1*/ #tag1 1,/*comm-data-v2*/ /*comm-data-v3*/ /*comm-data-v3*/ #tag2 #tag3 #tag4 2]"
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 def test_meta_schema_with_wrong_values():
@@ -336,7 +336,7 @@ def test_meta_schema_with_wrong_values():
     The parser should likely report an error or skip it, but let's see how resilient it is.
     Assuming strict parsing: 'elemAttr="InnerRecord"' is not valid inside meta block (expects $key=val, #tag, !flag).
     """
-    aid_text = """
+    akd_text = """
     < 
       / listAttr="GlobalList" /
       [ 
@@ -348,13 +348,13 @@ def test_meta_schema_with_wrong_values():
     [ (1) ]
     """
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     warnings = results.warnings
     print(results.warnings)
 
     print(results)
-    print(ai.data.encode(results.node, {"compact": True, "colorize": True}))
+    print(ak.data.encode(results.node, {"compact": True, "colorize": True}))
 
     # If the input was fixed above, errors should be 0.
     # Because we have: listAttr="GlobalList",
@@ -374,7 +374,7 @@ def test_meta_schema_with_wrong_values():
     assert node.schema.attr.get("elemAttr") == "InnerRecord"
 
     expected = '<[//*fixed input*/ $listAttr="GlobalList" $elemAttr="InnerRecord"/ /*Missing $ prefix*/ /*comments2*/ id:number]>[(1)]'
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 def test_meta_schema_field_modifiers():
@@ -383,7 +383,7 @@ def test_meta_schema_field_modifiers():
     New Syntax: Field definition should look like:
     / !required $key=101 / id: int
     """
-    aid_text = """
+    akd_text = """
     <
         /* comm0 */
         / $id=0  /*comm2 /* comm2.5*/ */ /
@@ -399,7 +399,7 @@ def test_meta_schema_field_modifiers():
     ( /* comment0 */ / $id=3 /*comment2*/ / /*comment3*/ 1, "Alice" $id=65 #alice /*comment4*/ )
     """
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     errors = results.errors
 
@@ -426,7 +426,7 @@ def test_meta_schema_field_modifiers():
     assert node.attr.get("id") == 3
 
     expected = '<//*comm2 /* comm2.5*/*/ $id=0/ /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ !required $key=101 id:number,$desc="User Name" name:string>(//*comment2*/ $id=3/ /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")'
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 # ==============================================================================
@@ -439,9 +439,9 @@ def test_meta_data_block_list_primitive():
     Tests metadata inside a data block for a simple list.
     Syntax: [ / @size=3 / 1, 2, 3 ]
     """
-    aid_text = '[ / $size=3 $author="me" / 1, 2, 3 ]'
+    akd_text = '[ / $size=3 $author="me" / 1, 2, 3 ]'
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     errors = results.errors
     assert len(errors) == 0
@@ -456,7 +456,7 @@ def test_meta_data_block_list_primitive():
     assert node.elements[0].value == 1
 
     expected = '<[number]>[/$size=3 $author="me"/ 1,2,3]'
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 # ==============================================================================
@@ -469,7 +469,7 @@ def test_meta_nested_lists():
     Tests metadata assignment in nested lists.
     Structure: [ /@level=0/  [ /@level=1/ 1, 2 ] ]
     """
-    aid_text = """
+    akd_text = """
     [ 
       / $level=0 /
       [ 
@@ -483,7 +483,7 @@ def test_meta_nested_lists():
     ]
     """
 
-    results = ai.data.decode(aid_text, debug=True)
+    results = ak.data.decode(akd_text, debug=True)
     node = results.node
     errors = results.errors
     assert len(errors) == 0
@@ -503,7 +503,7 @@ def test_meta_nested_lists():
     assert inner2.attr.get("level") == 2
 
     expected = "<[[number]]>[/$level=0/ [/$level=1/ 1,2],[/$level=2/ 3,4]]"
-    assert_roundtrip(aid_text, expected, True)
+    assert_roundtrip(akd_text, expected, True)
 
 
 # ==============================================================================
@@ -515,10 +515,10 @@ def test_meta_mixed_with_type_override():
     """
     Tests a scenario where we have metadata for the list AND a type override for an element.
     """
-    aid_text = '[ / $info="mixed" / 1, 2, <string> "3" ]'
+    akd_text = '[ / $info="mixed" / 1, 2, <string> "3" ]'
     expected = '<[number]>[/$info="mixed"/ 1,2,<string> "3"]'
 
-    result = ai.data.decode(aid_text)
+    result = ak.data.decode(akd_text)
     node = result.node
     errors = result.errors
     assert len(errors) == 0
@@ -543,9 +543,9 @@ def test_meta_and_explicit_type_in_data():
     [ / @tag=1 int / 1, 2 ]
     The parser must understand that 'int' is the list type, and @tag is metadata.
     """
-    aid_text = "[ / $tag=1 / 1, 2 ]"
+    akd_text = "[ / $tag=1 / 1, 2 ]"
 
-    result = ai.data.decode(aid_text)
+    result = ak.data.decode(akd_text)
     node = result.node
     errors = result.errors
     assert len(errors) == 0

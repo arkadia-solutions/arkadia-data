@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { decode, encode, Node, Schema, SchemaKind } from '../src/index';
 import { assertRoundtrip } from './utils';
 
-describe('AI Data Metadata (Meta)', () => {
+describe('AK Data Metadata (Meta)', () => {
 
     // ==================================================================================
     // 2. SCHEMA DEFINITION & TYPING
@@ -25,7 +25,7 @@ describe('AI Data Metadata (Meta)', () => {
     });
 
     it('should handle meta header', () => {
-        const aidText = `
+        const akdText = `
         $a0=5
         <
         /* c1 */
@@ -36,11 +36,11 @@ describe('AI Data Metadata (Meta)', () => {
         `;
         
         const expected = "<//*c0*/ $a0=5 $a1=true/ /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6=true 3)";
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     it('should handle mixed meta', () => {
-        const aidText = `
+        const akdText = `
         $attr=5
         <
         /* comm2 */
@@ -58,7 +58,7 @@ describe('AI Data Metadata (Meta)', () => {
         
         // Note: int -> number
         const expected = "<[//*comm2*/ /*comm1*/ $attr=5 $schema1=true/ a:number]>[//*meta for list*/ $attr=4/ (//*item1*/ $attr5=true/ $attr6=true 3),(//*item2*// 5)]";
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     // ==============================================================================
@@ -72,7 +72,7 @@ describe('AI Data Metadata (Meta)', () => {
          * 2. Attributes ($key=val).
          * 3. Tags (#tag).
          */
-        const aidText = `
+        const akdText = `
         /* 0 */
         < 
           /* commentm0 */ /* com1 /*com1.2*/ */
@@ -90,7 +90,7 @@ describe('AI Data Metadata (Meta)', () => {
         /* b */
         `;
         
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         const errors = result.errors;
         
@@ -117,7 +117,7 @@ describe('AI Data Metadata (Meta)', () => {
         expect(schema.comments.some(c => c.includes("0"))).toBe(true);
         
         const expected = '<[//*0*/ $listAttr="GlobalList" $b=4 #tag/ number]>[//*a*/ /*b*/ $val=3 #tag1/ 1,2,3]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     it('should encode manual schema with meta', () => {
@@ -229,7 +229,7 @@ describe('AI Data Metadata (Meta)', () => {
          * Outer: / $listAttr="GlobalList" /  -> Applies to the entire List
          * Inner: / $elemAttr="InnerRecord" / -> Applies to the Element (Record) inside
          */
-        const aidText = `
+        const akdText = `
         < 
           /* comm-header-0 */ /* comm-header-1 /* comm-header-1.1*/ */
           / $listAttr="GlobalList" $b=4 /*com-in*/ /
@@ -242,7 +242,7 @@ describe('AI Data Metadata (Meta)', () => {
         [ /* comm-data-v1 */  (1) /* comm-data-v2 */ ]
         `;
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         const errors = results.errors;
 
@@ -267,11 +267,11 @@ describe('AI Data Metadata (Meta)', () => {
         expect(node.elements[0].schema.attr).toStrictEqual({});
 
         const expected = '<[//*com-in*/ /*comm-header-0*/ /*comm-header-1 /* comm-header-1.1*/*/ /*comm-after-header-0*/ /*comm-inside-header-0*/ $listAttr="GlobalList" $b=4 $elemAttr="InnerRecord" #elem0/ /*comm-inside-field-0*/ #elem1 id:number]>[(//*comm-data-v1*/ /*comm-data-v2*// 1)]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     it('should handle meta schema before fields', () => {
-        const aidText = `
+        const akdText = `
         < 
           /* header-com-0 */
           / #tag_header /
@@ -285,12 +285,12 @@ describe('AI Data Metadata (Meta)', () => {
         ]
         `;
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         expect(results.errors).toHaveLength(0);
 
         const expected = '<[/#tag_header/ number]>[/#tag_list/ /*comm-data-v1*/ #tag1 1,/*comm-data-v2*/ /*comm-data-v3*/ /*comm-data-v3*/ #tag2 #tag3 #tag4 2]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     it('should warn on meta schema with implicit values', () => {
@@ -298,7 +298,7 @@ describe('AI Data Metadata (Meta)', () => {
          * Tests handling of malformed meta blocks.
          * In the input: / listAttr="GlobalList" / is missing '$' prefix for attribute.
          */
-        const aidText = `
+        const akdText = `
         < 
           / listAttr="GlobalList" /
           [ 
@@ -310,7 +310,7 @@ describe('AI Data Metadata (Meta)', () => {
         [ (1) ]
         `;
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         const warnings = results.warnings;
 
@@ -329,14 +329,14 @@ describe('AI Data Metadata (Meta)', () => {
         expect(node.schema.attr["elemAttr"]).toBe("InnerRecord");
 
         const expected = '<[//*fixed input*/ $listAttr="GlobalList" $elemAttr="InnerRecord"/ /*Missing $ prefix*/ /*comments2*/ id:number]>[(1)]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     it('should handle meta schema field modifiers', () => {
         /**
          * Tests field modifiers inside a record definition: !required, $key=value.
          */
-        const aidText = `
+        const akdText = `
         <
             /* comm0 */
             / $id=0  /*comm2 /* comm2.5*/ */ /
@@ -352,7 +352,7 @@ describe('AI Data Metadata (Meta)', () => {
         ( /* comment0 */ / $id=3 /*comment2*/ / /*comment3*/ 1, "Alice" $id=65 #alice /*comment4*/ )
         `;
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         expect(results.errors).toHaveLength(0);
 
@@ -378,7 +378,7 @@ describe('AI Data Metadata (Meta)', () => {
         expect(node.attr["id"]).toBe(3);
 
         const expected = '<//*comm2 /* comm2.5*/*/ $id=0/ /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ !required $key=101 id:number,$desc="User Name" name:string>(//*comment2*/ $id=3/ /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
 
@@ -391,9 +391,9 @@ describe('AI Data Metadata (Meta)', () => {
          * Tests metadata inside a data block for a simple list.
          * Syntax: [ / @size=3 / 1, 2, 3 ]
          */
-        const aidText = '[ / $size=3 $author="me" / 1, 2, 3 ]';
+        const akdText = '[ / $size=3 $author="me" / 1, 2, 3 ]';
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         expect(results.errors).toHaveLength(0);
         
@@ -407,7 +407,7 @@ describe('AI Data Metadata (Meta)', () => {
         expect(node.elements[0].value).toBe(1);
 
         const expected = '<[number]>[/$size=3 $author="me"/ 1,2,3]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     // ==============================================================================
@@ -418,7 +418,7 @@ describe('AI Data Metadata (Meta)', () => {
         /**
          * Tests metadata assignment in nested lists.
          */
-        const aidText = `
+        const akdText = `
         [ 
           / $level=0 /
           [ 
@@ -432,7 +432,7 @@ describe('AI Data Metadata (Meta)', () => {
         ]
         `;
         
-        const results = decode(aidText, { debug: false });
+        const results = decode(akdText, { debug: false });
         const node = results.node;
         expect(results.errors).toHaveLength(0);
         
@@ -451,7 +451,7 @@ describe('AI Data Metadata (Meta)', () => {
         expect(inner2.attr["level"]).toBe(2);
 
         const expected = '<[[number]]>[/$level=0/ [/$level=1/ 1,2],[/$level=2/ 3,4]]';
-        assertRoundtrip(aidText, expected, false);
+        assertRoundtrip(akdText, expected, false);
     });
 
     // ==============================================================================
@@ -462,10 +462,10 @@ describe('AI Data Metadata (Meta)', () => {
         /**
          * Tests a scenario where we have metadata for the list AND a type override for an element.
          */
-        const aidText = '[ / $info="mixed" / 1, 2, <string> "3" ]';
+        const akdText = '[ / $info="mixed" / 1, 2, <string> "3" ]';
         const expected = '<[number]>[/$info="mixed"/ 1,2,<string> "3"]';
         
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
         
@@ -488,9 +488,9 @@ describe('AI Data Metadata (Meta)', () => {
          * Tests a scenario where an explicit type is provided inside the / ... / block.
          * The parser must understand that type is the list type, and @tag is metadata.
          */
-        const aidText = '[ / $tag=1 / 1, 2 ]';
+        const akdText = '[ / $tag=1 / 1, 2 ]';
         
-        const result = decode(aidText, { debug: false });
+        const result = decode(akdText, { debug: false });
         const node = result.node;
         expect(result.errors).toHaveLength(0);
         

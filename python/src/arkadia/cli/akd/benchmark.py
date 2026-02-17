@@ -12,9 +12,9 @@ from .meta import VERSION, TOOL_NAME
 
 # --- EXTERNAL DEPENDENCIES ---
 try:
-    import arkadia.ai as ai
+    import arkadia as ak
 except ImportError:
-    ai = None
+    ak = None
 
 try:
     import tiktoken
@@ -38,8 +38,8 @@ MODEL_NAME = "gpt-4o-mini"  # Used for token counting estimation
 class CFORMATS:
     JSON = "\033[38;5;39m"  # Blue
     TOON = "\033[38;5;208m"  # Orange
-    AICD = "\033[38;5;118m"  # Bright Green (Compact)
-    AID = "\033[38;5;34m"  # Darker Green (Standard)
+    AKCD = "\033[38;5;118m"  # Bright Green (Compact)
+    AKD = "\033[38;5;34m"  # Darker Green (Standard)
     WHITE = "\033[37m"
 
 
@@ -56,10 +56,10 @@ def show_benchmark_help():
         tool_name=f"{TOOL_NAME} BENCHMARK",
         version=VERSION,
         color=C.YELLOW,
-        description="Runs comprehensive analysis (Visual + Performance) comparing JSON, TOON, AID, and AICD formats.",
+        description="Runs comprehensive analysis (Visual + Performance) comparing JSON, TOON, AKD, and AKCD formats.",
     )
 
-    cli.print_usage("aid ben", "[flags] [directory]", "")
+    cli.print_usage("akd benchmark", "[flags] [directory]", "")
 
     # 1. Positional Arguments
     args_list = [
@@ -167,10 +167,10 @@ def get_formatters(data: Any) -> Dict[str, Callable]:
     """
     formatters = {
         "JSON": lambda: json.dumps(data, separators=(",", ":"), ensure_ascii=False),
-        "AICD": lambda: ai.data.encode(
+        "AKCD": lambda: ak.data.encode(
             data, {"compact": True, "escape_new_lines": True}
         ),
-        "AID": lambda: ai.data.encode(
+        "AKD": lambda: ak.data.encode(
             data, {"compact": False, "escape_new_lines": False}
         ),
     }
@@ -207,7 +207,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
     # --- INITIALIZATION ---
     results = []
-    keys = ["JSON", "AICD", "AID"]
+    keys = ["JSON", "AKCD", "AKD"]
     if toon_format:
         keys.append("TOON")
 
@@ -222,13 +222,13 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
         with open(file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # Check for reference AID file for decode check
-        aid_file = file.with_suffix(".aid")
-        has_aid_file = aid_file.exists()
-        aid_content_ref = ""
-        if has_aid_file:
-            with open(aid_file, "r", encoding="utf-8") as f:
-                aid_content_ref = f.read()
+        # Check for reference AKD file for decode check
+        akd_file = file.with_suffix(".ak-data")
+        has_akd_file = akd_file.exists()
+        akd_content_ref = ""
+        if has_akd_file:
+            with open(akd_file, "r", encoding="utf-8") as f:
+                akd_content_ref = f.read()
 
         formatters = get_formatters(data)
 
@@ -241,8 +241,8 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
                 txt, _ = measure_encode(func, 1)  # Single run for display
                 tok = count_tokens(txt)
                 color = getattr(CFORMATS, fmt_name, CFORMATS.WHITE)
-                if fmt_name == "AID":
-                    txt = ai.data.encode(
+                if fmt_name == "AKD":
+                    txt = ak.data.encode(
                         data,
                         {"compact": False, "escape_new_lines": False, "colorize": True},
                     )
@@ -296,14 +296,14 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
             )
 
         # 6. DECODE CHECK (Validation)
-        if has_aid_file:
+        if has_akd_file:
 
             def run_decode():
-                return ai.data.decode(aid_content_ref)
+                return ak.data.decode(akd_content_ref)
 
             try:
                 decoded_tuple, decode_ms = measure_encode(run_decode, repeats=repeats)
-                decode_result = decoded_tuple  # ai.data.decode returns (Node, Errors)
+                decode_result = decoded_tuple  # ak.data.decode returns (Node, Errors)
                 errors = decode_result.errors
 
                 valid = len(errors) == 0
@@ -337,7 +337,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     header = f"{'FILE':28} "
     for k in keys:
         header += f"{k:>15} "
-    header += f"{'SAVINGS (AICD)':>20}"
+    header += f"{'SAVINGS (AKCD)':>20}"
 
     print(header)
     separator()
@@ -357,9 +357,9 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
             # Format: 1234t/12.5ms
             line += f"{c_tok}{tok:5}t{C.RESET}/{ms:4.1f}ms   "
 
-        # Savings % (AICD vs JSON)
+        # Savings % (AKCD vs JSON)
         base = r["JSON"][0]
-        curr = r["AICD"][0]
+        curr = r["AKCD"][0]
         diff = ((curr - base) / base) * 100 if base > 0 else 0
         c_diff = C.GREEN if diff < 0 else C.RED
         line += f"{c_diff}{diff:>+10.1f}%{C.RESET}"
@@ -423,7 +423,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
 
         # Formatting
         c_fmt = C.WHITE
-        if k == "AICD":
+        if k == "AKCD":
             c_fmt = C.GREEN
         elif k == "JSON":
             c_fmt = C.CYAN
@@ -443,11 +443,11 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     print("\n")
 
     # 3. CONCLUSION
-    aicd_saved = json_tot - totals["AICD"]["tokens"]
+    aicd_saved = json_tot - totals["AKCD"]["tokens"]
     if aicd_saved > 0:
         percent_saved = (aicd_saved / json_tot) * 100
         print(
-            f"{C.BOLD}CONCLUSION:{C.RESET} Switching to {C.GREEN}AICD{C.RESET} saves {C.GREEN}{aicd_saved}{C.RESET} tokens "
+            f"{C.BOLD}CONCLUSION:{C.RESET} Switching to {C.GREEN}AKCD{C.RESET} saves {C.GREEN}{aicd_saved}{C.RESET} tokens "
             f"({percent_saved:.1f}%) compared to JSON."
         )
     else:

@@ -2,7 +2,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-// Load package.json to get the real package name (e.g., @arkadia/ai-data-format)
+// Load package.json to get the real package name (e.g., @arkadia/data)
 const pkg = require('../package.json');
 const PACKAGE_NAME = pkg.name; 
 

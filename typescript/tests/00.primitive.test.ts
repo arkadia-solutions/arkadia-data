@@ -6,7 +6,7 @@ import { assertRoundtrip } from './utils';
 // 1. DECODING TESTS (String -> Node)
 // ==================================================================================
 
-describe('AI Data Primitives', () => {
+describe('AK Data Primitives', () => {
     it('should encode raw object', () => {
         const input = { foo: "bar" };
         const expected = '<foo:string>("bar")';

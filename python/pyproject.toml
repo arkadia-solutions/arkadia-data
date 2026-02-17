@@ -1,10 +1,10 @@
 [project]
-name = "arkadia-ai-data-format"
-version = "0.1.6"
-description = "Arkadia AI Data Format (AID) - A versatile data serialization format optimized for AI applications."
+name = "arkadia-data"
+version = "0.1.7"
+description = "Arkadia Data Format (AK-DATA) - A versatile data serialization format optimized for AI applications."
 readme = "README.md"
 authors = [
-    { name = "Arkadiusz Klemenko", email = "arek.klemenko@gmail.com" }
+    { name = "Arkadia Solutions", email = "contact@arkadia.solutions" }
 ]
 requires-python = ">=3.10"
 dependencies = [
@@ -16,7 +16,8 @@ dependencies = [
 ]
 
 [project.scripts]
-aid = "arkadia.cli.aid.aid:main"
+ak-data = "arkadia.cli.akd.akd:main"
+akd = "arkadia.cli.akd.akd:main"
 
 [build-system]
 requires = ["hatchling"]

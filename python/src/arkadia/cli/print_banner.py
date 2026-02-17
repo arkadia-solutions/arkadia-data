@@ -3,7 +3,7 @@ from .colors import C
 
 
 # --- LOGO (Raw f-string fix) ---
-def get_logo(color_accent=C.AID_ACCENT):
+def get_logo(color_accent=C.AKD_ACCENT):
     return rf"""{color_accent}                                                               
                                    ; i  :J                                      
                                U, .j..fraaM.  nl                                
@@ -36,7 +36,7 @@ def get_logo(color_accent=C.AID_ACCENT):
 def print_banner(
     tool_name: str,
     version: str,
-    color: str = C.AID_MAIN,
+    color: str = C.AKD_MAIN,
     description: str = "",
     metadata: dict = None,
 ):
@@ -49,7 +49,7 @@ def print_banner(
     # 2. Print Header (Tool Name)
     # Arkadia prefix in Green, Tool name in White Bold
     print(
-        f"\n\n   {C.AID_MAIN}Arkadia{C.RESET} {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
+        f"\n\n   {C.AKD_MAIN}Arkadia{C.RESET} {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
     )
     print(f"   {C.DIM}{'-' * 50}{C.RESET}")
 

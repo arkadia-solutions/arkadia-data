@@ -7,13 +7,13 @@ import pathlib
 # --- ARKADIA IMPORTS ---
 import arkadia.cli as cli
 from arkadia.cli.colors import C
-from arkadia.cli.aid.meta import VERSION, TOOL_NAME
+from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
 # Try importing Arkadia AI core
 try:
-    import arkadia.ai as ai
+    import arkadia as ak
 except ImportError:
-    ai = None
+    ak = None
 
 # Optional imports for other formats
 try:
@@ -40,16 +40,16 @@ def show_decode_help():
         tool_name=f"{TOOL_NAME} DECODER",
         version=VERSION,
         color=C.MAGENTA,
-        description="Parses Arkadia AI Data Format (.aid) files and converts them to JSON, YAML, TOON or re-formatted AID.",
+        description="Parses Arkadia Data Format (.ak-data) files and converts them to JSON, YAML, TOON or re-formatted AKD.",
     )
 
-    cli.print_usage("aid dec", "[flags] [input_file]", "")
+    cli.print_usage("akd dec", "[flags] [input_file]", "")
 
     # 1. Positional Arguments
     args_list = [
         {
             "flags": "input_file",
-            "desc": "Path to source file (.aid) or '-' for stdin. Reads from stdin if omitted.",
+            "desc": "Path to source file (.ak-data) or '-' for stdin. Reads from stdin if omitted.",
         }
     ]
     cli.print_options("Arguments", args_list)
@@ -62,14 +62,14 @@ def show_decode_help():
         },
         {
             "flags": "-f, --format <fmt>",
-            "desc": "Output format: json, yaml, toon, aid",
+            "desc": "Output format: json, yaml, toon, akd",
             "default": "json",
         },
         {"flags": "--only-data", "desc": "Output raw data only (suppress stats/logs)"},
     ]
     cli.print_options("I/O Options", io_flags)
 
-    # 3. Formatting (Applies to JSON & AID output)
+    # 3. Formatting (Applies to JSON & AKD output)
     fmt_flags = [
         {"flags": "--indent <int>", "desc": "Indentation level", "default": "2"},
         {"flags": "--compact", "desc": "Compact mode (minified)"},
@@ -79,18 +79,18 @@ def show_decode_help():
             "desc": "[TOON] Array delimiter (default: comma)",
         },
         {"flags": "--length-marker", "desc": "[TOON] Add length marker (#) to arrays"},
-        # AID Specific
+        # AKD Specific
         {
             "flags": "--start-indent <int>",
-            "desc": "[AID] Initial base indentation",
+            "desc": "[AKD] Initial base indentation",
             "default": "0",
         },
-        {"flags": "--escape-newlines", "desc": "[AID] Escape \\n characters"},
-        {"flags": "--no-comments", "desc": "[AID] Do not include comments"},
-        {"flags": "--include-array-size", "desc": "[AID] Add @size=N annotation"},
-        {"flags": "--no-schema", "desc": "[AID] Disable inline schema headers"},
-        {"flags": "--no-type", "desc": "[AID] Disable type annotations"},
-        {"flags": "--prompt-output", "desc": "[AID] Optimize for LLM prompting"},
+        {"flags": "--escape-newlines", "desc": "[AKD] Escape \\n characters"},
+        {"flags": "--no-comments", "desc": "[AKD] Do not include comments"},
+        {"flags": "--include-array-size", "desc": "[AKD] Add @size=N annotation"},
+        {"flags": "--no-schema", "desc": "[AKD] Disable inline schema headers"},
+        {"flags": "--no-type", "desc": "[AKD] Disable type annotations"},
+        {"flags": "--prompt-output", "desc": "[AKD] Optimize for LLM prompting"},
     ]
     cli.print_options("Formatting Options", fmt_flags)
 
@@ -202,10 +202,10 @@ def run(args):
         print(f"{C.RED}Error: Input is empty.{C.RESET}", file=sys.stderr)
         sys.exit(1)
 
-    # 3. Decode (AID -> Node)
+    # 3. Decode (AKD -> Node)
     if ai is None:
         print(
-            f"{C.RED}Critical Error: arkadia.ai module not found.{C.RESET}",
+            f"{C.RED}Critical Error: arkadia module not found.{C.RESET}",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -213,7 +213,7 @@ def run(args):
     start_time = time.perf_counter()
 
     try:
-        result = ai.data.decode(content, debug=args.debug)
+        result = ak.data.decode(content, debug=args.debug)
         node = result.node
         errors = result.errors
     except Exception as e:
@@ -250,7 +250,7 @@ def run(args):
 
     # 6. Convert Node to Standard Python Structure
     try:
-        if fmt != "aid":
+        if fmt != "akd":
             py_data = node.dict()
         else:
             py_data = node  # Keep as Node for re-encoding
@@ -294,8 +294,8 @@ def run(args):
             if use_color:
                 output_text = highlight_output(output_text, "toon")
 
-        elif fmt == "aid":
-            # Re-encode back to AID with specific parameters
+        elif fmt == "akd":
+            # Re-encode back to AKD with specific parameters
             config = {
                 "indent": args.indent,
                 "start_indent": args.start_indent,
@@ -308,7 +308,7 @@ def run(args):
                 "include_type": not args.no_type,
                 "prompt_output": args.prompt_output,
             }
-            output_text = ai.data.encode(py_data, config)
+            output_text = ak.data.encode(py_data, config)
 
         else:
             print(f"{C.RED}Unknown format: {fmt}{C.RESET}", file=sys.stderr)
@@ -367,12 +367,12 @@ def register_arguments(parser):
         "-f",
         "--format",
         default="json",
-        choices=["json", "yaml", "toon", "aid"],
+        choices=["json", "yaml", "toon", "akd"],
         help="Output format",
     )
     parser.add_argument("--only-data", action="store_true", help="Suppress stats")
 
-    # Formatting (Applies to AID re-encoding and JSON)
+    # Formatting (Applies to AKD re-encoding and JSON)
     parser.add_argument("--indent", type=int, default=2, help="Indentation")
     parser.add_argument("--start-indent", type=int, default=0, help="Start indentation")
     parser.add_argument("-c", "--compact", action="store_true", help="Compact mode")
@@ -385,18 +385,18 @@ def register_arguments(parser):
         "--length-marker", action="store_true", help="[TOON] Add length marker (#)"
     )
     parser.add_argument(
-        "--escape-newlines", action="store_true", help="[AID] Escape \\n"
+        "--escape-newlines", action="store_true", help="[AKD] Escape \\n"
     )
     parser.add_argument(
-        "--no-comments", action="store_true", help="[AID] Do not include comments"
+        "--no-comments", action="store_true", help="[AKD] Do not include comments"
     )
     parser.add_argument(
-        "--include-array-size", action="store_true", help="[AID] Add @size"
+        "--include-array-size", action="store_true", help="[AKD] Add @size"
     )
-    parser.add_argument("--no-schema", action="store_true", help="[AID] Disable schema")
-    parser.add_argument("--no-type", action="store_true", help="[AID] Disable types")
+    parser.add_argument("--no-schema", action="store_true", help="[AKD] Disable schema")
+    parser.add_argument("--no-type", action="store_true", help="[AKD] Disable types")
     parser.add_argument(
-        "--prompt-output", action="store_true", help="[AID] LLM Optimized"
+        "--prompt-output", action="store_true", help="[AKD] LLM Optimized"
     )
 
     # Debug / Colors

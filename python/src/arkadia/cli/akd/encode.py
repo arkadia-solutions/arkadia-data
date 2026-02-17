@@ -6,13 +6,13 @@ from typing import Any
 # --- ARKADIA IMPORTS ---
 import arkadia.cli as cli
 from arkadia.cli.colors import C
-from arkadia.cli.aid.meta import VERSION, TOOL_NAME
+from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
 # Try importing Arkadia AI core
 try:
-    import arkadia.ai as ai
+    import arkadia as ak
 except ImportError:
-    ai = None
+    ak = None
 
 # Try importing optional format parsers
 try:
@@ -40,16 +40,16 @@ def show_encode_help():
         tool_name=f"{TOOL_NAME} ENCODER",
         version=VERSION,
         color=C.CYAN,
-        description="Converts structured data (JSON, YAML, TOON, AID) into Arkadia AI Data Format (AID).",
+        description="Converts structured data (JSON, YAML, TOON, AKD) into Arkadia AK Data Format (AKD).",
     )
 
-    cli.print_usage("aid enc", "[flags] [input_file]", "")
+    cli.print_usage("akd enc", "[flags] [input_file]", "")
 
     # 1. Positional Arguments
     args_list = [
         {
             "flags": "input_file",
-            "desc": "Path to source file (.json, .yaml, .yml, .toon .aid) or '-' for JSON stdin.",
+            "desc": "Path to source file (.json, .yaml, .yml, .toon .ak-data) or '-' for JSON stdin.",
         }
     ]
     cli.print_options("Arguments", args_list)
@@ -150,20 +150,20 @@ def load_data(file_path: pathlib.Path) -> Any:
         with open(file_path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
 
-    # 2. aid
-    elif ext in [".aid"]:
+    # 2. akd
+    elif ext in [".ak-data", ".akd"]:
         if ai is None:
             raise ImportError(
-                "AI is not installed. Install it with: pip install arkadia-ai-data"
+                "AI is not installed. Install it with: pip install arkadia-data"
             )
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
-            result = ai.data.decode(content)
+            result = ak.data.decode(content)
             data = result.node
             errors = result.errors
             if errors:
                 print(
-                    f"\n{C.RED}aid has some errors {len(errors)} Errors:{C.RESET}",
+                    f"\n{C.RED}akd has some errors {len(errors)} Errors:{C.RESET}",
                     file=sys.stderr,
                 )
                 for i, err in enumerate(errors):
@@ -178,7 +178,7 @@ def load_data(file_path: pathlib.Path) -> Any:
                             file=sys.stderr,
                         )
             if data is None:
-                raise ValueError("Failed to decode aid data.")
+                raise ValueError("Failed to decode akd data.")
             return data
 
     # 3. TOON
@@ -258,11 +258,11 @@ def run(args):
     # 4. Encode
     try:
         if ai is None:
-            print(f"{C.RED}Critical Error: arkadia.ai module not found.{C.RESET}")
+            print(f"{C.RED}Critical Error: arkadia module not found.{C.RESET}")
             sys.exit(1)
 
         # Calling the core library function
-        result = ai.data.encode(data, config)
+        result = ak.data.encode(data, config)
 
     except Exception as e:
         print(f"{C.RED}Encoding failed:{C.RESET} {e}")
@@ -297,12 +297,12 @@ def run(args):
 def register_arguments(parser):
     """
     Registers arguments for the 'enc' command.
-    Used by the main aid.py dispatcher if using subparsers,
+    Used by the main akd.py dispatcher if using subparsers,
     or can be used manually to parse known args.
     """
     # Positional
     parser.add_argument(
-        "input", nargs="?", help="Path to source file (.json, .yaml, .yml, .toon .aid)"
+        "input", nargs="?", help="Path to source file (.json, .yaml, .yml, .toon .ak-data)"
     )
 
     # I/O
