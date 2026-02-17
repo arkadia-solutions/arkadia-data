@@ -11,10 +11,11 @@ Supports:
 """
 
 from typing import Any, Optional
+
+from .Config import Config
+from .Meta import Meta
 from .Node import Node
 from .Schema import Schema, SchemaKind
-from .Meta import Meta
-from .Config import Config
 
 
 class Colors:

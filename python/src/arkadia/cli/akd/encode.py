@@ -1,12 +1,12 @@
-import sys
 import json
 import pathlib
+import sys
 from typing import Any
 
 # --- ARKADIA IMPORTS ---
 import arkadia.cli as cli
+from arkadia.cli.akd.meta import TOOL_NAME, VERSION
 from arkadia.cli.colors import C
-from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
 # Try importing Arkadia core
 try:
@@ -171,7 +171,7 @@ def load_data(file_path: pathlib.Path) -> Any:
                     msg = getattr(err, "message", str(err))
                     ctx = getattr(err, "context", None)
 
-                    print(f"  {i+1}. [Pos {pos}] {msg}", file=sys.stderr)
+                    print(f"  {i + 1}. [Pos {pos}] {msg}", file=sys.stderr)
                     if ctx:
                         print(
                             f"     Context: {C.YELLOW}{ctx.strip()}{C.RESET}",
@@ -302,7 +302,9 @@ def register_arguments(parser):
     """
     # Positional
     parser.add_argument(
-        "input", nargs="?", help="Path to source file (.json, .yaml, .yml, .toon .ak-data)"
+        "input",
+        nargs="?",
+        help="Path to source file (.json, .yaml, .yml, .toon .ak-data)",
     )
 
     # I/O

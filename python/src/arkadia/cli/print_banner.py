@@ -1,4 +1,5 @@
 import textwrap
+
 from .colors import C
 
 
@@ -48,9 +49,7 @@ def print_banner(
 
     # 2. Print Header (Tool Name)
     # Arkadia prefix in Green, Tool name in White Bold
-    print(
-        f"\n\n  {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}"
-    )
+    print(f"\n\n  {C.BOLD}{C.WHITE}{tool_name.upper()}{C.RESET}")
     print(f"   {C.DIM}{'-' * 50}{C.RESET}")
 
     # 3. Print Description (Wrapped)

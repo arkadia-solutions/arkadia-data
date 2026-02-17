@@ -1,5 +1,6 @@
-from arkadia.data import decode
 from utils import assert_roundtrip
+
+from arkadia.data import decode
 
 # ==================================================================================
 # 1. DECODING TESTS (String -> Node)
@@ -37,9 +38,9 @@ def test_decode_and_encode_primitives():
             config={"colorize": False, "compact": True}
         ).strip()
 
-        assert (
-            encoded_str == expected_enc
-        ), f"Encoding mismatch. Got '{encoded_str}', expected '{expected_enc}'"
+        assert encoded_str == expected_enc, (
+            f"Encoding mismatch. Got '{encoded_str}', expected '{expected_enc}'"
+        )
 
 
 def test_decode_floats():
@@ -71,7 +72,7 @@ def test_decode_named_record():
 def test_decode_positional_record():
     """Validates positional records (val1, val2)."""
     text = '(10, "Alice")'
-    expected =  '<_0:number,_1:string>(10,"Alice")'
+    expected = '<_0:number,_1:string>(10,"Alice")'
     res = decode(text, debug=True)
     assert not res.errors
 

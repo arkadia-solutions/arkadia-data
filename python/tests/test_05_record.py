@@ -1,5 +1,6 @@
-import arkadia as ak
 from utils import assert_roundtrip
+
+import arkadia as ak
 
 # ==============================================================================
 # 1. SCHEMA DEFINITION META (Types defined in < ... >)

@@ -1,11 +1,12 @@
-import sys
 import argparse
+import sys
+
 import arkadia.cli as cli
-from arkadia.cli.colors import C
 import arkadia.cli.akd.benchmark as benchmark
-from arkadia.cli.akd.meta import MET_INFO, VERSION, TOOL_NAME, TOOL_CMD, DESCRIPTION
-import arkadia.cli.akd.encode as encode
 import arkadia.cli.akd.decode as decode
+import arkadia.cli.akd.encode as encode
+from arkadia.cli.akd.meta import DESCRIPTION, MET_INFO, TOOL_CMD, TOOL_NAME, VERSION
+from arkadia.cli.colors import C
 
 
 def show_main_help():

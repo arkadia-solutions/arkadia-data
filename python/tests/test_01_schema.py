@@ -1,5 +1,6 @@
-from arkadia.data.decode import decode
 from utils import assert_roundtrip
+
+from arkadia.data.decode import decode
 
 # ==================================================================================
 # 2. SCHEMA DEFINITION & TYPING

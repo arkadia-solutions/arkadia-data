@@ -1,6 +1,7 @@
+from utils import assert_roundtrip
+
 from arkadia.data.decode import decode
 from arkadia.data.encode import encode
-from utils import assert_roundtrip
 
 # ==================================================================================
 # 3. ENCODING TESTS (Python Object -> String)

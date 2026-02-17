@@ -4,6 +4,7 @@ JSON → Node converter.
 """
 
 from typing import Any, Dict, List
+
 from .Node import Node
 from .Schema import Schema, SchemaKind
 

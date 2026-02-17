@@ -1,9 +1,10 @@
-from typing import Any, Dict, List, Optional
-from .Schema import Schema
-from .Config import Config
-from .Meta import Meta, MetaInfo
 import json
 import re
+from typing import Any, Dict, List, Optional
+
+from .Config import Config
+from .Meta import Meta, MetaInfo
+from .Schema import Schema
 
 
 class Node(Meta):
