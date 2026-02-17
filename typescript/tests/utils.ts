@@ -1,6 +1,7 @@
 import { expect } from 'vitest';
 import { Node } from '../src/models/Node';
 // Zakładam, że masz te funkcje wyeksportowane z index.ts (szczegóły niżej)
+import { parseDataToNode } from '../src/core/Parser';
 import { decode, encode } from '../src/index';
 
 /**
@@ -12,58 +13,60 @@ import { decode, encode } from '../src/index';
  * * Returns the Node so that further logical assertions (field checking) can be performed.
  */
 export function assertRoundtrip(
-    source: string | Node | any, 
-    expectedOutput: string, 
-    debug: boolean = false
+  source: string | Node | unknown,
+  expectedOutput: string,
+  debug: boolean = false,
 ): Node {
-    let node: Node;
+  let node: Node;
 
-    // 1. Prepare Node (if input is raw text)
-    if (typeof source === 'string') {
-        // Przekazujemy debug do decodera
-        const res = decode(source, { debug }); 
-        
-        if (res.errors.length > 0) {
-            console.error("Input decoding errors:", res.errors);
-        }
-        expect(res.errors, `Input decoding errors: ${res.errors.join(', ')}`).toHaveLength(0);
-        node = res.node;
-    } else {
-        node = source;
+  // 1. Prepare Node (if input is raw text)
+  if (typeof source === 'string') {
+    // Przekazujemy debug do decodera
+    const res = decode(source, { debug });
+
+    if (res.errors.length > 0) {
+      console.error('Input decoding errors:', res.errors);
     }
+    expect(res.errors, `Input decoding errors: ${res.errors.join(', ')}`).toHaveLength(0);
+    node = res.node;
+  } else if (!(source instanceof Node)) {
+    node = parseDataToNode(source);
+  } else {
+    node = source;
+  }
 
-    // 2. First Encoding
-    // Wymuszamy compact: true zgodnie z pythonowym oryginałem
-    const encoded1 = encode(node, { compact: true });
+  // 2. First Encoding
+  // Wymuszamy compact: true zgodnie z pythonowym oryginałem
+  const encoded1 = encode(node, { compact: true });
 
-    // Debug print to visualize differences in case of failure
-    // (Vitest zrobi to automatycznie przy .toBe, ale zachowujemy logikę z Python)
-    if (encoded1 !== expectedOutput) {
-        console.log(`\n[ROUNDTRIP] Mismatch Pass 1:`);
-        console.log(`EXPECTED: "${expectedOutput}"`);
-        console.log(`ACTUAL:   "${encoded1}"`);
-    }
+  // Debug print to visualize differences in case of failure
+  // (Vitest zrobi to automatycznie przy .toBe, ale zachowujemy logikę z Python)
+  if (encoded1 !== expectedOutput) {
+    console.log(`\n[ROUNDTRIP] Mismatch Pass 1:`);
+    console.log(`EXPECTED: "${expectedOutput}"`);
+    console.log(`ACTUAL:   "${encoded1}"`);
+  }
 
-    expect(encoded1).toBe(expectedOutput);
+  expect(encoded1).toBe(expectedOutput);
 
-    // 3. Round Trip (Decode the result of the encoding)
-    const res2 = decode(encoded1, { debug });
-    
-    if (res2.errors.length > 0) {
-        console.error("Re-decoding errors:", res2.errors);
-    }
-    expect(res2.errors, `Re-decoding errors: ${res2.errors.join(', ')}`).toHaveLength(0);
+  // 3. Round Trip (Decode the result of the encoding)
+  const res2 = decode(encoded1, { debug });
 
-    // 4. Second Encoding (Idempotency Check)
-    const encoded2 = encode(res2.node, { compact: true });
+  if (res2.errors.length > 0) {
+    console.error('Re-decoding errors:', res2.errors);
+  }
+  expect(res2.errors, `Re-decoding errors: ${res2.errors.join(', ')}`).toHaveLength(0);
 
-    if (encoded2 !== expectedOutput) {
-        console.log(`\n[ROUNDTRIP] Mismatch Pass 2 (Consistency):`);
-        console.log(`EXPECTED: "${expectedOutput}"`);
-        console.log(`ACTUAL:   "${encoded2}"`);
-    }
+  // 4. Second Encoding (Idempotency Check)
+  const encoded2 = encode(res2.node, { compact: true });
 
-    expect(encoded2).toBe(expectedOutput);
+  if (encoded2 !== expectedOutput) {
+    console.log(`\n[ROUNDTRIP] Mismatch Pass 2 (Consistency):`);
+    console.log(`EXPECTED: "${expectedOutput}"`);
+    console.log(`ACTUAL:   "${encoded2}"`);
+  }
 
-    return node;
+  expect(encoded2).toBe(expectedOutput);
+
+  return node;
 }

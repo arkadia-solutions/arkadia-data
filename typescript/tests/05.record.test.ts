@@ -3,80 +3,78 @@ import { decode } from '../src/index';
 import { assertRoundtrip } from './utils';
 
 describe('AK Data Record Handling', () => {
+  // ==============================================================================
+  // 1. SCHEMA DEFINITION META (Types defined in < ... >)
+  // ==============================================================================
 
-    // ==============================================================================
-    // 1. SCHEMA DEFINITION META (Types defined in < ... >)
-    // ==============================================================================
-
-    it('should handle different type in record', () => {
-        const akdText = `
+  it('should handle different type in record', () => {
+    const akdText = `
         < 
           id: number
         >
         ( ["text"] )
         `;
 
-        const result = decode(akdText, { debug: false });
-        const node = result.node;
-        expect(result.errors).toHaveLength(0);
-        
-        // 1. Check Record Meta (Outer)
-        expect(node.isRecord).toBe(true);
+    const result = decode(akdText, { debug: false });
+    const node = result.node;
+    expect(result.errors).toHaveLength(0);
 
-        const expected = '<id:number>(<[string]> ["text"])';
-        assertRoundtrip(node, expected, false);
-    });
+    // 1. Check Record Meta (Outer)
+    expect(node.isRecord).toBe(true);
 
-    it('should handle simple types', () => {
-        // Input is a raw AKD format string representing a dictionary
-        const akdText = '{ a:"a", b:"b", c:"c", d: 3 }';
-        
-        // The parser infers the schema from the keys/values.
-        // The encoder then outputs the inferred schema and converts the named record 
-        // to a positional one because a schema exists.
-        const expected = '<a:string,b:string,c:string,d:number>("a","b","c",3)';
-        
-        assertRoundtrip(akdText, expected, false);   
-    });
+    const expected = '<id:number>(<[string]> ["text"])';
+    assertRoundtrip(node, expected, false);
+  });
 
-    it('should handle record named type mismatch', () => {
-        /**
-         * Tests a scenario where a record field has a defined type (e.g., string),
-         * but the actual value inside is of a different type (e.g., int).
-         *
-         * This ensures that the encodeRecord method uses applyTypeTag correctly.
-         *
-         * Schema: <tests: string>
-         * Data: { tests: 3 }
-         * Expected Output: ... (<number> 3)
-         */
-        const akdText = `
+  it('should handle simple types', () => {
+    // Input is a raw AKD format string representing a dictionary
+    const akdText = '{ a:"a", b:"b", c:"c", d: 3 }';
+
+    // The parser infers the schema from the keys/values.
+    // The encoder then outputs the inferred schema and converts the named record
+    // to a positional one because a schema exists.
+    const expected = '<a:string,b:string,c:string,d:number>("a","b","c",3)';
+
+    assertRoundtrip(akdText, expected, false);
+  });
+
+  it('should handle record named type mismatch', () => {
+    /**
+     * Tests a scenario where a record field has a defined type (e.g., string),
+     * but the actual value inside is of a different type (e.g., int).
+     *
+     * This ensures that the encodeRecord method uses applyTypeTag correctly.
+     *
+     * Schema: <tests: string>
+     * Data: { tests: 3 }
+     * Expected Output: ... (<number> 3)
+     */
+    const akdText = `
         <tests: string>
         {
          tests: 3
         }
         `;
 
-        const expected = '<tests:string>(<number> 3)';
-        assertRoundtrip(akdText, expected, false);   
-    });
+    const expected = '<tests:string>(<number> 3)';
+    assertRoundtrip(akdText, expected, false);
+  });
 
-    it('should handle record positional type mismatch', () => {
-        /**
-         * Tests a scenario where a positional record field has a defined type (e.g., string),
-         * but the actual value inside is of a different type (e.g., int).
-         *
-         * Schema: <tests: string>
-         * Data: (3)
-         * Expected Output: ... (<number> 3)
-         */
-        const akdText = `
+  it('should handle record positional type mismatch', () => {
+    /**
+     * Tests a scenario where a positional record field has a defined type (e.g., string),
+     * but the actual value inside is of a different type (e.g., int).
+     *
+     * Schema: <tests: string>
+     * Data: (3)
+     * Expected Output: ... (<number> 3)
+     */
+    const akdText = `
         <tests: string>
         (3)
         `;
 
-        const expected = '<tests:string>(<number> 3)';
-        assertRoundtrip(akdText, expected, false);   
-    });
-
+    const expected = '<tests:string>(<number> 3)';
+    assertRoundtrip(akdText, expected, false);
+  });
 });

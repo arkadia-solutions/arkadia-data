@@ -1,34 +1,33 @@
 # @arkadia/data
 
 ```
-                                   ; i  :J                                      
-                               U, .j..fraaM.  nl                                
-                            b h.obWMkkWWMMWMCdkvz,k                             
-                         ! .mQWM:o hiMoMW v.uaXMdohbi                           
-                        hI,MMmaIao.Wo .IMkoh FCMwqoXa                           
-                      ,.c.aWdM. d,aToW  .    Mb!. MopfQ.L                       
-                       jhj.xoM :k    aCu F: w MpmqMvMMI,I                       
-                      bzMhz:W    .Mw . o lYh ai M iMa pM.j                      
-                     hzqWWM;    M;o.WMWWMkMX f.a aa bModpo.                     
-                     ;tMbbv   xp oJMMWWWWMMMM iv  dLMXakM:T                     
-                       mdh        MMWWWWWWWbQLCzurjktvMor                       
-                      ,QFw ;M,b .MWWWWWWWMWMWd  xz   M,kd X                     
-                      qjMIo IMTW.WWWWWMWWWM.o.I   rpULaMdi.                     
-                       .mMM  uoWWWMWWWWWWp qM,,M l M;mMbrI                      
-                        f nm  MMW MWWjMuMj  I  o   LbMac                        
-                              WWdMWWWW Mv a.b..aauMhMwQf                        
-                              MoWWW,WWtjonJMWtoMdoaoMI                          
-                              MMMM Mi    xd:Mm tMwo Cr,                         
-                             xMMc .otqokWMMMao:oio.                             
-                             MW    .   C..MkTIo                                 
-                            WW                                                  
-                           QWM                                                  
-                           WW                                                   
-                          uMW                                                   
-                          WW                                                    
+                                   ; i  :J
+                               U, .j..fraaM.  nl
+                            b h.obWMkkWWMMWMCdkvz,k
+                         ! .mQWM:o hiMoMW v.uaXMdohbi
+                        hI,MMmaIao.Wo .IMkoh FCMwqoXa
+                      ,.c.aWdM. d,aToW  .    Mb!. MopfQ.L
+                       jhj.xoM :k    aCu F: w MpmqMvMMI,I
+                      bzMhz:W    .Mw . o lYh ai M iMa pM.j
+                     hzqWWM;    M;o.WMWWMkMX f.a aa bModpo.
+                     ;tMbbv   xp oJMMWWWWMMMM iv  dLMXakM:T
+                       mdh        MMWWWWWWWbQLCzurjktvMor
+                      ,QFw ;M,b .MWWWWWWWMWMWd  xz   M,kd X
+                      qjMIo IMTW.WWWWWMWWWM.o.I   rpULaMdi.
+                       .mMM  uoWWWMWWWWWWp qM,,M l M;mMbrI
+                        f nm  MMW MWWjMuMj  I  o   LbMac
+                              WWdMWWWW Mv a.b..aauMhMwQf
+                              MoWWW,WWtjonJMWtoMdoaoMI
+                              MMMM Mi    xd:Mm tMwo Cr,
+                             xMMc .otqokWMMMao:oio.
+                             MW    .   C..MkTIo
+                            WW
+                           QWM
+                           WW
+                          uMW
+                          WW
                           MW
 ```
-
 
 [![npm version](https://img.shields.io/npm/v/@arkadia/data.svg)](https://www.npmjs.com/package/@arkadia/data)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -57,7 +56,6 @@ npm install @arkadia/data
 
 ```typescript
 import { encode, decode } from '@arkadia/data';
-
 ```
 
 ### Encoding (JavaScript Object → AKD String)
@@ -67,8 +65,8 @@ Converts standard JavaScript objects into the token-optimized AKD string format.
 ```typescript
 const data = {
   id: 1,
-  name: "Alice",
-  active: true
+  name: 'Alice',
+  active: true,
 };
 
 // Compact encoding (default)
@@ -76,7 +74,6 @@ const akdString = encode(data);
 
 console.log(akdString);
 // Output: <id:number,name:string,active:bool>(1,"Alice",true)
-
 ```
 
 ### Decoding (AKD String → AST / Value)
@@ -89,15 +86,14 @@ const input = '<score:number>(98.5)';
 const result = decode(input);
 
 if (result.errors.length === 0) {
-  console.log(result.node.value); 
+  console.log(result.node.value);
   // Output: 98.5
-  
-  console.log(result.node.isRecord); 
+
+  console.log(result.node.isRecord);
   // Output: true
 } else {
-  console.error("Parsing errors:", result.errors);
+  console.error('Parsing errors:', result.errors);
 }
-
 ```
 
 ## 📖 Syntax Guide
@@ -108,13 +104,13 @@ The AKD format uses a distinct syntax to separate schema definition from data va
 
 Primitive values are explicitly typed using angle brackets `<type>`.
 
-| Type | Input Example | Encoded Output |
-| --- | --- | --- |
-| Integer | `123` | `<number>123` |
-| Float | `12.34` | `<number>12.34` |
-| String | `"hello"` | `<string>"hello"` |
-| Boolean | `true` | `<bool>true` |
-| Null | `null` | `<null>null` |
+| Type    | Input Example | Encoded Output    |
+| ------- | ------------- | ----------------- |
+| Integer | `123`         | `<number>123`     |
+| Float   | `12.34`       | `<number>12.34`   |
+| String  | `"hello"`     | `<string>"hello"` |
+| Boolean | `true`        | `<bool>true`      |
+| Null    | `null`        | `<null>null`      |
 
 ### Named Records
 
@@ -124,7 +120,6 @@ Similar to JSON objects, but the keys are lifted into a schema definition.
 
 ```json
 { "id": 1, "name": "Test" }
-
 ```
 
 **Encoded (AKD):**
@@ -142,7 +137,6 @@ Data without keys, where position determines meaning.
 
 ```javascript
 // (10, "Alice") - conceptually
-
 ```
 
 **Encoded (AKD):**
@@ -158,27 +152,22 @@ Data without keys, where position determines meaning.
 
 Serializes a JavaScript value into an AKD string.
 
-* `input`: The data to encode.
-* `options`:
-* `compact`: (boolean) Remove whitespace. Default: `true`.
-* `colorize`: (boolean) Add ANSI colors for terminal output. Default: `false`.
-
-
+- `input`: The data to encode.
+- `options`:
+- `compact`: (boolean) Remove whitespace. Default: `true`.
+- `colorize`: (boolean) Add ANSI colors for terminal output. Default: `false`.
 
 ### `decode(text: string, options?: DecodeOptions): ParseResult`
 
 Parses an AKD string.
 
-* `text`: The AKD string to parse.
-* `options`:
-* `debug`: (boolean) Enable detailed logging.
+- `text`: The AKD string to parse.
+- `options`:
+- `debug`: (boolean) Enable detailed logging.
 
-
-* **Returns** `ParseResult`:
-* `node`: The parsed AST node containing value and metadata.
-* `errors`: Array of parsing errors, if any.
-
-
+- **Returns** `ParseResult`:
+- `node`: The parsed AST node containing value and metadata.
+- `errors`: Array of parsing errors, if any.
 
 ## 📄 License
 
