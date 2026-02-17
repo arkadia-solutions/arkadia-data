@@ -7,7 +7,6 @@ from .Encoder import Encoder, Config
 from .parse import parse
 from .Node import Node
 
-
 DEFAULT_CONFIG: Config = {
     "indent": 2,
     "start_indent": 0,

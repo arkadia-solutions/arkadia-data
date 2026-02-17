@@ -1,5 +1,6 @@
 from typing import TypedDict
 
+
 class Config(TypedDict, total=False):
     prompt_output: bool
     """Embed schema directly inside sample data.

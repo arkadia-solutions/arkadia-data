@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Optional
-from .Schema import Schema, SchemaKind
+from .Schema import Schema
 from .Config import Config
 from .Meta import Meta, MetaInfo
 import json
@@ -31,7 +31,6 @@ class Node(Meta):
         fields: Optional[Dict[str, "Node"]] = None,
         # list: [Node,Node,...]
         elements: Optional[List["Node"]] = None,
-
         # list of comments associated with this node /* comment */ /* comment2 */
         comments: Optional[List[str]] = None,
         # Meta information (Runtime meta from data block) e.g. / @size=10 / -> {"size": 10}
@@ -39,18 +38,14 @@ class Node(Meta):
         # Tags for meta #a #b #c
         tags: Optional[List[str]] = None,
     ):
-        super().__init__(
-            comments=comments, 
-            attr=attr, 
-            tags=tags)
-        
+        super().__init__(comments=comments, attr=attr, tags=tags)
+
         self.schema = schema
         self.name = name or ""
 
         self.value = value
         self.fields = fields or {}
         self.elements = elements or []
-
 
     # -----------------------------------------------------------
     # Introspection helpers
@@ -91,14 +86,14 @@ class Node(Meta):
         Recursively converts the Node into a standard Python dictionary/list/primitive.
         Useful for debugging or interfacing with standard JSON libraries.
         """
-        # print("Converting Node to dict...", self.schema, 
-        #       "\n", 
+        # print("Converting Node to dict...", self.schema,
+        #       "\n",
         #       self.is_primitive,
-        #       "\n", 
+        #       "\n",
         #       self.is_list,
         #       "\n",
         #       "-" * 120)
-        
+
         if self.is_primitive:
             return self.value
 
@@ -109,7 +104,7 @@ class Node(Meta):
             return {key: field_node.dict() for key, field_node in self.fields.items()}
 
         return self.value
-    
+
     # -----------------------------------------------------------
     # json
     # -----------------------------------------------------------
@@ -175,13 +170,17 @@ class Node(Meta):
 
     # -----------------------------------------------------------
 
-    def encode(self, config: Config = {
-        "indent": 2,
-    }) -> str:
+    def encode(
+        self,
+        config: Config = {
+            "indent": 2,
+        },
+    ) -> str:
         """
         Debug fallback. Real encoder is in encoder.py.
         """
         from .Encoder import Encoder
+
         return Encoder(config).encode(self)
 
     def __repr__(self):
@@ -193,10 +192,12 @@ class Node(Meta):
         if self.schema:
             kind = self.schema.kind.name
             type_name = self.schema.type_name
-            
+
             # Complex type display
             if self.is_list:
-                el_type = self.schema.element.type_name if self.schema.element else "any"
+                el_type = (
+                    self.schema.element.type_name if self.schema.element else "any"
+                )
                 type_label = f"LIST[{el_type}]"
             elif self.is_record and type_name not in ("record", "any"):
                 type_label = f"RECORD:{type_name}"
@@ -205,23 +206,23 @@ class Node(Meta):
         else:
             type_label = "UNKNOWN"
 
-
         header = f"<Node({type_label})"
 
         # 2. Content Info
         content = []
-        
+
         if self.is_primitive:
             # Show value, truncated if necessary
             v = repr(self.value)
-            if len(v) > 50: v = v[:47] + "..."
+            if len(v) > 50:
+                v = v[:47] + "..."
             content.append(f"val={v}")
-            
+
         elif self.is_list:
             # Show count
             count = len(self.elements)
             content.append(f"len={count}")
-            
+
         elif self.is_record:
             # Show keys summary
             keys = list(self.fields.keys())
@@ -232,20 +233,21 @@ class Node(Meta):
             content.append(f"fields=[{keys_str}]")
         else:
             v = repr(self.value)
-            if len(v) > 50: v = v[:47] + "..."
+            if len(v) > 50:
+                v = v[:47] + "..."
             content.append(f"val={v}")
 
         # 3. Meta Indicators (Concise)
         if self.comments:
             content.append(f"comments={len(self.comments)}")
-        
+
         # Attributes
-        current_attr = getattr(self, 'attr', getattr(self, 'meta', {}))
+        current_attr = getattr(self, "attr", getattr(self, "meta", {}))
         if current_attr:
             content.append(f"attr={list(current_attr.keys())}")
 
         # Tags
-        current_tags = getattr(self, 'tags', [])
+        current_tags = getattr(self, "tags", [])
         if current_tags:
             content.append(f"tags={current_tags}")
 

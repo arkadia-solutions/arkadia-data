@@ -64,10 +64,10 @@ def parse_list(arr: List[Any]) -> Node:
 
     # 2. PARSE ALL ITEMS
     parsed_items = [parse(v) for v in arr]
-    
+
     # Use the first element as the baseline.
     first_schema = parsed_items[0].schema
-    is_list_of_records = (first_schema.kind == SchemaKind.RECORD)
+    is_list_of_records = first_schema.kind == SchemaKind.RECORD
 
     unified_element_schema: Schema
 
@@ -76,7 +76,7 @@ def parse_list(arr: List[Any]) -> Node:
         # RECORDS: Create a unified schema containing ALL fields from ALL items.
         unified_element_schema = Schema(kind=SchemaKind.RECORD, type_name="record")
         seen_fields = set()
-        
+
         for item in parsed_items:
             # Skip non-record items if mixed list (or handle as error depending on strictness)
             if item.schema.kind == SchemaKind.RECORD:
@@ -90,7 +90,9 @@ def parse_list(arr: List[Any]) -> Node:
         unified_element_schema = first_schema
 
     # 4. FINALIZE
-    list_schema = Schema(kind=SchemaKind.LIST, type_name="list", element=unified_element_schema)
+    list_schema = Schema(
+        kind=SchemaKind.LIST, type_name="list", element=unified_element_schema
+    )
 
     return Node(schema=list_schema, elements=parsed_items)
 

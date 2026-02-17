@@ -1,8 +1,5 @@
-import pytest
 from arkadia.ai.data.decode import decode
 from arkadia.ai.data.encode import encode
-from arkadia.ai.data.Node import Node
-
 
 # ==================================================================================
 # 4. ROUND TRIP (Encode -> Decode)
@@ -30,14 +27,10 @@ def test_decode_error_on_unstripped_ansi():
 
     # 3. Assertions
     assert len(res.errors) > 0, "Decoder should report errors on raw ANSI codes"
-    
+
     # Optional: Verify error content
     msgs = [e.message for e in res.errors]
     assert any("Unexpected character" in m for m in msgs)
-
-
-
-
 
 
 # ==================================================================================

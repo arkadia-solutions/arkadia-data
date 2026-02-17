@@ -1,10 +1,5 @@
-import pytest
 from arkadia.ai.data.decode import decode
-from arkadia.ai.data.encode import encode
-from arkadia.ai.data import Node
 from utils import assert_roundtrip
-
-
 
 # ==================================================================================
 # 2. SCHEMA DEFINITION & TYPING
@@ -29,11 +24,7 @@ def test_schema_definition_and_usage():
     assert node.fields["id"].value == 1
     assert node.fields["name"].value == "Admin"
 
-    assert_roundtrip(node, 
-                     '@User<id:number,name:string>(1,"Admin")',
-                     True)
-
-
+    assert_roundtrip(node, '@User<id:number,name:string>(1,"Admin")', True)
 
 
 def test_nested_schema_structure():
@@ -58,11 +49,6 @@ def test_nested_schema_structure():
     profile_node = node.fields["profile"]
     assert profile_node.fields["level"].value == 99
 
-    assert_roundtrip(node, 
-                     "@User<id:number,profile:@Profile<level:number>>(1,(99))",
-                     True)
-
-
-
-
-
+    assert_roundtrip(
+        node, "@User<id:number,profile:@Profile<level:number>>(1,(99))", True
+    )
