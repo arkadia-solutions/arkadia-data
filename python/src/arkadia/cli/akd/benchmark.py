@@ -1,14 +1,15 @@
-import sys
 import json
-import time
 import pathlib
 import statistics
-from typing import List, Dict, Any, Callable
+import sys
+import time
+from typing import Any, Callable, Dict, List
 
 # --- ARKADIA IMPORTS ---
 import arkadia.cli as cli
 from arkadia.cli.colors import C
-from .meta import VERSION, TOOL_NAME
+
+from .meta import TOOL_NAME, VERSION
 
 # --- EXTERNAL DEPENDENCIES ---
 try:
@@ -154,7 +155,10 @@ def measure_encode(fn: Callable, repeats: int):
 
     for _ in range(repeats):
         t0 = time.perf_counter()
-        result = fn()
+        try:
+            result = fn()
+        except Exception:
+            pass
         t1 = time.perf_counter()
         times.append(t1 - t0)
 
@@ -165,7 +169,7 @@ def get_formatters(data: Any) -> Dict[str, Callable]:
     """
     Returns a dictionary of lambda functions for each format.
     """
-    formatters = {
+    candidates = {
         "JSON": lambda: json.dumps(data, separators=(",", ":"), ensure_ascii=False),
         "AKCD": lambda: ak.data.encode(
             data, {"compact": True, "escape_new_lines": True}
@@ -177,11 +181,22 @@ def get_formatters(data: Any) -> Dict[str, Callable]:
 
     if toon_format:
         # Standardize TOON formatting for benchmarks
-        formatters["TOON"] = lambda: toon_format.encode(
+        candidates["TOON"] = lambda: toon_format.encode(
             data, options={"indent": 2, "delimiter": ",", "lengthMarker": False}
         )
 
-    return formatters
+    valid_formatters = {}
+    for name, func in candidates.items():
+        if func is None:
+            continue
+        try:
+            func()
+            valid_formatters[name] = func
+        except Exception:
+            pass
+
+    print(valid_formatters)
+    return valid_formatters
 
 
 def get_files(directory: pathlib.Path) -> List[pathlib.Path]:
@@ -402,7 +417,7 @@ def run_benchmark(files: List[pathlib.Path], repeats: int, debug: bool):
     print(
         f"   {'FORMAT':<10} {'TOKENS':<12} {'TIME (Total)':<15} {'AVG TIME/FILE':<15} {'VS JSON':<10}"
     )
-    print(f"   {'-'*70}")
+    print(f"   {'-' * 70}")
 
     json_tot = totals["JSON"]["tokens"]
     file_count = len(files)

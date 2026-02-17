@@ -1,7 +1,8 @@
-from typing import Optional, List, Dict, Union, Any
 from enum import Enum
-from .Meta import Meta, MetaInfo
+from typing import Any, Dict, List, Optional, Union
+
 from .Config import Config
+from .Meta import Meta, MetaInfo
 
 
 class SchemaKind(Enum):

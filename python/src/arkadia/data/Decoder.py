@@ -1,10 +1,10 @@
 import re
-from typing import Optional, Dict, Union, Any
 from dataclasses import dataclass, field
+from typing import Any, Dict, Optional, Union
 
+from .Meta import MetaInfo
 from .Node import Node
 from .Schema import Schema, SchemaKind
-from .Meta import MetaInfo
 
 ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 
@@ -1407,7 +1407,7 @@ class Decoder:
         if not self.debug:
             return
 
-        loc_str = f"{self.line+1}:{self.col+1}"
+        loc_str = f"{self.line + 1}:{self.col + 1}"
 
         depth = len(self.node_stack)
         tree_prefix = ""

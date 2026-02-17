@@ -1,13 +1,13 @@
-import sys
 import json
-import time
-import re
 import pathlib
+import re
+import sys
+import time
 
 # --- ARKADIA IMPORTS ---
 import arkadia.cli as cli
+from arkadia.cli.akd.meta import TOOL_NAME, VERSION
 from arkadia.cli.colors import C
-from arkadia.cli.akd.meta import VERSION, TOOL_NAME
 
 # Try importing Arkadia core
 try:
@@ -237,7 +237,7 @@ def run(args):
             msg = getattr(err, "message", str(err))
             ctx = getattr(err, "context", None)
 
-            print(f"  {i+1}. [Pos {pos}] {msg}", file=sys.stderr)
+            print(f"  {i + 1}. [Pos {pos}] {msg}", file=sys.stderr)
             if ctx:
                 print(
                     f"     Context: {C.YELLOW}{ctx.strip()}{C.RESET}", file=sys.stderr

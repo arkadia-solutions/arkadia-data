@@ -1,7 +1,8 @@
+from utils import assert_roundtrip
+
 import arkadia as ak
 from arkadia.data import SchemaKind
 from arkadia.data.decode import decode
-from utils import assert_roundtrip
 
 
 def test_decode_list_of_primitives():

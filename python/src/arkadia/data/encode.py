@@ -3,9 +3,9 @@
 High-level encoder entrypoint for AK-DATA-FORMAT (ADF).
 """
 
-from .Encoder import Encoder, Config
-from .parse import parse
+from .Encoder import Config, Encoder
 from .Node import Node
+from .parse import parse
 
 DEFAULT_CONFIG: Config = {
     "indent": 2,

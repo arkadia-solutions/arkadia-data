@@ -1,6 +1,7 @@
-import arkadia as ak
-from arkadia.data import SchemaKind, Schema, Node
 from utils import assert_roundtrip
+
+import arkadia as ak
+from arkadia.data import Node, Schema, SchemaKind
 
 # ==================================================================================
 # 2. SCHEMA DEFINITION & TYPING
