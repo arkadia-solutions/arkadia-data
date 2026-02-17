@@ -1117,16 +1117,19 @@ class Decoder:
         while not self._eof():
             ch = self.text[self.i]
 
+            # End of string found
             if ch == '"':
                 break
 
+            # Escape sequence start
             if ch == "\\":
-                self._advance(1)  # Skip backslash
+                self._advance(1)  # Skip the backslash
                 if self._eof():
+                    self._add_error("Unexpected EOF inside string escape")
                     break
+
                 escaped = self.text[self.i]
 
-                # Simple escape mapping
                 if escaped == "n":
                     result.append("\n")
                 elif escaped == "t":
@@ -1138,12 +1141,15 @@ class Decoder:
                 elif escaped == "\\":
                     result.append("\\")
                 else:
-                    result.append(escaped)  # Fallback
+                    # Unknown escape sequence (e.g. \a) -> keep literally or ignore slash
+                    result.append(escaped)
 
-                self._advance(1)
-            else:
-                result.append(ch)
-                self._advance(1)
+                self._advance(1)  # Move past the escaped char
+                continue
+
+            # Normal character
+            result.append(ch)
+            self._advance(1)
 
         self._expect('"')
         return "".join(result)

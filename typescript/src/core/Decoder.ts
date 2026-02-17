@@ -844,26 +844,42 @@ export class Decoder {
   private readQuotedString(): string {
     this.expect('"');
     let res = '';
+
     while (!this.eof()) {
       const ch = this.text[this.i];
-      if (ch === '"') break;
 
+      // End of string found
+      if (ch === '"') {
+        break;
+      }
+
+      // Escape sequence start
       if (ch === '\\') {
-        this.advance(1);
-        if (this.eof()) break;
+        this.advance(1); // Skip the backslash
+
+        if (this.eof()) {
+          this.addError('Unexpected EOF inside string escape');
+          break;
+        }
+
         const esc = this.text[this.i];
+
         if (esc === 'n') res += '\n';
         else if (esc === 't') res += '\t';
         else if (esc === 'r') res += '\r';
         else if (esc === '"') res += '"';
         else if (esc === '\\') res += '\\';
-        else res += esc;
-        this.advance(1);
-      } else {
-        res += ch;
-        this.advance(1);
+        else res += esc; // Fallback: append character literally
+
+        this.advance(1); // Move past the escaped char
+        continue;
       }
+
+      // Normal character
+      res += ch;
+      this.advance(1);
     }
+
     this.expect('"');
     return res;
   }

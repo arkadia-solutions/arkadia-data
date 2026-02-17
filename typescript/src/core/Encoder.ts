@@ -289,10 +289,6 @@ export class Encoder {
     return `${color}${text}${Colors.RESET}`;
   }
 
-  private escapeNewlines(text: string): string {
-    return text.replace(/\r\n/g, '\\n').replace(/\r/g, '\\n').replace(/\n/g, '\\n');
-  }
-
   private encodePrimitiveNode(node: Node): string {
     const innerMeta = this.metaInline(node);
     const str = this.primitiveValue(node.value as Primitive);
@@ -308,11 +304,20 @@ export class Encoder {
   }
 
   private encodeString(v: string): string {
-    let content = v;
-    if (this.config.escapeNewLines) {
-      content = this.escapeNewlines(content);
-    }
+    // 1. Escape backslashes first! (Critical step)
+    // We must turn a single literal \ into \\ before processing quotes.
+    let content = v.replace(/\\/g, '\\\\');
+
+    // 2. Escape quotes
+    // Turn " into \"
     content = content.replace(/"/g, '\\"');
+
+    // 3. Handle newlines and control characters if configured
+    if (this.config.escapeNewLines) {
+      content = content.replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
+    }
+
+    // Wrap in quotes and colorize
     return this.c(`"${content}"`, Colors.STRING);
   }
 
