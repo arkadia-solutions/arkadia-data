@@ -830,8 +830,8 @@ class Decoder:
                 self._pending_meta.comments.append(self._parse_comment_block())
                 continue
 
-            # 2. Meta Block / ... / (Must not be /*)
-            if ch == "/" and next_ch != "*":
+            # 2. Meta Block // ... // (New double-slash definition)
+            if ch == "/" and next_ch == "/":
                 # Parse the block
                 self._parse_meta_block(obj)
                 continue
@@ -914,10 +914,13 @@ class Decoder:
         """
         Parses a / ... / block.
         """
-        self._expect("/")
-        self._dbg("START meta header /.../")
-
         meta = MetaInfo()
+
+        if not (self._peek() == "/" and self._peek_next() == "/"):
+            self._add_error("Expected '//' to start meta block")
+            return meta
+        self._advance(2)  # consume //
+        self._dbg("START meta header //...//")
 
         while not self._eof():
             self._skip_whitespace()
@@ -929,8 +932,8 @@ class Decoder:
                 continue
 
             # Check for block end
-            if ch == "/":
-                self._advance(1)
+            if ch == "/" and next_ch == "/":
+                self._advance(2)
                 break
 
             # Explicit modifiers
