@@ -195,7 +195,6 @@ def get_formatters(data: Any) -> Dict[str, Callable]:
         except Exception:
             pass
 
-    print(valid_formatters)
     return valid_formatters
 
 
