@@ -12,7 +12,7 @@ class Colors {
   static TYPE = '\x1b[96m'; // cyan
   static KEY = '\x1b[93m'; // yellow
   static SCHEMA = '\x1b[91m'; // red (for @TypeName)
-  static TAG = '\x1b[91m';
+  static TAG = '\x1b[35m';
   static ATTR = '\x1b[93m';
 }
 
@@ -265,7 +265,7 @@ export class Encoder {
 
     if (wrapped) {
       const wrappedContent =
-        this.c(`/${pad}`, Colors.SCHEMA) + content + this.c(`${pad}/`, Colors.SCHEMA);
+        this.c(`//${pad}`, Colors.SCHEMA) + content + this.c(`${pad}//`, Colors.SCHEMA);
       return this.config.compact ? wrappedContent + ' ' : ' ' + wrappedContent + ' ';
     }
 

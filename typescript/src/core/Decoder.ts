@@ -635,7 +635,7 @@ export class Decoder {
         continue;
       }
 
-      if (ch === '/' && nextCh !== '*') {
+      if (ch === '/' && nextCh === '/') {
         this.parseMetaBlock(obj);
         continue;
       }
@@ -694,9 +694,14 @@ export class Decoder {
   }
 
   private parseMetaBlock(obj: Node | Schema | null = null): MetaInfo {
-    this.expect('/');
-    this._dbg('START meta header /.../');
     const meta = new MetaInfo();
+
+    if (!(this.peek() === '/' && this.peekNext() === '/')) {
+      this.addError("Expected '//' to start meta block");
+      return meta;
+    }
+    this.advance(2); // consume //
+    this._dbg('START meta header //...//');
 
     while (!this.eof()) {
       this.skipWhitespace();
@@ -708,8 +713,8 @@ export class Decoder {
         continue;
       }
 
-      if (ch === '/') {
-        this.advance(1);
+      if (ch === '/' && nextCh === '/') {
+        this.advance(2);
         break;
       }
 

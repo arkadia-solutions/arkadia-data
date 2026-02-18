@@ -27,7 +27,7 @@ class Colors:
     TYPE = "\033[96m"  # cyan
     KEY = "\033[93m"  # yellow
     SCHEMA = "\033[91m"  # red (for @TypeName)
-    TAG = "\033[91m"
+    TAG = "\033[35m"
     ATTR = "\033[93m"
 
 
@@ -102,7 +102,7 @@ class Encoder:
     ) -> str:
         """
         Encode Schema into AK Data header form.
-        Supports: < [ ... ] >, / meta /, !required
+        Supports: < [ ... ] >, // meta //, !required
         """
         if schema is None:
             return ""
@@ -334,9 +334,9 @@ class Encoder:
             return ""
         pad = "" if self.compact else " "
         content = (
-            self._c(f"/{pad}", Colors.SCHEMA)
+            self._c(f"//{pad}", Colors.SCHEMA)
             + content
-            + self._c(f"{pad}/", Colors.SCHEMA)
+            + self._c(f"{pad}//", Colors.SCHEMA)
         )
         if self.compact:
             return content + " " if content else ""
