@@ -836,9 +836,12 @@ class Decoder:
                 self._parse_meta_block(obj)
                 continue
 
-            # 3. Inline Modifiers
-            if ch in ("$", "#", "!"):
-                self._parse_modifier_inline()
+            if ch == "$":
+                self._parse_meta_attribute(self._pending_meta)
+                continue
+
+            if ch == "#":
+                self._parse_meta_tag(self._pending_meta)
                 continue
 
             # If none of the above, we are at the start of a Node or Schema
@@ -893,23 +896,6 @@ class Decoder:
         )
         return final_comment
 
-    def _parse_modifier_inline(self):
-        """
-        Dispatches inline modifiers ($attr, #tag, !flag).
-        Updates self._pending_meta.
-        """
-        ch = self._peek()
-
-        if ch == "$":
-            self._parse_meta_attribute(self._pending_meta)
-        elif ch == "#":
-            self._parse_meta_tag(self._pending_meta)
-        elif ch == "!":
-            self._parse_meta_flag(self._pending_meta)
-        else:
-            # Should not happen if called correctly
-            self._advance(1)
-
     def _parse_meta_block(self, obj: Optional[Union[Node, Schema]] = None) -> MetaInfo:
         """
         Parses a / ... / block.
@@ -942,9 +928,6 @@ class Decoder:
                 continue
             if ch == "#":
                 self._parse_meta_tag(meta)
-                continue
-            if ch == "!":
-                self._parse_meta_flag(meta)
                 continue
 
             # Implicit Attribute (Legacy support: key=value without $)
@@ -990,8 +973,12 @@ class Decoder:
 
         if meta.attr is None:
             meta.attr = {}
-        meta.attr[key] = val
-        self._dbg(f"Meta Attr: ${key}={val}")
+        if key == "required":
+            meta.required = True
+            self._dbg("Meta Flag: $required")
+        else:
+            meta.attr[key] = val
+            self._dbg(f"Meta Attr: ${key}={val}")
 
     def _parse_meta_tag(self, meta: MetaInfo):
         """Parses #tag."""
@@ -1002,17 +989,6 @@ class Decoder:
             meta.tags = []
         meta.tags.append(tag)
         self._dbg(f"Meta Tag: #{tag}")
-
-    def _parse_meta_flag(self, meta: MetaInfo):
-        """Parses !flag (e.g. !required)."""
-        self._advance(1)  # consume !
-        flag = self._parse_ident()
-
-        if flag == "required":
-            meta.required = True
-            self._dbg("Meta Flag: !required")
-        else:
-            self._add_warning(f"Unknown flag: !{flag}")
 
     # =========================================================
     # HELPERS

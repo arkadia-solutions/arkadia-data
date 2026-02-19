@@ -299,14 +299,17 @@ class Encoder:
 
         # 2. Modifiers
         if getattr(obj, "required", False):
-            items.append(self._c("!required", Colors.TAG))
+            items.append(self._c("$required", Colors.TAG))
 
         # 3. Attributes & Tags
         if self.include_meta:
             current_attr = obj.attr or {}
             for k, v in current_attr.items():
-                val_str = self._primitive(v)
-                items.append(self._c(f"${k}=", Colors.ATTR) + val_str)
+                if isinstance(v, bool) and v is True:
+                    items.append(self._c(f"${k}", Colors.ATTR))
+                else:
+                    val_str = self._primitive(v)
+                    items.append(self._c(f"${k}=", Colors.ATTR) + val_str)
 
             current_tags = obj.tags or []
             for t in current_tags:

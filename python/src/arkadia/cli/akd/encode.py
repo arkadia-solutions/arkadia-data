@@ -254,6 +254,7 @@ def run(args):
         "include_meta": not args.no_meta,  # Argument is negative flag
         "prompt_output": args.prompt_output,
     }
+    print(config)
 
     # 4. Encode
     try:

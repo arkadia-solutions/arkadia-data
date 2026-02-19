@@ -240,15 +240,19 @@ export class Encoder {
 
     // 2. Modifiers
     if ((obj as Schema).required) {
-      items.push(this.c('!required', Colors.TAG));
+      items.push(this.c('$required', Colors.TAG));
     }
 
     // 3. Attributes & Tags
     if (this.config.includeMeta) {
       const currentAttr = obj.attr || {};
       for (const [k, v] of Object.entries(currentAttr)) {
-        const valStr = this.primitiveValue(v);
-        items.push(this.c(`$${k}=`, Colors.ATTR) + valStr);
+        if (typeof v === 'boolean' && v === true) {
+          items.push(this.c(`$${k}`, Colors.ATTR));
+        } else {
+          const valStr = this.primitiveValue(v);
+          items.push(this.c(`$${k}=`, Colors.ATTR) + valStr);
+        }
       }
 
       const currentTags = obj.tags || [];
