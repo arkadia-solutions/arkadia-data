@@ -305,6 +305,7 @@ def run(args):
                 "include_comments": not args.no_comments,
                 "include_array_size": args.include_array_size,
                 "include_schema": not args.no_schema,
+                "include_meta": not args.no_meta,
                 "include_type": not args.no_type,
                 "prompt_output": args.prompt_output,
             }
@@ -394,6 +395,7 @@ def register_arguments(parser):
         "--include-array-size", action="store_true", help="[AKD] Add @size"
     )
     parser.add_argument("--no-schema", action="store_true", help="[AKD] Disable schema")
+    parser.add_argument("--no-meta", action="store_true", help="[AKD] Disable meta")
     parser.add_argument("--no-type", action="store_true", help="[AKD] Disable types")
     parser.add_argument(
         "--prompt-output", action="store_true", help="[AKD] LLM Optimized"

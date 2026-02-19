@@ -689,7 +689,6 @@ export class Decoder {
     const ch = this.peek();
     if (ch === '$') this.parseMetaAttribute(this.pendingMeta);
     else if (ch === '#') this.parseMetaTag(this.pendingMeta);
-    else if (ch === '!') this.parseMetaFlag(this.pendingMeta);
     else this.advance(1);
   }
 
@@ -724,10 +723,6 @@ export class Decoder {
       }
       if (ch === '#') {
         this.parseMetaTag(meta);
-        continue;
-      }
-      if (ch === '!') {
-        this.parseMetaFlag(meta);
         continue;
       }
 
@@ -771,7 +766,12 @@ export class Decoder {
       this.advance(1);
       val = this.parsePrimitiveValue();
     }
-    meta.attr[key] = val;
+    if (key === 'required') {
+      meta.required = true;
+      this._dbg('Meta Flag: $required');
+    } else {
+      meta.attr[key] = val;
+    }
     this._dbg(`Meta Attr: $${key}=${val}`);
   }
 
@@ -780,17 +780,6 @@ export class Decoder {
     const tag = this.parseIdent();
     meta.tags.push(tag);
     this._dbg(`Meta Tag: #${tag}`);
-  }
-
-  private parseMetaFlag(meta: MetaInfo): void {
-    this.advance(1); // !
-    const flag = this.parseIdent();
-    if (flag === 'required') {
-      meta.required = true;
-      this._dbg('Meta Flag: !required');
-    } else {
-      this.addWarning(`Unknown flag: !${flag}`);
-    }
   }
 
   // =========================================================

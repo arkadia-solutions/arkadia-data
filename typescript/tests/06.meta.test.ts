@@ -33,7 +33,7 @@ describe('AK Data Metadata (Meta)', () => {
         `;
 
     const expected =
-      '<///*c0*/ $a0=5 $a1=true// /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6=true 3)';
+      '<///*c0*/ $a0=5 $a1// /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6 3)';
     assertRoundtrip(akdText, expected, false);
   });
 
@@ -55,7 +55,7 @@ describe('AK Data Metadata (Meta)', () => {
         `;
 
     const expected =
-      '<[///*comm2*/ /*comm1*/ $attr=5 $schema1=true// a:number]>[///*meta for list*/ $attr=4// (///*item1*/ $attr5=true// $attr6=true 3),(///*item2*/// 5)]';
+      '<[///*comm2*/ /*comm1*/ $attr=5 $schema1// a:number]>[///*meta for list*/ $attr=4// (///*item1*/ $attr5// $attr6 3),(///*item2*/// 5)]';
     assertRoundtrip(akdText, expected, false);
   });
 
@@ -144,7 +144,7 @@ describe('AK Data Metadata (Meta)', () => {
     expect(decodedTextClean).not.toContain('//');
 
     const expected =
-      '<///*comment1*/ /*comment2*/ $key="value" $count=10 $isActive=true #myTag #urgent// any>(null)';
+      '<///*comment1*/ /*comment2*/ $key="value" $count=10 $isActive #myTag #urgent// any>(null)';
     assertRoundtrip(originalNode, expected, false);
   });
 
@@ -228,7 +228,7 @@ describe('AK Data Metadata (Meta)', () => {
             /* comm3 */
             
             /* Modifiers block before field name */
-            !required $key=101  id:int,
+            $required $key=101  id:int,
 
             $desc="User Name"
             name: string
@@ -246,7 +246,7 @@ describe('AK Data Metadata (Meta)', () => {
     expect(node.attr['id']).toBe(3);
 
     const expected =
-      '<///*comm2 /* comm2.5*/*/ $id=0// /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ !required $key=101 id:number,$desc="User Name" name:string>(///*comment2*/ $id=3// /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")';
+      '<///*comm2 /* comm2.5*/*/ $id=0// /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ $required $key=101 id:number,$desc="User Name" name:string>(///*comment2*/ $id=3// /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")';
     assertRoundtrip(akdText, expected, false);
   });
 

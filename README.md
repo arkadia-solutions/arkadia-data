@@ -126,17 +126,14 @@ This section describes the **actual, currently implemented** syntax of AK-DATA.
 A type defines a name and an ordered list of fields. Comments are allowed within the definition to assist the LLM.
 
 ```akd
-User</comment/ ={(23,"A",3) #tag1 #tag2} %[{ id: 4, b: "a", c: 43}]: id:number,
-b: string , c:number, >
 @Users
 <
- @list 
- a: number,
- b: string
->
+[ 
+  a: number,
+  b: string
+]>
 [
-  @size=5
-  /example list of values/
+  // $size=5 /* example list of values */ //
 
   (1,`text`,5)
   (2,`Text can be
@@ -155,7 +152,7 @@ multiline
 
 * The type name (`@Name`) is optional but recommended.
 * The header `<...>` defines field names and their order.
-* Comments (`/ ... /`) are **allowed** in the header.
+* Comments (`/* ... */`) are **allowed** in the header.
 
 ### 2. Data Structures
 
@@ -171,7 +168,7 @@ The format supports compact positional records and explicit named records.
 ### 3. Comments
 
 ```akd
-/ this is a comment /
+/* this is a comment */
 
 ```
 
@@ -203,7 +200,7 @@ Currently, nested types are allowed as structural definitions:
 
 ```akd
 @User<
-  id:string
+  $required id:string
   name:string
   profile: < level:number, score:number >
 >
@@ -215,25 +212,6 @@ Currently, nested types are allowed as structural definitions:
 ```
 
 ---
-
-## 🔮 Futures / Roadmap
-
-The following features are planned for future releases and are **not yet implemented**.
-
-* **Modifiers:**
-* `!required` - field must be included.
-* `?empty` - field must not be empty.
-* `=value` - default value.
-* `N..M` - numeric range validation.
-
-
-* **Binary Data Types:**
-* Hex: `~[hex]1A0F4F~`
-* Base64: `~[b64]ADFKDXKZK...~`
-
-
-* **Pointers/References:**
-* Reference existing objects by ID: `(1, "Alex", *User[2])`
 
 
 ## 📄 License

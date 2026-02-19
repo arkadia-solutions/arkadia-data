@@ -28,7 +28,9 @@ def test_meta_header():
     >
     ($a6 /*a*/ 3)
     """
-    expected = "<///*c0*/ $a0=5 $a1=true// /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6=true 3)"
+    expected = (
+        "<///*c0*/ $a0=5 $a1// /*c1*/ /*c2*/ /*c3*/ $a2=2 $a3=3 a:number>(/*a*/ $a6 3)"
+    )
     assert_roundtrip(akd_text, expected)
 
 
@@ -48,7 +50,7 @@ def test_meta():
     /*item2*/ {a:5},
     ]
     """
-    expected = "<[///*comm2*/ /*comm1*/ $attr=5 $schema1=true// a:number]>[///*meta for list*/ $attr=4// (///*item1*/ $attr5=true// $attr6=true 3),(///*item2*/// 5)]"
+    expected = "<[///*comm2*/ /*comm1*/ $attr=5 $schema1// a:number]>[///*meta for list*/ $attr=4// (///*item1*/ $attr5// $attr6 3),(///*item2*/// 5)]"
     assert_roundtrip(akd_text, expected)
 
 
@@ -139,7 +141,7 @@ def test_schema_round_trip_encode_decode():
     assert "#" not in decoded_text_clean
     assert "//" not in decoded_text_clean
 
-    expected = '<///*comment1*/ /*comment2*/ $key="value" $count=10 $isActive=true #myTag #urgent// any>(null)'
+    expected = '<///*comment1*/ /*comment2*/ $key="value" $count=10 $isActive #myTag #urgent// any>(null)'
     assert_roundtrip(original_node, expected, True)
 
 
@@ -224,7 +226,7 @@ def test_meta_schema_field_modifiers():
         /* comm3 */
         
         /* Modifiers block before field name */
-        !required $key=101  id:int,
+        $required $key=101  id:int,
 
         $desc="User Name"
         name: string
@@ -243,7 +245,7 @@ def test_meta_schema_field_modifiers():
 
     assert node.attr.get("id") == 3
 
-    expected = '<///*comm2 /* comm2.5*/*/ $id=0// /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ !required $key=101 id:number,$desc="User Name" name:string>(///*comment2*/ $id=3// /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")'
+    expected = '<///*comm2 /* comm2.5*/*/ $id=0// /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ $required $key=101 id:number,$desc="User Name" name:string>(///*comment2*/ $id=3// /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")'
     assert_roundtrip(akd_text, expected, True)
 
 

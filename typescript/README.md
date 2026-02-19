@@ -220,14 +220,6 @@ AKD allows you to inject metadata that is **visible to the LLM** but **ignored b
 
 ---
 
-## 🔮 Roadmap
-
-- **Binary Types:** Hex (`~[hex]1A...~`) and Base64 (`~[b64]...~`) support.
-- **Pointers:** Reference existing objects by ID (`*User[1]`).
-- **Ranges:** Numeric range validation in schema (`score: 0..100`).
-
----
-
 ## 📄 License
 
 This project is licensed under the [MIT License]().
