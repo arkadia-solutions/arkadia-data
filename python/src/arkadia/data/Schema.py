@@ -142,7 +142,7 @@ class Schema(Meta):
 
     def apply_meta(self, info: MetaInfo):
         """
-        Applies ALL metadata, including constraints (!required).
+        Applies ALL metadata, including constraints ($required).
         """
         # 1. Apply common stuff (meta dict, comments)
         self.apply_common_meta(info)
@@ -196,7 +196,7 @@ class Schema(Meta):
         # Meta: Attributes/Tags/Flags
         # We only show keys or presence to keep the log line short.
         if self.required:
-            details.append("!required")
+            details.append("$required")
         if self.attr:
             details.append(f"attr={list(self.attr.keys())}")  # Show keys only
         if self.tags:

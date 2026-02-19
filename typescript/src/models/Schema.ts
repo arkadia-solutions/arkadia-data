@@ -192,7 +192,7 @@ export class Schema extends Meta {
     // 3. Details
     const details: string[] = [];
 
-    if (this.required) details.push('!required');
+    if (this.required) details.push('$required');
 
     const attrKeys = Object.keys(this.attr);
     if (attrKeys.length > 0)

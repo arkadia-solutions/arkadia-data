@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { Schema, SchemaKind } from '../src/index';
 
 describe('AI Schema test', () => {
@@ -11,7 +11,7 @@ describe('AI Schema test', () => {
       required: true,
     });
     const expected =
-      '<Schema(DICT) name="TestSchema" !required attr=["foo"] tags=[tag1, tag2] comments=1>';
+      '<Schema(DICT) name="TestSchema" $required attr=["foo"] tags=[tag1, tag2] comments=1>';
     const expected_val = {
       comments: ['This is a comment'],
       attr: {

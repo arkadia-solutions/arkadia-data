@@ -1290,7 +1290,7 @@ class Decoder:
     # =========================================================
 
     def _apply_meta(self, obj: Union[Node, Schema]):
-        # 1. Apply Metadata ($attr, #tag, !required)
+        # 1. Apply Metadata ($attr, #tag, $required)
         obj.apply_meta(self._pending_meta)
         self._pending_meta = MetaInfo()  # Clear buffer
 

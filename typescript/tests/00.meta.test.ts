@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { MetaInfo } from '../src/index';
 
 describe('AK Data Meta', () => {
@@ -9,7 +9,7 @@ describe('AK Data Meta', () => {
       tags: ['tag1', 'tag2'],
       required: true,
     });
-    const expected = '<MetaInfo !required #tag1 #tag2 $foo="bar" /* This is a comme.. */>';
+    const expected = '<MetaInfo $required #tag1 #tag2 $foo="bar" /* This is a comme.. */>';
     // const expectedJSON
     const expected_val = {
       comments: ['This is a comment'],

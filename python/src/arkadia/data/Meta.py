@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 class MetaInfo:
     """
     A temporary container (DTO) holding parsed metadata from a / ... / block.
-    It contains BOTH Schema constraints (!required) and Node attributes ($key=val).
+    It contains BOTH Schema constraints ($required) and Node attributes ($key=val).
     """
 
     def __init__(self):
@@ -14,7 +14,7 @@ class MetaInfo:
         self.tags: List[str] = []  # #["tag1"]
 
         # Schema Only (Constraints)
-        self.required: bool = False  # !required
+        self.required: bool = False  # $required
 
     def apply_meta(self, info: "MetaInfo"):
         # Append comments
@@ -42,13 +42,13 @@ class MetaInfo:
     def __repr__(self):
         """
         Debug representation mimicking the actual ADF format style.
-        Example: <MetaInfo !required #tag $key=val /* 2 comments */>
+        Example: <MetaInfo $required #tag $key=val /* 2 comments */>
         """
         parts = []
 
         # 1. Flags
         if self.required:
-            parts.append("!required")
+            parts.append("$required")
 
         # 2. Tags
         for t in self.tags:

@@ -102,7 +102,7 @@ class Encoder:
     ) -> str:
         """
         Encode Schema into AK Data header form.
-        Supports: < [ ... ] >, // meta //, !required
+        Supports: < [ ... ] >, // meta //, $required
         """
         if schema is None:
             return ""
@@ -185,7 +185,7 @@ class Encoder:
     def _encode_schema_fields(self, schema: Schema) -> str:
         """
         Encodes fields definitions.
-        Format: /* comment */ !required $attr=val #tag name: type
+        Format: /* comment */ $required $attr=val #tag name: type
         """
         parts = []
         pad = "" if self.compact else " "
