@@ -53,7 +53,7 @@ export class Meta {
 
 /**
  * A temporary container (DTO) holding parsed metadata from a / ... / block.
- * It contains BOTH Schema constraints (!required) and Node attributes ($key=val).
+ * It contains BOTH Schema constraints ($required) and Node attributes ($key=val).
  */
 export class MetaInfo extends Meta {
   required: boolean;
@@ -91,14 +91,14 @@ export class MetaInfo extends Meta {
 
   /**
    * Debug representation mimicking the actual ADF format style.
-   * Example: <MetaInfo !required #tag $key=val >
+   * Example: <MetaInfo $required #tag $key=val >
    */
   toString(): string {
     const parts: string[] = [];
 
     // 1. Flags
     if (this.required) {
-      parts.push('!required');
+      parts.push('$required');
     }
 
     // 2. Tags

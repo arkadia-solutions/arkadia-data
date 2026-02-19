@@ -73,7 +73,7 @@ class Node(Meta):
 
     def apply_meta(self, info: MetaInfo):
         """
-        Applies ALL metadata, including constraints (!required).
+        Applies ALL metadata, including constraints ($required).
         """
         # 1. Apply common stuff (meta dict, comments)
         self.apply_common_meta(info)
