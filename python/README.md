@@ -233,7 +233,24 @@ AKD allows you to inject metadata that is **visible to the LLM** but **ignored b
 
 ```
 
----
+
+### 5. Escaped Identifiers (Backticks)
+
+AK-Data allows the use of spaces, symbols, and special characters in names by wrapping them in backticks (```). This applies to schema names, field keys, and metadata attributes.
+
+```akd
+@`System User+` <
+  // $`last-sync`="2024-05-10" //
+  `Full Name`: string,
+  `is-active?`: bool,
+  $`Special ID*` id: number
+>
+{
+  `Full Name`: "John Doe", 
+  `is-active?`: true, 
+  id: 101
+}
+```
 
 ## 📄 License
 

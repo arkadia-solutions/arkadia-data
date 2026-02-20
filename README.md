@@ -211,7 +211,33 @@ Currently, nested types are allowed as structural definitions:
 
 ```
 
+Oto gotowy, krótki rozdział o **Escaped Identifiers**, sformatowany tak, aby pasował idealnie zaraz po sekcji o typach zagnieżdżonych.
+
 ---
+
+### 7. Escaped Identifiers (Backticks)
+
+AK-Data allows the use of spaces, symbols, and special characters in names by wrapping them in backticks (```). This applies to schema names, field keys, and metadata attributes.
+
+```akd
+@`System User+` <
+  // $`last-sync`="2024-05-10" //
+  `Full Name`: string,
+  `is-active?`: bool,
+  $`Special ID*` id: number
+>
+{
+  `Full Name`: "John Doe", 
+  `is-active?`: true, 
+  id: 101
+}
+```
+
+**Rules for Backticks:**
+
+* **Mandatory** for identifiers containing spaces, mathematical operators (`+`, `-`, `*`), or starting with digits.
+* **No Escaping:** The first closing backtick strictly ends the name (no ``` support).
+* **Automatic:** The encoder uses "naked" identifiers by default and only applies backticks when necessary to maintain token efficiency.
 
 
 ## 📄 License

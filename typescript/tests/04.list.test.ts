@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { encode, decode, parse, SchemaKind } from '../src/index';
+import { describe, expect, it } from 'vitest';
+import { decode, encode, parse, SchemaKind } from '../src/index';
 import { assertRoundtrip } from './utils';
 
 describe('AK List Handling', () => {
@@ -220,5 +220,28 @@ describe('AK List Handling', () => {
     // 'int' normalizes to 'number' in the TS implementation
     const expected = '<[[number]]>[[2,3,4],[5,6,7]]';
     assertRoundtrip(node, expected, false);
+  });
+
+  it('should no compact with include_array_size', () => {
+    const akdText = `<[number]>[1,2,<string> "3"]`;
+
+    const result = decode(akdText, { debug: false });
+    const node = result.node;
+    expect(result.errors).toHaveLength(0);
+
+    // 'int' normalizes to 'number' in the TS implementation
+    const expected = `<[number]>
+[
+  // $size=3 //
+  1,
+  2,
+  <string> "3"
+]`;
+    const output = encode(node, {
+      includeArraySize: true,
+      compact: false,
+    });
+
+    expect(output).toBe(expected);
   });
 });
