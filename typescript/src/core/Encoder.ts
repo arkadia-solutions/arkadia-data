@@ -349,99 +349,88 @@ export class Encoder {
   // -------------------------------------------------------------
   // LIST
   // -------------------------------------------------------------
-
-  // private listHeader(node: Node): string {
-  //   let header = '[';
-  //   if (this.config.includeArraySize) {
-  //     const size = node.elements.length;
-  //     header += `${this.c('$size', Colors.KEY)}=${this.c(String(size), Colors.NUMBER)}${this.c(':', Colors.TYPE)}`;
-  //   }
-  //   return header;
-  // }
-
-  // private joinLines(items: string[], sep: string): string {
-  //   if (this.config.compact) return items.join(sep);
-  //   if (sep === '\n') return items.join(sep);
-  //   return items.join(`${sep} `);
-  // }
-
   private encodeList(node: Node, indent: number, includeSchema: boolean = false): string {
     const ind = ' '.repeat(indent);
     const childIndent = indent + this.config.indent;
+    const isPrompt = this.config.promptOutput;
 
     if (this.config.includeArraySize) {
       node.attr['size'] = node.elements.length;
     }
     const innerMeta = this.metaWrapped(node);
 
-    // 1. Generate Header Schema (if requested)
+    // 1. Generate Header Schema (Standard only)
     let schemaHeader = '';
-    if (includeSchema && node.schema && node.schema.element) {
+    if (!isPrompt && includeSchema && node.schema && node.schema.element) {
       schemaHeader = this.encodeSchema(node.schema.element, 0).trim();
-    }
-    if (schemaHeader) {
-      schemaHeader = schemaHeader + ' ';
+      if (schemaHeader) schemaHeader += ' ';
     }
 
     const expectedChild = node.schema ? node.schema.element : null;
 
+    // --- PROMPT MODE (Full Structural Expansion) ---
+    if (isPrompt) {
+      let res = ind + '[\n';
+      if (innerMeta) {
+        res += ' '.repeat(childIndent) + innerMeta.trim() + '\n';
+      }
+
+      if (node.schema && node.schema.element) {
+        // Force recursion into the element's structure using a Dummy Node
+        const dummy = new Node(node.schema.element, { value: null });
+
+        // We trim() the blueprint because we manually handle child indentation
+        const blueprint = this.encode(dummy, childIndent, false).trim();
+
+        res += ' '.repeat(childIndent) + blueprint + ',\n';
+        res += ' '.repeat(childIndent) + '... /* repeat pattern for additional items */\n';
+      } else {
+        res += ' '.repeat(childIndent) + '/* any content */\n';
+      }
+
+      res += ind + ']';
+      return res;
+    }
+
     // --- COMPACT MODE ---
     if (this.config.compact) {
       const items: string[] = [];
-
       for (const el of node.elements) {
-        // IMPORTANT: We disable schema inclusion for elements to avoid duplication <...>
-        // unless types mismatch drastically.
         let val = this.encode(el, 0, false).trim();
-
-        // Check compatibility & Inject override if needed
         if (!this.schemasAreCompatible(el.schema, expectedChild)) {
           const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
           const tag = this.c(`<${label}>`, Colors.SCHEMA);
           val = `${tag} ${val}`;
         }
-
         items.push(val);
       }
-
       return ind + '[' + innerMeta + schemaHeader + items.join(',') + ']';
     }
 
     // --- PRETTY MODE ---
     let res = ind + '[\n';
-
-    // 4. Add Meta-data line (isolated from commas to avoid syntax errors)
     if (innerMeta) {
-      res += ' '.repeat(childIndent) + innerMeta.trim() + '\n'; // cite: 1.1
+      res += ' '.repeat(childIndent) + innerMeta.trim() + '\n';
     }
-
-    // 5. Add Schema Header line (isolated from commas)
     if (schemaHeader) {
-      res += ' '.repeat(childIndent) + schemaHeader.trim() + '\n'; // cite: 2.2
+      res += ' '.repeat(childIndent) + schemaHeader.trim() + '\n';
     }
 
-    // 6. Generate and collect element lines
     const elementLines: string[] = [];
     for (const el of node.elements) {
-      // We encode with 0 indent because we prepend the childIndent manually
       let val = this.encode(el, 0, false).trim();
-
-      // Check for polymorphic types and add schema tags where necessary
       if (!this.schemasAreCompatible(el.schema, expectedChild)) {
         const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
         const tag = this.c(`<${label}>`, Colors.SCHEMA);
         val = `${tag} ${val}`;
       }
-
       elementLines.push(' '.repeat(childIndent) + val);
     }
 
-    // 7. Join elements with commas and newlines only (preserving metadata integrity)
     if (elementLines.length > 0) {
-      res += elementLines.join(',\n') + '\n'; // cite: 1.1
+      res += elementLines.join(',\n') + '\n';
     }
 
-    // 8. Close the list block
     res += ind + ']';
     return res;
   }
@@ -451,23 +440,57 @@ export class Encoder {
   // -------------------------------------------------------------
   private encodeRecord(node: Node, indent: number): string {
     const innerMeta = this.metaWrapped(node);
-
     const parts: string[] = [];
-    if (node.schema.fields && node.schema.fields.length > 0) {
+    const isPrompt = this.config.promptOutput;
+    const baseInd = ' '.repeat(indent);
+    const childInd = ' '.repeat(indent + this.config.indent);
+
+    if (node.schema && node.schema.fields && node.schema.fields.length > 0) {
       for (const fieldDef of node.schema.fields) {
-        const fieldNode = node.fields[fieldDef.name];
-        if (fieldNode) {
-          let val = this.encode(fieldNode, indent - this.config.startIndent, false).trim();
-          val = this.applyTypeTag(val, fieldNode.schema, fieldDef);
-          parts.push(val);
+        if (isPrompt) {
+          // --- PROMPT MODE: Type Label or Structural Expansion ---
+          const fieldName = this.escapeIdent(fieldDef.name);
+          let fieldValStructure: string;
+
+          if (fieldDef.isPrimitive) {
+            // For primitives, use the type name (e.g., "number")
+            fieldValStructure = this.c(this.getTypeLabel(fieldDef), Colors.TYPE);
+          } else {
+            // For structures (Records/Lists), recurse to get { } or [ ]
+            const dummyField = new Node(fieldDef, { value: null });
+            fieldValStructure = this.encode(dummyField, indent + this.config.indent, false).trim();
+          }
+
+          let line = `${this.c(fieldName, Colors.KEY)}: ${fieldValStructure}`;
+
+          if (fieldDef.comments && fieldDef.comments.length > 0) {
+            const comment = fieldDef.comments[0].trim();
+            line += ` ${this.c(`/* ${comment} */`, Colors.NULL)}`;
+          }
+          parts.push(line);
         } else {
-          parts.push(this.c('null', Colors.NULL));
+          // --- STANDARD MODE (Data values) ---
+          const fieldNode = node.fields[fieldDef.name];
+          if (fieldNode) {
+            let val = this.encode(fieldNode, 0, false).trim();
+            val = this.applyTypeTag(val, fieldNode.schema, fieldDef);
+            parts.push(val);
+          } else {
+            parts.push(this.c('null', Colors.NULL));
+          }
         }
       }
-      const sep = this.config.compact ? ',' : ', ';
-      return '(' + innerMeta + parts.join(sep) + ')';
     } else {
-      return '(' + innerMeta + this.c('null', Colors.NULL) + ')';
+      parts.push(this.c('null', Colors.NULL));
     }
+
+    if (isPrompt) {
+      const body = parts.join(',\n' + childInd);
+      const metaStr = innerMeta ? childInd + innerMeta.trim() + '\n' : '';
+      return '{\n' + metaStr + childInd + body + '\n' + baseInd + '}';
+    }
+
+    const sep = this.config.compact ? ',' : ', ';
+    return '(' + innerMeta + parts.join(sep) + ')';
   }
 }

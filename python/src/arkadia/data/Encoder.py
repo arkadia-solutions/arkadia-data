@@ -429,6 +429,7 @@ class Encoder:
     def _list(self, node: Node, indent: int, include_schema: bool = False) -> str:
         ind = " " * indent
         child_indent = indent + self.indent
+        is_prompt = self.prompt_output
 
         if self.include_array_size:
             size = len(node.elements)
@@ -436,68 +437,70 @@ class Encoder:
 
         inner_meta = self._meta_wrapped(node)
 
-        # 1. Generate Header Schema (if requested)
+        # 1. Generate Header Schema (Standard only)
         schema_header = ""
-        if (
-            include_schema
-            and node.schema is not None
-            and node.schema.element is not None
-        ):
-            # This generates the <[ id: int ]> part
+        if not is_prompt and include_schema and node.schema and node.schema.element:
             schema_header = self.encode_schema(node.schema.element, 0).strip()
-        if schema_header:
-            schema_header = schema_header + " "
+            if schema_header:
+                schema_header += " "
 
         expected_child = node.schema.element if node.schema else None
+
+        # --- PROMPT MODE (Full Structural Expansion) ---
+        if is_prompt:
+            res = ind + "[\n"
+            if inner_meta:
+                res += " " * child_indent + inner_meta + "\n"
+
+            if node.schema and node.schema.element:
+                from .Node import Node as DummyNode
+
+                # Force recursion into the element's structure
+                dummy = DummyNode(value=None, schema=node.schema.element)
+
+                # We strip() the blueprint because we manually handle the first line's indentation
+                blueprint = self.encode(
+                    dummy, child_indent, include_schema=False
+                ).strip()
+
+                res += " " * child_indent + blueprint + ",\n"
+                res += (
+                    " " * child_indent
+                    + "... /* repeat pattern for additional items */\n"
+                )
+            else:
+                res += " " * child_indent + "/* any content */\n"
+
+            res += ind + "]"
+            return res
 
         # --- COMPACT MODE ---
         if self.compact:
             items = []
-
             for el in node.elements:
-                # IMPORTANT: We disable schema inclusion for elements to avoid duplication <...>
-                # unless types mismatch drastically.
                 val = self.encode(el, 0, include_schema=False).strip()
-
-                # Check compatibility & Inject override if needed
                 if not self._schemas_are_compatible(el.schema, expected_child):
                     label = self._get_type_label(el.schema)
-                    tag = self._c(f"<{label}>", Colors.SCHEMA)
-                    val = f"{tag} {val}"
-
+                    val = f"{self._c(f'<{label}>', Colors.SCHEMA)} {val}"
                 items.append(val)
-
             return ind + "[" + inner_meta + schema_header + ",".join(items) + "]"
 
         # --- PRETTY MODE ---
-        # Start the list
         res = ind + "[\n"
-
-        # 1. Add Meta-data (without trailing comma)
         if inner_meta:
             res += " " * child_indent + inner_meta + "\n"
-
-        # 2. Add Schema Header (without trailing comma)
         if schema_header:
             res += " " * child_indent + schema_header.strip() + "\n"
 
-        # 3. Add Elements (with commas between them only)
         element_lines = []
         for el in node.elements:
-            # We pass indent=0 here because we manually add child_indent prefix
             val = self.encode(el, 0, include_schema=False).strip()
-
             if not self._schemas_are_compatible(el.schema, expected_child):
                 label = self._get_type_label(el.schema)
-                tag = self._c(f"<{label}>", Colors.SCHEMA)
-                val = f"{tag} {val}"
-
+                val = f"{self._c(f'<{label}>', Colors.SCHEMA)} {val}"
             element_lines.append(" " * child_indent + val)
 
-        # Join elements with a comma and newline
         res += ",\n".join(element_lines) + "\n"
-
-        # 4. Close the list
         res += ind + "]"
         return res
 
@@ -506,21 +509,52 @@ class Encoder:
     # -------------------------------------------------------------
     def _record(self, node: Node, indent: int) -> str:
         inner_meta = self._meta_wrapped(node)
-
         parts = []
-        if node.schema.fields:
+        is_prompt = self.prompt_output
+        base_ind = " " * indent
+        child_ind = " " * (indent + self.indent)
+
+        if node.schema and node.schema.fields:
             for field_def in node.schema.fields:
-                field_node = node.fields.get(field_def.name)
-                if field_node:
-                    val = self.encode(
-                        field_node, indent - self.start_indent, False
-                    ).strip()
-                    val = self._apply_type_tag(val, field_node.schema, field_def)
-                    parts.append(val)
+                if is_prompt:
+                    # --- PROMPT MODE: Type Label or Structural Expansion ---
+                    field_name = self._escape_ident(field_def.name)
+
+                    if field_def.is_primitive:
+                        # For primitives, we just want the type name (e.g., "number")
+                        field_val_structure = self._c(
+                            self._get_type_label(field_def), Colors.TYPE
+                        )
+                    else:
+                        # For structures (Records/Lists), we recurse to get the { } or [ ]
+                        from .Node import Node as DummyNode
+
+                        dummy_field = DummyNode(value=None, schema=field_def)
+                        field_val_structure = self.encode(
+                            dummy_field, indent + self.indent, include_schema=False
+                        ).strip()
+
+                    line = f"{self._c(field_name, Colors.KEY)}: {field_val_structure}"
+
+                    if field_def.comments:
+                        line += f" {self._c(f'/* {field_def.comments[0].strip()} */', Colors.NULL)}"
+                    parts.append(line)
                 else:
-                    parts.append(self._c("null", Colors.NULL))
+                    # --- STANDARD MODE (Data values) ---
+                    field_node = node.fields.get(field_def.name)
+                    if field_node:
+                        val = self.encode(field_node, 0, False).strip()
+                        val = self._apply_type_tag(val, field_node.schema, field_def)
+                        parts.append(val)
+                    else:
+                        parts.append(self._c("null", Colors.NULL))
         else:
             parts.append(self._c("null", Colors.NULL))
 
-        sep = ", " if not self.compact else ","
+        if is_prompt:
+            body = ",\n".join([child_ind + p for p in parts])
+            meta_str = child_ind + inner_meta + "\n" if inner_meta else ""
+            return "{\n" + meta_str + body + "\n" + base_ind + "}"
+
+        sep = "," if self.compact else ", "
         return "(" + inner_meta + sep.join(parts) + ")"

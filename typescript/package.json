@@ -1,6 +1,6 @@
 {
   "name": "@arkadia/data",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Parser and Stringifier for Arkadia Data Format (AKD)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
