@@ -211,9 +211,6 @@ Currently, nested types are allowed as structural definitions:
 
 ```
 
-Oto gotowy, krótki rozdział o **Escaped Identifiers**, sformatowany tak, aby pasował idealnie zaraz po sekcji o typach zagnieżdżonych.
-
----
 
 ### 7. Escaped Identifiers (Backticks)
 
@@ -239,6 +236,45 @@ AK-Data allows the use of spaces, symbols, and special characters in names by wr
 * **No Escaping:** The first closing backtick strictly ends the name (no ``` support).
 * **Automatic:** The encoder uses "naked" identifiers by default and only applies backticks when necessary to maintain token efficiency.
 
+### 8. Prompt Output Mode (`--prompt-output`)
+
+This mode is specifically designed for Large Language Models (LLMs). It transforms AK-Data into a **Structural Blueprint**, providing a perfect template for the AI to follow. Instead of raw data values, it renders a recursive, human-readable schema structure.
+
+**Key Features:**
+
+* **Full Structural Expansion:** Anonymous nested types are fully expanded into braces `{}`.
+* **Semantic Hinting:** Field-level comments from the schema are injected directly into the template.
+* **Representative Sampling:** Lists show a single blueprint element followed by a continuation hint (`...`), saving tokens while maintaining clarity.
+
+**Example Usage:**
+
+```bash
+# Generate a structural template for an LLM
+echo '<[ /* id */ id: number, name: string, val: <id: string, num: number> ]>' | akd dec -f akd --prompt-output -
+
+```
+
+**Output:**
+
+```akd
+[
+  {
+    id: number /* id */,
+    name: string,
+    val: {
+      id: string,
+      num: number
+    }
+  },
+  ... /* repeat pattern for additional items */
+]
+```
+
+**Why use it?**
+
+1. **Reduce Hallucination:** The LLM sees exactly what types and formats are expected for every field.
+2. **Context Efficiency:** By showing only one example in a list, you define the logic without wasting the context window on repetitive data.
+3. **Implicit Instruction:** The transition from positional `()` to named `{}` in prompt mode helps the AI differentiate between the "Instructions" and the final "Compact Output".
 
 ## 📄 License
 

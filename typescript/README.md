@@ -29,8 +29,6 @@
                           MW
 ```
 
-````
-
 > **The High-Density, Token-Efficient Data Protocol for Large Language Models.**
 
 **Arkadia Data Format (AKD)** is a schema-first protocol designed specifically to optimize communication with LLMs. By stripping away redundant syntax (like repeated JSON keys) and enforcing strict typing, AKD offers **up to 30% token savings**, faster parsing, and a metadata layer invisible to your application logic but fully accessible to AI models.
@@ -84,8 +82,6 @@ if (result.errors.length === 0) {
   console.error('Parse errors:', result.errors);
 }
 ```
-
----
 
 ## 🛠 API Reference
 
@@ -230,12 +226,51 @@ AK-Data allows the use of spaces, symbols, and special characters in names by wr
   $`Special ID*` id: number
 >
 {
-  `Full Name`: "John Doe", 
-  `is-active?`: true, 
+  `Full Name`: "John Doe",
+  `is-active?`: true,
   id: 101
 }
 ```
 
+### 6. Prompt Output Mode (`--prompt-output`)
+
+This mode is specifically designed for Large Language Models (LLMs). It transforms AK-Data into a **Structural Blueprint**, providing a perfect template for the AI to follow. Instead of raw data values, it renders a recursive, human-readable schema structure.
+
+**Key Features:**
+
+- **Full Structural Expansion:** Anonymous nested types are fully expanded into braces `{}`.
+- **Semantic Hinting:** Field-level comments from the schema are injected directly into the template.
+- **Representative Sampling:** Lists show a single blueprint element followed by a continuation hint (`...`), saving tokens while maintaining clarity.
+
+**Example Usage:**
+
+```bash
+# Generate a structural template for an LLM
+echo '<[ /* id */ id: number, name: string, val: <id: string, num: number> ]>' | akd dec -f akd --prompt-output -
+
+```
+
+**Output:**
+
+```akd
+[
+  {
+    id: number /* id */,
+    name: string,
+    val: {
+      id: string,
+      num: number
+    }
+  },
+  ... /* repeat pattern for additional items */
+]
+```
+
+**Why use it?**
+
+1. **Reduce Hallucination:** The LLM sees exactly what types and formats are expected for every field.
+2. **Context Efficiency:** By showing only one example in a list, you define the logic without wasting the context window on repetitive data.
+3. **Implicit Instruction:** The transition from positional `()` to named `{}` in prompt mode helps the AI differentiate between the "Instructions" and the final "Compact Output".
 
 ## 📄 License
 

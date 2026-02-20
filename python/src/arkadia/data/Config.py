@@ -5,7 +5,10 @@ class Config(TypedDict, total=False):
     prompt_output: bool
     """Embed schema directly inside sample data.
     [
-        (name: string /name of the user/, age: number /age of the user/),
+        {
+          name: string /*name of the user*/, 
+          age: number /*age of the user*/
+        },
     ]
     """
 
