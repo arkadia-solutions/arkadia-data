@@ -137,3 +137,63 @@ def test_decode_escaped_backslashes():
     # Encoder must replace \ with \\
     # <path:string>("C:\\Program Files")
     assert_roundtrip(node, '<path:string>("C:\\\\Program Files")', True)
+
+
+def test_escaped_identifiers_and_values():
+    """
+    Comprehensive test for:
+    1. Escaped Identifiers (backticks for names with spaces/special chars)
+    2. Escaped String Values (backslashes for paths/quotes)
+    3. Integration of both in a single record
+    """
+
+    # Structure:
+    # Key: `File Path*` (Escaped ident)
+    # Value: "C:\\Program Files" (Escaped string)
+    # Key: `is - special?` (Escaped ident)
+    # Value: true
+    text = '{ `File Path*`: "C:\\\\Program Files", `is - special?`: true }'
+
+    res = decode(text, debug=True)
+    assert not res.errors, f"Errors found: {res.errors}"
+
+    node = res.node
+
+    # 1. Verify Names (Identifiers)
+    assert "File Path*" in node.fields
+    assert "is - special?" in node.fields
+
+    # 2. Verify Values
+    assert node.fields["File Path*"].value == r"C:\Program Files"
+    assert node.fields["is - special?"].value is True
+
+    # 3. Roundtrip Check
+    # Expected output:
+    # ( `File Path*`: "C:\\\\Program Files", `is - special?`: true )
+    # Note: Encoder will automatically add backticks because names contain spaces/symbols.
+    expected = '<`File Path*`:string,`is - special?`:bool>("C:\\\\Program Files",true)'
+    assert_roundtrip(node, expected, True)
+
+
+def test_deeply_nested_escaped_names():
+    """Validates that backticks work in nested schemas and metadata keys."""
+    text = """
+/* Use backticks for Schema names and Attributes with spaces*/
+@`User ID+` <
+  // $`attributes*`="32" //
+  `Is User?`: bool
+  $`Attribute Special*` `ID of the user`: string,
+  `is - special?`: bool,
+   is_user: bool
+>
+
+{
+  // $`numbers of ids`=4 //
+ $`attr*`=52  `Is User?`: true,
+  `ID of the user`: "ID",
+   `is - special?`: false,
+   is_user: false
+}
+"""
+    expected = '@`User ID+`<///*Use backticks for Schema names and Attributes with spaces*/ $`attributes*`="32"// $`Attribute Special*` `Is User?`:bool,`ID of the user`:string,`is - special?`:bool,is_user:bool>(//$`numbers of ids`=4// $`attr*`=52 true,"ID",false,false)'
+    assert_roundtrip(text, expected, True)

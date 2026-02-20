@@ -131,4 +131,42 @@ describe('String Escaping', () => {
     // Encoder must escape the backslash: "C:\\Program Files"
     assertRoundtrip(node, '<path:string>("C:\\\\Program Files")', false);
   });
+
+  it('should handle deeply nested escaped names and metadata keys', () => {
+    /**
+     * Validates that backticks work in nested schemas and metadata keys.
+     * This tests:
+     * 1. Schema name with spaces and symbols: @`User ID+`
+     * 2. Metadata keys with symbols: $`attributes*`
+     * 3. Field names with spaces and symbols: `ID of the user`
+     * 4. Standard identifiers: is_user (no backticks)
+     */
+    const text = `
+/* Use backticks for Schema names and Attributes with spaces */
+@\`User ID+\` <
+  // $\`attributes*\`="32" //
+  \`Is User?\`: bool,
+  $\`Attribute Special*\` \`ID of the user\`: string,
+  \`is - special?\`: bool,
+    is_user: bool
+>
+
+{
+  // $\`numbers of ids\`=4 //
+  $\`attr*\`=52  \`Is User?\`: true,
+  \`ID of the user\`: "ID",
+    \`is - special?\`: false,
+    is_user: false
+}`;
+
+    // The expected output follows the AK Data rules:
+    // - Metadata wrapped in // ... //
+    // - Record data in ( ... )
+    // - Booleans and Numbers as literals
+    // - Identifiers escaped only if necessary
+    const expected =
+      `@\`User ID+\`<///*Use backticks for Schema names and Attributes with spaces*/ $\`attributes*\`="32"// \`Is User?\`:bool,$\`Attribute Special*\` \`ID of the user\`:string,\`is - special?\`:bool,is_user:bool>(//$\`numbers of ids\`=4// $\`attr*\`=52 true,"ID",false,false)`.trim();
+
+    assertRoundtrip(text, expected, false);
+  });
 });

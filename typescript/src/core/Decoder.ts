@@ -727,7 +727,7 @@ export class Decoder {
       }
 
       // Implicit Attribute (Legacy support: key=value without $)
-      if (/[a-zA-Z0-9_]/.test(ch || '')) {
+      if (/[a-zA-Z0-9_`]/.test(ch || '')) {
         const key = this.parseIdent();
         let val: Primitive = true;
 
@@ -786,21 +786,55 @@ export class Decoder {
   // HELPERS & LOW-LEVEL PARSERS
   // =========================================================
 
+  /**
+   * Parses an identifier.
+   * Supports:
+   * 1. Escaped identifiers: `Any characters here`
+   * 2. Standard identifiers: [a-zA-Z_][a-zA-Z0-9_]*
+   */
   private parseIdent(): string {
     this.skipWhitespace();
-    const start = this.i;
     if (this.eof()) return '';
 
-    const ch = this.text[this.i];
-    if (!/[a-zA-Z_]/.test(ch)) return '';
+    // 1. Escaped identifier logic (Backticks)
+    if (this.text[this.i] === '`') {
+      this.advance(1); // Skip opening backtick
+      const startIdx = this.i;
+
+      while (!this.eof()) {
+        if (this.text[this.i] === '`') {
+          const ident = this.text.substring(startIdx, this.i);
+          this.advance(1); // Skip closing backtick
+          return ident;
+        }
+        this.advance(1);
+      }
+      // If EOF is reached without closing backtick, return partial
+      return this.text.substring(startIdx, this.i);
+    }
+
+    // 2. Standard identifier logic
+    const startIdx = this.i;
+    const firstChar = this.text[this.i];
+
+    // Standard names must start with a letter or underscore
+    if (!/[a-zA-Z_]/.test(firstChar)) {
+      return '';
+    }
 
     this.advance(1);
+
+    // Consume alphanumeric characters and underscores
     while (!this.eof()) {
-      const c = this.text[this.i];
-      if (/[a-zA-Z0-9_]/.test(c)) this.advance(1);
-      else break;
+      const ch = this.text[this.i];
+      if (/[a-zA-Z0-9_]/.test(ch)) {
+        this.advance(1);
+      } else {
+        break;
+      }
     }
-    return this.text.substring(start, this.i);
+
+    return this.text.substring(startIdx, this.i);
   }
 
   private parseString(): Node {

@@ -10,6 +10,7 @@ Supports:
 - Inline type headers <a:number b:string c:string[]>
 """
 
+import re
 from typing import Any, Optional
 
 from .Config import Config
@@ -115,17 +116,19 @@ class Encoder:
 
         # Avoid printing internal/default type names
         if schema.type_name and schema.kind == SchemaKind.RECORD and not schema.is_any:
-            prefix = self._c(f"@{schema.type_name}", Colors.SCHEMA)
+            escaped_name = self._escape_ident(schema.type_name)
+            prefix = self._c(f"@{escaped_name}", Colors.SCHEMA)
 
         meta = self._meta_wrapped(schema) if include_meta else ""
 
         # --- PRIMITIVE ---
         if schema.is_primitive:
+            escaped_type = self._escape_ident(schema.type_name)
             meta_prefix = self._meta_inline(schema) if include_meta else ""
             return (
                 ind
                 + ((meta_prefix + " ") if meta_prefix else "")
-                + self._c(schema.type_name, Colors.TYPE)
+                + self._c(escaped_type, Colors.TYPE)
             )
 
         # --- LIST ---
@@ -198,7 +201,8 @@ class Encoder:
                 field_parts.append(meta_prefix)
 
             # 3. Field Name
-            field_parts.append(self._c(field.name, Colors.KEY))
+            escaped_field_name = self._escape_ident(field.name)
+            field_parts.append(self._c(escaped_field_name, Colors.KEY))
 
             # 4. Field Type
             field_type = self.encode_schema(field, 0, False).strip()
@@ -252,12 +256,12 @@ class Encoder:
     def _get_type_label(self, schema: Schema) -> str:
         """Generates a short type label for inline overrides <type>."""
         if schema.is_primitive:
-            return schema.type_name
+            return self._escape_ident(schema.type_name)
         elif schema.is_list:
             inner = self._get_type_label(schema.element)
             return f"[{inner}]"
         elif schema.is_record and schema.type_name and schema.type_name != "any":
-            return schema.type_name
+            return self._escape_ident(schema.type_name)
         # Fallback for complex inline records
         return "any"
 
@@ -305,11 +309,12 @@ class Encoder:
         if self.include_meta:
             current_attr = obj.attr or {}
             for k, v in current_attr.items():
+                escaped_key = self._escape_ident(k)
                 if isinstance(v, bool) and v is True:
-                    items.append(self._c(f"${k}", Colors.ATTR))
+                    items.append(self._c(f"${escaped_key}", Colors.ATTR))
                 else:
                     val_str = self._primitive(v)
-                    items.append(self._c(f"${k}=", Colors.ATTR) + val_str)
+                    items.append(self._c(f"${escaped_key}=", Colors.ATTR) + val_str)
 
             current_tags = obj.tags or []
             for t in current_tags:
@@ -344,7 +349,7 @@ class Encoder:
         if self.compact:
             return content + " " if content else ""
         else:
-            return " " + content + " " if content else ""
+            return content if content else ""
 
     # -------------------------------------------------------------
     # HELPERS
@@ -388,17 +393,22 @@ class Encoder:
 
         return f'"{content}"'
 
-    # -------------------------------------------------------------
-    # PRIMITIVE LIST: ["a","b","c"]
-    # -------------------------------------------------------------
+    def _escape_ident(self, name: str) -> str:
+        """
+        Wraps identifier in backticks if it contains spaces or special characters.
+        Regex: [a-zA-Z_][a-zA-Z0-9_]*
+        """
+        if not name:
+            return ""
 
-    def _list_header(self, node: Node) -> str:
-        header = "["
-        if self.include_array_size:
-            # Prefer elemeents length if available
-            size = len(node.elements)
-            header += f"{self._c('$size', Colors.KEY)}={self._c(str(size), Colors.NUMBER)}{self._c(':', Colors.TYPE)}"
-        return header
+        # Standard identifier pattern
+        pattern = r"^[a-zA-Z_][a-zA-Z0-9_]*$"
+
+        if re.match(pattern, name):
+            return name
+
+        # If it doesn't match, wrap it in backticks
+        return f"`{name}`"
 
     # -------------------------------------------------------------
     # STRUCTURAL LIST: [ Node, Node ]
@@ -419,6 +429,10 @@ class Encoder:
     def _list(self, node: Node, indent: int, include_schema: bool = False) -> str:
         ind = " " * indent
         child_indent = indent + self.indent
+
+        if self.include_array_size:
+            size = len(node.elements)
+            node.attr["size"] = size
 
         inner_meta = self._meta_wrapped(node)
 
@@ -456,32 +470,36 @@ class Encoder:
             return ind + "[" + inner_meta + schema_header + ",".join(items) + "]"
 
         # --- PRETTY MODE ---
-        header = self._list_header(node)
-        out = [ind + header]
+        # Start the list
+        res = ind + "[\n"
 
+        # 1. Add Meta-data (without trailing comma)
         if inner_meta:
-            out.append(" " * child_indent + inner_meta)
+            res += " " * child_indent + inner_meta + "\n"
 
+        # 2. Add Schema Header (without trailing comma)
         if schema_header:
-            out.append(" " * child_indent + schema_header)
+            res += " " * child_indent + schema_header.strip() + "\n"
 
+        # 3. Add Elements (with commas between them only)
+        element_lines = []
         for el in node.elements:
-            # IMPORTANT: Disable schema for children
-            val = self.encode(
-                el, child_indent - self.start_indent, include_schema=False
-            )
-            val = val.strip()
+            # We pass indent=0 here because we manually add child_indent prefix
+            val = self.encode(el, 0, include_schema=False).strip()
 
-            # Check compatibility & Inject override if needed
             if not self._schemas_are_compatible(el.schema, expected_child):
                 label = self._get_type_label(el.schema)
                 tag = self._c(f"<{label}>", Colors.SCHEMA)
                 val = f"{tag} {val}"
 
-            out.append(" " * child_indent + val)
+            element_lines.append(" " * child_indent + val)
 
-        out.append(ind + "]")
-        return self._join(out, "\n")
+        # Join elements with a comma and newline
+        res += ",\n".join(element_lines) + "\n"
+
+        # 4. Close the list
+        res += ind + "]"
+        return res
 
     # -------------------------------------------------------------
     # RECORD: {key:value} -> (val1, val2) OR {key:value}

@@ -931,7 +931,7 @@ class Decoder:
                 continue
 
             # Implicit Attribute (Legacy support: key=value without $)
-            if ch.isalnum() or ch == "_":
+            if ch.isalnum() or ch == "_" or ch == "`":
                 key = self._parse_ident()
                 val = True
 
@@ -995,20 +995,42 @@ class Decoder:
     # =========================================================
 
     def _parse_ident(self) -> str:
-        """Parses a standard identifier [a-zA-Z_][a-zA-Z0-9_]*"""
-        self._skip_whitespace()  # Identifiers shouldn't have leading space usually, but safe to skip
+        """
+        Parses an identifier.
+        Supports:
+        1. Escaped identifiers wrapped in backticks: `any character here`
+        2. Standard identifiers: [a-zA-Z_][a-zA-Z0-9_]*
+        """
+        self._skip_whitespace()
 
-        start_idx = self.i
         if self._eof():
             return ""
 
-        # First char check
+        # Check if this is an escaped identifier
+        if self.text[self.i] == "`":
+            self._advance(1)  # Skip the opening backtick
+            start_idx = self.i
+
+            while not self._eof():
+                if self.text[self.i] == "`":
+                    ident = self.text[start_idx : self.i]
+                    self._advance(1)  # Skip the closing backtick
+                    return ident
+                self._advance(1)
+
+            # If EOF is reached without a closing backtick, return what we have
+            return self.text[start_idx : self.i]
+
+        # Standard identifier logic
+        start_idx = self.i
+
+        # First char check for standard names
         if not (self.text[self.i].isalpha() or self.text[self.i] == "_"):
             return ""
 
         self._advance(1)
 
-        # Rest of chars
+        # Rest of characters for standard names
         while not self._eof():
             ch = self.text[self.i]
             if ch.isalnum() or ch == "_":

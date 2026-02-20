@@ -78,7 +78,8 @@ export class Encoder {
 
     // Avoid printing internal/default type names
     if (schema.typeName && schema.isRecord && !schema.isAny) {
-      prefix = this.c(`@${schema.typeName}`, Colors.SCHEMA);
+      const escapedName = this.escapeIdent(schema.typeName);
+      prefix = this.c(`@${escapedName}`, Colors.SCHEMA);
     }
 
     // Przygotowanie meta (ale jeszcze nie użycie, bo w liście może się zmienić)
@@ -90,7 +91,8 @@ export class Encoder {
       const metaPrefix = includeMeta ? this.metaInline(schema) : '';
       // Python: return ind + ((meta_prefix + " ") if meta_prefix else "") + self._c(...)
       const metaStr = metaPrefix ? metaPrefix + ' ' : '';
-      return ind + metaStr + this.c(schema.typeName, Colors.TYPE);
+      const escapedType = this.escapeIdent(schema.typeName);
+      return ind + metaStr + this.c(escapedType, Colors.TYPE);
     }
 
     // --- LIST ---
@@ -156,7 +158,7 @@ export class Encoder {
       }
 
       // 3. Field Name
-      str += this.c(field.name, Colors.KEY);
+      str += this.c(this.escapeIdent(field.name), Colors.KEY);
 
       // 4. Field Type
       const fieldType = this.encodeSchema(field, 0, false).trim();
@@ -196,13 +198,13 @@ export class Encoder {
   }
 
   private getTypeLabel(schema: Schema): string {
-    if (schema.isPrimitive) return schema.typeName || 'any';
+    if (schema.isPrimitive) return this.escapeIdent(schema.typeName || 'any');
     if (schema.isList) {
       const inner = schema.element ? this.getTypeLabel(schema.element) : 'any';
       return `[${inner}]`;
     }
     if (schema.isRecord && schema.typeName && schema.typeName !== 'any') {
-      return schema.typeName;
+      return this.escapeIdent(schema.typeName);
     }
     return 'any';
   }
@@ -247,11 +249,12 @@ export class Encoder {
     if (this.config.includeMeta) {
       const currentAttr = obj.attr || {};
       for (const [k, v] of Object.entries(currentAttr)) {
+        const escapedKey = this.escapeIdent(k);
         if (typeof v === 'boolean' && v === true) {
-          items.push(this.c(`$${k}`, Colors.ATTR));
+          items.push(this.c(`$${escapedKey}`, Colors.ATTR));
         } else {
           const valStr = this.primitiveValue(v);
-          items.push(this.c(`$${k}=`, Colors.ATTR) + valStr);
+          items.push(this.c(`$${escapedKey}=`, Colors.ATTR) + valStr);
         }
       }
 
@@ -325,29 +328,50 @@ export class Encoder {
     return this.c(`"${content}"`, Colors.STRING);
   }
 
+  /**
+   * Wraps identifier in backticks if it contains spaces or special characters.
+   * Regex: [a-zA-Z_][a-zA-Z0-9_]*
+   */
+  private escapeIdent(name: string): string {
+    if (!name) return '';
+
+    // Standard identifier pattern
+    const pattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+
+    if (pattern.test(name)) {
+      return name;
+    }
+
+    // If it doesn't match, wrap it in backticks
+    return `\`${name}\``;
+  }
+
   // -------------------------------------------------------------
   // LIST
   // -------------------------------------------------------------
 
-  private listHeader(node: Node): string {
-    let header = '[';
-    if (this.config.includeArraySize) {
-      const size = node.elements.length;
-      header += `${this.c('$size', Colors.KEY)}=${this.c(String(size), Colors.NUMBER)}${this.c(':', Colors.TYPE)}`;
-    }
-    return header;
-  }
+  // private listHeader(node: Node): string {
+  //   let header = '[';
+  //   if (this.config.includeArraySize) {
+  //     const size = node.elements.length;
+  //     header += `${this.c('$size', Colors.KEY)}=${this.c(String(size), Colors.NUMBER)}${this.c(':', Colors.TYPE)}`;
+  //   }
+  //   return header;
+  // }
 
-  private joinLines(items: string[], sep: string): string {
-    if (this.config.compact) return items.join(sep);
-    if (sep === '\n') return items.join(sep);
-    return items.join(`${sep} `);
-  }
+  // private joinLines(items: string[], sep: string): string {
+  //   if (this.config.compact) return items.join(sep);
+  //   if (sep === '\n') return items.join(sep);
+  //   return items.join(`${sep} `);
+  // }
 
   private encodeList(node: Node, indent: number, includeSchema: boolean = false): string {
     const ind = ' '.repeat(indent);
     const childIndent = indent + this.config.indent;
 
+    if (this.config.includeArraySize) {
+      node.attr['size'] = node.elements.length;
+    }
     const innerMeta = this.metaWrapped(node);
 
     // 1. Generate Header Schema (if requested)
@@ -384,33 +408,42 @@ export class Encoder {
     }
 
     // --- PRETTY MODE ---
-    const header = this.listHeader(node);
-    const out: string[] = [ind + header];
+    let res = ind + '[\n';
 
+    // 4. Add Meta-data line (isolated from commas to avoid syntax errors)
     if (innerMeta) {
-      out.push(' '.repeat(childIndent) + innerMeta.trim());
+      res += ' '.repeat(childIndent) + innerMeta.trim() + '\n'; // cite: 1.1
     }
 
+    // 5. Add Schema Header line (isolated from commas)
     if (schemaHeader) {
-      out.push(' '.repeat(childIndent) + schemaHeader.trim());
+      res += ' '.repeat(childIndent) + schemaHeader.trim() + '\n'; // cite: 2.2
     }
 
+    // 6. Generate and collect element lines
+    const elementLines: string[] = [];
     for (const el of node.elements) {
-      // IMPORTANT: Disable schema for children
-      let val = this.encode(el, childIndent - this.config.startIndent, false).trim();
+      // We encode with 0 indent because we prepend the childIndent manually
+      let val = this.encode(el, 0, false).trim();
 
-      // Check compatibility & Inject override if needed
+      // Check for polymorphic types and add schema tags where necessary
       if (!this.schemasAreCompatible(el.schema, expectedChild)) {
         const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
         const tag = this.c(`<${label}>`, Colors.SCHEMA);
         val = `${tag} ${val}`;
       }
 
-      out.push(' '.repeat(childIndent) + val);
+      elementLines.push(' '.repeat(childIndent) + val);
     }
 
-    out.push(ind + ']');
-    return this.joinLines(out, '\n');
+    // 7. Join elements with commas and newlines only (preserving metadata integrity)
+    if (elementLines.length > 0) {
+      res += elementLines.join(',\n') + '\n'; // cite: 1.1
+    }
+
+    // 8. Close the list block
+    res += ind + ']';
+    return res;
   }
 
   // -------------------------------------------------------------

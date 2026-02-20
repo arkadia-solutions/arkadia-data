@@ -1,7 +1,7 @@
 from utils import assert_roundtrip
 
 import arkadia as ak
-from arkadia.data import SchemaKind
+from arkadia.data import SchemaKind, encode
 from arkadia.data.decode import decode
 
 
@@ -231,3 +231,23 @@ def test_inner_list_types():
 
     excepted = "<[[number]]>[[2,3,4],[5,6,7]]"
     assert_roundtrip(node, excepted, True)
+
+
+def test_no_compact():
+    akd_text = """<[number]>[1,2,<string> "3"]"""
+    result = decode(akd_text, debug=True)
+    node = result.node
+    errors = result.errors
+    assert len(errors) == 0
+    excepted = """
+<[number]>
+[
+  // $size=3 //
+  1,
+  2,
+  <string> "3"
+]""".strip()
+
+    # excepted = '<[number]>\n[\n// $size=3 //\n1,\n2,\n<string> "3"\n]'
+    output = encode(node, {"include_array_size": True, "compact": False})
+    assert output == excepted
