@@ -1,0 +1,50 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+matches[12]:
+  - home: Lech
+    away: Jagiellonia
+    score[2]: 3,2
+  - home: Górnik
+    away: Raków
+    score[2]: 3,2
+  - home: Górnik
+    away: Lech
+    score[2]: 2,1
+  - home: Raków
+    away: Jagiellonia
+    score[2]: 3,0
+  - home: Pogoń
+    away: Jagiellonia
+    score[2]: 4,3
+  - home: Legia
+    away: Lech
+    score[2]: 2,0
+  - home: Lech
+    away: Pogoń
+    score[2]: 0,1
+  - home: Legia
+    away: Pogoń
+    score[2]: 3,3
+  - home: Legia
+    away: Lech
+    score[2]: 0,2
+  - home: Górnik
+    away: Lech
+    score[2]: 2,0
+  - home: Lech
+    away: Pogoń
+    score[2]: 0,0
+  - home: Pogoń
+    away: Górnik
+    score[2]: 0,3
+</data>
+
+Question: Which team scored the most goals in these matches, and how many?
+
+Answer in TOON only (no prose, no code fences): top[N]{team,goals}: followed by one row per item.

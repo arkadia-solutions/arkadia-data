@@ -1,0 +1,56 @@
+The data below is in JSON.
+
+<data>
+{
+  "repositories": [
+    {
+      "name": "arkadia-data",
+      "stars": 1840,
+      "topics": [
+        "llm",
+        "json",
+        "rust",
+        "python"
+      ],
+      "archived": false
+    },
+    {
+      "name": "ak-workspace",
+      "stars": 920,
+      "topics": [
+        "agents",
+        "electron"
+      ],
+      "archived": false
+    },
+    {
+      "name": "toon-python",
+      "stars": 310,
+      "topics": [
+        "llm",
+        "python"
+      ],
+      "archived": true
+    },
+    {
+      "name": "star-federation",
+      "stars": 75,
+      "topics": [],
+      "archived": false
+    },
+    {
+      "name": "universal-timer",
+      "stars": 210,
+      "topics": [
+        "rust",
+        "cli"
+      ],
+      "archived": false
+    }
+  ]
+}
+</data>
+
+Question: Which repositories that are not archived have the topic rust? Most stars first.
+
+Answer with JSON only (no prose): {"repos": [{"name": <string>, "stars": <number>}, ...]}

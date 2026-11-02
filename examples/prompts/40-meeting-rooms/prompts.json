@@ -1,0 +1,134 @@
+{
+ "id": 40,
+ "slug": "meeting-rooms",
+ "title": "Office: rooms for 8 with a projector",
+ "description": "Equipment lists.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which rooms seat at least 8 people and have a projector?",
+ "tokens": {
+  "json": {
+   "none": 301,
+   "comments": 318,
+   "attributes": 316,
+   "both": 333
+  },
+  "toon": {
+   "none": 296,
+   "comments": 313,
+   "attributes": 311,
+   "both": 328
+  },
+  "akd": {
+   "none": 328,
+   "comments": 335,
+   "attributes": 332,
+   "both": 338
+  },
+  "akcd": {
+   "none": 313,
+   "comments": 320,
+   "attributes": 317,
+   "both": 323
+  }
+ },
+ "answer": {
+  "name": "rooms",
+  "fields": [
+   [
+    "room",
+    "string"
+   ],
+   [
+    "seats",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "room": "Borealis",
+   "seats": 10
+  },
+  {
+   "room": "Cirrus",
+   "seats": 8
+  },
+  {
+   "room": "Echo",
+   "seats": 14
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "rooms room=\"Echo\": book via the front desk"
+  ],
+  "attributes": [
+   "rooms room=\"Echo\": #needs_booking"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"rooms\": [\n    {\n      \"room\": \"Aurora\",\n      \"floor\": 2,\n      \"seats\": 6,\n      \"equipment\": [\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Borealis\",\n      \"floor\": 2,\n      \"seats\": 10,\n      \"equipment\": [\n        \"projector\",\n        \"whiteboard\"\n      ]\n    },\n    {\n      \"room\": \"Cirrus\",\n      \"floor\": 3,\n      \"seats\": 8,\n      \"equipment\": [\n        \"projector\",\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Delta\",\n      \"floor\": 3,\n      \"seats\": 4,\n      \"equipment\": []\n    },\n    {\n      \"room\": \"Echo\",\n      \"floor\": 4,\n      \"seats\": 14,\n      \"equipment\": [\n        \"projector\",\n        \"camera\"\n      ]\n    },\n    {\n      \"room\": \"Fjord\",\n      \"floor\": 4,\n      \"seats\": 8,\n      \"equipment\": [\n        \"whiteboard\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer with JSON only (no prose): {\"rooms\": [{\"room\": <string>, \"seats\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- rooms room=\"Echo\": book via the front desk\n\n<data>\n{\n  \"rooms\": [\n    {\n      \"room\": \"Aurora\",\n      \"floor\": 2,\n      \"seats\": 6,\n      \"equipment\": [\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Borealis\",\n      \"floor\": 2,\n      \"seats\": 10,\n      \"equipment\": [\n        \"projector\",\n        \"whiteboard\"\n      ]\n    },\n    {\n      \"room\": \"Cirrus\",\n      \"floor\": 3,\n      \"seats\": 8,\n      \"equipment\": [\n        \"projector\",\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Delta\",\n      \"floor\": 3,\n      \"seats\": 4,\n      \"equipment\": []\n    },\n    {\n      \"room\": \"Echo\",\n      \"floor\": 4,\n      \"seats\": 14,\n      \"equipment\": [\n        \"projector\",\n        \"camera\"\n      ]\n    },\n    {\n      \"room\": \"Fjord\",\n      \"floor\": 4,\n      \"seats\": 8,\n      \"equipment\": [\n        \"whiteboard\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer with JSON only (no prose): {\"rooms\": [{\"room\": <string>, \"seats\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- rooms room=\"Echo\": #needs_booking\n\n<data>\n{\n  \"rooms\": [\n    {\n      \"room\": \"Aurora\",\n      \"floor\": 2,\n      \"seats\": 6,\n      \"equipment\": [\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Borealis\",\n      \"floor\": 2,\n      \"seats\": 10,\n      \"equipment\": [\n        \"projector\",\n        \"whiteboard\"\n      ]\n    },\n    {\n      \"room\": \"Cirrus\",\n      \"floor\": 3,\n      \"seats\": 8,\n      \"equipment\": [\n        \"projector\",\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Delta\",\n      \"floor\": 3,\n      \"seats\": 4,\n      \"equipment\": []\n    },\n    {\n      \"room\": \"Echo\",\n      \"floor\": 4,\n      \"seats\": 14,\n      \"equipment\": [\n        \"projector\",\n        \"camera\"\n      ]\n    },\n    {\n      \"room\": \"Fjord\",\n      \"floor\": 4,\n      \"seats\": 8,\n      \"equipment\": [\n        \"whiteboard\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer with JSON only (no prose): {\"rooms\": [{\"room\": <string>, \"seats\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- rooms room=\"Echo\": book via the front desk\n\nAttributes of the data:\n- rooms room=\"Echo\": #needs_booking\n\n<data>\n{\n  \"rooms\": [\n    {\n      \"room\": \"Aurora\",\n      \"floor\": 2,\n      \"seats\": 6,\n      \"equipment\": [\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Borealis\",\n      \"floor\": 2,\n      \"seats\": 10,\n      \"equipment\": [\n        \"projector\",\n        \"whiteboard\"\n      ]\n    },\n    {\n      \"room\": \"Cirrus\",\n      \"floor\": 3,\n      \"seats\": 8,\n      \"equipment\": [\n        \"projector\",\n        \"tv\"\n      ]\n    },\n    {\n      \"room\": \"Delta\",\n      \"floor\": 3,\n      \"seats\": 4,\n      \"equipment\": []\n    },\n    {\n      \"room\": \"Echo\",\n      \"floor\": 4,\n      \"seats\": 14,\n      \"equipment\": [\n        \"projector\",\n        \"camera\"\n      ]\n    },\n    {\n      \"room\": \"Fjord\",\n      \"floor\": 4,\n      \"seats\": 8,\n      \"equipment\": [\n        \"whiteboard\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer with JSON only (no prose): {\"rooms\": [{\"room\": <string>, \"seats\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrooms[6]:\n  - room: Aurora\n    floor: 2\n    seats: 6\n    equipment[1]: tv\n  - room: Borealis\n    floor: 2\n    seats: 10\n    equipment[2]: projector,whiteboard\n  - room: Cirrus\n    floor: 3\n    seats: 8\n    equipment[2]: projector,tv\n  - room: Delta\n    floor: 3\n    seats: 4\n    equipment: []\n  - room: Echo\n    floor: 4\n    seats: 14\n    equipment[2]: projector,camera\n  - room: Fjord\n    floor: 4\n    seats: 8\n    equipment[1]: whiteboard\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in TOON only (no prose, no code fences): rooms[N]{room,seats}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- rooms room=\"Echo\": book via the front desk\n\n<data>\nrooms[6]:\n  - room: Aurora\n    floor: 2\n    seats: 6\n    equipment[1]: tv\n  - room: Borealis\n    floor: 2\n    seats: 10\n    equipment[2]: projector,whiteboard\n  - room: Cirrus\n    floor: 3\n    seats: 8\n    equipment[2]: projector,tv\n  - room: Delta\n    floor: 3\n    seats: 4\n    equipment: []\n  - room: Echo\n    floor: 4\n    seats: 14\n    equipment[2]: projector,camera\n  - room: Fjord\n    floor: 4\n    seats: 8\n    equipment[1]: whiteboard\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in TOON only (no prose, no code fences): rooms[N]{room,seats}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- rooms room=\"Echo\": #needs_booking\n\n<data>\nrooms[6]:\n  - room: Aurora\n    floor: 2\n    seats: 6\n    equipment[1]: tv\n  - room: Borealis\n    floor: 2\n    seats: 10\n    equipment[2]: projector,whiteboard\n  - room: Cirrus\n    floor: 3\n    seats: 8\n    equipment[2]: projector,tv\n  - room: Delta\n    floor: 3\n    seats: 4\n    equipment: []\n  - room: Echo\n    floor: 4\n    seats: 14\n    equipment[2]: projector,camera\n  - room: Fjord\n    floor: 4\n    seats: 8\n    equipment[1]: whiteboard\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in TOON only (no prose, no code fences): rooms[N]{room,seats}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- rooms room=\"Echo\": book via the front desk\n\nAttributes of the data:\n- rooms room=\"Echo\": #needs_booking\n\n<data>\nrooms[6]:\n  - room: Aurora\n    floor: 2\n    seats: 6\n    equipment[1]: tv\n  - room: Borealis\n    floor: 2\n    seats: 10\n    equipment[2]: projector,whiteboard\n  - room: Cirrus\n    floor: 3\n    seats: 8\n    equipment[2]: projector,tv\n  - room: Delta\n    floor: 3\n    seats: 4\n    equipment: []\n  - room: Echo\n    floor: 4\n    seats: 14\n    equipment[2]: projector,camera\n  - room: Fjord\n    floor: 4\n    seats: 8\n    equipment[1]: whiteboard\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in TOON only (no prose, no code fences): rooms[N]{room,seats}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string, floor:number, seats:number, equipment:[string]]>>\n([\n  (\"Aurora\", 2, 6, [\"tv\"]),\n  (\"Borealis\", 2, 10, [\"projector\", \"whiteboard\"]),\n  (\"Cirrus\", 3, 8, [\"projector\", \"tv\"]),\n  (\"Delta\", 3, 4, []),\n  (\"Echo\", 4, 14, [\"projector\", \"camera\"]),\n  (\"Fjord\", 4, 8, [\"whiteboard\"])\n])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string, floor:number, seats:number, equipment:[string]]>>\n([\n  (\"Aurora\", 2, 6, [\"tv\"]),\n  (\"Borealis\", 2, 10, [\"projector\", \"whiteboard\"]),\n  (\"Cirrus\", 3, 8, [\"projector\", \"tv\"]),\n  (\"Delta\", 3, 4, []),\n  (\"Echo\", 4, 14, [\"projector\", \"camera\"]) /* book via the front desk */,\n  (\"Fjord\", 4, 8, [\"whiteboard\"])\n])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string, floor:number, seats:number, equipment:[string]]>>\n([\n  (\"Aurora\", 2, 6, [\"tv\"]),\n  (\"Borealis\", 2, 10, [\"projector\", \"whiteboard\"]),\n  (\"Cirrus\", 3, 8, [\"projector\", \"tv\"]),\n  (\"Delta\", 3, 4, []),\n  (\"Echo\", 4, 14, [\"projector\", \"camera\"]) #needs_booking,\n  (\"Fjord\", 4, 8, [\"whiteboard\"])\n])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string, floor:number, seats:number, equipment:[string]]>>\n([\n  (\"Aurora\", 2, 6, [\"tv\"]),\n  (\"Borealis\", 2, 10, [\"projector\", \"whiteboard\"]),\n  (\"Cirrus\", 3, 8, [\"projector\", \"tv\"]),\n  (\"Delta\", 3, 4, []),\n  (\"Echo\", 4, 14, [\"projector\", \"camera\"]) #needs_booking /* book via the front desk */,\n  (\"Fjord\", 4, 8, [\"whiteboard\"])\n])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string,floor:number,seats:number,equipment:[string]]>>([(\"Aurora\",2,6,[\"tv\"]),(\"Borealis\",2,10,[\"projector\",\"whiteboard\"]),(\"Cirrus\",3,8,[\"projector\",\"tv\"]),(\"Delta\",3,4,[]),(\"Echo\",4,14,[\"projector\",\"camera\"]),(\"Fjord\",4,8,[\"whiteboard\"])])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string,floor:number,seats:number,equipment:[string]]>>([(\"Aurora\",2,6,[\"tv\"]),(\"Borealis\",2,10,[\"projector\",\"whiteboard\"]),(\"Cirrus\",3,8,[\"projector\",\"tv\"]),(\"Delta\",3,4,[]),(\"Echo\",4,14,[\"projector\",\"camera\"]) /* book via the front desk */,(\"Fjord\",4,8,[\"whiteboard\"])])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string,floor:number,seats:number,equipment:[string]]>>([(\"Aurora\",2,6,[\"tv\"]),(\"Borealis\",2,10,[\"projector\",\"whiteboard\"]),(\"Cirrus\",3,8,[\"projector\",\"tv\"]),(\"Delta\",3,4,[]),(\"Echo\",4,14,[\"projector\",\"camera\"]) #needs_booking,(\"Fjord\",4,8,[\"whiteboard\"])])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rooms:<[room:string,floor:number,seats:number,equipment:[string]]>>([(\"Aurora\",2,6,[\"tv\"]),(\"Borealis\",2,10,[\"projector\",\"whiteboard\"]),(\"Cirrus\",3,8,[\"projector\",\"tv\"]),(\"Delta\",3,4,[]),(\"Echo\",4,14,[\"projector\",\"camera\"]) #needs_booking /* book via the front desk */,(\"Fjord\",4,8,[\"whiteboard\"])])\n</data>\n\nQuestion: Which rooms seat at least 8 people and have a projector?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rooms:<[room:string,seats:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 247,
+   "comments": 247,
+   "attributes": 247,
+   "both": 247
+  },
+  "toon": {
+   "none": 161,
+   "comments": 161,
+   "attributes": 161,
+   "both": 161
+  },
+  "akd": {
+   "none": 116,
+   "comments": 123,
+   "attributes": 120,
+   "both": 126
+  },
+  "akcd": {
+   "none": 95,
+   "comments": 102,
+   "attributes": 99,
+   "both": 105
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"rooms\": [\n    {\n      \"room\": \"Borealis\",\n      \"seats\": 10\n    },\n    {\n      \"room\": \"Cirrus\",\n      \"seats\": 8\n    },\n    {\n      \"room\": \"Echo\",\n      \"seats\": 14\n    }\n  ]\n}",
+  "akcd": "<rooms:<[room:string,seats:number]>>([(\"Borealis\",10),(\"Cirrus\",8),(\"Echo\",14)])",
+  "toon": "rooms[3]{room,seats}:\n  Borealis,10\n  Cirrus,8\n  Echo,14"
+ },
+ "answer_tokens": {
+  "json": 69,
+  "akcd": 30,
+  "toon": 25
+ }
+}

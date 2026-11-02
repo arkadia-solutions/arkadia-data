@@ -1,0 +1,89 @@
+{
+  "id": 61,
+  "slug": "nulls",
+  "title": "Missing values: support tickets",
+  "description": "A nested record that is missing is <null> null (or null): the header still describes the record when it is there.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which urgent tickets have nobody assigned?",
+  "answer": {
+    "name": "unassigned",
+    "fields": [
+      [
+        "id",
+        "number"
+      ],
+      [
+        "subject",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "id": 502,
+      "subject": "Cannot log in"
+    },
+    {
+      "id": 504,
+      "subject": "App crashes on start"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "tickets": [
+      {
+        "id": 501,
+        "subject": "Invoice is wrong",
+        "priority": "normal",
+        "assignee": {
+          "id": 3,
+          "name": "Ola"
+        },
+        "tags": [
+          "billing"
+        ]
+      },
+      {
+        "id": 502,
+        "subject": "Cannot log in",
+        "priority": "urgent",
+        "assignee": null,
+        "tags": [
+          "auth"
+        ]
+      },
+      {
+        "id": 503,
+        "subject": "Data export fails",
+        "priority": "urgent",
+        "assignee": {
+          "id": 5,
+          "name": "Piotr"
+        },
+        "tags": [
+          "export",
+          "bug"
+        ]
+      },
+      {
+        "id": 504,
+        "subject": "App crashes on start",
+        "priority": "urgent",
+        "assignee": null,
+        "tags": [
+          "mobile",
+          "bug"
+        ]
+      }
+    ]
+  }
+}

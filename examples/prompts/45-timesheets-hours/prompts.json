@@ -1,0 +1,135 @@
+{
+ "id": 45,
+ "slug": "timesheets-hours",
+ "title": "Timesheets: hours per project",
+ "description": "Time logged in minutes.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "How many hours were logged per project (2 decimals)? Most first.",
+ "tokens": {
+  "json": {
+   "none": 521,
+   "comments": 537,
+   "attributes": 537,
+   "both": 553
+  },
+  "toon": {
+   "none": 280,
+   "comments": 296,
+   "attributes": 296,
+   "both": 312
+  },
+  "akd": {
+   "none": 417,
+   "comments": 426,
+   "attributes": 421,
+   "both": 431
+  },
+  "akcd": {
+   "none": 368,
+   "comments": 374,
+   "attributes": 372,
+   "both": 379
+  }
+ },
+ "answer": {
+  "name": "hours",
+  "fields": [
+   [
+    "project",
+    "string"
+   ],
+   [
+    "hours",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "project": "cli",
+   "hours": 15.25
+  },
+  {
+   "project": "landing",
+   "hours": 12.0
+  },
+  {
+   "project": "akd",
+   "hours": 6.5
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`entries.mins`: time logged in minutes"
+  ],
+  "attributes": [
+   "`entries.mins`: $unit=\"min\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"entries\": [\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 45\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 60\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"cli\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    }\n  ]\n}\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer with JSON only (no prose): {\"hours\": [{\"project\": <string>, \"hours\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `entries.mins`: time logged in minutes\n\n<data>\n{\n  \"entries\": [\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 45\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 60\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"cli\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    }\n  ]\n}\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer with JSON only (no prose): {\"hours\": [{\"project\": <string>, \"hours\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `entries.mins`: $unit=\"min\"\n\n<data>\n{\n  \"entries\": [\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 45\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 60\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"cli\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    }\n  ]\n}\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer with JSON only (no prose): {\"hours\": [{\"project\": <string>, \"hours\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `entries.mins`: time logged in minutes\n\nAttributes of the data:\n- `entries.mins`: $unit=\"min\"\n\n<data>\n{\n  \"entries\": [\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 45\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"cli\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Linus\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 60\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"cli\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 120\n    },\n    {\n      \"who\": \"Ada\",\n      \"project\": \"akd\",\n      \"mins\": 30\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"akd\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 240\n    },\n    {\n      \"who\": \"Grace\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    },\n    {\n      \"who\": \"Alan\",\n      \"project\": \"landing\",\n      \"mins\": 90\n    }\n  ]\n}\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer with JSON only (no prose): {\"hours\": [{\"project\": <string>, \"hours\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nentries[18]{who,project,mins}:\n  Grace,cli,120\n  Alan,akd,30\n  Grace,akd,30\n  Grace,cli,45\n  Linus,cli,240\n  Grace,cli,240\n  Alan,landing,120\n  Linus,cli,240\n  Linus,landing,30\n  Ada,akd,60\n  Alan,cli,30\n  Grace,landing,30\n  Alan,landing,120\n  Ada,akd,30\n  Grace,akd,240\n  Alan,landing,240\n  Grace,landing,90\n  Alan,landing,90\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in TOON only (no prose, no code fences): hours[N]{project,hours}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `entries.mins`: time logged in minutes\n\n<data>\nentries[18]{who,project,mins}:\n  Grace,cli,120\n  Alan,akd,30\n  Grace,akd,30\n  Grace,cli,45\n  Linus,cli,240\n  Grace,cli,240\n  Alan,landing,120\n  Linus,cli,240\n  Linus,landing,30\n  Ada,akd,60\n  Alan,cli,30\n  Grace,landing,30\n  Alan,landing,120\n  Ada,akd,30\n  Grace,akd,240\n  Alan,landing,240\n  Grace,landing,90\n  Alan,landing,90\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in TOON only (no prose, no code fences): hours[N]{project,hours}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `entries.mins`: $unit=\"min\"\n\n<data>\nentries[18]{who,project,mins}:\n  Grace,cli,120\n  Alan,akd,30\n  Grace,akd,30\n  Grace,cli,45\n  Linus,cli,240\n  Grace,cli,240\n  Alan,landing,120\n  Linus,cli,240\n  Linus,landing,30\n  Ada,akd,60\n  Alan,cli,30\n  Grace,landing,30\n  Alan,landing,120\n  Ada,akd,30\n  Grace,akd,240\n  Alan,landing,240\n  Grace,landing,90\n  Alan,landing,90\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in TOON only (no prose, no code fences): hours[N]{project,hours}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `entries.mins`: time logged in minutes\n\nAttributes of the data:\n- `entries.mins`: $unit=\"min\"\n\n<data>\nentries[18]{who,project,mins}:\n  Grace,cli,120\n  Alan,akd,30\n  Grace,akd,30\n  Grace,cli,45\n  Linus,cli,240\n  Grace,cli,240\n  Alan,landing,120\n  Linus,cli,240\n  Linus,landing,30\n  Ada,akd,60\n  Alan,cli,30\n  Grace,landing,30\n  Alan,landing,120\n  Ada,akd,30\n  Grace,akd,240\n  Alan,landing,240\n  Grace,landing,90\n  Alan,landing,90\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in TOON only (no prose, no code fences): hours[N]{project,hours}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string, project:string, mins:number]>>\n([\n  (\"Grace\", \"cli\", 120),\n  (\"Alan\", \"akd\", 30),\n  (\"Grace\", \"akd\", 30),\n  (\"Grace\", \"cli\", 45),\n  (\"Linus\", \"cli\", 240),\n  (\"Grace\", \"cli\", 240),\n  (\"Alan\", \"landing\", 120),\n  (\"Linus\", \"cli\", 240),\n  (\"Linus\", \"landing\", 30),\n  (\"Ada\", \"akd\", 60),\n  (\"Alan\", \"cli\", 30),\n  (\"Grace\", \"landing\", 30),\n  (\"Alan\", \"landing\", 120),\n  (\"Ada\", \"akd\", 30),\n  (\"Grace\", \"akd\", 240),\n  (\"Alan\", \"landing\", 240),\n  (\"Grace\", \"landing\", 90),\n  (\"Alan\", \"landing\", 90)\n])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[\n  who:string,\n  project:string,\n  mins:number /* time logged in minutes */\n]>>\n([\n  (\"Grace\", \"cli\", 120),\n  (\"Alan\", \"akd\", 30),\n  (\"Grace\", \"akd\", 30),\n  (\"Grace\", \"cli\", 45),\n  (\"Linus\", \"cli\", 240),\n  (\"Grace\", \"cli\", 240),\n  (\"Alan\", \"landing\", 120),\n  (\"Linus\", \"cli\", 240),\n  (\"Linus\", \"landing\", 30),\n  (\"Ada\", \"akd\", 60),\n  (\"Alan\", \"cli\", 30),\n  (\"Grace\", \"landing\", 30),\n  (\"Alan\", \"landing\", 120),\n  (\"Ada\", \"akd\", 30),\n  (\"Grace\", \"akd\", 240),\n  (\"Alan\", \"landing\", 240),\n  (\"Grace\", \"landing\", 90),\n  (\"Alan\", \"landing\", 90)\n])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string, project:string, mins:number $unit=\"min\"]>>\n([\n  (\"Grace\", \"cli\", 120),\n  (\"Alan\", \"akd\", 30),\n  (\"Grace\", \"akd\", 30),\n  (\"Grace\", \"cli\", 45),\n  (\"Linus\", \"cli\", 240),\n  (\"Grace\", \"cli\", 240),\n  (\"Alan\", \"landing\", 120),\n  (\"Linus\", \"cli\", 240),\n  (\"Linus\", \"landing\", 30),\n  (\"Ada\", \"akd\", 60),\n  (\"Alan\", \"cli\", 30),\n  (\"Grace\", \"landing\", 30),\n  (\"Alan\", \"landing\", 120),\n  (\"Ada\", \"akd\", 30),\n  (\"Grace\", \"akd\", 240),\n  (\"Alan\", \"landing\", 240),\n  (\"Grace\", \"landing\", 90),\n  (\"Alan\", \"landing\", 90)\n])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[\n  who:string,\n  project:string,\n  mins:number $unit=\"min\" /* time logged in minutes */\n]>>\n([\n  (\"Grace\", \"cli\", 120),\n  (\"Alan\", \"akd\", 30),\n  (\"Grace\", \"akd\", 30),\n  (\"Grace\", \"cli\", 45),\n  (\"Linus\", \"cli\", 240),\n  (\"Grace\", \"cli\", 240),\n  (\"Alan\", \"landing\", 120),\n  (\"Linus\", \"cli\", 240),\n  (\"Linus\", \"landing\", 30),\n  (\"Ada\", \"akd\", 60),\n  (\"Alan\", \"cli\", 30),\n  (\"Grace\", \"landing\", 30),\n  (\"Alan\", \"landing\", 120),\n  (\"Ada\", \"akd\", 30),\n  (\"Grace\", \"akd\", 240),\n  (\"Alan\", \"landing\", 240),\n  (\"Grace\", \"landing\", 90),\n  (\"Alan\", \"landing\", 90)\n])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string,project:string,mins:number]>>([(\"Grace\",\"cli\",120),(\"Alan\",\"akd\",30),(\"Grace\",\"akd\",30),(\"Grace\",\"cli\",45),(\"Linus\",\"cli\",240),(\"Grace\",\"cli\",240),(\"Alan\",\"landing\",120),(\"Linus\",\"cli\",240),(\"Linus\",\"landing\",30),(\"Ada\",\"akd\",60),(\"Alan\",\"cli\",30),(\"Grace\",\"landing\",30),(\"Alan\",\"landing\",120),(\"Ada\",\"akd\",30),(\"Grace\",\"akd\",240),(\"Alan\",\"landing\",240),(\"Grace\",\"landing\",90),(\"Alan\",\"landing\",90)])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string,project:string,mins:number /* time logged in minutes */]>>([(\"Grace\",\"cli\",120),(\"Alan\",\"akd\",30),(\"Grace\",\"akd\",30),(\"Grace\",\"cli\",45),(\"Linus\",\"cli\",240),(\"Grace\",\"cli\",240),(\"Alan\",\"landing\",120),(\"Linus\",\"cli\",240),(\"Linus\",\"landing\",30),(\"Ada\",\"akd\",60),(\"Alan\",\"cli\",30),(\"Grace\",\"landing\",30),(\"Alan\",\"landing\",120),(\"Ada\",\"akd\",30),(\"Grace\",\"akd\",240),(\"Alan\",\"landing\",240),(\"Grace\",\"landing\",90),(\"Alan\",\"landing\",90)])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string,project:string,mins:number $unit=\"min\"]>>([(\"Grace\",\"cli\",120),(\"Alan\",\"akd\",30),(\"Grace\",\"akd\",30),(\"Grace\",\"cli\",45),(\"Linus\",\"cli\",240),(\"Grace\",\"cli\",240),(\"Alan\",\"landing\",120),(\"Linus\",\"cli\",240),(\"Linus\",\"landing\",30),(\"Ada\",\"akd\",60),(\"Alan\",\"cli\",30),(\"Grace\",\"landing\",30),(\"Alan\",\"landing\",120),(\"Ada\",\"akd\",30),(\"Grace\",\"akd\",240),(\"Alan\",\"landing\",240),(\"Grace\",\"landing\",90),(\"Alan\",\"landing\",90)])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<entries:<[who:string,project:string,mins:number $unit=\"min\" /* time logged in minutes */]>>([(\"Grace\",\"cli\",120),(\"Alan\",\"akd\",30),(\"Grace\",\"akd\",30),(\"Grace\",\"cli\",45),(\"Linus\",\"cli\",240),(\"Grace\",\"cli\",240),(\"Alan\",\"landing\",120),(\"Linus\",\"cli\",240),(\"Linus\",\"landing\",30),(\"Ada\",\"akd\",60),(\"Alan\",\"cli\",30),(\"Grace\",\"landing\",30),(\"Alan\",\"landing\",120),(\"Ada\",\"akd\",30),(\"Grace\",\"akd\",240),(\"Alan\",\"landing\",240),(\"Grace\",\"landing\",90),(\"Alan\",\"landing\",90)])\n</data>\n\nQuestion: How many hours were logged per project (2 decimals)? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hours:<[project:string,hours:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 467,
+   "comments": 467,
+   "attributes": 467,
+   "both": 467
+  },
+  "toon": {
+   "none": 144,
+   "comments": 144,
+   "attributes": 144,
+   "both": 144
+  },
+  "akd": {
+   "none": 204,
+   "comments": 213,
+   "attributes": 208,
+   "both": 218
+  },
+  "akcd": {
+   "none": 149,
+   "comments": 155,
+   "attributes": 153,
+   "both": 160
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"hours\": [\n    {\n      \"project\": \"cli\",\n      \"hours\": 15.25\n    },\n    {\n      \"project\": \"landing\",\n      \"hours\": 12.0\n    },\n    {\n      \"project\": \"akd\",\n      \"hours\": 6.5\n    }\n  ]\n}",
+  "akcd": "<hours:<[project:string,hours:number]>>([(\"cli\",15.25),(\"landing\",12.0),(\"akd\",6.5)])",
+  "toon": "hours[3]{project,hours}:\n  cli,15.25\n  landing,12\n  akd,6.5"
+ },
+ "answer_tokens": {
+  "json": 70,
+  "akcd": 34,
+  "toon": 28
+ }
+}

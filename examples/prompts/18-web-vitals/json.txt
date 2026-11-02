@@ -1,0 +1,72 @@
+The data below is in JSON.
+
+<data>
+{
+  "pages": [
+    {
+      "page": "/",
+      "lcp": 3511,
+      "cls": 0.108,
+      "inp": 372
+    },
+    {
+      "page": "/pricing",
+      "lcp": 4082,
+      "cls": 0.191,
+      "inp": 104
+    },
+    {
+      "page": "/docs",
+      "lcp": 1207,
+      "cls": 0.171,
+      "inp": 52
+    },
+    {
+      "page": "/blog",
+      "lcp": 2582,
+      "cls": 0.185,
+      "inp": 65
+    },
+    {
+      "page": "/login",
+      "lcp": 2235,
+      "cls": 0.15,
+      "inp": 343
+    },
+    {
+      "page": "/signup",
+      "lcp": 947,
+      "cls": 0.121,
+      "inp": 166
+    },
+    {
+      "page": "/akdata",
+      "lcp": 4060,
+      "cls": 0.114,
+      "inp": 334
+    },
+    {
+      "page": "/contact",
+      "lcp": 1691,
+      "cls": 0.225,
+      "inp": 394
+    },
+    {
+      "page": "/about",
+      "lcp": 2347,
+      "cls": 0.0,
+      "inp": 318
+    },
+    {
+      "page": "/careers",
+      "lcp": 1604,
+      "cls": 0.195,
+      "inp": 424
+    }
+  ]
+}
+</data>
+
+Question: Which pages have an LCP worse than 2500 ms? Slowest first.
+
+Answer with JSON only (no prose): {"slow": [{"page": <string>, "lcp": <number>}, ...]}

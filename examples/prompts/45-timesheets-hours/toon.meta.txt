@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `entries.mins`: time logged in minutes
+
+Attributes of the data:
+- `entries.mins`: $unit="min"
+
+<data>
+entries[18]{who,project,mins}:
+  Grace,cli,120
+  Alan,akd,30
+  Grace,akd,30
+  Grace,cli,45
+  Linus,cli,240
+  Grace,cli,240
+  Alan,landing,120
+  Linus,cli,240
+  Linus,landing,30
+  Ada,akd,60
+  Alan,cli,30
+  Grace,landing,30
+  Alan,landing,120
+  Ada,akd,30
+  Grace,akd,240
+  Alan,landing,240
+  Grace,landing,90
+  Alan,landing,90
+</data>
+
+Question: How many hours were logged per project (2 decimals)? Most first.
+
+Answer in TOON only (no prose, no code fences): hours[N]{project,hours}: followed by one row per item.

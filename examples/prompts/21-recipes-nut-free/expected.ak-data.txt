@@ -1,0 +1,1 @@
+<recipes:<[name:string,minutes:number]>>([("Tomato soup",35),("Omelette",10)])

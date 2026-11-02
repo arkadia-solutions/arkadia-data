@@ -1,0 +1,143 @@
+{
+  "id": 45,
+  "slug": "timesheets-hours",
+  "title": "Timesheets: hours per project",
+  "description": "Time logged in minutes.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "How many hours were logged per project (2 decimals)? Most first.",
+  "answer": {
+    "name": "hours",
+    "fields": [
+      [
+        "project",
+        "string"
+      ],
+      [
+        "hours",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "project": "cli",
+      "hours": 15.25
+    },
+    {
+      "project": "landing",
+      "hours": 12.0
+    },
+    {
+      "project": "akd",
+      "hours": 6.5
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`entries.mins`: time logged in minutes"
+    ],
+    "attributes": [
+      "`entries.mins`: $unit=\"min\""
+    ]
+  },
+  "akd_meta": "<entries:<[who:string,project:string,mins:number $unit=\"min\" /* time logged in minutes */]>>([(\"Grace\",\"cli\",120),(\"Alan\",\"akd\",30),(\"Grace\",\"akd\",30),(\"Grace\",\"cli\",45),(\"Linus\",\"cli\",240),(\"Grace\",\"cli\",240),(\"Alan\",\"landing\",120),(\"Linus\",\"cli\",240),(\"Linus\",\"landing\",30),(\"Ada\",\"akd\",60),(\"Alan\",\"cli\",30),(\"Grace\",\"landing\",30),(\"Alan\",\"landing\",120),(\"Ada\",\"akd\",30),(\"Grace\",\"akd\",240),(\"Alan\",\"landing\",240),(\"Grace\",\"landing\",90),(\"Alan\",\"landing\",90)])",
+  "data": {
+    "entries": [
+      {
+        "who": "Grace",
+        "project": "cli",
+        "mins": 120
+      },
+      {
+        "who": "Alan",
+        "project": "akd",
+        "mins": 30
+      },
+      {
+        "who": "Grace",
+        "project": "akd",
+        "mins": 30
+      },
+      {
+        "who": "Grace",
+        "project": "cli",
+        "mins": 45
+      },
+      {
+        "who": "Linus",
+        "project": "cli",
+        "mins": 240
+      },
+      {
+        "who": "Grace",
+        "project": "cli",
+        "mins": 240
+      },
+      {
+        "who": "Alan",
+        "project": "landing",
+        "mins": 120
+      },
+      {
+        "who": "Linus",
+        "project": "cli",
+        "mins": 240
+      },
+      {
+        "who": "Linus",
+        "project": "landing",
+        "mins": 30
+      },
+      {
+        "who": "Ada",
+        "project": "akd",
+        "mins": 60
+      },
+      {
+        "who": "Alan",
+        "project": "cli",
+        "mins": 30
+      },
+      {
+        "who": "Grace",
+        "project": "landing",
+        "mins": 30
+      },
+      {
+        "who": "Alan",
+        "project": "landing",
+        "mins": 120
+      },
+      {
+        "who": "Ada",
+        "project": "akd",
+        "mins": 30
+      },
+      {
+        "who": "Grace",
+        "project": "akd",
+        "mins": 240
+      },
+      {
+        "who": "Alan",
+        "project": "landing",
+        "mins": 240
+      },
+      {
+        "who": "Grace",
+        "project": "landing",
+        "mins": 90
+      },
+      {
+        "who": "Alan",
+        "project": "landing",
+        "mins": 90
+      }
+    ]
+  }
+}

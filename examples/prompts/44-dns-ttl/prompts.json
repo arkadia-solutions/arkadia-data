@@ -1,0 +1,137 @@
+{
+ "id": 44,
+ "slug": "dns-ttl",
+ "title": "DNS zone: short TTLs",
+ "description": "TTL in seconds; documentation IP ranges.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which records have a TTL below 300 seconds?",
+ "tokens": {
+  "json": {
+   "none": 290,
+   "comments": 307,
+   "attributes": 317,
+   "both": 334
+  },
+  "toon": {
+   "none": 228,
+   "comments": 245,
+   "attributes": 255,
+   "both": 272
+  },
+  "akd": {
+   "none": 342,
+   "comments": 353,
+   "attributes": 355,
+   "both": 367
+  },
+  "akcd": {
+   "none": 320,
+   "comments": 327,
+   "attributes": 333,
+   "both": 341
+  }
+ },
+ "answer": {
+  "name": "short",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "type",
+    "string"
+   ],
+   [
+    "ttl",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "api",
+   "type": "A",
+   "ttl": 60
+  },
+  {
+   "name": "status",
+   "type": "CNAME",
+   "ttl": 120
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`records.ttl`: time to live in seconds"
+  ],
+  "attributes": [
+   "document: $zone=\"arkadia.solutions\"",
+   "`records.ttl`: $unit=\"s\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"records\": [\n    {\n      \"name\": \"@\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.10\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"www\",\n      \"type\": \"CNAME\",\n      \"value\": \"arkadia.solutions.\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"api\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.22\",\n      \"ttl\": 60\n    },\n    {\n      \"name\": \"@\",\n      \"type\": \"MX\",\n      \"value\": \"10 mail.example.net.\",\n      \"ttl\": 14400\n    },\n    {\n      \"name\": \"status\",\n      \"type\": \"CNAME\",\n      \"value\": \"status.example.io.\",\n      \"ttl\": 120\n    },\n    {\n      \"name\": \"_dmarc\",\n      \"type\": \"TXT\",\n      \"value\": \"v=DMARC1; p=none\",\n      \"ttl\": 300\n    }\n  ]\n}\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer with JSON only (no prose): {\"short\": [{\"name\": <string>, \"type\": <string>, \"ttl\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `records.ttl`: time to live in seconds\n\n<data>\n{\n  \"records\": [\n    {\n      \"name\": \"@\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.10\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"www\",\n      \"type\": \"CNAME\",\n      \"value\": \"arkadia.solutions.\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"api\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.22\",\n      \"ttl\": 60\n    },\n    {\n      \"name\": \"@\",\n      \"type\": \"MX\",\n      \"value\": \"10 mail.example.net.\",\n      \"ttl\": 14400\n    },\n    {\n      \"name\": \"status\",\n      \"type\": \"CNAME\",\n      \"value\": \"status.example.io.\",\n      \"ttl\": 120\n    },\n    {\n      \"name\": \"_dmarc\",\n      \"type\": \"TXT\",\n      \"value\": \"v=DMARC1; p=none\",\n      \"ttl\": 300\n    }\n  ]\n}\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer with JSON only (no prose): {\"short\": [{\"name\": <string>, \"type\": <string>, \"ttl\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $zone=\"arkadia.solutions\"\n- `records.ttl`: $unit=\"s\"\n\n<data>\n{\n  \"records\": [\n    {\n      \"name\": \"@\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.10\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"www\",\n      \"type\": \"CNAME\",\n      \"value\": \"arkadia.solutions.\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"api\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.22\",\n      \"ttl\": 60\n    },\n    {\n      \"name\": \"@\",\n      \"type\": \"MX\",\n      \"value\": \"10 mail.example.net.\",\n      \"ttl\": 14400\n    },\n    {\n      \"name\": \"status\",\n      \"type\": \"CNAME\",\n      \"value\": \"status.example.io.\",\n      \"ttl\": 120\n    },\n    {\n      \"name\": \"_dmarc\",\n      \"type\": \"TXT\",\n      \"value\": \"v=DMARC1; p=none\",\n      \"ttl\": 300\n    }\n  ]\n}\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer with JSON only (no prose): {\"short\": [{\"name\": <string>, \"type\": <string>, \"ttl\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `records.ttl`: time to live in seconds\n\nAttributes of the data:\n- document: $zone=\"arkadia.solutions\"\n- `records.ttl`: $unit=\"s\"\n\n<data>\n{\n  \"records\": [\n    {\n      \"name\": \"@\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.10\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"www\",\n      \"type\": \"CNAME\",\n      \"value\": \"arkadia.solutions.\",\n      \"ttl\": 3600\n    },\n    {\n      \"name\": \"api\",\n      \"type\": \"A\",\n      \"value\": \"203.0.113.22\",\n      \"ttl\": 60\n    },\n    {\n      \"name\": \"@\",\n      \"type\": \"MX\",\n      \"value\": \"10 mail.example.net.\",\n      \"ttl\": 14400\n    },\n    {\n      \"name\": \"status\",\n      \"type\": \"CNAME\",\n      \"value\": \"status.example.io.\",\n      \"ttl\": 120\n    },\n    {\n      \"name\": \"_dmarc\",\n      \"type\": \"TXT\",\n      \"value\": \"v=DMARC1; p=none\",\n      \"ttl\": 300\n    }\n  ]\n}\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer with JSON only (no prose): {\"short\": [{\"name\": <string>, \"type\": <string>, \"ttl\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrecords[6]{name,type,value,ttl}:\n  @,A,203.0.113.10,3600\n  www,CNAME,arkadia.solutions.,3600\n  api,A,203.0.113.22,60\n  @,MX,10 mail.example.net.,14400\n  status,CNAME,status.example.io.,120\n  _dmarc,TXT,v=DMARC1; p=none,300\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in TOON only (no prose, no code fences): short[N]{name,type,ttl}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `records.ttl`: time to live in seconds\n\n<data>\nrecords[6]{name,type,value,ttl}:\n  @,A,203.0.113.10,3600\n  www,CNAME,arkadia.solutions.,3600\n  api,A,203.0.113.22,60\n  @,MX,10 mail.example.net.,14400\n  status,CNAME,status.example.io.,120\n  _dmarc,TXT,v=DMARC1; p=none,300\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in TOON only (no prose, no code fences): short[N]{name,type,ttl}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $zone=\"arkadia.solutions\"\n- `records.ttl`: $unit=\"s\"\n\n<data>\nrecords[6]{name,type,value,ttl}:\n  @,A,203.0.113.10,3600\n  www,CNAME,arkadia.solutions.,3600\n  api,A,203.0.113.22,60\n  @,MX,10 mail.example.net.,14400\n  status,CNAME,status.example.io.,120\n  _dmarc,TXT,v=DMARC1; p=none,300\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in TOON only (no prose, no code fences): short[N]{name,type,ttl}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `records.ttl`: time to live in seconds\n\nAttributes of the data:\n- document: $zone=\"arkadia.solutions\"\n- `records.ttl`: $unit=\"s\"\n\n<data>\nrecords[6]{name,type,value,ttl}:\n  @,A,203.0.113.10,3600\n  www,CNAME,arkadia.solutions.,3600\n  api,A,203.0.113.22,60\n  @,MX,10 mail.example.net.,14400\n  status,CNAME,status.example.io.,120\n  _dmarc,TXT,v=DMARC1; p=none,300\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in TOON only (no prose, no code fences): short[N]{name,type,ttl}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<records:<[name:string, type:string, value:string, ttl:number]>>\n([\n  (\"@\", \"A\", \"203.0.113.10\", 3600),\n  (\"www\", \"CNAME\", \"arkadia.solutions.\", 3600),\n  (\"api\", \"A\", \"203.0.113.22\", 60),\n  (\"@\", \"MX\", \"10 mail.example.net.\", 14400),\n  (\"status\", \"CNAME\", \"status.example.io.\", 120),\n  (\"_dmarc\", \"TXT\", \"v=DMARC1; p=none\", 300)\n])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<records:<[\n  name:string,\n  type:string,\n  value:string,\n  ttl:number /* time to live in seconds */\n]>>\n([\n  (\"@\", \"A\", \"203.0.113.10\", 3600),\n  (\"www\", \"CNAME\", \"arkadia.solutions.\", 3600),\n  (\"api\", \"A\", \"203.0.113.22\", 60),\n  (\"@\", \"MX\", \"10 mail.example.net.\", 14400),\n  (\"status\", \"CNAME\", \"status.example.io.\", 120),\n  (\"_dmarc\", \"TXT\", \"v=DMARC1; p=none\", 300)\n])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $zone=\"arkadia.solutions\" //\n<records:<[name:string, type:string, value:string, ttl:number $unit=\"s\"]>>\n([\n  (\"@\", \"A\", \"203.0.113.10\", 3600),\n  (\"www\", \"CNAME\", \"arkadia.solutions.\", 3600),\n  (\"api\", \"A\", \"203.0.113.22\", 60),\n  (\"@\", \"MX\", \"10 mail.example.net.\", 14400),\n  (\"status\", \"CNAME\", \"status.example.io.\", 120),\n  (\"_dmarc\", \"TXT\", \"v=DMARC1; p=none\", 300)\n])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $zone=\"arkadia.solutions\" //\n<records:<[\n  name:string,\n  type:string,\n  value:string,\n  ttl:number $unit=\"s\" /* time to live in seconds */\n]>>\n([\n  (\"@\", \"A\", \"203.0.113.10\", 3600),\n  (\"www\", \"CNAME\", \"arkadia.solutions.\", 3600),\n  (\"api\", \"A\", \"203.0.113.22\", 60),\n  (\"@\", \"MX\", \"10 mail.example.net.\", 14400),\n  (\"status\", \"CNAME\", \"status.example.io.\", 120),\n  (\"_dmarc\", \"TXT\", \"v=DMARC1; p=none\", 300)\n])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<records:<[name:string,type:string,value:string,ttl:number]>>([(\"@\",\"A\",\"203.0.113.10\",3600),(\"www\",\"CNAME\",\"arkadia.solutions.\",3600),(\"api\",\"A\",\"203.0.113.22\",60),(\"@\",\"MX\",\"10 mail.example.net.\",14400),(\"status\",\"CNAME\",\"status.example.io.\",120),(\"_dmarc\",\"TXT\",\"v=DMARC1; p=none\",300)])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<records:<[name:string,type:string,value:string,ttl:number /* time to live in seconds */]>>([(\"@\",\"A\",\"203.0.113.10\",3600),(\"www\",\"CNAME\",\"arkadia.solutions.\",3600),(\"api\",\"A\",\"203.0.113.22\",60),(\"@\",\"MX\",\"10 mail.example.net.\",14400),(\"status\",\"CNAME\",\"status.example.io.\",120),(\"_dmarc\",\"TXT\",\"v=DMARC1; p=none\",300)])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $zone=\"arkadia.solutions\" // <records:<[name:string,type:string,value:string,ttl:number $unit=\"s\"]>>([(\"@\",\"A\",\"203.0.113.10\",3600),(\"www\",\"CNAME\",\"arkadia.solutions.\",3600),(\"api\",\"A\",\"203.0.113.22\",60),(\"@\",\"MX\",\"10 mail.example.net.\",14400),(\"status\",\"CNAME\",\"status.example.io.\",120),(\"_dmarc\",\"TXT\",\"v=DMARC1; p=none\",300)])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $zone=\"arkadia.solutions\" // <records:<[name:string,type:string,value:string,ttl:number $unit=\"s\" /* time to live in seconds */]>>([(\"@\",\"A\",\"203.0.113.10\",3600),(\"www\",\"CNAME\",\"arkadia.solutions.\",3600),(\"api\",\"A\",\"203.0.113.22\",60),(\"@\",\"MX\",\"10 mail.example.net.\",14400),(\"status\",\"CNAME\",\"status.example.io.\",120),(\"_dmarc\",\"TXT\",\"v=DMARC1; p=none\",300)])\n</data>\n\nQuestion: Which records have a TTL below 300 seconds?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<short:<[name:string,type:string,ttl:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 234,
+   "comments": 234,
+   "attributes": 234,
+   "both": 234
+  },
+  "toon": {
+   "none": 95,
+   "comments": 95,
+   "attributes": 95,
+   "both": 95
+  },
+  "akd": {
+   "none": 131,
+   "comments": 142,
+   "attributes": 145,
+   "both": 157
+  },
+  "akcd": {
+   "none": 103,
+   "comments": 110,
+   "attributes": 117,
+   "both": 125
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"short\": [\n    {\n      \"name\": \"api\",\n      \"type\": \"A\",\n      \"ttl\": 60\n    },\n    {\n      \"name\": \"status\",\n      \"type\": \"CNAME\",\n      \"ttl\": 120\n    }\n  ]\n}",
+  "akcd": "<short:<[name:string,type:string,ttl:number]>>([(\"api\",\"A\",60),(\"status\",\"CNAME\",120)])",
+  "toon": "short[2]{name,type,ttl}:\n  api,A,60\n  status,CNAME,120"
+ },
+ "answer_tokens": {
+  "json": 60,
+  "akcd": 29,
+  "toon": 22
+ }
+}

@@ -1,0 +1,19 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+positions[5]{ticker,qty,avg,last,ccy}:
+  CDR,40,112.5,131.2,PLN
+  PKN,120,58.1,61.4,PLN
+  AAPL,10,172,189.3,USD
+  ALE,200,31.2,27.9,PLN
+  MSFT,6,330,402.1,USD
+</data>
+
+Question: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?
+
+Answer in TOON only (no prose, no code fences): pnl[N]{ticker,pnl}: followed by one row per item.

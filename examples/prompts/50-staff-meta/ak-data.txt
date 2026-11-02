@@ -1,0 +1,30 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<staff:<[id:number, name:string, dept:string, lvl:number, sal:number]>>
+([
+  (100, "Ada", "ENG", 2, 7300),
+  (101, "Alan", "OPS", 1, 17200),
+  (102, "Grace", "FIN", 3, 21000),
+  (103, "Linus", "ENG", 2, 18100),
+  (104, "Margaret", "OPS", 2, 14400),
+  (105, "Dennis", "FIN", 1, 8200),
+  (106, "Barbara", "ENG", 1, 23500),
+  (107, "Ken", "OPS", 2, 10000),
+  (108, "Radia", "FIN", 1, 23000),
+  (109, "Edsger", "ENG", 3, 8400),
+  (110, "Hedy", "OPS", 1, 20100),
+  (111, "Tim", "FIN", 1, 10800)
+])
+</data>
+
+Question: List the senior people who are employees (not contractors) with their yearly salary in PLN.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<seniors:<[name:string,yearly_pln:number]>>

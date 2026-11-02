@@ -1,0 +1,2199 @@
+{
+ "tokenizer": "o200k_base",
+ "formats": {
+  "json": "JSON",
+  "toon": "TOON",
+  "akd": "AK-DATA",
+  "akcd": "AK-DATA COMPACT"
+ },
+ "combos": [
+  "none",
+  "comments",
+  "attributes",
+  "both"
+ ],
+ "definition_tokens": {
+  "akd": 148,
+  "akcd": 148,
+  "toon": 79,
+  "json": 0
+ },
+ "examples": [
+  {
+   "id": 1,
+   "slug": "employees-salaries",
+   "title": "HR table: average salary by department",
+   "description": "30 employee records. Aggregation over a filtered table.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Among active employees, which 3 departments have the highest average salary? Give the department, the number of active employees and the average salary rounded to a whole number.",
+   "tokens": {
+    "json": {
+     "none": 2359,
+     "comments": 2393,
+     "attributes": 2402,
+     "both": 2436
+    },
+    "toon": {
+     "none": 1147,
+     "comments": 1181,
+     "attributes": 1190,
+     "both": 1224
+    },
+    "akd": {
+     "none": 1497,
+     "comments": 1518,
+     "attributes": 1526,
+     "both": 1548
+    },
+    "akcd": {
+     "none": 1221,
+     "comments": 1243,
+     "attributes": 1250,
+     "both": 1272
+    }
+   }
+  },
+  {
+   "id": 2,
+   "slug": "orders-revenue",
+   "title": "E-commerce: revenue per country (nested orders)",
+   "description": "15 orders with a nested customer and item list. Filter, group, sum.",
+   "tags": [],
+   "question": "For orders with status paid, shipped or delivered, what is the number of orders and the total revenue (sum of total) per customer country? Sort by revenue, highest first.",
+   "tokens": {
+    "json": {
+     "none": 2968
+    },
+    "toon": {
+     "none": 1691
+    },
+    "akd": {
+     "none": 1739
+    },
+    "akcd": {
+     "none": 1309
+    }
+   }
+  },
+  {
+   "id": 3,
+   "slug": "logs-incidents",
+   "title": "Ops: which service is failing? (logs)",
+   "description": "60 log events. Counting by level and averaging a numeric field.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "For each service, count the ERROR and WARN events and give the average latency_ms of its ERROR events (rounded; null if none). Sort by ERROR count, highest first.",
+   "tokens": {
+    "json": {
+     "none": 3779,
+     "comments": 3811,
+     "attributes": 3807,
+     "both": 3839
+    },
+    "toon": {
+     "none": 1820,
+     "comments": 1852,
+     "attributes": 1848,
+     "both": 1880
+    },
+    "akd": {
+     "none": 2216,
+     "comments": 2233,
+     "attributes": 2228,
+     "both": 2246
+    },
+    "akcd": {
+     "none": 1853,
+     "comments": 1872,
+     "attributes": 1866,
+     "both": 1884
+    }
+   }
+  },
+  {
+   "id": 4,
+   "slug": "search-tool-result",
+   "title": "Agent tool result: pick the best search hits",
+   "description": "A web_search tool result with 15 hits, as an agent would receive it.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which 3 results best answer 'how should agents manage memory'? Give the rank, the url and a one-sentence reason for each.",
+   "tokens": {
+    "json": {
+     "none": 1394,
+     "comments": 1408,
+     "attributes": 1414,
+     "both": 1428
+    },
+    "toon": {
+     "none": 988,
+     "comments": 1002,
+     "attributes": 1008,
+     "both": 1022
+    },
+    "akd": {
+     "none": 1311,
+     "comments": 1322,
+     "attributes": 1324,
+     "both": 1335
+    },
+    "akcd": {
+     "none": 1083,
+     "comments": 1094,
+     "attributes": 1096,
+     "both": 1106
+    }
+   }
+  },
+  {
+   "id": 5,
+   "slug": "analytics-top-days",
+   "title": "Analytics: best days in a time series",
+   "description": "28 days of metrics. Sorting a time series.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which 3 days had the highest revenue? Give the date, revenue, visits and signups.",
+   "tokens": {
+    "json": {
+     "none": 1600,
+     "comments": 1611,
+     "attributes": 1618,
+     "both": 1629
+    },
+    "toon": {
+     "none": 808,
+     "comments": 819,
+     "attributes": 826,
+     "both": 837
+    },
+    "akd": {
+     "none": 1025,
+     "comments": 1033,
+     "attributes": 1036,
+     "both": 1044
+    },
+    "akcd": {
+     "none": 875,
+     "comments": 883,
+     "attributes": 886,
+     "both": 893
+    }
+   }
+  },
+  {
+   "id": 6,
+   "slug": "repositories-filter",
+   "title": "Developer data: filter repositories",
+   "description": "30 repositories with topic lists. Multi-condition filter and sort.",
+   "tags": [],
+   "question": "List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.",
+   "tokens": {
+    "json": {
+     "none": 2234
+    },
+    "toon": {
+     "none": 1672
+    },
+    "akd": {
+     "none": 1281
+    },
+    "akcd": {
+     "none": 1078
+    }
+   }
+  },
+  {
+   "id": 7,
+   "slug": "support-triage",
+   "title": "Support: unassigned urgent tickets",
+   "description": "25 support tickets with nulls. Triage filter.",
+   "tags": [],
+   "question": "Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.",
+   "tokens": {
+    "json": {
+     "none": 1754
+    },
+    "toon": {
+     "none": 843
+    },
+    "akd": {
+     "none": 1156
+    },
+    "akcd": {
+     "none": 964
+    }
+   }
+  },
+  {
+   "id": 8,
+   "slug": "inventory-reorder",
+   "title": "Inventory: what to reorder and how much",
+   "description": "25 products. Comparison between two fields plus arithmetic.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which products have stock below their reorder_level? For each, suggest an order quantity that covers 30 days of sales: 30 × daily_sales − stock, rounded up.",
+   "tokens": {
+    "json": {
+     "none": 1655,
+     "comments": 1670,
+     "attributes": 1674,
+     "both": 1689
+    },
+    "toon": {
+     "none": 705,
+     "comments": 720,
+     "attributes": 724,
+     "both": 739
+    },
+    "akd": {
+     "none": 984,
+     "comments": 996,
+     "attributes": 995,
+     "both": 1007
+    },
+    "akcd": {
+     "none": 808,
+     "comments": 820,
+     "attributes": 819,
+     "both": 830
+    }
+   }
+  },
+  {
+   "id": 9,
+   "slug": "calendar-free-slots",
+   "title": "Scheduling: find a common free hour",
+   "description": "Calendar events of three people. Reasoning over time intervals.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Working hours are 09:00–17:00. List every 1-hour slot starting on the full hour on Tue when Ada, Alan and Grace are all free (no event overlaps the slot).",
+   "tokens": {
+    "json": {
+     "none": 1299,
+     "comments": 1311,
+     "attributes": 1318,
+     "both": 1330
+    },
+    "toon": {
+     "none": 614,
+     "comments": 626,
+     "attributes": 633,
+     "both": 645
+    },
+    "akd": {
+     "none": 845,
+     "comments": 854,
+     "attributes": 856,
+     "both": 865
+    },
+    "akcd": {
+     "none": 704,
+     "comments": 713,
+     "attributes": 715,
+     "both": 723
+    }
+   }
+  },
+  {
+   "id": 10,
+   "slug": "email-extraction",
+   "title": "Extraction: emails to structured orders (output format)",
+   "description": "Free text in, structured data out. Shows the answer format saving output tokens.",
+   "tags": [],
+   "question": "Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.",
+   "tokens": {
+    "json": {
+     "none": 349
+    },
+    "toon": {
+     "none": 352
+    },
+    "akd": {
+     "none": 473
+    },
+    "akcd": {
+     "none": 445
+    }
+   }
+  },
+  {
+   "id": 11,
+   "slug": "invoices-overdue",
+   "title": "Invoices: overdue and unpaid",
+   "description": "Amounts in grosze and status codes 0/1/2 — explained only in the metadata.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which invoices are unpaid and overdue on 2026-10-20? Give the number and the gross amount in PLN.",
+   "tokens": {
+    "json": {
+     "none": 793,
+     "comments": 867,
+     "attributes": 872,
+     "both": 946
+    },
+    "toon": {
+     "none": 486,
+     "comments": 560,
+     "attributes": 565,
+     "both": 639
+    },
+    "akd": {
+     "none": 643,
+     "comments": 701,
+     "attributes": 697,
+     "both": 752
+    },
+    "akcd": {
+     "none": 578,
+     "comments": 631,
+     "attributes": 626,
+     "both": 681
+    }
+   }
+  },
+  {
+   "id": 12,
+   "slug": "flights-delays",
+   "title": "Departures: delayed flights",
+   "description": "Delay is in minutes and times are UTC.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which flights are delayed by more than 30 minutes? Longest delay first.",
+   "tokens": {
+    "json": {
+     "none": 642,
+     "comments": 679,
+     "attributes": 692,
+     "both": 729
+    },
+    "toon": {
+     "none": 351,
+     "comments": 388,
+     "attributes": 401,
+     "both": 438
+    },
+    "akd": {
+     "none": 507,
+     "comments": 533,
+     "attributes": 539,
+     "both": 562
+    },
+    "akcd": {
+     "none": 447,
+     "comments": 469,
+     "attributes": 474,
+     "both": 497
+    }
+   }
+  },
+  {
+   "id": 13,
+   "slug": "grades-classes",
+   "title": "School grades: average per class",
+   "description": "Polish 1–6 grade scale (6 is the best) — said in the metadata.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "What is the average math grade in each class, rounded to 2 decimals?",
+   "tokens": {
+    "json": {
+     "none": 633,
+     "comments": 678,
+     "attributes": 690,
+     "both": 735
+    },
+    "toon": {
+     "none": 325,
+     "comments": 370,
+     "attributes": 382,
+     "both": 427
+    },
+    "akd": {
+     "none": 483,
+     "comments": 516,
+     "attributes": 520,
+     "both": 550
+    },
+    "akcd": {
+     "none": 417,
+     "comments": 445,
+     "attributes": 448,
+     "both": 478
+    }
+   }
+  },
+  {
+   "id": 14,
+   "slug": "crypto-movers",
+   "title": "Crypto prices: top movers",
+   "description": "24h change is in basis points (1/100 of a percent) — only the metadata says so.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which 3 coins rose the most in 24 hours? Give the change in percent.",
+   "tokens": {
+    "json": {
+     "none": 355,
+     "comments": 405,
+     "attributes": 395,
+     "both": 445
+    },
+    "toon": {
+     "none": 256,
+     "comments": 306,
+     "attributes": 296,
+     "both": 346
+    },
+    "akd": {
+     "none": 371,
+     "comments": 411,
+     "attributes": 391,
+     "both": 433
+    },
+    "akcd": {
+     "none": 345,
+     "comments": 382,
+     "attributes": 365,
+     "both": 403
+    }
+   }
+  },
+  {
+   "id": 15,
+   "slug": "forecast-fahrenheit",
+   "title": "Weather: Fahrenheit forecast",
+   "description": "Temperatures are in °F; the question asks about °C.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.",
+   "tokens": {
+    "json": {
+     "none": 300,
+     "comments": 348,
+     "attributes": 350,
+     "both": 398
+    },
+    "toon": {
+     "none": 224,
+     "comments": 272,
+     "attributes": 274,
+     "both": 322
+    },
+    "akd": {
+     "none": 336,
+     "comments": 369,
+     "attributes": 364,
+     "both": 395
+    },
+    "akcd": {
+     "none": 313,
+     "comments": 342,
+     "attributes": 336,
+     "both": 367
+    }
+   }
+  },
+  {
+   "id": 16,
+   "slug": "bank-spending",
+   "title": "Bank account: spending per category",
+   "description": "Negative amounts are spending, in cents.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "How much was spent in each category (money going out), in PLN? Most first.",
+   "tokens": {
+    "json": {
+     "none": 626,
+     "comments": 656,
+     "attributes": 673,
+     "both": 703
+    },
+    "toon": {
+     "none": 402,
+     "comments": 432,
+     "attributes": 449,
+     "both": 479
+    },
+    "akd": {
+     "none": 522,
+     "comments": 547,
+     "attributes": 558,
+     "both": 580
+    },
+    "akcd": {
+     "none": 473,
+     "comments": 495,
+     "attributes": 505,
+     "both": 527
+    }
+   }
+  },
+  {
+   "id": 17,
+   "slug": "servers-cpu",
+   "title": "Servers: CPU above 80 %",
+   "description": "Load is in per mille (‰), not percent.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.",
+   "tokens": {
+    "json": {
+     "none": 550,
+     "comments": 593,
+     "attributes": 594,
+     "both": 637
+    },
+    "toon": {
+     "none": 308,
+     "comments": 351,
+     "attributes": 352,
+     "both": 395
+    },
+    "akd": {
+     "none": 453,
+     "comments": 488,
+     "attributes": 483,
+     "both": 515
+    },
+    "akcd": {
+     "none": 402,
+     "comments": 433,
+     "attributes": 427,
+     "both": 459
+    }
+   }
+  },
+  {
+   "id": 18,
+   "slug": "web-vitals",
+   "title": "Web vitals: slow pages",
+   "description": "Largest Contentful Paint in milliseconds, budget 2.5 s.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which pages have an LCP worse than 2500 ms? Slowest first.",
+   "tokens": {
+    "json": {
+     "none": 427,
+     "comments": 480,
+     "attributes": 477,
+     "both": 530
+    },
+    "toon": {
+     "none": 279,
+     "comments": 332,
+     "attributes": 329,
+     "both": 382
+    },
+    "akd": {
+     "none": 406,
+     "comments": 449,
+     "attributes": 439,
+     "both": 478
+    },
+    "akcd": {
+     "none": 359,
+     "comments": 398,
+     "attributes": 387,
+     "both": 426
+    }
+   }
+  },
+  {
+   "id": 19,
+   "slug": "crm-leads",
+   "title": "CRM: leads in the proposal stage",
+   "description": "Stage is a code 1–4.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which leads are in the proposal stage? Highest score first.",
+   "tokens": {
+    "json": {
+     "none": 697,
+     "comments": 740,
+     "attributes": 739,
+     "both": 782
+    },
+    "toon": {
+     "none": 363,
+     "comments": 406,
+     "attributes": 405,
+     "both": 448
+    },
+    "akd": {
+     "none": 530,
+     "comments": 556,
+     "attributes": 553,
+     "both": 581
+    },
+    "akcd": {
+     "none": 455,
+     "comments": 481,
+     "attributes": 478,
+     "both": 506
+    }
+   }
+  },
+  {
+   "id": 20,
+   "slug": "shipments-weight",
+   "title": "Shipments: weight per carrier",
+   "description": "Weight is in grams.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "What is the total weight in kilograms per carrier? Heaviest first.",
+   "tokens": {
+    "json": {
+     "none": 522,
+     "comments": 538,
+     "attributes": 538,
+     "both": 554
+    },
+    "toon": {
+     "none": 311,
+     "comments": 327,
+     "attributes": 327,
+     "both": 343
+    },
+    "akd": {
+     "none": 448,
+     "comments": 454,
+     "attributes": 452,
+     "both": 462
+    },
+    "akcd": {
+     "none": 404,
+     "comments": 410,
+     "attributes": 408,
+     "both": 415
+    }
+   }
+  },
+  {
+   "id": 21,
+   "slug": "recipes-nut-free",
+   "title": "Recipes: nut-free and quick",
+   "description": "Lists inside records.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which recipes contain no nuts of any kind and take at most 45 minutes?",
+   "tokens": {
+    "json": {
+     "none": 381,
+     "comments": 396,
+     "attributes": 419,
+     "both": 434
+    },
+    "toon": {
+     "none": 334,
+     "comments": 349,
+     "attributes": 372,
+     "both": 387
+    },
+    "akd": {
+     "none": 396,
+     "comments": 405,
+     "attributes": 408,
+     "both": 418
+    },
+    "akcd": {
+     "none": 369,
+     "comments": 374,
+     "attributes": 381,
+     "both": 387
+    }
+   }
+  },
+  {
+   "id": 22,
+   "slug": "movies-best-drama",
+   "title": "Films: best-rated drama",
+   "description": "Genre lists inside records.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which film tagged drama has the highest rating? Give the title, year and rating.",
+   "tokens": {
+    "json": {
+     "none": 628,
+     "comments": 647,
+     "attributes": 651,
+     "both": 670
+    },
+    "toon": {
+     "none": 530,
+     "comments": 549,
+     "attributes": 553,
+     "both": 572
+    },
+    "akd": {
+     "none": 507,
+     "comments": 521,
+     "attributes": 524,
+     "both": 534
+    },
+    "akcd": {
+     "none": 465,
+     "comments": 474,
+     "attributes": 477,
+     "both": 487
+    }
+   }
+  },
+  {
+   "id": 23,
+   "slug": "git-commits",
+   "title": "Git log: most active authors",
+   "description": "Twenty commits.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which 3 authors made the most commits? Ties alphabetically.",
+   "tokens": {
+    "json": {
+     "none": 828,
+     "comments": 841,
+     "attributes": 848,
+     "both": 861
+    },
+    "toon": {
+     "none": 465,
+     "comments": 478,
+     "attributes": 485,
+     "both": 498
+    },
+    "akd": {
+     "none": 617,
+     "comments": 627,
+     "attributes": 630,
+     "both": 640
+    },
+    "akcd": {
+     "none": 542,
+     "comments": 552,
+     "attributes": 555,
+     "both": 564
+    }
+   }
+  },
+  {
+   "id": 24,
+   "slug": "hotel-revenue",
+   "title": "Hotel: revenue per room type",
+   "description": "Nights × nightly rate.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "What is the revenue (nights × rate) per room type? Highest first.",
+   "tokens": {
+    "json": {
+     "none": 545,
+     "comments": 562,
+     "attributes": 567,
+     "both": 584
+    },
+    "toon": {
+     "none": 285,
+     "comments": 302,
+     "attributes": 307,
+     "both": 324
+    },
+    "akd": {
+     "none": 433,
+     "comments": 444,
+     "attributes": 448,
+     "both": 455
+    },
+    "akcd": {
+     "none": 382,
+     "comments": 389,
+     "attributes": 392,
+     "both": 400
+    }
+   }
+  },
+  {
+   "id": 25,
+   "slug": "hr-leave",
+   "title": "HR: approved leave per person",
+   "description": "Status is a one-letter code.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "How many days of approved leave does each person have? Most first.",
+   "tokens": {
+    "json": {
+     "none": 578,
+     "comments": 607,
+     "attributes": 612,
+     "both": 641
+    },
+    "toon": {
+     "none": 303,
+     "comments": 332,
+     "attributes": 337,
+     "both": 366
+    },
+    "akd": {
+     "none": 462,
+     "comments": 481,
+     "attributes": 484,
+     "both": 500
+    },
+    "akcd": {
+     "none": 408,
+     "comments": 423,
+     "attributes": 425,
+     "both": 442
+    }
+   }
+  },
+  {
+   "id": 26,
+   "slug": "iot-batteries",
+   "title": "IoT tags: low battery",
+   "description": "Battery is in millivolts.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.",
+   "tokens": {
+    "json": {
+     "none": 589,
+     "comments": 620,
+     "attributes": 618,
+     "both": 649
+    },
+    "toon": {
+     "none": 324,
+     "comments": 355,
+     "attributes": 353,
+     "both": 384
+    },
+    "akd": {
+     "none": 465,
+     "comments": 484,
+     "attributes": 480,
+     "both": 496
+    },
+    "akcd": {
+     "none": 413,
+     "comments": 429,
+     "attributes": 424,
+     "both": 441
+    }
+   }
+  },
+  {
+   "id": 27,
+   "slug": "api-latency",
+   "title": "API: slow endpoints",
+   "description": "p95 latency in microseconds.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.",
+   "tokens": {
+    "json": {
+     "none": 376,
+     "comments": 408,
+     "attributes": 412,
+     "both": 444
+    },
+    "toon": {
+     "none": 269,
+     "comments": 301,
+     "attributes": 305,
+     "both": 337
+    },
+    "akd": {
+     "none": 382,
+     "comments": 399,
+     "attributes": 401,
+     "both": 415
+    },
+    "akcd": {
+     "none": 356,
+     "comments": 370,
+     "attributes": 371,
+     "both": 386
+    }
+   }
+  },
+  {
+   "id": 28,
+   "slug": "menu-vegan",
+   "title": "Menu: vegan dishes under 25 PLN",
+   "description": "Prices are in grosze.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which vegan dishes cost less than 25 PLN? Give the price in PLN.",
+   "tokens": {
+    "json": {
+     "none": 332,
+     "comments": 360,
+     "attributes": 371,
+     "both": 399
+    },
+    "toon": {
+     "none": 319,
+     "comments": 347,
+     "attributes": 358,
+     "both": 386
+    },
+    "akd": {
+     "none": 355,
+     "comments": 380,
+     "attributes": 381,
+     "both": 407
+    },
+    "akcd": {
+     "none": 343,
+     "comments": 364,
+     "attributes": 369,
+     "both": 390
+    }
+   }
+  },
+  {
+   "id": 29,
+   "slug": "library-overdue",
+   "title": "Library: overdue loans",
+   "description": "Dates as text.",
+   "tags": [],
+   "question": "Which loans are overdue on 2026-10-15? Oldest due date first.",
+   "tokens": {
+    "json": {
+     "none": 393
+    },
+    "toon": {
+     "none": 293
+    },
+    "akd": {
+     "none": 409
+    },
+    "akcd": {
+     "none": 385
+    }
+   }
+  },
+  {
+   "id": 30,
+   "slug": "fleet-service",
+   "title": "Company cars: service due",
+   "description": "Odometer and last service.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which cars have driven more than 15,000 km since the last service? Most first; give the distance.",
+   "tokens": {
+    "json": {
+     "none": 566,
+     "comments": 595,
+     "attributes": 595,
+     "both": 624
+    },
+    "toon": {
+     "none": 341,
+     "comments": 370,
+     "attributes": 370,
+     "both": 399
+    },
+    "akd": {
+     "none": 474,
+     "comments": 489,
+     "attributes": 487,
+     "both": 499
+    },
+    "akcd": {
+     "none": 430,
+     "comments": 442,
+     "attributes": 439,
+     "both": 452
+    }
+   }
+  },
+  {
+   "id": 31,
+   "slug": "cart-total",
+   "title": "Shopping cart: total after discounts",
+   "description": "Prices in grosze, discounts in basis points.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "What is the cart total in PLN after the per-item discounts?",
+   "tokens": {
+    "json": {
+     "none": 220,
+     "comments": 256,
+     "attributes": 250,
+     "both": 286
+    },
+    "toon": {
+     "none": 208,
+     "comments": 244,
+     "attributes": 238,
+     "both": 274
+    },
+    "akd": {
+     "none": 320,
+     "comments": 345,
+     "attributes": 337,
+     "both": 357
+    },
+    "akcd": {
+     "none": 298,
+     "comments": 317,
+     "attributes": 308,
+     "both": 329
+    }
+   }
+  },
+  {
+   "id": 32,
+   "slug": "survey-agree",
+   "title": "Survey: share of agreement",
+   "description": "Likert answers 1–5 as numbers.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "For each statement, what percent of answers agree (agree or strongly agree)? Round to whole percent.",
+   "tokens": {
+    "json": {
+     "none": 414,
+     "comments": 438,
+     "attributes": 452,
+     "both": 476
+    },
+    "toon": {
+     "none": 340,
+     "comments": 364,
+     "attributes": 378,
+     "both": 402
+    },
+    "akd": {
+     "none": 448,
+     "comments": 466,
+     "attributes": 479,
+     "both": 494
+    },
+    "akcd": {
+     "none": 389,
+     "comments": 405,
+     "attributes": 417,
+     "both": 433
+    }
+   }
+  },
+  {
+   "id": 33,
+   "slug": "football-goals",
+   "title": "Football: most goals scored",
+   "description": "Score as [home, away].",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which team scored the most goals in these matches, and how many?",
+   "tokens": {
+    "json": {
+     "none": 499,
+     "comments": 516,
+     "attributes": 499,
+     "both": 516
+    },
+    "toon": {
+     "none": 431,
+     "comments": 448,
+     "attributes": 431,
+     "both": 448
+    },
+    "akd": {
+     "none": 426,
+     "comments": 439,
+     "attributes": 426,
+     "both": 439
+    },
+    "akcd": {
+     "none": 384,
+     "comments": 394,
+     "attributes": 384,
+     "both": 394
+    }
+   }
+  },
+  {
+   "id": 34,
+   "slug": "energy-kwh",
+   "title": "Energy meter: kWh per day",
+   "description": "Readings in watt-hours.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "What is the total energy per day in kWh (2 decimals)?",
+   "tokens": {
+    "json": {
+     "none": 554,
+     "comments": 584,
+     "attributes": 586,
+     "both": 616
+    },
+    "toon": {
+     "none": 364,
+     "comments": 394,
+     "attributes": 396,
+     "both": 426
+    },
+    "akd": {
+     "none": 479,
+     "comments": 504,
+     "attributes": 496,
+     "both": 522
+    },
+    "akcd": {
+     "none": 436,
+     "comments": 458,
+     "attributes": 453,
+     "both": 475
+    }
+   }
+  },
+  {
+   "id": 35,
+   "slug": "jobs-remote",
+   "title": "Job board: remote and well paid",
+   "description": "Salary ranges per month.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which remote jobs pay at least 20,000 at the top of the range? Highest first.",
+   "tokens": {
+    "json": {
+     "none": 500,
+     "comments": 525,
+     "attributes": 545,
+     "both": 570
+    },
+    "toon": {
+     "none": 300,
+     "comments": 325,
+     "attributes": 345,
+     "both": 370
+    },
+    "akd": {
+     "none": 442,
+     "comments": 458,
+     "attributes": 476,
+     "both": 486
+    },
+    "akcd": {
+     "none": 406,
+     "comments": 417,
+     "attributes": 434,
+     "both": 445
+    }
+   }
+  },
+  {
+   "id": 36,
+   "slug": "github-bugs",
+   "title": "GitHub: open bugs",
+   "description": "Label lists per issue.",
+   "tags": [],
+   "question": "Which issues are open and labelled bug?",
+   "tokens": {
+    "json": {
+     "none": 648
+    },
+    "toon": {
+     "none": 542
+    },
+    "akd": {
+     "none": 476
+    },
+    "akcd": {
+     "none": 422
+    }
+   }
+  },
+  {
+   "id": 37,
+   "slug": "support-sla",
+   "title": "Support: SLA breaches",
+   "description": "SLA limits per priority are in the metadata.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which tickets have breached their SLA, and by how many hours?",
+   "tokens": {
+    "json": {
+     "none": 528,
+     "comments": 580,
+     "attributes": 571,
+     "both": 623
+    },
+    "toon": {
+     "none": 291,
+     "comments": 343,
+     "attributes": 334,
+     "both": 386
+    },
+    "akd": {
+     "none": 440,
+     "comments": 479,
+     "attributes": 468,
+     "both": 505
+    },
+    "akcd": {
+     "none": 396,
+     "comments": 432,
+     "attributes": 420,
+     "both": 458
+    }
+   }
+  },
+  {
+   "id": 38,
+   "slug": "fx-rates",
+   "title": "Exchange rates: convert 500 EUR",
+   "description": "One base currency, a list of rates.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "How much is 500 EUR in each currency (2 decimals)?",
+   "tokens": {
+    "json": {
+     "none": 193,
+     "comments": 211,
+     "attributes": 210,
+     "both": 228
+    },
+    "toon": {
+     "none": 199,
+     "comments": 217,
+     "attributes": 216,
+     "both": 234
+    },
+    "akd": {
+     "none": 301,
+     "comments": 316,
+     "attributes": 310,
+     "both": 325
+    },
+    "akcd": {
+     "none": 287,
+     "comments": 302,
+     "attributes": 296,
+     "both": 310
+    }
+   }
+  },
+  {
+   "id": 39,
+   "slug": "reviews-verified",
+   "title": "Reviews: rating of verified buyers",
+   "description": "Verified purchases are tagged — only in the metadata.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "What is the average star rating of verified purchases only (2 decimals)?",
+   "tokens": {
+    "json": {
+     "none": 430,
+     "comments": 502,
+     "attributes": 502,
+     "both": 574
+    },
+    "toon": {
+     "none": 274,
+     "comments": 346,
+     "attributes": 346,
+     "both": 418
+    },
+    "akd": {
+     "none": 391,
+     "comments": 421,
+     "attributes": 414,
+     "both": 444
+    },
+    "akcd": {
+     "none": 353,
+     "comments": 384,
+     "attributes": 371,
+     "both": 403
+    }
+   }
+  },
+  {
+   "id": 40,
+   "slug": "meeting-rooms",
+   "title": "Office: rooms for 8 with a projector",
+   "description": "Equipment lists.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which rooms seat at least 8 people and have a projector?",
+   "tokens": {
+    "json": {
+     "none": 301,
+     "comments": 318,
+     "attributes": 316,
+     "both": 333
+    },
+    "toon": {
+     "none": 296,
+     "comments": 313,
+     "attributes": 311,
+     "both": 328
+    },
+    "akd": {
+     "none": 328,
+     "comments": 335,
+     "attributes": 332,
+     "both": 338
+    },
+    "akcd": {
+     "none": 313,
+     "comments": 320,
+     "attributes": 317,
+     "both": 323
+    }
+   }
+  },
+  {
+   "id": 41,
+   "slug": "portfolio-pnl",
+   "title": "Portfolio: profit per position",
+   "description": "Average buy price vs last price.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?",
+   "tokens": {
+    "json": {
+     "none": 300,
+     "comments": 327,
+     "attributes": 300,
+     "both": 327
+    },
+    "toon": {
+     "none": 236,
+     "comments": 263,
+     "attributes": 236,
+     "both": 263
+    },
+    "akd": {
+     "none": 351,
+     "comments": 369,
+     "attributes": 351,
+     "both": 369
+    },
+    "akcd": {
+     "none": 331,
+     "comments": 344,
+     "attributes": 331,
+     "both": 344
+    }
+   }
+  },
+  {
+   "id": 42,
+   "slug": "parking-free",
+   "title": "Parking: free spots per level",
+   "description": "Occupancy as 0/1.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "How many spots are free on each level?",
+   "tokens": {
+    "json": {
+     "none": 580,
+     "comments": 599,
+     "attributes": 602,
+     "both": 621
+    },
+    "toon": {
+     "none": 321,
+     "comments": 340,
+     "attributes": 343,
+     "both": 362
+    },
+    "akd": {
+     "none": 476,
+     "comments": 485,
+     "attributes": 486,
+     "both": 499
+    },
+    "akcd": {
+     "none": 427,
+     "comments": 436,
+     "attributes": 437,
+     "both": 447
+    }
+   }
+  },
+  {
+   "id": 43,
+   "slug": "newsletter-opens",
+   "title": "Newsletter: campaigns above 25 % opens",
+   "description": "Open and click rates in per mille.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.",
+   "tokens": {
+    "json": {
+     "none": 421,
+     "comments": 458,
+     "attributes": 450,
+     "both": 487
+    },
+    "toon": {
+     "none": 276,
+     "comments": 313,
+     "attributes": 305,
+     "both": 342
+    },
+    "akd": {
+     "none": 400,
+     "comments": 425,
+     "attributes": 415,
+     "both": 437
+    },
+    "akcd": {
+     "none": 365,
+     "comments": 386,
+     "attributes": 375,
+     "both": 398
+    }
+   }
+  },
+  {
+   "id": 44,
+   "slug": "dns-ttl",
+   "title": "DNS zone: short TTLs",
+   "description": "TTL in seconds; documentation IP ranges.",
+   "tags": [
+    "metadata"
+   ],
+   "question": "Which records have a TTL below 300 seconds?",
+   "tokens": {
+    "json": {
+     "none": 290,
+     "comments": 307,
+     "attributes": 317,
+     "both": 334
+    },
+    "toon": {
+     "none": 228,
+     "comments": 245,
+     "attributes": 255,
+     "both": 272
+    },
+    "akd": {
+     "none": 342,
+     "comments": 353,
+     "attributes": 355,
+     "both": 367
+    },
+    "akcd": {
+     "none": 320,
+     "comments": 327,
+     "attributes": 333,
+     "both": 341
+    }
+   }
+  },
+  {
+   "id": 45,
+   "slug": "timesheets-hours",
+   "title": "Timesheets: hours per project",
+   "description": "Time logged in minutes.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "How many hours were logged per project (2 decimals)? Most first.",
+   "tokens": {
+    "json": {
+     "none": 521,
+     "comments": 537,
+     "attributes": 537,
+     "both": 553
+    },
+    "toon": {
+     "none": 280,
+     "comments": 296,
+     "attributes": 296,
+     "both": 312
+    },
+    "akd": {
+     "none": 417,
+     "comments": 426,
+     "attributes": 421,
+     "both": 431
+    },
+    "akcd": {
+     "none": 368,
+     "comments": 374,
+     "attributes": 372,
+     "both": 379
+    }
+   }
+  },
+  {
+   "id": 46,
+   "slug": "ci-failures",
+   "title": "CI: failed runs per branch",
+   "description": "Status is an exit-code-like number.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "How many runs failed on each branch? Most first.",
+   "tokens": {
+    "json": {
+     "none": 668,
+     "comments": 700,
+     "attributes": 705,
+     "both": 737
+    },
+    "toon": {
+     "none": 356,
+     "comments": 388,
+     "attributes": 393,
+     "both": 425
+    },
+    "akd": {
+     "none": 495,
+     "comments": 516,
+     "attributes": 519,
+     "both": 537
+    },
+    "akcd": {
+     "none": 410,
+     "comments": 427,
+     "attributes": 429,
+     "both": 448
+    }
+   }
+  },
+  {
+   "id": 47,
+   "slug": "nutrition-protein",
+   "title": "Nutrition: protein per portion",
+   "description": "Values per 100 g, portions in grams.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).",
+   "tokens": {
+    "json": {
+     "none": 241,
+     "comments": 271,
+     "attributes": 274,
+     "both": 304
+    },
+    "toon": {
+     "none": 206,
+     "comments": 236,
+     "attributes": 239,
+     "both": 269
+    },
+    "akd": {
+     "none": 317,
+     "comments": 334,
+     "attributes": 335,
+     "both": 350
+    },
+    "akcd": {
+     "none": 304,
+     "comments": 318,
+     "attributes": 318,
+     "both": 334
+    }
+   }
+  },
+  {
+   "id": 48,
+   "slug": "orders-meta",
+   "title": "Shop orders: status codes, cents and test orders",
+   "description": "Order status is a code, amounts are in cents, two orders are tests — only the metadata says so.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which real orders (not tests) were refunded, and how much was each in euros?",
+   "tokens": {
+    "json": {
+     "none": 684,
+     "comments": 797,
+     "attributes": 776,
+     "both": 889
+    },
+    "toon": {
+     "none": 377,
+     "comments": 490,
+     "attributes": 469,
+     "both": 582
+    },
+    "akd": {
+     "none": 534,
+     "comments": 618,
+     "attributes": 587,
+     "both": 665
+    },
+    "akcd": {
+     "none": 469,
+     "comments": 547,
+     "attributes": 516,
+     "both": 593
+    }
+   }
+  },
+  {
+   "id": 49,
+   "slug": "sensors-meta",
+   "title": "Sensors: tenths of a degree, UTC times, calibrating",
+   "description": "Temperatures are tenths of °C, times are UTC, two sensors are being calibrated and their values are not valid.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which room was the warmest, using only valid readings? Give the sensor, the room and the temperature in °C.",
+   "tokens": {
+    "json": {
+     "none": 614,
+     "comments": 717,
+     "attributes": 716,
+     "both": 819
+    },
+    "toon": {
+     "none": 414,
+     "comments": 517,
+     "attributes": 516,
+     "both": 619
+    },
+    "akd": {
+     "none": 552,
+     "comments": 626,
+     "attributes": 607,
+     "both": 676
+    },
+    "akcd": {
+     "none": 507,
+     "comments": 576,
+     "attributes": 556,
+     "both": 625
+    }
+   }
+  },
+  {
+   "id": 50,
+   "slug": "staff-meta",
+   "title": "Staff: levels as codes, monthly salaries, contractors",
+   "description": "Level is a code, salary is monthly in PLN, two people are contractors — written only in the metadata.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "List the senior people who are employees (not contractors) with their yearly salary in PLN.",
+   "tokens": {
+    "json": {
+     "none": 558,
+     "comments": 652,
+     "attributes": 677,
+     "both": 771
+    },
+    "toon": {
+     "none": 316,
+     "comments": 410,
+     "attributes": 435,
+     "both": 529
+    },
+    "akd": {
+     "none": 453,
+     "comments": 523,
+     "attributes": 532,
+     "both": 597
+    },
+    "akcd": {
+     "none": 385,
+     "comments": 452,
+     "attributes": 458,
+     "both": 525
+    }
+   }
+  },
+  {
+   "id": 51,
+   "slug": "inventory-meta",
+   "title": "Inventory: reorder levels and discontinued items",
+   "description": "min is the reorder level and two items are discontinued (never reordered) — only the metadata explains it.",
+   "tags": [
+    "metadata",
+    "needs metadata"
+   ],
+   "question": "Which items must be reordered and how many pieces are missing to reach the reorder level?",
+   "tokens": {
+    "json": {
+     "none": 478,
+     "comments": 552,
+     "attributes": 563,
+     "both": 637
+    },
+    "toon": {
+     "none": 283,
+     "comments": 357,
+     "attributes": 368,
+     "both": 442
+    },
+    "akd": {
+     "none": 419,
+     "comments": 471,
+     "attributes": 466,
+     "both": 513
+    },
+    "akcd": {
+     "none": 374,
+     "comments": 423,
+     "attributes": 417,
+     "both": 464
+    }
+   }
+  },
+  {
+   "id": 52,
+   "slug": "users-table",
+   "title": "Flat table: users",
+   "description": "A list of records sharing one header: field names are written once, every record is a (…) tuple in header order.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which active users are admins?",
+   "tokens": {
+    "json": {
+     "none": 271
+    },
+    "toon": {
+     "none": 217
+    },
+    "akd": {
+     "none": 328
+    },
+    "akcd": {
+     "none": 306
+    }
+   }
+  },
+  {
+   "id": 53,
+   "slug": "nested-orders",
+   "title": "Nested records: orders with customer and items",
+   "description": "Headers nest: customer is a record <…> inside the record, items a list of records <[…]>; nested values stay positional.",
+   "tags": [
+    "feature"
+   ],
+   "question": "What is the total (qty × price) of every paid order?",
+   "tokens": {
+    "json": {
+     "none": 383
+    },
+    "toon": {
+     "none": 329
+    },
+    "akd": {
+     "none": 389
+    },
+    "akcd": {
+     "none": 362
+    }
+   }
+  },
+  {
+   "id": 54,
+   "slug": "tool-result",
+   "title": "Agent tool result: web search hits",
+   "description": "A record with simple fields and a list of records — the typical tool output an agent puts back into the context.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which results have a score of at least 0.9?",
+   "tokens": {
+    "json": {
+     "none": 239
+    },
+    "toon": {
+     "none": 227
+    },
+    "akd": {
+     "none": 338
+    },
+    "akcd": {
+     "none": 311
+    }
+   }
+  },
+  {
+   "id": 55,
+   "slug": "time-series",
+   "title": "Time series: a week of metrics",
+   "description": "Numbers stay numbers (no quotes); a time series is just a list of records with a date field.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which day had the most signups, and what was the revenue that day?",
+   "tokens": {
+    "json": {
+     "none": 386
+    },
+    "toon": {
+     "none": 284
+    },
+    "akd": {
+     "none": 404
+    },
+    "akcd": {
+     "none": 374
+    }
+   }
+  },
+  {
+   "id": 56,
+   "slug": "logs",
+   "title": "Logs: which service is failing?",
+   "description": "Repeated rows are where AK-DATA saves most: the five field names appear once instead of eight times.",
+   "tags": [
+    "feature"
+   ],
+   "question": "How many errors does each service have? Most errors first.",
+   "tokens": {
+    "json": {
+     "none": 419
+    },
+    "toon": {
+     "none": 289
+    },
+    "akd": {
+     "none": 407
+    },
+    "akcd": {
+     "none": 371
+    }
+   }
+  },
+  {
+   "id": 57,
+   "slug": "irregular",
+   "title": "Irregular data: a record that does not fit the header",
+   "description": "The third agent has temperature instead of max_steps, so it is written as <any> {key:value} with its own keys — still lossless.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which agent can use the most tools, and how many?",
+   "tokens": {
+    "json": {
+     "none": 213
+    },
+    "toon": {
+     "none": 233
+    },
+    "akd": {
+     "none": 324
+    },
+    "akcd": {
+     "none": 304
+    }
+   }
+  },
+  {
+   "id": 58,
+   "slug": "type-override",
+   "title": "Type overrides: values that differ from the header",
+   "description": "When one value has another type than its column, it is prefixed with <type> — <number> 3001, <string> \"on order\"; null fits every type.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which products cannot be sold right now (no price, no stock, or stock not a number)?",
+   "tokens": {
+    "json": {
+     "none": 206
+    },
+    "toon": {
+     "none": 200
+    },
+    "akd": {
+     "none": 308
+    },
+    "akcd": {
+     "none": 298
+    }
+   }
+  },
+  {
+   "id": 59,
+   "slug": "lists-in-records",
+   "title": "Lists inside records: repositories with topics",
+   "description": "A field can hold a list of values: topics:[string] in the header, [\"llm\",\"rust\"] or [] in the record.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which repositories that are not archived have the topic rust? Most stars first.",
+   "tokens": {
+    "json": {
+     "none": 276
+    },
+    "toon": {
+     "none": 281
+    },
+    "akd": {
+     "none": 325
+    },
+    "akcd": {
+     "none": 315
+    }
+   }
+  },
+  {
+   "id": 60,
+   "slug": "matrix",
+   "title": "Lists of lists: a distance matrix",
+   "description": "Nested lists need no header beyond [[number]]: rows are plain [ … ] lists.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which two cities are farthest apart, and how far?",
+   "tokens": {
+    "json": {
+     "none": 187
+    },
+    "toon": {
+     "none": 216
+    },
+    "akd": {
+     "none": 310
+    },
+    "akcd": {
+     "none": 285
+    }
+   }
+  },
+  {
+   "id": 61,
+   "slug": "nulls",
+   "title": "Missing values: support tickets",
+   "description": "A nested record that is missing is <null> null (or null): the header still describes the record when it is there.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which urgent tickets have nobody assigned?",
+   "tokens": {
+    "json": {
+     "none": 278
+    },
+    "toon": {
+     "none": 285
+    },
+    "akd": {
+     "none": 333
+    },
+    "akcd": {
+     "none": 313
+    }
+   }
+  },
+  {
+   "id": 62,
+   "slug": "special-names",
+   "title": "Names with spaces and symbols",
+   "description": "Field names that are not simple identifiers go in backticks: `user id`, `e-mail`, `2fa`.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which users do not have 2FA enabled?",
+   "tokens": {
+    "json": {
+     "none": 190
+    },
+    "toon": {
+     "none": 201
+    },
+    "akd": {
+     "none": 300
+    },
+    "akcd": {
+     "none": 296
+    }
+   }
+  },
+  {
+   "id": 63,
+   "slug": "named-types",
+   "title": "Named types: @User defined once, used three times",
+   "description": "@User<…> names a header; lead:@User and members:[@User] reuse it. Hand-written AK-DATA (the encoder writes inline headers).",
+   "tags": [
+    "feature",
+    "metadata"
+   ],
+   "question": "How many people are in the team, including the lead? Give the team name too.",
+   "tokens": {
+    "json": {
+     "none": 197,
+     "comments": 213,
+     "attributes": 197,
+     "both": 213
+    },
+    "toon": {
+     "none": 214,
+     "comments": 230,
+     "attributes": 214,
+     "both": 230
+    },
+    "akd": {
+     "none": 312,
+     "comments": 324,
+     "attributes": 312,
+     "both": 324
+    },
+    "akcd": {
+     "none": 296,
+     "comments": 308,
+     "attributes": 296,
+     "both": 308
+    }
+   }
+  },
+  {
+   "id": 64,
+   "slug": "metadata",
+   "title": "Comments, attributes and tags",
+   "description": "/* comments */, $attr=value, #tags and // … // blocks are notes for the reader: they are skipped when decoding, the data is unchanged.",
+   "tags": [
+    "feature",
+    "metadata"
+   ],
+   "question": "What is the total monthly revenue (mrr) per plan? Highest first.",
+   "tokens": {
+    "json": {
+     "none": 205,
+     "comments": 224,
+     "attributes": 248,
+     "both": 267
+    },
+    "toon": {
+     "none": 196,
+     "comments": 215,
+     "attributes": 239,
+     "both": 258
+    },
+    "akd": {
+     "none": 293,
+     "comments": 310,
+     "attributes": 331,
+     "both": 343
+    },
+    "akcd": {
+     "none": 276,
+     "comments": 291,
+     "attributes": 310,
+     "both": 325
+    }
+   }
+  },
+  {
+   "id": 65,
+   "slug": "schema-metadata",
+   "title": "Schema and instance metadata",
+   "description": "Metadata on the header ($required, $unit, $maxItems, comments) describes every record; metadata on a value ($verified, #featured, #discontinued) describes one record. Both are skipped when decoding — the JSON is the same — but a model reads them.",
+   "tags": [
+    "feature",
+    "metadata"
+   ],
+   "question": "Which products are verified and not discontinued? Give the sku and the price in EUR.",
+   "tokens": {
+    "json": {
+     "none": 231,
+     "comments": 278,
+     "attributes": 303,
+     "both": 350
+    },
+    "toon": {
+     "none": 252,
+     "comments": 299,
+     "attributes": 324,
+     "both": 371
+    },
+    "akd": {
+     "none": 317,
+     "comments": 366,
+     "attributes": 374,
+     "both": 417
+    },
+    "akcd": {
+     "none": 308,
+     "comments": 351,
+     "attributes": 358,
+     "both": 401
+    }
+   }
+  },
+  {
+   "id": 66,
+   "slug": "calendar",
+   "title": "Calendar: lists of [start, end] pairs",
+   "description": "Records can hold lists of lists; the header says busy:[[string]] once for every person.",
+   "tags": [
+    "feature"
+   ],
+   "question": "Which full hours (start on the hour, 60 minutes) are free for everyone?",
+   "tokens": {
+    "json": {
+     "none": 243
+    },
+    "toon": {
+     "none": 282
+    },
+    "akd": {
+     "none": 335
+    },
+    "akcd": {
+     "none": 324
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,153 @@
+{
+  "id": 11,
+  "slug": "invoices-overdue",
+  "title": "Invoices: overdue and unpaid",
+  "description": "Amounts in grosze and status codes 0/1/2 — explained only in the metadata.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which invoices are unpaid and overdue on 2026-10-20? Give the number and the gross amount in PLN.",
+  "answer": {
+    "name": "overdue",
+    "fields": [
+      [
+        "no",
+        "string"
+      ],
+      [
+        "pln",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "no": "FV/010/2026",
+      "pln": 5796.0
+    },
+    {
+      "no": "FV/014/2026",
+      "pln": 3589.5
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Sales invoices. Amounts are in grosze (1/100 PLN).",
+      "`invoices.gross`: gross amount in grosze (12350 = 123.50 PLN)",
+      "`invoices.st`: status: 0 unpaid, 1 paid, 2 cancelled",
+      "`invoices.due`: payment due date"
+    ],
+    "attributes": [
+      "document: $currency=\"PLN\" $as_of=\"2026-10-20\" #ledger",
+      "`invoices.gross`: $unit=\"grosze\"",
+      "`invoices.st`: $enum=\"0=unpaid,1=paid,2=cancelled\"",
+      "`invoices.due`: $format=\"YYYY-MM-DD\""
+    ]
+  },
+  "akd_meta": "// $currency=\"PLN\" $as_of=\"2026-10-20\" #ledger // /* Sales invoices. Amounts are in grosze (1/100 PLN). */ <invoices:<[no:string,client:string,gross:number $unit=\"grosze\" /* gross amount in grosze (12350 = 123.50 PLN) */,due:string $format=\"YYYY-MM-DD\" /* payment due date */,st:number $enum=\"0=unpaid,1=paid,2=cancelled\" /* status: 0 unpaid, 1 paid, 2 cancelled */]>>([(\"FV/001/2026\",\"Acme\",468800,\"2026-10-20\",1),(\"FV/002/2026\",\"Globex\",33550,\"2026-10-02\",1),(\"FV/003/2026\",\"Initech\",715150,\"2026-10-26\",1),(\"FV/004/2026\",\"Umbrella\",865700,\"2026-10-25\",1),(\"FV/005/2026\",\"Hooli\",788850,\"2026-10-07\",2),(\"FV/006/2026\",\"Stark\",581350,\"2026-10-27\",1),(\"FV/007/2026\",\"Wayne\",295650,\"2026-10-23\",0),(\"FV/008/2026\",\"Tyrell\",458450,\"2026-10-02\",1),(\"FV/009/2026\",\"Soylent\",187800,\"2026-10-26\",1),(\"FV/010/2026\",\"Wonka\",579600,\"2026-10-07\",0),(\"FV/011/2026\",\"Cyberdyne\",493250,\"2026-10-26\",2),(\"FV/012/2026\",\"Vandelay\",483350,\"2026-10-16\",1),(\"FV/013/2026\",\"Acme\",77100,\"2026-10-24\",1),(\"FV/014/2026\",\"Globex\",358950,\"2026-10-18\",0)])",
+  "data": {
+    "invoices": [
+      {
+        "no": "FV/001/2026",
+        "client": "Acme",
+        "gross": 468800,
+        "due": "2026-10-20",
+        "st": 1
+      },
+      {
+        "no": "FV/002/2026",
+        "client": "Globex",
+        "gross": 33550,
+        "due": "2026-10-02",
+        "st": 1
+      },
+      {
+        "no": "FV/003/2026",
+        "client": "Initech",
+        "gross": 715150,
+        "due": "2026-10-26",
+        "st": 1
+      },
+      {
+        "no": "FV/004/2026",
+        "client": "Umbrella",
+        "gross": 865700,
+        "due": "2026-10-25",
+        "st": 1
+      },
+      {
+        "no": "FV/005/2026",
+        "client": "Hooli",
+        "gross": 788850,
+        "due": "2026-10-07",
+        "st": 2
+      },
+      {
+        "no": "FV/006/2026",
+        "client": "Stark",
+        "gross": 581350,
+        "due": "2026-10-27",
+        "st": 1
+      },
+      {
+        "no": "FV/007/2026",
+        "client": "Wayne",
+        "gross": 295650,
+        "due": "2026-10-23",
+        "st": 0
+      },
+      {
+        "no": "FV/008/2026",
+        "client": "Tyrell",
+        "gross": 458450,
+        "due": "2026-10-02",
+        "st": 1
+      },
+      {
+        "no": "FV/009/2026",
+        "client": "Soylent",
+        "gross": 187800,
+        "due": "2026-10-26",
+        "st": 1
+      },
+      {
+        "no": "FV/010/2026",
+        "client": "Wonka",
+        "gross": 579600,
+        "due": "2026-10-07",
+        "st": 0
+      },
+      {
+        "no": "FV/011/2026",
+        "client": "Cyberdyne",
+        "gross": 493250,
+        "due": "2026-10-26",
+        "st": 2
+      },
+      {
+        "no": "FV/012/2026",
+        "client": "Vandelay",
+        "gross": 483350,
+        "due": "2026-10-16",
+        "st": 1
+      },
+      {
+        "no": "FV/013/2026",
+        "client": "Acme",
+        "gross": 77100,
+        "due": "2026-10-24",
+        "st": 1
+      },
+      {
+        "no": "FV/014/2026",
+        "client": "Globex",
+        "gross": 358950,
+        "due": "2026-10-18",
+        "st": 0
+      }
+    ]
+  }
+}

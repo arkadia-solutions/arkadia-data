@@ -1,0 +1,30 @@
+The data below is in JSON.
+
+<data>
+{
+  "rows": [
+    {
+      "user id": 17,
+      "e-mail": "ada@example.com",
+      "2fa": true,
+      "last login": "2026-10-28"
+    },
+    {
+      "user id": 18,
+      "e-mail": "alan@example.com",
+      "2fa": false,
+      "last login": "2026-09-02"
+    },
+    {
+      "user id": 19,
+      "e-mail": "grace@example.com",
+      "2fa": false,
+      "last login": "2026-10-27"
+    }
+  ]
+}
+</data>
+
+Question: Which users do not have 2FA enabled?
+
+Answer with JSON only (no prose): {"no_2fa": [{"user_id": <number>, "email": <string>}, ...]}

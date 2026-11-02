@@ -1,0 +1,12 @@
+{
+  "recipes": [
+    {
+      "name": "Tomato soup",
+      "minutes": 35
+    },
+    {
+      "name": "Omelette",
+      "minutes": 10
+    }
+  ]
+}

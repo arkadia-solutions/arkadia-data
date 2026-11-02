@@ -1,0 +1,27 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `records.ttl`: time to live in seconds
+
+Attributes of the data:
+- document: $zone="arkadia.solutions"
+- `records.ttl`: $unit="s"
+
+<data>
+records[6]{name,type,value,ttl}:
+  @,A,203.0.113.10,3600
+  www,CNAME,arkadia.solutions.,3600
+  api,A,203.0.113.22,60
+  @,MX,10 mail.example.net.,14400
+  status,CNAME,status.example.io.,120
+  _dmarc,TXT,v=DMARC1; p=none,300
+</data>
+
+Question: Which records have a TTL below 300 seconds?
+
+Answer in TOON only (no prose, no code fences): short[N]{name,type,ttl}: followed by one row per item.

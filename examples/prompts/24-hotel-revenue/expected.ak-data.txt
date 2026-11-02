@@ -1,0 +1,1 @@
+<revenue:<[room:string,revenue:number]>>([("double",13820),("single",6420),("suite",2960)])

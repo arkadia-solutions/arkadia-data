@@ -1,0 +1,120 @@
+The data below is in JSON.
+
+<data>
+{
+  "films": [
+    {
+      "title": "Solaris",
+      "year": 2013,
+      "rating": 6.5,
+      "genres": [
+        "history",
+        "drama"
+      ]
+    },
+    {
+      "title": "Stalker",
+      "year": 1995,
+      "rating": 8.1,
+      "genres": [
+        "thriller",
+        "sci-fi"
+      ]
+    },
+    {
+      "title": "Ida",
+      "year": 1971,
+      "rating": 7.4,
+      "genres": [
+        "thriller",
+        "drama"
+      ]
+    },
+    {
+      "title": "Cold War",
+      "year": 1993,
+      "rating": 6.6,
+      "genres": [
+        "sci-fi",
+        "war"
+      ]
+    },
+    {
+      "title": "Decalogue",
+      "year": 1998,
+      "rating": 6.4,
+      "genres": [
+        "drama",
+        "war"
+      ]
+    },
+    {
+      "title": "Blind Chance",
+      "year": 1984,
+      "rating": 8.6,
+      "genres": [
+        "sci-fi",
+        "drama"
+      ]
+    },
+    {
+      "title": "The Pianist",
+      "year": 1962,
+      "rating": 8.4,
+      "genres": [
+        "thriller",
+        "sci-fi"
+      ]
+    },
+    {
+      "title": "Knife in the Water",
+      "year": 2004,
+      "rating": 8.9,
+      "genres": [
+        "history",
+        "thriller"
+      ]
+    },
+    {
+      "title": "Ashes and Diamonds",
+      "year": 2019,
+      "rating": 6.8,
+      "genres": [
+        "war",
+        "thriller"
+      ]
+    },
+    {
+      "title": "Man of Marble",
+      "year": 1998,
+      "rating": 7.0,
+      "genres": [
+        "sci-fi",
+        "drama"
+      ]
+    },
+    {
+      "title": "Corpus Christi",
+      "year": 1984,
+      "rating": 7.7,
+      "genres": [
+        "war",
+        "history"
+      ]
+    },
+    {
+      "title": "EO",
+      "year": 1968,
+      "rating": 8.1,
+      "genres": [
+        "sci-fi",
+        "war"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which film tagged drama has the highest rating? Give the title, year and rating.
+
+Answer with JSON only (no prose): {"best": [{"title": <string>, "year": <number>, "rating": <number>}, ...]}

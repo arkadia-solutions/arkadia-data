@@ -1,0 +1,454 @@
+{
+  "id": 6,
+  "slug": "repositories-filter",
+  "title": "Developer data: filter repositories",
+  "description": "30 repositories with topic lists. Multi-condition filter and sort.",
+  "tags": [],
+  "needs_meta": false,
+  "question": "List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.",
+  "answer": {
+    "name": "result",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "language",
+        "string"
+      ],
+      [
+        "stars",
+        "number"
+      ],
+      [
+        "license",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "open-parser-22",
+      "language": "Rust",
+      "stars": 88594,
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "deep-agent-9",
+      "language": "Python",
+      "stars": 85505,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "smart-store-5",
+      "language": "Rust",
+      "stars": 81958,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "smart-parser-1",
+      "language": "Python",
+      "stars": 67210,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "tiny-store-23",
+      "language": "Rust",
+      "stars": 43981,
+      "license": "MIT"
+    },
+    {
+      "name": "tiny-store-18",
+      "language": "Rust",
+      "stars": 25014,
+      "license": null
+    },
+    {
+      "name": "smart-parser-7",
+      "language": "Python",
+      "stars": 23853,
+      "license": "Apache-2.0"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "data": {
+    "repositories": [
+      {
+        "name": "smart-parser-1",
+        "stars": 67210,
+        "forks": 8343,
+        "language": "Python",
+        "license": "GPL-3.0",
+        "topics": [
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-kit-2",
+        "stars": 12579,
+        "forks": 5161,
+        "language": "TypeScript",
+        "license": "GPL-3.0",
+        "topics": [
+          "security",
+          "parser"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-agent-3",
+        "stars": 54543,
+        "forks": 1178,
+        "language": "TypeScript",
+        "license": "MIT",
+        "topics": [
+          "agents"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-agent-4",
+        "stars": 14909,
+        "forks": 1666,
+        "language": "Java",
+        "license": "MIT",
+        "topics": [
+          "web",
+          "agents",
+          "database",
+          "cli"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-store-5",
+        "stars": 81958,
+        "forks": 8187,
+        "language": "Rust",
+        "license": "GPL-3.0",
+        "topics": [
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-agent-6",
+        "stars": 79976,
+        "forks": 1334,
+        "language": "Go",
+        "license": null,
+        "topics": [
+          "tooling",
+          "security",
+          "llm",
+          "web"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-parser-7",
+        "stars": 23853,
+        "forks": 238,
+        "language": "Python",
+        "license": "Apache-2.0",
+        "topics": [
+          "database",
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-agent-8",
+        "stars": 89148,
+        "forks": 5768,
+        "language": "Java",
+        "license": "MIT",
+        "topics": [
+          "database",
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "deep-agent-9",
+        "stars": 85505,
+        "forks": 7851,
+        "language": "Python",
+        "license": "GPL-3.0",
+        "topics": [
+          "security"
+        ],
+        "archived": false
+      },
+      {
+        "name": "fast-agent-10",
+        "stars": 63508,
+        "forks": 5897,
+        "language": "C++",
+        "license": "GPL-3.0",
+        "topics": [
+          "security"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-store-11",
+        "stars": 86776,
+        "forks": 1714,
+        "language": "Go",
+        "license": null,
+        "topics": [
+          "tooling",
+          "security",
+          "web"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-flow-12",
+        "stars": 59212,
+        "forks": 2934,
+        "language": "C++",
+        "license": "MIT",
+        "topics": [
+          "agents",
+          "database"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-store-13",
+        "stars": 32267,
+        "forks": 877,
+        "language": "TypeScript",
+        "license": "GPL-3.0",
+        "topics": [
+          "security"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-kit-14",
+        "stars": 6872,
+        "forks": 6302,
+        "language": "Python",
+        "license": "Apache-2.0",
+        "topics": [
+          "tooling",
+          "agents",
+          "security",
+          "cli"
+        ],
+        "archived": true
+      },
+      {
+        "name": "open-parser-15",
+        "stars": 60136,
+        "forks": 2205,
+        "language": "C++",
+        "license": "MIT",
+        "topics": [
+          "llm",
+          "web",
+          "database"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-flow-16",
+        "stars": 61996,
+        "forks": 2100,
+        "language": "C++",
+        "license": "MIT",
+        "topics": [
+          "cli",
+          "agents",
+          "parser"
+        ],
+        "archived": false
+      },
+      {
+        "name": "deep-parser-17",
+        "stars": 68114,
+        "forks": 597,
+        "language": "Java",
+        "license": "GPL-3.0",
+        "topics": [
+          "ai"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-store-18",
+        "stars": 25014,
+        "forks": 4541,
+        "language": "Rust",
+        "license": null,
+        "topics": [
+          "parser",
+          "llm",
+          "cli"
+        ],
+        "archived": false
+      },
+      {
+        "name": "smart-kit-19",
+        "stars": 59937,
+        "forks": 8667,
+        "language": "Go",
+        "license": "Apache-2.0",
+        "topics": [
+          "ai",
+          "web"
+        ],
+        "archived": false
+      },
+      {
+        "name": "fast-agent-20",
+        "stars": 39908,
+        "forks": 787,
+        "language": "TypeScript",
+        "license": null,
+        "topics": [
+          "ai"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-flow-21",
+        "stars": 57303,
+        "forks": 252,
+        "language": "C++",
+        "license": "GPL-3.0",
+        "topics": [
+          "llm",
+          "tooling",
+          "agents"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-parser-22",
+        "stars": 88594,
+        "forks": 811,
+        "language": "Rust",
+        "license": "Apache-2.0",
+        "topics": [
+          "parser",
+          "web",
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-store-23",
+        "stars": 43981,
+        "forks": 8234,
+        "language": "Rust",
+        "license": "MIT",
+        "topics": [
+          "parser",
+          "llm"
+        ],
+        "archived": false
+      },
+      {
+        "name": "fast-store-24",
+        "stars": 55997,
+        "forks": 8779,
+        "language": "Java",
+        "license": "GPL-3.0",
+        "topics": [
+          "cli",
+          "tooling",
+          "parser"
+        ],
+        "archived": false
+      },
+      {
+        "name": "deep-store-25",
+        "stars": 65252,
+        "forks": 3687,
+        "language": "Go",
+        "license": "Apache-2.0",
+        "topics": [
+          "agents",
+          "cli"
+        ],
+        "archived": false
+      },
+      {
+        "name": "fast-flow-26",
+        "stars": 76617,
+        "forks": 3020,
+        "language": "Java",
+        "license": "Apache-2.0",
+        "topics": [
+          "web",
+          "security"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-kit-27",
+        "stars": 33701,
+        "forks": 578,
+        "language": "Java",
+        "license": "Apache-2.0",
+        "topics": [
+          "cli",
+          "ai"
+        ],
+        "archived": false
+      },
+      {
+        "name": "tiny-store-28",
+        "stars": 34283,
+        "forks": 5766,
+        "language": "Go",
+        "license": "MIT",
+        "topics": [
+          "web",
+          "tooling",
+          "parser"
+        ],
+        "archived": false
+      },
+      {
+        "name": "open-agent-29",
+        "stars": 34728,
+        "forks": 5836,
+        "language": "TypeScript",
+        "license": "GPL-3.0",
+        "topics": [
+          "cli",
+          "web",
+          "parser",
+          "agents"
+        ],
+        "archived": false
+      },
+      {
+        "name": "fast-agent-30",
+        "stars": 58453,
+        "forks": 1288,
+        "language": "Java",
+        "license": "GPL-3.0",
+        "topics": [
+          "web",
+          "tooling",
+          "database",
+          "agents"
+        ],
+        "archived": false
+      }
+    ]
+  }
+}

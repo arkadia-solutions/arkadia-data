@@ -1,0 +1,135 @@
+{
+ "id": 42,
+ "slug": "parking-free",
+ "title": "Parking: free spots per level",
+ "description": "Occupancy as 0/1.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "How many spots are free on each level?",
+ "tokens": {
+  "json": {
+   "none": 580,
+   "comments": 599,
+   "attributes": 602,
+   "both": 621
+  },
+  "toon": {
+   "none": 321,
+   "comments": 340,
+   "attributes": 343,
+   "both": 362
+  },
+  "akd": {
+   "none": 476,
+   "comments": 485,
+   "attributes": 486,
+   "both": 499
+  },
+  "akcd": {
+   "none": 427,
+   "comments": 436,
+   "attributes": 437,
+   "both": 447
+  }
+ },
+ "answer": {
+  "name": "free",
+  "fields": [
+   [
+    "level",
+    "string"
+   ],
+   [
+    "free",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "level": "P1",
+   "free": 2
+  },
+  {
+   "level": "P2",
+   "free": 2
+  },
+  {
+   "level": "P3",
+   "free": 1
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`spots.occ`: 0 free, 1 occupied"
+  ],
+  "attributes": [
+   "`spots.occ`: $enum=\"0=free,1=occupied\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"spots\": [\n    {\n      \"spot\": \"P1-01\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-02\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-03\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-04\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-05\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-06\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-01\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-02\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-03\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-04\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-05\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-06\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-01\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-02\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-03\",\n      \"level\": \"P3\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P3-04\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-05\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-06\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    }\n  ]\n}\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer with JSON only (no prose): {\"free\": [{\"level\": <string>, \"free\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `spots.occ`: 0 free, 1 occupied\n\n<data>\n{\n  \"spots\": [\n    {\n      \"spot\": \"P1-01\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-02\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-03\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-04\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-05\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-06\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-01\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-02\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-03\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-04\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-05\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-06\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-01\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-02\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-03\",\n      \"level\": \"P3\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P3-04\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-05\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-06\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    }\n  ]\n}\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer with JSON only (no prose): {\"free\": [{\"level\": <string>, \"free\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `spots.occ`: $enum=\"0=free,1=occupied\"\n\n<data>\n{\n  \"spots\": [\n    {\n      \"spot\": \"P1-01\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-02\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-03\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-04\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-05\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-06\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-01\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-02\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-03\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-04\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-05\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-06\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-01\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-02\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-03\",\n      \"level\": \"P3\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P3-04\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-05\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-06\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    }\n  ]\n}\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer with JSON only (no prose): {\"free\": [{\"level\": <string>, \"free\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `spots.occ`: 0 free, 1 occupied\n\nAttributes of the data:\n- `spots.occ`: $enum=\"0=free,1=occupied\"\n\n<data>\n{\n  \"spots\": [\n    {\n      \"spot\": \"P1-01\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-02\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-03\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P1-04\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-05\",\n      \"level\": \"P1\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P1-06\",\n      \"level\": \"P1\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-01\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-02\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-03\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-04\",\n      \"level\": \"P2\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P2-05\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P2-06\",\n      \"level\": \"P2\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-01\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-02\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-03\",\n      \"level\": \"P3\",\n      \"occ\": 0\n    },\n    {\n      \"spot\": \"P3-04\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-05\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    },\n    {\n      \"spot\": \"P3-06\",\n      \"level\": \"P3\",\n      \"occ\": 1\n    }\n  ]\n}\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer with JSON only (no prose): {\"free\": [{\"level\": <string>, \"free\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nspots[18]{spot,level,occ}:\n  P1-01,P1,1\n  P1-02,P1,1\n  P1-03,P1,1\n  P1-04,P1,0\n  P1-05,P1,0\n  P1-06,P1,1\n  P2-01,P2,1\n  P2-02,P2,1\n  P2-03,P2,0\n  P2-04,P2,0\n  P2-05,P2,1\n  P2-06,P2,1\n  P3-01,P3,1\n  P3-02,P3,1\n  P3-03,P3,0\n  P3-04,P3,1\n  P3-05,P3,1\n  P3-06,P3,1\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in TOON only (no prose, no code fences): free[N]{level,free}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `spots.occ`: 0 free, 1 occupied\n\n<data>\nspots[18]{spot,level,occ}:\n  P1-01,P1,1\n  P1-02,P1,1\n  P1-03,P1,1\n  P1-04,P1,0\n  P1-05,P1,0\n  P1-06,P1,1\n  P2-01,P2,1\n  P2-02,P2,1\n  P2-03,P2,0\n  P2-04,P2,0\n  P2-05,P2,1\n  P2-06,P2,1\n  P3-01,P3,1\n  P3-02,P3,1\n  P3-03,P3,0\n  P3-04,P3,1\n  P3-05,P3,1\n  P3-06,P3,1\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in TOON only (no prose, no code fences): free[N]{level,free}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `spots.occ`: $enum=\"0=free,1=occupied\"\n\n<data>\nspots[18]{spot,level,occ}:\n  P1-01,P1,1\n  P1-02,P1,1\n  P1-03,P1,1\n  P1-04,P1,0\n  P1-05,P1,0\n  P1-06,P1,1\n  P2-01,P2,1\n  P2-02,P2,1\n  P2-03,P2,0\n  P2-04,P2,0\n  P2-05,P2,1\n  P2-06,P2,1\n  P3-01,P3,1\n  P3-02,P3,1\n  P3-03,P3,0\n  P3-04,P3,1\n  P3-05,P3,1\n  P3-06,P3,1\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in TOON only (no prose, no code fences): free[N]{level,free}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `spots.occ`: 0 free, 1 occupied\n\nAttributes of the data:\n- `spots.occ`: $enum=\"0=free,1=occupied\"\n\n<data>\nspots[18]{spot,level,occ}:\n  P1-01,P1,1\n  P1-02,P1,1\n  P1-03,P1,1\n  P1-04,P1,0\n  P1-05,P1,0\n  P1-06,P1,1\n  P2-01,P2,1\n  P2-02,P2,1\n  P2-03,P2,0\n  P2-04,P2,0\n  P2-05,P2,1\n  P2-06,P2,1\n  P3-01,P3,1\n  P3-02,P3,1\n  P3-03,P3,0\n  P3-04,P3,1\n  P3-05,P3,1\n  P3-06,P3,1\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in TOON only (no prose, no code fences): free[N]{level,free}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string, level:string, occ:number]>>\n([\n  (\"P1-01\", \"P1\", 1),\n  (\"P1-02\", \"P1\", 1),\n  (\"P1-03\", \"P1\", 1),\n  (\"P1-04\", \"P1\", 0),\n  (\"P1-05\", \"P1\", 0),\n  (\"P1-06\", \"P1\", 1),\n  (\"P2-01\", \"P2\", 1),\n  (\"P2-02\", \"P2\", 1),\n  (\"P2-03\", \"P2\", 0),\n  (\"P2-04\", \"P2\", 0),\n  (\"P2-05\", \"P2\", 1),\n  (\"P2-06\", \"P2\", 1),\n  (\"P3-01\", \"P3\", 1),\n  (\"P3-02\", \"P3\", 1),\n  (\"P3-03\", \"P3\", 0),\n  (\"P3-04\", \"P3\", 1),\n  (\"P3-05\", \"P3\", 1),\n  (\"P3-06\", \"P3\", 1)\n])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string, level:string, occ:number /* 0 free, 1 occupied */]>>\n([\n  (\"P1-01\", \"P1\", 1),\n  (\"P1-02\", \"P1\", 1),\n  (\"P1-03\", \"P1\", 1),\n  (\"P1-04\", \"P1\", 0),\n  (\"P1-05\", \"P1\", 0),\n  (\"P1-06\", \"P1\", 1),\n  (\"P2-01\", \"P2\", 1),\n  (\"P2-02\", \"P2\", 1),\n  (\"P2-03\", \"P2\", 0),\n  (\"P2-04\", \"P2\", 0),\n  (\"P2-05\", \"P2\", 1),\n  (\"P2-06\", \"P2\", 1),\n  (\"P3-01\", \"P3\", 1),\n  (\"P3-02\", \"P3\", 1),\n  (\"P3-03\", \"P3\", 0),\n  (\"P3-04\", \"P3\", 1),\n  (\"P3-05\", \"P3\", 1),\n  (\"P3-06\", \"P3\", 1)\n])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string, level:string, occ:number $enum=\"0=free,1=occupied\"]>>\n([\n  (\"P1-01\", \"P1\", 1),\n  (\"P1-02\", \"P1\", 1),\n  (\"P1-03\", \"P1\", 1),\n  (\"P1-04\", \"P1\", 0),\n  (\"P1-05\", \"P1\", 0),\n  (\"P1-06\", \"P1\", 1),\n  (\"P2-01\", \"P2\", 1),\n  (\"P2-02\", \"P2\", 1),\n  (\"P2-03\", \"P2\", 0),\n  (\"P2-04\", \"P2\", 0),\n  (\"P2-05\", \"P2\", 1),\n  (\"P2-06\", \"P2\", 1),\n  (\"P3-01\", \"P3\", 1),\n  (\"P3-02\", \"P3\", 1),\n  (\"P3-03\", \"P3\", 0),\n  (\"P3-04\", \"P3\", 1),\n  (\"P3-05\", \"P3\", 1),\n  (\"P3-06\", \"P3\", 1)\n])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[\n  spot:string,\n  level:string,\n  occ:number $enum=\"0=free,1=occupied\" /* 0 free, 1 occupied */\n]>>\n([\n  (\"P1-01\", \"P1\", 1),\n  (\"P1-02\", \"P1\", 1),\n  (\"P1-03\", \"P1\", 1),\n  (\"P1-04\", \"P1\", 0),\n  (\"P1-05\", \"P1\", 0),\n  (\"P1-06\", \"P1\", 1),\n  (\"P2-01\", \"P2\", 1),\n  (\"P2-02\", \"P2\", 1),\n  (\"P2-03\", \"P2\", 0),\n  (\"P2-04\", \"P2\", 0),\n  (\"P2-05\", \"P2\", 1),\n  (\"P2-06\", \"P2\", 1),\n  (\"P3-01\", \"P3\", 1),\n  (\"P3-02\", \"P3\", 1),\n  (\"P3-03\", \"P3\", 0),\n  (\"P3-04\", \"P3\", 1),\n  (\"P3-05\", \"P3\", 1),\n  (\"P3-06\", \"P3\", 1)\n])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string,level:string,occ:number]>>([(\"P1-01\",\"P1\",1),(\"P1-02\",\"P1\",1),(\"P1-03\",\"P1\",1),(\"P1-04\",\"P1\",0),(\"P1-05\",\"P1\",0),(\"P1-06\",\"P1\",1),(\"P2-01\",\"P2\",1),(\"P2-02\",\"P2\",1),(\"P2-03\",\"P2\",0),(\"P2-04\",\"P2\",0),(\"P2-05\",\"P2\",1),(\"P2-06\",\"P2\",1),(\"P3-01\",\"P3\",1),(\"P3-02\",\"P3\",1),(\"P3-03\",\"P3\",0),(\"P3-04\",\"P3\",1),(\"P3-05\",\"P3\",1),(\"P3-06\",\"P3\",1)])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string,level:string,occ:number /* 0 free, 1 occupied */]>>([(\"P1-01\",\"P1\",1),(\"P1-02\",\"P1\",1),(\"P1-03\",\"P1\",1),(\"P1-04\",\"P1\",0),(\"P1-05\",\"P1\",0),(\"P1-06\",\"P1\",1),(\"P2-01\",\"P2\",1),(\"P2-02\",\"P2\",1),(\"P2-03\",\"P2\",0),(\"P2-04\",\"P2\",0),(\"P2-05\",\"P2\",1),(\"P2-06\",\"P2\",1),(\"P3-01\",\"P3\",1),(\"P3-02\",\"P3\",1),(\"P3-03\",\"P3\",0),(\"P3-04\",\"P3\",1),(\"P3-05\",\"P3\",1),(\"P3-06\",\"P3\",1)])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string,level:string,occ:number $enum=\"0=free,1=occupied\"]>>([(\"P1-01\",\"P1\",1),(\"P1-02\",\"P1\",1),(\"P1-03\",\"P1\",1),(\"P1-04\",\"P1\",0),(\"P1-05\",\"P1\",0),(\"P1-06\",\"P1\",1),(\"P2-01\",\"P2\",1),(\"P2-02\",\"P2\",1),(\"P2-03\",\"P2\",0),(\"P2-04\",\"P2\",0),(\"P2-05\",\"P2\",1),(\"P2-06\",\"P2\",1),(\"P3-01\",\"P3\",1),(\"P3-02\",\"P3\",1),(\"P3-03\",\"P3\",0),(\"P3-04\",\"P3\",1),(\"P3-05\",\"P3\",1),(\"P3-06\",\"P3\",1)])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<spots:<[spot:string,level:string,occ:number $enum=\"0=free,1=occupied\" /* 0 free, 1 occupied */]>>([(\"P1-01\",\"P1\",1),(\"P1-02\",\"P1\",1),(\"P1-03\",\"P1\",1),(\"P1-04\",\"P1\",0),(\"P1-05\",\"P1\",0),(\"P1-06\",\"P1\",1),(\"P2-01\",\"P2\",1),(\"P2-02\",\"P2\",1),(\"P2-03\",\"P2\",0),(\"P2-04\",\"P2\",0),(\"P2-05\",\"P2\",1),(\"P2-06\",\"P2\",1),(\"P3-01\",\"P3\",1),(\"P3-02\",\"P3\",1),(\"P3-03\",\"P3\",0),(\"P3-04\",\"P3\",1),(\"P3-05\",\"P3\",1),(\"P3-06\",\"P3\",1)])\n</data>\n\nQuestion: How many spots are free on each level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[level:string,free:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 531,
+   "comments": 531,
+   "attributes": 531,
+   "both": 531
+  },
+  "toon": {
+   "none": 190,
+   "comments": 190,
+   "attributes": 190,
+   "both": 190
+  },
+  "akd": {
+   "none": 268,
+   "comments": 277,
+   "attributes": 278,
+   "both": 291
+  },
+  "akcd": {
+   "none": 213,
+   "comments": 222,
+   "attributes": 223,
+   "both": 233
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"free\": [\n    {\n      \"level\": \"P1\",\n      \"free\": 2\n    },\n    {\n      \"level\": \"P2\",\n      \"free\": 2\n    },\n    {\n      \"level\": \"P3\",\n      \"free\": 1\n    }\n  ]\n}",
+  "akcd": "<free:<[level:string,free:number]>>([(\"P1\",2),(\"P2\",2),(\"P3\",1)])",
+  "toon": "free[3]{level,free}:\n  P1,2\n  P2,2\n  P3,1"
+ },
+ "answer_tokens": {
+  "json": 66,
+  "akcd": 30,
+  "toon": 26
+ }
+}

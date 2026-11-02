@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<orders:<[id:string,status:string,customer:<id:number,name:string,country:string>,items:<[sku:string,qty:number,price:number]>]>>([("ORD-1001","paid",(7,"Hedy Johnson","PL"),[("KB-01",2,89.0),("MS-02",1,39.5)]),("ORD-1002","pending",(9,"Ada Torvalds","DE"),[("HD-10",1,129.9)]),("ORD-1003","paid",(7,"Hedy Johnson","PL"),[("DK-05",1,199.0),("KB-01",1,89.0)])])
+</data>
+
+Question: What is the total (qty × price) of every paid order?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<paid:<[id:string,total:number]>>

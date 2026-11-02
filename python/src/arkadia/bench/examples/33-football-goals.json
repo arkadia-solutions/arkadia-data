@@ -1,0 +1,138 @@
+{
+  "id": 33,
+  "slug": "football-goals",
+  "title": "Football: most goals scored",
+  "description": "Score as [home, away].",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which team scored the most goals in these matches, and how many?",
+  "answer": {
+    "name": "top",
+    "fields": [
+      [
+        "team",
+        "string"
+      ],
+      [
+        "goals",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "team": "Górnik",
+      "goals": 10
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`matches.score`: goals as [home, away]"
+    ],
+    "attributes": []
+  },
+  "akd_meta": "<matches:<[home:string,away:string,score:[number] /* goals as [home, away] */]>>([(\"Lech\",\"Jagiellonia\",[3,2]),(\"Górnik\",\"Raków\",[3,2]),(\"Górnik\",\"Lech\",[2,1]),(\"Raków\",\"Jagiellonia\",[3,0]),(\"Pogoń\",\"Jagiellonia\",[4,3]),(\"Legia\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,1]),(\"Legia\",\"Pogoń\",[3,3]),(\"Legia\",\"Lech\",[0,2]),(\"Górnik\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,0]),(\"Pogoń\",\"Górnik\",[0,3])])",
+  "data": {
+    "matches": [
+      {
+        "home": "Lech",
+        "away": "Jagiellonia",
+        "score": [
+          3,
+          2
+        ]
+      },
+      {
+        "home": "Górnik",
+        "away": "Raków",
+        "score": [
+          3,
+          2
+        ]
+      },
+      {
+        "home": "Górnik",
+        "away": "Lech",
+        "score": [
+          2,
+          1
+        ]
+      },
+      {
+        "home": "Raków",
+        "away": "Jagiellonia",
+        "score": [
+          3,
+          0
+        ]
+      },
+      {
+        "home": "Pogoń",
+        "away": "Jagiellonia",
+        "score": [
+          4,
+          3
+        ]
+      },
+      {
+        "home": "Legia",
+        "away": "Lech",
+        "score": [
+          2,
+          0
+        ]
+      },
+      {
+        "home": "Lech",
+        "away": "Pogoń",
+        "score": [
+          0,
+          1
+        ]
+      },
+      {
+        "home": "Legia",
+        "away": "Pogoń",
+        "score": [
+          3,
+          3
+        ]
+      },
+      {
+        "home": "Legia",
+        "away": "Lech",
+        "score": [
+          0,
+          2
+        ]
+      },
+      {
+        "home": "Górnik",
+        "away": "Lech",
+        "score": [
+          2,
+          0
+        ]
+      },
+      {
+        "home": "Lech",
+        "away": "Pogoń",
+        "score": [
+          0,
+          0
+        ]
+      },
+      {
+        "home": "Pogoń",
+        "away": "Górnik",
+        "score": [
+          0,
+          3
+        ]
+      }
+    ]
+  }
+}

@@ -1,8 +1,8 @@
 import { expect } from 'vitest';
-import { Node } from '../src/models/Node';
 // Zakładam, że masz te funkcje wyeksportowane z index.ts (szczegóły niżej)
 import { parseDataToNode } from '../src/core/Parser';
 import { decode, encode } from '../src/index';
+import { Node } from '../src/models/Node';
 
 /**
  * Validates encoding consistency (Round-Trip):

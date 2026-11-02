@@ -1,0 +1,1 @@
+<hours:<[project:string,hours:number]>>([("cli",15.25),("landing",12.0),("akd",6.5)])

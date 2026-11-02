@@ -1,0 +1,56 @@
+The data below is in JSON.
+
+<data>
+{
+  "date": "2026-11-03",
+  "people": [
+    {
+      "name": "Ada",
+      "busy": [
+        [
+          "09:00",
+          "10:30"
+        ],
+        [
+          "13:00",
+          "14:00"
+        ]
+      ]
+    },
+    {
+      "name": "Alan",
+      "busy": [
+        [
+          "10:00",
+          "11:00"
+        ],
+        [
+          "15:00",
+          "16:00"
+        ]
+      ]
+    },
+    {
+      "name": "Grace",
+      "busy": [
+        [
+          "09:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "12:00"
+        ]
+      ]
+    }
+  ],
+  "working_hours": [
+    "09:00",
+    "17:00"
+  ]
+}
+</data>
+
+Question: Which full hours (start on the hour, 60 minutes) are free for everyone?
+
+Answer with JSON only (no prose): {"free": [{"start": <string>}, ...]}

@@ -1,0 +1,1 @@
+<movers:<[sym:string,change_pct:number]>>([("ADA",14.59),("ATOM",2.26),("ETH",-1.86)])

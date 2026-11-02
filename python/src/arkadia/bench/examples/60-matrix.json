@@ -1,0 +1,77 @@
+{
+  "id": 60,
+  "slug": "matrix",
+  "title": "Lists of lists: a distance matrix",
+  "description": "Nested lists need no header beyond [[number]]: rows are plain [ … ] lists.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which two cities are farthest apart, and how far?",
+  "answer": {
+    "name": "pair",
+    "fields": [
+      [
+        "from",
+        "string"
+      ],
+      [
+        "to",
+        "string"
+      ],
+      [
+        "km",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "from": "Kraków",
+      "to": "Gdańsk",
+      "km": 591
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "name": "distance (km)",
+    "cities": [
+      "Warsaw",
+      "Kraków",
+      "Gdańsk",
+      "Wrocław"
+    ],
+    "km": [
+      [
+        0,
+        293,
+        340,
+        344
+      ],
+      [
+        293,
+        0,
+        591,
+        269
+      ],
+      [
+        340,
+        591,
+        0,
+        482
+      ],
+      [
+        344,
+        269,
+        482,
+        0
+      ]
+    ]
+  }
+}

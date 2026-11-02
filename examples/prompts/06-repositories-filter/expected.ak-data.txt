@@ -1,0 +1,1 @@
+<result:<[name:string,language:string,stars:number,license:string]>>([("open-parser-22","Rust",88594,"Apache-2.0"),("deep-agent-9","Python",85505,"GPL-3.0"),("smart-store-5","Rust",81958,"GPL-3.0"),("smart-parser-1","Python",67210,"GPL-3.0"),("tiny-store-23","Rust",43981,"MIT"),("tiny-store-18","Rust",25014,null),("smart-parser-7","Python",23853,"Apache-2.0")])

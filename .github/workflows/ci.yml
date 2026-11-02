@@ -1,0 +1,75 @@
+name: Public release checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  release-surface:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_release.py --history
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv run --locked --all-extras pytest -q
+        working-directory: python
+      - run: uv build --out-dir ../release-artifacts/python
+        working-directory: python
+      - run: |
+          uv venv /tmp/akdata-wheel --python ${{ matrix.python }}
+          uv pip install --python /tmp/akdata-wheel/bin/python release-artifacts/python/*.whl
+          /tmp/akdata-wheel/bin/python -c 'import arkadia.data as a; d={"__proto__":{"safe":True}}; assert a.loads(a.dumps(d))==d'
+  typescript:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+        working-directory: typescript
+      - run: npm test && npm run build
+        working-directory: typescript
+      - run: |
+          mkdir -p /tmp/akdata-package
+          npm pack --pack-destination /tmp/akdata-package
+          npm install --prefix /tmp/akdata-consumer /tmp/akdata-package/*.tgz
+          cd /tmp/akdata-consumer
+          node -e 'const a=require("@arkadia/data"); const d=JSON.parse("{\"__proto__\":{\"safe\":true}}");if(JSON.stringify(a.loads(a.dumps(d)))!==JSON.stringify(d))process.exit(1)'
+        working-directory: typescript
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - run: cargo test --locked && cargo clippy --locked --all-targets -- -D warnings && cargo package --locked --allow-dirty
+        working-directory: rust
+  cross-language:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo build --locked --release
+        working-directory: rust
+      - run: uv run --locked --all-extras python ../rust/scripts/compat.py ../rust/target/release/ak-data --random 500
+        working-directory: python

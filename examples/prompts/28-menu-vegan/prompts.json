@@ -1,0 +1,141 @@
+{
+ "id": 28,
+ "slug": "menu-vegan",
+ "title": "Menu: vegan dishes under 25 PLN",
+ "description": "Prices are in grosze.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which vegan dishes cost less than 25 PLN? Give the price in PLN.",
+ "tokens": {
+  "json": {
+   "none": 332,
+   "comments": 360,
+   "attributes": 371,
+   "both": 399
+  },
+  "toon": {
+   "none": 319,
+   "comments": 347,
+   "attributes": 358,
+   "both": 386
+  },
+  "akd": {
+   "none": 355,
+   "comments": 380,
+   "attributes": 381,
+   "both": 407
+  },
+  "akcd": {
+   "none": 343,
+   "comments": 364,
+   "attributes": 369,
+   "both": 390
+  }
+ },
+ "answer": {
+  "name": "vegan",
+  "fields": [
+   [
+    "dish",
+    "string"
+   ],
+   [
+    "pln",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "dish": "Hummus plate",
+   "pln": 24.0
+  },
+  {
+   "dish": "Falafel wrap",
+   "pln": 19.0
+  },
+  {
+   "dish": "Lentil soup",
+   "pln": 16.0
+  },
+  {
+   "dish": "Fries",
+   "pln": 12.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Autumn menu.",
+   "`menu.price`: price in grosze (1990 = 19.90 PLN)"
+  ],
+  "attributes": [
+   "document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"",
+   "`menu.price`: $unit=\"grosze\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"menu\": [\n    {\n      \"dish\": \"Hummus plate\",\n      \"price\": 2400,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Pierogi ruskie\",\n      \"price\": 3200,\n      \"tags\": [\n        \"vegetarian\"\n      ]\n    },\n    {\n      \"dish\": \"Falafel wrap\",\n      \"price\": 1900,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Beef burger\",\n      \"price\": 4200,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Lentil soup\",\n      \"price\": 1600,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Caesar salad\",\n      \"price\": 2900,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Tofu curry\",\n      \"price\": 3100,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Fries\",\n      \"price\": 1200,\n      \"tags\": [\n        \"vegan\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer with JSON only (no prose): {\"vegan\": [{\"dish\": <string>, \"pln\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Autumn menu.\n- `menu.price`: price in grosze (1990 = 19.90 PLN)\n\n<data>\n{\n  \"menu\": [\n    {\n      \"dish\": \"Hummus plate\",\n      \"price\": 2400,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Pierogi ruskie\",\n      \"price\": 3200,\n      \"tags\": [\n        \"vegetarian\"\n      ]\n    },\n    {\n      \"dish\": \"Falafel wrap\",\n      \"price\": 1900,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Beef burger\",\n      \"price\": 4200,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Lentil soup\",\n      \"price\": 1600,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Caesar salad\",\n      \"price\": 2900,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Tofu curry\",\n      \"price\": 3100,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Fries\",\n      \"price\": 1200,\n      \"tags\": [\n        \"vegan\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer with JSON only (no prose): {\"vegan\": [{\"dish\": <string>, \"pln\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"\n- `menu.price`: $unit=\"grosze\"\n\n<data>\n{\n  \"menu\": [\n    {\n      \"dish\": \"Hummus plate\",\n      \"price\": 2400,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Pierogi ruskie\",\n      \"price\": 3200,\n      \"tags\": [\n        \"vegetarian\"\n      ]\n    },\n    {\n      \"dish\": \"Falafel wrap\",\n      \"price\": 1900,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Beef burger\",\n      \"price\": 4200,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Lentil soup\",\n      \"price\": 1600,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Caesar salad\",\n      \"price\": 2900,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Tofu curry\",\n      \"price\": 3100,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Fries\",\n      \"price\": 1200,\n      \"tags\": [\n        \"vegan\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer with JSON only (no prose): {\"vegan\": [{\"dish\": <string>, \"pln\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Autumn menu.\n- `menu.price`: price in grosze (1990 = 19.90 PLN)\n\nAttributes of the data:\n- document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"\n- `menu.price`: $unit=\"grosze\"\n\n<data>\n{\n  \"menu\": [\n    {\n      \"dish\": \"Hummus plate\",\n      \"price\": 2400,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Pierogi ruskie\",\n      \"price\": 3200,\n      \"tags\": [\n        \"vegetarian\"\n      ]\n    },\n    {\n      \"dish\": \"Falafel wrap\",\n      \"price\": 1900,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Beef burger\",\n      \"price\": 4200,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Lentil soup\",\n      \"price\": 1600,\n      \"tags\": [\n        \"vegan\",\n        \"gluten-free\"\n      ]\n    },\n    {\n      \"dish\": \"Caesar salad\",\n      \"price\": 2900,\n      \"tags\": []\n    },\n    {\n      \"dish\": \"Tofu curry\",\n      \"price\": 3100,\n      \"tags\": [\n        \"vegan\"\n      ]\n    },\n    {\n      \"dish\": \"Fries\",\n      \"price\": 1200,\n      \"tags\": [\n        \"vegan\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer with JSON only (no prose): {\"vegan\": [{\"dish\": <string>, \"pln\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nmenu[8]:\n  - dish: Hummus plate\n    price: 2400\n    tags[2]: vegan,gluten-free\n  - dish: Pierogi ruskie\n    price: 3200\n    tags[1]: vegetarian\n  - dish: Falafel wrap\n    price: 1900\n    tags[1]: vegan\n  - dish: Beef burger\n    price: 4200\n    tags: []\n  - dish: Lentil soup\n    price: 1600\n    tags[2]: vegan,gluten-free\n  - dish: Caesar salad\n    price: 2900\n    tags: []\n  - dish: Tofu curry\n    price: 3100\n    tags[1]: vegan\n  - dish: Fries\n    price: 1200\n    tags[1]: vegan\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in TOON only (no prose, no code fences): vegan[N]{dish,pln}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Autumn menu.\n- `menu.price`: price in grosze (1990 = 19.90 PLN)\n\n<data>\nmenu[8]:\n  - dish: Hummus plate\n    price: 2400\n    tags[2]: vegan,gluten-free\n  - dish: Pierogi ruskie\n    price: 3200\n    tags[1]: vegetarian\n  - dish: Falafel wrap\n    price: 1900\n    tags[1]: vegan\n  - dish: Beef burger\n    price: 4200\n    tags: []\n  - dish: Lentil soup\n    price: 1600\n    tags[2]: vegan,gluten-free\n  - dish: Caesar salad\n    price: 2900\n    tags: []\n  - dish: Tofu curry\n    price: 3100\n    tags[1]: vegan\n  - dish: Fries\n    price: 1200\n    tags[1]: vegan\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in TOON only (no prose, no code fences): vegan[N]{dish,pln}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"\n- `menu.price`: $unit=\"grosze\"\n\n<data>\nmenu[8]:\n  - dish: Hummus plate\n    price: 2400\n    tags[2]: vegan,gluten-free\n  - dish: Pierogi ruskie\n    price: 3200\n    tags[1]: vegetarian\n  - dish: Falafel wrap\n    price: 1900\n    tags[1]: vegan\n  - dish: Beef burger\n    price: 4200\n    tags: []\n  - dish: Lentil soup\n    price: 1600\n    tags[2]: vegan,gluten-free\n  - dish: Caesar salad\n    price: 2900\n    tags: []\n  - dish: Tofu curry\n    price: 3100\n    tags[1]: vegan\n  - dish: Fries\n    price: 1200\n    tags[1]: vegan\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in TOON only (no prose, no code fences): vegan[N]{dish,pln}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Autumn menu.\n- `menu.price`: price in grosze (1990 = 19.90 PLN)\n\nAttributes of the data:\n- document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"\n- `menu.price`: $unit=\"grosze\"\n\n<data>\nmenu[8]:\n  - dish: Hummus plate\n    price: 2400\n    tags[2]: vegan,gluten-free\n  - dish: Pierogi ruskie\n    price: 3200\n    tags[1]: vegetarian\n  - dish: Falafel wrap\n    price: 1900\n    tags[1]: vegan\n  - dish: Beef burger\n    price: 4200\n    tags: []\n  - dish: Lentil soup\n    price: 1600\n    tags[2]: vegan,gluten-free\n  - dish: Caesar salad\n    price: 2900\n    tags: []\n  - dish: Tofu curry\n    price: 3100\n    tags[1]: vegan\n  - dish: Fries\n    price: 1200\n    tags[1]: vegan\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in TOON only (no prose, no code fences): vegan[N]{dish,pln}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<menu:<[dish:string, price:number, tags:[string]]>>\n([\n  (\"Hummus plate\", 2400, [\"vegan\", \"gluten-free\"]),\n  (\"Pierogi ruskie\", 3200, [\"vegetarian\"]),\n  (\"Falafel wrap\", 1900, [\"vegan\"]),\n  (\"Beef burger\", 4200, []),\n  (\"Lentil soup\", 1600, [\"vegan\", \"gluten-free\"]),\n  (\"Caesar salad\", 2900, []),\n  (\"Tofu curry\", 3100, [\"vegan\"]),\n  (\"Fries\", 1200, [\"vegan\"])\n])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Autumn menu. */\n<menu:<[\n  dish:string,\n  price:number /* price in grosze (1990 = 19.90 PLN) */,\n  tags:[string]\n]>>\n([\n  (\"Hummus plate\", 2400, [\"vegan\", \"gluten-free\"]),\n  (\"Pierogi ruskie\", 3200, [\"vegetarian\"]),\n  (\"Falafel wrap\", 1900, [\"vegan\"]),\n  (\"Beef burger\", 4200, []),\n  (\"Lentil soup\", 1600, [\"vegan\", \"gluten-free\"]),\n  (\"Caesar salad\", 2900, []),\n  (\"Tofu curry\", 3100, [\"vegan\"]),\n  (\"Fries\", 1200, [\"vegan\"])\n])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\" //\n<menu:<[dish:string, price:number $unit=\"grosze\", tags:[string]]>>\n([\n  (\"Hummus plate\", 2400, [\"vegan\", \"gluten-free\"]),\n  (\"Pierogi ruskie\", 3200, [\"vegetarian\"]),\n  (\"Falafel wrap\", 1900, [\"vegan\"]),\n  (\"Beef burger\", 4200, []),\n  (\"Lentil soup\", 1600, [\"vegan\", \"gluten-free\"]),\n  (\"Caesar salad\", 2900, []),\n  (\"Tofu curry\", 3100, [\"vegan\"]),\n  (\"Fries\", 1200, [\"vegan\"])\n])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\" //\n/* Autumn menu. */\n<menu:<[\n  dish:string,\n  price:number $unit=\"grosze\" /* price in grosze (1990 = 19.90 PLN) */,\n  tags:[string]\n]>>\n([\n  (\"Hummus plate\", 2400, [\"vegan\", \"gluten-free\"]),\n  (\"Pierogi ruskie\", 3200, [\"vegetarian\"]),\n  (\"Falafel wrap\", 1900, [\"vegan\"]),\n  (\"Beef burger\", 4200, []),\n  (\"Lentil soup\", 1600, [\"vegan\", \"gluten-free\"]),\n  (\"Caesar salad\", 2900, []),\n  (\"Tofu curry\", 3100, [\"vegan\"]),\n  (\"Fries\", 1200, [\"vegan\"])\n])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<menu:<[dish:string,price:number,tags:[string]]>>([(\"Hummus plate\",2400,[\"vegan\",\"gluten-free\"]),(\"Pierogi ruskie\",3200,[\"vegetarian\"]),(\"Falafel wrap\",1900,[\"vegan\"]),(\"Beef burger\",4200,[]),(\"Lentil soup\",1600,[\"vegan\",\"gluten-free\"]),(\"Caesar salad\",2900,[]),(\"Tofu curry\",3100,[\"vegan\"]),(\"Fries\",1200,[\"vegan\"])])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Autumn menu. */ <menu:<[dish:string,price:number /* price in grosze (1990 = 19.90 PLN) */,tags:[string]]>>([(\"Hummus plate\",2400,[\"vegan\",\"gluten-free\"]),(\"Pierogi ruskie\",3200,[\"vegetarian\"]),(\"Falafel wrap\",1900,[\"vegan\"]),(\"Beef burger\",4200,[]),(\"Lentil soup\",1600,[\"vegan\",\"gluten-free\"]),(\"Caesar salad\",2900,[]),(\"Tofu curry\",3100,[\"vegan\"]),(\"Fries\",1200,[\"vegan\"])])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\" // <menu:<[dish:string,price:number $unit=\"grosze\",tags:[string]]>>([(\"Hummus plate\",2400,[\"vegan\",\"gluten-free\"]),(\"Pierogi ruskie\",3200,[\"vegetarian\"]),(\"Falafel wrap\",1900,[\"vegan\"]),(\"Beef burger\",4200,[]),(\"Lentil soup\",1600,[\"vegan\",\"gluten-free\"]),(\"Caesar salad\",2900,[]),(\"Tofu curry\",3100,[\"vegan\"]),(\"Fries\",1200,[\"vegan\"])])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\" // /* Autumn menu. */ <menu:<[dish:string,price:number $unit=\"grosze\" /* price in grosze (1990 = 19.90 PLN) */,tags:[string]]>>([(\"Hummus plate\",2400,[\"vegan\",\"gluten-free\"]),(\"Pierogi ruskie\",3200,[\"vegetarian\"]),(\"Falafel wrap\",1900,[\"vegan\"]),(\"Beef burger\",4200,[]),(\"Lentil soup\",1600,[\"vegan\",\"gluten-free\"]),(\"Caesar salad\",2900,[]),(\"Tofu curry\",3100,[\"vegan\"]),(\"Fries\",1200,[\"vegan\"])])\n</data>\n\nQuestion: Which vegan dishes cost less than 25 PLN? Give the price in PLN.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<vegan:<[dish:string,pln:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 274,
+   "comments": 274,
+   "attributes": 274,
+   "both": 274
+  },
+  "toon": {
+   "none": 180,
+   "comments": 180,
+   "attributes": 180,
+   "both": 180
+  },
+  "akd": {
+   "none": 138,
+   "comments": 162,
+   "attributes": 165,
+   "both": 191
+  },
+  "akcd": {
+   "none": 120,
+   "comments": 140,
+   "attributes": 147,
+   "both": 168
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"vegan\": [\n    {\n      \"dish\": \"Hummus plate\",\n      \"pln\": 24.0\n    },\n    {\n      \"dish\": \"Falafel wrap\",\n      \"pln\": 19.0\n    },\n    {\n      \"dish\": \"Lentil soup\",\n      \"pln\": 16.0\n    },\n    {\n      \"dish\": \"Fries\",\n      \"pln\": 12.0\n    }\n  ]\n}",
+  "akcd": "<vegan:<[dish:string,pln:number]>>([(\"Hummus plate\",24.0),(\"Falafel wrap\",19.0),(\"Lentil soup\",16.0),(\"Fries\",12.0)])",
+  "toon": "vegan[4]{dish,pln}:\n  Hummus plate,24\n  Falafel wrap,19\n  Lentil soup,16\n  Fries,12"
+ },
+ "answer_tokens": {
+  "json": 103,
+  "akcd": 51,
+  "toon": 37
+ }
+}

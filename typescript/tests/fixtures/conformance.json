@@ -1,0 +1,144 @@
+{
+  "format": "0.2",
+  "description": "Synthetic semantic round-trip vectors; numeric range is portable across runtimes.",
+  "cases": [
+    null,
+    true,
+    false,
+    0,
+    -3,
+    1.5,
+    "Ada",
+    [],
+    {},
+    {
+      "users": [
+        {
+          "id": 1,
+          "name": "Ada"
+        },
+        {
+          "id": 2,
+          "name": "Alan"
+        }
+      ]
+    },
+    {
+      "nested": [
+        null,
+        "2",
+        {
+          "a": true
+        },
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "": 1,
+      "x y": 2,
+      "a`b": 3
+    },
+    {
+      "0": "zero",
+      "1": "one"
+    },
+    {
+      "__proto__": {
+        "isAdmin": true
+      },
+      "safe": 1
+    },
+    {
+      "nested": {
+        "__proto__": "value"
+      }
+    },
+    [
+      {
+        "__proto__": 1
+      },
+      {
+        "__proto__": 2
+      }
+    ],
+    {
+      "constructor": {
+        "isAdmin": true
+      },
+      "safe": 1
+    },
+    {
+      "nested": {
+        "constructor": "value"
+      }
+    },
+    [
+      {
+        "constructor": 1
+      },
+      {
+        "constructor": 2
+      }
+    ],
+    {
+      "prototype": {
+        "isAdmin": true
+      },
+      "safe": 1
+    },
+    {
+      "nested": {
+        "prototype": "value"
+      }
+    },
+    [
+      {
+        "prototype": 1
+      },
+      {
+        "prototype": 2
+      }
+    ],
+    {
+      "toString": {
+        "isAdmin": true
+      },
+      "safe": 1
+    },
+    {
+      "nested": {
+        "toString": "value"
+      }
+    },
+    [
+      {
+        "toString": 1
+      },
+      {
+        "toString": 2
+      }
+    ],
+    {
+      "hasOwnProperty": {
+        "isAdmin": true
+      },
+      "safe": 1
+    },
+    {
+      "nested": {
+        "hasOwnProperty": "value"
+      }
+    },
+    [
+      {
+        "hasOwnProperty": 1
+      },
+      {
+        "hasOwnProperty": 2
+      }
+    ]
+  ]
+}

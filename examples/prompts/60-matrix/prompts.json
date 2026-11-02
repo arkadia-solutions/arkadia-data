@@ -1,0 +1,91 @@
+{
+ "id": 60,
+ "slug": "matrix",
+ "title": "Lists of lists: a distance matrix",
+ "description": "Nested lists need no header beyond [[number]]: rows are plain [ … ] lists.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which two cities are farthest apart, and how far?",
+ "tokens": {
+  "json": {
+   "none": 187
+  },
+  "toon": {
+   "none": 216
+  },
+  "akd": {
+   "none": 310
+  },
+  "akcd": {
+   "none": 285
+  }
+ },
+ "answer": {
+  "name": "pair",
+  "fields": [
+   [
+    "from",
+    "string"
+   ],
+   [
+    "to",
+    "string"
+   ],
+   [
+    "km",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "from": "Kraków",
+   "to": "Gdańsk",
+   "km": 591
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"name\": \"distance (km)\",\n  \"cities\": [\n    \"Warsaw\",\n    \"Kraków\",\n    \"Gdańsk\",\n    \"Wrocław\"\n  ],\n  \"km\": [\n    [\n      0,\n      293,\n      340,\n      344\n    ],\n    [\n      293,\n      0,\n      591,\n      269\n    ],\n    [\n      340,\n      591,\n      0,\n      482\n    ],\n    [\n      344,\n      269,\n      482,\n      0\n    ]\n  ]\n}\n</data>\n\nQuestion: Which two cities are farthest apart, and how far?\n\nAnswer with JSON only (no prose): {\"pair\": [{\"from\": <string>, \"to\": <string>, \"km\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nname: distance (km)\ncities[4]: Warsaw,Kraków,Gdańsk,Wrocław\nkm[4]:\n  - [4]: 0,293,340,344\n  - [4]: 293,0,591,269\n  - [4]: 340,591,0,482\n  - [4]: 344,269,482,0\n</data>\n\nQuestion: Which two cities are farthest apart, and how far?\n\nAnswer in TOON only (no prose, no code fences): pair[N]{from,to,km}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<name:string, cities:[string], km:[[number]]>\n(\n  \"distance (km)\",\n  [\"Warsaw\", \"Kraków\", \"Gdańsk\", \"Wrocław\"],\n  [\n    [0, 293, 340, 344],\n    [293, 0, 591, 269],\n    [340, 591, 0, 482],\n    [344, 269, 482, 0]\n  ]\n)\n</data>\n\nQuestion: Which two cities are farthest apart, and how far?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pair:<[from:string,to:string,km:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<name:string,cities:[string],km:[[number]]>(\"distance (km)\",[\"Warsaw\",\"Kraków\",\"Gdańsk\",\"Wrocław\"],[[0,293,340,344],[293,0,591,269],[340,591,0,482],[344,269,482,0]])\n</data>\n\nQuestion: Which two cities are farthest apart, and how far?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pair:<[from:string,to:string,km:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 129
+  },
+  "toon": {
+   "none": 81
+  },
+  "akd": {
+   "none": 98
+  },
+  "akcd": {
+   "none": 67
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"pair\": [\n    {\n      \"from\": \"Kraków\",\n      \"to\": \"Gdańsk\",\n      \"km\": 591\n    }\n  ]\n}",
+  "akcd": "<pair:<[from:string,to:string,km:number]>>([(\"Kraków\",\"Gdańsk\",591)])",
+  "toon": "pair[1]{from,to,km}:\n  Kraków,Gdańsk,591"
+ },
+ "answer_tokens": {
+  "json": 39,
+  "akcd": 25,
+  "toon": 19
+ }
+}

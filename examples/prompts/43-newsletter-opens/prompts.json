@@ -1,0 +1,133 @@
+{
+ "id": 43,
+ "slug": "newsletter-opens",
+ "title": "Newsletter: campaigns above 25 % opens",
+ "description": "Open and click rates in per mille.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.",
+ "tokens": {
+  "json": {
+   "none": 421,
+   "comments": 458,
+   "attributes": 450,
+   "both": 487
+  },
+  "toon": {
+   "none": 276,
+   "comments": 313,
+   "attributes": 305,
+   "both": 342
+  },
+  "akd": {
+   "none": 400,
+   "comments": 425,
+   "attributes": 415,
+   "both": 437
+  },
+  "akcd": {
+   "none": 365,
+   "comments": 386,
+   "attributes": 375,
+   "both": 398
+  }
+ },
+ "answer": {
+  "name": "good",
+  "fields": [
+   [
+    "campaign",
+    "string"
+   ],
+   [
+    "open_pct",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "campaign": "NL-09",
+   "open_pct": 30.8
+  },
+  {
+   "campaign": "NL-02",
+   "open_pct": 25.7
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`campaigns.open`: open rate in per mille (312 = 31.2 %)",
+   "`campaigns.click`: click rate in per mille"
+  ],
+  "attributes": [
+   "`campaigns.open`: $unit=\"permille\"",
+   "`campaigns.click`: $unit=\"permille\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"campaigns\": [\n    {\n      \"campaign\": \"NL-01\",\n      \"sent\": 7826,\n      \"open\": 211,\n      \"click\": 15\n    },\n    {\n      \"campaign\": \"NL-02\",\n      \"sent\": 3718,\n      \"open\": 257,\n      \"click\": 68\n    },\n    {\n      \"campaign\": \"NL-03\",\n      \"sent\": 4459,\n      \"open\": 126,\n      \"click\": 87\n    },\n    {\n      \"campaign\": \"NL-04\",\n      \"sent\": 5217,\n      \"open\": 154,\n      \"click\": 65\n    },\n    {\n      \"campaign\": \"NL-05\",\n      \"sent\": 4581,\n      \"open\": 138,\n      \"click\": 69\n    },\n    {\n      \"campaign\": \"NL-06\",\n      \"sent\": 7185,\n      \"open\": 176,\n      \"click\": 22\n    },\n    {\n      \"campaign\": \"NL-07\",\n      \"sent\": 3224,\n      \"open\": 245,\n      \"click\": 50\n    },\n    {\n      \"campaign\": \"NL-08\",\n      \"sent\": 3464,\n      \"open\": 176,\n      \"click\": 23\n    },\n    {\n      \"campaign\": \"NL-09\",\n      \"sent\": 7457,\n      \"open\": 308,\n      \"click\": 83\n    },\n    {\n      \"campaign\": \"NL-10\",\n      \"sent\": 8220,\n      \"open\": 128,\n      \"click\": 77\n    }\n  ]\n}\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer with JSON only (no prose): {\"good\": [{\"campaign\": <string>, \"open_pct\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `campaigns.open`: open rate in per mille (312 = 31.2 %)\n- `campaigns.click`: click rate in per mille\n\n<data>\n{\n  \"campaigns\": [\n    {\n      \"campaign\": \"NL-01\",\n      \"sent\": 7826,\n      \"open\": 211,\n      \"click\": 15\n    },\n    {\n      \"campaign\": \"NL-02\",\n      \"sent\": 3718,\n      \"open\": 257,\n      \"click\": 68\n    },\n    {\n      \"campaign\": \"NL-03\",\n      \"sent\": 4459,\n      \"open\": 126,\n      \"click\": 87\n    },\n    {\n      \"campaign\": \"NL-04\",\n      \"sent\": 5217,\n      \"open\": 154,\n      \"click\": 65\n    },\n    {\n      \"campaign\": \"NL-05\",\n      \"sent\": 4581,\n      \"open\": 138,\n      \"click\": 69\n    },\n    {\n      \"campaign\": \"NL-06\",\n      \"sent\": 7185,\n      \"open\": 176,\n      \"click\": 22\n    },\n    {\n      \"campaign\": \"NL-07\",\n      \"sent\": 3224,\n      \"open\": 245,\n      \"click\": 50\n    },\n    {\n      \"campaign\": \"NL-08\",\n      \"sent\": 3464,\n      \"open\": 176,\n      \"click\": 23\n    },\n    {\n      \"campaign\": \"NL-09\",\n      \"sent\": 7457,\n      \"open\": 308,\n      \"click\": 83\n    },\n    {\n      \"campaign\": \"NL-10\",\n      \"sent\": 8220,\n      \"open\": 128,\n      \"click\": 77\n    }\n  ]\n}\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer with JSON only (no prose): {\"good\": [{\"campaign\": <string>, \"open_pct\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `campaigns.open`: $unit=\"permille\"\n- `campaigns.click`: $unit=\"permille\"\n\n<data>\n{\n  \"campaigns\": [\n    {\n      \"campaign\": \"NL-01\",\n      \"sent\": 7826,\n      \"open\": 211,\n      \"click\": 15\n    },\n    {\n      \"campaign\": \"NL-02\",\n      \"sent\": 3718,\n      \"open\": 257,\n      \"click\": 68\n    },\n    {\n      \"campaign\": \"NL-03\",\n      \"sent\": 4459,\n      \"open\": 126,\n      \"click\": 87\n    },\n    {\n      \"campaign\": \"NL-04\",\n      \"sent\": 5217,\n      \"open\": 154,\n      \"click\": 65\n    },\n    {\n      \"campaign\": \"NL-05\",\n      \"sent\": 4581,\n      \"open\": 138,\n      \"click\": 69\n    },\n    {\n      \"campaign\": \"NL-06\",\n      \"sent\": 7185,\n      \"open\": 176,\n      \"click\": 22\n    },\n    {\n      \"campaign\": \"NL-07\",\n      \"sent\": 3224,\n      \"open\": 245,\n      \"click\": 50\n    },\n    {\n      \"campaign\": \"NL-08\",\n      \"sent\": 3464,\n      \"open\": 176,\n      \"click\": 23\n    },\n    {\n      \"campaign\": \"NL-09\",\n      \"sent\": 7457,\n      \"open\": 308,\n      \"click\": 83\n    },\n    {\n      \"campaign\": \"NL-10\",\n      \"sent\": 8220,\n      \"open\": 128,\n      \"click\": 77\n    }\n  ]\n}\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer with JSON only (no prose): {\"good\": [{\"campaign\": <string>, \"open_pct\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `campaigns.open`: open rate in per mille (312 = 31.2 %)\n- `campaigns.click`: click rate in per mille\n\nAttributes of the data:\n- `campaigns.open`: $unit=\"permille\"\n- `campaigns.click`: $unit=\"permille\"\n\n<data>\n{\n  \"campaigns\": [\n    {\n      \"campaign\": \"NL-01\",\n      \"sent\": 7826,\n      \"open\": 211,\n      \"click\": 15\n    },\n    {\n      \"campaign\": \"NL-02\",\n      \"sent\": 3718,\n      \"open\": 257,\n      \"click\": 68\n    },\n    {\n      \"campaign\": \"NL-03\",\n      \"sent\": 4459,\n      \"open\": 126,\n      \"click\": 87\n    },\n    {\n      \"campaign\": \"NL-04\",\n      \"sent\": 5217,\n      \"open\": 154,\n      \"click\": 65\n    },\n    {\n      \"campaign\": \"NL-05\",\n      \"sent\": 4581,\n      \"open\": 138,\n      \"click\": 69\n    },\n    {\n      \"campaign\": \"NL-06\",\n      \"sent\": 7185,\n      \"open\": 176,\n      \"click\": 22\n    },\n    {\n      \"campaign\": \"NL-07\",\n      \"sent\": 3224,\n      \"open\": 245,\n      \"click\": 50\n    },\n    {\n      \"campaign\": \"NL-08\",\n      \"sent\": 3464,\n      \"open\": 176,\n      \"click\": 23\n    },\n    {\n      \"campaign\": \"NL-09\",\n      \"sent\": 7457,\n      \"open\": 308,\n      \"click\": 83\n    },\n    {\n      \"campaign\": \"NL-10\",\n      \"sent\": 8220,\n      \"open\": 128,\n      \"click\": 77\n    }\n  ]\n}\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer with JSON only (no prose): {\"good\": [{\"campaign\": <string>, \"open_pct\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ncampaigns[10]{campaign,sent,open,click}:\n  NL-01,7826,211,15\n  NL-02,3718,257,68\n  NL-03,4459,126,87\n  NL-04,5217,154,65\n  NL-05,4581,138,69\n  NL-06,7185,176,22\n  NL-07,3224,245,50\n  NL-08,3464,176,23\n  NL-09,7457,308,83\n  NL-10,8220,128,77\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): good[N]{campaign,open_pct}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `campaigns.open`: open rate in per mille (312 = 31.2 %)\n- `campaigns.click`: click rate in per mille\n\n<data>\ncampaigns[10]{campaign,sent,open,click}:\n  NL-01,7826,211,15\n  NL-02,3718,257,68\n  NL-03,4459,126,87\n  NL-04,5217,154,65\n  NL-05,4581,138,69\n  NL-06,7185,176,22\n  NL-07,3224,245,50\n  NL-08,3464,176,23\n  NL-09,7457,308,83\n  NL-10,8220,128,77\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): good[N]{campaign,open_pct}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `campaigns.open`: $unit=\"permille\"\n- `campaigns.click`: $unit=\"permille\"\n\n<data>\ncampaigns[10]{campaign,sent,open,click}:\n  NL-01,7826,211,15\n  NL-02,3718,257,68\n  NL-03,4459,126,87\n  NL-04,5217,154,65\n  NL-05,4581,138,69\n  NL-06,7185,176,22\n  NL-07,3224,245,50\n  NL-08,3464,176,23\n  NL-09,7457,308,83\n  NL-10,8220,128,77\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): good[N]{campaign,open_pct}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `campaigns.open`: open rate in per mille (312 = 31.2 %)\n- `campaigns.click`: click rate in per mille\n\nAttributes of the data:\n- `campaigns.open`: $unit=\"permille\"\n- `campaigns.click`: $unit=\"permille\"\n\n<data>\ncampaigns[10]{campaign,sent,open,click}:\n  NL-01,7826,211,15\n  NL-02,3718,257,68\n  NL-03,4459,126,87\n  NL-04,5217,154,65\n  NL-05,4581,138,69\n  NL-06,7185,176,22\n  NL-07,3224,245,50\n  NL-08,3464,176,23\n  NL-09,7457,308,83\n  NL-10,8220,128,77\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): good[N]{campaign,open_pct}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[campaign:string, sent:number, open:number, click:number]>>\n([\n  (\"NL-01\", 7826, 211, 15),\n  (\"NL-02\", 3718, 257, 68),\n  (\"NL-03\", 4459, 126, 87),\n  (\"NL-04\", 5217, 154, 65),\n  (\"NL-05\", 4581, 138, 69),\n  (\"NL-06\", 7185, 176, 22),\n  (\"NL-07\", 3224, 245, 50),\n  (\"NL-08\", 3464, 176, 23),\n  (\"NL-09\", 7457, 308, 83),\n  (\"NL-10\", 8220, 128, 77)\n])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[\n  campaign:string,\n  sent:number,\n  open:number /* open rate in per mille (312 = 31.2 %) */,\n  click:number /* click rate in per mille */\n]>>\n([\n  (\"NL-01\", 7826, 211, 15),\n  (\"NL-02\", 3718, 257, 68),\n  (\"NL-03\", 4459, 126, 87),\n  (\"NL-04\", 5217, 154, 65),\n  (\"NL-05\", 4581, 138, 69),\n  (\"NL-06\", 7185, 176, 22),\n  (\"NL-07\", 3224, 245, 50),\n  (\"NL-08\", 3464, 176, 23),\n  (\"NL-09\", 7457, 308, 83),\n  (\"NL-10\", 8220, 128, 77)\n])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[\n  campaign:string,\n  sent:number,\n  open:number $unit=\"permille\",\n  click:number $unit=\"permille\"\n]>>\n([\n  (\"NL-01\", 7826, 211, 15),\n  (\"NL-02\", 3718, 257, 68),\n  (\"NL-03\", 4459, 126, 87),\n  (\"NL-04\", 5217, 154, 65),\n  (\"NL-05\", 4581, 138, 69),\n  (\"NL-06\", 7185, 176, 22),\n  (\"NL-07\", 3224, 245, 50),\n  (\"NL-08\", 3464, 176, 23),\n  (\"NL-09\", 7457, 308, 83),\n  (\"NL-10\", 8220, 128, 77)\n])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[\n  campaign:string,\n  sent:number,\n  open:number $unit=\"permille\" /* open rate in per mille (312 = 31.2 %) */,\n  click:number $unit=\"permille\" /* click rate in per mille */\n]>>\n([\n  (\"NL-01\", 7826, 211, 15),\n  (\"NL-02\", 3718, 257, 68),\n  (\"NL-03\", 4459, 126, 87),\n  (\"NL-04\", 5217, 154, 65),\n  (\"NL-05\", 4581, 138, 69),\n  (\"NL-06\", 7185, 176, 22),\n  (\"NL-07\", 3224, 245, 50),\n  (\"NL-08\", 3464, 176, 23),\n  (\"NL-09\", 7457, 308, 83),\n  (\"NL-10\", 8220, 128, 77)\n])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[campaign:string,sent:number,open:number,click:number]>>([(\"NL-01\",7826,211,15),(\"NL-02\",3718,257,68),(\"NL-03\",4459,126,87),(\"NL-04\",5217,154,65),(\"NL-05\",4581,138,69),(\"NL-06\",7185,176,22),(\"NL-07\",3224,245,50),(\"NL-08\",3464,176,23),(\"NL-09\",7457,308,83),(\"NL-10\",8220,128,77)])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[campaign:string,sent:number,open:number /* open rate in per mille (312 = 31.2 %) */,click:number /* click rate in per mille */]>>([(\"NL-01\",7826,211,15),(\"NL-02\",3718,257,68),(\"NL-03\",4459,126,87),(\"NL-04\",5217,154,65),(\"NL-05\",4581,138,69),(\"NL-06\",7185,176,22),(\"NL-07\",3224,245,50),(\"NL-08\",3464,176,23),(\"NL-09\",7457,308,83),(\"NL-10\",8220,128,77)])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[campaign:string,sent:number,open:number $unit=\"permille\",click:number $unit=\"permille\"]>>([(\"NL-01\",7826,211,15),(\"NL-02\",3718,257,68),(\"NL-03\",4459,126,87),(\"NL-04\",5217,154,65),(\"NL-05\",4581,138,69),(\"NL-06\",7185,176,22),(\"NL-07\",3224,245,50),(\"NL-08\",3464,176,23),(\"NL-09\",7457,308,83),(\"NL-10\",8220,128,77)])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<campaigns:<[campaign:string,sent:number,open:number $unit=\"permille\" /* open rate in per mille (312 = 31.2 %) */,click:number $unit=\"permille\" /* click rate in per mille */]>>([(\"NL-01\",7826,211,15),(\"NL-02\",3718,257,68),(\"NL-03\",4459,126,87),(\"NL-04\",5217,154,65),(\"NL-05\",4581,138,69),(\"NL-06\",7185,176,22),(\"NL-07\",3224,245,50),(\"NL-08\",3464,176,23),(\"NL-09\",7457,308,83),(\"NL-10\",8220,128,77)])\n</data>\n\nQuestion: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<good:<[campaign:string,open_pct:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 360,
+   "comments": 360,
+   "attributes": 360,
+   "both": 360
+  },
+  "toon": {
+   "none": 133,
+   "comments": 133,
+   "attributes": 133,
+   "both": 133
+  },
+  "akd": {
+   "none": 180,
+   "comments": 205,
+   "attributes": 195,
+   "both": 217
+  },
+  "akcd": {
+   "none": 139,
+   "comments": 160,
+   "attributes": 149,
+   "both": 172
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"good\": [\n    {\n      \"campaign\": \"NL-09\",\n      \"open_pct\": 30.8\n    },\n    {\n      \"campaign\": \"NL-02\",\n      \"open_pct\": 25.7\n    }\n  ]\n}",
+  "akcd": "<good:<[campaign:string,open_pct:number]>>([(\"NL-09\",30.8),(\"NL-02\",25.7)])",
+  "toon": "good[2]{campaign,open_pct}:\n  NL-09,30.8\n  NL-02,25.7"
+ },
+ "answer_tokens": {
+  "json": 55,
+  "akcd": 31,
+  "toon": 27
+ }
+}

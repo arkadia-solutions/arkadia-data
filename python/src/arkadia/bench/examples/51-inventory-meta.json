@@ -1,0 +1,150 @@
+{
+  "id": 51,
+  "slug": "inventory-meta",
+  "title": "Inventory: reorder levels and discontinued items",
+  "description": "min is the reorder level and two items are discontinued (never reordered) — only the metadata explains it.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which items must be reordered and how many pieces are missing to reach the reorder level?",
+  "answer": {
+    "name": "reorder",
+    "fields": [
+      [
+        "sku",
+        "string"
+      ],
+      [
+        "missing",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "sku": "SKU-200",
+      "missing": 9
+    },
+    {
+      "sku": "SKU-202",
+      "missing": 1
+    },
+    {
+      "sku": "SKU-203",
+      "missing": 3
+    },
+    {
+      "sku": "SKU-205",
+      "missing": 2
+    },
+    {
+      "sku": "SKU-206",
+      "missing": 3
+    },
+    {
+      "sku": "SKU-207",
+      "missing": 18
+    },
+    {
+      "sku": "SKU-211",
+      "missing": 5
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Stock in warehouse WAW-1. Discontinued items are never reordered.",
+      "`items.qty`: pieces in stock",
+      "`items.min`: reorder level: order more when qty is below it",
+      "items sku=\"SKU-201\": discontinued, do not reorder",
+      "items sku=\"SKU-208\": discontinued, do not reorder"
+    ],
+    "attributes": [
+      "document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock",
+      "`items.sku`: $required",
+      "`items.qty`: $unit=\"pcs\"",
+      "`items.min`: $role=\"reorder_level\"",
+      "items sku=\"SKU-201\": #discontinued",
+      "items sku=\"SKU-208\": #discontinued"
+    ]
+  },
+  "akd_meta": "// $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock // /* Stock in warehouse WAW-1. Discontinued items are never reordered. */ <items:<[sku:string $required,item:string,qty:number $unit=\"pcs\" /* pieces in stock */,min:number $role=\"reorder_level\" /* reorder level: order more when qty is below it */]>>([(\"SKU-200\",\"cable\",11,20),(\"SKU-201\",\"mouse\",0,10) #discontinued /* discontinued, do not reorder */,(\"SKU-202\",\"keyboard\",4,5),(\"SKU-203\",\"dock\",12,15),(\"SKU-204\",\"headset\",31,5),(\"SKU-205\",\"monitor\",8,10),(\"SKU-206\",\"webcam\",7,10),(\"SKU-207\",\"charger\",2,20),(\"SKU-208\",\"hub\",14,10) #discontinued /* discontinued, do not reorder */,(\"SKU-209\",\"stand\",13,10),(\"SKU-210\",\"lamp\",21,10),(\"SKU-211\",\"mic\",0,5)])",
+  "data": {
+    "items": [
+      {
+        "sku": "SKU-200",
+        "item": "cable",
+        "qty": 11,
+        "min": 20
+      },
+      {
+        "sku": "SKU-201",
+        "item": "mouse",
+        "qty": 0,
+        "min": 10
+      },
+      {
+        "sku": "SKU-202",
+        "item": "keyboard",
+        "qty": 4,
+        "min": 5
+      },
+      {
+        "sku": "SKU-203",
+        "item": "dock",
+        "qty": 12,
+        "min": 15
+      },
+      {
+        "sku": "SKU-204",
+        "item": "headset",
+        "qty": 31,
+        "min": 5
+      },
+      {
+        "sku": "SKU-205",
+        "item": "monitor",
+        "qty": 8,
+        "min": 10
+      },
+      {
+        "sku": "SKU-206",
+        "item": "webcam",
+        "qty": 7,
+        "min": 10
+      },
+      {
+        "sku": "SKU-207",
+        "item": "charger",
+        "qty": 2,
+        "min": 20
+      },
+      {
+        "sku": "SKU-208",
+        "item": "hub",
+        "qty": 14,
+        "min": 10
+      },
+      {
+        "sku": "SKU-209",
+        "item": "stand",
+        "qty": 13,
+        "min": 10
+      },
+      {
+        "sku": "SKU-210",
+        "item": "lamp",
+        "qty": 21,
+        "min": 10
+      },
+      {
+        "sku": "SKU-211",
+        "item": "mic",
+        "qty": 0,
+        "min": 5
+      }
+    ]
+  }
+}

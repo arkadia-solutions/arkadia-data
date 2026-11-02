@@ -1,0 +1,133 @@
+{
+ "id": 41,
+ "slug": "portfolio-pnl",
+ "title": "Portfolio: profit per position",
+ "description": "Average buy price vs last price.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?",
+ "tokens": {
+  "json": {
+   "none": 300,
+   "comments": 327,
+   "attributes": 300,
+   "both": 327
+  },
+  "toon": {
+   "none": 236,
+   "comments": 263,
+   "attributes": 236,
+   "both": 263
+  },
+  "akd": {
+   "none": 351,
+   "comments": 369,
+   "attributes": 351,
+   "both": 369
+  },
+  "akcd": {
+   "none": 331,
+   "comments": 344,
+   "attributes": 331,
+   "both": 344
+  }
+ },
+ "answer": {
+  "name": "pnl",
+  "fields": [
+   [
+    "ticker",
+    "string"
+   ],
+   [
+    "pnl",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "ticker": "CDR",
+   "pnl": 748.0
+  },
+  {
+   "ticker": "PKN",
+   "pnl": 396.0
+  },
+  {
+   "ticker": "ALE",
+   "pnl": -660.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`positions.avg`: average buy price per share",
+   "`positions.last`: last traded price per share"
+  ],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"positions\": [\n    {\n      \"ticker\": \"CDR\",\n      \"qty\": 40,\n      \"avg\": 112.5,\n      \"last\": 131.2,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"PKN\",\n      \"qty\": 120,\n      \"avg\": 58.1,\n      \"last\": 61.4,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"AAPL\",\n      \"qty\": 10,\n      \"avg\": 172.0,\n      \"last\": 189.3,\n      \"ccy\": \"USD\"\n    },\n    {\n      \"ticker\": \"ALE\",\n      \"qty\": 200,\n      \"avg\": 31.2,\n      \"last\": 27.9,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"MSFT\",\n      \"qty\": 6,\n      \"avg\": 330.0,\n      \"last\": 402.1,\n      \"ccy\": \"USD\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer with JSON only (no prose): {\"pnl\": [{\"ticker\": <string>, \"pnl\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `positions.avg`: average buy price per share\n- `positions.last`: last traded price per share\n\n<data>\n{\n  \"positions\": [\n    {\n      \"ticker\": \"CDR\",\n      \"qty\": 40,\n      \"avg\": 112.5,\n      \"last\": 131.2,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"PKN\",\n      \"qty\": 120,\n      \"avg\": 58.1,\n      \"last\": 61.4,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"AAPL\",\n      \"qty\": 10,\n      \"avg\": 172.0,\n      \"last\": 189.3,\n      \"ccy\": \"USD\"\n    },\n    {\n      \"ticker\": \"ALE\",\n      \"qty\": 200,\n      \"avg\": 31.2,\n      \"last\": 27.9,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"MSFT\",\n      \"qty\": 6,\n      \"avg\": 330.0,\n      \"last\": 402.1,\n      \"ccy\": \"USD\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer with JSON only (no prose): {\"pnl\": [{\"ticker\": <string>, \"pnl\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\n<data>\n{\n  \"positions\": [\n    {\n      \"ticker\": \"CDR\",\n      \"qty\": 40,\n      \"avg\": 112.5,\n      \"last\": 131.2,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"PKN\",\n      \"qty\": 120,\n      \"avg\": 58.1,\n      \"last\": 61.4,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"AAPL\",\n      \"qty\": 10,\n      \"avg\": 172.0,\n      \"last\": 189.3,\n      \"ccy\": \"USD\"\n    },\n    {\n      \"ticker\": \"ALE\",\n      \"qty\": 200,\n      \"avg\": 31.2,\n      \"last\": 27.9,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"MSFT\",\n      \"qty\": 6,\n      \"avg\": 330.0,\n      \"last\": 402.1,\n      \"ccy\": \"USD\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer with JSON only (no prose): {\"pnl\": [{\"ticker\": <string>, \"pnl\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `positions.avg`: average buy price per share\n- `positions.last`: last traded price per share\n\n<data>\n{\n  \"positions\": [\n    {\n      \"ticker\": \"CDR\",\n      \"qty\": 40,\n      \"avg\": 112.5,\n      \"last\": 131.2,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"PKN\",\n      \"qty\": 120,\n      \"avg\": 58.1,\n      \"last\": 61.4,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"AAPL\",\n      \"qty\": 10,\n      \"avg\": 172.0,\n      \"last\": 189.3,\n      \"ccy\": \"USD\"\n    },\n    {\n      \"ticker\": \"ALE\",\n      \"qty\": 200,\n      \"avg\": 31.2,\n      \"last\": 27.9,\n      \"ccy\": \"PLN\"\n    },\n    {\n      \"ticker\": \"MSFT\",\n      \"qty\": 6,\n      \"avg\": 330.0,\n      \"last\": 402.1,\n      \"ccy\": \"USD\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer with JSON only (no prose): {\"pnl\": [{\"ticker\": <string>, \"pnl\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\npositions[5]{ticker,qty,avg,last,ccy}:\n  CDR,40,112.5,131.2,PLN\n  PKN,120,58.1,61.4,PLN\n  AAPL,10,172,189.3,USD\n  ALE,200,31.2,27.9,PLN\n  MSFT,6,330,402.1,USD\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): pnl[N]{ticker,pnl}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `positions.avg`: average buy price per share\n- `positions.last`: last traded price per share\n\n<data>\npositions[5]{ticker,qty,avg,last,ccy}:\n  CDR,40,112.5,131.2,PLN\n  PKN,120,58.1,61.4,PLN\n  AAPL,10,172,189.3,USD\n  ALE,200,31.2,27.9,PLN\n  MSFT,6,330,402.1,USD\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): pnl[N]{ticker,pnl}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\npositions[5]{ticker,qty,avg,last,ccy}:\n  CDR,40,112.5,131.2,PLN\n  PKN,120,58.1,61.4,PLN\n  AAPL,10,172,189.3,USD\n  ALE,200,31.2,27.9,PLN\n  MSFT,6,330,402.1,USD\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): pnl[N]{ticker,pnl}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `positions.avg`: average buy price per share\n- `positions.last`: last traded price per share\n\n<data>\npositions[5]{ticker,qty,avg,last,ccy}:\n  CDR,40,112.5,131.2,PLN\n  PKN,120,58.1,61.4,PLN\n  AAPL,10,172,189.3,USD\n  ALE,200,31.2,27.9,PLN\n  MSFT,6,330,402.1,USD\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): pnl[N]{ticker,pnl}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string, qty:number, avg:number, last:number, ccy:string]>>\n([\n  (\"CDR\", 40, 112.5, 131.2, \"PLN\"),\n  (\"PKN\", 120, 58.1, 61.4, \"PLN\"),\n  (\"AAPL\", 10, 172.0, 189.3, \"USD\"),\n  (\"ALE\", 200, 31.2, 27.9, \"PLN\"),\n  (\"MSFT\", 6, 330.0, 402.1, \"USD\")\n])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[\n  ticker:string,\n  qty:number,\n  avg:number /* average buy price per share */,\n  last:number /* last traded price per share */,\n  ccy:string\n]>>\n([\n  (\"CDR\", 40, 112.5, 131.2, \"PLN\"),\n  (\"PKN\", 120, 58.1, 61.4, \"PLN\"),\n  (\"AAPL\", 10, 172.0, 189.3, \"USD\"),\n  (\"ALE\", 200, 31.2, 27.9, \"PLN\"),\n  (\"MSFT\", 6, 330.0, 402.1, \"USD\")\n])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string, qty:number, avg:number, last:number, ccy:string]>>\n([\n  (\"CDR\", 40, 112.5, 131.2, \"PLN\"),\n  (\"PKN\", 120, 58.1, 61.4, \"PLN\"),\n  (\"AAPL\", 10, 172.0, 189.3, \"USD\"),\n  (\"ALE\", 200, 31.2, 27.9, \"PLN\"),\n  (\"MSFT\", 6, 330.0, 402.1, \"USD\")\n])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[\n  ticker:string,\n  qty:number,\n  avg:number /* average buy price per share */,\n  last:number /* last traded price per share */,\n  ccy:string\n]>>\n([\n  (\"CDR\", 40, 112.5, 131.2, \"PLN\"),\n  (\"PKN\", 120, 58.1, 61.4, \"PLN\"),\n  (\"AAPL\", 10, 172.0, 189.3, \"USD\"),\n  (\"ALE\", 200, 31.2, 27.9, \"PLN\"),\n  (\"MSFT\", 6, 330.0, 402.1, \"USD\")\n])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string,qty:number,avg:number,last:number,ccy:string]>>([(\"CDR\",40,112.5,131.2,\"PLN\"),(\"PKN\",120,58.1,61.4,\"PLN\"),(\"AAPL\",10,172.0,189.3,\"USD\"),(\"ALE\",200,31.2,27.9,\"PLN\"),(\"MSFT\",6,330.0,402.1,\"USD\")])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string,qty:number,avg:number /* average buy price per share */,last:number /* last traded price per share */,ccy:string]>>([(\"CDR\",40,112.5,131.2,\"PLN\"),(\"PKN\",120,58.1,61.4,\"PLN\"),(\"AAPL\",10,172.0,189.3,\"USD\"),(\"ALE\",200,31.2,27.9,\"PLN\"),(\"MSFT\",6,330.0,402.1,\"USD\")])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string,qty:number,avg:number,last:number,ccy:string]>>([(\"CDR\",40,112.5,131.2,\"PLN\"),(\"PKN\",120,58.1,61.4,\"PLN\"),(\"AAPL\",10,172.0,189.3,\"USD\"),(\"ALE\",200,31.2,27.9,\"PLN\"),(\"MSFT\",6,330.0,402.1,\"USD\")])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<positions:<[ticker:string,qty:number,avg:number /* average buy price per share */,last:number /* last traded price per share */,ccy:string]>>([(\"CDR\",40,112.5,131.2,\"PLN\"),(\"PKN\",120,58.1,61.4,\"PLN\"),(\"AAPL\",10,172.0,189.3,\"USD\"),(\"ALE\",200,31.2,27.9,\"PLN\"),(\"MSFT\",6,330.0,402.1,\"USD\")])\n</data>\n\nQuestion: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<pnl:<[ticker:string,pnl:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 236,
+   "comments": 236,
+   "attributes": 236,
+   "both": 236
+  },
+  "toon": {
+   "none": 92,
+   "comments": 92,
+   "attributes": 92,
+   "both": 92
+  },
+  "akd": {
+   "none": 130,
+   "comments": 148,
+   "attributes": 130,
+   "both": 148
+  },
+  "akcd": {
+   "none": 104,
+   "comments": 117,
+   "attributes": 104,
+   "both": 117
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"pnl\": [\n    {\n      \"ticker\": \"CDR\",\n      \"pnl\": 748.0\n    },\n    {\n      \"ticker\": \"PKN\",\n      \"pnl\": 396.0\n    },\n    {\n      \"ticker\": \"ALE\",\n      \"pnl\": -660.0\n    }\n  ]\n}",
+  "akcd": "<pnl:<[ticker:string,pnl:number]>>([(\"CDR\",748.0),(\"PKN\",396.0),(\"ALE\",-660.0)])",
+  "toon": "pnl[3]{ticker,pnl}:\n  CDR,748\n  PKN,396\n  ALE,-660"
+ },
+ "answer_tokens": {
+  "json": 75,
+  "akcd": 35,
+  "toon": 26
+ }
+}

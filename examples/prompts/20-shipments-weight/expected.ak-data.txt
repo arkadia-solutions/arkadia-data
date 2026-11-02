@@ -1,0 +1,1 @@
+<weight:<[carrier:string,kg:number]>>([("DHL",93.046),("UPS",54.727),("DPD",42.148),("InPost",25.733)])

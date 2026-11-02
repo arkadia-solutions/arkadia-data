@@ -1,0 +1,46 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `reviews.stars`: 1 to 5 stars
+- reviews id=1: verified purchase
+- reviews id=3: verified purchase
+- reviews id=4: verified purchase
+- reviews id=7: verified purchase
+- reviews id=10: verified purchase
+- reviews id=13: verified purchase
+
+Attributes of the data:
+- `reviews.stars`: $scale="1-5"
+- reviews id=1: #verified
+- reviews id=3: #verified
+- reviews id=4: #verified
+- reviews id=7: #verified
+- reviews id=10: #verified
+- reviews id=13: #verified
+
+<data>
+reviews[14]{id,stars,text}:
+  1,5,Fast delivery
+  2,3,Great!
+  3,1,Okay
+  4,4,Great!
+  5,3,Broke after a week
+  6,4,Fast delivery
+  7,4,Okay
+  8,3,Okay
+  9,3,Broke after a week
+  10,4,Broke after a week
+  11,5,Fast delivery
+  12,5,Fast delivery
+  13,5,Fast delivery
+  14,5,Broke after a week
+</data>
+
+Question: What is the average star rating of verified purchases only (2 decimals)?
+
+Answer in TOON only (no prose, no code fences): rating[N]{avg_stars}: followed by one row per item.

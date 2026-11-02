@@ -1,0 +1,56 @@
+The data below is in JSON.
+
+<data>
+{
+  "tickets": [
+    {
+      "id": 501,
+      "subject": "Invoice is wrong",
+      "priority": "normal",
+      "assignee": {
+        "id": 3,
+        "name": "Ola"
+      },
+      "tags": [
+        "billing"
+      ]
+    },
+    {
+      "id": 502,
+      "subject": "Cannot log in",
+      "priority": "urgent",
+      "assignee": null,
+      "tags": [
+        "auth"
+      ]
+    },
+    {
+      "id": 503,
+      "subject": "Data export fails",
+      "priority": "urgent",
+      "assignee": {
+        "id": 5,
+        "name": "Piotr"
+      },
+      "tags": [
+        "export",
+        "bug"
+      ]
+    },
+    {
+      "id": 504,
+      "subject": "App crashes on start",
+      "priority": "urgent",
+      "assignee": null,
+      "tags": [
+        "mobile",
+        "bug"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which urgent tickets have nobody assigned?
+
+Answer with JSON only (no prose): {"unassigned": [{"id": <number>, "subject": <string>}, ...]}

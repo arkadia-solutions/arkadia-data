@@ -1,0 +1,24 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+pages[10]{page,lcp,cls,inp}:
+  /,3511,0.108,372
+  /pricing,4082,0.191,104
+  /docs,1207,0.171,52
+  /blog,2582,0.185,65
+  /login,2235,0.15,343
+  /signup,947,0.121,166
+  /akdata,4060,0.114,334
+  /contact,1691,0.225,394
+  /about,2347,0,318
+  /careers,1604,0.195,424
+</data>
+
+Question: Which pages have an LCP worse than 2500 ms? Slowest first.
+
+Answer in TOON only (no prose, no code fences): slow[N]{page,lcp}: followed by one row per item.

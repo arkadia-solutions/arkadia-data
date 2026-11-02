@@ -1,0 +1,65 @@
+{
+  "id": 63,
+  "slug": "named-types",
+  "title": "Named types: @User defined once, used three times",
+  "description": "@User<…> names a header; lead:@User and members:[@User] reuse it. Hand-written AK-DATA (the encoder writes inline headers).",
+  "tags": [
+    "feature",
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "How many people are in the team, including the lead? Give the team name too.",
+  "answer": {
+    "name": "team",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "people",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "platform",
+      "people": 4
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Team directory: one type, used three times"
+    ],
+    "attributes": []
+  },
+  "akd_meta": "/* Team directory: one type, used three times */ @User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])",
+  "akd": "/* Team directory: one type, used three times */ @User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])",
+  "data": {
+    "team": "platform",
+    "lead": {
+      "id": 1,
+      "name": "Ada Lovelace",
+      "email": "ada@example.com"
+    },
+    "members": [
+      {
+        "id": 2,
+        "name": "Alan Turing",
+        "email": "alan@example.com"
+      },
+      {
+        "id": 3,
+        "name": "Grace Hopper",
+        "email": "grace@example.com"
+      },
+      {
+        "id": 4,
+        "name": "Linus Torvalds",
+        "email": "linus@example.com"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+forecast[7]{day,hi,lo,rain}:
+  Mon,39,40,90
+  Tue,49,37,60
+  Wed,38,42,90
+  Thu,60,32,60
+  Fri,40,31,90
+  Sat,58,28,90
+  Sun,60,29,60
+</data>
+
+Question: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.
+
+Answer in TOON only (no prose, no code fences): cold[N]{day,hi_c}: followed by one row per item.

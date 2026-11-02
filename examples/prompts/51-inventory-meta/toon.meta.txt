@@ -1,0 +1,41 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Stock in warehouse WAW-1. Discontinued items are never reordered.
+- `items.qty`: pieces in stock
+- `items.min`: reorder level: order more when qty is below it
+- items sku="SKU-201": discontinued, do not reorder
+- items sku="SKU-208": discontinued, do not reorder
+
+Attributes of the data:
+- document: $warehouse="WAW-1" $counted="2026-10-28" #stock
+- `items.sku`: $required
+- `items.qty`: $unit="pcs"
+- `items.min`: $role="reorder_level"
+- items sku="SKU-201": #discontinued
+- items sku="SKU-208": #discontinued
+
+<data>
+items[12]{sku,item,qty,min}:
+  SKU-200,cable,11,20
+  SKU-201,mouse,0,10
+  SKU-202,keyboard,4,5
+  SKU-203,dock,12,15
+  SKU-204,headset,31,5
+  SKU-205,monitor,8,10
+  SKU-206,webcam,7,10
+  SKU-207,charger,2,20
+  SKU-208,hub,14,10
+  SKU-209,stand,13,10
+  SKU-210,lamp,21,10
+  SKU-211,mic,0,5
+</data>
+
+Question: Which items must be reordered and how many pieces are missing to reach the reorder level?
+
+Answer in TOON only (no prose, no code fences): reorder[N]{sku,missing}: followed by one row per item.

@@ -1,0 +1,68 @@
+The data below is in JSON.
+
+<data>
+{
+  "events": [
+    {
+      "ts": "12:00:01",
+      "level": "info",
+      "service": "api",
+      "msg": "GET /orders",
+      "ms": 42
+    },
+    {
+      "ts": "12:00:03",
+      "level": "error",
+      "service": "billing",
+      "msg": "card declined",
+      "ms": 380
+    },
+    {
+      "ts": "12:00:04",
+      "level": "warn",
+      "service": "api",
+      "msg": "slow query",
+      "ms": 1210
+    },
+    {
+      "ts": "12:00:07",
+      "level": "error",
+      "service": "billing",
+      "msg": "timeout",
+      "ms": 5000
+    },
+    {
+      "ts": "12:00:09",
+      "level": "info",
+      "service": "auth",
+      "msg": "login ok",
+      "ms": 18
+    },
+    {
+      "ts": "12:00:11",
+      "level": "error",
+      "service": "api",
+      "msg": "upstream 502",
+      "ms": 2210
+    },
+    {
+      "ts": "12:00:12",
+      "level": "error",
+      "service": "billing",
+      "msg": "timeout",
+      "ms": 5000
+    },
+    {
+      "ts": "12:00:15",
+      "level": "info",
+      "service": "api",
+      "msg": "GET /users",
+      "ms": 37
+    }
+  ]
+}
+</data>
+
+Question: How many errors does each service have? Most errors first.
+
+Answer with JSON only (no prose): {"errors": [{"service": <string>, "errors": <number>}, ...]}

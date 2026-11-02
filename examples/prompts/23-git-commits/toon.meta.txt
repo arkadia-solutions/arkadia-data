@@ -1,0 +1,40 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Last 20 commits on main.
+
+Attributes of the data:
+- document: $repo="arkadia-data" $branch="main"
+
+<data>
+commits[20]{sha,author,files,msg}:
+  4b97b10,Grace,4,"chore: deps"
+  7399a1d,Margaret,6,"docs: readme"
+  41ccd01,Linus,10,"test: fuzz"
+  77174a0,Dennis,12,"fix: decoder"
+  2f9af60,Ada,11,"fix: decoder"
+  fea8177,Margaret,11,"test: fuzz"
+  ed62305,Dennis,7,"refactor: parser"
+  d168e48,Margaret,2,"test: fuzz"
+  7a8d8d2,Linus,9,"test: fuzz"
+  ae28801,Dennis,5,"chore: deps"
+  212b9a0,Grace,12,"chore: deps"
+  3d9f644,Dennis,2,"chore: deps"
+  da6d3ec,Alan,10,"feat: layout"
+  620d785,Alan,9,"refactor: parser"
+  b65b5eb,Alan,13,"docs: readme"
+  6d419ec,Ada,4,"docs: readme"
+  4d90bad,Margaret,5,"refactor: parser"
+  e1db904,Ada,1,"feat: layout"
+  fc1b124,Grace,14,"docs: readme"
+  86ed06a,Dennis,7,"refactor: parser"
+</data>
+
+Question: Which 3 authors made the most commits? Ties alphabetically.
+
+Answer in TOON only (no prose, no code fences): authors[N]{author,commits}: followed by one row per item.

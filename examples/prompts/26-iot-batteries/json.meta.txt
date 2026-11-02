@@ -1,0 +1,104 @@
+The data below is in JSON.
+
+Notes about the data:
+- `tags.batt`: battery voltage in millivolts
+- `tags.rssi`: signal strength in dBm
+
+Attributes of the data:
+- `tags.batt`: $unit="mV"
+- `tags.rssi`: $unit="dBm"
+
+<data>
+{
+  "tags": [
+    {
+      "device": "TAG-01",
+      "zone": "hall",
+      "batt": 3232,
+      "rssi": -92
+    },
+    {
+      "device": "TAG-02",
+      "zone": "hall",
+      "batt": 4086,
+      "rssi": -73
+    },
+    {
+      "device": "TAG-03",
+      "zone": "hall",
+      "batt": 3610,
+      "rssi": -77
+    },
+    {
+      "device": "TAG-04",
+      "zone": "dock",
+      "batt": 3526,
+      "rssi": -55
+    },
+    {
+      "device": "TAG-05",
+      "zone": "dock",
+      "batt": 3008,
+      "rssi": -86
+    },
+    {
+      "device": "TAG-06",
+      "zone": "hall",
+      "batt": 3920,
+      "rssi": -42
+    },
+    {
+      "device": "TAG-07",
+      "zone": "yard",
+      "batt": 3388,
+      "rssi": -59
+    },
+    {
+      "device": "TAG-08",
+      "zone": "hall",
+      "batt": 2945,
+      "rssi": -69
+    },
+    {
+      "device": "TAG-09",
+      "zone": "hall",
+      "batt": 3488,
+      "rssi": -60
+    },
+    {
+      "device": "TAG-10",
+      "zone": "dock",
+      "batt": 3605,
+      "rssi": -89
+    },
+    {
+      "device": "TAG-11",
+      "zone": "dock",
+      "batt": 3304,
+      "rssi": -62
+    },
+    {
+      "device": "TAG-12",
+      "zone": "yard",
+      "batt": 3264,
+      "rssi": -87
+    },
+    {
+      "device": "TAG-13",
+      "zone": "hall",
+      "batt": 3045,
+      "rssi": -80
+    },
+    {
+      "device": "TAG-14",
+      "zone": "hall",
+      "batt": 4017,
+      "rssi": -84
+    }
+  ]
+}
+</data>
+
+Question: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.
+
+Answer with JSON only (no prose): {"low": [{"device": <string>, "volts": <number>}, ...]}

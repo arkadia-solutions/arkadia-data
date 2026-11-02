@@ -1,0 +1,34 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+repositories[5]:
+  - name: arkadia-data
+    stars: 1840
+    topics[4]: llm,json,rust,python
+    archived: false
+  - name: ak-workspace
+    stars: 920
+    topics[2]: agents,electron
+    archived: false
+  - name: toon-python
+    stars: 310
+    topics[2]: llm,python
+    archived: true
+  - name: star-federation
+    stars: 75
+    topics: []
+    archived: false
+  - name: universal-timer
+    stars: 210
+    topics[2]: rust,cli
+    archived: false
+</data>
+
+Question: Which repositories that are not archived have the topic rust? Most stars first.
+
+Answer in TOON only (no prose, no code fences): repos[N]{name,stars}: followed by one row per item.

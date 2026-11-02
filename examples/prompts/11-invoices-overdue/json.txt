@@ -1,0 +1,110 @@
+The data below is in JSON.
+
+<data>
+{
+  "invoices": [
+    {
+      "no": "FV/001/2026",
+      "client": "Acme",
+      "gross": 468800,
+      "due": "2026-10-20",
+      "st": 1
+    },
+    {
+      "no": "FV/002/2026",
+      "client": "Globex",
+      "gross": 33550,
+      "due": "2026-10-02",
+      "st": 1
+    },
+    {
+      "no": "FV/003/2026",
+      "client": "Initech",
+      "gross": 715150,
+      "due": "2026-10-26",
+      "st": 1
+    },
+    {
+      "no": "FV/004/2026",
+      "client": "Umbrella",
+      "gross": 865700,
+      "due": "2026-10-25",
+      "st": 1
+    },
+    {
+      "no": "FV/005/2026",
+      "client": "Hooli",
+      "gross": 788850,
+      "due": "2026-10-07",
+      "st": 2
+    },
+    {
+      "no": "FV/006/2026",
+      "client": "Stark",
+      "gross": 581350,
+      "due": "2026-10-27",
+      "st": 1
+    },
+    {
+      "no": "FV/007/2026",
+      "client": "Wayne",
+      "gross": 295650,
+      "due": "2026-10-23",
+      "st": 0
+    },
+    {
+      "no": "FV/008/2026",
+      "client": "Tyrell",
+      "gross": 458450,
+      "due": "2026-10-02",
+      "st": 1
+    },
+    {
+      "no": "FV/009/2026",
+      "client": "Soylent",
+      "gross": 187800,
+      "due": "2026-10-26",
+      "st": 1
+    },
+    {
+      "no": "FV/010/2026",
+      "client": "Wonka",
+      "gross": 579600,
+      "due": "2026-10-07",
+      "st": 0
+    },
+    {
+      "no": "FV/011/2026",
+      "client": "Cyberdyne",
+      "gross": 493250,
+      "due": "2026-10-26",
+      "st": 2
+    },
+    {
+      "no": "FV/012/2026",
+      "client": "Vandelay",
+      "gross": 483350,
+      "due": "2026-10-16",
+      "st": 1
+    },
+    {
+      "no": "FV/013/2026",
+      "client": "Acme",
+      "gross": 77100,
+      "due": "2026-10-24",
+      "st": 1
+    },
+    {
+      "no": "FV/014/2026",
+      "client": "Globex",
+      "gross": 358950,
+      "due": "2026-10-18",
+      "st": 0
+    }
+  ]
+}
+</data>
+
+Question: Which invoices are unpaid and overdue on 2026-10-20? Give the number and the gross amount in PLN.
+
+Answer with JSON only (no prose): {"overdue": [{"no": <string>, "pln": <number>}, ...]}

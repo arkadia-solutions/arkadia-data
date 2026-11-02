@@ -1,0 +1,168 @@
+{
+  "id": 19,
+  "slug": "crm-leads",
+  "title": "CRM: leads in the proposal stage",
+  "description": "Stage is a code 1–4.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which leads are in the proposal stage? Highest score first.",
+  "answer": {
+    "name": "proposal",
+    "fields": [
+      [
+        "lead",
+        "string"
+      ],
+      [
+        "company",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "lead": "L-301",
+      "company": "Globex"
+    },
+    {
+      "lead": "L-312",
+      "company": "Acme"
+    },
+    {
+      "lead": "L-300",
+      "company": "Acme"
+    },
+    {
+      "lead": "L-304",
+      "company": "Hooli"
+    },
+    {
+      "lead": "L-313",
+      "company": "Globex"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`leads.stage`: pipeline stage: 1 new, 2 qualified, 3 proposal, 4 won",
+      "`leads.score`: lead score, higher is better"
+    ],
+    "attributes": [
+      "`leads.stage`: $enum=\"1=new,2=qualified,3=proposal,4=won\"",
+      "`leads.score`: $range=\"0-100\""
+    ]
+  },
+  "akd_meta": "<leads:<[lead:string,company:string,score:number $range=\"0-100\" /* lead score, higher is better */,stage:number $enum=\"1=new,2=qualified,3=proposal,4=won\" /* pipeline stage: 1 new, 2 qualified, 3 proposal, 4 won */,owner:string]>>([(\"L-300\",\"Acme\",34,3,\"Ada\"),(\"L-301\",\"Globex\",89,3,\"Ada\"),(\"L-302\",\"Initech\",24,2,\"Alan\"),(\"L-303\",\"Umbrella\",82,1,\"Ada\"),(\"L-304\",\"Hooli\",14,3,\"Ada\"),(\"L-305\",\"Stark\",40,1,\"Margaret\"),(\"L-306\",\"Wayne\",92,4,\"Linus\"),(\"L-307\",\"Tyrell\",60,2,\"Ada\"),(\"L-308\",\"Soylent\",73,1,\"Margaret\"),(\"L-309\",\"Wonka\",87,2,\"Alan\"),(\"L-310\",\"Cyberdyne\",49,4,\"Grace\"),(\"L-311\",\"Vandelay\",32,2,\"Alan\"),(\"L-312\",\"Acme\",52,3,\"Ada\"),(\"L-313\",\"Globex\",13,3,\"Ada\"),(\"L-314\",\"Initech\",11,2,\"Alan\")])",
+  "data": {
+    "leads": [
+      {
+        "lead": "L-300",
+        "company": "Acme",
+        "score": 34,
+        "stage": 3,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-301",
+        "company": "Globex",
+        "score": 89,
+        "stage": 3,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-302",
+        "company": "Initech",
+        "score": 24,
+        "stage": 2,
+        "owner": "Alan"
+      },
+      {
+        "lead": "L-303",
+        "company": "Umbrella",
+        "score": 82,
+        "stage": 1,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-304",
+        "company": "Hooli",
+        "score": 14,
+        "stage": 3,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-305",
+        "company": "Stark",
+        "score": 40,
+        "stage": 1,
+        "owner": "Margaret"
+      },
+      {
+        "lead": "L-306",
+        "company": "Wayne",
+        "score": 92,
+        "stage": 4,
+        "owner": "Linus"
+      },
+      {
+        "lead": "L-307",
+        "company": "Tyrell",
+        "score": 60,
+        "stage": 2,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-308",
+        "company": "Soylent",
+        "score": 73,
+        "stage": 1,
+        "owner": "Margaret"
+      },
+      {
+        "lead": "L-309",
+        "company": "Wonka",
+        "score": 87,
+        "stage": 2,
+        "owner": "Alan"
+      },
+      {
+        "lead": "L-310",
+        "company": "Cyberdyne",
+        "score": 49,
+        "stage": 4,
+        "owner": "Grace"
+      },
+      {
+        "lead": "L-311",
+        "company": "Vandelay",
+        "score": 32,
+        "stage": 2,
+        "owner": "Alan"
+      },
+      {
+        "lead": "L-312",
+        "company": "Acme",
+        "score": 52,
+        "stage": 3,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-313",
+        "company": "Globex",
+        "score": 13,
+        "stage": 3,
+        "owner": "Ada"
+      },
+      {
+        "lead": "L-314",
+        "company": "Initech",
+        "score": 11,
+        "stage": 2,
+        "owner": "Alan"
+      }
+    ]
+  }
+}

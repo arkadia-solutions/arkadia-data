@@ -1,0 +1,43 @@
+The data below is in JSON.
+
+<data>
+{
+  "name": "distance (km)",
+  "cities": [
+    "Warsaw",
+    "Kraków",
+    "Gdańsk",
+    "Wrocław"
+  ],
+  "km": [
+    [
+      0,
+      293,
+      340,
+      344
+    ],
+    [
+      293,
+      0,
+      591,
+      269
+    ],
+    [
+      340,
+      591,
+      0,
+      482
+    ],
+    [
+      344,
+      269,
+      482,
+      0
+    ]
+  ]
+}
+</data>
+
+Question: Which two cities are farthest apart, and how far?
+
+Answer with JSON only (no prose): {"pair": [{"from": <string>, "to": <string>, "km": <number>}, ...]}

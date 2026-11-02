@@ -1,0 +1,1004 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Tim Dijkstra",
+      "email": "tim.dijkstra1@example.com",
+      "department": "Sales",
+      "city": "Warsaw",
+      "salary": 109500,
+      "active": true,
+      "hired": "2012-12-27"
+    },
+    {
+      "id": 2,
+      "name": "Margaret Turing",
+      "email": "margaret.turing2@example.com",
+      "department": "Sales",
+      "city": "Kraków",
+      "salary": 126500,
+      "active": true,
+      "hired": "2025-11-20"
+    },
+    {
+      "id": 3,
+      "name": "Linus Liskov",
+      "email": "linus.liskov3@example.com",
+      "department": "Sales",
+      "city": "Lisbon",
+      "salary": 77500,
+      "active": true,
+      "hired": "2019-01-19"
+    },
+    {
+      "id": 4,
+      "name": "Linus Berners-Lee",
+      "email": "linus.bernerslee4@example.com",
+      "department": "Sales",
+      "city": "Lisbon",
+      "salary": 137000,
+      "active": true,
+      "hired": "2012-03-05"
+    },
+    {
+      "id": 5,
+      "name": "Hedy Hopper",
+      "email": "hedy.hopper5@example.com",
+      "department": "Engineering",
+      "city": "Lisbon",
+      "salary": 105000,
+      "active": true,
+      "hired": "2020-06-04"
+    },
+    {
+      "id": 6,
+      "name": "Dennis Backus",
+      "email": "dennis.backus6@example.com",
+      "department": "Finance",
+      "city": "Toronto",
+      "salary": 154500,
+      "active": true,
+      "hired": "2018-08-23"
+    },
+    {
+      "id": 7,
+      "name": "Alan Hamilton",
+      "email": "alan.hamilton7@example.com",
+      "department": "Support",
+      "city": "Lisbon",
+      "salary": 101000,
+      "active": true,
+      "hired": "2025-02-12"
+    },
+    {
+      "id": 8,
+      "name": "Linus Dijkstra",
+      "email": "linus.dijkstra8@example.com",
+      "department": "Finance",
+      "city": "Kraków",
+      "salary": 49000,
+      "active": false,
+      "hired": "2018-04-19"
+    },
+    {
+      "id": 9,
+      "name": "Donald Knuth",
+      "email": "donald.knuth9@example.com",
+      "department": "Research",
+      "city": "Warsaw",
+      "salary": 184000,
+      "active": true,
+      "hired": "2012-06-02"
+    },
+    {
+      "id": 10,
+      "name": "Katherine Lovelace",
+      "email": "katherine.lovelace10@example.com",
+      "department": "Research",
+      "city": "London",
+      "salary": 57000,
+      "active": true,
+      "hired": "2012-12-06"
+    },
+    {
+      "id": 11,
+      "name": "Edsger Berners-Lee",
+      "email": "edsger.bernerslee11@example.com",
+      "department": "Research",
+      "city": "Warsaw",
+      "salary": 126500,
+      "active": true,
+      "hired": "2025-02-01"
+    },
+    {
+      "id": 12,
+      "name": "Edsger Turing",
+      "email": "edsger.turing12@example.com",
+      "department": "Engineering",
+      "city": "Austin",
+      "salary": 177000,
+      "active": true,
+      "hired": "2018-09-09"
+    },
+    {
+      "id": 13,
+      "name": "John Lovelace",
+      "email": "john.lovelace13@example.com",
+      "department": "Support",
+      "city": "Austin",
+      "salary": 134500,
+      "active": true,
+      "hired": "2023-06-21"
+    },
+    {
+      "id": 14,
+      "name": "Donald Allen",
+      "email": "donald.allen14@example.com",
+      "department": "Research",
+      "city": "Austin",
+      "salary": 113500,
+      "active": true,
+      "hired": "2018-09-27"
+    },
+    {
+      "id": 15,
+      "name": "Tim Berners-Lee",
+      "email": "tim.bernerslee15@example.com",
+      "department": "Sales",
+      "city": "Kraków",
+      "salary": 176000,
+      "active": true,
+      "hired": "2020-05-15"
+    },
+    {
+      "id": 16,
+      "name": "Margaret Lovelace",
+      "email": "margaret.lovelace16@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 165500,
+      "active": true,
+      "hired": "2016-11-18"
+    },
+    {
+      "id": 17,
+      "name": "Ken Torvalds",
+      "email": "ken.torvalds17@example.com",
+      "department": "Research",
+      "city": "Toronto",
+      "salary": 172500,
+      "active": true,
+      "hired": "2026-09-05"
+    },
+    {
+      "id": 18,
+      "name": "Margaret Knuth",
+      "email": "margaret.knuth18@example.com",
+      "department": "Sales",
+      "city": "Lisbon",
+      "salary": 52500,
+      "active": true,
+      "hired": "2020-10-12"
+    },
+    {
+      "id": 19,
+      "name": "Grace Ritchie",
+      "email": "grace.ritchie19@example.com",
+      "department": "Support",
+      "city": "Berlin",
+      "salary": 62000,
+      "active": true,
+      "hired": "2026-02-20"
+    },
+    {
+      "id": 20,
+      "name": "Barbara Lovelace",
+      "email": "barbara.lovelace20@example.com",
+      "department": "Research",
+      "city": "Berlin",
+      "salary": 139500,
+      "active": true,
+      "hired": "2020-08-03"
+    },
+    {
+      "id": 21,
+      "name": "Ada Hamilton",
+      "email": "ada.hamilton21@example.com",
+      "department": "Sales",
+      "city": "London",
+      "salary": 99500,
+      "active": true,
+      "hired": "2013-02-07"
+    },
+    {
+      "id": 22,
+      "name": "Donald Thompson",
+      "email": "donald.thompson22@example.com",
+      "department": "Sales",
+      "city": "London",
+      "salary": 156500,
+      "active": true,
+      "hired": "2026-12-13"
+    },
+    {
+      "id": 23,
+      "name": "Radia Dijkstra",
+      "email": "radia.dijkstra23@example.com",
+      "department": "Engineering",
+      "city": "Warsaw",
+      "salary": 72500,
+      "active": true,
+      "hired": "2019-09-08"
+    },
+    {
+      "id": 24,
+      "name": "Donald Hamilton",
+      "email": "donald.hamilton24@example.com",
+      "department": "Engineering",
+      "city": "Berlin",
+      "salary": 93500,
+      "active": true,
+      "hired": "2019-07-12"
+    },
+    {
+      "id": 25,
+      "name": "Katherine Perlman",
+      "email": "katherine.perlman25@example.com",
+      "department": "Engineering",
+      "city": "Lisbon",
+      "salary": 105000,
+      "active": true,
+      "hired": "2020-12-08"
+    },
+    {
+      "id": 26,
+      "name": "Katherine Lamarr",
+      "email": "katherine.lamarr26@example.com",
+      "department": "Engineering",
+      "city": "London",
+      "salary": 177500,
+      "active": true,
+      "hired": "2020-02-06"
+    },
+    {
+      "id": 27,
+      "name": "Grace Hopper",
+      "email": "grace.hopper27@example.com",
+      "department": "Research",
+      "city": "Lisbon",
+      "salary": 166000,
+      "active": false,
+      "hired": "2024-04-18"
+    },
+    {
+      "id": 28,
+      "name": "Edsger Ritchie",
+      "email": "edsger.ritchie28@example.com",
+      "department": "Finance",
+      "city": "Berlin",
+      "salary": 112000,
+      "active": true,
+      "hired": "2020-05-21"
+    },
+    {
+      "id": 29,
+      "name": "Tim Turing",
+      "email": "tim.turing29@example.com",
+      "department": "Engineering",
+      "city": "Lisbon",
+      "salary": 186500,
+      "active": true,
+      "hired": "2016-03-10"
+    },
+    {
+      "id": 30,
+      "name": "Tim Berners-Lee",
+      "email": "tim.bernerslee30@example.com",
+      "department": "Research",
+      "city": "Warsaw",
+      "salary": 81500,
+      "active": true,
+      "hired": "2014-07-19"
+    },
+    {
+      "id": 31,
+      "name": "Dennis Dijkstra",
+      "email": "dennis.dijkstra31@example.com",
+      "department": "Support",
+      "city": "Toronto",
+      "salary": 129000,
+      "active": true,
+      "hired": "2024-09-28"
+    },
+    {
+      "id": 32,
+      "name": "Barbara Turing",
+      "email": "barbara.turing32@example.com",
+      "department": "Sales",
+      "city": "Austin",
+      "salary": 79000,
+      "active": true,
+      "hired": "2018-06-16"
+    },
+    {
+      "id": 33,
+      "name": "Tim Hamilton",
+      "email": "tim.hamilton33@example.com",
+      "department": "Marketing",
+      "city": "Lisbon",
+      "salary": 98000,
+      "active": true,
+      "hired": "2013-10-20"
+    },
+    {
+      "id": 34,
+      "name": "Tim Torvalds",
+      "email": "tim.torvalds34@example.com",
+      "department": "Research",
+      "city": "Lisbon",
+      "salary": 174000,
+      "active": true,
+      "hired": "2012-05-26"
+    },
+    {
+      "id": 35,
+      "name": "Edsger Torvalds",
+      "email": "edsger.torvalds35@example.com",
+      "department": "Marketing",
+      "city": "Lisbon",
+      "salary": 119500,
+      "active": false,
+      "hired": "2026-11-23"
+    },
+    {
+      "id": 36,
+      "name": "Katherine Allen",
+      "email": "katherine.allen36@example.com",
+      "department": "Engineering",
+      "city": "Berlin",
+      "salary": 77000,
+      "active": false,
+      "hired": "2020-11-20"
+    },
+    {
+      "id": 37,
+      "name": "Margaret Hamilton",
+      "email": "margaret.hamilton37@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 63500,
+      "active": true,
+      "hired": "2016-02-09"
+    },
+    {
+      "id": 38,
+      "name": "Edsger Ritchie",
+      "email": "edsger.ritchie38@example.com",
+      "department": "Finance",
+      "city": "Kraków",
+      "salary": 147500,
+      "active": true,
+      "hired": "2012-06-04"
+    },
+    {
+      "id": 39,
+      "name": "Tim Turing",
+      "email": "tim.turing39@example.com",
+      "department": "Finance",
+      "city": "Austin",
+      "salary": 164000,
+      "active": true,
+      "hired": "2017-06-12"
+    },
+    {
+      "id": 40,
+      "name": "Alan Perlman",
+      "email": "alan.perlman40@example.com",
+      "department": "Marketing",
+      "city": "London",
+      "salary": 60500,
+      "active": false,
+      "hired": "2014-12-09"
+    },
+    {
+      "id": 41,
+      "name": "Tim Berners-Lee",
+      "email": "tim.bernerslee41@example.com",
+      "department": "Sales",
+      "city": "Austin",
+      "salary": 135500,
+      "active": true,
+      "hired": "2012-04-20"
+    },
+    {
+      "id": 42,
+      "name": "Frances Liskov",
+      "email": "frances.liskov42@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 127000,
+      "active": true,
+      "hired": "2015-07-03"
+    },
+    {
+      "id": 43,
+      "name": "Alan Perlman",
+      "email": "alan.perlman43@example.com",
+      "department": "Research",
+      "city": "Kraków",
+      "salary": 78500,
+      "active": true,
+      "hired": "2015-08-14"
+    },
+    {
+      "id": 44,
+      "name": "Ada Turing",
+      "email": "ada.turing44@example.com",
+      "department": "Research",
+      "city": "Austin",
+      "salary": 61000,
+      "active": true,
+      "hired": "2017-07-12"
+    },
+    {
+      "id": 45,
+      "name": "Dennis Allen",
+      "email": "dennis.allen45@example.com",
+      "department": "Finance",
+      "city": "Kraków",
+      "salary": 121000,
+      "active": true,
+      "hired": "2019-10-20"
+    },
+    {
+      "id": 46,
+      "name": "John Dijkstra",
+      "email": "john.dijkstra46@example.com",
+      "department": "Sales",
+      "city": "London",
+      "salary": 113500,
+      "active": true,
+      "hired": "2025-12-22"
+    },
+    {
+      "id": 47,
+      "name": "Linus Lovelace",
+      "email": "linus.lovelace47@example.com",
+      "department": "Sales",
+      "city": "Warsaw",
+      "salary": 130500,
+      "active": true,
+      "hired": "2024-04-04"
+    },
+    {
+      "id": 48,
+      "name": "Alan Turing",
+      "email": "alan.turing48@example.com",
+      "department": "Support",
+      "city": "Warsaw",
+      "salary": 127000,
+      "active": true,
+      "hired": "2012-10-23"
+    },
+    {
+      "id": 49,
+      "name": "Barbara Berners-Lee",
+      "email": "barbara.bernerslee49@example.com",
+      "department": "Marketing",
+      "city": "Warsaw",
+      "salary": 92500,
+      "active": true,
+      "hired": "2019-03-25"
+    },
+    {
+      "id": 50,
+      "name": "Hedy Ritchie",
+      "email": "hedy.ritchie50@example.com",
+      "department": "Support",
+      "city": "Berlin",
+      "salary": 82500,
+      "active": false,
+      "hired": "2026-10-03"
+    },
+    {
+      "id": 51,
+      "name": "Margaret Liskov",
+      "email": "margaret.liskov51@example.com",
+      "department": "Engineering",
+      "city": "London",
+      "salary": 57500,
+      "active": true,
+      "hired": "2014-11-06"
+    },
+    {
+      "id": 52,
+      "name": "Dennis Turing",
+      "email": "dennis.turing52@example.com",
+      "department": "Engineering",
+      "city": "Kraków",
+      "salary": 141000,
+      "active": true,
+      "hired": "2013-01-06"
+    },
+    {
+      "id": 53,
+      "name": "Barbara Johnson",
+      "email": "barbara.johnson53@example.com",
+      "department": "Marketing",
+      "city": "Lisbon",
+      "salary": 148500,
+      "active": true,
+      "hired": "2020-04-19"
+    },
+    {
+      "id": 54,
+      "name": "Margaret Ritchie",
+      "email": "margaret.ritchie54@example.com",
+      "department": "Marketing",
+      "city": "Austin",
+      "salary": 50500,
+      "active": false,
+      "hired": "2026-07-24"
+    },
+    {
+      "id": 55,
+      "name": "Frances Hamilton",
+      "email": "frances.hamilton55@example.com",
+      "department": "Support",
+      "city": "Toronto",
+      "salary": 99500,
+      "active": true,
+      "hired": "2016-06-06"
+    },
+    {
+      "id": 56,
+      "name": "Alan Hopper",
+      "email": "alan.hopper56@example.com",
+      "department": "Finance",
+      "city": "London",
+      "salary": 114500,
+      "active": true,
+      "hired": "2021-11-16"
+    },
+    {
+      "id": 57,
+      "name": "Hedy Hamilton",
+      "email": "hedy.hamilton57@example.com",
+      "department": "Research",
+      "city": "Austin",
+      "salary": 171000,
+      "active": false,
+      "hired": "2014-08-03"
+    },
+    {
+      "id": 58,
+      "name": "Radia Knuth",
+      "email": "radia.knuth58@example.com",
+      "department": "Marketing",
+      "city": "Austin",
+      "salary": 152000,
+      "active": true,
+      "hired": "2022-11-08"
+    },
+    {
+      "id": 59,
+      "name": "Radia Hopper",
+      "email": "radia.hopper59@example.com",
+      "department": "Sales",
+      "city": "Lisbon",
+      "salary": 188500,
+      "active": true,
+      "hired": "2015-07-13"
+    },
+    {
+      "id": 60,
+      "name": "Ada Turing",
+      "email": "ada.turing60@example.com",
+      "department": "Engineering",
+      "city": "Warsaw",
+      "salary": 150000,
+      "active": true,
+      "hired": "2021-09-08"
+    },
+    {
+      "id": 61,
+      "name": "Frances Hopper",
+      "email": "frances.hopper61@example.com",
+      "department": "Finance",
+      "city": "Lisbon",
+      "salary": 109000,
+      "active": false,
+      "hired": "2014-05-20"
+    },
+    {
+      "id": 62,
+      "name": "Alan Dijkstra",
+      "email": "alan.dijkstra62@example.com",
+      "department": "Marketing",
+      "city": "Toronto",
+      "salary": 91500,
+      "active": true,
+      "hired": "2016-07-17"
+    },
+    {
+      "id": 63,
+      "name": "Donald Ritchie",
+      "email": "donald.ritchie63@example.com",
+      "department": "Engineering",
+      "city": "Austin",
+      "salary": 91000,
+      "active": false,
+      "hired": "2022-05-28"
+    },
+    {
+      "id": 64,
+      "name": "Ken Allen",
+      "email": "ken.allen64@example.com",
+      "department": "Finance",
+      "city": "Berlin",
+      "salary": 151500,
+      "active": true,
+      "hired": "2015-07-16"
+    },
+    {
+      "id": 65,
+      "name": "Ken Lovelace",
+      "email": "ken.lovelace65@example.com",
+      "department": "Sales",
+      "city": "Lisbon",
+      "salary": 117000,
+      "active": true,
+      "hired": "2021-02-25"
+    },
+    {
+      "id": 66,
+      "name": "Katherine Thompson",
+      "email": "katherine.thompson66@example.com",
+      "department": "Finance",
+      "city": "London",
+      "salary": 148000,
+      "active": true,
+      "hired": "2018-04-24"
+    },
+    {
+      "id": 67,
+      "name": "Linus Lamarr",
+      "email": "linus.lamarr67@example.com",
+      "department": "Engineering",
+      "city": "Kraków",
+      "salary": 67500,
+      "active": true,
+      "hired": "2019-04-18"
+    },
+    {
+      "id": 68,
+      "name": "Frances Lamarr",
+      "email": "frances.lamarr68@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 186000,
+      "active": true,
+      "hired": "2016-10-28"
+    },
+    {
+      "id": 69,
+      "name": "Tim Liskov",
+      "email": "tim.liskov69@example.com",
+      "department": "Research",
+      "city": "Berlin",
+      "salary": 166500,
+      "active": true,
+      "hired": "2025-11-27"
+    },
+    {
+      "id": 70,
+      "name": "Donald Hamilton",
+      "email": "donald.hamilton70@example.com",
+      "department": "Research",
+      "city": "Kraków",
+      "salary": 152000,
+      "active": true,
+      "hired": "2016-11-07"
+    },
+    {
+      "id": 71,
+      "name": "Dennis Ritchie",
+      "email": "dennis.ritchie71@example.com",
+      "department": "Research",
+      "city": "Toronto",
+      "salary": 127500,
+      "active": true,
+      "hired": "2014-02-28"
+    },
+    {
+      "id": 72,
+      "name": "Frances Knuth",
+      "email": "frances.knuth72@example.com",
+      "department": "Marketing",
+      "city": "Warsaw",
+      "salary": 76000,
+      "active": true,
+      "hired": "2023-04-06"
+    },
+    {
+      "id": 73,
+      "name": "Katherine Torvalds",
+      "email": "katherine.torvalds73@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 175000,
+      "active": true,
+      "hired": "2023-09-10"
+    },
+    {
+      "id": 74,
+      "name": "Grace Lovelace",
+      "email": "grace.lovelace74@example.com",
+      "department": "Research",
+      "city": "Lisbon",
+      "salary": 64500,
+      "active": true,
+      "hired": "2021-05-26"
+    },
+    {
+      "id": 75,
+      "name": "Ken Liskov",
+      "email": "ken.liskov75@example.com",
+      "department": "Engineering",
+      "city": "Kraków",
+      "salary": 95500,
+      "active": true,
+      "hired": "2015-02-23"
+    },
+    {
+      "id": 76,
+      "name": "Linus Hopper",
+      "email": "linus.hopper76@example.com",
+      "department": "Marketing",
+      "city": "Berlin",
+      "salary": 70000,
+      "active": true,
+      "hired": "2025-11-07"
+    },
+    {
+      "id": 77,
+      "name": "Grace Hopper",
+      "email": "grace.hopper77@example.com",
+      "department": "Support",
+      "city": "Warsaw",
+      "salary": 115500,
+      "active": false,
+      "hired": "2025-10-02"
+    },
+    {
+      "id": 78,
+      "name": "Barbara Turing",
+      "email": "barbara.turing78@example.com",
+      "department": "Research",
+      "city": "Berlin",
+      "salary": 164000,
+      "active": true,
+      "hired": "2012-08-05"
+    },
+    {
+      "id": 79,
+      "name": "Frances Allen",
+      "email": "frances.allen79@example.com",
+      "department": "Finance",
+      "city": "London",
+      "salary": 64500,
+      "active": true,
+      "hired": "2026-01-15"
+    },
+    {
+      "id": 80,
+      "name": "Hedy Lamarr",
+      "email": "hedy.lamarr80@example.com",
+      "department": "Support",
+      "city": "Warsaw",
+      "salary": 116500,
+      "active": true,
+      "hired": "2018-01-28"
+    },
+    {
+      "id": 81,
+      "name": "Margaret Thompson",
+      "email": "margaret.thompson81@example.com",
+      "department": "Marketing",
+      "city": "Toronto",
+      "salary": 164000,
+      "active": true,
+      "hired": "2015-04-12"
+    },
+    {
+      "id": 82,
+      "name": "Ken Ritchie",
+      "email": "ken.ritchie82@example.com",
+      "department": "Engineering",
+      "city": "Toronto",
+      "salary": 56500,
+      "active": true,
+      "hired": "2018-07-27"
+    },
+    {
+      "id": 83,
+      "name": "Ken Thompson",
+      "email": "ken.thompson83@example.com",
+      "department": "Finance",
+      "city": "Austin",
+      "salary": 54500,
+      "active": true,
+      "hired": "2012-08-16"
+    },
+    {
+      "id": 84,
+      "name": "Ken Thompson",
+      "email": "ken.thompson84@example.com",
+      "department": "Finance",
+      "city": "Berlin",
+      "salary": 108500,
+      "active": true,
+      "hired": "2014-04-25"
+    },
+    {
+      "id": 85,
+      "name": "Barbara Hamilton",
+      "email": "barbara.hamilton85@example.com",
+      "department": "Sales",
+      "city": "Kraków",
+      "salary": 174000,
+      "active": true,
+      "hired": "2023-08-06"
+    },
+    {
+      "id": 86,
+      "name": "Alan Backus",
+      "email": "alan.backus86@example.com",
+      "department": "Sales",
+      "city": "Warsaw",
+      "salary": 178500,
+      "active": true,
+      "hired": "2012-06-08"
+    },
+    {
+      "id": 87,
+      "name": "Barbara Knuth",
+      "email": "barbara.knuth87@example.com",
+      "department": "Marketing",
+      "city": "Warsaw",
+      "salary": 184000,
+      "active": true,
+      "hired": "2022-08-05"
+    },
+    {
+      "id": 88,
+      "name": "Ada Hopper",
+      "email": "ada.hopper88@example.com",
+      "department": "Finance",
+      "city": "London",
+      "salary": 58000,
+      "active": true,
+      "hired": "2012-02-07"
+    },
+    {
+      "id": 89,
+      "name": "Grace Allen",
+      "email": "grace.allen89@example.com",
+      "department": "Sales",
+      "city": "London",
+      "salary": 63000,
+      "active": true,
+      "hired": "2021-10-03"
+    },
+    {
+      "id": 90,
+      "name": "Grace Perlman",
+      "email": "grace.perlman90@example.com",
+      "department": "Sales",
+      "city": "Toronto",
+      "salary": 63500,
+      "active": false,
+      "hired": "2019-02-15"
+    },
+    {
+      "id": 91,
+      "name": "John Ritchie",
+      "email": "john.ritchie91@example.com",
+      "department": "Support",
+      "city": "Berlin",
+      "salary": 56500,
+      "active": true,
+      "hired": "2014-03-19"
+    },
+    {
+      "id": 92,
+      "name": "Frances Thompson",
+      "email": "frances.thompson92@example.com",
+      "department": "Support",
+      "city": "Berlin",
+      "salary": 91000,
+      "active": true,
+      "hired": "2019-03-20"
+    },
+    {
+      "id": 93,
+      "name": "Ada Ritchie",
+      "email": "ada.ritchie93@example.com",
+      "department": "Marketing",
+      "city": "Kraków",
+      "salary": 50500,
+      "active": true,
+      "hired": "2023-12-06"
+    },
+    {
+      "id": 94,
+      "name": "Linus Hopper",
+      "email": "linus.hopper94@example.com",
+      "department": "Engineering",
+      "city": "Kraków",
+      "salary": 110500,
+      "active": true,
+      "hired": "2018-11-24"
+    },
+    {
+      "id": 95,
+      "name": "Margaret Liskov",
+      "email": "margaret.liskov95@example.com",
+      "department": "Support",
+      "city": "Warsaw",
+      "salary": 60000,
+      "active": true,
+      "hired": "2024-10-12"
+    },
+    {
+      "id": 96,
+      "name": "Donald Perlman",
+      "email": "donald.perlman96@example.com",
+      "department": "Engineering",
+      "city": "Kraków",
+      "salary": 117500,
+      "active": true,
+      "hired": "2021-10-16"
+    },
+    {
+      "id": 97,
+      "name": "Donald Dijkstra",
+      "email": "donald.dijkstra97@example.com",
+      "department": "Research",
+      "city": "Warsaw",
+      "salary": 84000,
+      "active": true,
+      "hired": "2014-10-02"
+    },
+    {
+      "id": 98,
+      "name": "Grace Allen",
+      "email": "grace.allen98@example.com",
+      "department": "Research",
+      "city": "Warsaw",
+      "salary": 87500,
+      "active": true,
+      "hired": "2014-02-09"
+    },
+    {
+      "id": 99,
+      "name": "Donald Hopper",
+      "email": "donald.hopper99@example.com",
+      "department": "Support",
+      "city": "Toronto",
+      "salary": 106000,
+      "active": true,
+      "hired": "2012-10-23"
+    },
+    {
+      "id": 100,
+      "name": "John Liskov",
+      "email": "john.liskov100@example.com",
+      "department": "Finance",
+      "city": "Kraków",
+      "salary": 104000,
+      "active": true,
+      "hired": "2020-08-05"
+    }
+  ]
+}

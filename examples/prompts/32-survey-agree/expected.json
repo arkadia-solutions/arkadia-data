@@ -1,0 +1,24 @@
+{
+  "agree": [
+    {
+      "q": "The app is easy to use",
+      "agree_pct": 50
+    },
+    {
+      "q": "Support answers quickly",
+      "agree_pct": 67
+    },
+    {
+      "q": "Prices are fair",
+      "agree_pct": 67
+    },
+    {
+      "q": "I would recommend it",
+      "agree_pct": 33
+    },
+    {
+      "q": "Docs are clear",
+      "agree_pct": 83
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<shipments:<[
+  id:string,
+  carrier:string,
+  w:number $unit="g" /* parcel weight in grams */
+]>>
+([
+  ("SH-001", "DHL", 21945),
+  ("SH-002", "DHL", 23840),
+  ("SH-003", "UPS", 583),
+  ("SH-004", "InPost", 2048),
+  ("SH-005", "InPost", 12994),
+  ("SH-006", "UPS", 19871),
+  ("SH-007", "UPS", 12398),
+  ("SH-008", "DPD", 20024),
+  ("SH-009", "DHL", 2929),
+  ("SH-010", "UPS", 14823),
+  ("SH-011", "DHL", 23860),
+  ("SH-012", "DHL", 20472),
+  ("SH-013", "DPD", 2385),
+  ("SH-014", "InPost", 10691),
+  ("SH-015", "UPS", 7052),
+  ("SH-016", "DPD", 19739)
+])
+</data>
+
+Question: What is the total weight in kilograms per carrier? Heaviest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<weight:<[carrier:string,kg:number]>>

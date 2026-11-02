@@ -1,0 +1,66 @@
+The data below is in JSON.
+
+Notes about the data:
+- 7-day forecast for Chicago.
+- `forecast.hi`: daily high in degrees Fahrenheit
+- `forecast.lo`: daily low in degrees Fahrenheit
+- `forecast.rain`: chance of rain in percent
+
+Attributes of the data:
+- document: $city="Chicago" $source="nws"
+- `forecast.hi`: $unit="F"
+- `forecast.lo`: $unit="F"
+- `forecast.rain`: $unit="%"
+
+<data>
+{
+  "forecast": [
+    {
+      "day": "Mon",
+      "hi": 39,
+      "lo": 40,
+      "rain": 90
+    },
+    {
+      "day": "Tue",
+      "hi": 49,
+      "lo": 37,
+      "rain": 60
+    },
+    {
+      "day": "Wed",
+      "hi": 38,
+      "lo": 42,
+      "rain": 90
+    },
+    {
+      "day": "Thu",
+      "hi": 60,
+      "lo": 32,
+      "rain": 60
+    },
+    {
+      "day": "Fri",
+      "hi": 40,
+      "lo": 31,
+      "rain": 90
+    },
+    {
+      "day": "Sat",
+      "hi": 58,
+      "lo": 28,
+      "rain": 90
+    },
+    {
+      "day": "Sun",
+      "hi": 60,
+      "lo": 29,
+      "rain": 60
+    }
+  ]
+}
+</data>
+
+Question: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.
+
+Answer with JSON only (no prose): {"cold": [{"day": <string>, "hi_c": <number>}, ...]}

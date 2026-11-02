@@ -1,0 +1,78 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+issues[16]:
+  - n: 100
+    title: Header parse error
+    state: open
+    labels[2]: bug,good first issue
+  - n: 101
+    title: Wrong token count
+    state: open
+    labels: []
+  - n: 102
+    title: Dark mode
+    state: open
+    labels[2]: perf,good first issue
+  - n: 103
+    title: Wrong token count
+    state: closed
+    labels[1]: good first issue
+  - n: 104
+    title: Wrong token count
+    state: open
+    labels[1]: docs
+  - n: 105
+    title: Add Go port
+    state: open
+    labels: []
+  - n: 106
+    title: Dark mode
+    state: closed
+    labels: []
+  - n: 107
+    title: Dark mode
+    state: open
+    labels[2]: good first issue,perf
+  - n: 108
+    title: Slow decode
+    state: closed
+    labels[1]: enhancement
+  - n: 109
+    title: Dark mode
+    state: open
+    labels: []
+  - n: 110
+    title: Wrong token count
+    state: open
+    labels: []
+  - n: 111
+    title: Crash on start
+    state: open
+    labels[1]: docs
+  - n: 112
+    title: Typo in docs
+    state: open
+    labels[1]: good first issue
+  - n: 113
+    title: Dark mode
+    state: open
+    labels[1]: docs
+  - n: 114
+    title: Add Go port
+    state: open
+    labels: []
+  - n: 115
+    title: Dark mode
+    state: open
+    labels[1]: good first issue
+</data>
+
+Question: Which issues are open and labelled bug?
+
+Answer in TOON only (no prose, no code fences): bugs[N]{n,title}: followed by one row per item.

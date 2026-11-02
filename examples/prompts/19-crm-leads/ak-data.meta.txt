@@ -1,0 +1,39 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<leads:<[
+  lead:string,
+  company:string,
+  score:number $range="0-100" /* lead score, higher is better */,
+  stage:number $enum="1=new,2=qualified,3=proposal,4=won" /* pipeline stage: 1 new, 2 qualified, 3 proposal, 4 won */,
+  owner:string
+]>>
+([
+  ("L-300", "Acme", 34, 3, "Ada"),
+  ("L-301", "Globex", 89, 3, "Ada"),
+  ("L-302", "Initech", 24, 2, "Alan"),
+  ("L-303", "Umbrella", 82, 1, "Ada"),
+  ("L-304", "Hooli", 14, 3, "Ada"),
+  ("L-305", "Stark", 40, 1, "Margaret"),
+  ("L-306", "Wayne", 92, 4, "Linus"),
+  ("L-307", "Tyrell", 60, 2, "Ada"),
+  ("L-308", "Soylent", 73, 1, "Margaret"),
+  ("L-309", "Wonka", 87, 2, "Alan"),
+  ("L-310", "Cyberdyne", 49, 4, "Grace"),
+  ("L-311", "Vandelay", 32, 2, "Alan"),
+  ("L-312", "Acme", 52, 3, "Ada"),
+  ("L-313", "Globex", 13, 3, "Ada"),
+  ("L-314", "Initech", 11, 2, "Alan")
+])
+</data>
+
+Question: Which leads are in the proposal stage? Highest score first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<proposal:<[lead:string,company:string]>>

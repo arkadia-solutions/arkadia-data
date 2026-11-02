@@ -1,0 +1,19 @@
+{
+  "result": [
+    {
+      "department": "Engineering",
+      "employees": 8,
+      "avg_salary": 135312
+    },
+    {
+      "department": "Finance",
+      "employees": 2,
+      "avg_salary": 133250
+    },
+    {
+      "department": "Research",
+      "employees": 7,
+      "avg_salary": 124929
+    }
+  ]
+}

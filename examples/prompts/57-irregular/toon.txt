@@ -1,0 +1,28 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+service: workspace
+agents[3]:
+  - name: planner
+    tools[3]: search,files,calendar
+    max_steps: 12
+  - name: writer
+    tools[1]: files
+    max_steps: 6
+  - name: reviewer
+    tools[2]: files,search
+    temperature: 0.2
+limits:
+  tokens: 120000
+  retries[3]: 1,5,30
+storage: null
+</data>
+
+Question: Which agent can use the most tools, and how many?
+
+Answer in TOON only (no prose, no code fences): agent[N]{name,tools}: followed by one row per item.

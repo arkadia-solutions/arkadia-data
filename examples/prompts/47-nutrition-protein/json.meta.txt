@@ -1,0 +1,50 @@
+The data below is in JSON.
+
+Notes about the data:
+- `foods.protein`: grams of protein per 100 g
+- `foods.portion`: portion size in grams
+
+Attributes of the data:
+- `foods.protein`: $unit="g" $per="100 g"
+- `foods.portion`: $unit="g"
+
+<data>
+{
+  "foods": [
+    {
+      "food": "Oats",
+      "protein": 13.2,
+      "portion": 50
+    },
+    {
+      "food": "Chicken breast",
+      "protein": 31.0,
+      "portion": 150
+    },
+    {
+      "food": "Tofu",
+      "protein": 12.0,
+      "portion": 120
+    },
+    {
+      "food": "Lentils (cooked)",
+      "protein": 9.0,
+      "portion": 200
+    },
+    {
+      "food": "Greek yogurt",
+      "protein": 10.0,
+      "portion": 170
+    },
+    {
+      "food": "Almonds",
+      "protein": 21.2,
+      "portion": 30
+    }
+  ]
+}
+</data>
+
+Question: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).
+
+Answer with JSON only (no prose): {"protein": [{"food": <string>, "grams": <number>}, ...]}

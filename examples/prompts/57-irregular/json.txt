@@ -1,0 +1,46 @@
+The data below is in JSON.
+
+<data>
+{
+  "service": "workspace",
+  "agents": [
+    {
+      "name": "planner",
+      "tools": [
+        "search",
+        "files",
+        "calendar"
+      ],
+      "max_steps": 12
+    },
+    {
+      "name": "writer",
+      "tools": [
+        "files"
+      ],
+      "max_steps": 6
+    },
+    {
+      "name": "reviewer",
+      "tools": [
+        "files",
+        "search"
+      ],
+      "temperature": 0.2
+    }
+  ],
+  "limits": {
+    "tokens": 120000,
+    "retries": [
+      1,
+      5,
+      30
+    ]
+  },
+  "storage": null
+}
+</data>
+
+Question: Which agent can use the most tools, and how many?
+
+Answer with JSON only (no prose): {"agent": [{"name": <string>, "tools": <number>}, ...]}

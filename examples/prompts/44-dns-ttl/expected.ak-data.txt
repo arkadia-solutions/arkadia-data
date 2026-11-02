@@ -1,0 +1,1 @@
+<short:<[name:string,type:string,ttl:number]>>([("api","A",60),("status","CNAME",120)])

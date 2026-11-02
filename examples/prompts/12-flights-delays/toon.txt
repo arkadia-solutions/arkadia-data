@@ -1,0 +1,30 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+departures[16]{flight,to,sched,delay}:
+  LH587,LHR,"6:45",25
+  W6724,AMS,"7:00",5
+  LO516,FRA,"8:45",75
+  LH446,VIE,"9:00",75
+  W6599,AMS,"10:15",5
+  LO471,CDG,"11:45",0
+  LO394,VIE,"12:15",0
+  W6499,CDG,"13:45",0
+  LO349,OSL,"14:00",12
+  KL124,VIE,"15:15",12
+  LO112,CDG,"16:15",75
+  FR953,AMS,"17:00",130
+  LH253,CDG,"18:00",5
+  FR998,AMS,"19:00",130
+  W6520,FRA,"20:30",12
+  LO924,AMS,"21:30",0
+</data>
+
+Question: Which flights are delayed by more than 30 minutes? Longest delay first.
+
+Answer in TOON only (no prose, no code fences): delayed[N]{flight,delay}: followed by one row per item.

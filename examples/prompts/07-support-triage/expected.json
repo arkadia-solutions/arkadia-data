@@ -1,0 +1,32 @@
+{
+  "result": [
+    {
+      "id": "T-2425",
+      "priority": "high",
+      "customer": "Hooli",
+      "subject": "Cannot invite new users",
+      "created": "2026-10-03"
+    },
+    {
+      "id": "T-2403",
+      "priority": "urgent",
+      "customer": "Acme",
+      "subject": "Cannot invite new users",
+      "created": "2026-10-04"
+    },
+    {
+      "id": "T-2408",
+      "priority": "high",
+      "customer": "Umbrella",
+      "subject": "Data missing after import",
+      "created": "2026-10-04"
+    },
+    {
+      "id": "T-2412",
+      "priority": "high",
+      "customer": "Wayne",
+      "subject": "Invoice shows wrong VAT",
+      "created": "2026-10-21"
+    }
+  ]
+}

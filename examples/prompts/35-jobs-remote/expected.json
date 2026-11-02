@@ -1,0 +1,12 @@
+{
+  "jobs": [
+    {
+      "role": "Rust engineer",
+      "max": 23000
+    },
+    {
+      "role": "Python developer",
+      "max": 22000
+    }
+  ]
+}

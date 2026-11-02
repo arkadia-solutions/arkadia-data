@@ -1,0 +1,141 @@
+{
+  "id": 17,
+  "slug": "servers-cpu",
+  "title": "Servers: CPU above 80 %",
+  "description": "Load is in per mille (‰), not percent.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.",
+  "answer": {
+    "name": "hot",
+    "fields": [
+      [
+        "host",
+        "string"
+      ],
+      [
+        "cpu_pct",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "host": "web-08",
+      "cpu_pct": 97.2
+    },
+    {
+      "host": "web-06",
+      "cpu_pct": 95.1
+    },
+    {
+      "host": "web-03",
+      "cpu_pct": 84.7
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Average load over the last 5 minutes.",
+      "`hosts.cpu`: CPU usage in per mille (850 = 85 %)",
+      "`hosts.mem`: memory usage in per mille"
+    ],
+    "attributes": [
+      "document: $cluster=\"prod-eu\" $sampled=\"5m\"",
+      "`hosts.cpu`: $unit=\"permille\"",
+      "`hosts.mem`: $unit=\"permille\""
+    ]
+  },
+  "akd_meta": "// $cluster=\"prod-eu\" $sampled=\"5m\" // /* Average load over the last 5 minutes. */ <hosts:<[host:string,dc:string,cpu:number $unit=\"permille\" /* CPU usage in per mille (850 = 85 %) */,mem:number $unit=\"permille\" /* memory usage in per mille */]>>([(\"web-01\",\"waw\",778,590),(\"web-02\",\"fra\",795,592),(\"web-03\",\"waw\",847,342),(\"web-04\",\"waw\",612,573),(\"web-05\",\"fra\",445,646),(\"web-06\",\"ams\",951,762),(\"web-07\",\"fra\",360,461),(\"web-08\",\"waw\",972,220),(\"web-09\",\"fra\",560,322),(\"web-10\",\"ams\",633,897),(\"web-11\",\"waw\",433,976),(\"web-12\",\"ams\",101,848),(\"web-13\",\"fra\",295,548),(\"web-14\",\"fra\",89,894)])",
+  "data": {
+    "hosts": [
+      {
+        "host": "web-01",
+        "dc": "waw",
+        "cpu": 778,
+        "mem": 590
+      },
+      {
+        "host": "web-02",
+        "dc": "fra",
+        "cpu": 795,
+        "mem": 592
+      },
+      {
+        "host": "web-03",
+        "dc": "waw",
+        "cpu": 847,
+        "mem": 342
+      },
+      {
+        "host": "web-04",
+        "dc": "waw",
+        "cpu": 612,
+        "mem": 573
+      },
+      {
+        "host": "web-05",
+        "dc": "fra",
+        "cpu": 445,
+        "mem": 646
+      },
+      {
+        "host": "web-06",
+        "dc": "ams",
+        "cpu": 951,
+        "mem": 762
+      },
+      {
+        "host": "web-07",
+        "dc": "fra",
+        "cpu": 360,
+        "mem": 461
+      },
+      {
+        "host": "web-08",
+        "dc": "waw",
+        "cpu": 972,
+        "mem": 220
+      },
+      {
+        "host": "web-09",
+        "dc": "fra",
+        "cpu": 560,
+        "mem": 322
+      },
+      {
+        "host": "web-10",
+        "dc": "ams",
+        "cpu": 633,
+        "mem": 897
+      },
+      {
+        "host": "web-11",
+        "dc": "waw",
+        "cpu": 433,
+        "mem": 976
+      },
+      {
+        "host": "web-12",
+        "dc": "ams",
+        "cpu": 101,
+        "mem": 848
+      },
+      {
+        "host": "web-13",
+        "dc": "fra",
+        "cpu": 295,
+        "mem": 548
+      },
+      {
+        "host": "web-14",
+        "dc": "fra",
+        "cpu": 89,
+        "mem": 894
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+ "id": 30,
+ "slug": "fleet-service",
+ "title": "Company cars: service due",
+ "description": "Odometer and last service.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which cars have driven more than 15,000 km since the last service? Most first; give the distance.",
+ "tokens": {
+  "json": {
+   "none": 566,
+   "comments": 595,
+   "attributes": 595,
+   "both": 624
+  },
+  "toon": {
+   "none": 341,
+   "comments": 370,
+   "attributes": 370,
+   "both": 399
+  },
+  "akd": {
+   "none": 474,
+   "comments": 489,
+   "attributes": 487,
+   "both": 499
+  },
+  "akcd": {
+   "none": 430,
+   "comments": 442,
+   "attributes": 439,
+   "both": 452
+  }
+ },
+ "answer": {
+  "name": "due",
+  "fields": [
+   [
+    "car",
+    "string"
+   ],
+   [
+    "since",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "car": "WX 2226",
+   "since": 20022
+  },
+  {
+   "car": "WX 5238",
+   "since": 18720
+  },
+  {
+   "car": "WX 4246",
+   "since": 16879
+  },
+  {
+   "car": "WX 5845",
+   "since": 15068
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`cars.km`: odometer",
+   "`cars.last_service_km`: odometer at the last service"
+  ],
+  "attributes": [
+   "`cars.km`: $unit=\"km\"",
+   "`cars.last_service_km`: $unit=\"km\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"cars\": [\n    {\n      \"car\": \"WX 6723\",\n      \"model\": \"Model 3\",\n      \"km\": 46271,\n      \"last_service_km\": 41048\n    },\n    {\n      \"car\": \"WX 2157\",\n      \"model\": \"Corolla\",\n      \"km\": 105112,\n      \"last_service_km\": 95343\n    },\n    {\n      \"car\": \"WX 9267\",\n      \"model\": \"Model 3\",\n      \"km\": 120314,\n      \"last_service_km\": 106383\n    },\n    {\n      \"car\": \"WX 5238\",\n      \"model\": \"Model 3\",\n      \"km\": 92153,\n      \"last_service_km\": 73433\n    },\n    {\n      \"car\": \"WX 4246\",\n      \"model\": \"Octavia\",\n      \"km\": 46910,\n      \"last_service_km\": 30031\n    },\n    {\n      \"car\": \"WX 4083\",\n      \"model\": \"Octavia\",\n      \"km\": 95525,\n      \"last_service_km\": 86060\n    },\n    {\n      \"car\": \"WX 6288\",\n      \"model\": \"Corolla\",\n      \"km\": 69551,\n      \"last_service_km\": 62611\n    },\n    {\n      \"car\": \"WX 2226\",\n      \"model\": \"Corolla\",\n      \"km\": 142401,\n      \"last_service_km\": 122379\n    },\n    {\n      \"car\": \"WX 8982\",\n      \"model\": \"Octavia\",\n      \"km\": 75861,\n      \"last_service_km\": 69265\n    },\n    {\n      \"car\": \"WX 5845\",\n      \"model\": \"Golf\",\n      \"km\": 141963,\n      \"last_service_km\": 126895\n    },\n    {\n      \"car\": \"WX 7076\",\n      \"model\": \"Corolla\",\n      \"km\": 37779,\n      \"last_service_km\": 35743\n    },\n    {\n      \"car\": \"WX 9882\",\n      \"model\": \"Octavia\",\n      \"km\": 156593,\n      \"last_service_km\": 141713\n    }\n  ]\n}\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer with JSON only (no prose): {\"due\": [{\"car\": <string>, \"since\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `cars.km`: odometer\n- `cars.last_service_km`: odometer at the last service\n\n<data>\n{\n  \"cars\": [\n    {\n      \"car\": \"WX 6723\",\n      \"model\": \"Model 3\",\n      \"km\": 46271,\n      \"last_service_km\": 41048\n    },\n    {\n      \"car\": \"WX 2157\",\n      \"model\": \"Corolla\",\n      \"km\": 105112,\n      \"last_service_km\": 95343\n    },\n    {\n      \"car\": \"WX 9267\",\n      \"model\": \"Model 3\",\n      \"km\": 120314,\n      \"last_service_km\": 106383\n    },\n    {\n      \"car\": \"WX 5238\",\n      \"model\": \"Model 3\",\n      \"km\": 92153,\n      \"last_service_km\": 73433\n    },\n    {\n      \"car\": \"WX 4246\",\n      \"model\": \"Octavia\",\n      \"km\": 46910,\n      \"last_service_km\": 30031\n    },\n    {\n      \"car\": \"WX 4083\",\n      \"model\": \"Octavia\",\n      \"km\": 95525,\n      \"last_service_km\": 86060\n    },\n    {\n      \"car\": \"WX 6288\",\n      \"model\": \"Corolla\",\n      \"km\": 69551,\n      \"last_service_km\": 62611\n    },\n    {\n      \"car\": \"WX 2226\",\n      \"model\": \"Corolla\",\n      \"km\": 142401,\n      \"last_service_km\": 122379\n    },\n    {\n      \"car\": \"WX 8982\",\n      \"model\": \"Octavia\",\n      \"km\": 75861,\n      \"last_service_km\": 69265\n    },\n    {\n      \"car\": \"WX 5845\",\n      \"model\": \"Golf\",\n      \"km\": 141963,\n      \"last_service_km\": 126895\n    },\n    {\n      \"car\": \"WX 7076\",\n      \"model\": \"Corolla\",\n      \"km\": 37779,\n      \"last_service_km\": 35743\n    },\n    {\n      \"car\": \"WX 9882\",\n      \"model\": \"Octavia\",\n      \"km\": 156593,\n      \"last_service_km\": 141713\n    }\n  ]\n}\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer with JSON only (no prose): {\"due\": [{\"car\": <string>, \"since\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `cars.km`: $unit=\"km\"\n- `cars.last_service_km`: $unit=\"km\"\n\n<data>\n{\n  \"cars\": [\n    {\n      \"car\": \"WX 6723\",\n      \"model\": \"Model 3\",\n      \"km\": 46271,\n      \"last_service_km\": 41048\n    },\n    {\n      \"car\": \"WX 2157\",\n      \"model\": \"Corolla\",\n      \"km\": 105112,\n      \"last_service_km\": 95343\n    },\n    {\n      \"car\": \"WX 9267\",\n      \"model\": \"Model 3\",\n      \"km\": 120314,\n      \"last_service_km\": 106383\n    },\n    {\n      \"car\": \"WX 5238\",\n      \"model\": \"Model 3\",\n      \"km\": 92153,\n      \"last_service_km\": 73433\n    },\n    {\n      \"car\": \"WX 4246\",\n      \"model\": \"Octavia\",\n      \"km\": 46910,\n      \"last_service_km\": 30031\n    },\n    {\n      \"car\": \"WX 4083\",\n      \"model\": \"Octavia\",\n      \"km\": 95525,\n      \"last_service_km\": 86060\n    },\n    {\n      \"car\": \"WX 6288\",\n      \"model\": \"Corolla\",\n      \"km\": 69551,\n      \"last_service_km\": 62611\n    },\n    {\n      \"car\": \"WX 2226\",\n      \"model\": \"Corolla\",\n      \"km\": 142401,\n      \"last_service_km\": 122379\n    },\n    {\n      \"car\": \"WX 8982\",\n      \"model\": \"Octavia\",\n      \"km\": 75861,\n      \"last_service_km\": 69265\n    },\n    {\n      \"car\": \"WX 5845\",\n      \"model\": \"Golf\",\n      \"km\": 141963,\n      \"last_service_km\": 126895\n    },\n    {\n      \"car\": \"WX 7076\",\n      \"model\": \"Corolla\",\n      \"km\": 37779,\n      \"last_service_km\": 35743\n    },\n    {\n      \"car\": \"WX 9882\",\n      \"model\": \"Octavia\",\n      \"km\": 156593,\n      \"last_service_km\": 141713\n    }\n  ]\n}\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer with JSON only (no prose): {\"due\": [{\"car\": <string>, \"since\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `cars.km`: odometer\n- `cars.last_service_km`: odometer at the last service\n\nAttributes of the data:\n- `cars.km`: $unit=\"km\"\n- `cars.last_service_km`: $unit=\"km\"\n\n<data>\n{\n  \"cars\": [\n    {\n      \"car\": \"WX 6723\",\n      \"model\": \"Model 3\",\n      \"km\": 46271,\n      \"last_service_km\": 41048\n    },\n    {\n      \"car\": \"WX 2157\",\n      \"model\": \"Corolla\",\n      \"km\": 105112,\n      \"last_service_km\": 95343\n    },\n    {\n      \"car\": \"WX 9267\",\n      \"model\": \"Model 3\",\n      \"km\": 120314,\n      \"last_service_km\": 106383\n    },\n    {\n      \"car\": \"WX 5238\",\n      \"model\": \"Model 3\",\n      \"km\": 92153,\n      \"last_service_km\": 73433\n    },\n    {\n      \"car\": \"WX 4246\",\n      \"model\": \"Octavia\",\n      \"km\": 46910,\n      \"last_service_km\": 30031\n    },\n    {\n      \"car\": \"WX 4083\",\n      \"model\": \"Octavia\",\n      \"km\": 95525,\n      \"last_service_km\": 86060\n    },\n    {\n      \"car\": \"WX 6288\",\n      \"model\": \"Corolla\",\n      \"km\": 69551,\n      \"last_service_km\": 62611\n    },\n    {\n      \"car\": \"WX 2226\",\n      \"model\": \"Corolla\",\n      \"km\": 142401,\n      \"last_service_km\": 122379\n    },\n    {\n      \"car\": \"WX 8982\",\n      \"model\": \"Octavia\",\n      \"km\": 75861,\n      \"last_service_km\": 69265\n    },\n    {\n      \"car\": \"WX 5845\",\n      \"model\": \"Golf\",\n      \"km\": 141963,\n      \"last_service_km\": 126895\n    },\n    {\n      \"car\": \"WX 7076\",\n      \"model\": \"Corolla\",\n      \"km\": 37779,\n      \"last_service_km\": 35743\n    },\n    {\n      \"car\": \"WX 9882\",\n      \"model\": \"Octavia\",\n      \"km\": 156593,\n      \"last_service_km\": 141713\n    }\n  ]\n}\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer with JSON only (no prose): {\"due\": [{\"car\": <string>, \"since\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ncars[12]{car,model,km,last_service_km}:\n  WX 6723,Model 3,46271,41048\n  WX 2157,Corolla,105112,95343\n  WX 9267,Model 3,120314,106383\n  WX 5238,Model 3,92153,73433\n  WX 4246,Octavia,46910,30031\n  WX 4083,Octavia,95525,86060\n  WX 6288,Corolla,69551,62611\n  WX 2226,Corolla,142401,122379\n  WX 8982,Octavia,75861,69265\n  WX 5845,Golf,141963,126895\n  WX 7076,Corolla,37779,35743\n  WX 9882,Octavia,156593,141713\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in TOON only (no prose, no code fences): due[N]{car,since}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `cars.km`: odometer\n- `cars.last_service_km`: odometer at the last service\n\n<data>\ncars[12]{car,model,km,last_service_km}:\n  WX 6723,Model 3,46271,41048\n  WX 2157,Corolla,105112,95343\n  WX 9267,Model 3,120314,106383\n  WX 5238,Model 3,92153,73433\n  WX 4246,Octavia,46910,30031\n  WX 4083,Octavia,95525,86060\n  WX 6288,Corolla,69551,62611\n  WX 2226,Corolla,142401,122379\n  WX 8982,Octavia,75861,69265\n  WX 5845,Golf,141963,126895\n  WX 7076,Corolla,37779,35743\n  WX 9882,Octavia,156593,141713\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in TOON only (no prose, no code fences): due[N]{car,since}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `cars.km`: $unit=\"km\"\n- `cars.last_service_km`: $unit=\"km\"\n\n<data>\ncars[12]{car,model,km,last_service_km}:\n  WX 6723,Model 3,46271,41048\n  WX 2157,Corolla,105112,95343\n  WX 9267,Model 3,120314,106383\n  WX 5238,Model 3,92153,73433\n  WX 4246,Octavia,46910,30031\n  WX 4083,Octavia,95525,86060\n  WX 6288,Corolla,69551,62611\n  WX 2226,Corolla,142401,122379\n  WX 8982,Octavia,75861,69265\n  WX 5845,Golf,141963,126895\n  WX 7076,Corolla,37779,35743\n  WX 9882,Octavia,156593,141713\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in TOON only (no prose, no code fences): due[N]{car,since}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `cars.km`: odometer\n- `cars.last_service_km`: odometer at the last service\n\nAttributes of the data:\n- `cars.km`: $unit=\"km\"\n- `cars.last_service_km`: $unit=\"km\"\n\n<data>\ncars[12]{car,model,km,last_service_km}:\n  WX 6723,Model 3,46271,41048\n  WX 2157,Corolla,105112,95343\n  WX 9267,Model 3,120314,106383\n  WX 5238,Model 3,92153,73433\n  WX 4246,Octavia,46910,30031\n  WX 4083,Octavia,95525,86060\n  WX 6288,Corolla,69551,62611\n  WX 2226,Corolla,142401,122379\n  WX 8982,Octavia,75861,69265\n  WX 5845,Golf,141963,126895\n  WX 7076,Corolla,37779,35743\n  WX 9882,Octavia,156593,141713\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in TOON only (no prose, no code fences): due[N]{car,since}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[car:string, model:string, km:number, last_service_km:number]>>\n([\n  (\"WX 6723\", \"Model 3\", 46271, 41048),\n  (\"WX 2157\", \"Corolla\", 105112, 95343),\n  (\"WX 9267\", \"Model 3\", 120314, 106383),\n  (\"WX 5238\", \"Model 3\", 92153, 73433),\n  (\"WX 4246\", \"Octavia\", 46910, 30031),\n  (\"WX 4083\", \"Octavia\", 95525, 86060),\n  (\"WX 6288\", \"Corolla\", 69551, 62611),\n  (\"WX 2226\", \"Corolla\", 142401, 122379),\n  (\"WX 8982\", \"Octavia\", 75861, 69265),\n  (\"WX 5845\", \"Golf\", 141963, 126895),\n  (\"WX 7076\", \"Corolla\", 37779, 35743),\n  (\"WX 9882\", \"Octavia\", 156593, 141713)\n])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[\n  car:string,\n  model:string,\n  km:number /* odometer */,\n  last_service_km:number /* odometer at the last service */\n]>>\n([\n  (\"WX 6723\", \"Model 3\", 46271, 41048),\n  (\"WX 2157\", \"Corolla\", 105112, 95343),\n  (\"WX 9267\", \"Model 3\", 120314, 106383),\n  (\"WX 5238\", \"Model 3\", 92153, 73433),\n  (\"WX 4246\", \"Octavia\", 46910, 30031),\n  (\"WX 4083\", \"Octavia\", 95525, 86060),\n  (\"WX 6288\", \"Corolla\", 69551, 62611),\n  (\"WX 2226\", \"Corolla\", 142401, 122379),\n  (\"WX 8982\", \"Octavia\", 75861, 69265),\n  (\"WX 5845\", \"Golf\", 141963, 126895),\n  (\"WX 7076\", \"Corolla\", 37779, 35743),\n  (\"WX 9882\", \"Octavia\", 156593, 141713)\n])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[\n  car:string,\n  model:string,\n  km:number $unit=\"km\",\n  last_service_km:number $unit=\"km\"\n]>>\n([\n  (\"WX 6723\", \"Model 3\", 46271, 41048),\n  (\"WX 2157\", \"Corolla\", 105112, 95343),\n  (\"WX 9267\", \"Model 3\", 120314, 106383),\n  (\"WX 5238\", \"Model 3\", 92153, 73433),\n  (\"WX 4246\", \"Octavia\", 46910, 30031),\n  (\"WX 4083\", \"Octavia\", 95525, 86060),\n  (\"WX 6288\", \"Corolla\", 69551, 62611),\n  (\"WX 2226\", \"Corolla\", 142401, 122379),\n  (\"WX 8982\", \"Octavia\", 75861, 69265),\n  (\"WX 5845\", \"Golf\", 141963, 126895),\n  (\"WX 7076\", \"Corolla\", 37779, 35743),\n  (\"WX 9882\", \"Octavia\", 156593, 141713)\n])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[\n  car:string,\n  model:string,\n  km:number $unit=\"km\" /* odometer */,\n  last_service_km:number $unit=\"km\" /* odometer at the last service */\n]>>\n([\n  (\"WX 6723\", \"Model 3\", 46271, 41048),\n  (\"WX 2157\", \"Corolla\", 105112, 95343),\n  (\"WX 9267\", \"Model 3\", 120314, 106383),\n  (\"WX 5238\", \"Model 3\", 92153, 73433),\n  (\"WX 4246\", \"Octavia\", 46910, 30031),\n  (\"WX 4083\", \"Octavia\", 95525, 86060),\n  (\"WX 6288\", \"Corolla\", 69551, 62611),\n  (\"WX 2226\", \"Corolla\", 142401, 122379),\n  (\"WX 8982\", \"Octavia\", 75861, 69265),\n  (\"WX 5845\", \"Golf\", 141963, 126895),\n  (\"WX 7076\", \"Corolla\", 37779, 35743),\n  (\"WX 9882\", \"Octavia\", 156593, 141713)\n])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[car:string,model:string,km:number,last_service_km:number]>>([(\"WX 6723\",\"Model 3\",46271,41048),(\"WX 2157\",\"Corolla\",105112,95343),(\"WX 9267\",\"Model 3\",120314,106383),(\"WX 5238\",\"Model 3\",92153,73433),(\"WX 4246\",\"Octavia\",46910,30031),(\"WX 4083\",\"Octavia\",95525,86060),(\"WX 6288\",\"Corolla\",69551,62611),(\"WX 2226\",\"Corolla\",142401,122379),(\"WX 8982\",\"Octavia\",75861,69265),(\"WX 5845\",\"Golf\",141963,126895),(\"WX 7076\",\"Corolla\",37779,35743),(\"WX 9882\",\"Octavia\",156593,141713)])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[car:string,model:string,km:number /* odometer */,last_service_km:number /* odometer at the last service */]>>([(\"WX 6723\",\"Model 3\",46271,41048),(\"WX 2157\",\"Corolla\",105112,95343),(\"WX 9267\",\"Model 3\",120314,106383),(\"WX 5238\",\"Model 3\",92153,73433),(\"WX 4246\",\"Octavia\",46910,30031),(\"WX 4083\",\"Octavia\",95525,86060),(\"WX 6288\",\"Corolla\",69551,62611),(\"WX 2226\",\"Corolla\",142401,122379),(\"WX 8982\",\"Octavia\",75861,69265),(\"WX 5845\",\"Golf\",141963,126895),(\"WX 7076\",\"Corolla\",37779,35743),(\"WX 9882\",\"Octavia\",156593,141713)])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[car:string,model:string,km:number $unit=\"km\",last_service_km:number $unit=\"km\"]>>([(\"WX 6723\",\"Model 3\",46271,41048),(\"WX 2157\",\"Corolla\",105112,95343),(\"WX 9267\",\"Model 3\",120314,106383),(\"WX 5238\",\"Model 3\",92153,73433),(\"WX 4246\",\"Octavia\",46910,30031),(\"WX 4083\",\"Octavia\",95525,86060),(\"WX 6288\",\"Corolla\",69551,62611),(\"WX 2226\",\"Corolla\",142401,122379),(\"WX 8982\",\"Octavia\",75861,69265),(\"WX 5845\",\"Golf\",141963,126895),(\"WX 7076\",\"Corolla\",37779,35743),(\"WX 9882\",\"Octavia\",156593,141713)])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cars:<[car:string,model:string,km:number $unit=\"km\" /* odometer */,last_service_km:number $unit=\"km\" /* odometer at the last service */]>>([(\"WX 6723\",\"Model 3\",46271,41048),(\"WX 2157\",\"Corolla\",105112,95343),(\"WX 9267\",\"Model 3\",120314,106383),(\"WX 5238\",\"Model 3\",92153,73433),(\"WX 4246\",\"Octavia\",46910,30031),(\"WX 4083\",\"Octavia\",95525,86060),(\"WX 6288\",\"Corolla\",69551,62611),(\"WX 2226\",\"Corolla\",142401,122379),(\"WX 8982\",\"Octavia\",75861,69265),(\"WX 5845\",\"Golf\",141963,126895),(\"WX 7076\",\"Corolla\",37779,35743),(\"WX 9882\",\"Octavia\",156593,141713)])\n</data>\n\nQuestion: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<due:<[car:string,since:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 503,
+   "comments": 503,
+   "attributes": 503,
+   "both": 503
+  },
+  "toon": {
+   "none": 196,
+   "comments": 196,
+   "attributes": 196,
+   "both": 196
+  },
+  "akd": {
+   "none": 252,
+   "comments": 267,
+   "attributes": 265,
+   "both": 277
+  },
+  "akcd": {
+   "none": 202,
+   "comments": 214,
+   "attributes": 211,
+   "both": 224
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"due\": [\n    {\n      \"car\": \"WX 2226\",\n      \"since\": 20022\n    },\n    {\n      \"car\": \"WX 5238\",\n      \"since\": 18720\n    },\n    {\n      \"car\": \"WX 4246\",\n      \"since\": 16879\n    },\n    {\n      \"car\": \"WX 5845\",\n      \"since\": 15068\n    }\n  ]\n}",
+  "akcd": "<due:<[car:string,since:number]>>([(\"WX 2226\",20022),(\"WX 5238\",18720),(\"WX 4246\",16879),(\"WX 5845\",15068)])",
+  "toon": "due[4]{car,since}:\n  WX 2226,20022\n  WX 5238,18720\n  WX 4246,16879\n  WX 5845,15068"
+ },
+ "answer_tokens": {
+  "json": 97,
+  "akcd": 48,
+  "toon": 44
+ }
+}

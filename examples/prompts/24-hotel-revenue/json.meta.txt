@@ -1,0 +1,102 @@
+The data below is in JSON.
+
+Notes about the data:
+- `bookings.rate`: price per night in PLN
+
+Attributes of the data:
+- `bookings.rate`: $unit="PLN" $per="night"
+
+<data>
+{
+  "bookings": [
+    {
+      "booking": "B700",
+      "room": "single",
+      "nights": 3,
+      "rate": 390
+    },
+    {
+      "booking": "B701",
+      "room": "single",
+      "nights": 6,
+      "rate": 390
+    },
+    {
+      "booking": "B702",
+      "room": "double",
+      "nights": 2,
+      "rate": 650
+    },
+    {
+      "booking": "B703",
+      "room": "suite",
+      "nights": 1,
+      "rate": 880
+    },
+    {
+      "booking": "B704",
+      "room": "single",
+      "nights": 4,
+      "rate": 240
+    },
+    {
+      "booking": "B705",
+      "room": "single",
+      "nights": 3,
+      "rate": 650
+    },
+    {
+      "booking": "B706",
+      "room": "double",
+      "nights": 6,
+      "rate": 880
+    },
+    {
+      "booking": "B707",
+      "room": "double",
+      "nights": 4,
+      "rate": 240
+    },
+    {
+      "booking": "B708",
+      "room": "suite",
+      "nights": 5,
+      "rate": 240
+    },
+    {
+      "booking": "B709",
+      "room": "double",
+      "nights": 1,
+      "rate": 880
+    },
+    {
+      "booking": "B710",
+      "room": "double",
+      "nights": 6,
+      "rate": 390
+    },
+    {
+      "booking": "B711",
+      "room": "suite",
+      "nights": 1,
+      "rate": 880
+    },
+    {
+      "booking": "B712",
+      "room": "double",
+      "nights": 6,
+      "rate": 390
+    },
+    {
+      "booking": "B713",
+      "room": "double",
+      "nights": 3,
+      "rate": 240
+    }
+  ]
+}
+</data>
+
+Question: What is the revenue (nights × rate) per room type? Highest first.
+
+Answer with JSON only (no prose): {"revenue": [{"room": <string>, "revenue": <number>}, ...]}

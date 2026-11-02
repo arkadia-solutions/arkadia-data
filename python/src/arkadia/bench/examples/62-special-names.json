@@ -1,0 +1,63 @@
+{
+  "id": 62,
+  "slug": "special-names",
+  "title": "Names with spaces and symbols",
+  "description": "Field names that are not simple identifiers go in backticks: `user id`, `e-mail`, `2fa`.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which users do not have 2FA enabled?",
+  "answer": {
+    "name": "no_2fa",
+    "fields": [
+      [
+        "user_id",
+        "number"
+      ],
+      [
+        "email",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "user_id": 18,
+      "email": "alan@example.com"
+    },
+    {
+      "user_id": 19,
+      "email": "grace@example.com"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "rows": [
+      {
+        "user id": 17,
+        "e-mail": "ada@example.com",
+        "2fa": true,
+        "last login": "2026-10-28"
+      },
+      {
+        "user id": 18,
+        "e-mail": "alan@example.com",
+        "2fa": false,
+        "last login": "2026-09-02"
+      },
+      {
+        "user id": 19,
+        "e-mail": "grace@example.com",
+        "2fa": false,
+        "last login": "2026-10-27"
+      }
+    ]
+  }
+}

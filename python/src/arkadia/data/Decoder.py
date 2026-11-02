@@ -9,6 +9,10 @@ from .Schema import Schema, SchemaKind
 ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 
 
+_STRING_RUN = re.compile(r'[^"\\]+')
+_WHITESPACE_RUN = re.compile(r"\s+")
+
+
 class Ansi:
     RESET = "\033[0m"
     DIM = "\033[2m"
@@ -251,7 +255,8 @@ class Decoder:
         self._skip_whitespace()  # Note: This fills buffers with any comments between Name and <
 
         if self._peek() == "<":
-            self._dbg(f"defining type {type_name}")
+            if self.debug:
+                self._dbg(f"defining type {type_name}")
 
             # 1. Parse the body
             # _parse_schema_body will create a NEW schema and consume the prefix we just scanned
@@ -265,7 +270,8 @@ class Decoder:
             return schema
 
         # --- It is a Reference ---
-        self._dbg(f"referencing type {type_name}")
+        if self.debug:
+            self._dbg(f"referencing type {type_name}")
 
         # 1. Lookup
         if type_name in self.named_schemas:
@@ -282,12 +288,14 @@ class Decoder:
         Parses the main schema block definition < ... >.
         """
         type_name_prefix = "@" + type_name if type_name else ""
-        self._dbg(f"START parse_schema_body '<' {type_name_prefix}")
+        if self.debug:
+            self._dbg(f"START parse_schema_body '<' {type_name_prefix}")
 
         if not self._expect("<"):
             schema = self._create_schema(SchemaKind.ANY, type_name)
             self._pop_schema()
-            self._dbg(f"END parse_schema_body  '>' {type_name_prefix}")
+            if self.debug:
+                self._dbg(f"END parse_schema_body  '>' {type_name_prefix}")
             return schema
 
         # 1. Create Schema Object & Consume Context (Prefix from before '<')
@@ -302,7 +310,8 @@ class Decoder:
         # again for the node if there is data after
         self._pop_schema()
 
-        self._dbg(f"END parse_schema_body '>' {type_name_prefix}")
+        if self.debug:
+            self._dbg(f"END parse_schema_body '>' {type_name_prefix}")
 
         return schema
 
@@ -343,6 +352,16 @@ class Decoder:
                 self._apply_meta(schema)
                 return
 
+            elif ch == "<" and end_char == "]":
+                # Nested header inside a list type: [<[id:number]>]
+                inner = self._parse_schema_body()
+                schema.kind = inner.kind
+                schema.type_name = inner.type_name
+                schema.element = inner.element
+                schema._fields_list = list(inner.fields)
+                schema._fields_map = {f.name: f for f in inner.fields}
+                continue
+
             if self._peek() == ",":
                 self._apply_meta(field_schema if field_schema else schema)
                 self._advance(1)
@@ -362,6 +381,11 @@ class Decoder:
                 schema.kind = SchemaKind.PRIMITIVE
                 schema.type_name = self.PRIMITIVES_MAPPING[name]
                 continue
+            if name == "any" and end_char == "]" and self._peek() != ":":
+                # [any]: elements of any type
+                schema.kind = SchemaKind.PRIMITIVE
+                schema.type_name = "any"
+                continue
             # -----------------------------------------------------
 
             if self._peek() == ":":
@@ -370,6 +394,10 @@ class Decoder:
             else:
                 field_schema = Schema(SchemaKind.PRIMITIVE, type_name="any")
 
+            # A named type (@User) is shared: each field using it gets its own
+            # copy, so naming this field does not rename the others.
+            if any(field_schema is s for s in self.named_schemas.values()):
+                field_schema = self._fork(field_schema)
             field_schema.name = name
 
             # 1. Apply comments found BEFORE the field name (prefix)
@@ -419,7 +447,8 @@ class Decoder:
             self._parse_meta(self.schema)
 
             if self._peek() == "<":
-                self._dbg(f"Inline definition for @{name}")
+                if self.debug:
+                    self._dbg(f"Inline definition for @{name}")
                 # Parse the body content
                 schema = self._parse_schema_body(name)
 
@@ -452,6 +481,11 @@ class Decoder:
                     SchemaKind.PRIMITIVE, type_name=self.PRIMITIVES_MAPPING[name]
                 )
                 self._apply_meta(s)  # Consume comments
+                return s
+
+            if name == "any":
+                s = Schema(SchemaKind.PRIMITIVE, type_name="any")
+                self._apply_meta(s)
                 return s
 
             # Check for Named Types (implicit reference without @)
@@ -549,6 +583,13 @@ class Decoder:
         node.schema = specific_schema
         return node
 
+    @staticmethod
+    def _is_bare_any(schema: Schema) -> bool:
+        if not schema.is_record or len(schema.fields) != 1:
+            return False
+        field = schema.fields[0]
+        return field.name == "any" and field.is_primitive and field.type_name == "any"
+
     def _parse_node_with_inline_schema(self) -> Node:
         """
         Parses a node prefixed with an inline definition: <...> ...
@@ -557,6 +598,15 @@ class Decoder:
 
         # 1. Parse the Inline Schema
         specific_schema = self._parse_schema_body()
+
+        # "<any> {...}" / "<any> [...]": the value describes itself.
+        if self._is_bare_any(specific_schema):
+            self._skip_whitespace()
+            if self._peek() in ("{", "["):
+                self._push_schema(Schema(SchemaKind.ANY))
+                node = self._parse_node()
+                self._pop_schema()
+                return node
 
         # 2. Push Context
         self._push_schema(specific_schema)
@@ -605,7 +655,7 @@ class Decoder:
             self._parse_meta(node)  # Check for comments/end
 
             # Push Child Context
-            self._push_schema(child_schema)
+            self._push_schema(self._fork(child_schema))
 
             if self._eof():
                 self._add_error("Unexpected EOF: List not closed, expected ']'")
@@ -650,12 +700,10 @@ class Decoder:
 
         node = self._create_node()
 
-        # --- FIX: TYPE INFERENCE ---
         # Force RECORD type since we are in parentheses.
         if node.schema.kind != SchemaKind.RECORD:
             node.schema.kind = SchemaKind.RECORD
             node.schema.type_name = "any"
-        # ---------------------------
 
         index = 0
         # Capture pre-defined fields to distinguish between validation and inference.
@@ -684,7 +732,8 @@ class Decoder:
                 field_schema = predefined_fields[index]
 
             # Parse Value
-            self._push_schema(field_schema)
+            pushed = self._fork(field_schema)
+            self._push_schema(pushed)
             val_node = self._parse_node()
 
             # --- FIX: MAPPING & INFERENCE ---
@@ -692,6 +741,10 @@ class Decoder:
                 # Case A: Schema exists -> Map to existing field name
                 name = predefined_fields[index].name
                 node.fields[name] = val_node
+                if val_node.schema is pushed:
+                    # The value refined its (copied) field schema, e.g. [any]
+                    # -> [string]; this record keeps the refined definition.
+                    node.schema.replace_field(pushed)
             else:
                 # Case B: Schema missing (or overflow) -> Infer new field '_Index'
                 name = f"_{index}"
@@ -711,6 +764,9 @@ class Decoder:
             self._pop_node()
             self._pop_schema()
             index += 1
+
+        else:
+            self._add_error("Unexpected EOF: Record not closed, expected ')'")
 
         self._dbg("End RECORD )")
         return node
@@ -762,17 +818,27 @@ class Decoder:
 
             # 2. Determine Field Context (OPTIMIZED)
             field_schema = Schema(SchemaKind.ANY)
+            # An empty key has no header field (headers name every field).
+            tracked = bool(current_schema and current_schema.is_record and key_name)
 
-            if current_schema and current_schema.is_record:
+            if tracked:
                 if key_name in current_schema._fields_map:
                     field_schema = current_schema._fields_map[key_name]
 
             # 3. Parse Value
-            self._push_schema(field_schema)
+            pushed = self._fork(field_schema)
+            self._push_schema(pushed)
             val_node = self._parse_node()
+            if (
+                tracked
+                and val_node.schema is pushed
+                and key_name in current_schema._fields_map
+            ):
+                current_schema.replace_field(pushed)
 
             if (
-                not val_node.schema.is_any
+                tracked
+                and not val_node.schema.is_any
                 and key_name in current_schema._fields_map
                 and current_schema._fields_map[key_name].is_any
             ):
@@ -789,7 +855,7 @@ class Decoder:
             # --- FIX: SCHEMA INFERENCE ---
             # If we are parsing a dynamic record (the schema doesn't have this field yet),
             # we must add the field definition to the schema so it matches the node structure.
-            if key_name not in node.schema._fields_map:
+            if tracked and key_name not in node.schema._fields_map:
                 # Create a new field definition based on the parsed value's type
                 inferred_field = Schema(
                     val_node.schema.kind, type_name=val_node.schema.type_name
@@ -805,6 +871,9 @@ class Decoder:
             # Cleanup stack
             self._pop_node()
             self._pop_schema()
+
+        else:
+            self._add_error("Unexpected EOF: Record not closed, expected '}'")
 
         self._dbg("End NAMED RECORD }")
         return node
@@ -932,7 +1001,14 @@ class Decoder:
 
             # Implicit Attribute (Legacy support: key=value without $)
             if ch.isalnum() or ch == "_" or ch == "`":
+                start = self.i
                 key = self._parse_ident()
+                # A digit cannot start a name: skip it (an unclosed // block
+                # would loop forever).
+                if self.i == start:
+                    self._add_error(f"Unexpected token in meta block: {ch}")
+                    self._advance(1)
+                    continue
                 val = True
 
                 self._skip_whitespace()
@@ -969,7 +1045,11 @@ class Decoder:
         self._skip_whitespace()
         if self._peek() == "=":
             self._advance(1)
-            val = self._parse_primitive_value()
+            self._skip_whitespace()
+            if self._peek() in ("<", "[", "(", "{", "@"):
+                val = self._parse_structured_attribute()
+            else:
+                val = self._parse_primitive_value()
 
         if meta.attr is None:
             meta.attr = {}
@@ -978,7 +1058,64 @@ class Decoder:
             self._dbg("Meta Flag: $required")
         else:
             meta.attr[key] = val
-            self._dbg(f"Meta Attr: ${key}={val}")
+            if self.debug:
+                self._dbg(f"Meta Attr: ${key}={val}")
+
+    def _parse_structured_attribute(self) -> Any:
+        """A structured attribute value (`$changes=[…]`): read with its own
+        decoder, so it never becomes part of the data."""
+        start = self.i
+        self._skip_value()
+        raw = self.text[start : self.i]
+        result = Decoder(raw).decode()
+        if result.errors:
+            self._add_error(f"Invalid attribute value: {result.errors[0]}")
+        return result.node.dict() if result.node is not None else None
+
+    def _skip_value(self):
+        """Skips `<header> value`, `@Type value`, a bracketed group or a
+        primitive without building it."""
+        self._skip_whitespace()
+        ch = self._peek()
+        if ch == "<":
+            self._skip_group()
+            self._skip_value()
+        elif ch == "@":
+            self._advance(1)
+            self._parse_ident()
+            self._skip_whitespace()
+            if self._peek() == "<":
+                self._skip_group()
+            self._skip_value()
+        elif ch in ("[", "(", "{"):
+            self._skip_group()
+        elif ch is not None:
+            self._parse_primitive_value()
+
+    def _skip_group(self):
+        """Skips a balanced <…> [ … ] ( … ) { … } group; strings, `names` and
+        comments inside are skipped whole."""
+        depth = 0
+        while not self._eof():
+            ch = self.text[self.i]
+            if ch == '"':
+                self._read_quoted_string()
+                continue
+            if ch == "`":
+                self._parse_ident()
+                continue
+            if ch == "/" and self._peek_next() == "*":
+                self._parse_comment_block()
+                continue
+            if ch in "<[({":
+                depth += 1
+            elif ch in ">])}":
+                depth -= 1
+                if depth <= 0:
+                    self._advance(1)
+                    return
+            self._advance(1)
+        self._add_error("Unterminated attribute value")
 
     def _parse_meta_tag(self, meta: MetaInfo):
         """Parses #tag."""
@@ -988,7 +1125,8 @@ class Decoder:
         if meta.tags is None:
             meta.tags = []
         meta.tags.append(tag)
-        self._dbg(f"Meta Tag: #{tag}")
+        if self.debug:
+            self._dbg(f"Meta Tag: #{tag}")
 
     # =========================================================
     # HELPERS
@@ -1116,6 +1254,14 @@ class Decoder:
         result = []
 
         while not self._eof():
+            # Fast path: copy the run of ordinary characters in one step.
+            run = _STRING_RUN.match(self.text, self.i)
+            if run:
+                chunk = run.group()
+                result.append(chunk)
+                self._jump(chunk)
+                continue
+
             ch = self.text[self.i]
 
             # End of string found
@@ -1222,13 +1368,15 @@ class Decoder:
     def _push_schema(self, schema: Schema):
         """Pushes a Schema onto the stack."""
         self.schema_stack.append(schema)
-        self._dbg(f"PUSH SCHEMA {schema}")
+        if self.debug:
+            self._dbg(f"PUSH SCHEMA {schema}")
 
     def _pop_schema(self) -> Optional[Schema]:
         """Removes the current Schema from the stack."""
-        self._dbg(f"POP SCHEMA {self.schema}")
+        if self.debug:
+            self._dbg(f"POP SCHEMA {self.schema}")
         schema = self.schema_stack.pop() if self.schema_stack else None
-        if schema and schema.is_list:
+        if schema and schema.is_list and schema.element is not None:
             schema.apply_meta(schema.element)
             schema.element.clear_meta()
 
@@ -1245,13 +1393,41 @@ class Decoder:
     def _push_node(self, node: Node):
         """Pushes a Node onto the stack."""
         self.node_stack.append(node)
-        self._dbg(f"PUSH NODE {node}")
+        if self.debug:
+            self._dbg(f"PUSH NODE {node}")
 
     def _pop_node(self) -> Optional[Node]:
         """Removes the current Node from the stack."""
-        self._dbg(f"POP NODE {self.node}")
+        if self.debug:
+            self._dbg(f"POP NODE {self.node}")
         node = self.node_stack.pop() if self.node_stack else None
         return node
+
+    @staticmethod
+    def _fork(schema: Schema) -> Schema:
+        """
+        A shallow copy of a schema that is about to be pushed for one value.
+        Header schemas are shared by every element of a list, and parsing a
+        value refines the schema on the stack in place (type inference), so
+        each value gets its own copy: one element's shape no longer leaks into
+        the next ones.
+        """
+        own = Schema(
+            schema.kind,
+            type_name=schema.type_name,
+            name=schema.name,
+            element=schema.element,
+            key=schema.key,
+            value=schema.value,
+            comments=list(schema.comments or []),
+            attr=dict(schema.attr or {}),
+            tags=list(schema.tags or []),
+            required=schema.required,
+        )
+        for child in schema.fields:
+            own._fields_list.append(child)
+            own._fields_map[child.name] = child
+        return own
 
     def _create_node(self, value: Any = None) -> Node:
         current_schema = self.schema
@@ -1344,6 +1520,16 @@ class Decoder:
 
         return last_char
 
+    def _jump(self, chunk: str):
+        """Advances past `chunk` (the text at the cursor) in one step."""
+        newlines = chunk.count("\n")
+        if newlines:
+            self.line += newlines
+            self.col = len(chunk) - chunk.rfind("\n")
+        else:
+            self.col += len(chunk)
+        self.i += len(chunk)
+
     # =========================================================
     # CHARS WHITESPACE HANDLING
     # =========================================================
@@ -1355,12 +1541,9 @@ class Decoder:
         Use this when you want to advance past spaces but KEEP comments
         in the stream for 'scan_comments' to pick up.
         """
-        while not self._eof():
-            ch = self._peek()
-            if ch.isspace():
-                self._advance(1)
-            else:
-                break
+        run = _WHITESPACE_RUN.match(self.text, self.i)
+        if run:
+            self._jump(run.group())
 
     # =========================================================
     # HELPERS
@@ -1396,11 +1579,13 @@ class Decoder:
     def _add_error(self, msg: str):
         if len(self.errors) >= self.MAX_ERRORS:
             return
-        self._dbg(f"ERROR: {msg}")
+        if self.debug:
+            self._dbg(f"ERROR: {msg}")
         self.errors.append(DecodeError(msg, self.i, "", self.node, self.schema))
 
     def _add_warning(self, msg: str):
-        self._dbg(f"WARNING: {msg}")
+        if self.debug:
+            self._dbg(f"WARNING: {msg}")
         self.warnings.append(DecodeWarning(msg, self.i, "", self.node, self.schema))
 
     def _should_abort(self) -> bool:

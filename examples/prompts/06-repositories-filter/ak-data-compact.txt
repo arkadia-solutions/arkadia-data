@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<repositories:<[name:string,stars:number,forks:number,language:string,license:string,topics:[string],archived:bool]>>([("smart-parser-1",67210,8343,"Python","GPL-3.0",["llm"],false),("smart-kit-2",12579,5161,"TypeScript","GPL-3.0",["security","parser"],false),("open-agent-3",54543,1178,"TypeScript","MIT",["agents"],false),("smart-agent-4",14909,1666,"Java","MIT",["web","agents","database","cli"],false),("smart-store-5",81958,8187,"Rust","GPL-3.0",["llm"],false),("tiny-agent-6",79976,1334,"Go",null,["tooling","security","llm","web"],false),("smart-parser-7",23853,238,"Python","Apache-2.0",["database","llm"],false),("open-agent-8",89148,5768,"Java","MIT",["database","llm"],false),("deep-agent-9",85505,7851,"Python","GPL-3.0",["security"],false),("fast-agent-10",63508,5897,"C++","GPL-3.0",["security"],false),("smart-store-11",86776,1714,"Go",null,["tooling","security","web"],false),("tiny-flow-12",59212,2934,"C++","MIT",["agents","database"],false),("open-store-13",32267,877,"TypeScript","GPL-3.0",["security"],false),("open-kit-14",6872,6302,"Python","Apache-2.0",["tooling","agents","security","cli"],true),("open-parser-15",60136,2205,"C++","MIT",["llm","web","database"],false),("tiny-flow-16",61996,2100,"C++","MIT",["cli","agents","parser"],false),("deep-parser-17",68114,597,"Java","GPL-3.0",["ai"],false),("tiny-store-18",25014,4541,"Rust",null,["parser","llm","cli"],false),("smart-kit-19",59937,8667,"Go","Apache-2.0",["ai","web"],false),("fast-agent-20",39908,787,"TypeScript",null,["ai"],false),("tiny-flow-21",57303,252,"C++","GPL-3.0",["llm","tooling","agents"],false),("open-parser-22",88594,811,"Rust","Apache-2.0",["parser","web","llm"],false),("tiny-store-23",43981,8234,"Rust","MIT",["parser","llm"],false),("fast-store-24",55997,8779,"Java","GPL-3.0",["cli","tooling","parser"],false),("deep-store-25",65252,3687,"Go","Apache-2.0",["agents","cli"],false),("fast-flow-26",76617,3020,"Java","Apache-2.0",["web","security"],false),("open-kit-27",33701,578,"Java","Apache-2.0",["cli","ai"],false),("tiny-store-28",34283,5766,"Go","MIT",["web","tooling","parser"],false),("open-agent-29",34728,5836,"TypeScript","GPL-3.0",["cli","web","parser","agents"],false),("fast-agent-30",58453,1288,"Java","GPL-3.0",["web","tooling","database","agents"],false)])
+</data>
+
+Question: List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<result:<[name:string,language:string,stars:number,license:string]>>

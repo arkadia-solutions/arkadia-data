@@ -1,0 +1,16 @@
+{
+  "revenue": [
+    {
+      "room": "double",
+      "revenue": 13820
+    },
+    {
+      "room": "single",
+      "revenue": 6420
+    },
+    {
+      "room": "suite",
+      "revenue": 2960
+    }
+  ]
+}

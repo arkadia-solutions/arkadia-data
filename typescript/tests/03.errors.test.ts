@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { encode, decode } from '../src/index';
+import { describe, expect, it } from 'vitest';
+import { decode, encode } from '../src/index';
 
 // ==================================================================================
 // 4. ROUND TRIP (Encode -> Decode) with Errors

@@ -1,0 +1,26 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+staff[12]{id,name,dept,lvl,sal}:
+  100,Ada,ENG,2,7300
+  101,Alan,OPS,1,17200
+  102,Grace,FIN,3,21000
+  103,Linus,ENG,2,18100
+  104,Margaret,OPS,2,14400
+  105,Dennis,FIN,1,8200
+  106,Barbara,ENG,1,23500
+  107,Ken,OPS,2,10000
+  108,Radia,FIN,1,23000
+  109,Edsger,ENG,3,8400
+  110,Hedy,OPS,1,20100
+  111,Tim,FIN,1,10800
+</data>
+
+Question: List the senior people who are employees (not contractors) with their yearly salary in PLN.
+
+Answer in TOON only (no prose, no code fences): seniors[N]{name,yearly_pln}: followed by one row per item.

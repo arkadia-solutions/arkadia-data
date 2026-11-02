@@ -1,0 +1,1 @@
+<classes:<[class:string,avg_math:number]>>([("3A",4.43),("3B",3.57)])

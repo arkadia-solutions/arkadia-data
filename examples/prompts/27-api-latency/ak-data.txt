@@ -1,0 +1,28 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<endpoints:<[endpoint:string, p95:number, rpm:number]>>
+([
+  ("GET /orders", 62534, 3782),
+  ("POST /orders", 501401, 8999),
+  ("GET /users/:id", 271958, 7556),
+  ("GET /search", 357424, 2396),
+  ("POST /login", 407872, 4043),
+  ("GET /health", 195998, 4850),
+  ("PUT /cart", 287930, 2516),
+  ("GET /products", 591816, 197),
+  ("POST /pay", 70501, 5352),
+  ("GET /reports", 371676, 854)
+])
+</data>
+
+Question: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<slow:<[endpoint:string,p95_ms:number]>>

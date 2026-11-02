@@ -1,0 +1,183 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<orders:<[
+  id:string,
+  status:string,
+  customer:<id:number, name:string, country:string>,
+  items:<[sku:string, title:string, qty:number, price:number]>,
+  total:number,
+  note:string
+]>>
+([
+  (
+    "ORD-1001",
+    "paid",
+    (2, "Hedy Johnson", "US"),
+    [
+      ("DK-05", "Dock", 3, 199.0),
+      ("MS-02", "Mouse", 2, 39.5),
+      ("CB-USB", "USB-C cable", 3, 12.0),
+      ("KB-01", "Keyboard", 1, 89.0)
+    ],
+    801.0,
+    "Gift wrap, please"
+  ),
+  (
+    "ORD-1002",
+    "paid",
+    (25, "Ada Torvalds", "CA"),
+    [
+      ("MS-02", "Mouse", 3, 39.5),
+      ("HD-10", "Headset", 1, 129.9),
+      ("MN-27", "Monitor 27\"", 1, 319.0)
+    ],
+    567.4,
+    "Invoice to company"
+  ),
+  (
+    "ORD-1003",
+    "pending",
+    (26, "Dennis Lovelace", "DE"),
+    [
+      ("DK-05", "Dock", 3, 199.0),
+      ("HD-10", "Headset", 2, 129.9),
+      ("KB-01", "Keyboard", 1, 89.0),
+      ("MS-02", "Mouse", 2, 39.5)
+    ],
+    1024.8,
+    null
+  ),
+  (
+    "ORD-1004",
+    "pending",
+    (53, "Katherine Allen", "PT"),
+    [
+      ("KB-01", "Keyboard", 3, 89.0),
+      ("DK-05", "Dock", 1, 199.0),
+      ("MS-02", "Mouse", 2, 39.5),
+      ("MN-27", "Monitor 27\"", 3, 319.0)
+    ],
+    1502.0,
+    null
+  ),
+  (
+    "ORD-1005",
+    "paid",
+    (13, "Donald Lamarr", "PT"),
+    [
+      ("HD-10", "Headset", 1, 129.9),
+      ("MN-27", "Monitor 27\"", 3, 319.0),
+      ("DK-05", "Dock", 1, 199.0),
+      ("KB-01", "Keyboard", 2, 89.0)
+    ],
+    1463.9,
+    "Leave at the door"
+  ),
+  (
+    "ORD-1006",
+    "pending",
+    (16, "Donald Torvalds", "US"),
+    [
+      ("HD-10", "Headset", 3, 129.9),
+      ("MS-02", "Mouse", 1, 39.5),
+      ("DK-05", "Dock", 3, 199.0)
+    ],
+    1026.2,
+    "Gift wrap, please"
+  ),
+  (
+    "ORD-1007",
+    "shipped",
+    (21, "Katherine Lamarr", "PL"),
+    [
+      ("KB-01", "Keyboard", 1, 89.0),
+      ("CB-USB", "USB-C cable", 3, 12.0),
+      ("MN-27", "Monitor 27\"", 2, 319.0),
+      ("MS-02", "Mouse", 2, 39.5)
+    ],
+    842.0,
+    null
+  ),
+  ("ORD-1008", "delivered", (15, "Barbara Lamarr", "PT"),
+   [("KB-01", "Keyboard", 2, 89.0)], 178.0, "Gift wrap, please"),
+  ("ORD-1009", "paid", (50, "Margaret Allen", "CA"),
+   [("MN-27", "Monitor 27\"", 2, 319.0), ("CB-USB", "USB-C cable", 3, 12.0)],
+   674.0, "Invoice to company"),
+  ("ORD-1010", "paid", (47, "Edsger Lovelace", "US"),
+   [("MS-02", "Mouse", 3, 39.5)], 118.5, "Invoice to company"),
+  (
+    "ORD-1011",
+    "shipped",
+    (33, "Barbara Johnson", "PT"),
+    [
+      ("MN-27", "Monitor 27\"", 2, 319.0),
+      ("DK-05", "Dock", 3, 199.0),
+      ("HD-10", "Headset", 3, 129.9)
+    ],
+    1624.7,
+    "Invoice to company"
+  ),
+  (
+    "ORD-1012",
+    "paid",
+    (17, "Donald Liskov", "GB"),
+    [
+      ("KB-01", "Keyboard", 1, 89.0),
+      ("MS-02", "Mouse", 2, 39.5),
+      ("DK-05", "Dock", 1, 199.0),
+      ("HD-10", "Headset", 3, 129.9)
+    ],
+    756.7,
+    null
+  ),
+  (
+    "ORD-1013",
+    "refunded",
+    (55, "Dennis Liskov", "DE"),
+    [
+      ("CB-USB", "USB-C cable", 3, 12.0),
+      ("MS-02", "Mouse", 3, 39.5),
+      ("KB-01", "Keyboard", 2, 89.0)
+    ],
+    332.5,
+    "Gift wrap, please"
+  ),
+  (
+    "ORD-1014",
+    "shipped",
+    (34, "Donald Thompson", "DE"),
+    [
+      ("MS-02", "Mouse", 3, 39.5),
+      ("HD-10", "Headset", 3, 129.9),
+      ("DK-05", "Dock", 1, 199.0)
+    ],
+    707.2,
+    null
+  ),
+  (
+    "ORD-1015",
+    "delivered",
+    (43, "Dennis Torvalds", "PT"),
+    [
+      ("DK-05", "Dock", 2, 199.0),
+      ("MS-02", "Mouse", 3, 39.5),
+      ("MN-27", "Monitor 27\"", 1, 319.0),
+      ("HD-10", "Headset", 3, 129.9)
+    ],
+    1225.2,
+    null
+  )
+])
+</data>
+
+Question: For orders with status paid, shipped or delivered, what is the number of orders and the total revenue (sum of total) per customer country? Sort by revenue, highest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<result:<[country:string,orders:number,revenue:number]>>

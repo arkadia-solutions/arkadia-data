@@ -1,0 +1,14 @@
+{
+  "short": [
+    {
+      "name": "api",
+      "type": "A",
+      "ttl": 60
+    },
+    {
+      "name": "status",
+      "type": "CNAME",
+      "ttl": 120
+    }
+  ]
+}

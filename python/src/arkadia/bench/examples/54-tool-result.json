@@ -1,0 +1,71 @@
+{
+  "id": 54,
+  "slug": "tool-result",
+  "title": "Agent tool result: web search hits",
+  "description": "A record with simple fields and a list of records — the typical tool output an agent puts back into the context.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which results have a score of at least 0.9?",
+  "answer": {
+    "name": "hits",
+    "fields": [
+      [
+        "rank",
+        "number"
+      ],
+      [
+        "url",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "rank": 1,
+      "url": "https://example.org/a"
+    },
+    {
+      "rank": 2,
+      "url": "https://example.org/b"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "tool": "web_search",
+    "query": "agent memory",
+    "results": [
+      {
+        "rank": 1,
+        "title": "Agent memory in production",
+        "url": "https://example.org/a",
+        "score": 0.97
+      },
+      {
+        "rank": 2,
+        "title": "Token budgets for agents",
+        "url": "https://example.org/b",
+        "score": 0.94
+      },
+      {
+        "rank": 3,
+        "title": "Context engineering",
+        "url": "https://example.org/c",
+        "score": 0.88
+      },
+      {
+        "rank": 4,
+        "title": "Vector stores compared",
+        "url": "https://example.org/d",
+        "score": 0.71
+      }
+    ]
+  }
+}

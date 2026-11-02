@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- 3-hourly energy readings.
+- `readings.wh`: energy in watt-hours over the 3-hour slot
+
+Attributes of the data:
+- document: $meter="PL-WAW-77" #smart_meter
+- `readings.wh`: $unit="Wh"
+
+<data>
+readings[16]{day,hour,wh}:
+  2026-10-27,0,507
+  2026-10-27,3,1074
+  2026-10-27,6,2109
+  2026-10-27,9,583
+  2026-10-27,12,832
+  2026-10-27,15,1777
+  2026-10-27,18,538
+  2026-10-27,21,1055
+  2026-10-28,0,2196
+  2026-10-28,3,1365
+  2026-10-28,6,436
+  2026-10-28,9,1036
+  2026-10-28,12,695
+  2026-10-28,15,473
+  2026-10-28,18,2180
+  2026-10-28,21,1558
+</data>
+
+Question: What is the total energy per day in kWh (2 decimals)?
+
+Answer in TOON only (no prose, no code fences): daily[N]{day,kwh}: followed by one row per item.

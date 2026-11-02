@@ -1,0 +1,145 @@
+{
+ "id": 26,
+ "slug": "iot-batteries",
+ "title": "IoT tags: low battery",
+ "description": "Battery is in millivolts.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.",
+ "tokens": {
+  "json": {
+   "none": 589,
+   "comments": 620,
+   "attributes": 618,
+   "both": 649
+  },
+  "toon": {
+   "none": 324,
+   "comments": 355,
+   "attributes": 353,
+   "both": 384
+  },
+  "akd": {
+   "none": 465,
+   "comments": 484,
+   "attributes": 480,
+   "both": 496
+  },
+  "akcd": {
+   "none": 413,
+   "comments": 429,
+   "attributes": 424,
+   "both": 441
+  }
+ },
+ "answer": {
+  "name": "low",
+  "fields": [
+   [
+    "device",
+    "string"
+   ],
+   [
+    "volts",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "device": "TAG-08",
+   "volts": 2.945
+  },
+  {
+   "device": "TAG-05",
+   "volts": 3.008
+  },
+  {
+   "device": "TAG-13",
+   "volts": 3.045
+  },
+  {
+   "device": "TAG-01",
+   "volts": 3.232
+  },
+  {
+   "device": "TAG-12",
+   "volts": 3.264
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`tags.batt`: battery voltage in millivolts",
+   "`tags.rssi`: signal strength in dBm"
+  ],
+  "attributes": [
+   "`tags.batt`: $unit=\"mV\"",
+   "`tags.rssi`: $unit=\"dBm\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"tags\": [\n    {\n      \"device\": \"TAG-01\",\n      \"zone\": \"hall\",\n      \"batt\": 3232,\n      \"rssi\": -92\n    },\n    {\n      \"device\": \"TAG-02\",\n      \"zone\": \"hall\",\n      \"batt\": 4086,\n      \"rssi\": -73\n    },\n    {\n      \"device\": \"TAG-03\",\n      \"zone\": \"hall\",\n      \"batt\": 3610,\n      \"rssi\": -77\n    },\n    {\n      \"device\": \"TAG-04\",\n      \"zone\": \"dock\",\n      \"batt\": 3526,\n      \"rssi\": -55\n    },\n    {\n      \"device\": \"TAG-05\",\n      \"zone\": \"dock\",\n      \"batt\": 3008,\n      \"rssi\": -86\n    },\n    {\n      \"device\": \"TAG-06\",\n      \"zone\": \"hall\",\n      \"batt\": 3920,\n      \"rssi\": -42\n    },\n    {\n      \"device\": \"TAG-07\",\n      \"zone\": \"yard\",\n      \"batt\": 3388,\n      \"rssi\": -59\n    },\n    {\n      \"device\": \"TAG-08\",\n      \"zone\": \"hall\",\n      \"batt\": 2945,\n      \"rssi\": -69\n    },\n    {\n      \"device\": \"TAG-09\",\n      \"zone\": \"hall\",\n      \"batt\": 3488,\n      \"rssi\": -60\n    },\n    {\n      \"device\": \"TAG-10\",\n      \"zone\": \"dock\",\n      \"batt\": 3605,\n      \"rssi\": -89\n    },\n    {\n      \"device\": \"TAG-11\",\n      \"zone\": \"dock\",\n      \"batt\": 3304,\n      \"rssi\": -62\n    },\n    {\n      \"device\": \"TAG-12\",\n      \"zone\": \"yard\",\n      \"batt\": 3264,\n      \"rssi\": -87\n    },\n    {\n      \"device\": \"TAG-13\",\n      \"zone\": \"hall\",\n      \"batt\": 3045,\n      \"rssi\": -80\n    },\n    {\n      \"device\": \"TAG-14\",\n      \"zone\": \"hall\",\n      \"batt\": 4017,\n      \"rssi\": -84\n    }\n  ]\n}\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer with JSON only (no prose): {\"low\": [{\"device\": <string>, \"volts\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `tags.batt`: battery voltage in millivolts\n- `tags.rssi`: signal strength in dBm\n\n<data>\n{\n  \"tags\": [\n    {\n      \"device\": \"TAG-01\",\n      \"zone\": \"hall\",\n      \"batt\": 3232,\n      \"rssi\": -92\n    },\n    {\n      \"device\": \"TAG-02\",\n      \"zone\": \"hall\",\n      \"batt\": 4086,\n      \"rssi\": -73\n    },\n    {\n      \"device\": \"TAG-03\",\n      \"zone\": \"hall\",\n      \"batt\": 3610,\n      \"rssi\": -77\n    },\n    {\n      \"device\": \"TAG-04\",\n      \"zone\": \"dock\",\n      \"batt\": 3526,\n      \"rssi\": -55\n    },\n    {\n      \"device\": \"TAG-05\",\n      \"zone\": \"dock\",\n      \"batt\": 3008,\n      \"rssi\": -86\n    },\n    {\n      \"device\": \"TAG-06\",\n      \"zone\": \"hall\",\n      \"batt\": 3920,\n      \"rssi\": -42\n    },\n    {\n      \"device\": \"TAG-07\",\n      \"zone\": \"yard\",\n      \"batt\": 3388,\n      \"rssi\": -59\n    },\n    {\n      \"device\": \"TAG-08\",\n      \"zone\": \"hall\",\n      \"batt\": 2945,\n      \"rssi\": -69\n    },\n    {\n      \"device\": \"TAG-09\",\n      \"zone\": \"hall\",\n      \"batt\": 3488,\n      \"rssi\": -60\n    },\n    {\n      \"device\": \"TAG-10\",\n      \"zone\": \"dock\",\n      \"batt\": 3605,\n      \"rssi\": -89\n    },\n    {\n      \"device\": \"TAG-11\",\n      \"zone\": \"dock\",\n      \"batt\": 3304,\n      \"rssi\": -62\n    },\n    {\n      \"device\": \"TAG-12\",\n      \"zone\": \"yard\",\n      \"batt\": 3264,\n      \"rssi\": -87\n    },\n    {\n      \"device\": \"TAG-13\",\n      \"zone\": \"hall\",\n      \"batt\": 3045,\n      \"rssi\": -80\n    },\n    {\n      \"device\": \"TAG-14\",\n      \"zone\": \"hall\",\n      \"batt\": 4017,\n      \"rssi\": -84\n    }\n  ]\n}\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer with JSON only (no prose): {\"low\": [{\"device\": <string>, \"volts\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `tags.batt`: $unit=\"mV\"\n- `tags.rssi`: $unit=\"dBm\"\n\n<data>\n{\n  \"tags\": [\n    {\n      \"device\": \"TAG-01\",\n      \"zone\": \"hall\",\n      \"batt\": 3232,\n      \"rssi\": -92\n    },\n    {\n      \"device\": \"TAG-02\",\n      \"zone\": \"hall\",\n      \"batt\": 4086,\n      \"rssi\": -73\n    },\n    {\n      \"device\": \"TAG-03\",\n      \"zone\": \"hall\",\n      \"batt\": 3610,\n      \"rssi\": -77\n    },\n    {\n      \"device\": \"TAG-04\",\n      \"zone\": \"dock\",\n      \"batt\": 3526,\n      \"rssi\": -55\n    },\n    {\n      \"device\": \"TAG-05\",\n      \"zone\": \"dock\",\n      \"batt\": 3008,\n      \"rssi\": -86\n    },\n    {\n      \"device\": \"TAG-06\",\n      \"zone\": \"hall\",\n      \"batt\": 3920,\n      \"rssi\": -42\n    },\n    {\n      \"device\": \"TAG-07\",\n      \"zone\": \"yard\",\n      \"batt\": 3388,\n      \"rssi\": -59\n    },\n    {\n      \"device\": \"TAG-08\",\n      \"zone\": \"hall\",\n      \"batt\": 2945,\n      \"rssi\": -69\n    },\n    {\n      \"device\": \"TAG-09\",\n      \"zone\": \"hall\",\n      \"batt\": 3488,\n      \"rssi\": -60\n    },\n    {\n      \"device\": \"TAG-10\",\n      \"zone\": \"dock\",\n      \"batt\": 3605,\n      \"rssi\": -89\n    },\n    {\n      \"device\": \"TAG-11\",\n      \"zone\": \"dock\",\n      \"batt\": 3304,\n      \"rssi\": -62\n    },\n    {\n      \"device\": \"TAG-12\",\n      \"zone\": \"yard\",\n      \"batt\": 3264,\n      \"rssi\": -87\n    },\n    {\n      \"device\": \"TAG-13\",\n      \"zone\": \"hall\",\n      \"batt\": 3045,\n      \"rssi\": -80\n    },\n    {\n      \"device\": \"TAG-14\",\n      \"zone\": \"hall\",\n      \"batt\": 4017,\n      \"rssi\": -84\n    }\n  ]\n}\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer with JSON only (no prose): {\"low\": [{\"device\": <string>, \"volts\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `tags.batt`: battery voltage in millivolts\n- `tags.rssi`: signal strength in dBm\n\nAttributes of the data:\n- `tags.batt`: $unit=\"mV\"\n- `tags.rssi`: $unit=\"dBm\"\n\n<data>\n{\n  \"tags\": [\n    {\n      \"device\": \"TAG-01\",\n      \"zone\": \"hall\",\n      \"batt\": 3232,\n      \"rssi\": -92\n    },\n    {\n      \"device\": \"TAG-02\",\n      \"zone\": \"hall\",\n      \"batt\": 4086,\n      \"rssi\": -73\n    },\n    {\n      \"device\": \"TAG-03\",\n      \"zone\": \"hall\",\n      \"batt\": 3610,\n      \"rssi\": -77\n    },\n    {\n      \"device\": \"TAG-04\",\n      \"zone\": \"dock\",\n      \"batt\": 3526,\n      \"rssi\": -55\n    },\n    {\n      \"device\": \"TAG-05\",\n      \"zone\": \"dock\",\n      \"batt\": 3008,\n      \"rssi\": -86\n    },\n    {\n      \"device\": \"TAG-06\",\n      \"zone\": \"hall\",\n      \"batt\": 3920,\n      \"rssi\": -42\n    },\n    {\n      \"device\": \"TAG-07\",\n      \"zone\": \"yard\",\n      \"batt\": 3388,\n      \"rssi\": -59\n    },\n    {\n      \"device\": \"TAG-08\",\n      \"zone\": \"hall\",\n      \"batt\": 2945,\n      \"rssi\": -69\n    },\n    {\n      \"device\": \"TAG-09\",\n      \"zone\": \"hall\",\n      \"batt\": 3488,\n      \"rssi\": -60\n    },\n    {\n      \"device\": \"TAG-10\",\n      \"zone\": \"dock\",\n      \"batt\": 3605,\n      \"rssi\": -89\n    },\n    {\n      \"device\": \"TAG-11\",\n      \"zone\": \"dock\",\n      \"batt\": 3304,\n      \"rssi\": -62\n    },\n    {\n      \"device\": \"TAG-12\",\n      \"zone\": \"yard\",\n      \"batt\": 3264,\n      \"rssi\": -87\n    },\n    {\n      \"device\": \"TAG-13\",\n      \"zone\": \"hall\",\n      \"batt\": 3045,\n      \"rssi\": -80\n    },\n    {\n      \"device\": \"TAG-14\",\n      \"zone\": \"hall\",\n      \"batt\": 4017,\n      \"rssi\": -84\n    }\n  ]\n}\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer with JSON only (no prose): {\"low\": [{\"device\": <string>, \"volts\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ntags[14]{device,zone,batt,rssi}:\n  TAG-01,hall,3232,-92\n  TAG-02,hall,4086,-73\n  TAG-03,hall,3610,-77\n  TAG-04,dock,3526,-55\n  TAG-05,dock,3008,-86\n  TAG-06,hall,3920,-42\n  TAG-07,yard,3388,-59\n  TAG-08,hall,2945,-69\n  TAG-09,hall,3488,-60\n  TAG-10,dock,3605,-89\n  TAG-11,dock,3304,-62\n  TAG-12,yard,3264,-87\n  TAG-13,hall,3045,-80\n  TAG-14,hall,4017,-84\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in TOON only (no prose, no code fences): low[N]{device,volts}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `tags.batt`: battery voltage in millivolts\n- `tags.rssi`: signal strength in dBm\n\n<data>\ntags[14]{device,zone,batt,rssi}:\n  TAG-01,hall,3232,-92\n  TAG-02,hall,4086,-73\n  TAG-03,hall,3610,-77\n  TAG-04,dock,3526,-55\n  TAG-05,dock,3008,-86\n  TAG-06,hall,3920,-42\n  TAG-07,yard,3388,-59\n  TAG-08,hall,2945,-69\n  TAG-09,hall,3488,-60\n  TAG-10,dock,3605,-89\n  TAG-11,dock,3304,-62\n  TAG-12,yard,3264,-87\n  TAG-13,hall,3045,-80\n  TAG-14,hall,4017,-84\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in TOON only (no prose, no code fences): low[N]{device,volts}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `tags.batt`: $unit=\"mV\"\n- `tags.rssi`: $unit=\"dBm\"\n\n<data>\ntags[14]{device,zone,batt,rssi}:\n  TAG-01,hall,3232,-92\n  TAG-02,hall,4086,-73\n  TAG-03,hall,3610,-77\n  TAG-04,dock,3526,-55\n  TAG-05,dock,3008,-86\n  TAG-06,hall,3920,-42\n  TAG-07,yard,3388,-59\n  TAG-08,hall,2945,-69\n  TAG-09,hall,3488,-60\n  TAG-10,dock,3605,-89\n  TAG-11,dock,3304,-62\n  TAG-12,yard,3264,-87\n  TAG-13,hall,3045,-80\n  TAG-14,hall,4017,-84\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in TOON only (no prose, no code fences): low[N]{device,volts}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `tags.batt`: battery voltage in millivolts\n- `tags.rssi`: signal strength in dBm\n\nAttributes of the data:\n- `tags.batt`: $unit=\"mV\"\n- `tags.rssi`: $unit=\"dBm\"\n\n<data>\ntags[14]{device,zone,batt,rssi}:\n  TAG-01,hall,3232,-92\n  TAG-02,hall,4086,-73\n  TAG-03,hall,3610,-77\n  TAG-04,dock,3526,-55\n  TAG-05,dock,3008,-86\n  TAG-06,hall,3920,-42\n  TAG-07,yard,3388,-59\n  TAG-08,hall,2945,-69\n  TAG-09,hall,3488,-60\n  TAG-10,dock,3605,-89\n  TAG-11,dock,3304,-62\n  TAG-12,yard,3264,-87\n  TAG-13,hall,3045,-80\n  TAG-14,hall,4017,-84\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in TOON only (no prose, no code fences): low[N]{device,volts}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[device:string, zone:string, batt:number, rssi:number]>>\n([\n  (\"TAG-01\", \"hall\", 3232, -92),\n  (\"TAG-02\", \"hall\", 4086, -73),\n  (\"TAG-03\", \"hall\", 3610, -77),\n  (\"TAG-04\", \"dock\", 3526, -55),\n  (\"TAG-05\", \"dock\", 3008, -86),\n  (\"TAG-06\", \"hall\", 3920, -42),\n  (\"TAG-07\", \"yard\", 3388, -59),\n  (\"TAG-08\", \"hall\", 2945, -69),\n  (\"TAG-09\", \"hall\", 3488, -60),\n  (\"TAG-10\", \"dock\", 3605, -89),\n  (\"TAG-11\", \"dock\", 3304, -62),\n  (\"TAG-12\", \"yard\", 3264, -87),\n  (\"TAG-13\", \"hall\", 3045, -80),\n  (\"TAG-14\", \"hall\", 4017, -84)\n])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[\n  device:string,\n  zone:string,\n  batt:number /* battery voltage in millivolts */,\n  rssi:number /* signal strength in dBm */\n]>>\n([\n  (\"TAG-01\", \"hall\", 3232, -92),\n  (\"TAG-02\", \"hall\", 4086, -73),\n  (\"TAG-03\", \"hall\", 3610, -77),\n  (\"TAG-04\", \"dock\", 3526, -55),\n  (\"TAG-05\", \"dock\", 3008, -86),\n  (\"TAG-06\", \"hall\", 3920, -42),\n  (\"TAG-07\", \"yard\", 3388, -59),\n  (\"TAG-08\", \"hall\", 2945, -69),\n  (\"TAG-09\", \"hall\", 3488, -60),\n  (\"TAG-10\", \"dock\", 3605, -89),\n  (\"TAG-11\", \"dock\", 3304, -62),\n  (\"TAG-12\", \"yard\", 3264, -87),\n  (\"TAG-13\", \"hall\", 3045, -80),\n  (\"TAG-14\", \"hall\", 4017, -84)\n])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[\n  device:string,\n  zone:string,\n  batt:number $unit=\"mV\",\n  rssi:number $unit=\"dBm\"\n]>>\n([\n  (\"TAG-01\", \"hall\", 3232, -92),\n  (\"TAG-02\", \"hall\", 4086, -73),\n  (\"TAG-03\", \"hall\", 3610, -77),\n  (\"TAG-04\", \"dock\", 3526, -55),\n  (\"TAG-05\", \"dock\", 3008, -86),\n  (\"TAG-06\", \"hall\", 3920, -42),\n  (\"TAG-07\", \"yard\", 3388, -59),\n  (\"TAG-08\", \"hall\", 2945, -69),\n  (\"TAG-09\", \"hall\", 3488, -60),\n  (\"TAG-10\", \"dock\", 3605, -89),\n  (\"TAG-11\", \"dock\", 3304, -62),\n  (\"TAG-12\", \"yard\", 3264, -87),\n  (\"TAG-13\", \"hall\", 3045, -80),\n  (\"TAG-14\", \"hall\", 4017, -84)\n])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[\n  device:string,\n  zone:string,\n  batt:number $unit=\"mV\" /* battery voltage in millivolts */,\n  rssi:number $unit=\"dBm\" /* signal strength in dBm */\n]>>\n([\n  (\"TAG-01\", \"hall\", 3232, -92),\n  (\"TAG-02\", \"hall\", 4086, -73),\n  (\"TAG-03\", \"hall\", 3610, -77),\n  (\"TAG-04\", \"dock\", 3526, -55),\n  (\"TAG-05\", \"dock\", 3008, -86),\n  (\"TAG-06\", \"hall\", 3920, -42),\n  (\"TAG-07\", \"yard\", 3388, -59),\n  (\"TAG-08\", \"hall\", 2945, -69),\n  (\"TAG-09\", \"hall\", 3488, -60),\n  (\"TAG-10\", \"dock\", 3605, -89),\n  (\"TAG-11\", \"dock\", 3304, -62),\n  (\"TAG-12\", \"yard\", 3264, -87),\n  (\"TAG-13\", \"hall\", 3045, -80),\n  (\"TAG-14\", \"hall\", 4017, -84)\n])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[device:string,zone:string,batt:number,rssi:number]>>([(\"TAG-01\",\"hall\",3232,-92),(\"TAG-02\",\"hall\",4086,-73),(\"TAG-03\",\"hall\",3610,-77),(\"TAG-04\",\"dock\",3526,-55),(\"TAG-05\",\"dock\",3008,-86),(\"TAG-06\",\"hall\",3920,-42),(\"TAG-07\",\"yard\",3388,-59),(\"TAG-08\",\"hall\",2945,-69),(\"TAG-09\",\"hall\",3488,-60),(\"TAG-10\",\"dock\",3605,-89),(\"TAG-11\",\"dock\",3304,-62),(\"TAG-12\",\"yard\",3264,-87),(\"TAG-13\",\"hall\",3045,-80),(\"TAG-14\",\"hall\",4017,-84)])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[device:string,zone:string,batt:number /* battery voltage in millivolts */,rssi:number /* signal strength in dBm */]>>([(\"TAG-01\",\"hall\",3232,-92),(\"TAG-02\",\"hall\",4086,-73),(\"TAG-03\",\"hall\",3610,-77),(\"TAG-04\",\"dock\",3526,-55),(\"TAG-05\",\"dock\",3008,-86),(\"TAG-06\",\"hall\",3920,-42),(\"TAG-07\",\"yard\",3388,-59),(\"TAG-08\",\"hall\",2945,-69),(\"TAG-09\",\"hall\",3488,-60),(\"TAG-10\",\"dock\",3605,-89),(\"TAG-11\",\"dock\",3304,-62),(\"TAG-12\",\"yard\",3264,-87),(\"TAG-13\",\"hall\",3045,-80),(\"TAG-14\",\"hall\",4017,-84)])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[device:string,zone:string,batt:number $unit=\"mV\",rssi:number $unit=\"dBm\"]>>([(\"TAG-01\",\"hall\",3232,-92),(\"TAG-02\",\"hall\",4086,-73),(\"TAG-03\",\"hall\",3610,-77),(\"TAG-04\",\"dock\",3526,-55),(\"TAG-05\",\"dock\",3008,-86),(\"TAG-06\",\"hall\",3920,-42),(\"TAG-07\",\"yard\",3388,-59),(\"TAG-08\",\"hall\",2945,-69),(\"TAG-09\",\"hall\",3488,-60),(\"TAG-10\",\"dock\",3605,-89),(\"TAG-11\",\"dock\",3304,-62),(\"TAG-12\",\"yard\",3264,-87),(\"TAG-13\",\"hall\",3045,-80),(\"TAG-14\",\"hall\",4017,-84)])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tags:<[device:string,zone:string,batt:number $unit=\"mV\" /* battery voltage in millivolts */,rssi:number $unit=\"dBm\" /* signal strength in dBm */]>>([(\"TAG-01\",\"hall\",3232,-92),(\"TAG-02\",\"hall\",4086,-73),(\"TAG-03\",\"hall\",3610,-77),(\"TAG-04\",\"dock\",3526,-55),(\"TAG-05\",\"dock\",3008,-86),(\"TAG-06\",\"hall\",3920,-42),(\"TAG-07\",\"yard\",3388,-59),(\"TAG-08\",\"hall\",2945,-69),(\"TAG-09\",\"hall\",3488,-60),(\"TAG-10\",\"dock\",3605,-89),(\"TAG-11\",\"dock\",3304,-62),(\"TAG-12\",\"yard\",3264,-87),(\"TAG-13\",\"hall\",3045,-80),(\"TAG-14\",\"hall\",4017,-84)])\n</data>\n\nQuestion: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<low:<[device:string,volts:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 527,
+   "comments": 527,
+   "attributes": 527,
+   "both": 527
+  },
+  "toon": {
+   "none": 180,
+   "comments": 180,
+   "attributes": 180,
+   "both": 180
+  },
+  "akd": {
+   "none": 244,
+   "comments": 263,
+   "attributes": 259,
+   "both": 275
+  },
+  "akcd": {
+   "none": 186,
+   "comments": 202,
+   "attributes": 197,
+   "both": 214
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"low\": [\n    {\n      \"device\": \"TAG-08\",\n      \"volts\": 2.945\n    },\n    {\n      \"device\": \"TAG-05\",\n      \"volts\": 3.008\n    },\n    {\n      \"device\": \"TAG-13\",\n      \"volts\": 3.045\n    },\n    {\n      \"device\": \"TAG-01\",\n      \"volts\": 3.232\n    },\n    {\n      \"device\": \"TAG-12\",\n      \"volts\": 3.264\n    }\n  ]\n}",
+  "akcd": "<low:<[device:string,volts:number]>>([(\"TAG-08\",2.945),(\"TAG-05\",3.008),(\"TAG-13\",3.045),(\"TAG-01\",3.232),(\"TAG-12\",3.264)])",
+  "toon": "low[5]{device,volts}:\n  TAG-08,2.945\n  TAG-05,3.008\n  TAG-13,3.045\n  TAG-01,3.232\n  TAG-12,3.264"
+ },
+ "answer_tokens": {
+  "json": 124,
+  "akcd": 58,
+  "toon": 54
+ }
+}

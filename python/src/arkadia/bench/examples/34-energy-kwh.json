@@ -1,0 +1,131 @@
+{
+  "id": 34,
+  "slug": "energy-kwh",
+  "title": "Energy meter: kWh per day",
+  "description": "Readings in watt-hours.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "What is the total energy per day in kWh (2 decimals)?",
+  "answer": {
+    "name": "daily",
+    "fields": [
+      [
+        "day",
+        "string"
+      ],
+      [
+        "kwh",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "day": "2026-10-27",
+      "kwh": 8.47
+    },
+    {
+      "day": "2026-10-28",
+      "kwh": 9.94
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "3-hourly energy readings.",
+      "`readings.wh`: energy in watt-hours over the 3-hour slot"
+    ],
+    "attributes": [
+      "document: $meter=\"PL-WAW-77\" #smart_meter",
+      "`readings.wh`: $unit=\"Wh\""
+    ]
+  },
+  "akd_meta": "// $meter=\"PL-WAW-77\" #smart_meter // /* 3-hourly energy readings. */ <readings:<[day:string,hour:number,wh:number $unit=\"Wh\" /* energy in watt-hours over the 3-hour slot */]>>([(\"2026-10-27\",0,507),(\"2026-10-27\",3,1074),(\"2026-10-27\",6,2109),(\"2026-10-27\",9,583),(\"2026-10-27\",12,832),(\"2026-10-27\",15,1777),(\"2026-10-27\",18,538),(\"2026-10-27\",21,1055),(\"2026-10-28\",0,2196),(\"2026-10-28\",3,1365),(\"2026-10-28\",6,436),(\"2026-10-28\",9,1036),(\"2026-10-28\",12,695),(\"2026-10-28\",15,473),(\"2026-10-28\",18,2180),(\"2026-10-28\",21,1558)])",
+  "data": {
+    "readings": [
+      {
+        "day": "2026-10-27",
+        "hour": 0,
+        "wh": 507
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 3,
+        "wh": 1074
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 6,
+        "wh": 2109
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 9,
+        "wh": 583
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 12,
+        "wh": 832
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 15,
+        "wh": 1777
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 18,
+        "wh": 538
+      },
+      {
+        "day": "2026-10-27",
+        "hour": 21,
+        "wh": 1055
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 0,
+        "wh": 2196
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 3,
+        "wh": 1365
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 6,
+        "wh": 436
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 9,
+        "wh": 1036
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 12,
+        "wh": 695
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 15,
+        "wh": 473
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 18,
+        "wh": 2180
+      },
+      {
+        "day": "2026-10-28",
+        "hour": 21,
+        "wh": 1558
+      }
+    ]
+  }
+}

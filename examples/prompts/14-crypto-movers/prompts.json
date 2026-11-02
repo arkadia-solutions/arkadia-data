@@ -1,0 +1,139 @@
+{
+ "id": 14,
+ "slug": "crypto-movers",
+ "title": "Crypto prices: top movers",
+ "description": "24h change is in basis points (1/100 of a percent) — only the metadata says so.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which 3 coins rose the most in 24 hours? Give the change in percent.",
+ "tokens": {
+  "json": {
+   "none": 355,
+   "comments": 405,
+   "attributes": 395,
+   "both": 445
+  },
+  "toon": {
+   "none": 256,
+   "comments": 306,
+   "attributes": 296,
+   "both": 346
+  },
+  "akd": {
+   "none": 371,
+   "comments": 411,
+   "attributes": 391,
+   "both": 433
+  },
+  "akcd": {
+   "none": 345,
+   "comments": 382,
+   "attributes": 365,
+   "both": 403
+  }
+ },
+ "answer": {
+  "name": "movers",
+  "fields": [
+   [
+    "sym",
+    "string"
+   ],
+   [
+    "change_pct",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "sym": "ADA",
+   "change_pct": 14.59
+  },
+  {
+   "sym": "ATOM",
+   "change_pct": 2.26
+  },
+  {
+   "sym": "ETH",
+   "change_pct": -1.86
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Prices in USD, change over the last 24 hours.",
+   "`coins.price`: price in US dollars",
+   "`coins.chg`: 24h change in basis points (125 = +1.25 %)"
+  ],
+  "attributes": [
+   "document: $quote=\"USD\" $window=\"24h\"",
+   "`coins.price`: $unit=\"USD\"",
+   "`coins.chg`: $unit=\"bp\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"coins\": [\n    {\n      \"sym\": \"BTC\",\n      \"price\": 52573.39,\n      \"chg\": -619\n    },\n    {\n      \"sym\": \"ETH\",\n      \"price\": 18246.56,\n      \"chg\": -186\n    },\n    {\n      \"sym\": \"SOL\",\n      \"price\": 15262.19,\n      \"chg\": -210\n    },\n    {\n      \"sym\": \"ADA\",\n      \"price\": 43554.26,\n      \"chg\": 1459\n    },\n    {\n      \"sym\": \"DOT\",\n      \"price\": 52881.88,\n      \"chg\": -617\n    },\n    {\n      \"sym\": \"XRP\",\n      \"price\": 6570.86,\n      \"chg\": -408\n    },\n    {\n      \"sym\": \"LTC\",\n      \"price\": 48086.6,\n      \"chg\": -636\n    },\n    {\n      \"sym\": \"AVAX\",\n      \"price\": 30564.45,\n      \"chg\": -1022\n    },\n    {\n      \"sym\": \"LINK\",\n      \"price\": 11487.17,\n      \"chg\": -1127\n    },\n    {\n      \"sym\": \"ATOM\",\n      \"price\": 45941.08,\n      \"chg\": 226\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer with JSON only (no prose): {\"movers\": [{\"sym\": <string>, \"change_pct\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Prices in USD, change over the last 24 hours.\n- `coins.price`: price in US dollars\n- `coins.chg`: 24h change in basis points (125 = +1.25 %)\n\n<data>\n{\n  \"coins\": [\n    {\n      \"sym\": \"BTC\",\n      \"price\": 52573.39,\n      \"chg\": -619\n    },\n    {\n      \"sym\": \"ETH\",\n      \"price\": 18246.56,\n      \"chg\": -186\n    },\n    {\n      \"sym\": \"SOL\",\n      \"price\": 15262.19,\n      \"chg\": -210\n    },\n    {\n      \"sym\": \"ADA\",\n      \"price\": 43554.26,\n      \"chg\": 1459\n    },\n    {\n      \"sym\": \"DOT\",\n      \"price\": 52881.88,\n      \"chg\": -617\n    },\n    {\n      \"sym\": \"XRP\",\n      \"price\": 6570.86,\n      \"chg\": -408\n    },\n    {\n      \"sym\": \"LTC\",\n      \"price\": 48086.6,\n      \"chg\": -636\n    },\n    {\n      \"sym\": \"AVAX\",\n      \"price\": 30564.45,\n      \"chg\": -1022\n    },\n    {\n      \"sym\": \"LINK\",\n      \"price\": 11487.17,\n      \"chg\": -1127\n    },\n    {\n      \"sym\": \"ATOM\",\n      \"price\": 45941.08,\n      \"chg\": 226\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer with JSON only (no prose): {\"movers\": [{\"sym\": <string>, \"change_pct\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $quote=\"USD\" $window=\"24h\"\n- `coins.price`: $unit=\"USD\"\n- `coins.chg`: $unit=\"bp\"\n\n<data>\n{\n  \"coins\": [\n    {\n      \"sym\": \"BTC\",\n      \"price\": 52573.39,\n      \"chg\": -619\n    },\n    {\n      \"sym\": \"ETH\",\n      \"price\": 18246.56,\n      \"chg\": -186\n    },\n    {\n      \"sym\": \"SOL\",\n      \"price\": 15262.19,\n      \"chg\": -210\n    },\n    {\n      \"sym\": \"ADA\",\n      \"price\": 43554.26,\n      \"chg\": 1459\n    },\n    {\n      \"sym\": \"DOT\",\n      \"price\": 52881.88,\n      \"chg\": -617\n    },\n    {\n      \"sym\": \"XRP\",\n      \"price\": 6570.86,\n      \"chg\": -408\n    },\n    {\n      \"sym\": \"LTC\",\n      \"price\": 48086.6,\n      \"chg\": -636\n    },\n    {\n      \"sym\": \"AVAX\",\n      \"price\": 30564.45,\n      \"chg\": -1022\n    },\n    {\n      \"sym\": \"LINK\",\n      \"price\": 11487.17,\n      \"chg\": -1127\n    },\n    {\n      \"sym\": \"ATOM\",\n      \"price\": 45941.08,\n      \"chg\": 226\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer with JSON only (no prose): {\"movers\": [{\"sym\": <string>, \"change_pct\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Prices in USD, change over the last 24 hours.\n- `coins.price`: price in US dollars\n- `coins.chg`: 24h change in basis points (125 = +1.25 %)\n\nAttributes of the data:\n- document: $quote=\"USD\" $window=\"24h\"\n- `coins.price`: $unit=\"USD\"\n- `coins.chg`: $unit=\"bp\"\n\n<data>\n{\n  \"coins\": [\n    {\n      \"sym\": \"BTC\",\n      \"price\": 52573.39,\n      \"chg\": -619\n    },\n    {\n      \"sym\": \"ETH\",\n      \"price\": 18246.56,\n      \"chg\": -186\n    },\n    {\n      \"sym\": \"SOL\",\n      \"price\": 15262.19,\n      \"chg\": -210\n    },\n    {\n      \"sym\": \"ADA\",\n      \"price\": 43554.26,\n      \"chg\": 1459\n    },\n    {\n      \"sym\": \"DOT\",\n      \"price\": 52881.88,\n      \"chg\": -617\n    },\n    {\n      \"sym\": \"XRP\",\n      \"price\": 6570.86,\n      \"chg\": -408\n    },\n    {\n      \"sym\": \"LTC\",\n      \"price\": 48086.6,\n      \"chg\": -636\n    },\n    {\n      \"sym\": \"AVAX\",\n      \"price\": 30564.45,\n      \"chg\": -1022\n    },\n    {\n      \"sym\": \"LINK\",\n      \"price\": 11487.17,\n      \"chg\": -1127\n    },\n    {\n      \"sym\": \"ATOM\",\n      \"price\": 45941.08,\n      \"chg\": 226\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer with JSON only (no prose): {\"movers\": [{\"sym\": <string>, \"change_pct\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ncoins[10]{sym,price,chg}:\n  BTC,52573.39,-619\n  ETH,18246.56,-186\n  SOL,15262.19,-210\n  ADA,43554.26,1459\n  DOT,52881.88,-617\n  XRP,6570.86,-408\n  LTC,48086.6,-636\n  AVAX,30564.45,-1022\n  LINK,11487.17,-1127\n  ATOM,45941.08,226\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in TOON only (no prose, no code fences): movers[N]{sym,change_pct}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Prices in USD, change over the last 24 hours.\n- `coins.price`: price in US dollars\n- `coins.chg`: 24h change in basis points (125 = +1.25 %)\n\n<data>\ncoins[10]{sym,price,chg}:\n  BTC,52573.39,-619\n  ETH,18246.56,-186\n  SOL,15262.19,-210\n  ADA,43554.26,1459\n  DOT,52881.88,-617\n  XRP,6570.86,-408\n  LTC,48086.6,-636\n  AVAX,30564.45,-1022\n  LINK,11487.17,-1127\n  ATOM,45941.08,226\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in TOON only (no prose, no code fences): movers[N]{sym,change_pct}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $quote=\"USD\" $window=\"24h\"\n- `coins.price`: $unit=\"USD\"\n- `coins.chg`: $unit=\"bp\"\n\n<data>\ncoins[10]{sym,price,chg}:\n  BTC,52573.39,-619\n  ETH,18246.56,-186\n  SOL,15262.19,-210\n  ADA,43554.26,1459\n  DOT,52881.88,-617\n  XRP,6570.86,-408\n  LTC,48086.6,-636\n  AVAX,30564.45,-1022\n  LINK,11487.17,-1127\n  ATOM,45941.08,226\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in TOON only (no prose, no code fences): movers[N]{sym,change_pct}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Prices in USD, change over the last 24 hours.\n- `coins.price`: price in US dollars\n- `coins.chg`: 24h change in basis points (125 = +1.25 %)\n\nAttributes of the data:\n- document: $quote=\"USD\" $window=\"24h\"\n- `coins.price`: $unit=\"USD\"\n- `coins.chg`: $unit=\"bp\"\n\n<data>\ncoins[10]{sym,price,chg}:\n  BTC,52573.39,-619\n  ETH,18246.56,-186\n  SOL,15262.19,-210\n  ADA,43554.26,1459\n  DOT,52881.88,-617\n  XRP,6570.86,-408\n  LTC,48086.6,-636\n  AVAX,30564.45,-1022\n  LINK,11487.17,-1127\n  ATOM,45941.08,226\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in TOON only (no prose, no code fences): movers[N]{sym,change_pct}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<coins:<[sym:string, price:number, chg:number]>>\n([\n  (\"BTC\", 52573.39, -619),\n  (\"ETH\", 18246.56, -186),\n  (\"SOL\", 15262.19, -210),\n  (\"ADA\", 43554.26, 1459),\n  (\"DOT\", 52881.88, -617),\n  (\"XRP\", 6570.86, -408),\n  (\"LTC\", 48086.6, -636),\n  (\"AVAX\", 30564.45, -1022),\n  (\"LINK\", 11487.17, -1127),\n  (\"ATOM\", 45941.08, 226)\n])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Prices in USD, change over the last 24 hours. */\n<coins:<[\n  sym:string,\n  price:number /* price in US dollars */,\n  chg:number /* 24h change in basis points (125 = +1.25 %) */\n]>>\n([\n  (\"BTC\", 52573.39, -619),\n  (\"ETH\", 18246.56, -186),\n  (\"SOL\", 15262.19, -210),\n  (\"ADA\", 43554.26, 1459),\n  (\"DOT\", 52881.88, -617),\n  (\"XRP\", 6570.86, -408),\n  (\"LTC\", 48086.6, -636),\n  (\"AVAX\", 30564.45, -1022),\n  (\"LINK\", 11487.17, -1127),\n  (\"ATOM\", 45941.08, 226)\n])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $quote=\"USD\" $window=\"24h\" //\n<coins:<[sym:string, price:number $unit=\"USD\", chg:number $unit=\"bp\"]>>\n([\n  (\"BTC\", 52573.39, -619),\n  (\"ETH\", 18246.56, -186),\n  (\"SOL\", 15262.19, -210),\n  (\"ADA\", 43554.26, 1459),\n  (\"DOT\", 52881.88, -617),\n  (\"XRP\", 6570.86, -408),\n  (\"LTC\", 48086.6, -636),\n  (\"AVAX\", 30564.45, -1022),\n  (\"LINK\", 11487.17, -1127),\n  (\"ATOM\", 45941.08, 226)\n])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $quote=\"USD\" $window=\"24h\" //\n/* Prices in USD, change over the last 24 hours. */\n<coins:<[\n  sym:string,\n  price:number $unit=\"USD\" /* price in US dollars */,\n  chg:number $unit=\"bp\" /* 24h change in basis points (125 = +1.25 %) */\n]>>\n([\n  (\"BTC\", 52573.39, -619),\n  (\"ETH\", 18246.56, -186),\n  (\"SOL\", 15262.19, -210),\n  (\"ADA\", 43554.26, 1459),\n  (\"DOT\", 52881.88, -617),\n  (\"XRP\", 6570.86, -408),\n  (\"LTC\", 48086.6, -636),\n  (\"AVAX\", 30564.45, -1022),\n  (\"LINK\", 11487.17, -1127),\n  (\"ATOM\", 45941.08, 226)\n])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<coins:<[sym:string,price:number,chg:number]>>([(\"BTC\",52573.39,-619),(\"ETH\",18246.56,-186),(\"SOL\",15262.19,-210),(\"ADA\",43554.26,1459),(\"DOT\",52881.88,-617),(\"XRP\",6570.86,-408),(\"LTC\",48086.6,-636),(\"AVAX\",30564.45,-1022),(\"LINK\",11487.17,-1127),(\"ATOM\",45941.08,226)])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Prices in USD, change over the last 24 hours. */ <coins:<[sym:string,price:number /* price in US dollars */,chg:number /* 24h change in basis points (125 = +1.25 %) */]>>([(\"BTC\",52573.39,-619),(\"ETH\",18246.56,-186),(\"SOL\",15262.19,-210),(\"ADA\",43554.26,1459),(\"DOT\",52881.88,-617),(\"XRP\",6570.86,-408),(\"LTC\",48086.6,-636),(\"AVAX\",30564.45,-1022),(\"LINK\",11487.17,-1127),(\"ATOM\",45941.08,226)])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $quote=\"USD\" $window=\"24h\" // <coins:<[sym:string,price:number $unit=\"USD\",chg:number $unit=\"bp\"]>>([(\"BTC\",52573.39,-619),(\"ETH\",18246.56,-186),(\"SOL\",15262.19,-210),(\"ADA\",43554.26,1459),(\"DOT\",52881.88,-617),(\"XRP\",6570.86,-408),(\"LTC\",48086.6,-636),(\"AVAX\",30564.45,-1022),(\"LINK\",11487.17,-1127),(\"ATOM\",45941.08,226)])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $quote=\"USD\" $window=\"24h\" // /* Prices in USD, change over the last 24 hours. */ <coins:<[sym:string,price:number $unit=\"USD\" /* price in US dollars */,chg:number $unit=\"bp\" /* 24h change in basis points (125 = +1.25 %) */]>>([(\"BTC\",52573.39,-619),(\"ETH\",18246.56,-186),(\"SOL\",15262.19,-210),(\"ADA\",43554.26,1459),(\"DOT\",52881.88,-617),(\"XRP\",6570.86,-408),(\"LTC\",48086.6,-636),(\"AVAX\",30564.45,-1022),(\"LINK\",11487.17,-1127),(\"ATOM\",45941.08,226)])\n</data>\n\nQuestion: Which 3 coins rose the most in 24 hours? Give the change in percent.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<movers:<[sym:string,change_pct:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 295,
+   "comments": 295,
+   "attributes": 295,
+   "both": 295
+  },
+  "toon": {
+   "none": 115,
+   "comments": 115,
+   "attributes": 115,
+   "both": 115
+  },
+  "akd": {
+   "none": 153,
+   "comments": 192,
+   "attributes": 174,
+   "both": 216
+  },
+  "akcd": {
+   "none": 121,
+   "comments": 157,
+   "attributes": 142,
+   "both": 180
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"movers\": [\n    {\n      \"sym\": \"ADA\",\n      \"change_pct\": 14.59\n    },\n    {\n      \"sym\": \"ATOM\",\n      \"change_pct\": 2.26\n    },\n    {\n      \"sym\": \"ETH\",\n      \"change_pct\": -1.86\n    }\n  ]\n}",
+  "akcd": "<movers:<[sym:string,change_pct:number]>>([(\"ADA\",14.59),(\"ATOM\",2.26),(\"ETH\",-1.86)])",
+  "toon": "movers[3]{sym,change_pct}:\n  ADA,14.59\n  ATOM,2.26\n  ETH,-1.86"
+ },
+ "answer_tokens": {
+  "json": 73,
+  "akcd": 34,
+  "toon": 32
+ }
+}

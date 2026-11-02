@@ -1,0 +1,108 @@
+The data below is in JSON.
+
+Notes about the data:
+- `entries.mins`: time logged in minutes
+
+Attributes of the data:
+- `entries.mins`: $unit="min"
+
+<data>
+{
+  "entries": [
+    {
+      "who": "Grace",
+      "project": "cli",
+      "mins": 120
+    },
+    {
+      "who": "Alan",
+      "project": "akd",
+      "mins": 30
+    },
+    {
+      "who": "Grace",
+      "project": "akd",
+      "mins": 30
+    },
+    {
+      "who": "Grace",
+      "project": "cli",
+      "mins": 45
+    },
+    {
+      "who": "Linus",
+      "project": "cli",
+      "mins": 240
+    },
+    {
+      "who": "Grace",
+      "project": "cli",
+      "mins": 240
+    },
+    {
+      "who": "Alan",
+      "project": "landing",
+      "mins": 120
+    },
+    {
+      "who": "Linus",
+      "project": "cli",
+      "mins": 240
+    },
+    {
+      "who": "Linus",
+      "project": "landing",
+      "mins": 30
+    },
+    {
+      "who": "Ada",
+      "project": "akd",
+      "mins": 60
+    },
+    {
+      "who": "Alan",
+      "project": "cli",
+      "mins": 30
+    },
+    {
+      "who": "Grace",
+      "project": "landing",
+      "mins": 30
+    },
+    {
+      "who": "Alan",
+      "project": "landing",
+      "mins": 120
+    },
+    {
+      "who": "Ada",
+      "project": "akd",
+      "mins": 30
+    },
+    {
+      "who": "Grace",
+      "project": "akd",
+      "mins": 240
+    },
+    {
+      "who": "Alan",
+      "project": "landing",
+      "mins": 240
+    },
+    {
+      "who": "Grace",
+      "project": "landing",
+      "mins": 90
+    },
+    {
+      "who": "Alan",
+      "project": "landing",
+      "mins": 90
+    }
+  ]
+}
+</data>
+
+Question: How many hours were logged per project (2 decimals)? Most first.
+
+Answer with JSON only (no prose): {"hours": [{"project": <string>, "hours": <number>}, ...]}

@@ -1,0 +1,1 @@
+<converted:<[ccy:string,amount:number]>>([("PLN",2133.75),("USD",540.6),("GBP",421.15),("CHF",470.55),("CZK",12540.0)])

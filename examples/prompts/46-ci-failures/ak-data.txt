@@ -1,0 +1,36 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<runs:<[run:number, branch:string, st:number, secs:number]>>
+([
+  (4000, "feat/layout", 1, 530),
+  (4001, "feat/layout", 2, 806),
+  (4002, "feat/layout", 0, 143),
+  (4003, "dev", 0, 748),
+  (4004, "fix/meta", 0, 843),
+  (4005, "fix/meta", 1, 631),
+  (4006, "main", 2, 704),
+  (4007, "feat/layout", 0, 240),
+  (4008, "feat/layout", 0, 284),
+  (4009, "feat/layout", 1, 483),
+  (4010, "dev", 0, 400),
+  (4011, "feat/layout", 1, 596),
+  (4012, "feat/layout", 1, 488),
+  (4013, "feat/layout", 0, 652),
+  (4014, "dev", 0, 406),
+  (4015, "feat/layout", 0, 510),
+  (4016, "dev", 0, 457),
+  (4017, "fix/meta", 0, 545)
+])
+</data>
+
+Question: How many runs failed on each branch? Most first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<failures:<[branch:string,failed:number]>>

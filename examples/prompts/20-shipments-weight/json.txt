@@ -1,0 +1,92 @@
+The data below is in JSON.
+
+<data>
+{
+  "shipments": [
+    {
+      "id": "SH-001",
+      "carrier": "DHL",
+      "w": 21945
+    },
+    {
+      "id": "SH-002",
+      "carrier": "DHL",
+      "w": 23840
+    },
+    {
+      "id": "SH-003",
+      "carrier": "UPS",
+      "w": 583
+    },
+    {
+      "id": "SH-004",
+      "carrier": "InPost",
+      "w": 2048
+    },
+    {
+      "id": "SH-005",
+      "carrier": "InPost",
+      "w": 12994
+    },
+    {
+      "id": "SH-006",
+      "carrier": "UPS",
+      "w": 19871
+    },
+    {
+      "id": "SH-007",
+      "carrier": "UPS",
+      "w": 12398
+    },
+    {
+      "id": "SH-008",
+      "carrier": "DPD",
+      "w": 20024
+    },
+    {
+      "id": "SH-009",
+      "carrier": "DHL",
+      "w": 2929
+    },
+    {
+      "id": "SH-010",
+      "carrier": "UPS",
+      "w": 14823
+    },
+    {
+      "id": "SH-011",
+      "carrier": "DHL",
+      "w": 23860
+    },
+    {
+      "id": "SH-012",
+      "carrier": "DHL",
+      "w": 20472
+    },
+    {
+      "id": "SH-013",
+      "carrier": "DPD",
+      "w": 2385
+    },
+    {
+      "id": "SH-014",
+      "carrier": "InPost",
+      "w": 10691
+    },
+    {
+      "id": "SH-015",
+      "carrier": "UPS",
+      "w": 7052
+    },
+    {
+      "id": "SH-016",
+      "carrier": "DPD",
+      "w": 19739
+    }
+  ]
+}
+</data>
+
+Question: What is the total weight in kilograms per carrier? Heaviest first.
+
+Answer with JSON only (no prose): {"weight": [{"carrier": <string>, "kg": <number>}, ...]}

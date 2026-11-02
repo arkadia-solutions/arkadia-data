@@ -1,0 +1,113 @@
+{
+  "id": 28,
+  "slug": "menu-vegan",
+  "title": "Menu: vegan dishes under 25 PLN",
+  "description": "Prices are in grosze.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which vegan dishes cost less than 25 PLN? Give the price in PLN.",
+  "answer": {
+    "name": "vegan",
+    "fields": [
+      [
+        "dish",
+        "string"
+      ],
+      [
+        "pln",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "dish": "Hummus plate",
+      "pln": 24.0
+    },
+    {
+      "dish": "Falafel wrap",
+      "pln": 19.0
+    },
+    {
+      "dish": "Lentil soup",
+      "pln": 16.0
+    },
+    {
+      "dish": "Fries",
+      "pln": 12.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Autumn menu.",
+      "`menu.price`: price in grosze (1990 = 19.90 PLN)"
+    ],
+    "attributes": [
+      "document: $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\"",
+      "`menu.price`: $unit=\"grosze\""
+    ]
+  },
+  "akd_meta": "// $restaurant=\"Bistro 42\" $valid_from=\"2026-10-01\" // /* Autumn menu. */ <menu:<[dish:string,price:number $unit=\"grosze\" /* price in grosze (1990 = 19.90 PLN) */,tags:[string]]>>([(\"Hummus plate\",2400,[\"vegan\",\"gluten-free\"]),(\"Pierogi ruskie\",3200,[\"vegetarian\"]),(\"Falafel wrap\",1900,[\"vegan\"]),(\"Beef burger\",4200,[]),(\"Lentil soup\",1600,[\"vegan\",\"gluten-free\"]),(\"Caesar salad\",2900,[]),(\"Tofu curry\",3100,[\"vegan\"]),(\"Fries\",1200,[\"vegan\"])])",
+  "data": {
+    "menu": [
+      {
+        "dish": "Hummus plate",
+        "price": 2400,
+        "tags": [
+          "vegan",
+          "gluten-free"
+        ]
+      },
+      {
+        "dish": "Pierogi ruskie",
+        "price": 3200,
+        "tags": [
+          "vegetarian"
+        ]
+      },
+      {
+        "dish": "Falafel wrap",
+        "price": 1900,
+        "tags": [
+          "vegan"
+        ]
+      },
+      {
+        "dish": "Beef burger",
+        "price": 4200,
+        "tags": []
+      },
+      {
+        "dish": "Lentil soup",
+        "price": 1600,
+        "tags": [
+          "vegan",
+          "gluten-free"
+        ]
+      },
+      {
+        "dish": "Caesar salad",
+        "price": 2900,
+        "tags": []
+      },
+      {
+        "dish": "Tofu curry",
+        "price": 3100,
+        "tags": [
+          "vegan"
+        ]
+      },
+      {
+        "dish": "Fries",
+        "price": 1200,
+        "tags": [
+          "vegan"
+        ]
+      }
+    ]
+  }
+}

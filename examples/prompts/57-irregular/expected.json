@@ -1,0 +1,8 @@
+{
+  "agent": [
+    {
+      "name": "planner",
+      "tools": 3
+    }
+  ]
+}

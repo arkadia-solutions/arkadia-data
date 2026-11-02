@@ -1,0 +1,21 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+cart:
+  customer: Ada
+  currency: PLN
+  items[4]{sku,qty,price,disc}:
+    KB-01,2,8900,1000
+    MS-02,1,3950,0
+    HD-10,1,12990,2500
+    CB-03,3,990,0
+</data>
+
+Question: What is the cart total in PLN after the per-item discounts?
+
+Answer in TOON only (no prose, no code fences): total[N]{pln}: followed by one row per item.

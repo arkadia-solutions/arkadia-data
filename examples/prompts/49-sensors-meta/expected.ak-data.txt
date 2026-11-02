@@ -1,0 +1,1 @@
+<warmest:<[sensor:string,room:string,celsius:number]>>([("S-1","lab",28.9)])

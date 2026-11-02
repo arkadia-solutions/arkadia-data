@@ -1,0 +1,149 @@
+{
+  "id": 16,
+  "slug": "bank-spending",
+  "title": "Bank account: spending per category",
+  "description": "Negative amounts are spending, in cents.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "How much was spent in each category (money going out), in PLN? Most first.",
+  "answer": {
+    "name": "spending",
+    "fields": [
+      [
+        "cat",
+        "string"
+      ],
+      [
+        "spent",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "cat": "food",
+      "spent": 2164.45
+    },
+    {
+      "cat": "fun",
+      "spent": 1387.47
+    },
+    {
+      "cat": "transport",
+      "spent": 957.48
+    },
+    {
+      "cat": "rent",
+      "spent": 622.98
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "October statement of a personal account.",
+      "`transactions.amt`: amount in grosze; negative means money going out"
+    ],
+    "attributes": [
+      "document: $account=\"PL61…0001\" $currency=\"PLN\" #statement",
+      "`transactions.amt`: $unit=\"grosze\" $sign=\"negative=debit\""
+    ]
+  },
+  "akd_meta": "// $account=\"PL61…0001\" $currency=\"PLN\" #statement // /* October statement of a personal account. */ <transactions:<[date:string,cat:string,amt:number $unit=\"grosze\" $sign=\"negative=debit\" /* amount in grosze; negative means money going out */]>>([(\"2026-10-01\",\"food\",-24649),(\"2026-10-02\",\"fun\",-31849),(\"2026-10-03\",\"food\",-15699),(\"2026-10-04\",\"food\",-12000),(\"2026-10-05\",\"transport\",-59399),(\"2026-10-06\",\"rent\",-7399),(\"2026-10-07\",\"food\",-30600),(\"2026-10-08\",\"food\",-23199),(\"2026-10-09\",\"fun\",-56099),(\"2026-10-10\",\"salary\",706900),(\"2026-10-11\",\"transport\",-20049),(\"2026-10-12\",\"food\",-19049),(\"2026-10-13\",\"rent\",-54899),(\"2026-10-14\",\"food\",-51700),(\"2026-10-15\",\"transport\",-16300),(\"2026-10-16\",\"salary\",888900),(\"2026-10-17\",\"fun\",-50799),(\"2026-10-18\",\"food\",-39549)])",
+  "data": {
+    "transactions": [
+      {
+        "date": "2026-10-01",
+        "cat": "food",
+        "amt": -24649
+      },
+      {
+        "date": "2026-10-02",
+        "cat": "fun",
+        "amt": -31849
+      },
+      {
+        "date": "2026-10-03",
+        "cat": "food",
+        "amt": -15699
+      },
+      {
+        "date": "2026-10-04",
+        "cat": "food",
+        "amt": -12000
+      },
+      {
+        "date": "2026-10-05",
+        "cat": "transport",
+        "amt": -59399
+      },
+      {
+        "date": "2026-10-06",
+        "cat": "rent",
+        "amt": -7399
+      },
+      {
+        "date": "2026-10-07",
+        "cat": "food",
+        "amt": -30600
+      },
+      {
+        "date": "2026-10-08",
+        "cat": "food",
+        "amt": -23199
+      },
+      {
+        "date": "2026-10-09",
+        "cat": "fun",
+        "amt": -56099
+      },
+      {
+        "date": "2026-10-10",
+        "cat": "salary",
+        "amt": 706900
+      },
+      {
+        "date": "2026-10-11",
+        "cat": "transport",
+        "amt": -20049
+      },
+      {
+        "date": "2026-10-12",
+        "cat": "food",
+        "amt": -19049
+      },
+      {
+        "date": "2026-10-13",
+        "cat": "rent",
+        "amt": -54899
+      },
+      {
+        "date": "2026-10-14",
+        "cat": "food",
+        "amt": -51700
+      },
+      {
+        "date": "2026-10-15",
+        "cat": "transport",
+        "amt": -16300
+      },
+      {
+        "date": "2026-10-16",
+        "cat": "salary",
+        "amt": 888900
+      },
+      {
+        "date": "2026-10-17",
+        "cat": "fun",
+        "amt": -50799
+      },
+      {
+        "date": "2026-10-18",
+        "cat": "food",
+        "amt": -39549
+      }
+    ]
+  }
+}

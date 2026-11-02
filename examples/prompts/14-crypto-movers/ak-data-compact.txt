@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<coins:<[sym:string,price:number,chg:number]>>([("BTC",52573.39,-619),("ETH",18246.56,-186),("SOL",15262.19,-210),("ADA",43554.26,1459),("DOT",52881.88,-617),("XRP",6570.86,-408),("LTC",48086.6,-636),("AVAX",30564.45,-1022),("LINK",11487.17,-1127),("ATOM",45941.08,226)])
+</data>
+
+Question: Which 3 coins rose the most in 24 hours? Give the change in percent.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<movers:<[sym:string,change_pct:number]>>

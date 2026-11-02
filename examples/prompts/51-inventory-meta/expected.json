@@ -1,0 +1,32 @@
+{
+  "reorder": [
+    {
+      "sku": "SKU-200",
+      "missing": 9
+    },
+    {
+      "sku": "SKU-202",
+      "missing": 1
+    },
+    {
+      "sku": "SKU-203",
+      "missing": 3
+    },
+    {
+      "sku": "SKU-205",
+      "missing": 2
+    },
+    {
+      "sku": "SKU-206",
+      "missing": 3
+    },
+    {
+      "sku": "SKU-207",
+      "missing": 18
+    },
+    {
+      "sku": "SKU-211",
+      "missing": 5
+    }
+  ]
+}

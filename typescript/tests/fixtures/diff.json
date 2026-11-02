@@ -1,0 +1,550 @@
+{
+  "about": "diff / merge / apply cases shared by the Rust, Python and npm packages. Change id: parent 0123456789, date 2026-11-01T10:00:00Z, author Ada, title t. Regenerate: cargo run --example diff_fixtures",
+  "cases": [
+    {
+      "name": "same",
+      "a": {
+        "a": 1
+      },
+      "b": {
+        "a": 1
+      },
+      "changes": [],
+      "merged": {
+        "a": 1
+      },
+      "id": "89bc5901ae",
+      "document": "<a:number>(1) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:[any]]>[(\"89bc5901ae\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[])] //"
+    },
+    {
+      "name": "scalar change",
+      "a": {
+        "a": 1,
+        "b": "x"
+      },
+      "b": {
+        "a": 2,
+        "b": "x"
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "a",
+          "old": 1,
+          "new": 2
+        }
+      ],
+      "merged": {
+        "a": 2,
+        "b": "x"
+      },
+      "id": "fa9ebf2208",
+      "document": "<a:number,b:string>(2,\"x\") // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"fa9ebf2208\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"a\",1,2)])] //"
+    },
+    {
+      "name": "keys added and removed",
+      "a": {
+        "a": 1,
+        "gone": true
+      },
+      "b": {
+        "a": 1,
+        "new": [1, 2]
+      },
+      "changes": [
+        {
+          "op": "remove",
+          "path": "gone",
+          "old": true,
+          "new": null
+        },
+        {
+          "op": "add",
+          "path": "new",
+          "old": null,
+          "new": [1, 2]
+        }
+      ],
+      "merged": {
+        "a": 1,
+        "gone": true,
+        "new": [1, 2]
+      },
+      "id": "da75ce510f",
+      "document": "<a:number,new:[number]>(1,[1,2]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:bool,new:null]>]>[(\"da75ce510f\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"remove\",\"gone\",true,null),(\"add\",\"new\",null,<[number]> [1,2])])] //"
+    },
+    {
+      "name": "nested record",
+      "a": {
+        "cfg": {
+          "cpu": 2,
+          "mem": "4G"
+        }
+      },
+      "b": {
+        "cfg": {
+          "cpu": 4,
+          "mem": "4G",
+          "disk": null
+        }
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "cfg.cpu",
+          "old": 2,
+          "new": 4
+        },
+        {
+          "op": "add",
+          "path": "cfg.disk",
+          "old": null,
+          "new": null
+        }
+      ],
+      "merged": {
+        "cfg": {
+          "cpu": 4,
+          "mem": "4G",
+          "disk": null
+        }
+      },
+      "id": "fa98f709fb",
+      "document": "<cfg:<cpu:number,mem:string,disk:null>>((4,\"4G\",null)) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"fa98f709fb\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"cfg.cpu\",2,4),(\"add\",\"cfg.disk\",null,null)])] //"
+    },
+    {
+      "name": "records by id",
+      "a": {
+        "users": [
+          {
+            "id": 1,
+            "name": "Ada",
+            "tags": ["x"]
+          },
+          {
+            "id": 2,
+            "name": "Alan",
+            "tags": []
+          }
+        ]
+      },
+      "b": {
+        "users": [
+          {
+            "id": 1,
+            "name": "Ada",
+            "tags": ["x", "y"]
+          },
+          {
+            "id": 2,
+            "name": "Alan T.",
+            "tags": []
+          },
+          {
+            "id": 3,
+            "name": "Grace",
+            "tags": []
+          }
+        ]
+      },
+      "changes": [
+        {
+          "op": "add",
+          "path": "users[id=1].tags[1]",
+          "old": null,
+          "new": "y"
+        },
+        {
+          "op": "change",
+          "path": "users[id=2].name",
+          "old": "Alan",
+          "new": "Alan T."
+        },
+        {
+          "op": "add",
+          "path": "users[id=3]",
+          "old": null,
+          "new": {
+            "id": 3,
+            "name": "Grace",
+            "tags": []
+          }
+        }
+      ],
+      "merged": {
+        "users": [
+          {
+            "id": 1,
+            "name": "Ada",
+            "tags": ["x", "y"]
+          },
+          {
+            "id": 2,
+            "name": "Alan T.",
+            "tags": []
+          },
+          {
+            "id": 3,
+            "name": "Grace",
+            "tags": []
+          }
+        ]
+      },
+      "id": "33ac3fcef5",
+      "document": "<users:<[id:number,name:string,tags:[string]]>>([(1,\"Ada\",[\"x\",\"y\"]),(2,\"Alan T.\",[]),(3,\"Grace\",[])]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:string,new:string]>]>[(\"33ac3fcef5\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"add\",\"users[id=1].tags[1]\",null,\"y\"),(\"change\",\"users[id=2].name\",\"Alan\",\"Alan T.\"),(\"add\",\"users[id=3]\",null,<any> {id:3,name:\"Grace\",tags:[]})])] //"
+    },
+    {
+      "name": "records reordered",
+      "a": {
+        "items": [
+          {
+            "sku": "a",
+            "qty": 1
+          },
+          {
+            "sku": "b",
+            "qty": 2
+          },
+          {
+            "sku": "c",
+            "qty": 3
+          }
+        ]
+      },
+      "b": {
+        "items": [
+          {
+            "sku": "c",
+            "qty": 3
+          },
+          {
+            "sku": "a",
+            "qty": 5
+          },
+          {
+            "sku": "d",
+            "qty": 1
+          }
+        ]
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "items[sku=\"a\"].qty",
+          "old": 1,
+          "new": 5
+        },
+        {
+          "op": "remove",
+          "path": "items[sku=\"b\"]",
+          "old": {
+            "sku": "b",
+            "qty": 2
+          },
+          "new": null
+        },
+        {
+          "op": "add",
+          "path": "items[sku=\"d\"]",
+          "old": null,
+          "new": {
+            "sku": "d",
+            "qty": 1
+          }
+        },
+        {
+          "op": "order",
+          "path": "items",
+          "old": ["a", "b", "c"],
+          "new": ["c", "a", "d"]
+        }
+      ],
+      "merged": {
+        "items": [
+          {
+            "sku": "a",
+            "qty": 5
+          },
+          {
+            "sku": "b",
+            "qty": 2
+          },
+          {
+            "sku": "c",
+            "qty": 3
+          },
+          {
+            "sku": "d",
+            "qty": 1
+          }
+        ]
+      },
+      "id": "725f5dfd3a",
+      "document": "<items:<[sku:string,qty:number]>>([(\"c\",3),(\"a\",5),(\"d\",1)]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"725f5dfd3a\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"items[sku=\\\"a\\\"].qty\",1,5),(\"remove\",\"items[sku=\\\"b\\\"]\",<any> {sku:\"b\",qty:2},null),(\"add\",\"items[sku=\\\"d\\\"]\",null,<any> {sku:\"d\",qty:1}),(\"order\",\"items\",<[string]> [\"a\",\"b\",\"c\"],<[string]> [\"c\",\"a\",\"d\"])])] //"
+    },
+    {
+      "name": "list by position",
+      "a": {
+        "v": [1, 2, 3, 4]
+      },
+      "b": {
+        "v": [1, 9]
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "v[1]",
+          "old": 2,
+          "new": 9
+        },
+        {
+          "op": "remove",
+          "path": "v[3]",
+          "old": 4,
+          "new": null
+        },
+        {
+          "op": "remove",
+          "path": "v[2]",
+          "old": 3,
+          "new": null
+        }
+      ],
+      "merged": {
+        "v": [1, 9]
+      },
+      "id": "c3086c57c5",
+      "document": "<v:[number]>([1,9]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"c3086c57c5\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"v[1]\",2,9),(\"remove\",\"v[3]\",4,null),(\"remove\",\"v[2]\",3,null)])] //"
+    },
+    {
+      "name": "list grows",
+      "a": [1],
+      "b": [1, 2, 3],
+      "changes": [
+        {
+          "op": "add",
+          "path": "[1]",
+          "old": null,
+          "new": 2
+        },
+        {
+          "op": "add",
+          "path": "[2]",
+          "old": null,
+          "new": 3
+        }
+      ],
+      "merged": [1, 2, 3],
+      "id": "87320ad4ed",
+      "document": "<[number]>[1,2,3] // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:null,new:number]>]>[(\"87320ad4ed\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"add\",\"[1]\",null,2),(\"add\",\"[2]\",null,3)])] //"
+    },
+    {
+      "name": "odd keys",
+      "a": {
+        "a b": {
+          "x.y": 1
+        },
+        "9z": "zero"
+      },
+      "b": {
+        "a b": {
+          "x.y": 2
+        },
+        "9z": "nil"
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "[\"a b\"][\"x.y\"]",
+          "old": 1,
+          "new": 2
+        },
+        {
+          "op": "change",
+          "path": "[\"9z\"]",
+          "old": "zero",
+          "new": "nil"
+        }
+      ],
+      "merged": {
+        "a b": {
+          "x.y": 2
+        },
+        "9z": "nil"
+      },
+      "id": "2fe010bc74",
+      "document": "<`a b`:<`x.y`:number>,`9z`:string>((2),\"nil\") // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"2fe010bc74\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"[\\\"a b\\\"][\\\"x.y\\\"]\",1,2),(\"change\",\"[\\\"9z\\\"]\",<string> \"zero\",<string> \"nil\")])] //"
+    },
+    {
+      "name": "type change",
+      "a": {
+        "a": [1, 2]
+      },
+      "b": {
+        "a": {
+          "b": 1
+        }
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "a",
+          "old": [1, 2],
+          "new": {
+            "b": 1
+          }
+        }
+      ],
+      "merged": {
+        "a": {
+          "b": 1
+        }
+      },
+      "id": "61501f052d",
+      "document": "<a:<b:number>>((1)) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:[number],new:<b:number>]>]>[(\"61501f052d\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"a\",[1,2],(1))])] //"
+    },
+    {
+      "name": "records without key",
+      "a": {
+        "r": [
+          {
+            "v": 1
+          },
+          {
+            "v": 1
+          }
+        ]
+      },
+      "b": {
+        "r": [
+          {
+            "v": 1
+          },
+          {
+            "v": 2
+          }
+        ]
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "r[1].v",
+          "old": 1,
+          "new": 2
+        }
+      ],
+      "merged": {
+        "r": [
+          {
+            "v": 1
+          },
+          {
+            "v": 2
+          }
+        ]
+      },
+      "id": "10be636e5b",
+      "document": "<r:<[v:number]>>([(1),(2)]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"10be636e5b\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"r[1].v\",1,2)])] //"
+    },
+    {
+      "name": "first field as key",
+      "a": {
+        "r": [
+          {
+            "name": "a",
+            "n": 1
+          }
+        ]
+      },
+      "b": {
+        "r": [
+          {
+            "name": "a",
+            "n": 2
+          },
+          {
+            "name": "b",
+            "n": 0
+          }
+        ]
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "r[name=\"a\"].n",
+          "old": 1,
+          "new": 2
+        },
+        {
+          "op": "add",
+          "path": "r[name=\"b\"]",
+          "old": null,
+          "new": {
+            "name": "b",
+            "n": 0
+          }
+        }
+      ],
+      "merged": {
+        "r": [
+          {
+            "name": "a",
+            "n": 2
+          },
+          {
+            "name": "b",
+            "n": 0
+          }
+        ]
+      },
+      "id": "bde170d9b2",
+      "document": "<r:<[name:string,n:number]>>([(\"a\",2),(\"b\",0)]) // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:number]>]>[(\"bde170d9b2\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"r[name=\\\"a\\\"].n\",1,2),(\"add\",\"r[name=\\\"b\\\"]\",null,<any> {name:\"b\",n:0})])] //"
+    },
+    {
+      "name": "unicode",
+      "a": {
+        "city": "Krakow"
+      },
+      "b": {
+        "city": "Kraków",
+        "note": "line\nbreak \"q\""
+      },
+      "changes": [
+        {
+          "op": "change",
+          "path": "city",
+          "old": "Krakow",
+          "new": "Kraków"
+        },
+        {
+          "op": "add",
+          "path": "note",
+          "old": null,
+          "new": "line\nbreak \"q\""
+        }
+      ],
+      "merged": {
+        "city": "Kraków",
+        "note": "line\nbreak \"q\""
+      },
+      "id": "0755aa1c4c",
+      "document": "<city:string,note:string>(\"Kraków\",\"line\\nbreak \\\"q\\\"\") // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:string,new:string]>]>[(\"0755aa1c4c\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"city\",\"Krakow\",\"Kraków\"),(\"add\",\"note\",null,\"line\\nbreak \\\"q\\\"\")])] //"
+    },
+    {
+      "name": "root replaced",
+      "a": 1,
+      "b": "one",
+      "changes": [
+        {
+          "op": "change",
+          "path": "$",
+          "old": 1,
+          "new": "one"
+        }
+      ],
+      "merged": "one",
+      "id": "9830fdb277",
+      "document": "<string>\"one\" // $changes=<[id:string,date:string,author:string,title:string,description:null,changes:<[op:string,path:string,old:number,new:string]>]>[(\"9830fdb277\",\"2026-11-01T10:00:00Z\",\"Ada\",\"t\",null,[(\"change\",\"$\",1,\"one\")])] //"
+    }
+  ]
+}

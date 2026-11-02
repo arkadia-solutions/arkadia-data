@@ -1,0 +1,152 @@
+{
+  "id": 13,
+  "slug": "grades-classes",
+  "title": "School grades: average per class",
+  "description": "Polish 1–6 grade scale (6 is the best) — said in the metadata.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "What is the average math grade in each class, rounded to 2 decimals?",
+  "answer": {
+    "name": "classes",
+    "fields": [
+      [
+        "class",
+        "string"
+      ],
+      [
+        "avg_math",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "class": "3A",
+      "avg_math": 4.43
+    },
+    {
+      "class": "3B",
+      "avg_math": 3.57
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Grades on the Polish scale: 1 (fail) to 6 (excellent).",
+      "`students.math`: mathematics",
+      "`students.pl`: Polish language",
+      "`students.eng`: English"
+    ],
+    "attributes": [
+      "document: $term=\"2026/27-1\" #school",
+      "`students.math`: $scale=\"1-6\"",
+      "`students.pl`: $scale=\"1-6\"",
+      "`students.eng`: $scale=\"1-6\""
+    ]
+  },
+  "akd_meta": "// $term=\"2026/27-1\" #school // /* Grades on the Polish scale: 1 (fail) to 6 (excellent). */ <students:<[student:string,class:string,math:number $scale=\"1-6\" /* mathematics */,pl:number $scale=\"1-6\" /* Polish language */,eng:number $scale=\"1-6\" /* English */]>>([(\"Ada\",\"3A\",3,5,3),(\"Alan\",\"3B\",3,4,4),(\"Grace\",\"3A\",5,4,2),(\"Linus\",\"3B\",4,4,5),(\"Margaret\",\"3A\",4,4,3),(\"Dennis\",\"3B\",3,5,4),(\"Barbara\",\"3A\",6,4,3),(\"Ken\",\"3B\",3,3,2),(\"Radia\",\"3A\",3,3,3),(\"Edsger\",\"3B\",3,5,5),(\"Hedy\",\"3A\",4,4,4),(\"Tim\",\"3B\",3,3,6),(\"Katherine\",\"3A\",6,5,2),(\"John\",\"3B\",6,3,3)])",
+  "data": {
+    "students": [
+      {
+        "student": "Ada",
+        "class": "3A",
+        "math": 3,
+        "pl": 5,
+        "eng": 3
+      },
+      {
+        "student": "Alan",
+        "class": "3B",
+        "math": 3,
+        "pl": 4,
+        "eng": 4
+      },
+      {
+        "student": "Grace",
+        "class": "3A",
+        "math": 5,
+        "pl": 4,
+        "eng": 2
+      },
+      {
+        "student": "Linus",
+        "class": "3B",
+        "math": 4,
+        "pl": 4,
+        "eng": 5
+      },
+      {
+        "student": "Margaret",
+        "class": "3A",
+        "math": 4,
+        "pl": 4,
+        "eng": 3
+      },
+      {
+        "student": "Dennis",
+        "class": "3B",
+        "math": 3,
+        "pl": 5,
+        "eng": 4
+      },
+      {
+        "student": "Barbara",
+        "class": "3A",
+        "math": 6,
+        "pl": 4,
+        "eng": 3
+      },
+      {
+        "student": "Ken",
+        "class": "3B",
+        "math": 3,
+        "pl": 3,
+        "eng": 2
+      },
+      {
+        "student": "Radia",
+        "class": "3A",
+        "math": 3,
+        "pl": 3,
+        "eng": 3
+      },
+      {
+        "student": "Edsger",
+        "class": "3B",
+        "math": 3,
+        "pl": 5,
+        "eng": 5
+      },
+      {
+        "student": "Hedy",
+        "class": "3A",
+        "math": 4,
+        "pl": 4,
+        "eng": 4
+      },
+      {
+        "student": "Tim",
+        "class": "3B",
+        "math": 3,
+        "pl": 3,
+        "eng": 6
+      },
+      {
+        "student": "Katherine",
+        "class": "3A",
+        "math": 6,
+        "pl": 5,
+        "eng": 2
+      },
+      {
+        "student": "John",
+        "class": "3B",
+        "math": 6,
+        "pl": 3,
+        "eng": 3
+      }
+    ]
+  }
+}

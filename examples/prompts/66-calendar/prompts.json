@@ -1,0 +1,87 @@
+{
+ "id": 66,
+ "slug": "calendar",
+ "title": "Calendar: lists of [start, end] pairs",
+ "description": "Records can hold lists of lists; the header says busy:[[string]] once for every person.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which full hours (start on the hour, 60 minutes) are free for everyone?",
+ "tokens": {
+  "json": {
+   "none": 243
+  },
+  "toon": {
+   "none": 282
+  },
+  "akd": {
+   "none": 335
+  },
+  "akcd": {
+   "none": 324
+  }
+ },
+ "answer": {
+  "name": "free",
+  "fields": [
+   [
+    "start",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "start": "12:00"
+  },
+  {
+   "start": "14:00"
+  },
+  {
+   "start": "16:00"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"date\": \"2026-11-03\",\n  \"people\": [\n    {\n      \"name\": \"Ada\",\n      \"busy\": [\n        [\n          \"09:00\",\n          \"10:30\"\n        ],\n        [\n          \"13:00\",\n          \"14:00\"\n        ]\n      ]\n    },\n    {\n      \"name\": \"Alan\",\n      \"busy\": [\n        [\n          \"10:00\",\n          \"11:00\"\n        ],\n        [\n          \"15:00\",\n          \"16:00\"\n        ]\n      ]\n    },\n    {\n      \"name\": \"Grace\",\n      \"busy\": [\n        [\n          \"09:00\",\n          \"09:30\"\n        ],\n        [\n          \"11:00\",\n          \"12:00\"\n        ]\n      ]\n    }\n  ],\n  \"working_hours\": [\n    \"09:00\",\n    \"17:00\"\n  ]\n}\n</data>\n\nQuestion: Which full hours (start on the hour, 60 minutes) are free for everyone?\n\nAnswer with JSON only (no prose): {\"free\": [{\"start\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ndate: 2026-11-03\npeople[3]:\n  - name: Ada\n    busy[2]:\n      - [2]: \"09:00\",\"10:30\"\n      - [2]: \"13:00\",\"14:00\"\n  - name: Alan\n    busy[2]:\n      - [2]: \"10:00\",\"11:00\"\n      - [2]: \"15:00\",\"16:00\"\n  - name: Grace\n    busy[2]:\n      - [2]: \"09:00\",\"09:30\"\n      - [2]: \"11:00\",\"12:00\"\nworking_hours[2]: \"09:00\",\"17:00\"\n</data>\n\nQuestion: Which full hours (start on the hour, 60 minutes) are free for everyone?\n\nAnswer in TOON only (no prose, no code fences): free[N]{start}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<date:string, people:<[name:string, busy:[[string]]]>, working_hours:[string]>\n(\n  \"2026-11-03\",\n  [\n    (\"Ada\", [[\"09:00\", \"10:30\"], [\"13:00\", \"14:00\"]]),\n    (\"Alan\", [[\"10:00\", \"11:00\"], [\"15:00\", \"16:00\"]]),\n    (\"Grace\", [[\"09:00\", \"09:30\"], [\"11:00\", \"12:00\"]])\n  ],\n  [\"09:00\", \"17:00\"]\n)\n</data>\n\nQuestion: Which full hours (start on the hour, 60 minutes) are free for everyone?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[start:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<date:string,people:<[name:string,busy:[[string]]]>,working_hours:[string]>(\"2026-11-03\",[(\"Ada\",[[\"09:00\",\"10:30\"],[\"13:00\",\"14:00\"]]),(\"Alan\",[[\"10:00\",\"11:00\"],[\"15:00\",\"16:00\"]]),(\"Grace\",[[\"09:00\",\"09:30\"],[\"11:00\",\"12:00\"]])],[\"09:00\",\"17:00\"])\n</data>\n\nQuestion: Which full hours (start on the hour, 60 minutes) are free for everyone?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<free:<[start:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 191
+  },
+  "toon": {
+   "none": 145
+  },
+  "akd": {
+   "none": 121
+  },
+  "akcd": {
+   "none": 104
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"free\": [\n    {\n      \"start\": \"12:00\"\n    },\n    {\n      \"start\": \"14:00\"\n    },\n    {\n      \"start\": \"16:00\"\n    }\n  ]\n}",
+  "akcd": "<free:<[start:string]>>([(\"12:00\"),(\"14:00\"),(\"16:00\")])",
+  "toon": "free[3]{start}:\n  \"12:00\"\n  \"14:00\"\n  \"16:00\""
+ },
+ "answer_tokens": {
+  "json": 48,
+  "akcd": 25,
+  "toon": 25
+ }
+}

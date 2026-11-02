@@ -1,0 +1,30 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<cars:<[car:string, model:string, km:number, last_service_km:number]>>
+([
+  ("WX 6723", "Model 3", 46271, 41048),
+  ("WX 2157", "Corolla", 105112, 95343),
+  ("WX 9267", "Model 3", 120314, 106383),
+  ("WX 5238", "Model 3", 92153, 73433),
+  ("WX 4246", "Octavia", 46910, 30031),
+  ("WX 4083", "Octavia", 95525, 86060),
+  ("WX 6288", "Corolla", 69551, 62611),
+  ("WX 2226", "Corolla", 142401, 122379),
+  ("WX 8982", "Octavia", 75861, 69265),
+  ("WX 5845", "Golf", 141963, 126895),
+  ("WX 7076", "Corolla", 37779, 35743),
+  ("WX 9882", "Octavia", 156593, 141713)
+])
+</data>
+
+Question: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<due:<[car:string,since:number]>>

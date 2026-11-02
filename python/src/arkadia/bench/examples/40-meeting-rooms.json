@@ -1,0 +1,101 @@
+{
+  "id": 40,
+  "slug": "meeting-rooms",
+  "title": "Office: rooms for 8 with a projector",
+  "description": "Equipment lists.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which rooms seat at least 8 people and have a projector?",
+  "answer": {
+    "name": "rooms",
+    "fields": [
+      [
+        "room",
+        "string"
+      ],
+      [
+        "seats",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "room": "Borealis",
+      "seats": 10
+    },
+    {
+      "room": "Cirrus",
+      "seats": 8
+    },
+    {
+      "room": "Echo",
+      "seats": 14
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "rooms room=\"Echo\": book via the front desk"
+    ],
+    "attributes": [
+      "rooms room=\"Echo\": #needs_booking"
+    ]
+  },
+  "akd_meta": "<rooms:<[room:string,floor:number,seats:number,equipment:[string]]>>([(\"Aurora\",2,6,[\"tv\"]),(\"Borealis\",2,10,[\"projector\",\"whiteboard\"]),(\"Cirrus\",3,8,[\"projector\",\"tv\"]),(\"Delta\",3,4,[]),(\"Echo\",4,14,[\"projector\",\"camera\"]) #needs_booking /* book via the front desk */,(\"Fjord\",4,8,[\"whiteboard\"])])",
+  "data": {
+    "rooms": [
+      {
+        "room": "Aurora",
+        "floor": 2,
+        "seats": 6,
+        "equipment": [
+          "tv"
+        ]
+      },
+      {
+        "room": "Borealis",
+        "floor": 2,
+        "seats": 10,
+        "equipment": [
+          "projector",
+          "whiteboard"
+        ]
+      },
+      {
+        "room": "Cirrus",
+        "floor": 3,
+        "seats": 8,
+        "equipment": [
+          "projector",
+          "tv"
+        ]
+      },
+      {
+        "room": "Delta",
+        "floor": 3,
+        "seats": 4,
+        "equipment": []
+      },
+      {
+        "room": "Echo",
+        "floor": 4,
+        "seats": 14,
+        "equipment": [
+          "projector",
+          "camera"
+        ]
+      },
+      {
+        "room": "Fjord",
+        "floor": 4,
+        "seats": 8,
+        "equipment": [
+          "whiteboard"
+        ]
+      }
+    ]
+  }
+}

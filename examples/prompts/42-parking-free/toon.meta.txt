@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `spots.occ`: 0 free, 1 occupied
+
+Attributes of the data:
+- `spots.occ`: $enum="0=free,1=occupied"
+
+<data>
+spots[18]{spot,level,occ}:
+  P1-01,P1,1
+  P1-02,P1,1
+  P1-03,P1,1
+  P1-04,P1,0
+  P1-05,P1,0
+  P1-06,P1,1
+  P2-01,P2,1
+  P2-02,P2,1
+  P2-03,P2,0
+  P2-04,P2,0
+  P2-05,P2,1
+  P2-06,P2,1
+  P3-01,P3,1
+  P3-02,P3,1
+  P3-03,P3,0
+  P3-04,P3,1
+  P3-05,P3,1
+  P3-06,P3,1
+</data>
+
+Question: How many spots are free on each level?
+
+Answer in TOON only (no prose, no code fences): free[N]{level,free}: followed by one row per item.

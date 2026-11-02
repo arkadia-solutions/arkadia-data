@@ -1,0 +1,90 @@
+{
+ "id": 54,
+ "slug": "tool-result",
+ "title": "Agent tool result: web search hits",
+ "description": "A record with simple fields and a list of records — the typical tool output an agent puts back into the context.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which results have a score of at least 0.9?",
+ "tokens": {
+  "json": {
+   "none": 239
+  },
+  "toon": {
+   "none": 227
+  },
+  "akd": {
+   "none": 338
+  },
+  "akcd": {
+   "none": 311
+  }
+ },
+ "answer": {
+  "name": "hits",
+  "fields": [
+   [
+    "rank",
+    "number"
+   ],
+   [
+    "url",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "rank": 1,
+   "url": "https://example.org/a"
+  },
+  {
+   "rank": 2,
+   "url": "https://example.org/b"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"tool\": \"web_search\",\n  \"query\": \"agent memory\",\n  \"results\": [\n    {\n      \"rank\": 1,\n      \"title\": \"Agent memory in production\",\n      \"url\": \"https://example.org/a\",\n      \"score\": 0.97\n    },\n    {\n      \"rank\": 2,\n      \"title\": \"Token budgets for agents\",\n      \"url\": \"https://example.org/b\",\n      \"score\": 0.94\n    },\n    {\n      \"rank\": 3,\n      \"title\": \"Context engineering\",\n      \"url\": \"https://example.org/c\",\n      \"score\": 0.88\n    },\n    {\n      \"rank\": 4,\n      \"title\": \"Vector stores compared\",\n      \"url\": \"https://example.org/d\",\n      \"score\": 0.71\n    }\n  ]\n}\n</data>\n\nQuestion: Which results have a score of at least 0.9?\n\nAnswer with JSON only (no prose): {\"hits\": [{\"rank\": <number>, \"url\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ntool: web_search\nquery: agent memory\nresults[4]{rank,title,url,score}:\n  1,Agent memory in production,\"https://example.org/a\",0.97\n  2,Token budgets for agents,\"https://example.org/b\",0.94\n  3,Context engineering,\"https://example.org/c\",0.88\n  4,Vector stores compared,\"https://example.org/d\",0.71\n</data>\n\nQuestion: Which results have a score of at least 0.9?\n\nAnswer in TOON only (no prose, no code fences): hits[N]{rank,url}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<\n  tool:string,\n  query:string,\n  results:<[rank:number, title:string, url:string, score:number]>\n>\n(\n  \"web_search\",\n  \"agent memory\",\n  [\n    (1, \"Agent memory in production\", \"https://example.org/a\", 0.97),\n    (2, \"Token budgets for agents\", \"https://example.org/b\", 0.94),\n    (3, \"Context engineering\", \"https://example.org/c\", 0.88),\n    (4, \"Vector stores compared\", \"https://example.org/d\", 0.71)\n  ]\n)\n</data>\n\nQuestion: Which results have a score of at least 0.9?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hits:<[rank:number,url:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tool:string,query:string,results:<[rank:number,title:string,url:string,score:number]>>(\"web_search\",\"agent memory\",[(1,\"Agent memory in production\",\"https://example.org/a\",0.97),(2,\"Token budgets for agents\",\"https://example.org/b\",0.94),(3,\"Context engineering\",\"https://example.org/c\",0.88),(4,\"Vector stores compared\",\"https://example.org/d\",0.71)])\n</data>\n\nQuestion: Which results have a score of at least 0.9?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hits:<[rank:number,url:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 186
+  },
+  "toon": {
+   "none": 93
+  },
+  "akd": {
+   "none": 127
+  },
+  "akcd": {
+   "none": 94
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"hits\": [\n    {\n      \"rank\": 1,\n      \"url\": \"https://example.org/a\"\n    },\n    {\n      \"rank\": 2,\n      \"url\": \"https://example.org/b\"\n    }\n  ]\n}",
+  "akcd": "<hits:<[rank:number,url:string]>>([(1,\"https://example.org/a\"),(2,\"https://example.org/b\")])",
+  "toon": "hits[2]{rank,url}:\n  1,\"https://example.org/a\"\n  2,\"https://example.org/b\""
+ },
+ "answer_tokens": {
+  "json": 53,
+  "akcd": 29,
+  "toon": 28
+ }
+}

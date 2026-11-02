@@ -1,0 +1,51 @@
+The data below is in JSON.
+
+Notes about the data:
+- `positions.avg`: average buy price per share
+- `positions.last`: last traded price per share
+
+<data>
+{
+  "positions": [
+    {
+      "ticker": "CDR",
+      "qty": 40,
+      "avg": 112.5,
+      "last": 131.2,
+      "ccy": "PLN"
+    },
+    {
+      "ticker": "PKN",
+      "qty": 120,
+      "avg": 58.1,
+      "last": 61.4,
+      "ccy": "PLN"
+    },
+    {
+      "ticker": "AAPL",
+      "qty": 10,
+      "avg": 172.0,
+      "last": 189.3,
+      "ccy": "USD"
+    },
+    {
+      "ticker": "ALE",
+      "qty": 200,
+      "avg": 31.2,
+      "last": 27.9,
+      "ccy": "PLN"
+    },
+    {
+      "ticker": "MSFT",
+      "qty": 6,
+      "avg": 330.0,
+      "last": 402.1,
+      "ccy": "USD"
+    }
+  ]
+}
+</data>
+
+Question: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?
+
+Answer with JSON only (no prose): {"pnl": [{"ticker": <string>, "pnl": <number>}, ...]}

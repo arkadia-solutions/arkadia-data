@@ -1,0 +1,16 @@
+{
+  "hot": [
+    {
+      "host": "web-08",
+      "cpu_pct": 97.2
+    },
+    {
+      "host": "web-06",
+      "cpu_pct": 95.1
+    },
+    {
+      "host": "web-03",
+      "cpu_pct": 84.7
+    }
+  ]
+}

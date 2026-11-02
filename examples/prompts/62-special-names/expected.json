@@ -1,0 +1,12 @@
+{
+  "no_2fa": [
+    {
+      "user_id": 18,
+      "email": "alan@example.com"
+    },
+    {
+      "user_id": 19,
+      "email": "grace@example.com"
+    }
+  ]
+}

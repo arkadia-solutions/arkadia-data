@@ -1,0 +1,126 @@
+The data below is in JSON.
+
+Notes about the data:
+- Orders of the EU shop. Amounts are euro cents. Orders marked as tests are not real sales.
+- `orders.cust`: customer name
+- `orders.st`: status: 1 new, 2 paid, 3 shipped, 4 refunded
+- `orders.amt`: amount in euro cents (1999 = 19.99 EUR)
+- orders id="A-1004": test order, not a real sale
+- orders id="A-1010": test order, not a real sale
+
+Attributes of the data:
+- document: $source="shop-eu" $currency="EUR" #snapshot
+- `orders.id`: $required
+- `orders.st`: $enum="1=new,2=paid,3=shipped,4=refunded"
+- `orders.amt`: $unit="EUR cents"
+- orders id="A-1004": #test
+- orders id="A-1010": #test
+
+<data>
+{
+  "orders": [
+    {
+      "id": "A-1001",
+      "cust": "Acme",
+      "st": 3,
+      "amt": 4750,
+      "items": 5
+    },
+    {
+      "id": "A-1002",
+      "cust": "Globex",
+      "st": 3,
+      "amt": 15600,
+      "items": 5
+    },
+    {
+      "id": "A-1003",
+      "cust": "Initech",
+      "st": 3,
+      "amt": 21050,
+      "items": 1
+    },
+    {
+      "id": "A-1004",
+      "cust": "Umbrella",
+      "st": 1,
+      "amt": 6250,
+      "items": 2
+    },
+    {
+      "id": "A-1005",
+      "cust": "Hooli",
+      "st": 3,
+      "amt": 5250,
+      "items": 3
+    },
+    {
+      "id": "A-1006",
+      "cust": "Stark",
+      "st": 4,
+      "amt": 28650,
+      "items": 2
+    },
+    {
+      "id": "A-1007",
+      "cust": "Wayne",
+      "st": 3,
+      "amt": 9600,
+      "items": 4
+    },
+    {
+      "id": "A-1008",
+      "cust": "Tyrell",
+      "st": 3,
+      "amt": 35499,
+      "items": 5
+    },
+    {
+      "id": "A-1009",
+      "cust": "Soylent",
+      "st": 3,
+      "amt": 10999,
+      "items": 4
+    },
+    {
+      "id": "A-1010",
+      "cust": "Wonka",
+      "st": 3,
+      "amt": 15199,
+      "items": 2
+    },
+    {
+      "id": "A-1011",
+      "cust": "Acme",
+      "st": 3,
+      "amt": 25099,
+      "items": 2
+    },
+    {
+      "id": "A-1012",
+      "cust": "Globex",
+      "st": 3,
+      "amt": 39650,
+      "items": 5
+    },
+    {
+      "id": "A-1013",
+      "cust": "Initech",
+      "st": 4,
+      "amt": 33950,
+      "items": 4
+    },
+    {
+      "id": "A-1014",
+      "cust": "Umbrella",
+      "st": 3,
+      "amt": 5999,
+      "items": 3
+    }
+  ]
+}
+</data>
+
+Question: Which real orders (not tests) were refunded, and how much was each in euros?
+
+Answer with JSON only (no prose): {"refunds": [{"id": <string>, "eur": <number>}, ...]}

@@ -1,0 +1,20 @@
+{
+  "approved": [
+    {
+      "who": "Dennis",
+      "days": 18
+    },
+    {
+      "who": "Linus",
+      "days": 15
+    },
+    {
+      "who": "Alan",
+      "days": 6
+    },
+    {
+      "who": "Margaret",
+      "days": 6
+    }
+  ]
+}

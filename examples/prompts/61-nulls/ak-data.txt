@@ -1,0 +1,28 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<tickets:<[
+  id:number,
+  subject:string,
+  priority:string,
+  assignee:<id:number, name:string>,
+  tags:[string]
+]>>
+([
+  (501, "Invoice is wrong", "normal", (3, "Ola"), ["billing"]),
+  (502, "Cannot log in", "urgent", <null> null, ["auth"]),
+  (503, "Data export fails", "urgent", (5, "Piotr"), ["export", "bug"]),
+  (504, "App crashes on start", "urgent", <null> null, ["mobile", "bug"])
+])
+</data>
+
+Question: Which urgent tickets have nobody assigned?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<unassigned:<[id:number,subject:string]>>

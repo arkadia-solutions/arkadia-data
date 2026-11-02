@@ -1,0 +1,130 @@
+{
+  "id": 30,
+  "slug": "fleet-service",
+  "title": "Company cars: service due",
+  "description": "Odometer and last service.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which cars have driven more than 15,000 km since the last service? Most first; give the distance.",
+  "answer": {
+    "name": "due",
+    "fields": [
+      [
+        "car",
+        "string"
+      ],
+      [
+        "since",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "car": "WX 2226",
+      "since": 20022
+    },
+    {
+      "car": "WX 5238",
+      "since": 18720
+    },
+    {
+      "car": "WX 4246",
+      "since": 16879
+    },
+    {
+      "car": "WX 5845",
+      "since": 15068
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`cars.km`: odometer",
+      "`cars.last_service_km`: odometer at the last service"
+    ],
+    "attributes": [
+      "`cars.km`: $unit=\"km\"",
+      "`cars.last_service_km`: $unit=\"km\""
+    ]
+  },
+  "akd_meta": "<cars:<[car:string,model:string,km:number $unit=\"km\" /* odometer */,last_service_km:number $unit=\"km\" /* odometer at the last service */]>>([(\"WX 6723\",\"Model 3\",46271,41048),(\"WX 2157\",\"Corolla\",105112,95343),(\"WX 9267\",\"Model 3\",120314,106383),(\"WX 5238\",\"Model 3\",92153,73433),(\"WX 4246\",\"Octavia\",46910,30031),(\"WX 4083\",\"Octavia\",95525,86060),(\"WX 6288\",\"Corolla\",69551,62611),(\"WX 2226\",\"Corolla\",142401,122379),(\"WX 8982\",\"Octavia\",75861,69265),(\"WX 5845\",\"Golf\",141963,126895),(\"WX 7076\",\"Corolla\",37779,35743),(\"WX 9882\",\"Octavia\",156593,141713)])",
+  "data": {
+    "cars": [
+      {
+        "car": "WX 6723",
+        "model": "Model 3",
+        "km": 46271,
+        "last_service_km": 41048
+      },
+      {
+        "car": "WX 2157",
+        "model": "Corolla",
+        "km": 105112,
+        "last_service_km": 95343
+      },
+      {
+        "car": "WX 9267",
+        "model": "Model 3",
+        "km": 120314,
+        "last_service_km": 106383
+      },
+      {
+        "car": "WX 5238",
+        "model": "Model 3",
+        "km": 92153,
+        "last_service_km": 73433
+      },
+      {
+        "car": "WX 4246",
+        "model": "Octavia",
+        "km": 46910,
+        "last_service_km": 30031
+      },
+      {
+        "car": "WX 4083",
+        "model": "Octavia",
+        "km": 95525,
+        "last_service_km": 86060
+      },
+      {
+        "car": "WX 6288",
+        "model": "Corolla",
+        "km": 69551,
+        "last_service_km": 62611
+      },
+      {
+        "car": "WX 2226",
+        "model": "Corolla",
+        "km": 142401,
+        "last_service_km": 122379
+      },
+      {
+        "car": "WX 8982",
+        "model": "Octavia",
+        "km": 75861,
+        "last_service_km": 69265
+      },
+      {
+        "car": "WX 5845",
+        "model": "Golf",
+        "km": 141963,
+        "last_service_km": 126895
+      },
+      {
+        "car": "WX 7076",
+        "model": "Corolla",
+        "km": 37779,
+        "last_service_km": 35743
+      },
+      {
+        "car": "WX 9882",
+        "model": "Octavia",
+        "km": 156593,
+        "last_service_km": 141713
+      }
+    ]
+  }
+}

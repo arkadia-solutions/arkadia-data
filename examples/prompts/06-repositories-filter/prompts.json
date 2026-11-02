@@ -1,0 +1,130 @@
+{
+ "id": 6,
+ "slug": "repositories-filter",
+ "title": "Developer data: filter repositories",
+ "description": "30 repositories with topic lists. Multi-condition filter and sort.",
+ "tags": [],
+ "question": "List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.",
+ "tokens": {
+  "json": {
+   "none": 2234
+  },
+  "toon": {
+   "none": 1672
+  },
+  "akd": {
+   "none": 1281
+  },
+  "akcd": {
+   "none": 1078
+  }
+ },
+ "answer": {
+  "name": "result",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "language",
+    "string"
+   ],
+   [
+    "stars",
+    "number"
+   ],
+   [
+    "license",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "open-parser-22",
+   "language": "Rust",
+   "stars": 88594,
+   "license": "Apache-2.0"
+  },
+  {
+   "name": "deep-agent-9",
+   "language": "Python",
+   "stars": 85505,
+   "license": "GPL-3.0"
+  },
+  {
+   "name": "smart-store-5",
+   "language": "Rust",
+   "stars": 81958,
+   "license": "GPL-3.0"
+  },
+  {
+   "name": "smart-parser-1",
+   "language": "Python",
+   "stars": 67210,
+   "license": "GPL-3.0"
+  },
+  {
+   "name": "tiny-store-23",
+   "language": "Rust",
+   "stars": 43981,
+   "license": "MIT"
+  },
+  {
+   "name": "tiny-store-18",
+   "language": "Rust",
+   "stars": 25014,
+   "license": null
+  },
+  {
+   "name": "smart-parser-7",
+   "language": "Python",
+   "stars": 23853,
+   "license": "Apache-2.0"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"repositories\": [\n    {\n      \"name\": \"smart-parser-1\",\n      \"stars\": 67210,\n      \"forks\": 8343,\n      \"language\": \"Python\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-kit-2\",\n      \"stars\": 12579,\n      \"forks\": 5161,\n      \"language\": \"TypeScript\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"security\",\n        \"parser\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-agent-3\",\n      \"stars\": 54543,\n      \"forks\": 1178,\n      \"language\": \"TypeScript\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"agents\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-agent-4\",\n      \"stars\": 14909,\n      \"forks\": 1666,\n      \"language\": \"Java\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"web\",\n        \"agents\",\n        \"database\",\n        \"cli\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-store-5\",\n      \"stars\": 81958,\n      \"forks\": 8187,\n      \"language\": \"Rust\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-agent-6\",\n      \"stars\": 79976,\n      \"forks\": 1334,\n      \"language\": \"Go\",\n      \"license\": null,\n      \"topics\": [\n        \"tooling\",\n        \"security\",\n        \"llm\",\n        \"web\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-parser-7\",\n      \"stars\": 23853,\n      \"forks\": 238,\n      \"language\": \"Python\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"database\",\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-agent-8\",\n      \"stars\": 89148,\n      \"forks\": 5768,\n      \"language\": \"Java\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"database\",\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"deep-agent-9\",\n      \"stars\": 85505,\n      \"forks\": 7851,\n      \"language\": \"Python\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"security\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"fast-agent-10\",\n      \"stars\": 63508,\n      \"forks\": 5897,\n      \"language\": \"C++\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"security\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-store-11\",\n      \"stars\": 86776,\n      \"forks\": 1714,\n      \"language\": \"Go\",\n      \"license\": null,\n      \"topics\": [\n        \"tooling\",\n        \"security\",\n        \"web\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-flow-12\",\n      \"stars\": 59212,\n      \"forks\": 2934,\n      \"language\": \"C++\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"agents\",\n        \"database\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-store-13\",\n      \"stars\": 32267,\n      \"forks\": 877,\n      \"language\": \"TypeScript\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"security\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-kit-14\",\n      \"stars\": 6872,\n      \"forks\": 6302,\n      \"language\": \"Python\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"tooling\",\n        \"agents\",\n        \"security\",\n        \"cli\"\n      ],\n      \"archived\": true\n    },\n    {\n      \"name\": \"open-parser-15\",\n      \"stars\": 60136,\n      \"forks\": 2205,\n      \"language\": \"C++\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"llm\",\n        \"web\",\n        \"database\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-flow-16\",\n      \"stars\": 61996,\n      \"forks\": 2100,\n      \"language\": \"C++\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"cli\",\n        \"agents\",\n        \"parser\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"deep-parser-17\",\n      \"stars\": 68114,\n      \"forks\": 597,\n      \"language\": \"Java\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"ai\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-store-18\",\n      \"stars\": 25014,\n      \"forks\": 4541,\n      \"language\": \"Rust\",\n      \"license\": null,\n      \"topics\": [\n        \"parser\",\n        \"llm\",\n        \"cli\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"smart-kit-19\",\n      \"stars\": 59937,\n      \"forks\": 8667,\n      \"language\": \"Go\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"ai\",\n        \"web\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"fast-agent-20\",\n      \"stars\": 39908,\n      \"forks\": 787,\n      \"language\": \"TypeScript\",\n      \"license\": null,\n      \"topics\": [\n        \"ai\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-flow-21\",\n      \"stars\": 57303,\n      \"forks\": 252,\n      \"language\": \"C++\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"llm\",\n        \"tooling\",\n        \"agents\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-parser-22\",\n      \"stars\": 88594,\n      \"forks\": 811,\n      \"language\": \"Rust\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"parser\",\n        \"web\",\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-store-23\",\n      \"stars\": 43981,\n      \"forks\": 8234,\n      \"language\": \"Rust\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"parser\",\n        \"llm\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"fast-store-24\",\n      \"stars\": 55997,\n      \"forks\": 8779,\n      \"language\": \"Java\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"cli\",\n        \"tooling\",\n        \"parser\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"deep-store-25\",\n      \"stars\": 65252,\n      \"forks\": 3687,\n      \"language\": \"Go\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"agents\",\n        \"cli\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"fast-flow-26\",\n      \"stars\": 76617,\n      \"forks\": 3020,\n      \"language\": \"Java\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"web\",\n        \"security\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-kit-27\",\n      \"stars\": 33701,\n      \"forks\": 578,\n      \"language\": \"Java\",\n      \"license\": \"Apache-2.0\",\n      \"topics\": [\n        \"cli\",\n        \"ai\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"tiny-store-28\",\n      \"stars\": 34283,\n      \"forks\": 5766,\n      \"language\": \"Go\",\n      \"license\": \"MIT\",\n      \"topics\": [\n        \"web\",\n        \"tooling\",\n        \"parser\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"open-agent-29\",\n      \"stars\": 34728,\n      \"forks\": 5836,\n      \"language\": \"TypeScript\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"cli\",\n        \"web\",\n        \"parser\",\n        \"agents\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"fast-agent-30\",\n      \"stars\": 58453,\n      \"forks\": 1288,\n      \"language\": \"Java\",\n      \"license\": \"GPL-3.0\",\n      \"topics\": [\n        \"web\",\n        \"tooling\",\n        \"database\",\n        \"agents\"\n      ],\n      \"archived\": false\n    }\n  ]\n}\n</data>\n\nQuestion: List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.\n\nAnswer with JSON only (no prose): {\"result\": [{\"name\": <string>, \"language\": <string>, \"stars\": <number>, \"license\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrepositories[30]:\n  - name: smart-parser-1\n    stars: 67210\n    forks: 8343\n    language: Python\n    license: GPL-3.0\n    topics[1]: llm\n    archived: false\n  - name: smart-kit-2\n    stars: 12579\n    forks: 5161\n    language: TypeScript\n    license: GPL-3.0\n    topics[2]: security,parser\n    archived: false\n  - name: open-agent-3\n    stars: 54543\n    forks: 1178\n    language: TypeScript\n    license: MIT\n    topics[1]: agents\n    archived: false\n  - name: smart-agent-4\n    stars: 14909\n    forks: 1666\n    language: Java\n    license: MIT\n    topics[4]: web,agents,database,cli\n    archived: false\n  - name: smart-store-5\n    stars: 81958\n    forks: 8187\n    language: Rust\n    license: GPL-3.0\n    topics[1]: llm\n    archived: false\n  - name: tiny-agent-6\n    stars: 79976\n    forks: 1334\n    language: Go\n    license: null\n    topics[4]: tooling,security,llm,web\n    archived: false\n  - name: smart-parser-7\n    stars: 23853\n    forks: 238\n    language: Python\n    license: Apache-2.0\n    topics[2]: database,llm\n    archived: false\n  - name: open-agent-8\n    stars: 89148\n    forks: 5768\n    language: Java\n    license: MIT\n    topics[2]: database,llm\n    archived: false\n  - name: deep-agent-9\n    stars: 85505\n    forks: 7851\n    language: Python\n    license: GPL-3.0\n    topics[1]: security\n    archived: false\n  - name: fast-agent-10\n    stars: 63508\n    forks: 5897\n    language: C++\n    license: GPL-3.0\n    topics[1]: security\n    archived: false\n  - name: smart-store-11\n    stars: 86776\n    forks: 1714\n    language: Go\n    license: null\n    topics[3]: tooling,security,web\n    archived: false\n  - name: tiny-flow-12\n    stars: 59212\n    forks: 2934\n    language: C++\n    license: MIT\n    topics[2]: agents,database\n    archived: false\n  - name: open-store-13\n    stars: 32267\n    forks: 877\n    language: TypeScript\n    license: GPL-3.0\n    topics[1]: security\n    archived: false\n  - name: open-kit-14\n    stars: 6872\n    forks: 6302\n    language: Python\n    license: Apache-2.0\n    topics[4]: tooling,agents,security,cli\n    archived: true\n  - name: open-parser-15\n    stars: 60136\n    forks: 2205\n    language: C++\n    license: MIT\n    topics[3]: llm,web,database\n    archived: false\n  - name: tiny-flow-16\n    stars: 61996\n    forks: 2100\n    language: C++\n    license: MIT\n    topics[3]: cli,agents,parser\n    archived: false\n  - name: deep-parser-17\n    stars: 68114\n    forks: 597\n    language: Java\n    license: GPL-3.0\n    topics[1]: ai\n    archived: false\n  - name: tiny-store-18\n    stars: 25014\n    forks: 4541\n    language: Rust\n    license: null\n    topics[3]: parser,llm,cli\n    archived: false\n  - name: smart-kit-19\n    stars: 59937\n    forks: 8667\n    language: Go\n    license: Apache-2.0\n    topics[2]: ai,web\n    archived: false\n  - name: fast-agent-20\n    stars: 39908\n    forks: 787\n    language: TypeScript\n    license: null\n    topics[1]: ai\n    archived: false\n  - name: tiny-flow-21\n    stars: 57303\n    forks: 252\n    language: C++\n    license: GPL-3.0\n    topics[3]: llm,tooling,agents\n    archived: false\n  - name: open-parser-22\n    stars: 88594\n    forks: 811\n    language: Rust\n    license: Apache-2.0\n    topics[3]: parser,web,llm\n    archived: false\n  - name: tiny-store-23\n    stars: 43981\n    forks: 8234\n    language: Rust\n    license: MIT\n    topics[2]: parser,llm\n    archived: false\n  - name: fast-store-24\n    stars: 55997\n    forks: 8779\n    language: Java\n    license: GPL-3.0\n    topics[3]: cli,tooling,parser\n    archived: false\n  - name: deep-store-25\n    stars: 65252\n    forks: 3687\n    language: Go\n    license: Apache-2.0\n    topics[2]: agents,cli\n    archived: false\n  - name: fast-flow-26\n    stars: 76617\n    forks: 3020\n    language: Java\n    license: Apache-2.0\n    topics[2]: web,security\n    archived: false\n  - name: open-kit-27\n    stars: 33701\n    forks: 578\n    language: Java\n    license: Apache-2.0\n    topics[2]: cli,ai\n    archived: false\n  - name: tiny-store-28\n    stars: 34283\n    forks: 5766\n    language: Go\n    license: MIT\n    topics[3]: web,tooling,parser\n    archived: false\n  - name: open-agent-29\n    stars: 34728\n    forks: 5836\n    language: TypeScript\n    license: GPL-3.0\n    topics[4]: cli,web,parser,agents\n    archived: false\n  - name: fast-agent-30\n    stars: 58453\n    forks: 1288\n    language: Java\n    license: GPL-3.0\n    topics[4]: web,tooling,database,agents\n    archived: false\n</data>\n\nQuestion: List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.\n\nAnswer in TOON only (no prose, no code fences): result[N]{name,language,stars,license}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<repositories:<[\n  name:string,\n  stars:number,\n  forks:number,\n  language:string,\n  license:string,\n  topics:[string],\n  archived:bool\n]>>\n([\n  (\"smart-parser-1\", 67210, 8343, \"Python\", \"GPL-3.0\", [\"llm\"], false),\n  (\"smart-kit-2\", 12579, 5161, \"TypeScript\", \"GPL-3.0\", [\"security\", \"parser\"],\n   false),\n  (\"open-agent-3\", 54543, 1178, \"TypeScript\", \"MIT\", [\"agents\"], false),\n  (\"smart-agent-4\", 14909, 1666, \"Java\", \"MIT\",\n   [\"web\", \"agents\", \"database\", \"cli\"], false),\n  (\"smart-store-5\", 81958, 8187, \"Rust\", \"GPL-3.0\", [\"llm\"], false),\n  (\"tiny-agent-6\", 79976, 1334, \"Go\", null,\n   [\"tooling\", \"security\", \"llm\", \"web\"], false),\n  (\"smart-parser-7\", 23853, 238, \"Python\", \"Apache-2.0\", [\"database\", \"llm\"],\n   false),\n  (\"open-agent-8\", 89148, 5768, \"Java\", \"MIT\", [\"database\", \"llm\"], false),\n  (\"deep-agent-9\", 85505, 7851, \"Python\", \"GPL-3.0\", [\"security\"], false),\n  (\"fast-agent-10\", 63508, 5897, \"C++\", \"GPL-3.0\", [\"security\"], false),\n  (\"smart-store-11\", 86776, 1714, \"Go\", null, [\"tooling\", \"security\", \"web\"],\n   false),\n  (\"tiny-flow-12\", 59212, 2934, \"C++\", \"MIT\", [\"agents\", \"database\"], false),\n  (\"open-store-13\", 32267, 877, \"TypeScript\", \"GPL-3.0\", [\"security\"], false),\n  (\"open-kit-14\", 6872, 6302, \"Python\", \"Apache-2.0\",\n   [\"tooling\", \"agents\", \"security\", \"cli\"], true),\n  (\"open-parser-15\", 60136, 2205, \"C++\", \"MIT\", [\"llm\", \"web\", \"database\"],\n   false),\n  (\"tiny-flow-16\", 61996, 2100, \"C++\", \"MIT\", [\"cli\", \"agents\", \"parser\"],\n   false),\n  (\"deep-parser-17\", 68114, 597, \"Java\", \"GPL-3.0\", [\"ai\"], false),\n  (\"tiny-store-18\", 25014, 4541, \"Rust\", null, [\"parser\", \"llm\", \"cli\"], false),\n  (\"smart-kit-19\", 59937, 8667, \"Go\", \"Apache-2.0\", [\"ai\", \"web\"], false),\n  (\"fast-agent-20\", 39908, 787, \"TypeScript\", null, [\"ai\"], false),\n  (\"tiny-flow-21\", 57303, 252, \"C++\", \"GPL-3.0\", [\"llm\", \"tooling\", \"agents\"],\n   false),\n  (\"open-parser-22\", 88594, 811, \"Rust\", \"Apache-2.0\", [\"parser\", \"web\", \"llm\"],\n   false),\n  (\"tiny-store-23\", 43981, 8234, \"Rust\", \"MIT\", [\"parser\", \"llm\"], false),\n  (\"fast-store-24\", 55997, 8779, \"Java\", \"GPL-3.0\",\n   [\"cli\", \"tooling\", \"parser\"], false),\n  (\"deep-store-25\", 65252, 3687, \"Go\", \"Apache-2.0\", [\"agents\", \"cli\"], false),\n  (\"fast-flow-26\", 76617, 3020, \"Java\", \"Apache-2.0\", [\"web\", \"security\"],\n   false),\n  (\"open-kit-27\", 33701, 578, \"Java\", \"Apache-2.0\", [\"cli\", \"ai\"], false),\n  (\"tiny-store-28\", 34283, 5766, \"Go\", \"MIT\", [\"web\", \"tooling\", \"parser\"],\n   false),\n  (\"open-agent-29\", 34728, 5836, \"TypeScript\", \"GPL-3.0\",\n   [\"cli\", \"web\", \"parser\", \"agents\"], false),\n  (\"fast-agent-30\", 58453, 1288, \"Java\", \"GPL-3.0\",\n   [\"web\", \"tooling\", \"database\", \"agents\"], false)\n])\n</data>\n\nQuestion: List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<result:<[name:string,language:string,stars:number,license:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<repositories:<[name:string,stars:number,forks:number,language:string,license:string,topics:[string],archived:bool]>>([(\"smart-parser-1\",67210,8343,\"Python\",\"GPL-3.0\",[\"llm\"],false),(\"smart-kit-2\",12579,5161,\"TypeScript\",\"GPL-3.0\",[\"security\",\"parser\"],false),(\"open-agent-3\",54543,1178,\"TypeScript\",\"MIT\",[\"agents\"],false),(\"smart-agent-4\",14909,1666,\"Java\",\"MIT\",[\"web\",\"agents\",\"database\",\"cli\"],false),(\"smart-store-5\",81958,8187,\"Rust\",\"GPL-3.0\",[\"llm\"],false),(\"tiny-agent-6\",79976,1334,\"Go\",null,[\"tooling\",\"security\",\"llm\",\"web\"],false),(\"smart-parser-7\",23853,238,\"Python\",\"Apache-2.0\",[\"database\",\"llm\"],false),(\"open-agent-8\",89148,5768,\"Java\",\"MIT\",[\"database\",\"llm\"],false),(\"deep-agent-9\",85505,7851,\"Python\",\"GPL-3.0\",[\"security\"],false),(\"fast-agent-10\",63508,5897,\"C++\",\"GPL-3.0\",[\"security\"],false),(\"smart-store-11\",86776,1714,\"Go\",null,[\"tooling\",\"security\",\"web\"],false),(\"tiny-flow-12\",59212,2934,\"C++\",\"MIT\",[\"agents\",\"database\"],false),(\"open-store-13\",32267,877,\"TypeScript\",\"GPL-3.0\",[\"security\"],false),(\"open-kit-14\",6872,6302,\"Python\",\"Apache-2.0\",[\"tooling\",\"agents\",\"security\",\"cli\"],true),(\"open-parser-15\",60136,2205,\"C++\",\"MIT\",[\"llm\",\"web\",\"database\"],false),(\"tiny-flow-16\",61996,2100,\"C++\",\"MIT\",[\"cli\",\"agents\",\"parser\"],false),(\"deep-parser-17\",68114,597,\"Java\",\"GPL-3.0\",[\"ai\"],false),(\"tiny-store-18\",25014,4541,\"Rust\",null,[\"parser\",\"llm\",\"cli\"],false),(\"smart-kit-19\",59937,8667,\"Go\",\"Apache-2.0\",[\"ai\",\"web\"],false),(\"fast-agent-20\",39908,787,\"TypeScript\",null,[\"ai\"],false),(\"tiny-flow-21\",57303,252,\"C++\",\"GPL-3.0\",[\"llm\",\"tooling\",\"agents\"],false),(\"open-parser-22\",88594,811,\"Rust\",\"Apache-2.0\",[\"parser\",\"web\",\"llm\"],false),(\"tiny-store-23\",43981,8234,\"Rust\",\"MIT\",[\"parser\",\"llm\"],false),(\"fast-store-24\",55997,8779,\"Java\",\"GPL-3.0\",[\"cli\",\"tooling\",\"parser\"],false),(\"deep-store-25\",65252,3687,\"Go\",\"Apache-2.0\",[\"agents\",\"cli\"],false),(\"fast-flow-26\",76617,3020,\"Java\",\"Apache-2.0\",[\"web\",\"security\"],false),(\"open-kit-27\",33701,578,\"Java\",\"Apache-2.0\",[\"cli\",\"ai\"],false),(\"tiny-store-28\",34283,5766,\"Go\",\"MIT\",[\"web\",\"tooling\",\"parser\"],false),(\"open-agent-29\",34728,5836,\"TypeScript\",\"GPL-3.0\",[\"cli\",\"web\",\"parser\",\"agents\"],false),(\"fast-agent-30\",58453,1288,\"Java\",\"GPL-3.0\",[\"web\",\"tooling\",\"database\",\"agents\"],false)])\n</data>\n\nQuestion: List the repositories that are not archived, are written in Python or Rust and have more than 10,000 stars, sorted by stars (highest first). Include the license.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<result:<[name:string,language:string,stars:number,license:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 2147
+  },
+  "toon": {
+   "none": 1511
+  },
+  "akd": {
+   "none": 1041
+  },
+  "akcd": {
+   "none": 832
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"result\": [\n    {\n      \"name\": \"open-parser-22\",\n      \"language\": \"Rust\",\n      \"stars\": 88594,\n      \"license\": \"Apache-2.0\"\n    },\n    {\n      \"name\": \"deep-agent-9\",\n      \"language\": \"Python\",\n      \"stars\": 85505,\n      \"license\": \"GPL-3.0\"\n    },\n    {\n      \"name\": \"smart-store-5\",\n      \"language\": \"Rust\",\n      \"stars\": 81958,\n      \"license\": \"GPL-3.0\"\n    },\n    {\n      \"name\": \"smart-parser-1\",\n      \"language\": \"Python\",\n      \"stars\": 67210,\n      \"license\": \"GPL-3.0\"\n    },\n    {\n      \"name\": \"tiny-store-23\",\n      \"language\": \"Rust\",\n      \"stars\": 43981,\n      \"license\": \"MIT\"\n    },\n    {\n      \"name\": \"tiny-store-18\",\n      \"language\": \"Rust\",\n      \"stars\": 25014,\n      \"license\": null\n    },\n    {\n      \"name\": \"smart-parser-7\",\n      \"language\": \"Python\",\n      \"stars\": 23853,\n      \"license\": \"Apache-2.0\"\n    }\n  ]\n}",
+  "akcd": "<result:<[name:string,language:string,stars:number,license:string]>>([(\"open-parser-22\",\"Rust\",88594,\"Apache-2.0\"),(\"deep-agent-9\",\"Python\",85505,\"GPL-3.0\"),(\"smart-store-5\",\"Rust\",81958,\"GPL-3.0\"),(\"smart-parser-1\",\"Python\",67210,\"GPL-3.0\"),(\"tiny-store-23\",\"Rust\",43981,\"MIT\"),(\"tiny-store-18\",\"Rust\",25014,null),(\"smart-parser-7\",\"Python\",23853,\"Apache-2.0\")])",
+  "toon": "result[7]{name,language,stars,license}:\n  open-parser-22,Rust,88594,Apache-2.0\n  deep-agent-9,Python,85505,GPL-3.0\n  smart-store-5,Rust,81958,GPL-3.0\n  smart-parser-1,Python,67210,GPL-3.0\n  tiny-store-23,Rust,43981,MIT\n  tiny-store-18,Rust,25014,null\n  smart-parser-7,Python,23853,Apache-2.0"
+ },
+ "answer_tokens": {
+  "json": 280,
+  "akcd": 129,
+  "toon": 122
+ }
+}

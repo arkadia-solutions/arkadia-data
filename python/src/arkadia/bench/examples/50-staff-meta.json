@@ -1,0 +1,144 @@
+{
+  "id": 50,
+  "slug": "staff-meta",
+  "title": "Staff: levels as codes, monthly salaries, contractors",
+  "description": "Level is a code, salary is monthly in PLN, two people are contractors — written only in the metadata.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "List the senior people who are employees (not contractors) with their yearly salary in PLN.",
+  "answer": {
+    "name": "seniors",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "yearly_pln",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "Grace",
+      "yearly_pln": 252000
+    },
+    {
+      "name": "Edsger",
+      "yearly_pln": 100800
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Payroll snapshot from 1 October 2026. Contractors are not employees.",
+      "`staff.dept`: department: ENG engineering, OPS operations, FIN finance",
+      "`staff.lvl`: level: 1 junior, 2 mid, 3 senior",
+      "`staff.sal`: gross salary per month in PLN",
+      "staff id=104: contractor, not an employee",
+      "staff id=110: contractor, not an employee"
+    ],
+    "attributes": [
+      "document: $company=\"Arkadia\" $as_of=\"2026-10-01\" #hr #confidential",
+      "`staff.id`: $required",
+      "`staff.dept`: $enum=\"ENG=engineering,OPS=operations,FIN=finance\"",
+      "`staff.lvl`: $enum=\"1=junior,2=mid,3=senior\"",
+      "`staff.sal`: $unit=\"PLN\" $period=\"month\"",
+      "staff id=104: #contractor",
+      "staff id=110: #contractor"
+    ]
+  },
+  "akd_meta": "// $company=\"Arkadia\" $as_of=\"2026-10-01\" #hr #confidential // /* Payroll snapshot from 1 October 2026. Contractors are not employees. */ <staff:<[id:number $required,name:string,dept:string $enum=\"ENG=engineering,OPS=operations,FIN=finance\" /* department: ENG engineering, OPS operations, FIN finance */,lvl:number $enum=\"1=junior,2=mid,3=senior\" /* level: 1 junior, 2 mid, 3 senior */,sal:number $unit=\"PLN\" $period=\"month\" /* gross salary per month in PLN */]>>([(100,\"Ada\",\"ENG\",2,7300),(101,\"Alan\",\"OPS\",1,17200),(102,\"Grace\",\"FIN\",3,21000),(103,\"Linus\",\"ENG\",2,18100),(104,\"Margaret\",\"OPS\",2,14400) #contractor /* contractor, not an employee */,(105,\"Dennis\",\"FIN\",1,8200),(106,\"Barbara\",\"ENG\",1,23500),(107,\"Ken\",\"OPS\",2,10000),(108,\"Radia\",\"FIN\",1,23000),(109,\"Edsger\",\"ENG\",3,8400),(110,\"Hedy\",\"OPS\",1,20100) #contractor /* contractor, not an employee */,(111,\"Tim\",\"FIN\",1,10800)])",
+  "data": {
+    "staff": [
+      {
+        "id": 100,
+        "name": "Ada",
+        "dept": "ENG",
+        "lvl": 2,
+        "sal": 7300
+      },
+      {
+        "id": 101,
+        "name": "Alan",
+        "dept": "OPS",
+        "lvl": 1,
+        "sal": 17200
+      },
+      {
+        "id": 102,
+        "name": "Grace",
+        "dept": "FIN",
+        "lvl": 3,
+        "sal": 21000
+      },
+      {
+        "id": 103,
+        "name": "Linus",
+        "dept": "ENG",
+        "lvl": 2,
+        "sal": 18100
+      },
+      {
+        "id": 104,
+        "name": "Margaret",
+        "dept": "OPS",
+        "lvl": 2,
+        "sal": 14400
+      },
+      {
+        "id": 105,
+        "name": "Dennis",
+        "dept": "FIN",
+        "lvl": 1,
+        "sal": 8200
+      },
+      {
+        "id": 106,
+        "name": "Barbara",
+        "dept": "ENG",
+        "lvl": 1,
+        "sal": 23500
+      },
+      {
+        "id": 107,
+        "name": "Ken",
+        "dept": "OPS",
+        "lvl": 2,
+        "sal": 10000
+      },
+      {
+        "id": 108,
+        "name": "Radia",
+        "dept": "FIN",
+        "lvl": 1,
+        "sal": 23000
+      },
+      {
+        "id": 109,
+        "name": "Edsger",
+        "dept": "ENG",
+        "lvl": 3,
+        "sal": 8400
+      },
+      {
+        "id": 110,
+        "name": "Hedy",
+        "dept": "OPS",
+        "lvl": 1,
+        "sal": 20100
+      },
+      {
+        "id": 111,
+        "name": "Tim",
+        "dept": "FIN",
+        "lvl": 1,
+        "sal": 10800
+      }
+    ]
+  }
+}

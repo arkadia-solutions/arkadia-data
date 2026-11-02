@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+rooms[6]:
+  - room: Aurora
+    floor: 2
+    seats: 6
+    equipment[1]: tv
+  - room: Borealis
+    floor: 2
+    seats: 10
+    equipment[2]: projector,whiteboard
+  - room: Cirrus
+    floor: 3
+    seats: 8
+    equipment[2]: projector,tv
+  - room: Delta
+    floor: 3
+    seats: 4
+    equipment: []
+  - room: Echo
+    floor: 4
+    seats: 14
+    equipment[2]: projector,camera
+  - room: Fjord
+    floor: 4
+    seats: 8
+    equipment[1]: whiteboard
+</data>
+
+Question: Which rooms seat at least 8 people and have a projector?
+
+Answer in TOON only (no prose, no code fences): rooms[N]{room,seats}: followed by one row per item.

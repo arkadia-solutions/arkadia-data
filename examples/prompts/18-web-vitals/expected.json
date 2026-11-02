@@ -1,0 +1,20 @@
+{
+  "slow": [
+    {
+      "page": "/pricing",
+      "lcp": 4082
+    },
+    {
+      "page": "/akdata",
+      "lcp": 4060
+    },
+    {
+      "page": "/",
+      "lcp": 3511
+    },
+    {
+      "page": "/blog",
+      "lcp": 2582
+    }
+  ]
+}

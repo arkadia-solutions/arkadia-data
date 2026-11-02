@@ -1,0 +1,18 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+emails[4]{from,subject,body}:
+  customer1@example.com,Order request #1,"Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak"
+  customer2@example.com,Order request #2,"Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\"), delivery on 2026-11-06 if possible."
+  customer3@example.com,Order request #3,"Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address."
+  customer4@example.com,Order request #4,"Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!"
+</data>
+
+Question: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.
+
+Answer in TOON only (no prose, no code fences): orders[N]{customer,product,quantity,delivery_date}: followed by one row per item.

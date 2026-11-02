@@ -1,0 +1,86 @@
+{
+  "id": 66,
+  "slug": "calendar",
+  "title": "Calendar: lists of [start, end] pairs",
+  "description": "Records can hold lists of lists; the header says busy:[[string]] once for every person.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which full hours (start on the hour, 60 minutes) are free for everyone?",
+  "answer": {
+    "name": "free",
+    "fields": [
+      [
+        "start",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "start": "12:00"
+    },
+    {
+      "start": "14:00"
+    },
+    {
+      "start": "16:00"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "date": "2026-11-03",
+    "people": [
+      {
+        "name": "Ada",
+        "busy": [
+          [
+            "09:00",
+            "10:30"
+          ],
+          [
+            "13:00",
+            "14:00"
+          ]
+        ]
+      },
+      {
+        "name": "Alan",
+        "busy": [
+          [
+            "10:00",
+            "11:00"
+          ],
+          [
+            "15:00",
+            "16:00"
+          ]
+        ]
+      },
+      {
+        "name": "Grace",
+        "busy": [
+          [
+            "09:00",
+            "09:30"
+          ],
+          [
+            "11:00",
+            "12:00"
+          ]
+        ]
+      }
+    ],
+    "working_hours": [
+      "09:00",
+      "17:00"
+    ]
+  }
+}

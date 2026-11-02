@@ -1,0 +1,20 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+foods[6]{food,protein,portion}:
+  Oats,13.2,50
+  Chicken breast,31,150
+  Tofu,12,120
+  Lentils (cooked),9,200
+  Greek yogurt,10,170
+  Almonds,21.2,30
+</data>
+
+Question: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).
+
+Answer in TOON only (no prose, no code fences): protein[N]{food,grams}: followed by one row per item.

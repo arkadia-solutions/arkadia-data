@@ -1,0 +1,43 @@
+The data below is in JSON.
+
+<data>
+{
+  "products": [
+    {
+      "sku": "PROD-123",
+      "name": "Keyboard",
+      "price": 89.0,
+      "tags": [
+        "new",
+        "wireless"
+      ]
+    },
+    {
+      "sku": "PROD-124",
+      "name": "Mouse",
+      "price": 39.5,
+      "tags": []
+    },
+    {
+      "sku": "PROD-125",
+      "name": "Dock",
+      "price": 199.0,
+      "tags": [
+        "usb-c"
+      ]
+    },
+    {
+      "sku": "PROD-126",
+      "name": "Cable",
+      "price": 9.99,
+      "tags": [
+        "usb-c"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which products are verified and not discontinued? Give the sku and the price in EUR.
+
+Answer with JSON only (no prose): {"verified": [{"sku": <string>, "eur": <number>}, ...]}

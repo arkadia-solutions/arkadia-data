@@ -1,0 +1,25 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Team directory: one type, used three times
+
+<data>
+team: platform
+lead:
+  id: 1
+  name: Ada Lovelace
+  email: ada@example.com
+members[3]{id,name,email}:
+  2,Alan Turing,alan@example.com
+  3,Grace Hopper,grace@example.com
+  4,Linus Torvalds,linus@example.com
+</data>
+
+Question: How many people are in the team, including the lead? Give the team name too.
+
+Answer in TOON only (no prose, no code fences): team[N]{name,people}: followed by one row per item.

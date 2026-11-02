@@ -1,0 +1,124 @@
+{
+ "id": 33,
+ "slug": "football-goals",
+ "title": "Football: most goals scored",
+ "description": "Score as [home, away].",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which team scored the most goals in these matches, and how many?",
+ "tokens": {
+  "json": {
+   "none": 499,
+   "comments": 516,
+   "attributes": 499,
+   "both": 516
+  },
+  "toon": {
+   "none": 431,
+   "comments": 448,
+   "attributes": 431,
+   "both": 448
+  },
+  "akd": {
+   "none": 426,
+   "comments": 439,
+   "attributes": 426,
+   "both": 439
+  },
+  "akcd": {
+   "none": 384,
+   "comments": 394,
+   "attributes": 384,
+   "both": 394
+  }
+ },
+ "answer": {
+  "name": "top",
+  "fields": [
+   [
+    "team",
+    "string"
+   ],
+   [
+    "goals",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "team": "Górnik",
+   "goals": 10
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`matches.score`: goals as [home, away]"
+  ],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"matches\": [\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Raków\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        1\n      ]\n    },\n    {\n      \"home\": \"Raków\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        4,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        1\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        3,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        0,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Górnik\",\n      \"score\": [\n        0,\n        3\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer with JSON only (no prose): {\"top\": [{\"team\": <string>, \"goals\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `matches.score`: goals as [home, away]\n\n<data>\n{\n  \"matches\": [\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Raków\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        1\n      ]\n    },\n    {\n      \"home\": \"Raków\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        4,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        1\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        3,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        0,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Górnik\",\n      \"score\": [\n        0,\n        3\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer with JSON only (no prose): {\"top\": [{\"team\": <string>, \"goals\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\n<data>\n{\n  \"matches\": [\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Raków\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        1\n      ]\n    },\n    {\n      \"home\": \"Raków\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        4,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        1\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        3,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        0,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Górnik\",\n      \"score\": [\n        0,\n        3\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer with JSON only (no prose): {\"top\": [{\"team\": <string>, \"goals\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `matches.score`: goals as [home, away]\n\n<data>\n{\n  \"matches\": [\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Raków\",\n      \"score\": [\n        3,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        1\n      ]\n    },\n    {\n      \"home\": \"Raków\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        3,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Jagiellonia\",\n      \"score\": [\n        4,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        1\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        3,\n        3\n      ]\n    },\n    {\n      \"home\": \"Legia\",\n      \"away\": \"Lech\",\n      \"score\": [\n        0,\n        2\n      ]\n    },\n    {\n      \"home\": \"Górnik\",\n      \"away\": \"Lech\",\n      \"score\": [\n        2,\n        0\n      ]\n    },\n    {\n      \"home\": \"Lech\",\n      \"away\": \"Pogoń\",\n      \"score\": [\n        0,\n        0\n      ]\n    },\n    {\n      \"home\": \"Pogoń\",\n      \"away\": \"Górnik\",\n      \"score\": [\n        0,\n        3\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer with JSON only (no prose): {\"top\": [{\"team\": <string>, \"goals\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nmatches[12]:\n  - home: Lech\n    away: Jagiellonia\n    score[2]: 3,2\n  - home: Górnik\n    away: Raków\n    score[2]: 3,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,1\n  - home: Raków\n    away: Jagiellonia\n    score[2]: 3,0\n  - home: Pogoń\n    away: Jagiellonia\n    score[2]: 4,3\n  - home: Legia\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,1\n  - home: Legia\n    away: Pogoń\n    score[2]: 3,3\n  - home: Legia\n    away: Lech\n    score[2]: 0,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,0\n  - home: Pogoń\n    away: Górnik\n    score[2]: 0,3\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in TOON only (no prose, no code fences): top[N]{team,goals}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `matches.score`: goals as [home, away]\n\n<data>\nmatches[12]:\n  - home: Lech\n    away: Jagiellonia\n    score[2]: 3,2\n  - home: Górnik\n    away: Raków\n    score[2]: 3,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,1\n  - home: Raków\n    away: Jagiellonia\n    score[2]: 3,0\n  - home: Pogoń\n    away: Jagiellonia\n    score[2]: 4,3\n  - home: Legia\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,1\n  - home: Legia\n    away: Pogoń\n    score[2]: 3,3\n  - home: Legia\n    away: Lech\n    score[2]: 0,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,0\n  - home: Pogoń\n    away: Górnik\n    score[2]: 0,3\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in TOON only (no prose, no code fences): top[N]{team,goals}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nmatches[12]:\n  - home: Lech\n    away: Jagiellonia\n    score[2]: 3,2\n  - home: Górnik\n    away: Raków\n    score[2]: 3,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,1\n  - home: Raków\n    away: Jagiellonia\n    score[2]: 3,0\n  - home: Pogoń\n    away: Jagiellonia\n    score[2]: 4,3\n  - home: Legia\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,1\n  - home: Legia\n    away: Pogoń\n    score[2]: 3,3\n  - home: Legia\n    away: Lech\n    score[2]: 0,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,0\n  - home: Pogoń\n    away: Górnik\n    score[2]: 0,3\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in TOON only (no prose, no code fences): top[N]{team,goals}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `matches.score`: goals as [home, away]\n\n<data>\nmatches[12]:\n  - home: Lech\n    away: Jagiellonia\n    score[2]: 3,2\n  - home: Górnik\n    away: Raków\n    score[2]: 3,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,1\n  - home: Raków\n    away: Jagiellonia\n    score[2]: 3,0\n  - home: Pogoń\n    away: Jagiellonia\n    score[2]: 4,3\n  - home: Legia\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,1\n  - home: Legia\n    away: Pogoń\n    score[2]: 3,3\n  - home: Legia\n    away: Lech\n    score[2]: 0,2\n  - home: Górnik\n    away: Lech\n    score[2]: 2,0\n  - home: Lech\n    away: Pogoń\n    score[2]: 0,0\n  - home: Pogoń\n    away: Górnik\n    score[2]: 0,3\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in TOON only (no prose, no code fences): top[N]{team,goals}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string, away:string, score:[number]]>>\n([\n  (\"Lech\", \"Jagiellonia\", [3, 2]),\n  (\"Górnik\", \"Raków\", [3, 2]),\n  (\"Górnik\", \"Lech\", [2, 1]),\n  (\"Raków\", \"Jagiellonia\", [3, 0]),\n  (\"Pogoń\", \"Jagiellonia\", [4, 3]),\n  (\"Legia\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 1]),\n  (\"Legia\", \"Pogoń\", [3, 3]),\n  (\"Legia\", \"Lech\", [0, 2]),\n  (\"Górnik\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 0]),\n  (\"Pogoń\", \"Górnik\", [0, 3])\n])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[\n  home:string,\n  away:string,\n  score:[number] /* goals as [home, away] */\n]>>\n([\n  (\"Lech\", \"Jagiellonia\", [3, 2]),\n  (\"Górnik\", \"Raków\", [3, 2]),\n  (\"Górnik\", \"Lech\", [2, 1]),\n  (\"Raków\", \"Jagiellonia\", [3, 0]),\n  (\"Pogoń\", \"Jagiellonia\", [4, 3]),\n  (\"Legia\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 1]),\n  (\"Legia\", \"Pogoń\", [3, 3]),\n  (\"Legia\", \"Lech\", [0, 2]),\n  (\"Górnik\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 0]),\n  (\"Pogoń\", \"Górnik\", [0, 3])\n])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string, away:string, score:[number]]>>\n([\n  (\"Lech\", \"Jagiellonia\", [3, 2]),\n  (\"Górnik\", \"Raków\", [3, 2]),\n  (\"Górnik\", \"Lech\", [2, 1]),\n  (\"Raków\", \"Jagiellonia\", [3, 0]),\n  (\"Pogoń\", \"Jagiellonia\", [4, 3]),\n  (\"Legia\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 1]),\n  (\"Legia\", \"Pogoń\", [3, 3]),\n  (\"Legia\", \"Lech\", [0, 2]),\n  (\"Górnik\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 0]),\n  (\"Pogoń\", \"Górnik\", [0, 3])\n])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[\n  home:string,\n  away:string,\n  score:[number] /* goals as [home, away] */\n]>>\n([\n  (\"Lech\", \"Jagiellonia\", [3, 2]),\n  (\"Górnik\", \"Raków\", [3, 2]),\n  (\"Górnik\", \"Lech\", [2, 1]),\n  (\"Raków\", \"Jagiellonia\", [3, 0]),\n  (\"Pogoń\", \"Jagiellonia\", [4, 3]),\n  (\"Legia\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 1]),\n  (\"Legia\", \"Pogoń\", [3, 3]),\n  (\"Legia\", \"Lech\", [0, 2]),\n  (\"Górnik\", \"Lech\", [2, 0]),\n  (\"Lech\", \"Pogoń\", [0, 0]),\n  (\"Pogoń\", \"Górnik\", [0, 3])\n])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string,away:string,score:[number]]>>([(\"Lech\",\"Jagiellonia\",[3,2]),(\"Górnik\",\"Raków\",[3,2]),(\"Górnik\",\"Lech\",[2,1]),(\"Raków\",\"Jagiellonia\",[3,0]),(\"Pogoń\",\"Jagiellonia\",[4,3]),(\"Legia\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,1]),(\"Legia\",\"Pogoń\",[3,3]),(\"Legia\",\"Lech\",[0,2]),(\"Górnik\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,0]),(\"Pogoń\",\"Górnik\",[0,3])])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string,away:string,score:[number] /* goals as [home, away] */]>>([(\"Lech\",\"Jagiellonia\",[3,2]),(\"Górnik\",\"Raków\",[3,2]),(\"Górnik\",\"Lech\",[2,1]),(\"Raków\",\"Jagiellonia\",[3,0]),(\"Pogoń\",\"Jagiellonia\",[4,3]),(\"Legia\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,1]),(\"Legia\",\"Pogoń\",[3,3]),(\"Legia\",\"Lech\",[0,2]),(\"Górnik\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,0]),(\"Pogoń\",\"Górnik\",[0,3])])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string,away:string,score:[number]]>>([(\"Lech\",\"Jagiellonia\",[3,2]),(\"Górnik\",\"Raków\",[3,2]),(\"Górnik\",\"Lech\",[2,1]),(\"Raków\",\"Jagiellonia\",[3,0]),(\"Pogoń\",\"Jagiellonia\",[4,3]),(\"Legia\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,1]),(\"Legia\",\"Pogoń\",[3,3]),(\"Legia\",\"Lech\",[0,2]),(\"Górnik\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,0]),(\"Pogoń\",\"Górnik\",[0,3])])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<matches:<[home:string,away:string,score:[number] /* goals as [home, away] */]>>([(\"Lech\",\"Jagiellonia\",[3,2]),(\"Górnik\",\"Raków\",[3,2]),(\"Górnik\",\"Lech\",[2,1]),(\"Raków\",\"Jagiellonia\",[3,0]),(\"Pogoń\",\"Jagiellonia\",[4,3]),(\"Legia\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,1]),(\"Legia\",\"Pogoń\",[3,3]),(\"Legia\",\"Lech\",[0,2]),(\"Górnik\",\"Lech\",[2,0]),(\"Lech\",\"Pogoń\",[0,0]),(\"Pogoń\",\"Górnik\",[0,3])])\n</data>\n\nQuestion: Which team scored the most goals in these matches, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<top:<[team:string,goals:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 444,
+   "comments": 444,
+   "attributes": 444,
+   "both": 444
+  },
+  "toon": {
+   "none": 294,
+   "comments": 294,
+   "attributes": 294,
+   "both": 294
+  },
+  "akd": {
+   "none": 212,
+   "comments": 225,
+   "attributes": 212,
+   "both": 225
+  },
+  "akcd": {
+   "none": 164,
+   "comments": 174,
+   "attributes": 164,
+   "both": 174
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"top\": [\n    {\n      \"team\": \"Górnik\",\n      \"goals\": 10\n    }\n  ]\n}",
+  "akcd": "<top:<[team:string,goals:number]>>([(\"Górnik\",10)])",
+  "toon": "top[1]{team,goals}:\n  Górnik,10"
+ },
+ "answer_tokens": {
+  "json": 30,
+  "akcd": 20,
+  "toon": 16
+ }
+}

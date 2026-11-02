@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<pages:<[page:string,lcp:number,cls:number,inp:number]>>([("/",3511,0.108,372),("/pricing",4082,0.191,104),("/docs",1207,0.171,52),("/blog",2582,0.185,65),("/login",2235,0.15,343),("/signup",947,0.121,166),("/akdata",4060,0.114,334),("/contact",1691,0.225,394),("/about",2347,0.0,318),("/careers",1604,0.195,424)])
+</data>
+
+Question: Which pages have an LCP worse than 2500 ms? Slowest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<slow:<[page:string,lcp:number]>>

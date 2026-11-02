@@ -1,0 +1,1 @@
+<result:<[id:string,priority:string,customer:string,subject:string,created:string]>>([("T-2425","high","Hooli","Cannot invite new users","2026-10-03"),("T-2403","urgent","Acme","Cannot invite new users","2026-10-04"),("T-2408","high","Umbrella","Data missing after import","2026-10-04"),("T-2412","high","Wayne","Invoice shows wrong VAT","2026-10-21")])

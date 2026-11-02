@@ -1,0 +1,86 @@
+{
+ "id": 57,
+ "slug": "irregular",
+ "title": "Irregular data: a record that does not fit the header",
+ "description": "The third agent has temperature instead of max_steps, so it is written as <any> {key:value} with its own keys — still lossless.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which agent can use the most tools, and how many?",
+ "tokens": {
+  "json": {
+   "none": 213
+  },
+  "toon": {
+   "none": 233
+  },
+  "akd": {
+   "none": 324
+  },
+  "akcd": {
+   "none": 304
+  }
+ },
+ "answer": {
+  "name": "agent",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "tools",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "planner",
+   "tools": 3
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"service\": \"workspace\",\n  \"agents\": [\n    {\n      \"name\": \"planner\",\n      \"tools\": [\n        \"search\",\n        \"files\",\n        \"calendar\"\n      ],\n      \"max_steps\": 12\n    },\n    {\n      \"name\": \"writer\",\n      \"tools\": [\n        \"files\"\n      ],\n      \"max_steps\": 6\n    },\n    {\n      \"name\": \"reviewer\",\n      \"tools\": [\n        \"files\",\n        \"search\"\n      ],\n      \"temperature\": 0.2\n    }\n  ],\n  \"limits\": {\n    \"tokens\": 120000,\n    \"retries\": [\n      1,\n      5,\n      30\n    ]\n  },\n  \"storage\": null\n}\n</data>\n\nQuestion: Which agent can use the most tools, and how many?\n\nAnswer with JSON only (no prose): {\"agent\": [{\"name\": <string>, \"tools\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nservice: workspace\nagents[3]:\n  - name: planner\n    tools[3]: search,files,calendar\n    max_steps: 12\n  - name: writer\n    tools[1]: files\n    max_steps: 6\n  - name: reviewer\n    tools[2]: files,search\n    temperature: 0.2\nlimits:\n  tokens: 120000\n  retries[3]: 1,5,30\nstorage: null\n</data>\n\nQuestion: Which agent can use the most tools, and how many?\n\nAnswer in TOON only (no prose, no code fences): agent[N]{name,tools}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<\n  service:string,\n  agents:<[name:string, tools:[string], max_steps:number]>,\n  limits:<tokens:number, retries:[number]>,\n  storage:null\n>\n(\n  \"workspace\",\n  [\n    (\"planner\", [\"search\", \"files\", \"calendar\"], 12),\n    (\"writer\", [\"files\"], 6),\n    <any> {name:\"reviewer\", tools:[\"files\", \"search\"], temperature:0.2}\n  ],\n  (120000, [1, 5, 30]),\n  null\n)\n</data>\n\nQuestion: Which agent can use the most tools, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<agent:<[name:string,tools:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<service:string,agents:<[name:string,tools:[string],max_steps:number]>,limits:<tokens:number,retries:[number]>,storage:null>(\"workspace\",[(\"planner\",[\"search\",\"files\",\"calendar\"],12),(\"writer\",[\"files\"],6),<any> {name:\"reviewer\",tools:[\"files\",\"search\"],temperature:0.2}],(120000,[1,5,30]),null)\n</data>\n\nQuestion: Which agent can use the most tools, and how many?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<agent:<[name:string,tools:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 161
+  },
+  "toon": {
+   "none": 99
+  },
+  "akd": {
+   "none": 113
+  },
+  "akcd": {
+   "none": 87
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"agent\": [\n    {\n      \"name\": \"planner\",\n      \"tools\": 3\n    }\n  ]\n}",
+  "akcd": "<agent:<[name:string,tools:number]>>([(\"planner\",3)])",
+  "toon": "agent[1]{name,tools}:\n  planner,3"
+ },
+ "answer_tokens": {
+  "json": 27,
+  "akcd": 17,
+  "toon": 13
+ }
+}

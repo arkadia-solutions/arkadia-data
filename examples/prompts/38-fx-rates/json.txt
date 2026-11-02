@@ -1,0 +1,34 @@
+The data below is in JSON.
+
+<data>
+{
+  "base": "EUR",
+  "date": "2026-10-29",
+  "rates": [
+    {
+      "ccy": "PLN",
+      "rate": 4.2675
+    },
+    {
+      "ccy": "USD",
+      "rate": 1.0812
+    },
+    {
+      "ccy": "GBP",
+      "rate": 0.8423
+    },
+    {
+      "ccy": "CHF",
+      "rate": 0.9411
+    },
+    {
+      "ccy": "CZK",
+      "rate": 25.08
+    }
+  ]
+}
+</data>
+
+Question: How much is 500 EUR in each currency (2 decimals)?
+
+Answer with JSON only (no prose): {"converted": [{"ccy": <string>, "amount": <number>}, ...]}

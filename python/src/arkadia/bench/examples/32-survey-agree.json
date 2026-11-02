@@ -1,0 +1,146 @@
+{
+  "id": 32,
+  "slug": "survey-agree",
+  "title": "Survey: share of agreement",
+  "description": "Likert answers 1–5 as numbers.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "For each statement, what percent of answers agree (agree or strongly agree)? Round to whole percent.",
+  "answer": {
+    "name": "agree",
+    "fields": [
+      [
+        "q",
+        "string"
+      ],
+      [
+        "agree_pct",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "q": "The app is easy to use",
+      "agree_pct": 50
+    },
+    {
+      "q": "Support answers quickly",
+      "agree_pct": 67
+    },
+    {
+      "q": "Prices are fair",
+      "agree_pct": 67
+    },
+    {
+      "q": "I would recommend it",
+      "agree_pct": 33
+    },
+    {
+      "q": "Docs are clear",
+      "agree_pct": 83
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`questions.answers`: Likert scale: 1 strongly disagree … 5 strongly agree"
+    ],
+    "attributes": [
+      "`questions.answers`: $enum=\"1=strongly disagree,2=disagree,3=neutral,4=agree,5=strongly agree\""
+    ]
+  },
+  "akd_meta": "<questions:<[q:string,answers:[number] $enum=\"1=strongly disagree,2=disagree,3=neutral,4=agree,5=stronglyagree\" /* Likert scale: 1 strongly disagree … 5 strongly agree */]>>([(\"The app is easy to use\",[2,1,1,3,5,4,5,1,4,5,5,3]),(\"Support answers quickly\",[4,5,2,1,4,4,5,1,5,3,4,4]),(\"Prices are fair\",[4,4,5,5,4,5,2,3,4,1,4,2]),(\"I would recommend it\",[1,2,1,3,3,4,2,3,5,5,5,1]),(\"Docs are clear\",[4,1,5,4,2,4,4,4,4,4,5,5])])",
+  "data": {
+    "questions": [
+      {
+        "q": "The app is easy to use",
+        "answers": [
+          2,
+          1,
+          1,
+          3,
+          5,
+          4,
+          5,
+          1,
+          4,
+          5,
+          5,
+          3
+        ]
+      },
+      {
+        "q": "Support answers quickly",
+        "answers": [
+          4,
+          5,
+          2,
+          1,
+          4,
+          4,
+          5,
+          1,
+          5,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "q": "Prices are fair",
+        "answers": [
+          4,
+          4,
+          5,
+          5,
+          4,
+          5,
+          2,
+          3,
+          4,
+          1,
+          4,
+          2
+        ]
+      },
+      {
+        "q": "I would recommend it",
+        "answers": [
+          1,
+          2,
+          1,
+          3,
+          3,
+          4,
+          2,
+          3,
+          5,
+          5,
+          5,
+          1
+        ]
+      },
+      {
+        "q": "Docs are clear",
+        "answers": [
+          4,
+          1,
+          5,
+          4,
+          2,
+          4,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5
+        ]
+      }
+    ]
+  }
+}

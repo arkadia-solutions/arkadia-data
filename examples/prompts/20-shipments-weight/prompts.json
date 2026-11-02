@@ -1,0 +1,139 @@
+{
+ "id": 20,
+ "slug": "shipments-weight",
+ "title": "Shipments: weight per carrier",
+ "description": "Weight is in grams.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "What is the total weight in kilograms per carrier? Heaviest first.",
+ "tokens": {
+  "json": {
+   "none": 522,
+   "comments": 538,
+   "attributes": 538,
+   "both": 554
+  },
+  "toon": {
+   "none": 311,
+   "comments": 327,
+   "attributes": 327,
+   "both": 343
+  },
+  "akd": {
+   "none": 448,
+   "comments": 454,
+   "attributes": 452,
+   "both": 462
+  },
+  "akcd": {
+   "none": 404,
+   "comments": 410,
+   "attributes": 408,
+   "both": 415
+  }
+ },
+ "answer": {
+  "name": "weight",
+  "fields": [
+   [
+    "carrier",
+    "string"
+   ],
+   [
+    "kg",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "carrier": "DHL",
+   "kg": 93.046
+  },
+  {
+   "carrier": "UPS",
+   "kg": 54.727
+  },
+  {
+   "carrier": "DPD",
+   "kg": 42.148
+  },
+  {
+   "carrier": "InPost",
+   "kg": 25.733
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`shipments.w`: parcel weight in grams"
+  ],
+  "attributes": [
+   "`shipments.w`: $unit=\"g\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"shipments\": [\n    {\n      \"id\": \"SH-001\",\n      \"carrier\": \"DHL\",\n      \"w\": 21945\n    },\n    {\n      \"id\": \"SH-002\",\n      \"carrier\": \"DHL\",\n      \"w\": 23840\n    },\n    {\n      \"id\": \"SH-003\",\n      \"carrier\": \"UPS\",\n      \"w\": 583\n    },\n    {\n      \"id\": \"SH-004\",\n      \"carrier\": \"InPost\",\n      \"w\": 2048\n    },\n    {\n      \"id\": \"SH-005\",\n      \"carrier\": \"InPost\",\n      \"w\": 12994\n    },\n    {\n      \"id\": \"SH-006\",\n      \"carrier\": \"UPS\",\n      \"w\": 19871\n    },\n    {\n      \"id\": \"SH-007\",\n      \"carrier\": \"UPS\",\n      \"w\": 12398\n    },\n    {\n      \"id\": \"SH-008\",\n      \"carrier\": \"DPD\",\n      \"w\": 20024\n    },\n    {\n      \"id\": \"SH-009\",\n      \"carrier\": \"DHL\",\n      \"w\": 2929\n    },\n    {\n      \"id\": \"SH-010\",\n      \"carrier\": \"UPS\",\n      \"w\": 14823\n    },\n    {\n      \"id\": \"SH-011\",\n      \"carrier\": \"DHL\",\n      \"w\": 23860\n    },\n    {\n      \"id\": \"SH-012\",\n      \"carrier\": \"DHL\",\n      \"w\": 20472\n    },\n    {\n      \"id\": \"SH-013\",\n      \"carrier\": \"DPD\",\n      \"w\": 2385\n    },\n    {\n      \"id\": \"SH-014\",\n      \"carrier\": \"InPost\",\n      \"w\": 10691\n    },\n    {\n      \"id\": \"SH-015\",\n      \"carrier\": \"UPS\",\n      \"w\": 7052\n    },\n    {\n      \"id\": \"SH-016\",\n      \"carrier\": \"DPD\",\n      \"w\": 19739\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer with JSON only (no prose): {\"weight\": [{\"carrier\": <string>, \"kg\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `shipments.w`: parcel weight in grams\n\n<data>\n{\n  \"shipments\": [\n    {\n      \"id\": \"SH-001\",\n      \"carrier\": \"DHL\",\n      \"w\": 21945\n    },\n    {\n      \"id\": \"SH-002\",\n      \"carrier\": \"DHL\",\n      \"w\": 23840\n    },\n    {\n      \"id\": \"SH-003\",\n      \"carrier\": \"UPS\",\n      \"w\": 583\n    },\n    {\n      \"id\": \"SH-004\",\n      \"carrier\": \"InPost\",\n      \"w\": 2048\n    },\n    {\n      \"id\": \"SH-005\",\n      \"carrier\": \"InPost\",\n      \"w\": 12994\n    },\n    {\n      \"id\": \"SH-006\",\n      \"carrier\": \"UPS\",\n      \"w\": 19871\n    },\n    {\n      \"id\": \"SH-007\",\n      \"carrier\": \"UPS\",\n      \"w\": 12398\n    },\n    {\n      \"id\": \"SH-008\",\n      \"carrier\": \"DPD\",\n      \"w\": 20024\n    },\n    {\n      \"id\": \"SH-009\",\n      \"carrier\": \"DHL\",\n      \"w\": 2929\n    },\n    {\n      \"id\": \"SH-010\",\n      \"carrier\": \"UPS\",\n      \"w\": 14823\n    },\n    {\n      \"id\": \"SH-011\",\n      \"carrier\": \"DHL\",\n      \"w\": 23860\n    },\n    {\n      \"id\": \"SH-012\",\n      \"carrier\": \"DHL\",\n      \"w\": 20472\n    },\n    {\n      \"id\": \"SH-013\",\n      \"carrier\": \"DPD\",\n      \"w\": 2385\n    },\n    {\n      \"id\": \"SH-014\",\n      \"carrier\": \"InPost\",\n      \"w\": 10691\n    },\n    {\n      \"id\": \"SH-015\",\n      \"carrier\": \"UPS\",\n      \"w\": 7052\n    },\n    {\n      \"id\": \"SH-016\",\n      \"carrier\": \"DPD\",\n      \"w\": 19739\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer with JSON only (no prose): {\"weight\": [{\"carrier\": <string>, \"kg\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `shipments.w`: $unit=\"g\"\n\n<data>\n{\n  \"shipments\": [\n    {\n      \"id\": \"SH-001\",\n      \"carrier\": \"DHL\",\n      \"w\": 21945\n    },\n    {\n      \"id\": \"SH-002\",\n      \"carrier\": \"DHL\",\n      \"w\": 23840\n    },\n    {\n      \"id\": \"SH-003\",\n      \"carrier\": \"UPS\",\n      \"w\": 583\n    },\n    {\n      \"id\": \"SH-004\",\n      \"carrier\": \"InPost\",\n      \"w\": 2048\n    },\n    {\n      \"id\": \"SH-005\",\n      \"carrier\": \"InPost\",\n      \"w\": 12994\n    },\n    {\n      \"id\": \"SH-006\",\n      \"carrier\": \"UPS\",\n      \"w\": 19871\n    },\n    {\n      \"id\": \"SH-007\",\n      \"carrier\": \"UPS\",\n      \"w\": 12398\n    },\n    {\n      \"id\": \"SH-008\",\n      \"carrier\": \"DPD\",\n      \"w\": 20024\n    },\n    {\n      \"id\": \"SH-009\",\n      \"carrier\": \"DHL\",\n      \"w\": 2929\n    },\n    {\n      \"id\": \"SH-010\",\n      \"carrier\": \"UPS\",\n      \"w\": 14823\n    },\n    {\n      \"id\": \"SH-011\",\n      \"carrier\": \"DHL\",\n      \"w\": 23860\n    },\n    {\n      \"id\": \"SH-012\",\n      \"carrier\": \"DHL\",\n      \"w\": 20472\n    },\n    {\n      \"id\": \"SH-013\",\n      \"carrier\": \"DPD\",\n      \"w\": 2385\n    },\n    {\n      \"id\": \"SH-014\",\n      \"carrier\": \"InPost\",\n      \"w\": 10691\n    },\n    {\n      \"id\": \"SH-015\",\n      \"carrier\": \"UPS\",\n      \"w\": 7052\n    },\n    {\n      \"id\": \"SH-016\",\n      \"carrier\": \"DPD\",\n      \"w\": 19739\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer with JSON only (no prose): {\"weight\": [{\"carrier\": <string>, \"kg\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `shipments.w`: parcel weight in grams\n\nAttributes of the data:\n- `shipments.w`: $unit=\"g\"\n\n<data>\n{\n  \"shipments\": [\n    {\n      \"id\": \"SH-001\",\n      \"carrier\": \"DHL\",\n      \"w\": 21945\n    },\n    {\n      \"id\": \"SH-002\",\n      \"carrier\": \"DHL\",\n      \"w\": 23840\n    },\n    {\n      \"id\": \"SH-003\",\n      \"carrier\": \"UPS\",\n      \"w\": 583\n    },\n    {\n      \"id\": \"SH-004\",\n      \"carrier\": \"InPost\",\n      \"w\": 2048\n    },\n    {\n      \"id\": \"SH-005\",\n      \"carrier\": \"InPost\",\n      \"w\": 12994\n    },\n    {\n      \"id\": \"SH-006\",\n      \"carrier\": \"UPS\",\n      \"w\": 19871\n    },\n    {\n      \"id\": \"SH-007\",\n      \"carrier\": \"UPS\",\n      \"w\": 12398\n    },\n    {\n      \"id\": \"SH-008\",\n      \"carrier\": \"DPD\",\n      \"w\": 20024\n    },\n    {\n      \"id\": \"SH-009\",\n      \"carrier\": \"DHL\",\n      \"w\": 2929\n    },\n    {\n      \"id\": \"SH-010\",\n      \"carrier\": \"UPS\",\n      \"w\": 14823\n    },\n    {\n      \"id\": \"SH-011\",\n      \"carrier\": \"DHL\",\n      \"w\": 23860\n    },\n    {\n      \"id\": \"SH-012\",\n      \"carrier\": \"DHL\",\n      \"w\": 20472\n    },\n    {\n      \"id\": \"SH-013\",\n      \"carrier\": \"DPD\",\n      \"w\": 2385\n    },\n    {\n      \"id\": \"SH-014\",\n      \"carrier\": \"InPost\",\n      \"w\": 10691\n    },\n    {\n      \"id\": \"SH-015\",\n      \"carrier\": \"UPS\",\n      \"w\": 7052\n    },\n    {\n      \"id\": \"SH-016\",\n      \"carrier\": \"DPD\",\n      \"w\": 19739\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer with JSON only (no prose): {\"weight\": [{\"carrier\": <string>, \"kg\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nshipments[16]{id,carrier,w}:\n  SH-001,DHL,21945\n  SH-002,DHL,23840\n  SH-003,UPS,583\n  SH-004,InPost,2048\n  SH-005,InPost,12994\n  SH-006,UPS,19871\n  SH-007,UPS,12398\n  SH-008,DPD,20024\n  SH-009,DHL,2929\n  SH-010,UPS,14823\n  SH-011,DHL,23860\n  SH-012,DHL,20472\n  SH-013,DPD,2385\n  SH-014,InPost,10691\n  SH-015,UPS,7052\n  SH-016,DPD,19739\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in TOON only (no prose, no code fences): weight[N]{carrier,kg}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `shipments.w`: parcel weight in grams\n\n<data>\nshipments[16]{id,carrier,w}:\n  SH-001,DHL,21945\n  SH-002,DHL,23840\n  SH-003,UPS,583\n  SH-004,InPost,2048\n  SH-005,InPost,12994\n  SH-006,UPS,19871\n  SH-007,UPS,12398\n  SH-008,DPD,20024\n  SH-009,DHL,2929\n  SH-010,UPS,14823\n  SH-011,DHL,23860\n  SH-012,DHL,20472\n  SH-013,DPD,2385\n  SH-014,InPost,10691\n  SH-015,UPS,7052\n  SH-016,DPD,19739\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in TOON only (no prose, no code fences): weight[N]{carrier,kg}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `shipments.w`: $unit=\"g\"\n\n<data>\nshipments[16]{id,carrier,w}:\n  SH-001,DHL,21945\n  SH-002,DHL,23840\n  SH-003,UPS,583\n  SH-004,InPost,2048\n  SH-005,InPost,12994\n  SH-006,UPS,19871\n  SH-007,UPS,12398\n  SH-008,DPD,20024\n  SH-009,DHL,2929\n  SH-010,UPS,14823\n  SH-011,DHL,23860\n  SH-012,DHL,20472\n  SH-013,DPD,2385\n  SH-014,InPost,10691\n  SH-015,UPS,7052\n  SH-016,DPD,19739\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in TOON only (no prose, no code fences): weight[N]{carrier,kg}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `shipments.w`: parcel weight in grams\n\nAttributes of the data:\n- `shipments.w`: $unit=\"g\"\n\n<data>\nshipments[16]{id,carrier,w}:\n  SH-001,DHL,21945\n  SH-002,DHL,23840\n  SH-003,UPS,583\n  SH-004,InPost,2048\n  SH-005,InPost,12994\n  SH-006,UPS,19871\n  SH-007,UPS,12398\n  SH-008,DPD,20024\n  SH-009,DHL,2929\n  SH-010,UPS,14823\n  SH-011,DHL,23860\n  SH-012,DHL,20472\n  SH-013,DPD,2385\n  SH-014,InPost,10691\n  SH-015,UPS,7052\n  SH-016,DPD,19739\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in TOON only (no prose, no code fences): weight[N]{carrier,kg}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string, carrier:string, w:number]>>\n([\n  (\"SH-001\", \"DHL\", 21945),\n  (\"SH-002\", \"DHL\", 23840),\n  (\"SH-003\", \"UPS\", 583),\n  (\"SH-004\", \"InPost\", 2048),\n  (\"SH-005\", \"InPost\", 12994),\n  (\"SH-006\", \"UPS\", 19871),\n  (\"SH-007\", \"UPS\", 12398),\n  (\"SH-008\", \"DPD\", 20024),\n  (\"SH-009\", \"DHL\", 2929),\n  (\"SH-010\", \"UPS\", 14823),\n  (\"SH-011\", \"DHL\", 23860),\n  (\"SH-012\", \"DHL\", 20472),\n  (\"SH-013\", \"DPD\", 2385),\n  (\"SH-014\", \"InPost\", 10691),\n  (\"SH-015\", \"UPS\", 7052),\n  (\"SH-016\", \"DPD\", 19739)\n])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string, carrier:string, w:number /* parcel weight in grams */]>>\n([\n  (\"SH-001\", \"DHL\", 21945),\n  (\"SH-002\", \"DHL\", 23840),\n  (\"SH-003\", \"UPS\", 583),\n  (\"SH-004\", \"InPost\", 2048),\n  (\"SH-005\", \"InPost\", 12994),\n  (\"SH-006\", \"UPS\", 19871),\n  (\"SH-007\", \"UPS\", 12398),\n  (\"SH-008\", \"DPD\", 20024),\n  (\"SH-009\", \"DHL\", 2929),\n  (\"SH-010\", \"UPS\", 14823),\n  (\"SH-011\", \"DHL\", 23860),\n  (\"SH-012\", \"DHL\", 20472),\n  (\"SH-013\", \"DPD\", 2385),\n  (\"SH-014\", \"InPost\", 10691),\n  (\"SH-015\", \"UPS\", 7052),\n  (\"SH-016\", \"DPD\", 19739)\n])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string, carrier:string, w:number $unit=\"g\"]>>\n([\n  (\"SH-001\", \"DHL\", 21945),\n  (\"SH-002\", \"DHL\", 23840),\n  (\"SH-003\", \"UPS\", 583),\n  (\"SH-004\", \"InPost\", 2048),\n  (\"SH-005\", \"InPost\", 12994),\n  (\"SH-006\", \"UPS\", 19871),\n  (\"SH-007\", \"UPS\", 12398),\n  (\"SH-008\", \"DPD\", 20024),\n  (\"SH-009\", \"DHL\", 2929),\n  (\"SH-010\", \"UPS\", 14823),\n  (\"SH-011\", \"DHL\", 23860),\n  (\"SH-012\", \"DHL\", 20472),\n  (\"SH-013\", \"DPD\", 2385),\n  (\"SH-014\", \"InPost\", 10691),\n  (\"SH-015\", \"UPS\", 7052),\n  (\"SH-016\", \"DPD\", 19739)\n])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[\n  id:string,\n  carrier:string,\n  w:number $unit=\"g\" /* parcel weight in grams */\n]>>\n([\n  (\"SH-001\", \"DHL\", 21945),\n  (\"SH-002\", \"DHL\", 23840),\n  (\"SH-003\", \"UPS\", 583),\n  (\"SH-004\", \"InPost\", 2048),\n  (\"SH-005\", \"InPost\", 12994),\n  (\"SH-006\", \"UPS\", 19871),\n  (\"SH-007\", \"UPS\", 12398),\n  (\"SH-008\", \"DPD\", 20024),\n  (\"SH-009\", \"DHL\", 2929),\n  (\"SH-010\", \"UPS\", 14823),\n  (\"SH-011\", \"DHL\", 23860),\n  (\"SH-012\", \"DHL\", 20472),\n  (\"SH-013\", \"DPD\", 2385),\n  (\"SH-014\", \"InPost\", 10691),\n  (\"SH-015\", \"UPS\", 7052),\n  (\"SH-016\", \"DPD\", 19739)\n])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string,carrier:string,w:number]>>([(\"SH-001\",\"DHL\",21945),(\"SH-002\",\"DHL\",23840),(\"SH-003\",\"UPS\",583),(\"SH-004\",\"InPost\",2048),(\"SH-005\",\"InPost\",12994),(\"SH-006\",\"UPS\",19871),(\"SH-007\",\"UPS\",12398),(\"SH-008\",\"DPD\",20024),(\"SH-009\",\"DHL\",2929),(\"SH-010\",\"UPS\",14823),(\"SH-011\",\"DHL\",23860),(\"SH-012\",\"DHL\",20472),(\"SH-013\",\"DPD\",2385),(\"SH-014\",\"InPost\",10691),(\"SH-015\",\"UPS\",7052),(\"SH-016\",\"DPD\",19739)])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string,carrier:string,w:number /* parcel weight in grams */]>>([(\"SH-001\",\"DHL\",21945),(\"SH-002\",\"DHL\",23840),(\"SH-003\",\"UPS\",583),(\"SH-004\",\"InPost\",2048),(\"SH-005\",\"InPost\",12994),(\"SH-006\",\"UPS\",19871),(\"SH-007\",\"UPS\",12398),(\"SH-008\",\"DPD\",20024),(\"SH-009\",\"DHL\",2929),(\"SH-010\",\"UPS\",14823),(\"SH-011\",\"DHL\",23860),(\"SH-012\",\"DHL\",20472),(\"SH-013\",\"DPD\",2385),(\"SH-014\",\"InPost\",10691),(\"SH-015\",\"UPS\",7052),(\"SH-016\",\"DPD\",19739)])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string,carrier:string,w:number $unit=\"g\"]>>([(\"SH-001\",\"DHL\",21945),(\"SH-002\",\"DHL\",23840),(\"SH-003\",\"UPS\",583),(\"SH-004\",\"InPost\",2048),(\"SH-005\",\"InPost\",12994),(\"SH-006\",\"UPS\",19871),(\"SH-007\",\"UPS\",12398),(\"SH-008\",\"DPD\",20024),(\"SH-009\",\"DHL\",2929),(\"SH-010\",\"UPS\",14823),(\"SH-011\",\"DHL\",23860),(\"SH-012\",\"DHL\",20472),(\"SH-013\",\"DPD\",2385),(\"SH-014\",\"InPost\",10691),(\"SH-015\",\"UPS\",7052),(\"SH-016\",\"DPD\",19739)])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<shipments:<[id:string,carrier:string,w:number $unit=\"g\" /* parcel weight in grams */]>>([(\"SH-001\",\"DHL\",21945),(\"SH-002\",\"DHL\",23840),(\"SH-003\",\"UPS\",583),(\"SH-004\",\"InPost\",2048),(\"SH-005\",\"InPost\",12994),(\"SH-006\",\"UPS\",19871),(\"SH-007\",\"UPS\",12398),(\"SH-008\",\"DPD\",20024),(\"SH-009\",\"DHL\",2929),(\"SH-010\",\"UPS\",14823),(\"SH-011\",\"DHL\",23860),(\"SH-012\",\"DHL\",20472),(\"SH-013\",\"DPD\",2385),(\"SH-014\",\"InPost\",10691),(\"SH-015\",\"UPS\",7052),(\"SH-016\",\"DPD\",19739)])\n</data>\n\nQuestion: What is the total weight in kilograms per carrier? Heaviest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<weight:<[carrier:string,kg:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 468,
+   "comments": 468,
+   "attributes": 468,
+   "both": 468
+  },
+  "toon": {
+   "none": 175,
+   "comments": 175,
+   "attributes": 175,
+   "both": 175
+  },
+  "akd": {
+   "none": 235,
+   "comments": 241,
+   "attributes": 239,
+   "both": 249
+  },
+  "akcd": {
+   "none": 185,
+   "comments": 191,
+   "attributes": 189,
+   "both": 196
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"weight\": [\n    {\n      \"carrier\": \"DHL\",\n      \"kg\": 93.046\n    },\n    {\n      \"carrier\": \"UPS\",\n      \"kg\": 54.727\n    },\n    {\n      \"carrier\": \"DPD\",\n      \"kg\": 42.148\n    },\n    {\n      \"carrier\": \"InPost\",\n      \"kg\": 25.733\n    }\n  ]\n}",
+  "akcd": "<weight:<[carrier:string,kg:number]>>([(\"DHL\",93.046),(\"UPS\",54.727),(\"DPD\",42.148),(\"InPost\",25.733)])",
+  "toon": "weight[4]{carrier,kg}:\n  DHL,93.046\n  UPS,54.727\n  DPD,42.148\n  InPost,25.733"
+ },
+ "answer_tokens": {
+  "json": 92,
+  "akcd": 43,
+  "toon": 38
+ }
+}

@@ -1,0 +1,144 @@
+{
+ "id": 65,
+ "slug": "schema-metadata",
+ "title": "Schema and instance metadata",
+ "description": "Metadata on the header ($required, $unit, $maxItems, comments) describes every record; metadata on a value ($verified, #featured, #discontinued) describes one record. Both are skipped when decoding — the JSON is the same — but a model reads them.",
+ "tags": [
+  "feature",
+  "metadata"
+ ],
+ "question": "Which products are verified and not discontinued? Give the sku and the price in EUR.",
+ "tokens": {
+  "json": {
+   "none": 231,
+   "comments": 278,
+   "attributes": 303,
+   "both": 350
+  },
+  "toon": {
+   "none": 252,
+   "comments": 299,
+   "attributes": 324,
+   "both": 371
+  },
+  "akd": {
+   "none": 317,
+   "comments": 366,
+   "attributes": 374,
+   "both": 417
+  },
+  "akcd": {
+   "none": 308,
+   "comments": 351,
+   "attributes": 358,
+   "both": 401
+  }
+ },
+ "answer": {
+  "name": "verified",
+  "fields": [
+   [
+    "sku",
+    "string"
+   ],
+   [
+    "eur",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "sku": "PROD-123",
+   "eur": 89.0
+  },
+  {
+   "sku": "PROD-125",
+   "eur": 199.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Product catalogue: one named type with schema metadata",
+   "Schema metadata: rules for every product",
+   "stock keeping unit",
+   "Instance metadata: facts about one product",
+   "sold out, no restock"
+  ],
+  "attributes": [
+   "$source=\"catalogue\" $exported=\"2026-10-30\" #snapshot",
+   "$required",
+   "$required",
+   "$unit=\"EUR\"",
+   "$min=0",
+   "$maxItems=3",
+   "$verified=true",
+   "#featured",
+   "$verified=true",
+   "#discontinued"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"products\": [\n    {\n      \"sku\": \"PROD-123\",\n      \"name\": \"Keyboard\",\n      \"price\": 89.0,\n      \"tags\": [\n        \"new\",\n        \"wireless\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-124\",\n      \"name\": \"Mouse\",\n      \"price\": 39.5,\n      \"tags\": []\n    },\n    {\n      \"sku\": \"PROD-125\",\n      \"name\": \"Dock\",\n      \"price\": 199.0,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-126\",\n      \"name\": \"Cable\",\n      \"price\": 9.99,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer with JSON only (no prose): {\"verified\": [{\"sku\": <string>, \"eur\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Product catalogue: one named type with schema metadata\n- Schema metadata: rules for every product\n- stock keeping unit\n- Instance metadata: facts about one product\n- sold out, no restock\n\n<data>\n{\n  \"products\": [\n    {\n      \"sku\": \"PROD-123\",\n      \"name\": \"Keyboard\",\n      \"price\": 89.0,\n      \"tags\": [\n        \"new\",\n        \"wireless\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-124\",\n      \"name\": \"Mouse\",\n      \"price\": 39.5,\n      \"tags\": []\n    },\n    {\n      \"sku\": \"PROD-125\",\n      \"name\": \"Dock\",\n      \"price\": 199.0,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-126\",\n      \"name\": \"Cable\",\n      \"price\": 9.99,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer with JSON only (no prose): {\"verified\": [{\"sku\": <string>, \"eur\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot\n- $required\n- $required\n- $unit=\"EUR\"\n- $min=0\n- $maxItems=3\n- $verified=true\n- #featured\n- $verified=true\n- #discontinued\n\n<data>\n{\n  \"products\": [\n    {\n      \"sku\": \"PROD-123\",\n      \"name\": \"Keyboard\",\n      \"price\": 89.0,\n      \"tags\": [\n        \"new\",\n        \"wireless\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-124\",\n      \"name\": \"Mouse\",\n      \"price\": 39.5,\n      \"tags\": []\n    },\n    {\n      \"sku\": \"PROD-125\",\n      \"name\": \"Dock\",\n      \"price\": 199.0,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-126\",\n      \"name\": \"Cable\",\n      \"price\": 9.99,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer with JSON only (no prose): {\"verified\": [{\"sku\": <string>, \"eur\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Product catalogue: one named type with schema metadata\n- Schema metadata: rules for every product\n- stock keeping unit\n- Instance metadata: facts about one product\n- sold out, no restock\n\nAttributes of the data:\n- $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot\n- $required\n- $required\n- $unit=\"EUR\"\n- $min=0\n- $maxItems=3\n- $verified=true\n- #featured\n- $verified=true\n- #discontinued\n\n<data>\n{\n  \"products\": [\n    {\n      \"sku\": \"PROD-123\",\n      \"name\": \"Keyboard\",\n      \"price\": 89.0,\n      \"tags\": [\n        \"new\",\n        \"wireless\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-124\",\n      \"name\": \"Mouse\",\n      \"price\": 39.5,\n      \"tags\": []\n    },\n    {\n      \"sku\": \"PROD-125\",\n      \"name\": \"Dock\",\n      \"price\": 199.0,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    },\n    {\n      \"sku\": \"PROD-126\",\n      \"name\": \"Cable\",\n      \"price\": 9.99,\n      \"tags\": [\n        \"usb-c\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer with JSON only (no prose): {\"verified\": [{\"sku\": <string>, \"eur\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nproducts[4]:\n  - sku: PROD-123\n    name: Keyboard\n    price: 89\n    tags[2]: new,wireless\n  - sku: PROD-124\n    name: Mouse\n    price: 39.5\n    tags: []\n  - sku: PROD-125\n    name: Dock\n    price: 199\n    tags[1]: usb-c\n  - sku: PROD-126\n    name: Cable\n    price: 9.99\n    tags[1]: usb-c\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in TOON only (no prose, no code fences): verified[N]{sku,eur}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Product catalogue: one named type with schema metadata\n- Schema metadata: rules for every product\n- stock keeping unit\n- Instance metadata: facts about one product\n- sold out, no restock\n\n<data>\nproducts[4]:\n  - sku: PROD-123\n    name: Keyboard\n    price: 89\n    tags[2]: new,wireless\n  - sku: PROD-124\n    name: Mouse\n    price: 39.5\n    tags: []\n  - sku: PROD-125\n    name: Dock\n    price: 199\n    tags[1]: usb-c\n  - sku: PROD-126\n    name: Cable\n    price: 9.99\n    tags[1]: usb-c\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in TOON only (no prose, no code fences): verified[N]{sku,eur}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot\n- $required\n- $required\n- $unit=\"EUR\"\n- $min=0\n- $maxItems=3\n- $verified=true\n- #featured\n- $verified=true\n- #discontinued\n\n<data>\nproducts[4]:\n  - sku: PROD-123\n    name: Keyboard\n    price: 89\n    tags[2]: new,wireless\n  - sku: PROD-124\n    name: Mouse\n    price: 39.5\n    tags: []\n  - sku: PROD-125\n    name: Dock\n    price: 199\n    tags[1]: usb-c\n  - sku: PROD-126\n    name: Cable\n    price: 9.99\n    tags[1]: usb-c\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in TOON only (no prose, no code fences): verified[N]{sku,eur}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Product catalogue: one named type with schema metadata\n- Schema metadata: rules for every product\n- stock keeping unit\n- Instance metadata: facts about one product\n- sold out, no restock\n\nAttributes of the data:\n- $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot\n- $required\n- $required\n- $unit=\"EUR\"\n- $min=0\n- $maxItems=3\n- $verified=true\n- #featured\n- $verified=true\n- #discontinued\n\n<data>\nproducts[4]:\n  - sku: PROD-123\n    name: Keyboard\n    price: 89\n    tags[2]: new,wireless\n  - sku: PROD-124\n    name: Mouse\n    price: 39.5\n    tags: []\n  - sku: PROD-125\n    name: Dock\n    price: 199\n    tags[1]: usb-c\n  - sku: PROD-126\n    name: Cable\n    price: 9.99\n    tags[1]: usb-c\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in TOON only (no prose, no code fences): verified[N]{sku,eur}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@Product<[sku:string, name:string, price:number, tags:[string]]>\n<products:@Product>\n([\n  (\"PROD-123\", \"Keyboard\", 89.0, [\"new\", \"wireless\"]),\n  (\"PROD-124\", \"Mouse\", 39.5, []),\n  (\"PROD-125\", \"Dock\", 199.0, [\"usb-c\"]),\n  (\"PROD-126\", \"Cable\", 9.99, [\"usb-c\"])\n])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Product catalogue: one named type with schema metadata */\n@Product<[\n  /* Schema metadata: rules for every product */\n  sku:string /* stock keeping unit */,\n  name:string,\n  price:number,\n  tags:[string]\n]>\n<products:@Product>\n([\n  /* Instance metadata: facts about one product */\n  (\"PROD-123\", \"Keyboard\", 89.0, [\"new\", \"wireless\"]),\n  (\"PROD-124\", \"Mouse\", 39.5, []),\n  (\"PROD-125\", \"Dock\", 199.0, [\"usb-c\"]),\n  (\"PROD-126\", \"Cable\", 9.99, [\"usb-c\"]) /* sold out, no restock */\n])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot //\n@Product<[\n  sku:string $required,\n  name:string $required,\n  price:number $unit=\"EUR\" $min=0,\n  tags:[string] $maxItems=3\n]>\n<products:@Product>\n([\n  $verified=true (\"PROD-123\", \"Keyboard\", 89.0, [\"new\", \"wireless\"]) #featured,\n  (\"PROD-124\", \"Mouse\", 39.5, []),\n  $verified=true (\"PROD-125\", \"Dock\", 199.0, [\"usb-c\"]),\n  (\"PROD-126\", \"Cable\", 9.99, [\"usb-c\"]) #discontinued\n])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot //\n/* Product catalogue: one named type with schema metadata */\n@Product<[\n  /* Schema metadata: rules for every product */\n  sku:string $required /* stock keeping unit */,\n  name:string $required,\n  price:number $unit=\"EUR\" $min=0,\n  tags:[string] $maxItems=3\n]>\n<products:@Product>\n([\n  /* Instance metadata: facts about one product */\n  $verified=true (\"PROD-123\", \"Keyboard\", 89.0, [\"new\", \"wireless\"]) #featured,\n  (\"PROD-124\", \"Mouse\", 39.5, []),\n  $verified=true (\"PROD-125\", \"Dock\", 199.0, [\"usb-c\"]),\n  (\"PROD-126\", \"Cable\", 9.99, [\"usb-c\"]) #discontinued /* sold out, no restock */\n])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@Product<[sku:string,name:string,price:number,tags:[string]]><products:@Product>([(\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]),(\"PROD-124\",\"Mouse\",39.5,[]),(\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"])])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Product catalogue: one named type with schema metadata */ @Product<[/* Schema metadata: rules for every product */ sku:string /* stock keeping unit */,name:string,price:number,tags:[string]]><products:@Product>([/* Instance metadata: facts about one product */ (\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]),(\"PROD-124\",\"Mouse\",39.5,[]),(\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"]) /* sold out, no restock */])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot // @Product<[sku:string $required,name:string $required,price:number $unit=\"EUR\" $min=0,tags:[string] $maxItems=3]><products:@Product>([$verified=true (\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]) #featured,(\"PROD-124\",\"Mouse\",39.5,[]),$verified=true (\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"]) #discontinued])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot // /* Product catalogue: one named type with schema metadata */ @Product<[/* Schema metadata: rules for every product */ sku:string $required /* stock keeping unit */,name:string $required,price:number $unit=\"EUR\" $min=0,tags:[string] $maxItems=3]><products:@Product>([/* Instance metadata: facts about one product */ $verified=true (\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]) #featured,(\"PROD-124\",\"Mouse\",39.5,[]),$verified=true (\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"]) #discontinued /* sold out, no restock */])\n</data>\n\nQuestion: Which products are verified and not discontinued? Give the sku and the price in EUR.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<verified:<[sku:string,eur:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 174,
+   "comments": 174,
+   "attributes": 174,
+   "both": 174
+  },
+  "toon": {
+   "none": 113,
+   "comments": 113,
+   "attributes": 113,
+   "both": 113
+  },
+  "akd": {
+   "none": 101,
+   "comments": 149,
+   "attributes": 159,
+   "both": 202
+  },
+  "akcd": {
+   "none": 86,
+   "comments": 128,
+   "attributes": 137,
+   "both": 180
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"verified\": [\n    {\n      \"sku\": \"PROD-123\",\n      \"eur\": 89.0\n    },\n    {\n      \"sku\": \"PROD-125\",\n      \"eur\": 199.0\n    }\n  ]\n}",
+  "akcd": "<verified:<[sku:string,eur:number]>>([(\"PROD-123\",89.0),(\"PROD-125\",199.0)])",
+  "toon": "verified[2]{sku,eur}:\n  PROD-123,89\n  PROD-125,199"
+ },
+ "answer_tokens": {
+  "json": 55,
+  "akcd": 32,
+  "toon": 22
+ }
+}

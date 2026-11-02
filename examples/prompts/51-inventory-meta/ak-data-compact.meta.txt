@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $warehouse="WAW-1" $counted="2026-10-28" #stock // /* Stock in warehouse WAW-1. Discontinued items are never reordered. */ <items:<[sku:string $required,item:string,qty:number $unit="pcs" /* pieces in stock */,min:number $role="reorder_level" /* reorder level: order more when qty is below it */]>>([("SKU-200","cable",11,20),("SKU-201","mouse",0,10) #discontinued /* discontinued, do not reorder */,("SKU-202","keyboard",4,5),("SKU-203","dock",12,15),("SKU-204","headset",31,5),("SKU-205","monitor",8,10),("SKU-206","webcam",7,10),("SKU-207","charger",2,20),("SKU-208","hub",14,10) #discontinued /* discontinued, do not reorder */,("SKU-209","stand",13,10),("SKU-210","lamp",21,10),("SKU-211","mic",0,5)])
+</data>
+
+Question: Which items must be reordered and how many pieces are missing to reach the reorder level?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<reorder:<[sku:string,missing:number]>>

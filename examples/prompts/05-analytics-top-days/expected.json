@@ -1,0 +1,22 @@
+{
+  "result": [
+    {
+      "date": "2026-07-02",
+      "revenue": 5725.99,
+      "visits": 3487,
+      "signups": 13
+    },
+    {
+      "date": "2026-07-21",
+      "revenue": 5416.42,
+      "visits": 2187,
+      "signups": 9
+    },
+    {
+      "date": "2026-07-24",
+      "revenue": 5198.21,
+      "visits": 2366,
+      "signups": 24
+    }
+  ]
+}

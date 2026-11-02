@@ -1,0 +1,66 @@
+The data below is in JSON.
+
+<data>
+{
+  "menu": [
+    {
+      "dish": "Hummus plate",
+      "price": 2400,
+      "tags": [
+        "vegan",
+        "gluten-free"
+      ]
+    },
+    {
+      "dish": "Pierogi ruskie",
+      "price": 3200,
+      "tags": [
+        "vegetarian"
+      ]
+    },
+    {
+      "dish": "Falafel wrap",
+      "price": 1900,
+      "tags": [
+        "vegan"
+      ]
+    },
+    {
+      "dish": "Beef burger",
+      "price": 4200,
+      "tags": []
+    },
+    {
+      "dish": "Lentil soup",
+      "price": 1600,
+      "tags": [
+        "vegan",
+        "gluten-free"
+      ]
+    },
+    {
+      "dish": "Caesar salad",
+      "price": 2900,
+      "tags": []
+    },
+    {
+      "dish": "Tofu curry",
+      "price": 3100,
+      "tags": [
+        "vegan"
+      ]
+    },
+    {
+      "dish": "Fries",
+      "price": 1200,
+      "tags": [
+        "vegan"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which vegan dishes cost less than 25 PLN? Give the price in PLN.
+
+Answer with JSON only (no prose): {"vegan": [{"dish": <string>, "pln": <number>}, ...]}

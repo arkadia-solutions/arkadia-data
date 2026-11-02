@@ -1,0 +1,132 @@
+{
+ "id": 21,
+ "slug": "recipes-nut-free",
+ "title": "Recipes: nut-free and quick",
+ "description": "Lists inside records.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which recipes contain no nuts of any kind and take at most 45 minutes?",
+ "tokens": {
+  "json": {
+   "none": 381,
+   "comments": 396,
+   "attributes": 419,
+   "both": 434
+  },
+  "toon": {
+   "none": 334,
+   "comments": 349,
+   "attributes": 372,
+   "both": 387
+  },
+  "akd": {
+   "none": 396,
+   "comments": 405,
+   "attributes": 408,
+   "both": 418
+  },
+  "akcd": {
+   "none": 369,
+   "comments": 374,
+   "attributes": 381,
+   "both": 387
+  }
+ },
+ "answer": {
+  "name": "recipes",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "minutes",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "Tomato soup",
+   "minutes": 35
+  },
+  {
+   "name": "Omelette",
+   "minutes": 10
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`recipes.minutes`: total time in minutes"
+  ],
+  "attributes": [
+   "`recipes.minutes`: $unit=\"min\"",
+   "recipes name=\"Granola\": #breakfast",
+   "recipes name=\"Omelette\": #breakfast"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"recipes\": [\n    {\n      \"name\": \"Pierogi\",\n      \"minutes\": 90,\n      \"ingredients\": [\n        \"flour\",\n        \"potatoes\",\n        \"cheese\",\n        \"onion\"\n      ]\n    },\n    {\n      \"name\": \"Pesto pasta\",\n      \"minutes\": 20,\n      \"ingredients\": [\n        \"pasta\",\n        \"basil\",\n        \"pine nuts\",\n        \"parmesan\"\n      ]\n    },\n    {\n      \"name\": \"Tomato soup\",\n      \"minutes\": 35,\n      \"ingredients\": [\n        \"tomatoes\",\n        \"onion\",\n        \"cream\"\n      ]\n    },\n    {\n      \"name\": \"Granola\",\n      \"minutes\": 40,\n      \"ingredients\": [\n        \"oats\",\n        \"honey\",\n        \"almonds\",\n        \"walnuts\"\n      ]\n    },\n    {\n      \"name\": \"Omelette\",\n      \"minutes\": 10,\n      \"ingredients\": [\n        \"eggs\",\n        \"butter\",\n        \"chives\"\n      ]\n    },\n    {\n      \"name\": \"Satay\",\n      \"minutes\": 45,\n      \"ingredients\": [\n        \"chicken\",\n        \"peanuts\",\n        \"soy sauce\",\n        \"lime\"\n      ]\n    },\n    {\n      \"name\": \"Ratatouille\",\n      \"minutes\": 60,\n      \"ingredients\": [\n        \"eggplant\",\n        \"zucchini\",\n        \"tomatoes\",\n        \"pepper\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer with JSON only (no prose): {\"recipes\": [{\"name\": <string>, \"minutes\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `recipes.minutes`: total time in minutes\n\n<data>\n{\n  \"recipes\": [\n    {\n      \"name\": \"Pierogi\",\n      \"minutes\": 90,\n      \"ingredients\": [\n        \"flour\",\n        \"potatoes\",\n        \"cheese\",\n        \"onion\"\n      ]\n    },\n    {\n      \"name\": \"Pesto pasta\",\n      \"minutes\": 20,\n      \"ingredients\": [\n        \"pasta\",\n        \"basil\",\n        \"pine nuts\",\n        \"parmesan\"\n      ]\n    },\n    {\n      \"name\": \"Tomato soup\",\n      \"minutes\": 35,\n      \"ingredients\": [\n        \"tomatoes\",\n        \"onion\",\n        \"cream\"\n      ]\n    },\n    {\n      \"name\": \"Granola\",\n      \"minutes\": 40,\n      \"ingredients\": [\n        \"oats\",\n        \"honey\",\n        \"almonds\",\n        \"walnuts\"\n      ]\n    },\n    {\n      \"name\": \"Omelette\",\n      \"minutes\": 10,\n      \"ingredients\": [\n        \"eggs\",\n        \"butter\",\n        \"chives\"\n      ]\n    },\n    {\n      \"name\": \"Satay\",\n      \"minutes\": 45,\n      \"ingredients\": [\n        \"chicken\",\n        \"peanuts\",\n        \"soy sauce\",\n        \"lime\"\n      ]\n    },\n    {\n      \"name\": \"Ratatouille\",\n      \"minutes\": 60,\n      \"ingredients\": [\n        \"eggplant\",\n        \"zucchini\",\n        \"tomatoes\",\n        \"pepper\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer with JSON only (no prose): {\"recipes\": [{\"name\": <string>, \"minutes\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `recipes.minutes`: $unit=\"min\"\n- recipes name=\"Granola\": #breakfast\n- recipes name=\"Omelette\": #breakfast\n\n<data>\n{\n  \"recipes\": [\n    {\n      \"name\": \"Pierogi\",\n      \"minutes\": 90,\n      \"ingredients\": [\n        \"flour\",\n        \"potatoes\",\n        \"cheese\",\n        \"onion\"\n      ]\n    },\n    {\n      \"name\": \"Pesto pasta\",\n      \"minutes\": 20,\n      \"ingredients\": [\n        \"pasta\",\n        \"basil\",\n        \"pine nuts\",\n        \"parmesan\"\n      ]\n    },\n    {\n      \"name\": \"Tomato soup\",\n      \"minutes\": 35,\n      \"ingredients\": [\n        \"tomatoes\",\n        \"onion\",\n        \"cream\"\n      ]\n    },\n    {\n      \"name\": \"Granola\",\n      \"minutes\": 40,\n      \"ingredients\": [\n        \"oats\",\n        \"honey\",\n        \"almonds\",\n        \"walnuts\"\n      ]\n    },\n    {\n      \"name\": \"Omelette\",\n      \"minutes\": 10,\n      \"ingredients\": [\n        \"eggs\",\n        \"butter\",\n        \"chives\"\n      ]\n    },\n    {\n      \"name\": \"Satay\",\n      \"minutes\": 45,\n      \"ingredients\": [\n        \"chicken\",\n        \"peanuts\",\n        \"soy sauce\",\n        \"lime\"\n      ]\n    },\n    {\n      \"name\": \"Ratatouille\",\n      \"minutes\": 60,\n      \"ingredients\": [\n        \"eggplant\",\n        \"zucchini\",\n        \"tomatoes\",\n        \"pepper\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer with JSON only (no prose): {\"recipes\": [{\"name\": <string>, \"minutes\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `recipes.minutes`: total time in minutes\n\nAttributes of the data:\n- `recipes.minutes`: $unit=\"min\"\n- recipes name=\"Granola\": #breakfast\n- recipes name=\"Omelette\": #breakfast\n\n<data>\n{\n  \"recipes\": [\n    {\n      \"name\": \"Pierogi\",\n      \"minutes\": 90,\n      \"ingredients\": [\n        \"flour\",\n        \"potatoes\",\n        \"cheese\",\n        \"onion\"\n      ]\n    },\n    {\n      \"name\": \"Pesto pasta\",\n      \"minutes\": 20,\n      \"ingredients\": [\n        \"pasta\",\n        \"basil\",\n        \"pine nuts\",\n        \"parmesan\"\n      ]\n    },\n    {\n      \"name\": \"Tomato soup\",\n      \"minutes\": 35,\n      \"ingredients\": [\n        \"tomatoes\",\n        \"onion\",\n        \"cream\"\n      ]\n    },\n    {\n      \"name\": \"Granola\",\n      \"minutes\": 40,\n      \"ingredients\": [\n        \"oats\",\n        \"honey\",\n        \"almonds\",\n        \"walnuts\"\n      ]\n    },\n    {\n      \"name\": \"Omelette\",\n      \"minutes\": 10,\n      \"ingredients\": [\n        \"eggs\",\n        \"butter\",\n        \"chives\"\n      ]\n    },\n    {\n      \"name\": \"Satay\",\n      \"minutes\": 45,\n      \"ingredients\": [\n        \"chicken\",\n        \"peanuts\",\n        \"soy sauce\",\n        \"lime\"\n      ]\n    },\n    {\n      \"name\": \"Ratatouille\",\n      \"minutes\": 60,\n      \"ingredients\": [\n        \"eggplant\",\n        \"zucchini\",\n        \"tomatoes\",\n        \"pepper\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer with JSON only (no prose): {\"recipes\": [{\"name\": <string>, \"minutes\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrecipes[7]:\n  - name: Pierogi\n    minutes: 90\n    ingredients[4]: flour,potatoes,cheese,onion\n  - name: Pesto pasta\n    minutes: 20\n    ingredients[4]: pasta,basil,pine nuts,parmesan\n  - name: Tomato soup\n    minutes: 35\n    ingredients[3]: tomatoes,onion,cream\n  - name: Granola\n    minutes: 40\n    ingredients[4]: oats,honey,almonds,walnuts\n  - name: Omelette\n    minutes: 10\n    ingredients[3]: eggs,butter,chives\n  - name: Satay\n    minutes: 45\n    ingredients[4]: chicken,peanuts,soy sauce,lime\n  - name: Ratatouille\n    minutes: 60\n    ingredients[4]: eggplant,zucchini,tomatoes,pepper\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in TOON only (no prose, no code fences): recipes[N]{name,minutes}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `recipes.minutes`: total time in minutes\n\n<data>\nrecipes[7]:\n  - name: Pierogi\n    minutes: 90\n    ingredients[4]: flour,potatoes,cheese,onion\n  - name: Pesto pasta\n    minutes: 20\n    ingredients[4]: pasta,basil,pine nuts,parmesan\n  - name: Tomato soup\n    minutes: 35\n    ingredients[3]: tomatoes,onion,cream\n  - name: Granola\n    minutes: 40\n    ingredients[4]: oats,honey,almonds,walnuts\n  - name: Omelette\n    minutes: 10\n    ingredients[3]: eggs,butter,chives\n  - name: Satay\n    minutes: 45\n    ingredients[4]: chicken,peanuts,soy sauce,lime\n  - name: Ratatouille\n    minutes: 60\n    ingredients[4]: eggplant,zucchini,tomatoes,pepper\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in TOON only (no prose, no code fences): recipes[N]{name,minutes}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `recipes.minutes`: $unit=\"min\"\n- recipes name=\"Granola\": #breakfast\n- recipes name=\"Omelette\": #breakfast\n\n<data>\nrecipes[7]:\n  - name: Pierogi\n    minutes: 90\n    ingredients[4]: flour,potatoes,cheese,onion\n  - name: Pesto pasta\n    minutes: 20\n    ingredients[4]: pasta,basil,pine nuts,parmesan\n  - name: Tomato soup\n    minutes: 35\n    ingredients[3]: tomatoes,onion,cream\n  - name: Granola\n    minutes: 40\n    ingredients[4]: oats,honey,almonds,walnuts\n  - name: Omelette\n    minutes: 10\n    ingredients[3]: eggs,butter,chives\n  - name: Satay\n    minutes: 45\n    ingredients[4]: chicken,peanuts,soy sauce,lime\n  - name: Ratatouille\n    minutes: 60\n    ingredients[4]: eggplant,zucchini,tomatoes,pepper\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in TOON only (no prose, no code fences): recipes[N]{name,minutes}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `recipes.minutes`: total time in minutes\n\nAttributes of the data:\n- `recipes.minutes`: $unit=\"min\"\n- recipes name=\"Granola\": #breakfast\n- recipes name=\"Omelette\": #breakfast\n\n<data>\nrecipes[7]:\n  - name: Pierogi\n    minutes: 90\n    ingredients[4]: flour,potatoes,cheese,onion\n  - name: Pesto pasta\n    minutes: 20\n    ingredients[4]: pasta,basil,pine nuts,parmesan\n  - name: Tomato soup\n    minutes: 35\n    ingredients[3]: tomatoes,onion,cream\n  - name: Granola\n    minutes: 40\n    ingredients[4]: oats,honey,almonds,walnuts\n  - name: Omelette\n    minutes: 10\n    ingredients[3]: eggs,butter,chives\n  - name: Satay\n    minutes: 45\n    ingredients[4]: chicken,peanuts,soy sauce,lime\n  - name: Ratatouille\n    minutes: 60\n    ingredients[4]: eggplant,zucchini,tomatoes,pepper\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in TOON only (no prose, no code fences): recipes[N]{name,minutes}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string, minutes:number, ingredients:[string]]>>\n([\n  (\"Pierogi\", 90, [\"flour\", \"potatoes\", \"cheese\", \"onion\"]),\n  (\"Pesto pasta\", 20, [\"pasta\", \"basil\", \"pine nuts\", \"parmesan\"]),\n  (\"Tomato soup\", 35, [\"tomatoes\", \"onion\", \"cream\"]),\n  (\"Granola\", 40, [\"oats\", \"honey\", \"almonds\", \"walnuts\"]),\n  (\"Omelette\", 10, [\"eggs\", \"butter\", \"chives\"]),\n  (\"Satay\", 45, [\"chicken\", \"peanuts\", \"soy sauce\", \"lime\"]),\n  (\"Ratatouille\", 60, [\"eggplant\", \"zucchini\", \"tomatoes\", \"pepper\"])\n])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[\n  name:string,\n  minutes:number /* total time in minutes */,\n  ingredients:[string]\n]>>\n([\n  (\"Pierogi\", 90, [\"flour\", \"potatoes\", \"cheese\", \"onion\"]),\n  (\"Pesto pasta\", 20, [\"pasta\", \"basil\", \"pine nuts\", \"parmesan\"]),\n  (\"Tomato soup\", 35, [\"tomatoes\", \"onion\", \"cream\"]),\n  (\"Granola\", 40, [\"oats\", \"honey\", \"almonds\", \"walnuts\"]),\n  (\"Omelette\", 10, [\"eggs\", \"butter\", \"chives\"]),\n  (\"Satay\", 45, [\"chicken\", \"peanuts\", \"soy sauce\", \"lime\"]),\n  (\"Ratatouille\", 60, [\"eggplant\", \"zucchini\", \"tomatoes\", \"pepper\"])\n])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string, minutes:number $unit=\"min\", ingredients:[string]]>>\n([\n  (\"Pierogi\", 90, [\"flour\", \"potatoes\", \"cheese\", \"onion\"]),\n  (\"Pesto pasta\", 20, [\"pasta\", \"basil\", \"pine nuts\", \"parmesan\"]),\n  (\"Tomato soup\", 35, [\"tomatoes\", \"onion\", \"cream\"]),\n  (\"Granola\", 40, [\"oats\", \"honey\", \"almonds\", \"walnuts\"]) #breakfast,\n  (\"Omelette\", 10, [\"eggs\", \"butter\", \"chives\"]) #breakfast,\n  (\"Satay\", 45, [\"chicken\", \"peanuts\", \"soy sauce\", \"lime\"]),\n  (\"Ratatouille\", 60, [\"eggplant\", \"zucchini\", \"tomatoes\", \"pepper\"])\n])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[\n  name:string,\n  minutes:number $unit=\"min\" /* total time in minutes */,\n  ingredients:[string]\n]>>\n([\n  (\"Pierogi\", 90, [\"flour\", \"potatoes\", \"cheese\", \"onion\"]),\n  (\"Pesto pasta\", 20, [\"pasta\", \"basil\", \"pine nuts\", \"parmesan\"]),\n  (\"Tomato soup\", 35, [\"tomatoes\", \"onion\", \"cream\"]),\n  (\"Granola\", 40, [\"oats\", \"honey\", \"almonds\", \"walnuts\"]) #breakfast,\n  (\"Omelette\", 10, [\"eggs\", \"butter\", \"chives\"]) #breakfast,\n  (\"Satay\", 45, [\"chicken\", \"peanuts\", \"soy sauce\", \"lime\"]),\n  (\"Ratatouille\", 60, [\"eggplant\", \"zucchini\", \"tomatoes\", \"pepper\"])\n])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string,minutes:number,ingredients:[string]]>>([(\"Pierogi\",90,[\"flour\",\"potatoes\",\"cheese\",\"onion\"]),(\"Pesto pasta\",20,[\"pasta\",\"basil\",\"pine nuts\",\"parmesan\"]),(\"Tomato soup\",35,[\"tomatoes\",\"onion\",\"cream\"]),(\"Granola\",40,[\"oats\",\"honey\",\"almonds\",\"walnuts\"]),(\"Omelette\",10,[\"eggs\",\"butter\",\"chives\"]),(\"Satay\",45,[\"chicken\",\"peanuts\",\"soy sauce\",\"lime\"]),(\"Ratatouille\",60,[\"eggplant\",\"zucchini\",\"tomatoes\",\"pepper\"])])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string,minutes:number /* total time in minutes */,ingredients:[string]]>>([(\"Pierogi\",90,[\"flour\",\"potatoes\",\"cheese\",\"onion\"]),(\"Pesto pasta\",20,[\"pasta\",\"basil\",\"pine nuts\",\"parmesan\"]),(\"Tomato soup\",35,[\"tomatoes\",\"onion\",\"cream\"]),(\"Granola\",40,[\"oats\",\"honey\",\"almonds\",\"walnuts\"]),(\"Omelette\",10,[\"eggs\",\"butter\",\"chives\"]),(\"Satay\",45,[\"chicken\",\"peanuts\",\"soy sauce\",\"lime\"]),(\"Ratatouille\",60,[\"eggplant\",\"zucchini\",\"tomatoes\",\"pepper\"])])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string,minutes:number $unit=\"min\",ingredients:[string]]>>([(\"Pierogi\",90,[\"flour\",\"potatoes\",\"cheese\",\"onion\"]),(\"Pesto pasta\",20,[\"pasta\",\"basil\",\"pine nuts\",\"parmesan\"]),(\"Tomato soup\",35,[\"tomatoes\",\"onion\",\"cream\"]),(\"Granola\",40,[\"oats\",\"honey\",\"almonds\",\"walnuts\"]) #breakfast,(\"Omelette\",10,[\"eggs\",\"butter\",\"chives\"]) #breakfast,(\"Satay\",45,[\"chicken\",\"peanuts\",\"soy sauce\",\"lime\"]),(\"Ratatouille\",60,[\"eggplant\",\"zucchini\",\"tomatoes\",\"pepper\"])])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<recipes:<[name:string,minutes:number $unit=\"min\" /* total time in minutes */,ingredients:[string]]>>([(\"Pierogi\",90,[\"flour\",\"potatoes\",\"cheese\",\"onion\"]),(\"Pesto pasta\",20,[\"pasta\",\"basil\",\"pine nuts\",\"parmesan\"]),(\"Tomato soup\",35,[\"tomatoes\",\"onion\",\"cream\"]),(\"Granola\",40,[\"oats\",\"honey\",\"almonds\",\"walnuts\"]) #breakfast,(\"Omelette\",10,[\"eggs\",\"butter\",\"chives\"]) #breakfast,(\"Satay\",45,[\"chicken\",\"peanuts\",\"soy sauce\",\"lime\"]),(\"Ratatouille\",60,[\"eggplant\",\"zucchini\",\"tomatoes\",\"pepper\"])])\n</data>\n\nQuestion: Which recipes contain no nuts of any kind and take at most 45 minutes?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<recipes:<[name:string,minutes:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 325,
+   "comments": 325,
+   "attributes": 325,
+   "both": 325
+  },
+  "toon": {
+   "none": 196,
+   "comments": 196,
+   "attributes": 196,
+   "both": 196
+  },
+  "akd": {
+   "none": 181,
+   "comments": 190,
+   "attributes": 193,
+   "both": 203
+  },
+  "akcd": {
+   "none": 148,
+   "comments": 153,
+   "attributes": 160,
+   "both": 166
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"recipes\": [\n    {\n      \"name\": \"Tomato soup\",\n      \"minutes\": 35\n    },\n    {\n      \"name\": \"Omelette\",\n      \"minutes\": 10\n    }\n  ]\n}",
+  "akcd": "<recipes:<[name:string,minutes:number]>>([(\"Tomato soup\",35),(\"Omelette\",10)])",
+  "toon": "recipes[2]{name,minutes}:\n  Tomato soup,35\n  Omelette,10"
+ },
+ "answer_tokens": {
+  "json": 49,
+  "akcd": 26,
+  "toon": 20
+ }
+}

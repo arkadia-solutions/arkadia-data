@@ -1,0 +1,1 @@
+<agent:<[name:string,tools:number]>>([("planner",3)])

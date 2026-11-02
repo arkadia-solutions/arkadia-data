@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $account="PL61…0001" $currency="PLN" #statement // /* October statement of a personal account. */ <transactions:<[date:string,cat:string,amt:number $unit="grosze" $sign="negative=debit" /* amount in grosze; negative means money going out */]>>([("2026-10-01","food",-24649),("2026-10-02","fun",-31849),("2026-10-03","food",-15699),("2026-10-04","food",-12000),("2026-10-05","transport",-59399),("2026-10-06","rent",-7399),("2026-10-07","food",-30600),("2026-10-08","food",-23199),("2026-10-09","fun",-56099),("2026-10-10","salary",706900),("2026-10-11","transport",-20049),("2026-10-12","food",-19049),("2026-10-13","rent",-54899),("2026-10-14","food",-51700),("2026-10-15","transport",-16300),("2026-10-16","salary",888900),("2026-10-17","fun",-50799),("2026-10-18","food",-39549)])
+</data>
+
+Question: How much was spent in each category (money going out), in PLN? Most first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<spending:<[cat:string,spent:number]>>

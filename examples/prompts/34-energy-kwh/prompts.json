@@ -1,0 +1,133 @@
+{
+ "id": 34,
+ "slug": "energy-kwh",
+ "title": "Energy meter: kWh per day",
+ "description": "Readings in watt-hours.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "What is the total energy per day in kWh (2 decimals)?",
+ "tokens": {
+  "json": {
+   "none": 554,
+   "comments": 584,
+   "attributes": 586,
+   "both": 616
+  },
+  "toon": {
+   "none": 364,
+   "comments": 394,
+   "attributes": 396,
+   "both": 426
+  },
+  "akd": {
+   "none": 479,
+   "comments": 504,
+   "attributes": 496,
+   "both": 522
+  },
+  "akcd": {
+   "none": 436,
+   "comments": 458,
+   "attributes": 453,
+   "both": 475
+  }
+ },
+ "answer": {
+  "name": "daily",
+  "fields": [
+   [
+    "day",
+    "string"
+   ],
+   [
+    "kwh",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "day": "2026-10-27",
+   "kwh": 8.47
+  },
+  {
+   "day": "2026-10-28",
+   "kwh": 9.94
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "3-hourly energy readings.",
+   "`readings.wh`: energy in watt-hours over the 3-hour slot"
+  ],
+  "attributes": [
+   "document: $meter=\"PL-WAW-77\" #smart_meter",
+   "`readings.wh`: $unit=\"Wh\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"readings\": [\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 0,\n      \"wh\": 507\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 3,\n      \"wh\": 1074\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 6,\n      \"wh\": 2109\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 9,\n      \"wh\": 583\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 12,\n      \"wh\": 832\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 15,\n      \"wh\": 1777\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 18,\n      \"wh\": 538\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 21,\n      \"wh\": 1055\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 0,\n      \"wh\": 2196\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 3,\n      \"wh\": 1365\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 6,\n      \"wh\": 436\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 9,\n      \"wh\": 1036\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 12,\n      \"wh\": 695\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 15,\n      \"wh\": 473\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 18,\n      \"wh\": 2180\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 21,\n      \"wh\": 1558\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer with JSON only (no prose): {\"daily\": [{\"day\": <string>, \"kwh\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- 3-hourly energy readings.\n- `readings.wh`: energy in watt-hours over the 3-hour slot\n\n<data>\n{\n  \"readings\": [\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 0,\n      \"wh\": 507\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 3,\n      \"wh\": 1074\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 6,\n      \"wh\": 2109\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 9,\n      \"wh\": 583\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 12,\n      \"wh\": 832\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 15,\n      \"wh\": 1777\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 18,\n      \"wh\": 538\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 21,\n      \"wh\": 1055\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 0,\n      \"wh\": 2196\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 3,\n      \"wh\": 1365\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 6,\n      \"wh\": 436\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 9,\n      \"wh\": 1036\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 12,\n      \"wh\": 695\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 15,\n      \"wh\": 473\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 18,\n      \"wh\": 2180\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 21,\n      \"wh\": 1558\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer with JSON only (no prose): {\"daily\": [{\"day\": <string>, \"kwh\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $meter=\"PL-WAW-77\" #smart_meter\n- `readings.wh`: $unit=\"Wh\"\n\n<data>\n{\n  \"readings\": [\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 0,\n      \"wh\": 507\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 3,\n      \"wh\": 1074\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 6,\n      \"wh\": 2109\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 9,\n      \"wh\": 583\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 12,\n      \"wh\": 832\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 15,\n      \"wh\": 1777\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 18,\n      \"wh\": 538\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 21,\n      \"wh\": 1055\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 0,\n      \"wh\": 2196\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 3,\n      \"wh\": 1365\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 6,\n      \"wh\": 436\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 9,\n      \"wh\": 1036\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 12,\n      \"wh\": 695\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 15,\n      \"wh\": 473\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 18,\n      \"wh\": 2180\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 21,\n      \"wh\": 1558\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer with JSON only (no prose): {\"daily\": [{\"day\": <string>, \"kwh\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- 3-hourly energy readings.\n- `readings.wh`: energy in watt-hours over the 3-hour slot\n\nAttributes of the data:\n- document: $meter=\"PL-WAW-77\" #smart_meter\n- `readings.wh`: $unit=\"Wh\"\n\n<data>\n{\n  \"readings\": [\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 0,\n      \"wh\": 507\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 3,\n      \"wh\": 1074\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 6,\n      \"wh\": 2109\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 9,\n      \"wh\": 583\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 12,\n      \"wh\": 832\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 15,\n      \"wh\": 1777\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 18,\n      \"wh\": 538\n    },\n    {\n      \"day\": \"2026-10-27\",\n      \"hour\": 21,\n      \"wh\": 1055\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 0,\n      \"wh\": 2196\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 3,\n      \"wh\": 1365\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 6,\n      \"wh\": 436\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 9,\n      \"wh\": 1036\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 12,\n      \"wh\": 695\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 15,\n      \"wh\": 473\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 18,\n      \"wh\": 2180\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"hour\": 21,\n      \"wh\": 1558\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer with JSON only (no prose): {\"daily\": [{\"day\": <string>, \"kwh\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nreadings[16]{day,hour,wh}:\n  2026-10-27,0,507\n  2026-10-27,3,1074\n  2026-10-27,6,2109\n  2026-10-27,9,583\n  2026-10-27,12,832\n  2026-10-27,15,1777\n  2026-10-27,18,538\n  2026-10-27,21,1055\n  2026-10-28,0,2196\n  2026-10-28,3,1365\n  2026-10-28,6,436\n  2026-10-28,9,1036\n  2026-10-28,12,695\n  2026-10-28,15,473\n  2026-10-28,18,2180\n  2026-10-28,21,1558\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): daily[N]{day,kwh}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- 3-hourly energy readings.\n- `readings.wh`: energy in watt-hours over the 3-hour slot\n\n<data>\nreadings[16]{day,hour,wh}:\n  2026-10-27,0,507\n  2026-10-27,3,1074\n  2026-10-27,6,2109\n  2026-10-27,9,583\n  2026-10-27,12,832\n  2026-10-27,15,1777\n  2026-10-27,18,538\n  2026-10-27,21,1055\n  2026-10-28,0,2196\n  2026-10-28,3,1365\n  2026-10-28,6,436\n  2026-10-28,9,1036\n  2026-10-28,12,695\n  2026-10-28,15,473\n  2026-10-28,18,2180\n  2026-10-28,21,1558\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): daily[N]{day,kwh}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $meter=\"PL-WAW-77\" #smart_meter\n- `readings.wh`: $unit=\"Wh\"\n\n<data>\nreadings[16]{day,hour,wh}:\n  2026-10-27,0,507\n  2026-10-27,3,1074\n  2026-10-27,6,2109\n  2026-10-27,9,583\n  2026-10-27,12,832\n  2026-10-27,15,1777\n  2026-10-27,18,538\n  2026-10-27,21,1055\n  2026-10-28,0,2196\n  2026-10-28,3,1365\n  2026-10-28,6,436\n  2026-10-28,9,1036\n  2026-10-28,12,695\n  2026-10-28,15,473\n  2026-10-28,18,2180\n  2026-10-28,21,1558\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): daily[N]{day,kwh}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- 3-hourly energy readings.\n- `readings.wh`: energy in watt-hours over the 3-hour slot\n\nAttributes of the data:\n- document: $meter=\"PL-WAW-77\" #smart_meter\n- `readings.wh`: $unit=\"Wh\"\n\n<data>\nreadings[16]{day,hour,wh}:\n  2026-10-27,0,507\n  2026-10-27,3,1074\n  2026-10-27,6,2109\n  2026-10-27,9,583\n  2026-10-27,12,832\n  2026-10-27,15,1777\n  2026-10-27,18,538\n  2026-10-27,21,1055\n  2026-10-28,0,2196\n  2026-10-28,3,1365\n  2026-10-28,6,436\n  2026-10-28,9,1036\n  2026-10-28,12,695\n  2026-10-28,15,473\n  2026-10-28,18,2180\n  2026-10-28,21,1558\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): daily[N]{day,kwh}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<readings:<[day:string, hour:number, wh:number]>>\n([\n  (\"2026-10-27\", 0, 507),\n  (\"2026-10-27\", 3, 1074),\n  (\"2026-10-27\", 6, 2109),\n  (\"2026-10-27\", 9, 583),\n  (\"2026-10-27\", 12, 832),\n  (\"2026-10-27\", 15, 1777),\n  (\"2026-10-27\", 18, 538),\n  (\"2026-10-27\", 21, 1055),\n  (\"2026-10-28\", 0, 2196),\n  (\"2026-10-28\", 3, 1365),\n  (\"2026-10-28\", 6, 436),\n  (\"2026-10-28\", 9, 1036),\n  (\"2026-10-28\", 12, 695),\n  (\"2026-10-28\", 15, 473),\n  (\"2026-10-28\", 18, 2180),\n  (\"2026-10-28\", 21, 1558)\n])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* 3-hourly energy readings. */\n<readings:<[\n  day:string,\n  hour:number,\n  wh:number /* energy in watt-hours over the 3-hour slot */\n]>>\n([\n  (\"2026-10-27\", 0, 507),\n  (\"2026-10-27\", 3, 1074),\n  (\"2026-10-27\", 6, 2109),\n  (\"2026-10-27\", 9, 583),\n  (\"2026-10-27\", 12, 832),\n  (\"2026-10-27\", 15, 1777),\n  (\"2026-10-27\", 18, 538),\n  (\"2026-10-27\", 21, 1055),\n  (\"2026-10-28\", 0, 2196),\n  (\"2026-10-28\", 3, 1365),\n  (\"2026-10-28\", 6, 436),\n  (\"2026-10-28\", 9, 1036),\n  (\"2026-10-28\", 12, 695),\n  (\"2026-10-28\", 15, 473),\n  (\"2026-10-28\", 18, 2180),\n  (\"2026-10-28\", 21, 1558)\n])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $meter=\"PL-WAW-77\" #smart_meter //\n<readings:<[day:string, hour:number, wh:number $unit=\"Wh\"]>>\n([\n  (\"2026-10-27\", 0, 507),\n  (\"2026-10-27\", 3, 1074),\n  (\"2026-10-27\", 6, 2109),\n  (\"2026-10-27\", 9, 583),\n  (\"2026-10-27\", 12, 832),\n  (\"2026-10-27\", 15, 1777),\n  (\"2026-10-27\", 18, 538),\n  (\"2026-10-27\", 21, 1055),\n  (\"2026-10-28\", 0, 2196),\n  (\"2026-10-28\", 3, 1365),\n  (\"2026-10-28\", 6, 436),\n  (\"2026-10-28\", 9, 1036),\n  (\"2026-10-28\", 12, 695),\n  (\"2026-10-28\", 15, 473),\n  (\"2026-10-28\", 18, 2180),\n  (\"2026-10-28\", 21, 1558)\n])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $meter=\"PL-WAW-77\" #smart_meter //\n/* 3-hourly energy readings. */\n<readings:<[\n  day:string,\n  hour:number,\n  wh:number $unit=\"Wh\" /* energy in watt-hours over the 3-hour slot */\n]>>\n([\n  (\"2026-10-27\", 0, 507),\n  (\"2026-10-27\", 3, 1074),\n  (\"2026-10-27\", 6, 2109),\n  (\"2026-10-27\", 9, 583),\n  (\"2026-10-27\", 12, 832),\n  (\"2026-10-27\", 15, 1777),\n  (\"2026-10-27\", 18, 538),\n  (\"2026-10-27\", 21, 1055),\n  (\"2026-10-28\", 0, 2196),\n  (\"2026-10-28\", 3, 1365),\n  (\"2026-10-28\", 6, 436),\n  (\"2026-10-28\", 9, 1036),\n  (\"2026-10-28\", 12, 695),\n  (\"2026-10-28\", 15, 473),\n  (\"2026-10-28\", 18, 2180),\n  (\"2026-10-28\", 21, 1558)\n])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<readings:<[day:string,hour:number,wh:number]>>([(\"2026-10-27\",0,507),(\"2026-10-27\",3,1074),(\"2026-10-27\",6,2109),(\"2026-10-27\",9,583),(\"2026-10-27\",12,832),(\"2026-10-27\",15,1777),(\"2026-10-27\",18,538),(\"2026-10-27\",21,1055),(\"2026-10-28\",0,2196),(\"2026-10-28\",3,1365),(\"2026-10-28\",6,436),(\"2026-10-28\",9,1036),(\"2026-10-28\",12,695),(\"2026-10-28\",15,473),(\"2026-10-28\",18,2180),(\"2026-10-28\",21,1558)])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* 3-hourly energy readings. */ <readings:<[day:string,hour:number,wh:number /* energy in watt-hours over the 3-hour slot */]>>([(\"2026-10-27\",0,507),(\"2026-10-27\",3,1074),(\"2026-10-27\",6,2109),(\"2026-10-27\",9,583),(\"2026-10-27\",12,832),(\"2026-10-27\",15,1777),(\"2026-10-27\",18,538),(\"2026-10-27\",21,1055),(\"2026-10-28\",0,2196),(\"2026-10-28\",3,1365),(\"2026-10-28\",6,436),(\"2026-10-28\",9,1036),(\"2026-10-28\",12,695),(\"2026-10-28\",15,473),(\"2026-10-28\",18,2180),(\"2026-10-28\",21,1558)])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $meter=\"PL-WAW-77\" #smart_meter // <readings:<[day:string,hour:number,wh:number $unit=\"Wh\"]>>([(\"2026-10-27\",0,507),(\"2026-10-27\",3,1074),(\"2026-10-27\",6,2109),(\"2026-10-27\",9,583),(\"2026-10-27\",12,832),(\"2026-10-27\",15,1777),(\"2026-10-27\",18,538),(\"2026-10-27\",21,1055),(\"2026-10-28\",0,2196),(\"2026-10-28\",3,1365),(\"2026-10-28\",6,436),(\"2026-10-28\",9,1036),(\"2026-10-28\",12,695),(\"2026-10-28\",15,473),(\"2026-10-28\",18,2180),(\"2026-10-28\",21,1558)])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $meter=\"PL-WAW-77\" #smart_meter // /* 3-hourly energy readings. */ <readings:<[day:string,hour:number,wh:number $unit=\"Wh\" /* energy in watt-hours over the 3-hour slot */]>>([(\"2026-10-27\",0,507),(\"2026-10-27\",3,1074),(\"2026-10-27\",6,2109),(\"2026-10-27\",9,583),(\"2026-10-27\",12,832),(\"2026-10-27\",15,1777),(\"2026-10-27\",18,538),(\"2026-10-27\",21,1055),(\"2026-10-28\",0,2196),(\"2026-10-28\",3,1365),(\"2026-10-28\",6,436),(\"2026-10-28\",9,1036),(\"2026-10-28\",12,695),(\"2026-10-28\",15,473),(\"2026-10-28\",18,2180),(\"2026-10-28\",21,1558)])\n</data>\n\nQuestion: What is the total energy per day in kWh (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<daily:<[day:string,kwh:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 499,
+   "comments": 499,
+   "attributes": 499,
+   "both": 499
+  },
+  "toon": {
+   "none": 228,
+   "comments": 228,
+   "attributes": 228,
+   "both": 228
+  },
+  "akd": {
+   "none": 266,
+   "comments": 290,
+   "attributes": 284,
+   "both": 310
+  },
+  "akcd": {
+   "none": 217,
+   "comments": 238,
+   "attributes": 235,
+   "both": 257
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"daily\": [\n    {\n      \"day\": \"2026-10-27\",\n      \"kwh\": 8.47\n    },\n    {\n      \"day\": \"2026-10-28\",\n      \"kwh\": 9.94\n    }\n  ]\n}",
+  "akcd": "<daily:<[day:string,kwh:number]>>([(\"2026-10-27\",8.47),(\"2026-10-28\",9.94)])",
+  "toon": "daily[2]{day,kwh}:\n  2026-10-27,8.47\n  2026-10-28,9.94"
+ },
+ "answer_tokens": {
+  "json": 61,
+  "akcd": 36,
+  "toon": 34
+ }
+}

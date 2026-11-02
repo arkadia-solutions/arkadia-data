@@ -1,0 +1,47 @@
+The data below is in JSON.
+
+<data>
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ada Lovelace",
+      "email": "ada@example.com",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Alan Turing",
+      "email": "alan@example.com",
+      "role": "user",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Grace Hopper",
+      "email": "grace@example.com",
+      "role": "admin",
+      "active": false
+    },
+    {
+      "id": 4,
+      "name": "Linus Torvalds",
+      "email": "linus@example.com",
+      "role": "user",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Margaret Hamilton",
+      "email": "margaret@example.com",
+      "role": "admin",
+      "active": true
+    }
+  ]
+}
+</data>
+
+Question: Which active users are admins?
+
+Answer with JSON only (no prose): {"admins": [{"id": <number>, "name": <string>}, ...]}

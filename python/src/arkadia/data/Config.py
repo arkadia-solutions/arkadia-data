@@ -31,6 +31,7 @@ class Config(TypedDict, total=False):
     """Include comments in output."""
 
     include_array_size: bool
+    array_size_min: int
     """Include array size information."""
 
     include_schema: bool

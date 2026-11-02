@@ -1,0 +1,16 @@
+{
+  "free": [
+    {
+      "level": "P1",
+      "free": 2
+    },
+    {
+      "level": "P2",
+      "free": 2
+    },
+    {
+      "level": "P3",
+      "free": 1
+    }
+  ]
+}

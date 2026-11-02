@@ -1,0 +1,111 @@
+{
+  "id": 43,
+  "slug": "newsletter-opens",
+  "title": "Newsletter: campaigns above 25 % opens",
+  "description": "Open and click rates in per mille.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.",
+  "answer": {
+    "name": "good",
+    "fields": [
+      [
+        "campaign",
+        "string"
+      ],
+      [
+        "open_pct",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "campaign": "NL-09",
+      "open_pct": 30.8
+    },
+    {
+      "campaign": "NL-02",
+      "open_pct": 25.7
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`campaigns.open`: open rate in per mille (312 = 31.2 %)",
+      "`campaigns.click`: click rate in per mille"
+    ],
+    "attributes": [
+      "`campaigns.open`: $unit=\"permille\"",
+      "`campaigns.click`: $unit=\"permille\""
+    ]
+  },
+  "akd_meta": "<campaigns:<[campaign:string,sent:number,open:number $unit=\"permille\" /* open rate in per mille (312 = 31.2 %) */,click:number $unit=\"permille\" /* click rate in per mille */]>>([(\"NL-01\",7826,211,15),(\"NL-02\",3718,257,68),(\"NL-03\",4459,126,87),(\"NL-04\",5217,154,65),(\"NL-05\",4581,138,69),(\"NL-06\",7185,176,22),(\"NL-07\",3224,245,50),(\"NL-08\",3464,176,23),(\"NL-09\",7457,308,83),(\"NL-10\",8220,128,77)])",
+  "data": {
+    "campaigns": [
+      {
+        "campaign": "NL-01",
+        "sent": 7826,
+        "open": 211,
+        "click": 15
+      },
+      {
+        "campaign": "NL-02",
+        "sent": 3718,
+        "open": 257,
+        "click": 68
+      },
+      {
+        "campaign": "NL-03",
+        "sent": 4459,
+        "open": 126,
+        "click": 87
+      },
+      {
+        "campaign": "NL-04",
+        "sent": 5217,
+        "open": 154,
+        "click": 65
+      },
+      {
+        "campaign": "NL-05",
+        "sent": 4581,
+        "open": 138,
+        "click": 69
+      },
+      {
+        "campaign": "NL-06",
+        "sent": 7185,
+        "open": 176,
+        "click": 22
+      },
+      {
+        "campaign": "NL-07",
+        "sent": 3224,
+        "open": 245,
+        "click": 50
+      },
+      {
+        "campaign": "NL-08",
+        "sent": 3464,
+        "open": 176,
+        "click": 23
+      },
+      {
+        "campaign": "NL-09",
+        "sent": 7457,
+        "open": 308,
+        "click": 83
+      },
+      {
+        "campaign": "NL-10",
+        "sent": 8220,
+        "open": 128,
+        "click": 77
+      }
+    ]
+  }
+}

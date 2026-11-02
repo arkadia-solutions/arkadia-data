@@ -1,0 +1,28 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<campaigns:<[campaign:string, sent:number, open:number, click:number]>>
+([
+  ("NL-01", 7826, 211, 15),
+  ("NL-02", 3718, 257, 68),
+  ("NL-03", 4459, 126, 87),
+  ("NL-04", 5217, 154, 65),
+  ("NL-05", 4581, 138, 69),
+  ("NL-06", 7185, 176, 22),
+  ("NL-07", 3224, 245, 50),
+  ("NL-08", 3464, 176, 23),
+  ("NL-09", 7457, 308, 83),
+  ("NL-10", 8220, 128, 77)
+])
+</data>
+
+Question: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<good:<[campaign:string,open_pct:number]>>

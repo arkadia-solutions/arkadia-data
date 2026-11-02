@@ -1,0 +1,1 @@
+<best:<[title:string,year:number,rating:number]>>([("Blind Chance",1984,8.6)])

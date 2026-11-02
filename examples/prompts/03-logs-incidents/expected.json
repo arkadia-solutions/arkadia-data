@@ -1,0 +1,34 @@
+{
+  "result": [
+    {
+      "service": "search",
+      "errors": 4,
+      "warnings": 0,
+      "avg_error_latency_ms": 2960
+    },
+    {
+      "service": "billing",
+      "errors": 2,
+      "warnings": 3,
+      "avg_error_latency_ms": 796
+    },
+    {
+      "service": "api",
+      "errors": 1,
+      "warnings": 4,
+      "avg_error_latency_ms": 2771
+    },
+    {
+      "service": "auth",
+      "errors": 0,
+      "warnings": 0,
+      "avg_error_latency_ms": null
+    },
+    {
+      "service": "worker",
+      "errors": 0,
+      "warnings": 1,
+      "avg_error_latency_ms": null
+    }
+  ]
+}

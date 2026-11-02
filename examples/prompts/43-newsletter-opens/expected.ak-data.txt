@@ -1,0 +1,1 @@
+<good:<[campaign:string,open_pct:number]>>([("NL-09",30.8),("NL-02",25.7)])

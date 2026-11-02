@@ -1,0 +1,1 @@
+<result:<[date:string,revenue:number,visits:number,signups:number]>>([("2026-07-02",5725.99,3487,13),("2026-07-21",5416.42,2187,9),("2026-07-24",5198.21,2366,24)])

@@ -1,0 +1,16 @@
+{
+  "movers": [
+    {
+      "sym": "ADA",
+      "change_pct": 14.59
+    },
+    {
+      "sym": "ATOM",
+      "change_pct": 2.26
+    },
+    {
+      "sym": "ETH",
+      "change_pct": -1.86
+    }
+  ]
+}

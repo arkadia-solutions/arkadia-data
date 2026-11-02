@@ -1,0 +1,100 @@
+The data below is in JSON.
+
+Notes about the data:
+- `reviews.stars`: 1 to 5 stars
+- reviews id=1: verified purchase
+- reviews id=3: verified purchase
+- reviews id=4: verified purchase
+- reviews id=7: verified purchase
+- reviews id=10: verified purchase
+- reviews id=13: verified purchase
+
+Attributes of the data:
+- `reviews.stars`: $scale="1-5"
+- reviews id=1: #verified
+- reviews id=3: #verified
+- reviews id=4: #verified
+- reviews id=7: #verified
+- reviews id=10: #verified
+- reviews id=13: #verified
+
+<data>
+{
+  "reviews": [
+    {
+      "id": 1,
+      "stars": 5,
+      "text": "Fast delivery"
+    },
+    {
+      "id": 2,
+      "stars": 3,
+      "text": "Great!"
+    },
+    {
+      "id": 3,
+      "stars": 1,
+      "text": "Okay"
+    },
+    {
+      "id": 4,
+      "stars": 4,
+      "text": "Great!"
+    },
+    {
+      "id": 5,
+      "stars": 3,
+      "text": "Broke after a week"
+    },
+    {
+      "id": 6,
+      "stars": 4,
+      "text": "Fast delivery"
+    },
+    {
+      "id": 7,
+      "stars": 4,
+      "text": "Okay"
+    },
+    {
+      "id": 8,
+      "stars": 3,
+      "text": "Okay"
+    },
+    {
+      "id": 9,
+      "stars": 3,
+      "text": "Broke after a week"
+    },
+    {
+      "id": 10,
+      "stars": 4,
+      "text": "Broke after a week"
+    },
+    {
+      "id": 11,
+      "stars": 5,
+      "text": "Fast delivery"
+    },
+    {
+      "id": 12,
+      "stars": 5,
+      "text": "Fast delivery"
+    },
+    {
+      "id": 13,
+      "stars": 5,
+      "text": "Fast delivery"
+    },
+    {
+      "id": 14,
+      "stars": 5,
+      "text": "Broke after a week"
+    }
+  ]
+}
+</data>
+
+Question: What is the average star rating of verified purchases only (2 decimals)?
+
+Answer with JSON only (no prose): {"rating": [{"avg_stars": <number>}, ...]}

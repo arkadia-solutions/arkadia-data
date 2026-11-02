@@ -1,0 +1,36 @@
+[package]
+name = "arkadia-data"
+version = "0.3.0"
+edition = "2021"
+rust-version = "1.80"
+description = "AK-DATA (Arkadia Data Format): lossless, token-efficient JSON for LLM prompts, tool results and agent memory. Library + the ak-data CLI."
+license = "MIT"
+authors = ["Arkadia Solutions"]
+homepage = "https://arkadia.solutions/akdata"
+documentation = "https://docs.rs/arkadia-data"
+readme = "README.md"
+keywords = ["llm", "json", "serialization", "tokens", "ak-data"]
+categories = ["encoding", "command-line-utilities", "parser-implementations"]
+include = ["src/**", "data/examples.json", "data/gallery.json", "tests/**", "README.md", "LICENSE"]
+
+[lib]
+name = "arkadia_data"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ak-data"
+path = "src/main.rs"
+
+[features]
+default = ["preserve_order"]
+# Keep JSON key order (positional headers follow the source order). Without
+# it serde_json sorts keys; output is still lossless.
+preserve_order = ["serde_json/preserve_order"]
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

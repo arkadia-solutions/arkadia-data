@@ -1,0 +1,12 @@
+{
+  "failures": [
+    {
+      "branch": "feat/layout",
+      "failed": 4
+    },
+    {
+      "branch": "fix/meta",
+      "failed": 1
+    }
+  ]
+}

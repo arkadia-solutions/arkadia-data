@@ -1,0 +1,23 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<positions:<[ticker:string, qty:number, avg:number, last:number, ccy:string]>>
+([
+  ("CDR", 40, 112.5, 131.2, "PLN"),
+  ("PKN", 120, 58.1, 61.4, "PLN"),
+  ("AAPL", 10, 172.0, 189.3, "USD"),
+  ("ALE", 200, 31.2, 27.9, "PLN"),
+  ("MSFT", 6, 330.0, 402.1, "USD")
+])
+</data>
+
+Question: What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<pnl:<[ticker:string,pnl:number]>>

@@ -1,0 +1,142 @@
+{
+ "id": 38,
+ "slug": "fx-rates",
+ "title": "Exchange rates: convert 500 EUR",
+ "description": "One base currency, a list of rates.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "How much is 500 EUR in each currency (2 decimals)?",
+ "tokens": {
+  "json": {
+   "none": 193,
+   "comments": 211,
+   "attributes": 210,
+   "both": 228
+  },
+  "toon": {
+   "none": 199,
+   "comments": 217,
+   "attributes": 216,
+   "both": 234
+  },
+  "akd": {
+   "none": 301,
+   "comments": 316,
+   "attributes": 310,
+   "both": 325
+  },
+  "akcd": {
+   "none": 287,
+   "comments": 302,
+   "attributes": 296,
+   "both": 310
+  }
+ },
+ "answer": {
+  "name": "converted",
+  "fields": [
+   [
+    "ccy",
+    "string"
+   ],
+   [
+    "amount",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "ccy": "PLN",
+   "amount": 2133.75
+  },
+  {
+   "ccy": "USD",
+   "amount": 540.6
+  },
+  {
+   "ccy": "GBP",
+   "amount": 421.15
+  },
+  {
+   "ccy": "CHF",
+   "amount": 470.55
+  },
+  {
+   "ccy": "CZK",
+   "amount": 12540.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "ECB reference rates: units of currency per 1 EUR."
+  ],
+  "attributes": [
+   "document: $source=\"ECB\" #reference_rates"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"base\": \"EUR\",\n  \"date\": \"2026-10-29\",\n  \"rates\": [\n    {\n      \"ccy\": \"PLN\",\n      \"rate\": 4.2675\n    },\n    {\n      \"ccy\": \"USD\",\n      \"rate\": 1.0812\n    },\n    {\n      \"ccy\": \"GBP\",\n      \"rate\": 0.8423\n    },\n    {\n      \"ccy\": \"CHF\",\n      \"rate\": 0.9411\n    },\n    {\n      \"ccy\": \"CZK\",\n      \"rate\": 25.08\n    }\n  ]\n}\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer with JSON only (no prose): {\"converted\": [{\"ccy\": <string>, \"amount\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- ECB reference rates: units of currency per 1 EUR.\n\n<data>\n{\n  \"base\": \"EUR\",\n  \"date\": \"2026-10-29\",\n  \"rates\": [\n    {\n      \"ccy\": \"PLN\",\n      \"rate\": 4.2675\n    },\n    {\n      \"ccy\": \"USD\",\n      \"rate\": 1.0812\n    },\n    {\n      \"ccy\": \"GBP\",\n      \"rate\": 0.8423\n    },\n    {\n      \"ccy\": \"CHF\",\n      \"rate\": 0.9411\n    },\n    {\n      \"ccy\": \"CZK\",\n      \"rate\": 25.08\n    }\n  ]\n}\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer with JSON only (no prose): {\"converted\": [{\"ccy\": <string>, \"amount\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $source=\"ECB\" #reference_rates\n\n<data>\n{\n  \"base\": \"EUR\",\n  \"date\": \"2026-10-29\",\n  \"rates\": [\n    {\n      \"ccy\": \"PLN\",\n      \"rate\": 4.2675\n    },\n    {\n      \"ccy\": \"USD\",\n      \"rate\": 1.0812\n    },\n    {\n      \"ccy\": \"GBP\",\n      \"rate\": 0.8423\n    },\n    {\n      \"ccy\": \"CHF\",\n      \"rate\": 0.9411\n    },\n    {\n      \"ccy\": \"CZK\",\n      \"rate\": 25.08\n    }\n  ]\n}\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer with JSON only (no prose): {\"converted\": [{\"ccy\": <string>, \"amount\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- ECB reference rates: units of currency per 1 EUR.\n\nAttributes of the data:\n- document: $source=\"ECB\" #reference_rates\n\n<data>\n{\n  \"base\": \"EUR\",\n  \"date\": \"2026-10-29\",\n  \"rates\": [\n    {\n      \"ccy\": \"PLN\",\n      \"rate\": 4.2675\n    },\n    {\n      \"ccy\": \"USD\",\n      \"rate\": 1.0812\n    },\n    {\n      \"ccy\": \"GBP\",\n      \"rate\": 0.8423\n    },\n    {\n      \"ccy\": \"CHF\",\n      \"rate\": 0.9411\n    },\n    {\n      \"ccy\": \"CZK\",\n      \"rate\": 25.08\n    }\n  ]\n}\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer with JSON only (no prose): {\"converted\": [{\"ccy\": <string>, \"amount\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nbase: EUR\ndate: 2026-10-29\nrates[5]{ccy,rate}:\n  PLN,4.2675\n  USD,1.0812\n  GBP,0.8423\n  CHF,0.9411\n  CZK,25.08\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): converted[N]{ccy,amount}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- ECB reference rates: units of currency per 1 EUR.\n\n<data>\nbase: EUR\ndate: 2026-10-29\nrates[5]{ccy,rate}:\n  PLN,4.2675\n  USD,1.0812\n  GBP,0.8423\n  CHF,0.9411\n  CZK,25.08\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): converted[N]{ccy,amount}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $source=\"ECB\" #reference_rates\n\n<data>\nbase: EUR\ndate: 2026-10-29\nrates[5]{ccy,rate}:\n  PLN,4.2675\n  USD,1.0812\n  GBP,0.8423\n  CHF,0.9411\n  CZK,25.08\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): converted[N]{ccy,amount}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- ECB reference rates: units of currency per 1 EUR.\n\nAttributes of the data:\n- document: $source=\"ECB\" #reference_rates\n\n<data>\nbase: EUR\ndate: 2026-10-29\nrates[5]{ccy,rate}:\n  PLN,4.2675\n  USD,1.0812\n  GBP,0.8423\n  CHF,0.9411\n  CZK,25.08\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): converted[N]{ccy,amount}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<base:string, date:string, rates:<[ccy:string, rate:number]>>\n(\n  \"EUR\",\n  \"2026-10-29\",\n  [\n    (\"PLN\", 4.2675),\n    (\"USD\", 1.0812),\n    (\"GBP\", 0.8423),\n    (\"CHF\", 0.9411),\n    (\"CZK\", 25.08)\n  ]\n)\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* ECB reference rates: units of currency per 1 EUR. */\n<base:string, date:string, rates:<[ccy:string, rate:number]>>\n(\n  \"EUR\",\n  \"2026-10-29\",\n  [\n    (\"PLN\", 4.2675),\n    (\"USD\", 1.0812),\n    (\"GBP\", 0.8423),\n    (\"CHF\", 0.9411),\n    (\"CZK\", 25.08)\n  ]\n)\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"ECB\" #reference_rates //\n<base:string, date:string, rates:<[ccy:string, rate:number]>>\n(\n  \"EUR\",\n  \"2026-10-29\",\n  [\n    (\"PLN\", 4.2675),\n    (\"USD\", 1.0812),\n    (\"GBP\", 0.8423),\n    (\"CHF\", 0.9411),\n    (\"CZK\", 25.08)\n  ]\n)\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"ECB\" #reference_rates //\n/* ECB reference rates: units of currency per 1 EUR. */\n<base:string, date:string, rates:<[ccy:string, rate:number]>>\n(\n  \"EUR\",\n  \"2026-10-29\",\n  [\n    (\"PLN\", 4.2675),\n    (\"USD\", 1.0812),\n    (\"GBP\", 0.8423),\n    (\"CHF\", 0.9411),\n    (\"CZK\", 25.08)\n  ]\n)\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<base:string,date:string,rates:<[ccy:string,rate:number]>>(\"EUR\",\"2026-10-29\",[(\"PLN\",4.2675),(\"USD\",1.0812),(\"GBP\",0.8423),(\"CHF\",0.9411),(\"CZK\",25.08)])\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* ECB reference rates: units of currency per 1 EUR. */ <base:string,date:string,rates:<[ccy:string,rate:number]>>(\"EUR\",\"2026-10-29\",[(\"PLN\",4.2675),(\"USD\",1.0812),(\"GBP\",0.8423),(\"CHF\",0.9411),(\"CZK\",25.08)])\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"ECB\" #reference_rates // <base:string,date:string,rates:<[ccy:string,rate:number]>>(\"EUR\",\"2026-10-29\",[(\"PLN\",4.2675),(\"USD\",1.0812),(\"GBP\",0.8423),(\"CHF\",0.9411),(\"CZK\",25.08)])\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"ECB\" #reference_rates // /* ECB reference rates: units of currency per 1 EUR. */ <base:string,date:string,rates:<[ccy:string,rate:number]>>(\"EUR\",\"2026-10-29\",[(\"PLN\",4.2675),(\"USD\",1.0812),(\"GBP\",0.8423),(\"CHF\",0.9411),(\"CZK\",25.08)])\n</data>\n\nQuestion: How much is 500 EUR in each currency (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<converted:<[ccy:string,amount:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 139,
+   "comments": 139,
+   "attributes": 139,
+   "both": 139
+  },
+  "toon": {
+   "none": 63,
+   "comments": 63,
+   "attributes": 63,
+   "both": 63
+  },
+  "akd": {
+   "none": 88,
+   "comments": 102,
+   "attributes": 98,
+   "both": 113
+  },
+  "akcd": {
+   "none": 68,
+   "comments": 82,
+   "attributes": 78,
+   "both": 92
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"converted\": [\n    {\n      \"ccy\": \"PLN\",\n      \"amount\": 2133.75\n    },\n    {\n      \"ccy\": \"USD\",\n      \"amount\": 540.6\n    },\n    {\n      \"ccy\": \"GBP\",\n      \"amount\": 421.15\n    },\n    {\n      \"ccy\": \"CHF\",\n      \"amount\": 470.55\n    },\n    {\n      \"ccy\": \"CZK\",\n      \"amount\": 12540.0\n    }\n  ]\n}",
+  "akcd": "<converted:<[ccy:string,amount:number]>>([(\"PLN\",2133.75),(\"USD\",540.6),(\"GBP\",421.15),(\"CHF\",470.55),(\"CZK\",12540.0)])",
+  "toon": "converted[5]{ccy,amount}:\n  PLN,2133.75\n  USD,540.6\n  GBP,421.15\n  CHF,470.55\n  CZK,12540"
+ },
+ "answer_tokens": {
+  "json": 118,
+  "akcd": 52,
+  "toon": 45
+ }
+}

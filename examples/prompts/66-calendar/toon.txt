@@ -1,0 +1,28 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+date: 2026-11-03
+people[3]:
+  - name: Ada
+    busy[2]:
+      - [2]: "09:00","10:30"
+      - [2]: "13:00","14:00"
+  - name: Alan
+    busy[2]:
+      - [2]: "10:00","11:00"
+      - [2]: "15:00","16:00"
+  - name: Grace
+    busy[2]:
+      - [2]: "09:00","09:30"
+      - [2]: "11:00","12:00"
+working_hours[2]: "09:00","17:00"
+</data>
+
+Question: Which full hours (start on the hour, 60 minutes) are free for everyone?
+
+Answer in TOON only (no prose, no code fences): free[N]{start}: followed by one row per item.

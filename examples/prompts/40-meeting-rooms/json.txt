@@ -1,0 +1,61 @@
+The data below is in JSON.
+
+<data>
+{
+  "rooms": [
+    {
+      "room": "Aurora",
+      "floor": 2,
+      "seats": 6,
+      "equipment": [
+        "tv"
+      ]
+    },
+    {
+      "room": "Borealis",
+      "floor": 2,
+      "seats": 10,
+      "equipment": [
+        "projector",
+        "whiteboard"
+      ]
+    },
+    {
+      "room": "Cirrus",
+      "floor": 3,
+      "seats": 8,
+      "equipment": [
+        "projector",
+        "tv"
+      ]
+    },
+    {
+      "room": "Delta",
+      "floor": 3,
+      "seats": 4,
+      "equipment": []
+    },
+    {
+      "room": "Echo",
+      "floor": 4,
+      "seats": 14,
+      "equipment": [
+        "projector",
+        "camera"
+      ]
+    },
+    {
+      "room": "Fjord",
+      "floor": 4,
+      "seats": 8,
+      "equipment": [
+        "whiteboard"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which rooms seat at least 8 people and have a projector?
+
+Answer with JSON only (no prose): {"rooms": [{"room": <string>, "seats": <number>}, ...]}

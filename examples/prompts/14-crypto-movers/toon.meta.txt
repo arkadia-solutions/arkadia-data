@@ -1,0 +1,34 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Prices in USD, change over the last 24 hours.
+- `coins.price`: price in US dollars
+- `coins.chg`: 24h change in basis points (125 = +1.25 %)
+
+Attributes of the data:
+- document: $quote="USD" $window="24h"
+- `coins.price`: $unit="USD"
+- `coins.chg`: $unit="bp"
+
+<data>
+coins[10]{sym,price,chg}:
+  BTC,52573.39,-619
+  ETH,18246.56,-186
+  SOL,15262.19,-210
+  ADA,43554.26,1459
+  DOT,52881.88,-617
+  XRP,6570.86,-408
+  LTC,48086.6,-636
+  AVAX,30564.45,-1022
+  LINK,11487.17,-1127
+  ATOM,45941.08,226
+</data>
+
+Question: Which 3 coins rose the most in 24 hours? Give the change in percent.
+
+Answer in TOON only (no prose, no code fences): movers[N]{sym,change_pct}: followed by one row per item.

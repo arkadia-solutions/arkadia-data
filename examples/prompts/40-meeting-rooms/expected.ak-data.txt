@@ -1,0 +1,1 @@
+<rooms:<[room:string,seats:number]>>([("Borealis",10),("Cirrus",8),("Echo",14)])

@@ -1,0 +1,40 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Sales invoices. Amounts are in grosze (1/100 PLN).
+- `invoices.gross`: gross amount in grosze (12350 = 123.50 PLN)
+- `invoices.st`: status: 0 unpaid, 1 paid, 2 cancelled
+- `invoices.due`: payment due date
+
+Attributes of the data:
+- document: $currency="PLN" $as_of="2026-10-20" #ledger
+- `invoices.gross`: $unit="grosze"
+- `invoices.st`: $enum="0=unpaid,1=paid,2=cancelled"
+- `invoices.due`: $format="YYYY-MM-DD"
+
+<data>
+invoices[14]{no,client,gross,due,st}:
+  FV/001/2026,Acme,468800,2026-10-20,1
+  FV/002/2026,Globex,33550,2026-10-02,1
+  FV/003/2026,Initech,715150,2026-10-26,1
+  FV/004/2026,Umbrella,865700,2026-10-25,1
+  FV/005/2026,Hooli,788850,2026-10-07,2
+  FV/006/2026,Stark,581350,2026-10-27,1
+  FV/007/2026,Wayne,295650,2026-10-23,0
+  FV/008/2026,Tyrell,458450,2026-10-02,1
+  FV/009/2026,Soylent,187800,2026-10-26,1
+  FV/010/2026,Wonka,579600,2026-10-07,0
+  FV/011/2026,Cyberdyne,493250,2026-10-26,2
+  FV/012/2026,Vandelay,483350,2026-10-16,1
+  FV/013/2026,Acme,77100,2026-10-24,1
+  FV/014/2026,Globex,358950,2026-10-18,0
+</data>
+
+Question: Which invoices are unpaid and overdue on 2026-10-20? Give the number and the gross amount in PLN.
+
+Answer in TOON only (no prose, no code fences): overdue[N]{no,pln}: followed by one row per item.

@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<reviews:<[id:number,stars:number $scale="1-5" /* 1 to 5 stars */,text:string]>>([(1,5,"Fast delivery") #verified /* verified purchase */,(2,3,"Great!"),(3,1,"Okay") #verified /* verified purchase */,(4,4,"Great!") #verified /* verified purchase */,(5,3,"Broke after a week"),(6,4,"Fast delivery"),(7,4,"Okay") #verified /* verified purchase */,(8,3,"Okay"),(9,3,"Broke after a week"),(10,4,"Broke after a week") #verified /* verified purchase */,(11,5,"Fast delivery"),(12,5,"Fast delivery"),(13,5,"Fast delivery") #verified /* verified purchase */,(14,5,"Broke after a week")])
+</data>
+
+Question: What is the average star rating of verified purchases only (2 decimals)?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<rating:<[avg_stars:number]>>

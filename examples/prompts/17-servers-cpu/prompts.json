@@ -1,0 +1,139 @@
+{
+ "id": 17,
+ "slug": "servers-cpu",
+ "title": "Servers: CPU above 80 %",
+ "description": "Load is in per mille (‰), not percent.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.",
+ "tokens": {
+  "json": {
+   "none": 550,
+   "comments": 593,
+   "attributes": 594,
+   "both": 637
+  },
+  "toon": {
+   "none": 308,
+   "comments": 351,
+   "attributes": 352,
+   "both": 395
+  },
+  "akd": {
+   "none": 453,
+   "comments": 488,
+   "attributes": 483,
+   "both": 515
+  },
+  "akcd": {
+   "none": 402,
+   "comments": 433,
+   "attributes": 427,
+   "both": 459
+  }
+ },
+ "answer": {
+  "name": "hot",
+  "fields": [
+   [
+    "host",
+    "string"
+   ],
+   [
+    "cpu_pct",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "host": "web-08",
+   "cpu_pct": 97.2
+  },
+  {
+   "host": "web-06",
+   "cpu_pct": 95.1
+  },
+  {
+   "host": "web-03",
+   "cpu_pct": 84.7
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Average load over the last 5 minutes.",
+   "`hosts.cpu`: CPU usage in per mille (850 = 85 %)",
+   "`hosts.mem`: memory usage in per mille"
+  ],
+  "attributes": [
+   "document: $cluster=\"prod-eu\" $sampled=\"5m\"",
+   "`hosts.cpu`: $unit=\"permille\"",
+   "`hosts.mem`: $unit=\"permille\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"hosts\": [\n    {\n      \"host\": \"web-01\",\n      \"dc\": \"waw\",\n      \"cpu\": 778,\n      \"mem\": 590\n    },\n    {\n      \"host\": \"web-02\",\n      \"dc\": \"fra\",\n      \"cpu\": 795,\n      \"mem\": 592\n    },\n    {\n      \"host\": \"web-03\",\n      \"dc\": \"waw\",\n      \"cpu\": 847,\n      \"mem\": 342\n    },\n    {\n      \"host\": \"web-04\",\n      \"dc\": \"waw\",\n      \"cpu\": 612,\n      \"mem\": 573\n    },\n    {\n      \"host\": \"web-05\",\n      \"dc\": \"fra\",\n      \"cpu\": 445,\n      \"mem\": 646\n    },\n    {\n      \"host\": \"web-06\",\n      \"dc\": \"ams\",\n      \"cpu\": 951,\n      \"mem\": 762\n    },\n    {\n      \"host\": \"web-07\",\n      \"dc\": \"fra\",\n      \"cpu\": 360,\n      \"mem\": 461\n    },\n    {\n      \"host\": \"web-08\",\n      \"dc\": \"waw\",\n      \"cpu\": 972,\n      \"mem\": 220\n    },\n    {\n      \"host\": \"web-09\",\n      \"dc\": \"fra\",\n      \"cpu\": 560,\n      \"mem\": 322\n    },\n    {\n      \"host\": \"web-10\",\n      \"dc\": \"ams\",\n      \"cpu\": 633,\n      \"mem\": 897\n    },\n    {\n      \"host\": \"web-11\",\n      \"dc\": \"waw\",\n      \"cpu\": 433,\n      \"mem\": 976\n    },\n    {\n      \"host\": \"web-12\",\n      \"dc\": \"ams\",\n      \"cpu\": 101,\n      \"mem\": 848\n    },\n    {\n      \"host\": \"web-13\",\n      \"dc\": \"fra\",\n      \"cpu\": 295,\n      \"mem\": 548\n    },\n    {\n      \"host\": \"web-14\",\n      \"dc\": \"fra\",\n      \"cpu\": 89,\n      \"mem\": 894\n    }\n  ]\n}\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer with JSON only (no prose): {\"hot\": [{\"host\": <string>, \"cpu_pct\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Average load over the last 5 minutes.\n- `hosts.cpu`: CPU usage in per mille (850 = 85 %)\n- `hosts.mem`: memory usage in per mille\n\n<data>\n{\n  \"hosts\": [\n    {\n      \"host\": \"web-01\",\n      \"dc\": \"waw\",\n      \"cpu\": 778,\n      \"mem\": 590\n    },\n    {\n      \"host\": \"web-02\",\n      \"dc\": \"fra\",\n      \"cpu\": 795,\n      \"mem\": 592\n    },\n    {\n      \"host\": \"web-03\",\n      \"dc\": \"waw\",\n      \"cpu\": 847,\n      \"mem\": 342\n    },\n    {\n      \"host\": \"web-04\",\n      \"dc\": \"waw\",\n      \"cpu\": 612,\n      \"mem\": 573\n    },\n    {\n      \"host\": \"web-05\",\n      \"dc\": \"fra\",\n      \"cpu\": 445,\n      \"mem\": 646\n    },\n    {\n      \"host\": \"web-06\",\n      \"dc\": \"ams\",\n      \"cpu\": 951,\n      \"mem\": 762\n    },\n    {\n      \"host\": \"web-07\",\n      \"dc\": \"fra\",\n      \"cpu\": 360,\n      \"mem\": 461\n    },\n    {\n      \"host\": \"web-08\",\n      \"dc\": \"waw\",\n      \"cpu\": 972,\n      \"mem\": 220\n    },\n    {\n      \"host\": \"web-09\",\n      \"dc\": \"fra\",\n      \"cpu\": 560,\n      \"mem\": 322\n    },\n    {\n      \"host\": \"web-10\",\n      \"dc\": \"ams\",\n      \"cpu\": 633,\n      \"mem\": 897\n    },\n    {\n      \"host\": \"web-11\",\n      \"dc\": \"waw\",\n      \"cpu\": 433,\n      \"mem\": 976\n    },\n    {\n      \"host\": \"web-12\",\n      \"dc\": \"ams\",\n      \"cpu\": 101,\n      \"mem\": 848\n    },\n    {\n      \"host\": \"web-13\",\n      \"dc\": \"fra\",\n      \"cpu\": 295,\n      \"mem\": 548\n    },\n    {\n      \"host\": \"web-14\",\n      \"dc\": \"fra\",\n      \"cpu\": 89,\n      \"mem\": 894\n    }\n  ]\n}\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer with JSON only (no prose): {\"hot\": [{\"host\": <string>, \"cpu_pct\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $cluster=\"prod-eu\" $sampled=\"5m\"\n- `hosts.cpu`: $unit=\"permille\"\n- `hosts.mem`: $unit=\"permille\"\n\n<data>\n{\n  \"hosts\": [\n    {\n      \"host\": \"web-01\",\n      \"dc\": \"waw\",\n      \"cpu\": 778,\n      \"mem\": 590\n    },\n    {\n      \"host\": \"web-02\",\n      \"dc\": \"fra\",\n      \"cpu\": 795,\n      \"mem\": 592\n    },\n    {\n      \"host\": \"web-03\",\n      \"dc\": \"waw\",\n      \"cpu\": 847,\n      \"mem\": 342\n    },\n    {\n      \"host\": \"web-04\",\n      \"dc\": \"waw\",\n      \"cpu\": 612,\n      \"mem\": 573\n    },\n    {\n      \"host\": \"web-05\",\n      \"dc\": \"fra\",\n      \"cpu\": 445,\n      \"mem\": 646\n    },\n    {\n      \"host\": \"web-06\",\n      \"dc\": \"ams\",\n      \"cpu\": 951,\n      \"mem\": 762\n    },\n    {\n      \"host\": \"web-07\",\n      \"dc\": \"fra\",\n      \"cpu\": 360,\n      \"mem\": 461\n    },\n    {\n      \"host\": \"web-08\",\n      \"dc\": \"waw\",\n      \"cpu\": 972,\n      \"mem\": 220\n    },\n    {\n      \"host\": \"web-09\",\n      \"dc\": \"fra\",\n      \"cpu\": 560,\n      \"mem\": 322\n    },\n    {\n      \"host\": \"web-10\",\n      \"dc\": \"ams\",\n      \"cpu\": 633,\n      \"mem\": 897\n    },\n    {\n      \"host\": \"web-11\",\n      \"dc\": \"waw\",\n      \"cpu\": 433,\n      \"mem\": 976\n    },\n    {\n      \"host\": \"web-12\",\n      \"dc\": \"ams\",\n      \"cpu\": 101,\n      \"mem\": 848\n    },\n    {\n      \"host\": \"web-13\",\n      \"dc\": \"fra\",\n      \"cpu\": 295,\n      \"mem\": 548\n    },\n    {\n      \"host\": \"web-14\",\n      \"dc\": \"fra\",\n      \"cpu\": 89,\n      \"mem\": 894\n    }\n  ]\n}\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer with JSON only (no prose): {\"hot\": [{\"host\": <string>, \"cpu_pct\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Average load over the last 5 minutes.\n- `hosts.cpu`: CPU usage in per mille (850 = 85 %)\n- `hosts.mem`: memory usage in per mille\n\nAttributes of the data:\n- document: $cluster=\"prod-eu\" $sampled=\"5m\"\n- `hosts.cpu`: $unit=\"permille\"\n- `hosts.mem`: $unit=\"permille\"\n\n<data>\n{\n  \"hosts\": [\n    {\n      \"host\": \"web-01\",\n      \"dc\": \"waw\",\n      \"cpu\": 778,\n      \"mem\": 590\n    },\n    {\n      \"host\": \"web-02\",\n      \"dc\": \"fra\",\n      \"cpu\": 795,\n      \"mem\": 592\n    },\n    {\n      \"host\": \"web-03\",\n      \"dc\": \"waw\",\n      \"cpu\": 847,\n      \"mem\": 342\n    },\n    {\n      \"host\": \"web-04\",\n      \"dc\": \"waw\",\n      \"cpu\": 612,\n      \"mem\": 573\n    },\n    {\n      \"host\": \"web-05\",\n      \"dc\": \"fra\",\n      \"cpu\": 445,\n      \"mem\": 646\n    },\n    {\n      \"host\": \"web-06\",\n      \"dc\": \"ams\",\n      \"cpu\": 951,\n      \"mem\": 762\n    },\n    {\n      \"host\": \"web-07\",\n      \"dc\": \"fra\",\n      \"cpu\": 360,\n      \"mem\": 461\n    },\n    {\n      \"host\": \"web-08\",\n      \"dc\": \"waw\",\n      \"cpu\": 972,\n      \"mem\": 220\n    },\n    {\n      \"host\": \"web-09\",\n      \"dc\": \"fra\",\n      \"cpu\": 560,\n      \"mem\": 322\n    },\n    {\n      \"host\": \"web-10\",\n      \"dc\": \"ams\",\n      \"cpu\": 633,\n      \"mem\": 897\n    },\n    {\n      \"host\": \"web-11\",\n      \"dc\": \"waw\",\n      \"cpu\": 433,\n      \"mem\": 976\n    },\n    {\n      \"host\": \"web-12\",\n      \"dc\": \"ams\",\n      \"cpu\": 101,\n      \"mem\": 848\n    },\n    {\n      \"host\": \"web-13\",\n      \"dc\": \"fra\",\n      \"cpu\": 295,\n      \"mem\": 548\n    },\n    {\n      \"host\": \"web-14\",\n      \"dc\": \"fra\",\n      \"cpu\": 89,\n      \"mem\": 894\n    }\n  ]\n}\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer with JSON only (no prose): {\"hot\": [{\"host\": <string>, \"cpu_pct\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nhosts[14]{host,dc,cpu,mem}:\n  web-01,waw,778,590\n  web-02,fra,795,592\n  web-03,waw,847,342\n  web-04,waw,612,573\n  web-05,fra,445,646\n  web-06,ams,951,762\n  web-07,fra,360,461\n  web-08,waw,972,220\n  web-09,fra,560,322\n  web-10,ams,633,897\n  web-11,waw,433,976\n  web-12,ams,101,848\n  web-13,fra,295,548\n  web-14,fra,89,894\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): hot[N]{host,cpu_pct}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Average load over the last 5 minutes.\n- `hosts.cpu`: CPU usage in per mille (850 = 85 %)\n- `hosts.mem`: memory usage in per mille\n\n<data>\nhosts[14]{host,dc,cpu,mem}:\n  web-01,waw,778,590\n  web-02,fra,795,592\n  web-03,waw,847,342\n  web-04,waw,612,573\n  web-05,fra,445,646\n  web-06,ams,951,762\n  web-07,fra,360,461\n  web-08,waw,972,220\n  web-09,fra,560,322\n  web-10,ams,633,897\n  web-11,waw,433,976\n  web-12,ams,101,848\n  web-13,fra,295,548\n  web-14,fra,89,894\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): hot[N]{host,cpu_pct}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $cluster=\"prod-eu\" $sampled=\"5m\"\n- `hosts.cpu`: $unit=\"permille\"\n- `hosts.mem`: $unit=\"permille\"\n\n<data>\nhosts[14]{host,dc,cpu,mem}:\n  web-01,waw,778,590\n  web-02,fra,795,592\n  web-03,waw,847,342\n  web-04,waw,612,573\n  web-05,fra,445,646\n  web-06,ams,951,762\n  web-07,fra,360,461\n  web-08,waw,972,220\n  web-09,fra,560,322\n  web-10,ams,633,897\n  web-11,waw,433,976\n  web-12,ams,101,848\n  web-13,fra,295,548\n  web-14,fra,89,894\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): hot[N]{host,cpu_pct}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Average load over the last 5 minutes.\n- `hosts.cpu`: CPU usage in per mille (850 = 85 %)\n- `hosts.mem`: memory usage in per mille\n\nAttributes of the data:\n- document: $cluster=\"prod-eu\" $sampled=\"5m\"\n- `hosts.cpu`: $unit=\"permille\"\n- `hosts.mem`: $unit=\"permille\"\n\n<data>\nhosts[14]{host,dc,cpu,mem}:\n  web-01,waw,778,590\n  web-02,fra,795,592\n  web-03,waw,847,342\n  web-04,waw,612,573\n  web-05,fra,445,646\n  web-06,ams,951,762\n  web-07,fra,360,461\n  web-08,waw,972,220\n  web-09,fra,560,322\n  web-10,ams,633,897\n  web-11,waw,433,976\n  web-12,ams,101,848\n  web-13,fra,295,548\n  web-14,fra,89,894\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in TOON only (no prose, no code fences): hot[N]{host,cpu_pct}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<hosts:<[host:string, dc:string, cpu:number, mem:number]>>\n([\n  (\"web-01\", \"waw\", 778, 590),\n  (\"web-02\", \"fra\", 795, 592),\n  (\"web-03\", \"waw\", 847, 342),\n  (\"web-04\", \"waw\", 612, 573),\n  (\"web-05\", \"fra\", 445, 646),\n  (\"web-06\", \"ams\", 951, 762),\n  (\"web-07\", \"fra\", 360, 461),\n  (\"web-08\", \"waw\", 972, 220),\n  (\"web-09\", \"fra\", 560, 322),\n  (\"web-10\", \"ams\", 633, 897),\n  (\"web-11\", \"waw\", 433, 976),\n  (\"web-12\", \"ams\", 101, 848),\n  (\"web-13\", \"fra\", 295, 548),\n  (\"web-14\", \"fra\", 89, 894)\n])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Average load over the last 5 minutes. */\n<hosts:<[\n  host:string,\n  dc:string,\n  cpu:number /* CPU usage in per mille (850 = 85 %) */,\n  mem:number /* memory usage in per mille */\n]>>\n([\n  (\"web-01\", \"waw\", 778, 590),\n  (\"web-02\", \"fra\", 795, 592),\n  (\"web-03\", \"waw\", 847, 342),\n  (\"web-04\", \"waw\", 612, 573),\n  (\"web-05\", \"fra\", 445, 646),\n  (\"web-06\", \"ams\", 951, 762),\n  (\"web-07\", \"fra\", 360, 461),\n  (\"web-08\", \"waw\", 972, 220),\n  (\"web-09\", \"fra\", 560, 322),\n  (\"web-10\", \"ams\", 633, 897),\n  (\"web-11\", \"waw\", 433, 976),\n  (\"web-12\", \"ams\", 101, 848),\n  (\"web-13\", \"fra\", 295, 548),\n  (\"web-14\", \"fra\", 89, 894)\n])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $cluster=\"prod-eu\" $sampled=\"5m\" //\n<hosts:<[\n  host:string,\n  dc:string,\n  cpu:number $unit=\"permille\",\n  mem:number $unit=\"permille\"\n]>>\n([\n  (\"web-01\", \"waw\", 778, 590),\n  (\"web-02\", \"fra\", 795, 592),\n  (\"web-03\", \"waw\", 847, 342),\n  (\"web-04\", \"waw\", 612, 573),\n  (\"web-05\", \"fra\", 445, 646),\n  (\"web-06\", \"ams\", 951, 762),\n  (\"web-07\", \"fra\", 360, 461),\n  (\"web-08\", \"waw\", 972, 220),\n  (\"web-09\", \"fra\", 560, 322),\n  (\"web-10\", \"ams\", 633, 897),\n  (\"web-11\", \"waw\", 433, 976),\n  (\"web-12\", \"ams\", 101, 848),\n  (\"web-13\", \"fra\", 295, 548),\n  (\"web-14\", \"fra\", 89, 894)\n])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $cluster=\"prod-eu\" $sampled=\"5m\" //\n/* Average load over the last 5 minutes. */\n<hosts:<[\n  host:string,\n  dc:string,\n  cpu:number $unit=\"permille\" /* CPU usage in per mille (850 = 85 %) */,\n  mem:number $unit=\"permille\" /* memory usage in per mille */\n]>>\n([\n  (\"web-01\", \"waw\", 778, 590),\n  (\"web-02\", \"fra\", 795, 592),\n  (\"web-03\", \"waw\", 847, 342),\n  (\"web-04\", \"waw\", 612, 573),\n  (\"web-05\", \"fra\", 445, 646),\n  (\"web-06\", \"ams\", 951, 762),\n  (\"web-07\", \"fra\", 360, 461),\n  (\"web-08\", \"waw\", 972, 220),\n  (\"web-09\", \"fra\", 560, 322),\n  (\"web-10\", \"ams\", 633, 897),\n  (\"web-11\", \"waw\", 433, 976),\n  (\"web-12\", \"ams\", 101, 848),\n  (\"web-13\", \"fra\", 295, 548),\n  (\"web-14\", \"fra\", 89, 894)\n])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<hosts:<[host:string,dc:string,cpu:number,mem:number]>>([(\"web-01\",\"waw\",778,590),(\"web-02\",\"fra\",795,592),(\"web-03\",\"waw\",847,342),(\"web-04\",\"waw\",612,573),(\"web-05\",\"fra\",445,646),(\"web-06\",\"ams\",951,762),(\"web-07\",\"fra\",360,461),(\"web-08\",\"waw\",972,220),(\"web-09\",\"fra\",560,322),(\"web-10\",\"ams\",633,897),(\"web-11\",\"waw\",433,976),(\"web-12\",\"ams\",101,848),(\"web-13\",\"fra\",295,548),(\"web-14\",\"fra\",89,894)])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Average load over the last 5 minutes. */ <hosts:<[host:string,dc:string,cpu:number /* CPU usage in per mille (850 = 85 %) */,mem:number /* memory usage in per mille */]>>([(\"web-01\",\"waw\",778,590),(\"web-02\",\"fra\",795,592),(\"web-03\",\"waw\",847,342),(\"web-04\",\"waw\",612,573),(\"web-05\",\"fra\",445,646),(\"web-06\",\"ams\",951,762),(\"web-07\",\"fra\",360,461),(\"web-08\",\"waw\",972,220),(\"web-09\",\"fra\",560,322),(\"web-10\",\"ams\",633,897),(\"web-11\",\"waw\",433,976),(\"web-12\",\"ams\",101,848),(\"web-13\",\"fra\",295,548),(\"web-14\",\"fra\",89,894)])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $cluster=\"prod-eu\" $sampled=\"5m\" // <hosts:<[host:string,dc:string,cpu:number $unit=\"permille\",mem:number $unit=\"permille\"]>>([(\"web-01\",\"waw\",778,590),(\"web-02\",\"fra\",795,592),(\"web-03\",\"waw\",847,342),(\"web-04\",\"waw\",612,573),(\"web-05\",\"fra\",445,646),(\"web-06\",\"ams\",951,762),(\"web-07\",\"fra\",360,461),(\"web-08\",\"waw\",972,220),(\"web-09\",\"fra\",560,322),(\"web-10\",\"ams\",633,897),(\"web-11\",\"waw\",433,976),(\"web-12\",\"ams\",101,848),(\"web-13\",\"fra\",295,548),(\"web-14\",\"fra\",89,894)])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $cluster=\"prod-eu\" $sampled=\"5m\" // /* Average load over the last 5 minutes. */ <hosts:<[host:string,dc:string,cpu:number $unit=\"permille\" /* CPU usage in per mille (850 = 85 %) */,mem:number $unit=\"permille\" /* memory usage in per mille */]>>([(\"web-01\",\"waw\",778,590),(\"web-02\",\"fra\",795,592),(\"web-03\",\"waw\",847,342),(\"web-04\",\"waw\",612,573),(\"web-05\",\"fra\",445,646),(\"web-06\",\"ams\",951,762),(\"web-07\",\"fra\",360,461),(\"web-08\",\"waw\",972,220),(\"web-09\",\"fra\",560,322),(\"web-10\",\"ams\",633,897),(\"web-11\",\"waw\",433,976),(\"web-12\",\"ams\",101,848),(\"web-13\",\"fra\",295,548),(\"web-14\",\"fra\",89,894)])\n</data>\n\nQuestion: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<hot:<[host:string,cpu_pct:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 490,
+   "comments": 490,
+   "attributes": 490,
+   "both": 490
+  },
+  "toon": {
+   "none": 166,
+   "comments": 166,
+   "attributes": 166,
+   "both": 166
+  },
+  "akd": {
+   "none": 234,
+   "comments": 268,
+   "attributes": 265,
+   "both": 297
+  },
+  "akcd": {
+   "none": 177,
+   "comments": 207,
+   "attributes": 203,
+   "both": 235
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"hot\": [\n    {\n      \"host\": \"web-08\",\n      \"cpu_pct\": 97.2\n    },\n    {\n      \"host\": \"web-06\",\n      \"cpu_pct\": 95.1\n    },\n    {\n      \"host\": \"web-03\",\n      \"cpu_pct\": 84.7\n    }\n  ]\n}",
+  "akcd": "<hot:<[host:string,cpu_pct:number]>>([(\"web-08\",97.2),(\"web-06\",95.1),(\"web-03\",84.7)])",
+  "toon": "hot[3]{host,cpu_pct}:\n  web-08,97.2\n  web-06,95.1\n  web-03,84.7"
+ },
+ "answer_tokens": {
+  "json": 78,
+  "akcd": 40,
+  "toon": 36
+ }
+}

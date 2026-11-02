@@ -1,0 +1,136 @@
+{
+  "id": 24,
+  "slug": "hotel-revenue",
+  "title": "Hotel: revenue per room type",
+  "description": "Nights × nightly rate.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "What is the revenue (nights × rate) per room type? Highest first.",
+  "answer": {
+    "name": "revenue",
+    "fields": [
+      [
+        "room",
+        "string"
+      ],
+      [
+        "revenue",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "room": "double",
+      "revenue": 13820
+    },
+    {
+      "room": "single",
+      "revenue": 6420
+    },
+    {
+      "room": "suite",
+      "revenue": 2960
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`bookings.rate`: price per night in PLN"
+    ],
+    "attributes": [
+      "`bookings.rate`: $unit=\"PLN\" $per=\"night\""
+    ]
+  },
+  "akd_meta": "<bookings:<[booking:string,room:string,nights:number,rate:number $unit=\"PLN\" $per=\"night\" /* price per night in PLN */]>>([(\"B700\",\"single\",3,390),(\"B701\",\"single\",6,390),(\"B702\",\"double\",2,650),(\"B703\",\"suite\",1,880),(\"B704\",\"single\",4,240),(\"B705\",\"single\",3,650),(\"B706\",\"double\",6,880),(\"B707\",\"double\",4,240),(\"B708\",\"suite\",5,240),(\"B709\",\"double\",1,880),(\"B710\",\"double\",6,390),(\"B711\",\"suite\",1,880),(\"B712\",\"double\",6,390),(\"B713\",\"double\",3,240)])",
+  "data": {
+    "bookings": [
+      {
+        "booking": "B700",
+        "room": "single",
+        "nights": 3,
+        "rate": 390
+      },
+      {
+        "booking": "B701",
+        "room": "single",
+        "nights": 6,
+        "rate": 390
+      },
+      {
+        "booking": "B702",
+        "room": "double",
+        "nights": 2,
+        "rate": 650
+      },
+      {
+        "booking": "B703",
+        "room": "suite",
+        "nights": 1,
+        "rate": 880
+      },
+      {
+        "booking": "B704",
+        "room": "single",
+        "nights": 4,
+        "rate": 240
+      },
+      {
+        "booking": "B705",
+        "room": "single",
+        "nights": 3,
+        "rate": 650
+      },
+      {
+        "booking": "B706",
+        "room": "double",
+        "nights": 6,
+        "rate": 880
+      },
+      {
+        "booking": "B707",
+        "room": "double",
+        "nights": 4,
+        "rate": 240
+      },
+      {
+        "booking": "B708",
+        "room": "suite",
+        "nights": 5,
+        "rate": 240
+      },
+      {
+        "booking": "B709",
+        "room": "double",
+        "nights": 1,
+        "rate": 880
+      },
+      {
+        "booking": "B710",
+        "room": "double",
+        "nights": 6,
+        "rate": 390
+      },
+      {
+        "booking": "B711",
+        "room": "suite",
+        "nights": 1,
+        "rate": 880
+      },
+      {
+        "booking": "B712",
+        "room": "double",
+        "nights": 6,
+        "rate": 390
+      },
+      {
+        "booking": "B713",
+        "room": "double",
+        "nights": 3,
+        "rate": 240
+      }
+    ]
+  }
+}

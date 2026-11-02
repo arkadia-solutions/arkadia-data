@@ -1,0 +1,1 @@
+<protein:<[food:string,grams:number]>>([("Chicken breast",46.5),("Lentils (cooked)",18.0),("Greek yogurt",17.0)])

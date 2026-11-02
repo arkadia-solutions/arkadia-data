@@ -1,0 +1,1 @@
+<pnl:<[ticker:string,pnl:number]>>([("CDR",748.0),("PKN",396.0),("ALE",-660.0)])

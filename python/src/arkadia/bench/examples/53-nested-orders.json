@@ -1,0 +1,103 @@
+{
+  "id": 53,
+  "slug": "nested-orders",
+  "title": "Nested records: orders with customer and items",
+  "description": "Headers nest: customer is a record <…> inside the record, items a list of records <[…]>; nested values stay positional.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "What is the total (qty × price) of every paid order?",
+  "answer": {
+    "name": "paid",
+    "fields": [
+      [
+        "id",
+        "string"
+      ],
+      [
+        "total",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "id": "ORD-1001",
+      "total": 217.5
+    },
+    {
+      "id": "ORD-1003",
+      "total": 288.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "orders": [
+      {
+        "id": "ORD-1001",
+        "status": "paid",
+        "customer": {
+          "id": 7,
+          "name": "Hedy Johnson",
+          "country": "PL"
+        },
+        "items": [
+          {
+            "sku": "KB-01",
+            "qty": 2,
+            "price": 89.0
+          },
+          {
+            "sku": "MS-02",
+            "qty": 1,
+            "price": 39.5
+          }
+        ]
+      },
+      {
+        "id": "ORD-1002",
+        "status": "pending",
+        "customer": {
+          "id": 9,
+          "name": "Ada Torvalds",
+          "country": "DE"
+        },
+        "items": [
+          {
+            "sku": "HD-10",
+            "qty": 1,
+            "price": 129.9
+          }
+        ]
+      },
+      {
+        "id": "ORD-1003",
+        "status": "paid",
+        "customer": {
+          "id": 7,
+          "name": "Hedy Johnson",
+          "country": "PL"
+        },
+        "items": [
+          {
+            "sku": "DK-05",
+            "qty": 1,
+            "price": 199.0
+          },
+          {
+            "sku": "KB-01",
+            "qty": 1,
+            "price": 89.0
+          }
+        ]
+      }
+    ]
+  }
+}

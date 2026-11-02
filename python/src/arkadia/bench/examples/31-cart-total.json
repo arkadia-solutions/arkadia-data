@@ -1,0 +1,70 @@
+{
+  "id": 31,
+  "slug": "cart-total",
+  "title": "Shopping cart: total after discounts",
+  "description": "Prices in grosze, discounts in basis points.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "What is the cart total in PLN after the per-item discounts?",
+  "answer": {
+    "name": "total",
+    "fields": [
+      [
+        "pln",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "pln": 326.82
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`cart.items.price`: unit price in grosze",
+      "`cart.items.disc`: discount in basis points (1000 = 10 %)"
+    ],
+    "attributes": [
+      "`cart.items.price`: $unit=\"grosze\"",
+      "`cart.items.disc`: $unit=\"bp\""
+    ]
+  },
+  "akd_meta": "<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number $unit=\"grosze\" /* unit price in grosze */,disc:number $unit=\"bp\" /* discount in basis points (1000 = 10 %) */]>>>((\"Ada\",\"PLN\",[(\"KB-01\",2,8900,1000),(\"MS-02\",1,3950,0),(\"HD-10\",1,12990,2500),(\"CB-03\",3,990,0)]))",
+  "data": {
+    "cart": {
+      "customer": "Ada",
+      "currency": "PLN",
+      "items": [
+        {
+          "sku": "KB-01",
+          "qty": 2,
+          "price": 8900,
+          "disc": 1000
+        },
+        {
+          "sku": "MS-02",
+          "qty": 1,
+          "price": 3950,
+          "disc": 0
+        },
+        {
+          "sku": "HD-10",
+          "qty": 1,
+          "price": 12990,
+          "disc": 2500
+        },
+        {
+          "sku": "CB-03",
+          "qty": 3,
+          "price": 990,
+          "disc": 0
+        }
+      ]
+    }
+  }
+}

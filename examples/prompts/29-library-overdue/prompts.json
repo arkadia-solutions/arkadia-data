@@ -1,0 +1,104 @@
+{
+ "id": 29,
+ "slug": "library-overdue",
+ "title": "Library: overdue loans",
+ "description": "Dates as text.",
+ "tags": [],
+ "question": "Which loans are overdue on 2026-10-15? Oldest due date first.",
+ "tokens": {
+  "json": {
+   "none": 393
+  },
+  "toon": {
+   "none": 293
+  },
+  "akd": {
+   "none": 409
+  },
+  "akcd": {
+   "none": 385
+  }
+ },
+ "answer": {
+  "name": "overdue",
+  "fields": [
+   [
+    "book",
+    "string"
+   ],
+   [
+    "reader",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "book": "The Witcher",
+   "reader": "Grace"
+  },
+  {
+   "book": "Ferdydurke",
+   "reader": "Alan"
+  },
+  {
+   "book": "Drive Your Plow",
+   "reader": "Alan"
+  },
+  {
+   "book": "Quo Vadis",
+   "reader": "Alan"
+  },
+  {
+   "book": "Pan Tadeusz",
+   "reader": "Dennis"
+  },
+  {
+   "book": "The Peasants",
+   "reader": "Alan"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"loans\": [\n    {\n      \"book\": \"Solaris\",\n      \"reader\": \"Ada\",\n      \"due\": \"2026-11-15\"\n    },\n    {\n      \"book\": \"Quo Vadis\",\n      \"reader\": \"Alan\",\n      \"due\": \"2026-10-05\"\n    },\n    {\n      \"book\": \"The Doll\",\n      \"reader\": \"Alan\",\n      \"due\": \"2026-11-23\"\n    },\n    {\n      \"book\": \"Ferdydurke\",\n      \"reader\": \"Alan\",\n      \"due\": \"2026-09-11\"\n    },\n    {\n      \"book\": \"Pan Tadeusz\",\n      \"reader\": \"Dennis\",\n      \"due\": \"2026-10-08\"\n    },\n    {\n      \"book\": \"The Witcher\",\n      \"reader\": \"Grace\",\n      \"due\": \"2026-09-10\"\n    },\n    {\n      \"book\": \"Flights\",\n      \"reader\": \"Ada\",\n      \"due\": \"2026-10-27\"\n    },\n    {\n      \"book\": \"Drive Your Plow\",\n      \"reader\": \"Alan\",\n      \"due\": \"2026-10-04\"\n    },\n    {\n      \"book\": \"The Peasants\",\n      \"reader\": \"Alan\",\n      \"due\": \"2026-10-11\"\n    },\n    {\n      \"book\": \"Faraon\",\n      \"reader\": \"Margaret\",\n      \"due\": \"2026-10-25\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which loans are overdue on 2026-10-15? Oldest due date first.\n\nAnswer with JSON only (no prose): {\"overdue\": [{\"book\": <string>, \"reader\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nloans[10]{book,reader,due}:\n  Solaris,Ada,2026-11-15\n  Quo Vadis,Alan,2026-10-05\n  The Doll,Alan,2026-11-23\n  Ferdydurke,Alan,2026-09-11\n  Pan Tadeusz,Dennis,2026-10-08\n  The Witcher,Grace,2026-09-10\n  Flights,Ada,2026-10-27\n  Drive Your Plow,Alan,2026-10-04\n  The Peasants,Alan,2026-10-11\n  Faraon,Margaret,2026-10-25\n</data>\n\nQuestion: Which loans are overdue on 2026-10-15? Oldest due date first.\n\nAnswer in TOON only (no prose, no code fences): overdue[N]{book,reader}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<loans:<[book:string, reader:string, due:string]>>\n([\n  (\"Solaris\", \"Ada\", \"2026-11-15\"),\n  (\"Quo Vadis\", \"Alan\", \"2026-10-05\"),\n  (\"The Doll\", \"Alan\", \"2026-11-23\"),\n  (\"Ferdydurke\", \"Alan\", \"2026-09-11\"),\n  (\"Pan Tadeusz\", \"Dennis\", \"2026-10-08\"),\n  (\"The Witcher\", \"Grace\", \"2026-09-10\"),\n  (\"Flights\", \"Ada\", \"2026-10-27\"),\n  (\"Drive Your Plow\", \"Alan\", \"2026-10-04\"),\n  (\"The Peasants\", \"Alan\", \"2026-10-11\"),\n  (\"Faraon\", \"Margaret\", \"2026-10-25\")\n])\n</data>\n\nQuestion: Which loans are overdue on 2026-10-15? Oldest due date first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<overdue:<[book:string,reader:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<loans:<[book:string,reader:string,due:string]>>([(\"Solaris\",\"Ada\",\"2026-11-15\"),(\"Quo Vadis\",\"Alan\",\"2026-10-05\"),(\"The Doll\",\"Alan\",\"2026-11-23\"),(\"Ferdydurke\",\"Alan\",\"2026-09-11\"),(\"Pan Tadeusz\",\"Dennis\",\"2026-10-08\"),(\"The Witcher\",\"Grace\",\"2026-09-10\"),(\"Flights\",\"Ada\",\"2026-10-27\"),(\"Drive Your Plow\",\"Alan\",\"2026-10-04\"),(\"The Peasants\",\"Alan\",\"2026-10-11\"),(\"Faraon\",\"Margaret\",\"2026-10-25\")])\n</data>\n\nQuestion: Which loans are overdue on 2026-10-15? Oldest due date first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<overdue:<[book:string,reader:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 333
+  },
+  "toon": {
+   "none": 152
+  },
+  "akd": {
+   "none": 190
+  },
+  "akcd": {
+   "none": 160
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"overdue\": [\n    {\n      \"book\": \"The Witcher\",\n      \"reader\": \"Grace\"\n    },\n    {\n      \"book\": \"Ferdydurke\",\n      \"reader\": \"Alan\"\n    },\n    {\n      \"book\": \"Drive Your Plow\",\n      \"reader\": \"Alan\"\n    },\n    {\n      \"book\": \"Quo Vadis\",\n      \"reader\": \"Alan\"\n    },\n    {\n      \"book\": \"Pan Tadeusz\",\n      \"reader\": \"Dennis\"\n    },\n    {\n      \"book\": \"The Peasants\",\n      \"reader\": \"Alan\"\n    }\n  ]\n}",
+  "akcd": "<overdue:<[book:string,reader:string]>>([(\"The Witcher\",\"Grace\"),(\"Ferdydurke\",\"Alan\"),(\"Drive Your Plow\",\"Alan\"),(\"Quo Vadis\",\"Alan\"),(\"Pan Tadeusz\",\"Dennis\"),(\"The Peasants\",\"Alan\")])",
+  "toon": "overdue[6]{book,reader}:\n  The Witcher,Grace\n  Ferdydurke,Alan\n  Drive Your Plow,Alan\n  Quo Vadis,Alan\n  Pan Tadeusz,Dennis\n  The Peasants,Alan"
+ },
+ "answer_tokens": {
+  "json": 136,
+  "akcd": 62,
+  "toon": 56
+ }
+}

@@ -1,0 +1,38 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $company="Arkadia" $as_of="2026-10-01" #hr #confidential //
+/* Payroll snapshot from 1 October 2026. Contractors are not employees. */
+<staff:<[
+  id:number $required,
+  name:string,
+  dept:string $enum="ENG=engineering,OPS=operations,FIN=finance" /* department: ENG engineering, OPS operations, FIN finance */,
+  lvl:number $enum="1=junior,2=mid,3=senior" /* level: 1 junior, 2 mid, 3 senior */,
+  sal:number $unit="PLN" $period="month" /* gross salary per month in PLN */
+]>>
+([
+  (100, "Ada", "ENG", 2, 7300),
+  (101, "Alan", "OPS", 1, 17200),
+  (102, "Grace", "FIN", 3, 21000),
+  (103, "Linus", "ENG", 2, 18100),
+  (104, "Margaret", "OPS", 2, 14400) #contractor /* contractor, not an employee */,
+  (105, "Dennis", "FIN", 1, 8200),
+  (106, "Barbara", "ENG", 1, 23500),
+  (107, "Ken", "OPS", 2, 10000),
+  (108, "Radia", "FIN", 1, 23000),
+  (109, "Edsger", "ENG", 3, 8400),
+  (110, "Hedy", "OPS", 1, 20100) #contractor /* contractor, not an employee */,
+  (111, "Tim", "FIN", 1, 10800)
+])
+</data>
+
+Question: List the senior people who are employees (not contractors) with their yearly salary in PLN.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<seniors:<[name:string,yearly_pln:number]>>

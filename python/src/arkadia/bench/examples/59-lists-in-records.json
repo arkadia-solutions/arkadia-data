@@ -1,0 +1,89 @@
+{
+  "id": 59,
+  "slug": "lists-in-records",
+  "title": "Lists inside records: repositories with topics",
+  "description": "A field can hold a list of values: topics:[string] in the header, [\"llm\",\"rust\"] or [] in the record.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which repositories that are not archived have the topic rust? Most stars first.",
+  "answer": {
+    "name": "repos",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "stars",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "arkadia-data",
+      "stars": 1840
+    },
+    {
+      "name": "universal-timer",
+      "stars": 210
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "repositories": [
+      {
+        "name": "arkadia-data",
+        "stars": 1840,
+        "topics": [
+          "llm",
+          "json",
+          "rust",
+          "python"
+        ],
+        "archived": false
+      },
+      {
+        "name": "ak-workspace",
+        "stars": 920,
+        "topics": [
+          "agents",
+          "electron"
+        ],
+        "archived": false
+      },
+      {
+        "name": "toon-python",
+        "stars": 310,
+        "topics": [
+          "llm",
+          "python"
+        ],
+        "archived": true
+      },
+      {
+        "name": "star-federation",
+        "stars": 75,
+        "topics": [],
+        "archived": false
+      },
+      {
+        "name": "universal-timer",
+        "stars": 210,
+        "topics": [
+          "rust",
+          "cli"
+        ],
+        "archived": false
+      }
+    ]
+  }
+}

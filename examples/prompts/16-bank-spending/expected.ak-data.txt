@@ -1,0 +1,1 @@
+<spending:<[cat:string,spent:number]>>([("food",2164.45),("fun",1387.47),("transport",957.48),("rent",622.98)])

@@ -1,0 +1,90 @@
+{
+ "id": 53,
+ "slug": "nested-orders",
+ "title": "Nested records: orders with customer and items",
+ "description": "Headers nest: customer is a record <…> inside the record, items a list of records <[…]>; nested values stay positional.",
+ "tags": [
+  "feature"
+ ],
+ "question": "What is the total (qty × price) of every paid order?",
+ "tokens": {
+  "json": {
+   "none": 383
+  },
+  "toon": {
+   "none": 329
+  },
+  "akd": {
+   "none": 389
+  },
+  "akcd": {
+   "none": 362
+  }
+ },
+ "answer": {
+  "name": "paid",
+  "fields": [
+   [
+    "id",
+    "string"
+   ],
+   [
+    "total",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "id": "ORD-1001",
+   "total": 217.5
+  },
+  {
+   "id": "ORD-1003",
+   "total": 288.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"orders\": [\n    {\n      \"id\": \"ORD-1001\",\n      \"status\": \"paid\",\n      \"customer\": {\n        \"id\": 7,\n        \"name\": \"Hedy Johnson\",\n        \"country\": \"PL\"\n      },\n      \"items\": [\n        {\n          \"sku\": \"KB-01\",\n          \"qty\": 2,\n          \"price\": 89.0\n        },\n        {\n          \"sku\": \"MS-02\",\n          \"qty\": 1,\n          \"price\": 39.5\n        }\n      ]\n    },\n    {\n      \"id\": \"ORD-1002\",\n      \"status\": \"pending\",\n      \"customer\": {\n        \"id\": 9,\n        \"name\": \"Ada Torvalds\",\n        \"country\": \"DE\"\n      },\n      \"items\": [\n        {\n          \"sku\": \"HD-10\",\n          \"qty\": 1,\n          \"price\": 129.9\n        }\n      ]\n    },\n    {\n      \"id\": \"ORD-1003\",\n      \"status\": \"paid\",\n      \"customer\": {\n        \"id\": 7,\n        \"name\": \"Hedy Johnson\",\n        \"country\": \"PL\"\n      },\n      \"items\": [\n        {\n          \"sku\": \"DK-05\",\n          \"qty\": 1,\n          \"price\": 199.0\n        },\n        {\n          \"sku\": \"KB-01\",\n          \"qty\": 1,\n          \"price\": 89.0\n        }\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total (qty × price) of every paid order?\n\nAnswer with JSON only (no prose): {\"paid\": [{\"id\": <string>, \"total\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\norders[3]:\n  - id: ORD-1001\n    status: paid\n    customer:\n      id: 7\n      name: Hedy Johnson\n      country: PL\n    items[2]{sku,qty,price}:\n      KB-01,2,89\n      MS-02,1,39.5\n  - id: ORD-1002\n    status: pending\n    customer:\n      id: 9\n      name: Ada Torvalds\n      country: DE\n    items[1]{sku,qty,price}:\n      HD-10,1,129.9\n  - id: ORD-1003\n    status: paid\n    customer:\n      id: 7\n      name: Hedy Johnson\n      country: PL\n    items[2]{sku,qty,price}:\n      DK-05,1,199\n      KB-01,1,89\n</data>\n\nQuestion: What is the total (qty × price) of every paid order?\n\nAnswer in TOON only (no prose, no code fences): paid[N]{id,total}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<orders:<[\n  id:string,\n  status:string,\n  customer:<id:number, name:string, country:string>,\n  items:<[sku:string, qty:number, price:number]>\n]>>\n([\n  (\"ORD-1001\", \"paid\", (7, \"Hedy Johnson\", \"PL\"),\n   [(\"KB-01\", 2, 89.0), (\"MS-02\", 1, 39.5)]),\n  (\"ORD-1002\", \"pending\", (9, \"Ada Torvalds\", \"DE\"), [(\"HD-10\", 1, 129.9)]),\n  (\"ORD-1003\", \"paid\", (7, \"Hedy Johnson\", \"PL\"),\n   [(\"DK-05\", 1, 199.0), (\"KB-01\", 1, 89.0)])\n])\n</data>\n\nQuestion: What is the total (qty × price) of every paid order?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<paid:<[id:string,total:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<orders:<[id:string,status:string,customer:<id:number,name:string,country:string>,items:<[sku:string,qty:number,price:number]>]>>([(\"ORD-1001\",\"paid\",(7,\"Hedy Johnson\",\"PL\"),[(\"KB-01\",2,89.0),(\"MS-02\",1,39.5)]),(\"ORD-1002\",\"pending\",(9,\"Ada Torvalds\",\"DE\"),[(\"HD-10\",1,129.9)]),(\"ORD-1003\",\"paid\",(7,\"Hedy Johnson\",\"PL\"),[(\"DK-05\",1,199.0),(\"KB-01\",1,89.0)])])\n</data>\n\nQuestion: What is the total (qty × price) of every paid order?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<paid:<[id:string,total:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 329
+  },
+  "toon": {
+   "none": 194
+  },
+  "akd": {
+   "none": 177
+  },
+  "akcd": {
+   "none": 144
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"paid\": [\n    {\n      \"id\": \"ORD-1001\",\n      \"total\": 217.5\n    },\n    {\n      \"id\": \"ORD-1003\",\n      \"total\": 288.0\n    }\n  ]\n}",
+  "akcd": "<paid:<[id:string,total:number]>>([(\"ORD-1001\",217.5),(\"ORD-1003\",288.0)])",
+  "toon": "paid[2]{id,total}:\n  ORD-1001,217.5\n  ORD-1003,288"
+ },
+ "answer_tokens": {
+  "json": 55,
+  "akcd": 31,
+  "toon": 25
+ }
+}

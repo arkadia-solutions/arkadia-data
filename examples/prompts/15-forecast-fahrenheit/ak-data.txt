@@ -1,0 +1,25 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<forecast:<[day:string, hi:number, lo:number, rain:number]>>
+([
+  ("Mon", 39, 40, 90),
+  ("Tue", 49, 37, 60),
+  ("Wed", 38, 42, 90),
+  ("Thu", 60, 32, 60),
+  ("Fri", 40, 31, 90),
+  ("Sat", 58, 28, 90),
+  ("Sun", 60, 29, 60)
+])
+</data>
+
+Question: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<cold:<[day:string,hi_c:number]>>

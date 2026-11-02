@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number,disc:number]>>>(("Ada","PLN",[("KB-01",2,8900,1000),("MS-02",1,3950,0),("HD-10",1,12990,2500),("CB-03",3,990,0)]))
+</data>
+
+Question: What is the cart total in PLN after the per-item discounts?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<total:<[pln:number]>>

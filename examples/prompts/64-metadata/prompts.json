@@ -1,0 +1,136 @@
+{
+ "id": 64,
+ "slug": "metadata",
+ "title": "Comments, attributes and tags",
+ "description": "/* comments */, $attr=value, #tags and // … // blocks are notes for the reader: they are skipped when decoding, the data is unchanged.",
+ "tags": [
+  "feature",
+  "metadata"
+ ],
+ "question": "What is the total monthly revenue (mrr) per plan? Highest first.",
+ "tokens": {
+  "json": {
+   "none": 205,
+   "comments": 224,
+   "attributes": 248,
+   "both": 267
+  },
+  "toon": {
+   "none": 196,
+   "comments": 215,
+   "attributes": 239,
+   "both": 258
+  },
+  "akd": {
+   "none": 293,
+   "comments": 310,
+   "attributes": 331,
+   "both": 343
+  },
+  "akcd": {
+   "none": 276,
+   "comments": 291,
+   "attributes": 310,
+   "both": 325
+  }
+ },
+ "answer": {
+  "name": "mrr",
+  "fields": [
+   [
+    "plan",
+    "string"
+   ],
+   [
+    "mrr",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "plan": "team",
+   "mrr": 3600
+  },
+  {
+   "plan": "pro",
+   "mrr": 99
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "primary key",
+   "monthly revenue, EUR",
+   "trial ended"
+  ],
+  "attributes": [
+   "$source=\"crm\" $exported=\"2026-10-29\" #snapshot",
+   "$values=\"free|pro|team\"",
+   "#enterprise",
+   "#enterprise"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"customers\": [\n    {\n      \"id\": 1,\n      \"name\": \"Acme\",\n      \"plan\": \"team\",\n      \"mrr\": 1200\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Globex\",\n      \"plan\": \"pro\",\n      \"mrr\": 99\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Initech\",\n      \"plan\": \"free\",\n      \"mrr\": 0\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Umbrella\",\n      \"plan\": \"team\",\n      \"mrr\": 2400\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer with JSON only (no prose): {\"mrr\": [{\"plan\": <string>, \"mrr\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- primary key\n- monthly revenue, EUR\n- trial ended\n\n<data>\n{\n  \"customers\": [\n    {\n      \"id\": 1,\n      \"name\": \"Acme\",\n      \"plan\": \"team\",\n      \"mrr\": 1200\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Globex\",\n      \"plan\": \"pro\",\n      \"mrr\": 99\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Initech\",\n      \"plan\": \"free\",\n      \"mrr\": 0\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Umbrella\",\n      \"plan\": \"team\",\n      \"mrr\": 2400\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer with JSON only (no prose): {\"mrr\": [{\"plan\": <string>, \"mrr\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- $source=\"crm\" $exported=\"2026-10-29\" #snapshot\n- $values=\"free|pro|team\"\n- #enterprise\n- #enterprise\n\n<data>\n{\n  \"customers\": [\n    {\n      \"id\": 1,\n      \"name\": \"Acme\",\n      \"plan\": \"team\",\n      \"mrr\": 1200\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Globex\",\n      \"plan\": \"pro\",\n      \"mrr\": 99\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Initech\",\n      \"plan\": \"free\",\n      \"mrr\": 0\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Umbrella\",\n      \"plan\": \"team\",\n      \"mrr\": 2400\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer with JSON only (no prose): {\"mrr\": [{\"plan\": <string>, \"mrr\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- primary key\n- monthly revenue, EUR\n- trial ended\n\nAttributes of the data:\n- $source=\"crm\" $exported=\"2026-10-29\" #snapshot\n- $values=\"free|pro|team\"\n- #enterprise\n- #enterprise\n\n<data>\n{\n  \"customers\": [\n    {\n      \"id\": 1,\n      \"name\": \"Acme\",\n      \"plan\": \"team\",\n      \"mrr\": 1200\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Globex\",\n      \"plan\": \"pro\",\n      \"mrr\": 99\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Initech\",\n      \"plan\": \"free\",\n      \"mrr\": 0\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Umbrella\",\n      \"plan\": \"team\",\n      \"mrr\": 2400\n    }\n  ]\n}\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer with JSON only (no prose): {\"mrr\": [{\"plan\": <string>, \"mrr\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ncustomers[4]{id,name,plan,mrr}:\n  1,Acme,team,1200\n  2,Globex,pro,99\n  3,Initech,free,0\n  4,Umbrella,team,2400\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in TOON only (no prose, no code fences): mrr[N]{plan,mrr}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- primary key\n- monthly revenue, EUR\n- trial ended\n\n<data>\ncustomers[4]{id,name,plan,mrr}:\n  1,Acme,team,1200\n  2,Globex,pro,99\n  3,Initech,free,0\n  4,Umbrella,team,2400\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in TOON only (no prose, no code fences): mrr[N]{plan,mrr}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- $source=\"crm\" $exported=\"2026-10-29\" #snapshot\n- $values=\"free|pro|team\"\n- #enterprise\n- #enterprise\n\n<data>\ncustomers[4]{id,name,plan,mrr}:\n  1,Acme,team,1200\n  2,Globex,pro,99\n  3,Initech,free,0\n  4,Umbrella,team,2400\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in TOON only (no prose, no code fences): mrr[N]{plan,mrr}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- primary key\n- monthly revenue, EUR\n- trial ended\n\nAttributes of the data:\n- $source=\"crm\" $exported=\"2026-10-29\" #snapshot\n- $values=\"free|pro|team\"\n- #enterprise\n- #enterprise\n\n<data>\ncustomers[4]{id,name,plan,mrr}:\n  1,Acme,team,1200\n  2,Globex,pro,99\n  3,Initech,free,0\n  4,Umbrella,team,2400\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in TOON only (no prose, no code fences): mrr[N]{plan,mrr}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<customers:<[id:number, name:string, plan:string, mrr:number]>>\n([\n  (1, \"Acme\", \"team\", 1200),\n  (2, \"Globex\", \"pro\", 99),\n  (3, \"Initech\", \"free\", 0),\n  (4, \"Umbrella\", \"team\", 2400)\n])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<customers:<[\n  id:number /* primary key */,\n  name:string,\n  plan:string,\n  mrr:number /* monthly revenue, EUR */\n]>>\n([\n  (1, \"Acme\", \"team\", 1200),\n  (2, \"Globex\", \"pro\", 99),\n  (3, \"Initech\", \"free\", 0) /* trial ended */,\n  (4, \"Umbrella\", \"team\", 2400)\n])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"crm\" $exported=\"2026-10-29\" #snapshot //\n<customers:<[\n  id:number,\n  name:string,\n  plan:string $values=\"free|pro|team\",\n  mrr:number\n]>>\n([\n  (1, \"Acme\", \"team\", 1200) #enterprise,\n  (2, \"Globex\", \"pro\", 99),\n  (3, \"Initech\", \"free\", 0),\n  (4, \"Umbrella\", \"team\", 2400) #enterprise\n])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"crm\" $exported=\"2026-10-29\" #snapshot //\n<customers:<[\n  id:number /* primary key */,\n  name:string,\n  plan:string $values=\"free|pro|team\",\n  mrr:number /* monthly revenue, EUR */\n]>>\n([\n  (1, \"Acme\", \"team\", 1200) #enterprise,\n  (2, \"Globex\", \"pro\", 99),\n  (3, \"Initech\", \"free\", 0) /* trial ended */,\n  (4, \"Umbrella\", \"team\", 2400) #enterprise\n])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<customers:<[id:number,name:string,plan:string,mrr:number]>>([(1,\"Acme\",\"team\",1200),(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0),(4,\"Umbrella\",\"team\",2400)])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<customers:<[id:number /* primary key */,name:string,plan:string,mrr:number /* monthly revenue, EUR */]>>([(1,\"Acme\",\"team\",1200),(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0) /* trial ended */,(4,\"Umbrella\",\"team\",2400)])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"crm\" $exported=\"2026-10-29\" #snapshot // <customers:<[id:number,name:string,plan:string $values=\"free|pro|team\",mrr:number]>>([(1,\"Acme\",\"team\",1200) #enterprise,(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0),(4,\"Umbrella\",\"team\",2400) #enterprise])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $source=\"crm\" $exported=\"2026-10-29\" #snapshot // <customers:<[id:number /* primary key */,name:string,plan:string $values=\"free|pro|team\",mrr:number /* monthly revenue, EUR */]>>([(1,\"Acme\",\"team\",1200) #enterprise,(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0) /* trial ended */,(4,\"Umbrella\",\"team\",2400) #enterprise])\n</data>\n\nQuestion: What is the total monthly revenue (mrr) per plan? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<mrr:<[plan:string,mrr:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 147,
+   "comments": 147,
+   "attributes": 147,
+   "both": 147
+  },
+  "toon": {
+   "none": 57,
+   "comments": 57,
+   "attributes": 57,
+   "both": 57
+  },
+  "akd": {
+   "none": 78,
+   "comments": 95,
+   "attributes": 117,
+   "both": 129
+  },
+  "akcd": {
+   "none": 55,
+   "comments": 70,
+   "attributes": 90,
+   "both": 105
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"mrr\": [\n    {\n      \"plan\": \"team\",\n      \"mrr\": 3600\n    },\n    {\n      \"plan\": \"pro\",\n      \"mrr\": 99\n    }\n  ]\n}",
+  "akcd": "<mrr:<[plan:string,mrr:number]>>([(\"team\",3600),(\"pro\",99)])",
+  "toon": "mrr[2]{plan,mrr}:\n  team,3600\n  pro,99"
+ },
+ "answer_tokens": {
+  "json": 49,
+  "akcd": 23,
+  "toon": 20
+ }
+}

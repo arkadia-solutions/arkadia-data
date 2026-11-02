@@ -1,0 +1,26 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<questions:<[
+  q:string,
+  answers:[number] $enum="1=strongly disagree,2=disagree,3=neutral,4=agree,5=stronglyagree" /* Likert scale: 1 strongly disagree … 5 strongly agree */
+]>>
+([
+  ("The app is easy to use", [2, 1, 1, 3, 5, 4, 5, 1, 4, 5, 5, 3]),
+  ("Support answers quickly", [4, 5, 2, 1, 4, 4, 5, 1, 5, 3, 4, 4]),
+  ("Prices are fair", [4, 4, 5, 5, 4, 5, 2, 3, 4, 1, 4, 2]),
+  ("I would recommend it", [1, 2, 1, 3, 3, 4, 2, 3, 5, 5, 5, 1]),
+  ("Docs are clear", [4, 1, 5, 4, 2, 4, 4, 4, 4, 4, 5, 5])
+])
+</data>
+
+Question: For each statement, what percent of answers agree (agree or strongly agree)? Round to whole percent.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<agree:<[q:string,agree_pct:number]>>

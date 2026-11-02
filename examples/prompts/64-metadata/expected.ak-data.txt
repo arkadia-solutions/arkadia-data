@@ -1,0 +1,1 @@
+<mrr:<[plan:string,mrr:number]>>([("team",3600),("pro",99)])

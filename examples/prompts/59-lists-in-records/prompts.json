@@ -1,0 +1,90 @@
+{
+ "id": 59,
+ "slug": "lists-in-records",
+ "title": "Lists inside records: repositories with topics",
+ "description": "A field can hold a list of values: topics:[string] in the header, [\"llm\",\"rust\"] or [] in the record.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which repositories that are not archived have the topic rust? Most stars first.",
+ "tokens": {
+  "json": {
+   "none": 276
+  },
+  "toon": {
+   "none": 281
+  },
+  "akd": {
+   "none": 325
+  },
+  "akcd": {
+   "none": 315
+  }
+ },
+ "answer": {
+  "name": "repos",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "stars",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "arkadia-data",
+   "stars": 1840
+  },
+  {
+   "name": "universal-timer",
+   "stars": 210
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"repositories\": [\n    {\n      \"name\": \"arkadia-data\",\n      \"stars\": 1840,\n      \"topics\": [\n        \"llm\",\n        \"json\",\n        \"rust\",\n        \"python\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"ak-workspace\",\n      \"stars\": 920,\n      \"topics\": [\n        \"agents\",\n        \"electron\"\n      ],\n      \"archived\": false\n    },\n    {\n      \"name\": \"toon-python\",\n      \"stars\": 310,\n      \"topics\": [\n        \"llm\",\n        \"python\"\n      ],\n      \"archived\": true\n    },\n    {\n      \"name\": \"star-federation\",\n      \"stars\": 75,\n      \"topics\": [],\n      \"archived\": false\n    },\n    {\n      \"name\": \"universal-timer\",\n      \"stars\": 210,\n      \"topics\": [\n        \"rust\",\n        \"cli\"\n      ],\n      \"archived\": false\n    }\n  ]\n}\n</data>\n\nQuestion: Which repositories that are not archived have the topic rust? Most stars first.\n\nAnswer with JSON only (no prose): {\"repos\": [{\"name\": <string>, \"stars\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrepositories[5]:\n  - name: arkadia-data\n    stars: 1840\n    topics[4]: llm,json,rust,python\n    archived: false\n  - name: ak-workspace\n    stars: 920\n    topics[2]: agents,electron\n    archived: false\n  - name: toon-python\n    stars: 310\n    topics[2]: llm,python\n    archived: true\n  - name: star-federation\n    stars: 75\n    topics: []\n    archived: false\n  - name: universal-timer\n    stars: 210\n    topics[2]: rust,cli\n    archived: false\n</data>\n\nQuestion: Which repositories that are not archived have the topic rust? Most stars first.\n\nAnswer in TOON only (no prose, no code fences): repos[N]{name,stars}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<repositories:<[name:string, stars:number, topics:[string], archived:bool]>>\n([\n  (\"arkadia-data\", 1840, [\"llm\", \"json\", \"rust\", \"python\"], false),\n  (\"ak-workspace\", 920, [\"agents\", \"electron\"], false),\n  (\"toon-python\", 310, [\"llm\", \"python\"], true),\n  (\"star-federation\", 75, [], false),\n  (\"universal-timer\", 210, [\"rust\", \"cli\"], false)\n])\n</data>\n\nQuestion: Which repositories that are not archived have the topic rust? Most stars first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<repos:<[name:string,stars:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<repositories:<[name:string,stars:number,topics:[string],archived:bool]>>([(\"arkadia-data\",1840,[\"llm\",\"json\",\"rust\",\"python\"],false),(\"ak-workspace\",920,[\"agents\",\"electron\"],false),(\"toon-python\",310,[\"llm\",\"python\"],true),(\"star-federation\",75,[],false),(\"universal-timer\",210,[\"rust\",\"cli\"],false)])\n</data>\n\nQuestion: Which repositories that are not archived have the topic rust? Most stars first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<repos:<[name:string,stars:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 221
+  },
+  "toon": {
+   "none": 144
+  },
+  "akd": {
+   "none": 111
+  },
+  "akcd": {
+   "none": 95
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"repos\": [\n    {\n      \"name\": \"arkadia-data\",\n      \"stars\": 1840\n    },\n    {\n      \"name\": \"universal-timer\",\n      \"stars\": 210\n    }\n  ]\n}",
+  "akcd": "<repos:<[name:string,stars:number]>>([(\"arkadia-data\",1840),(\"universal-timer\",210)])",
+  "toon": "repos[2]{name,stars}:\n  arkadia-data,1840\n  universal-timer,210"
+ },
+ "answer_tokens": {
+  "json": 51,
+  "akcd": 28,
+  "toon": 23
+ }
+}

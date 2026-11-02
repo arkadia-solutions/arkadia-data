@@ -41,6 +41,8 @@ class Encoder:
         self.colorize = config.get("colorize", False)
         self.include_comments = config.get("include_comments", True)
         self.include_array_size = config.get("include_array_size", False)
+        # Lists shorter than this get no $size (with include_array_size).
+        self.array_size_min = config.get("array_size_min", 1)
         self.include_schema = config.get("include_schema", True)
         self.include_type = config.get("include_type", True)
         self.include_meta = config.get("include_meta", True)
@@ -72,7 +74,7 @@ class Encoder:
         if should_render_schema:
             s_txt = self.encode_schema(node.schema, base_indent).strip()
 
-            if not s_txt.startswith("<") and not s_txt.startswith("@"):
+            if s_txt and not s_txt.startswith("<") and not s_txt.startswith("@"):
                 s_txt = f"<{s_txt}>"
 
             if s_txt:
@@ -83,6 +85,22 @@ class Encoder:
                     schema_prefix = s_txt + "\n" + (" " * base_indent)
 
         # 3. Encode Data
+        headerless = (
+            node.is_record
+            and node.schema is not None
+            and not node.schema.fields
+            and bool(node.fields)
+        )
+        if (
+            node.is_record
+            and node.schema is not None
+            and not self.prompt_output
+            and (headerless or not self._fits(node, node.schema))
+        ):
+            # The record's own schema cannot describe it (e.g. an empty key):
+            # write it self-describing, without a header.
+            return self._named(node)
+
         if node.is_list:
             data = self._list(node, base_indent, include_schema=False)
 
@@ -236,10 +254,18 @@ class Encoder:
         Checks if the node's schema matches the parent's expected schema.
         Used to determine if we need to show an inline <type> override.
         """
-        if not expected_schema or expected_schema.is_any:
+        if self._open(expected_schema):
             return True
 
         if node_schema is None:
+            return True
+
+        # null decodes as null under any primitive type: no tag needed.
+        if (
+            node_schema.is_primitive
+            and node_schema.type_name == "null"
+            and expected_schema.is_primitive
+        ):
             return True
 
         # Check general kind
@@ -313,7 +339,12 @@ class Encoder:
                 if isinstance(v, bool) and v is True:
                     items.append(self._c(f"${escaped_key}", Colors.ATTR))
                 else:
-                    val_str = self._primitive(v)
+                    if isinstance(v, (dict, list)):
+                        from .api import dumps  # structured value: compact AK-DATA
+
+                        val_str = dumps(v)
+                    else:
+                        val_str = self._primitive(v)
                     items.append(self._c(f"${escaped_key}=", Colors.ATTR) + val_str)
 
             current_tags = obj.tags or []
@@ -399,16 +430,147 @@ class Encoder:
         Regex: [a-zA-Z_][a-zA-Z0-9_]*
         """
         if not name:
-            return ""
+            return '""'  # empty key: only valid in named records {"": value}
 
         # Standard identifier pattern
         pattern = r"^[a-zA-Z_][a-zA-Z0-9_]*$"
 
-        if re.match(pattern, name):
+        if re.fullmatch(pattern, name):
             return name
 
         # If it doesn't match, wrap it in backticks
         return f"`{name}`"
+
+    # -------------------------------------------------------------
+    # LOSSLESS ENCODING: positional only when the decoder can map it
+    # -------------------------------------------------------------
+    def _fits(self, node: Node, expected: Optional[Schema]) -> bool:
+        """
+        True when `node` can be written positionally under `expected`, i.e. the
+        decoder will reconstruct exactly the same keys. Records must have the
+        same field names (order is taken from `expected`), recursively.
+        Primitive type differences are handled with inline <type> tags.
+        """
+        if self._open(expected):
+            return True
+        if node.schema is None:
+            return True
+        if node.is_record:
+            if not expected.is_record:
+                return False
+            names = [f.name for f in expected.fields]
+            # Same names as the header, or as its first k fields (the decoder
+            # leaves the missing trailing fields out). Field values that differ
+            # are tagged one by one in _record.
+            k = len(node.fields)
+            return (
+                1 <= k <= len(names)
+                and len(set(names)) == len(names)
+                and set(names[:k]) == set(node.fields.keys())
+            )
+        if node.is_list:
+            # Elements that differ are tagged one by one in _list_values.
+            return expected.is_list
+        return True
+
+    @staticmethod
+    def _open(expected: Optional[Schema]) -> bool:
+        """True when `expected` puts no structural constraint on a value."""
+        if expected is None or expected.kind == SchemaKind.ANY:
+            return True
+        if expected.is_record:
+            return not expected.fields
+        return expected.is_primitive and expected.type_name == "any"
+
+    def _record_key(self, key: str) -> str:
+        """Key of a named record; a key with a backtick is written quoted."""
+        if "`" not in key:
+            return self._escape_ident(key)
+        body = (
+            key.replace("\\", "\\\\")
+            .replace('"', '\\"')
+            .replace("\n", "\\n")
+            .replace("\r", "\\r")
+            .replace("\t", "\\t")
+        )
+        return f'"{body}"'
+
+    def _named(self, node: Node) -> str:
+        """Self-describing form ({key:value}, [..]) that needs no header."""
+        sep = "," if self.compact else ", "
+        if node.is_record:
+            items = []
+            for key, child in node.fields.items():
+                k = self._c(self._record_key(key), Colors.KEY)
+                items.append(
+                    f"{k}:{'' if self.compact else ' '}{self._value(child, None)}"
+                )
+            return "{" + self._meta_wrapped(node) + sep.join(items) + "}"
+        if node.is_list:
+            return self._value(node, None)
+        if node.is_primitive:
+            return self._primitive_node(node)
+        return self._c("null", Colors.NULL)
+
+    def _value(self, node: Node, expected: Optional[Schema]) -> str:
+        """
+        Encodes a nested value that the decoder will read with schema `expected`.
+        Positional forms are used only when `expected` describes the value;
+        otherwise the value describes itself (named record, tagged list).
+        """
+        is_open = self._open(expected)
+        any_tag = self._c("<any>", Colors.SCHEMA) + " "
+
+        if node.is_record:
+            if not is_open and self._fits(node, expected):
+                return self._record(node, 0, expected)
+            named = self._named(node)
+            return named if is_open else any_tag + named
+
+        if node.is_list:
+            if not is_open and expected.is_list:
+                return self._list_values(node, expected.element)
+            element = node.schema.element if node.schema else None
+            if (
+                element is not None
+                and not self._open(element)
+                and all(self._fits(el, element) for el in node.elements)
+                and (element.is_record or not is_open)
+                and not (element.is_record and len(node.elements) < 2)
+            ):
+                # The list carries its own header, e.g. <[id:number,name:string]>.
+                tag = self.encode_schema(node.schema, 0, False).strip()
+                if not tag.startswith("<"):
+                    tag = f"<{tag}>"
+                return f"{self._c(tag, Colors.SCHEMA)} " + self._list_values(
+                    node, element
+                )
+            body = self._list_values(node, None)
+            return body if is_open else any_tag + body
+
+        val = self.encode(node, 0, include_schema=False).strip()
+        return self._apply_type_tag(val, node.schema, expected)
+
+    def _size(self, node: Node) -> None:
+        """$size=N on a list (include_array_size, lists of array_size_min+ items)."""
+        if self.include_array_size and len(node.elements) >= self.array_size_min:
+            node.attr["size"] = len(node.elements)
+
+    def _list_values(self, node: Node, element: Optional[Schema]) -> str:
+        """Elements of a nested list, without a header (it is in the parent's)."""
+        self._size(node)
+        sep = "," if self.compact else ", "
+        items = []
+        for el in node.elements:
+            if el.is_record or el.is_list:
+                items.append(self._value(el, element))
+            else:
+                val = self.encode(el, 0, include_schema=False).strip()
+                if not self._schemas_are_compatible(el.schema, element):
+                    label = self._get_type_label(el.schema)
+                    val = f"{self._c(f'<{label}>', Colors.SCHEMA)} {val}"
+                items.append(val)
+        return "[" + self._meta_wrapped(node) + sep.join(items) + "]"
 
     # -------------------------------------------------------------
     # STRUCTURAL LIST: [ Node, Node ]
@@ -431,9 +593,7 @@ class Encoder:
         child_indent = indent + self.indent
         is_prompt = self.prompt_output
 
-        if self.include_array_size:
-            size = len(node.elements)
-            node.attr["size"] = size
+        self._size(node)
 
         inner_meta = self._meta_wrapped(node)
 
@@ -478,6 +638,9 @@ class Encoder:
         if self.compact:
             items = []
             for el in node.elements:
+                if el.is_record or el.is_list:
+                    items.append(self._value(el, expected_child))
+                    continue
                 val = self.encode(el, 0, include_schema=False).strip()
                 if not self._schemas_are_compatible(el.schema, expected_child):
                     label = self._get_type_label(el.schema)
@@ -494,28 +657,47 @@ class Encoder:
 
         element_lines = []
         for el in node.elements:
+            if el.is_record or el.is_list:
+                element_lines.append(
+                    " " * child_indent + self._value(el, expected_child)
+                )
+                continue
             val = self.encode(el, 0, include_schema=False).strip()
             if not self._schemas_are_compatible(el.schema, expected_child):
                 label = self._get_type_label(el.schema)
                 val = f"{self._c(f'<{label}>', Colors.SCHEMA)} {val}"
             element_lines.append(" " * child_indent + val)
 
-        res += ",\n".join(element_lines) + "\n"
+        if element_lines:
+            res += ",\n".join(element_lines) + "\n"
         res += ind + "]"
         return res
 
     # -------------------------------------------------------------
     # RECORD: {key:value} -> (val1, val2) OR {key:value}
     # -------------------------------------------------------------
-    def _record(self, node: Node, indent: int) -> str:
+    def _record(
+        self, node: Node, indent: int, expected: Optional[Schema] = None
+    ) -> str:
         inner_meta = self._meta_wrapped(node)
         parts = []
         is_prompt = self.prompt_output
         base_ind = " " * indent
         child_ind = " " * (indent + self.indent)
+        # Positional order is the order of the schema the decoder will apply.
+        layout = (
+            expected if expected is not None and expected.is_record else node.schema
+        )
 
-        if node.schema and node.schema.fields:
-            for field_def in node.schema.fields:
+        if layout and layout.fields:
+            fields = layout.fields
+            if not is_prompt:
+                # A record that has only the first k fields of the header is
+                # written with k values (missing trailing fields stay absent).
+                present = [i for i, f in enumerate(fields) if f.name in node.fields]
+                if present:
+                    fields = fields[: present[-1] + 1]
+            for field_def in fields:
                 if is_prompt:
                     # --- PROMPT MODE: Type Label or Structural Expansion ---
                     field_name = self._escape_ident(field_def.name)
@@ -543,11 +725,17 @@ class Encoder:
                     # --- STANDARD MODE (Data values) ---
                     field_node = node.fields.get(field_def.name)
                     if field_node:
-                        val = self.encode(field_node, 0, False).strip()
-                        val = self._apply_type_tag(val, field_node.schema, field_def)
-                        parts.append(val)
+                        parts.append(self._value(field_node, field_def))
                     else:
                         parts.append(self._c("null", Colors.NULL))
+        elif (
+            not is_prompt
+            and not node.fields
+            and not (layout and (layout.comments or layout.attr or layout.tags))
+        ):
+            # An empty JSON object. (A schema carrying meta keeps the legacy
+            # "<// meta // any>(null)" form.)
+            return "{" + inner_meta + "}"
         else:
             parts.append(self._c("null", Colors.NULL))
 

@@ -1,0 +1,143 @@
+{
+  "id": 42,
+  "slug": "parking-free",
+  "title": "Parking: free spots per level",
+  "description": "Occupancy as 0/1.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "How many spots are free on each level?",
+  "answer": {
+    "name": "free",
+    "fields": [
+      [
+        "level",
+        "string"
+      ],
+      [
+        "free",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "level": "P1",
+      "free": 2
+    },
+    {
+      "level": "P2",
+      "free": 2
+    },
+    {
+      "level": "P3",
+      "free": 1
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`spots.occ`: 0 free, 1 occupied"
+    ],
+    "attributes": [
+      "`spots.occ`: $enum=\"0=free,1=occupied\""
+    ]
+  },
+  "akd_meta": "<spots:<[spot:string,level:string,occ:number $enum=\"0=free,1=occupied\" /* 0 free, 1 occupied */]>>([(\"P1-01\",\"P1\",1),(\"P1-02\",\"P1\",1),(\"P1-03\",\"P1\",1),(\"P1-04\",\"P1\",0),(\"P1-05\",\"P1\",0),(\"P1-06\",\"P1\",1),(\"P2-01\",\"P2\",1),(\"P2-02\",\"P2\",1),(\"P2-03\",\"P2\",0),(\"P2-04\",\"P2\",0),(\"P2-05\",\"P2\",1),(\"P2-06\",\"P2\",1),(\"P3-01\",\"P3\",1),(\"P3-02\",\"P3\",1),(\"P3-03\",\"P3\",0),(\"P3-04\",\"P3\",1),(\"P3-05\",\"P3\",1),(\"P3-06\",\"P3\",1)])",
+  "data": {
+    "spots": [
+      {
+        "spot": "P1-01",
+        "level": "P1",
+        "occ": 1
+      },
+      {
+        "spot": "P1-02",
+        "level": "P1",
+        "occ": 1
+      },
+      {
+        "spot": "P1-03",
+        "level": "P1",
+        "occ": 1
+      },
+      {
+        "spot": "P1-04",
+        "level": "P1",
+        "occ": 0
+      },
+      {
+        "spot": "P1-05",
+        "level": "P1",
+        "occ": 0
+      },
+      {
+        "spot": "P1-06",
+        "level": "P1",
+        "occ": 1
+      },
+      {
+        "spot": "P2-01",
+        "level": "P2",
+        "occ": 1
+      },
+      {
+        "spot": "P2-02",
+        "level": "P2",
+        "occ": 1
+      },
+      {
+        "spot": "P2-03",
+        "level": "P2",
+        "occ": 0
+      },
+      {
+        "spot": "P2-04",
+        "level": "P2",
+        "occ": 0
+      },
+      {
+        "spot": "P2-05",
+        "level": "P2",
+        "occ": 1
+      },
+      {
+        "spot": "P2-06",
+        "level": "P2",
+        "occ": 1
+      },
+      {
+        "spot": "P3-01",
+        "level": "P3",
+        "occ": 1
+      },
+      {
+        "spot": "P3-02",
+        "level": "P3",
+        "occ": 1
+      },
+      {
+        "spot": "P3-03",
+        "level": "P3",
+        "occ": 0
+      },
+      {
+        "spot": "P3-04",
+        "level": "P3",
+        "occ": 1
+      },
+      {
+        "spot": "P3-05",
+        "level": "P3",
+        "occ": 1
+      },
+      {
+        "spot": "P3-06",
+        "level": "P3",
+        "occ": 1
+      }
+    ]
+  }
+}

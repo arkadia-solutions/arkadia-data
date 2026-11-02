@@ -1,0 +1,24 @@
+{
+  "low": [
+    {
+      "device": "TAG-08",
+      "volts": 2.945
+    },
+    {
+      "device": "TAG-05",
+      "volts": 3.008
+    },
+    {
+      "device": "TAG-13",
+      "volts": 3.045
+    },
+    {
+      "device": "TAG-01",
+      "volts": 3.232
+    },
+    {
+      "device": "TAG-12",
+      "volts": 3.264
+    }
+  ]
+}

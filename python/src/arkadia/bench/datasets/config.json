@@ -1,0 +1,58 @@
+{
+  "service": "arkadia-workspace",
+  "version": "2.4.1",
+  "features": {
+    "ai": true,
+    "office": true,
+    "sync": {
+      "enabled": true,
+      "interval_s": 30
+    }
+  },
+  "agents": [
+    {
+      "name": "planner",
+      "model": "large",
+      "tools": [
+        "search",
+        "files",
+        "calendar"
+      ],
+      "max_steps": 12
+    },
+    {
+      "name": "writer",
+      "model": "medium",
+      "tools": [
+        "files"
+      ],
+      "temperature": 0.4
+    },
+    {
+      "name": "reviewer",
+      "model": "large",
+      "tools": [],
+      "policy": {
+        "require_sources": true
+      }
+    }
+  ],
+  "limits": {
+    "tokens_per_task": 120000,
+    "parallel_tasks": 4,
+    "retries": [
+      1,
+      5,
+      30
+    ]
+  },
+  "storage": {
+    "path": "~/.arkadia",
+    "ignore": [
+      ".git",
+      "node_modules",
+      "*.tmp"
+    ],
+    "encryption": null
+  }
+}

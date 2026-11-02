@@ -1,0 +1,86 @@
+{
+  "id": 10,
+  "slug": "email-extraction",
+  "title": "Extraction: emails to structured orders (output format)",
+  "description": "Free text in, structured data out. Shows the answer format saving output tokens.",
+  "tags": [],
+  "needs_meta": false,
+  "question": "Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.",
+  "answer": {
+    "name": "orders",
+    "fields": [
+      [
+        "customer",
+        "string"
+      ],
+      [
+        "product",
+        "string"
+      ],
+      [
+        "quantity",
+        "number"
+      ],
+      [
+        "delivery_date",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "customer": "Marta Nowak",
+      "product": "Keyboard",
+      "quantity": 3,
+      "delivery_date": "2026-11-04"
+    },
+    {
+      "customer": "Jan Kowalski",
+      "product": "Monitor 27\"",
+      "quantity": 1,
+      "delivery_date": "2026-11-06"
+    },
+    {
+      "customer": "Acme Sp. z o.o.",
+      "product": "USB-C cable",
+      "quantity": 25,
+      "delivery_date": "2026-11-03"
+    },
+    {
+      "customer": "Ola Wiśniewska",
+      "product": "Headset",
+      "quantity": 2,
+      "delivery_date": "2026-11-10"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "data": {
+    "emails": [
+      {
+        "from": "customer1@example.com",
+        "subject": "Order request #1",
+        "body": "Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak"
+      },
+      {
+        "from": "customer2@example.com",
+        "subject": "Order request #2",
+        "body": "Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\"), delivery on 2026-11-06 if possible."
+      },
+      {
+        "from": "customer3@example.com",
+        "subject": "Order request #3",
+        "body": "Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address."
+      },
+      {
+        "from": "customer4@example.com",
+        "subject": "Order request #4",
+        "body": "Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!"
+      }
+    ]
+  }
+}
