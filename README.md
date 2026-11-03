@@ -29,7 +29,9 @@
                           MW
 ```
 
-> **0.2.0 source preview.** Stable npm/PyPI packages are currently 0.1.11; the Rust crate is not yet published. Check the source revision and package manifests.
+> **Version 0.3.0** — [what's new](#whats-new-in-030) · [changelog](CHANGELOG.md) · [install `ak-data`](#install-ak-data).
+> One version for all three packages (`./VERSION`). Until 0.3.0 is on PyPI
+> and npm (they still serve 0.1.11), install the libraries from this repository.
 
 > **Lossless, schema-first data for LLMs and agents.** AK-DATA writes JSON
 > data with a header that names each field once and records that follow it
@@ -43,8 +45,10 @@
 | install | `pip install ./python` | build `typescript/` then install its local path | `cargo add arkadia-data --path /path/to/checkout/rust` |
 | import | `import arkadia.data as akd` | `import { encode, decode } from '@arkadia/data'` | `use arkadia_data as akd;` |
 
-The command line tool **`ak-data`** is the Rust program (`make install`, or
-`cargo install arkadia-data`); the Python and npm packages are libraries.
+The command line tool **`ak-data`** is the Rust program — a ready-made,
+signed binary from [GitHub Releases](https://github.com/arkadia-solutions/arkadia-data/releases),
+`brew install arkadia-solutions/tap/ak-data` or `cargo install arkadia-data`;
+the Python and npm packages are libraries.
 
 Open source (MIT) · Python and npm without runtime dependencies · Rust: `serde_json` only.
 
@@ -57,6 +61,31 @@ JSON (97 tokens)                          AK-DATA compact (55 tokens)
       in production", "url": ..., ...},     (2,"Token budgets","https://example.org/b",0.94)])
     ...
 ```
+
+## What's new in 0.3.0
+
+The full list is in [CHANGELOG.md](CHANGELOG.md#030---2026-11-03).
+
+- **`ak-data` reads without a command** — a file, text or stdin, shown as readable,
+  coloured AK-DATA: `ak-data data.json`, `echo '{"a":1}' | ak-data -c`,
+  `ak-data data.akd -t json`. `-i` how to read the input, `-t` the output type, `-o` the file.
+- **Changes and their history**: `ak-data diff` (a patch; `--info`: paths and the
+  changes in place like `git diff`), `merge`, `apply` (also `-R` to undo) and
+  `history` (like `git log`), with title, author and description. The history is
+  the attribute `$changes` after the data — decoding still gives exactly the data.
+  The same `diff` / `merge` / `apply` / `reverse` / `commit` / `history` in the
+  Python, npm and Rust libraries, checked against shared fixtures.
+- **Structured attribute values** (`$changes=[…]`, `$range=[1,5]`) — metadata in
+  all three decoders.
+- **Records with optional fields share one header**; list sizes (`//$size=N//`,
+  `--sizes[=n]`) so models need not count.
+- **Benchmark**: every prompt, reply and answer of a run published, paired tests
+  (`make analyze`), generated datasets, a metadata benchmark; 66 bundled examples
+  in `ak-data example`, the website and the benchmark.
+- **One version** in `./VERSION` (`make update`), and **releases** for macOS
+  (universal, signed and notarized), Linux and Windows from a tag.
+- Removed: `ak-data enc` / `dec` / `fmt` (now `ak-data` itself), `hint`, `stats`,
+  the `akd` short name and the npm CLI — `ak-data` is the one command line tool.
 
 ## Library
 
@@ -104,10 +133,27 @@ round-trips. The one difference is JavaScript itself: it writes `199.0` as
 
 ## `ak-data` command (Rust)
 
+### Install ak-data
+
 ```bash
-make install                  # build + install: Homebrew (local tap arkadia/local) or ~/.local/bin
-cargo install --path rust --locked  # from the preview checkout
+brew install arkadia-solutions/tap/ak-data    # macOS / Linux: the ready-made binary
+cargo install arkadia-data --locked           # any system with Rust (crates.io)
+cargo install --path rust --locked            # from a checkout of this repository
 ```
+
+Or download `ak-data-0.3.0-<platform>` from
+[GitHub Releases](https://github.com/arkadia-solutions/arkadia-data/releases)
+(macOS universal — signed with Developer ID and notarized, also as `.pkg` —,
+Linux x86_64 / arm64, Windows x86_64; `SHA256SUMS` next to them) and put
+`ak-data` on your `PATH`:
+
+```bash
+tar -xzf ak-data-0.3.0-macos-universal.tar.gz && sudo mv ak-data /usr/local/bin/
+ak-data --version
+```
+
+From a checkout, `make install` builds it and installs it through a local
+Homebrew tap (`arkadia/local`) or, with `METHOD=prefix`, into `~/.local/bin`.
 
 | command | |
 |---|---|
@@ -383,9 +429,45 @@ file. The website copies it (and the examples and skills) itself.
 License: MIT © Arkadia Solutions
 
 
-## Preview 0.2.0 and network boundary
+## Releases
 
-0.2.0 is a source preview until the release checklist passes and registry installs are verified. Registry packages may still be 0.1.x. For this preview, clone https://github.com/arkadia-solutions/arkadia-data and install from the relevant subdirectory: `pip install ./python`, `npm install ./typescript` after building it, or `cargo install --path rust --locked`. Do not assume `cargo install arkadia-data` is available before the crate is published.
+One version for npm, Python and Rust is kept in `./VERSION`.
+
+```bash
+make update                       # 0.3.0 → 0.4.0 in VERSION, Cargo.toml, pyproject.toml, package.json
+# write the "## [0.4.0] - date" section of CHANGELOG.md, commit
+git tag v0.4.0 && git push origin v0.4.0
+```
+
+The tag starts `.github/workflows/release.yml`: it checks that the tag
+matches `VERSION`, builds `ak-data` on macOS (universal binary, signed with
+the Developer ID certificate and notarized; with an installer certificate
+also a stapled `.pkg`), Linux (x86_64, arm64, static) and Windows, creates
+the GitHub Release with the archives, `SHA256SUMS` and the CHANGELOG section
+as notes, writes `Formula/ak-data.rb` to `arkadia-solutions/homebrew-tap`
+and publishes the crate on crates.io. Each publishing step runs only when its
+secret is set — the names are in [`.env.example`](.env.example):
+`APPLE_SIGNING_IDENTITY`, `APPLE_CERTIFICATE_P12` (base64 of the `.p12`),
+`APPLE_CERTIFICATE_PASSWORD`, `APPLE_INSTALLER_IDENTITY` (optional), the
+notarization credentials (`APPLE_API_KEY_P8` / `APPLE_API_KEY_ID` /
+`APPLE_API_ISSUER`, or `APPLE_ID` / `APPLE_APP_PASSWORD` / `APPLE_TEAM_ID`),
+`HOMEBREW_TAP_TOKEN` and `CARGO_REGISTRY_TOKEN`
+(`base64 -i cert.p12 | gh secret set APPLE_CERTIFICATE_P12`).
+
+The same build on your own computer, from the same script:
+
+```bash
+make release                      # dist/release/ak-data-0.3.0-<platform>.tar.gz (+ .sha256)
+make release UNSIGNED=1           # macOS without signing
+make homebrew-formula             # the tap formula for the archives in dist/release
+```
+
+On a Mac it signs with the Developer ID certificate from your keychain and
+notarizes with the credentials from `.env` (or a profile saved with
+`xcrun notarytool store-credentials`, as `APPLE_NOTARY_PROFILE`). `.env` is
+never committed.
+
+## Network boundary
 
 `make benchmark` is offline by default, even if API keys exist in the environment or `.env`. Explicitly use `make benchmark NETWORK=1 MODEL=...` (CLI: `--allow-network`) to send the selected datasets to a provider. Local/remote Ollama also requires this opt-in. The provider host, model and data source are printed before requests. Reports may contain data, prompts, answers and local paths; they are private by default. `--offline` and `--allow-network` are mutually exclusive. Ordinary encode/decode operations do not call models.
 

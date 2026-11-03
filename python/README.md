@@ -88,8 +88,8 @@ TypeScript / JavaScript: `npm install @arkadia/data`.
 MIT © Arkadia Solutions · https://arkadia.solutions/akdata
 
 
-## Preview 0.2.0 and network boundary
+## Version 0.3.0 and network boundary
 
-0.2.0 is a source preview until the release checklist passes and registry installs are verified. Registry packages may still be 0.1.x. For this preview, clone https://github.com/arkadia-solutions/arkadia-data and install from the relevant subdirectory: `pip install ./python`, `npm install ./typescript` after building it, or `cargo install --path rust --locked`. Do not assume `cargo install arkadia-data` is available before the crate is published.
+This is version 0.3.0 ([changelog](../CHANGELOG.md)). Until it is on PyPI (which still serves 0.1.11), install it from a checkout of https://github.com/arkadia-solutions/arkadia-data: `pip install ./python`. The `ak-data` command line tool is the Rust program: a ready-made binary from GitHub Releases, `brew install arkadia-solutions/tap/ak-data` or `cargo install arkadia-data`.
 
 `make benchmark` is offline by default, even if API keys exist in the environment or `.env`. Explicitly use `make benchmark NETWORK=1 MODEL=...` (CLI: `--allow-network`) to send the selected datasets to a provider. Local/remote Ollama also requires this opt-in. The provider host, model and data source are printed before requests. Reports may contain data, prompts, answers and local paths; they are private by default. `--offline` and `--allow-network` are mutually exclusive. Ordinary encode/decode operations do not call models.

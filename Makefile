@@ -2,7 +2,7 @@
 # Libraries: Python arkadia-data · npm @arkadia/data · Rust arkadia-data. CLI: ak-data (Rust).
 
 .DEFAULT_GOAL := help
-.PHONY: help prepare prepare-py prepare-ts prepare-rs update version version-sync build build-py build-ts build-rs \
+.PHONY: help prepare prepare-py prepare-ts prepare-rs update version version-sync release homebrew-formula build build-py build-ts build-rs \
         install uninstall test test-py test-ts test-rs e2e benchmark benchmark-runs analyze skill examples clean
 UV        ?= uv
 NPM       ?= npm
@@ -49,6 +49,15 @@ version:
 	@bash scripts/version.sh check
 version-sync:
 	@bash scripts/version.sh sync > /dev/null
+
+# Release archive of ak-data for this computer → dist/release/ (macOS: universal,
+# signed and notarized with the Developer ID from the keychain or .env;
+# UNSIGNED=1 skips that). On a tag, .github/workflows/release.yml does it for
+# every platform and publishes. HOMEBREW: the tap formula from dist/release.
+release:
+	@bash scripts/release.sh $(if $(filter 1 yes true,$(UNSIGNED)),--no-sign) $(if $(TARGET),--target $(TARGET))
+homebrew-formula:
+	@bash scripts/homebrew-formula.sh dist/release
 
 # Build the packages: python/dist, typescript/dist, rust/target/release/ak-data
 # (each first takes the version from ./VERSION).

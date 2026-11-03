@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-03
+
 ### Fixed
 * Reports of models with a dot in their name were written under a cut name
   (`gpt-5.4-mini` → `ai-bundled-gpt-5.json`).
@@ -50,6 +52,15 @@ All notable changes to this project will be documented in this file.
   short name for `ak-data`.
 
 ### Added
+* **Releases from a tag**: `git push origin v0.3.0` runs
+  `.github/workflows/release.yml` — `ak-data` for macOS (universal binary,
+  signed with the Developer ID certificate and notarized; with an installer
+  certificate also a stapled `.pkg`), Linux (x86_64, arm64, static) and
+  Windows, a GitHub Release with the archives, `SHA256SUMS` and these notes,
+  the Homebrew formula in `arkadia-solutions/homebrew-tap`
+  (`brew install arkadia-solutions/tap/ak-data`) and the crate on crates.io.
+  The same build locally: `make release` (`scripts/release.sh`; secrets from
+  the keychain or `.env`, names in `.env.example`), `make homebrew-formula`.
 * **One version for all three packages**: `./VERSION`. `make update` raises
   the minor version (0.2.0 → 0.3.0) and writes it into `Cargo.toml` /
   `Cargo.lock`, `pyproject.toml` / `__version__` / `uv.lock` and

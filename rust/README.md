@@ -124,4 +124,4 @@ compact and readable, TOON, decoding). `make_fixtures.py` refreshes
 MIT © Arkadia Solutions · https://arkadia.solutions/akdata
 
 
-0.2.0 is a source preview; install with `cargo install --path rust --locked` from the monorepo root. Registry installation is not available until the owner publishes and verifies the release.
+Version 0.3.0 ([changelog](../CHANGELOG.md)). Install `ak-data` with `cargo install arkadia-data --locked`, `brew install arkadia-solutions/tap/ak-data`, a binary from GitHub Releases, or `cargo install --path rust --locked` from the monorepo root. Releases are built by `.github/workflows/release.yml` from a tag (`scripts/release.sh`, `make release` locally).

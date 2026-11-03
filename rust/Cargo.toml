@@ -7,6 +7,7 @@ description = "AK-DATA (Arkadia Data Format): lossless, token-efficient JSON for
 license = "MIT"
 authors = ["Arkadia Solutions"]
 homepage = "https://arkadia.solutions/akdata"
+repository = "https://github.com/arkadia-solutions/arkadia-data"
 documentation = "https://docs.rs/arkadia-data"
 readme = "README.md"
 keywords = ["llm", "json", "serialization", "tokens", "ak-data"]
