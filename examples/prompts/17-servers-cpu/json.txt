@@ -1,0 +1,96 @@
+The data below is in JSON.
+
+<data>
+{
+  "hosts": [
+    {
+      "host": "web-01",
+      "dc": "waw",
+      "cpu": 778,
+      "mem": 590
+    },
+    {
+      "host": "web-02",
+      "dc": "fra",
+      "cpu": 795,
+      "mem": 592
+    },
+    {
+      "host": "web-03",
+      "dc": "waw",
+      "cpu": 847,
+      "mem": 342
+    },
+    {
+      "host": "web-04",
+      "dc": "waw",
+      "cpu": 612,
+      "mem": 573
+    },
+    {
+      "host": "web-05",
+      "dc": "fra",
+      "cpu": 445,
+      "mem": 646
+    },
+    {
+      "host": "web-06",
+      "dc": "ams",
+      "cpu": 951,
+      "mem": 762
+    },
+    {
+      "host": "web-07",
+      "dc": "fra",
+      "cpu": 360,
+      "mem": 461
+    },
+    {
+      "host": "web-08",
+      "dc": "waw",
+      "cpu": 972,
+      "mem": 220
+    },
+    {
+      "host": "web-09",
+      "dc": "fra",
+      "cpu": 560,
+      "mem": 322
+    },
+    {
+      "host": "web-10",
+      "dc": "ams",
+      "cpu": 633,
+      "mem": 897
+    },
+    {
+      "host": "web-11",
+      "dc": "waw",
+      "cpu": 433,
+      "mem": 976
+    },
+    {
+      "host": "web-12",
+      "dc": "ams",
+      "cpu": 101,
+      "mem": 848
+    },
+    {
+      "host": "web-13",
+      "dc": "fra",
+      "cpu": 295,
+      "mem": 548
+    },
+    {
+      "host": "web-14",
+      "dc": "fra",
+      "cpu": 89,
+      "mem": 894
+    }
+  ]
+}
+</data>
+
+Question: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.
+
+Answer with JSON only (no prose): {"hot": [{"host": <string>, "cpu_pct": <number>}, ...]}

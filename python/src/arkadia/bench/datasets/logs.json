@@ -1,0 +1,1204 @@
+{
+  "logs": [
+    {
+      "ts": "2026-10-22T08:00:00Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 2105,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:07:13Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 60,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:14:26Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 36,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:21:39Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 13,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:28:52Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 69,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:35:05Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 1869,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:42:18Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 90,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:49:31Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 65,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:56:44Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 55,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:03:57Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 1340,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T08:10:10Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 40,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:17:23Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 44,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:24:36Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 78,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:31:49Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 14,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:38:02Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 60,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:45:15Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 45,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:52:28Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 12,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:59:41Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 35,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:06:54Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 59,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:13:07Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 2163,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:20:20Z",
+      "level": "WARN",
+      "service": "worker",
+      "message": "slow response",
+      "latency_ms": 2131,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:27:33Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 39,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:34:46Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 7,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:41:59Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 6,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:48:12Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 30,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:55:25Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 80,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:02:38Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 82,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:09:51Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 24,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:16:04Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 77,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T08:23:17Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 76,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:30:30Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 15,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:37:43Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 952,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:44:56Z",
+      "level": "ERROR",
+      "service": "api",
+      "message": "upstream timeout",
+      "latency_ms": 2771,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:51:09Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 88,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:58:22Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 42,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:05:35Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 74,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:12:48Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 3939,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:19:01Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 1034,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:26:14Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 89,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:33:27Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 13,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:40:40Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 21,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:47:53Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 90,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:54:06Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 72,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:01:19Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 2729,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:08:32Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 46,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:15:45Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 36,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:22:58Z",
+      "level": "ERROR",
+      "service": "billing",
+      "message": "upstream timeout",
+      "latency_ms": 573,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:29:11Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 90,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:36:24Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 3831,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:43:37Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 2867,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:50:50Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 88,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:57:03Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 2061,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:04:16Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 50,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:11:29Z",
+      "level": "ERROR",
+      "service": "billing",
+      "message": "upstream timeout",
+      "latency_ms": 1018,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T09:18:42Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 15,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:25:55Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 13,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:32:08Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 10,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:39:21Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 11,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:46:34Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 5,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T09:53:47Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 45,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:00:00Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 44,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:07:13Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 55,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:14:26Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 5,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:21:39Z",
+      "level": "ERROR",
+      "service": "api",
+      "message": "upstream timeout",
+      "latency_ms": 3994,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T10:28:52Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 84,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:35:05Z",
+      "level": "ERROR",
+      "service": "api",
+      "message": "upstream timeout",
+      "latency_ms": 1681,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T10:42:18Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 65,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:49:31Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 50,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:56:44Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 37,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:03:57Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 14,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:10:10Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 68,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:17:23Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 2994,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:24:36Z",
+      "level": "WARN",
+      "service": "auth",
+      "message": "slow response",
+      "latency_ms": 1605,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:31:49Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 77,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:38:02Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 58,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:45:15Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 3649,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:52:28Z",
+      "level": "ERROR",
+      "service": "auth",
+      "message": "upstream timeout",
+      "latency_ms": 848,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T10:59:41Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 41,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:06:54Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 2165,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:13:07Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 15,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:20:20Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 46,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:27:33Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 3656,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T10:34:46Z",
+      "level": "WARN",
+      "service": "search",
+      "message": "slow response",
+      "latency_ms": 3266,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:41:59Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 11,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:48:12Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 41,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:55:25Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 53,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:02:38Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 40,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:09:51Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 34,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:16:04Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 16,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T10:23:17Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 7,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:30:30Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 10,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:37:43Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 54,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:44:56Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 65,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:51:09Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 2645,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T11:58:22Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 11,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:05:35Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 73,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:12:48Z",
+      "level": "WARN",
+      "service": "search",
+      "message": "slow response",
+      "latency_ms": 3296,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:19:01Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 18,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:26:14Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 34,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:33:27Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 64,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:40:40Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 57,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:47:53Z",
+      "level": "ERROR",
+      "service": "search",
+      "message": "upstream timeout",
+      "latency_ms": 3861,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T11:54:06Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 28,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:01:19Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 3128,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:08:32Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 78,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:15:45Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 66,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:22:58Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 38,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:29:11Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 77,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:36:24Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 6,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:43:37Z",
+      "level": "ERROR",
+      "service": "worker",
+      "message": "upstream timeout",
+      "latency_ms": 3479,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T11:50:50Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 81,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:57:03Z",
+      "level": "WARN",
+      "service": "search",
+      "message": "slow response",
+      "latency_ms": 1433,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:04:16Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 2613,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:11:29Z",
+      "level": "ERROR",
+      "service": "auth",
+      "message": "upstream timeout",
+      "latency_ms": 1030,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T11:18:42Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 66,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:25:55Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 67,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:32:08Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 6,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:39:21Z",
+      "level": "ERROR",
+      "service": "api",
+      "message": "upstream timeout",
+      "latency_ms": 1656,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T11:46:34Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 4,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T11:53:47Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 89,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:00:00Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 5,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:07:13Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 87,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:14:26Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 1937,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:21:39Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 960,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:28:52Z",
+      "level": "WARN",
+      "service": "search",
+      "message": "slow response",
+      "latency_ms": 564,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:35:05Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 10,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:42:18Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 76,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:49:31Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 38,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:56:44Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 41,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:03:57Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 42,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:10:10Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 6,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:17:23Z",
+      "level": "INFO",
+      "service": "api",
+      "message": "request completed",
+      "latency_ms": 84,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:24:36Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 3335,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:31:49Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 34,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:38:02Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 1105,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:45:15Z",
+      "level": "WARN",
+      "service": "auth",
+      "message": "slow response",
+      "latency_ms": 1568,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:52:28Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 3684,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:59:41Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 5,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:06:54Z",
+      "level": "INFO",
+      "service": "auth",
+      "message": "request completed",
+      "latency_ms": 76,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:13:07Z",
+      "level": "WARN",
+      "service": "auth",
+      "message": "slow response",
+      "latency_ms": 1944,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:20:20Z",
+      "level": "WARN",
+      "service": "billing",
+      "message": "slow response",
+      "latency_ms": 624,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:27:33Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 2233,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:34:46Z",
+      "level": "WARN",
+      "service": "api",
+      "message": "slow response",
+      "latency_ms": 2119,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:41:59Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 55,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:48:12Z",
+      "level": "INFO",
+      "service": "billing",
+      "message": "request completed",
+      "latency_ms": 17,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:55:25Z",
+      "level": "ERROR",
+      "service": "billing",
+      "message": "upstream timeout",
+      "latency_ms": 2783,
+      "status": 504
+    },
+    {
+      "ts": "2026-10-22T12:02:38Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 44,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:09:51Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 45,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:16:04Z",
+      "level": "INFO",
+      "service": "search",
+      "message": "request completed",
+      "latency_ms": 30,
+      "status": 200
+    },
+    {
+      "ts": "2026-10-22T12:23:17Z",
+      "level": "INFO",
+      "service": "worker",
+      "message": "request completed",
+      "latency_ms": 71,
+      "status": 200
+    }
+  ]
+}

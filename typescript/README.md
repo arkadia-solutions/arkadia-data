@@ -1,282 +1,89 @@
-# @arkadia/data
+# @arkadia/data — AK-DATA (Arkadia Data Format) for TypeScript / JavaScript
 
-```text
-                                   ; i  :J
-                               U, .j..fraaM.  nl
-                            b h.obWMkkWWMMWMCdkvz,k
-                         ! .mQWM:o hiMoMW v.uaXMdohbi
-                        hI,MMmaIao.Wo .IMkoh FCMwqoXa
-                      ,.c.aWdM. d,aToW  .    Mb!. MopfQ.L
-                       jhj.xoM :k    aCu F: w MpmqMvMMI,I
-                      bzMhz:W    .Mw . o lYh ai M iMa pM.j
-                     hzqWWM;    M;o.WMWWMkMX f.a aa bModpo.
-                     ;tMbbv   xp oJMMWWWWMMMM iv  dLMXakM:T
-                       mdh        MMWWWWWWWbQLCzurjktvMor
-                      ,QFw ;M,b .MWWWWWWWMWMWd  xz   M,kd X
-                      qjMIo IMTW.WWWWWMWWWM.o.I   rpULaMdi.
-                       .mMM  uoWWWMWWWWWWp qM,,M l M;mMbrI
-                        f nm  MMW MWWjMuMj  I  o   LbMac
-                              WWdMWWWW Mv a.b..aauMhMwQf
-                              MoWWW,WWtjonJMWtoMdoaoMI
-                              MMMM Mi    xd:Mm tMwo Cr,
-                             xMMc .otqokWMMMao:oio.
-                             MW    .   C..MkTIo
-                            WW
-                           QWM
-                           WW
-                          uMW
-                          WW
-                          MW
-```
-
-> **The High-Density, Token-Efficient Data Protocol for Large Language Models.**
-
-**Arkadia Data Format (AKD)** is a schema-first protocol designed specifically to optimize communication with LLMs. By stripping away redundant syntax (like repeated JSON keys) and enforcing strict typing, AKD offers **up to 30% token savings**, faster parsing, and a metadata layer invisible to your application logic but fully accessible to AI models.
-
----
-
-## ✨ Key Features
-
-- **📉 Token Efficiency:** Reduces context window usage by replacing verbose JSON objects with dense Positional Records (Tuples).
-- **🛡️ Type Safety:** Enforces types (`int`, `float`, `bool`, `string`) explicitly in the schema before data reaches the LLM.
-- **🧠 Metadata Injection:** Use `#tags` and `$attributes` to pass context (e.g., source confidence, deprecation warnings) to the LLM without polluting your data structure.
-- **⚡ High Performance:** Zero-dependency, lightweight parser built for high-throughput Node.js/Edge environments.
-
----
-
-## 📦 Installation
+**Lossless, schema-first data for LLMs and agents.** AK-DATA writes JSON
+data with a header that names each field once and records that follow it by
+position — about **55% fewer tokens than JSON** and **14% fewer than TOON**
+on typical agent payloads, decoding back to the exact original. Same output
+as the Python package `arkadia-data`; zero dependencies; Node, Deno, Bun,
+edge and browsers.
 
 ```bash
 npm install @arkadia/data
-# or
-yarn add @arkadia/data
-# or
-pnpm add @arkadia/data
-
 ```
 
----
+This package is a library. The `ak-data` command line tool is the Rust
+crate `arkadia-data` (`brew install arkadia-solutions/tap/ak-data` or
+`cargo install arkadia-data`) and writes exactly the same text.
 
-## 🚀 Quick Start
+## Library
 
-### Basic Usage
-
-```typescript
+```ts
 import { encode, decode } from '@arkadia/data';
 
-// 1. Encode: JavaScript Object -> AKD String
-const data = { id: 1, name: 'Alice', active: true };
+const data = {
+  users: [
+    { id: 1, name: 'Ada' },
+    { id: 2, name: 'Alan' },
+  ],
+};
 
-// Default encoding (compact)
-const encoded = encode(data);
-console.log(encoded);
-// Output: <id:number,name:string,active:bool>(1,"Alice",true)
+const text = encode(data, { compact: true }); // <users:<[id:number,name:string]>>([(1,"Ada"),(2,"Alan")])
+const { node, errors } = decode(text);
+node.dict(); // deep-equals data
 
-// 2. Decode: AKD String -> JavaScript Object
-const input = '<score:number>(98.5)';
-const result = decode(input);
-
-if (result.errors.length === 0) {
-  console.log(result.node.value); // 98.5
-} else {
-  console.error('Parse errors:', result.errors);
-}
+encode(data); // readable form
+encode(data, { promptOutput: true }); // structural template for model output
 ```
 
-## 🛠 API Reference
+Shortcuts and prompt helpers:
 
-### `encode(data: unknown, config?: EncodeConfig): string`
+````ts
+import {
+  dumps,
+  loads,
+  loadsAny,
+  toPrompt,
+  buildPrompt,
+  estimateTokens,
+  FORMAT_DEFINITION,
+} from '@arkadia/data';
 
-Serializes a JavaScript value into an AKD string.
-
-- `data`: The input string, number, boolean, array, or object.
-- `config`:
-- `compact` (boolean): Removes whitespace. Default: `true`.
-- `colorize` (boolean): Adds ANSI colors for terminal output. Default: `false`.
-- `escapeNewLines` (boolean): Escapes `\n` in strings. Default: `false`.
-
-### `decode(text: string, config?: DecodeConfig): DecodeResult`
-
-Parses an AKD string into a structured node tree.
-
-- `text`: The raw AKD string.
-- `config`:
-- `debug` (boolean): Enables internal logging.
-
-- **Returns** `DecodeResult`:
-- `node`: The Root Node (contains `.value`, `.dict()`, `.json()`).
-- `errors`: Array of parsing errors.
-
----
-
-## ⚡ Benchmarks
-
-Why switch? Because every token counts. **AKCD** (Arkadia Compressed Data) consistently outperforms standard formats.
-
-```text
-BENCHMARK SUMMARY:
-
-   JSON  █████████████████████░░░░     6921 tok     0.15 ms
-   AKCD  ████████████████░░░░░░░░░     5416 tok     4.40 ms
-   AKD   ███████████████████░░░░░░     6488 tok     4.29 ms
-   TOON  █████████████████████████     8198 tok     2.36 ms
-
-   FORMAT     TOKENS       VS JSON
-   ---------------------------------
-   AKCD       5416         -21.7%
-   AKD        6488         -6.3%
-   JSON       6921         +0.0%
-   TOON       8198         +18.5%
-
-CONCLUSION: Switching to AKCD saves 1505 tokens (21.7%) compared to JSON.
-
-```
-
----
-
-## 📖 Syntax Specification
-
-AKD separates structure (Schema) from content (Data).
-
-### 1. Primitives
-
-Primitive values are automatically typed. Strings are quoted, numbers and booleans are bare.
-
-| Type        | Input     | Encoded Output    |
-| ----------- | --------- | ----------------- |
-| **Integer** | `123`     | `<number>123`     |
-| **String**  | `"hello"` | `<string>"hello"` |
-| **Boolean** | `true`    | `<bool>true`      |
-| **Null**    | `null`    | `<null>null`      |
-
-### 2. Schema Definition (`@Type`)
-
-Define the structure once to avoid repeating keys.
-
-```akd
-/* Define a User type */
-@User <
-  id: number,
-  name: string,
-  role: string
->
-
-```
-
-### 3. Data Structures
-
-#### Positional Records (Tuples)
-
-The most efficient way to represent objects. Values must match the schema order.
-
-```akd
-/* Schema: <x:number, y:number> */
-(10, 20)
-
-```
-
-#### Named Records (Objects)
-
-Flexible key-value pairs, similar to JSON, used when schema is loose or data is sparse.
-
-```akd
-{
-  id: 1,
-  name: "Admin"
-}
-
-```
-
-#### Lists
-
-Dense arrays. Can be homogenous (list of strings) or mixed.
-
-```akd
-[ "active", "pending", "closed" ]
-
-```
-
-### 4. Metadata System
-
-AKD allows you to inject metadata that is **visible to the LLM** but **ignored by the parser** when decoding back to your application.
-
-#### Attributes (`$key=value`) & Tags (`#flag`)
-
-```akd
-@Product <
-  $version="2.0"
-  sku: string,
-
-  /* Tagging a field as deprecated */
-  #deprecated
-  legacy_id: int
->
-
-```
-
-### 5. Escaped Identifiers (Backticks)
-
-AK-Data allows the use of spaces, symbols, and special characters in names by wrapping them in backticks (```). This applies to schema names, field keys, and metadata attributes.
-
-```akd
-@`System User+` <
-  // $`last-sync`="2024-05-10" //
-  `Full Name`: string,
-  `is-active?`: bool,
-  $`Special ID*` id: number
->
-{
-  `Full Name`: "John Doe",
-  `is-active?`: true,
-  id: 101
-}
-```
-
-### 6. Prompt Output Mode (`--prompt-output`)
-
-This mode is specifically designed for Large Language Models (LLMs). It transforms AK-Data into a **Structural Blueprint**, providing a perfect template for the AI to follow. Instead of raw data values, it renders a recursive, human-readable schema structure.
-
-**Key Features:**
-
-- **Full Structural Expansion:** Anonymous nested types are fully expanded into braces `{}`.
-- **Semantic Hinting:** Field-level comments from the schema are injected directly into the template.
-- **Representative Sampling:** Lists show a single blueprint element followed by a continuation hint (`...`), saving tokens while maintaining clarity.
-
-**Example Usage:**
-
-```bash
-# Generate a structural template for an LLM
-echo '<[ /* id */ id: number, name: string, val: <id: string, num: number> ]>' | akd dec -f akd --prompt-output -
-
-```
-
-**Output:**
-
-```akd
-[
-  {
-    id: number /* id */,
-    name: string,
-    val: {
-      id: string,
-      num: number
-    }
+dumps(data); // compact; dumps(data, { indent: 2 }) readable
+loads(text); // throws AKDataError on invalid input
+loadsAny(modelReply); // JSON or AK-DATA, with or without ``` fences
+toPrompt(data); // one-line hint + <data>…</data>
+buildPrompt(data, 'Which user is newest?', 'ak-data-compact', {
+  answer: {
+    name: 'result',
+    fields: [
+      ['id', 'number'],
+      ['name', 'string'],
+    ],
   },
-  ... /* repeat pattern for additional items */
-]
+}); // full copy-paste prompt with the format definition
+estimateTokens(text); // o200k-style estimate, no download
+````
+
+### MCP tool results
+
+```ts
+return {
+  structuredContent: result, // JSON for programs
+  content: [{ type: 'text', text: encode(result, { compact: true }) }], // what the model reads
+};
 ```
 
-**Why use it?**
+## Changes and history
 
-1. **Reduce Hallucination:** The LLM sees exactly what types and formats are expected for every field.
-2. **Context Efficiency:** By showing only one example in a list, you define the logic without wasting the context window on repetitive data.
-3. **Implicit Instruction:** The transition from positional `()` to named `{}` in prompt mode helps the AI differentiate between the "Instructions" and the final "Compact Output".
+```ts
+import { diff } from '@arkadia/data';
 
-## 📄 License
+const changes = diff.diff(before, after); // [{ op: 'change', path: 'users[id=2].name', old: 'Alan', new: 'Alan T.' }]
+diff.apply(before, changes); // deep-equals after; throws ConflictError when a change does not fit
+const text = diff.commit(oldText, after, { title: 'Rename Alan', author: 'Ada' }); // data + history
+diff.history(text); // [{ id, date, author, title, description, changes }]
+```
 
-This project is licensed under the [MIT License]().
+The history is metadata: `loads(text)` still returns exactly the data.
 
-<div align="center">
-<sub>Built by <strong>Arkadia Solutions</strong>. Engineering the kernel of distributed intelligence.</sub>
-</div>
-````
+MIT © Arkadia Solutions · https://arkadia.solutions/akdata · [changelog](https://github.com/arkadia-solutions/arkadia-data/blob/main/CHANGELOG.md)

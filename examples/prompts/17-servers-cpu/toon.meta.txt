@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Average load over the last 5 minutes.
+- `hosts.cpu`: CPU usage in per mille (850 = 85 %)
+- `hosts.mem`: memory usage in per mille
+
+Attributes of the data:
+- document: $cluster="prod-eu" $sampled="5m"
+- `hosts.cpu`: $unit="permille"
+- `hosts.mem`: $unit="permille"
+
+<data>
+hosts[14]{host,dc,cpu,mem}:
+  web-01,waw,778,590
+  web-02,fra,795,592
+  web-03,waw,847,342
+  web-04,waw,612,573
+  web-05,fra,445,646
+  web-06,ams,951,762
+  web-07,fra,360,461
+  web-08,waw,972,220
+  web-09,fra,560,322
+  web-10,ams,633,897
+  web-11,waw,433,976
+  web-12,ams,101,848
+  web-13,fra,295,548
+  web-14,fra,89,894
+</data>
+
+Question: Which hosts use more than 80 % CPU? Give the CPU in percent, highest first.
+
+Answer in TOON only (no prose, no code fences): hot[N]{host,cpu_pct}: followed by one row per item.

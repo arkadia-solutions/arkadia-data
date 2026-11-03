@@ -1,0 +1,1 @@
+<pair:<[from:string,to:string,km:number]>>([("Kraków","Gdańsk",591)])

@@ -1,0 +1,102 @@
+The data below is in JSON.
+
+<data>
+{
+  "requests": [
+    {
+      "req": "LV-50",
+      "who": "Ada",
+      "days": 7,
+      "st": "P"
+    },
+    {
+      "req": "LV-51",
+      "who": "Dennis",
+      "days": 1,
+      "st": "R"
+    },
+    {
+      "req": "LV-52",
+      "who": "Alan",
+      "days": 6,
+      "st": "A"
+    },
+    {
+      "req": "LV-53",
+      "who": "Linus",
+      "days": 5,
+      "st": "A"
+    },
+    {
+      "req": "LV-54",
+      "who": "Dennis",
+      "days": 6,
+      "st": "R"
+    },
+    {
+      "req": "LV-55",
+      "who": "Linus",
+      "days": 5,
+      "st": "A"
+    },
+    {
+      "req": "LV-56",
+      "who": "Alan",
+      "days": 1,
+      "st": "R"
+    },
+    {
+      "req": "LV-57",
+      "who": "Linus",
+      "days": 10,
+      "st": "R"
+    },
+    {
+      "req": "LV-58",
+      "who": "Margaret",
+      "days": 6,
+      "st": "A"
+    },
+    {
+      "req": "LV-59",
+      "who": "Dennis",
+      "days": 9,
+      "st": "A"
+    },
+    {
+      "req": "LV-60",
+      "who": "Dennis",
+      "days": 9,
+      "st": "A"
+    },
+    {
+      "req": "LV-61",
+      "who": "Grace",
+      "days": 5,
+      "st": "P"
+    },
+    {
+      "req": "LV-62",
+      "who": "Dennis",
+      "days": 7,
+      "st": "P"
+    },
+    {
+      "req": "LV-63",
+      "who": "Linus",
+      "days": 5,
+      "st": "A"
+    },
+    {
+      "req": "LV-64",
+      "who": "Ada",
+      "days": 9,
+      "st": "R"
+    }
+  ]
+}
+</data>
+
+Question: How many days of approved leave does each person have? Most first.
+
+Answer with JSON only (no prose): {"approved": [{"who": <string>, "days": <number>}, ...]}

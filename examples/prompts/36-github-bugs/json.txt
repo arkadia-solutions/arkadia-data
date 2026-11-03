@@ -1,0 +1,131 @@
+The data below is in JSON.
+
+<data>
+{
+  "issues": [
+    {
+      "n": 100,
+      "title": "Header parse error",
+      "state": "open",
+      "labels": [
+        "bug",
+        "good first issue"
+      ]
+    },
+    {
+      "n": 101,
+      "title": "Wrong token count",
+      "state": "open",
+      "labels": []
+    },
+    {
+      "n": 102,
+      "title": "Dark mode",
+      "state": "open",
+      "labels": [
+        "perf",
+        "good first issue"
+      ]
+    },
+    {
+      "n": 103,
+      "title": "Wrong token count",
+      "state": "closed",
+      "labels": [
+        "good first issue"
+      ]
+    },
+    {
+      "n": 104,
+      "title": "Wrong token count",
+      "state": "open",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "n": 105,
+      "title": "Add Go port",
+      "state": "open",
+      "labels": []
+    },
+    {
+      "n": 106,
+      "title": "Dark mode",
+      "state": "closed",
+      "labels": []
+    },
+    {
+      "n": 107,
+      "title": "Dark mode",
+      "state": "open",
+      "labels": [
+        "good first issue",
+        "perf"
+      ]
+    },
+    {
+      "n": 108,
+      "title": "Slow decode",
+      "state": "closed",
+      "labels": [
+        "enhancement"
+      ]
+    },
+    {
+      "n": 109,
+      "title": "Dark mode",
+      "state": "open",
+      "labels": []
+    },
+    {
+      "n": 110,
+      "title": "Wrong token count",
+      "state": "open",
+      "labels": []
+    },
+    {
+      "n": 111,
+      "title": "Crash on start",
+      "state": "open",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "n": 112,
+      "title": "Typo in docs",
+      "state": "open",
+      "labels": [
+        "good first issue"
+      ]
+    },
+    {
+      "n": 113,
+      "title": "Dark mode",
+      "state": "open",
+      "labels": [
+        "docs"
+      ]
+    },
+    {
+      "n": 114,
+      "title": "Add Go port",
+      "state": "open",
+      "labels": []
+    },
+    {
+      "n": 115,
+      "title": "Dark mode",
+      "state": "open",
+      "labels": [
+        "good first issue"
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which issues are open and labelled bug?
+
+Answer with JSON only (no prose): {"bugs": [{"n": <number>, "title": <string>}, ...]}

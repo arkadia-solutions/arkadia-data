@@ -1,0 +1,111 @@
+The data below is in JSON.
+
+Notes about the data:
+- `matches.score`: goals as [home, away]
+
+<data>
+{
+  "matches": [
+    {
+      "home": "Lech",
+      "away": "Jagiellonia",
+      "score": [
+        3,
+        2
+      ]
+    },
+    {
+      "home": "Górnik",
+      "away": "Raków",
+      "score": [
+        3,
+        2
+      ]
+    },
+    {
+      "home": "Górnik",
+      "away": "Lech",
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "home": "Raków",
+      "away": "Jagiellonia",
+      "score": [
+        3,
+        0
+      ]
+    },
+    {
+      "home": "Pogoń",
+      "away": "Jagiellonia",
+      "score": [
+        4,
+        3
+      ]
+    },
+    {
+      "home": "Legia",
+      "away": "Lech",
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "home": "Lech",
+      "away": "Pogoń",
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "home": "Legia",
+      "away": "Pogoń",
+      "score": [
+        3,
+        3
+      ]
+    },
+    {
+      "home": "Legia",
+      "away": "Lech",
+      "score": [
+        0,
+        2
+      ]
+    },
+    {
+      "home": "Górnik",
+      "away": "Lech",
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "home": "Lech",
+      "away": "Pogoń",
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "home": "Pogoń",
+      "away": "Górnik",
+      "score": [
+        0,
+        3
+      ]
+    }
+  ]
+}
+</data>
+
+Question: Which team scored the most goals in these matches, and how many?
+
+Answer with JSON only (no prose): {"top": [{"team": <string>, "goals": <number>}, ...]}

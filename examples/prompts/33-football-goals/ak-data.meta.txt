@@ -1,0 +1,34 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<matches:<[
+  home:string,
+  away:string,
+  score:[number] /* goals as [home, away] */
+]>>
+([
+  ("Lech", "Jagiellonia", [3, 2]),
+  ("Górnik", "Raków", [3, 2]),
+  ("Górnik", "Lech", [2, 1]),
+  ("Raków", "Jagiellonia", [3, 0]),
+  ("Pogoń", "Jagiellonia", [4, 3]),
+  ("Legia", "Lech", [2, 0]),
+  ("Lech", "Pogoń", [0, 1]),
+  ("Legia", "Pogoń", [3, 3]),
+  ("Legia", "Lech", [0, 2]),
+  ("Górnik", "Lech", [2, 0]),
+  ("Lech", "Pogoń", [0, 0]),
+  ("Pogoń", "Górnik", [0, 3])
+])
+</data>
+
+Question: Which team scored the most goals in these matches, and how many?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<top:<[team:string,goals:number]>>

@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<bookings:<[booking:string,room:string,nights:number,rate:number]>>([("B700","single",3,390),("B701","single",6,390),("B702","double",2,650),("B703","suite",1,880),("B704","single",4,240),("B705","single",3,650),("B706","double",6,880),("B707","double",4,240),("B708","suite",5,240),("B709","double",1,880),("B710","double",6,390),("B711","suite",1,880),("B712","double",6,390),("B713","double",3,240)])
+</data>
+
+Question: What is the revenue (nights × rate) per room type? Highest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<revenue:<[room:string,revenue:number]>>

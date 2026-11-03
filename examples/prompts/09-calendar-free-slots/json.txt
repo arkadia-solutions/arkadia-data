@@ -1,0 +1,205 @@
+The data below is in JSON.
+
+<data>
+{
+  "workday": {
+    "start": "09:00",
+    "end": "17:00"
+  },
+  "events": [
+    {
+      "person": "Ada",
+      "day": "Mon",
+      "start": "09:00",
+      "end": "10:00",
+      "title": "Focus time"
+    },
+    {
+      "person": "Ada",
+      "day": "Mon",
+      "start": "11:00",
+      "end": "12:00",
+      "title": "Focus time"
+    },
+    {
+      "person": "Ada",
+      "day": "Mon",
+      "start": "16:30",
+      "end": "17:00",
+      "title": "Lunch"
+    },
+    {
+      "person": "Ada",
+      "day": "Tue",
+      "start": "11:30",
+      "end": "12:30",
+      "title": "Focus time"
+    },
+    {
+      "person": "Ada",
+      "day": "Tue",
+      "start": "12:00",
+      "end": "13:00",
+      "title": "Lunch"
+    },
+    {
+      "person": "Ada",
+      "day": "Tue",
+      "start": "13:00",
+      "end": "14:00",
+      "title": "Customer call"
+    },
+    {
+      "person": "Ada",
+      "day": "Wed",
+      "start": "09:00",
+      "end": "09:30",
+      "title": "Review"
+    },
+    {
+      "person": "Ada",
+      "day": "Wed",
+      "start": "11:30",
+      "end": "12:30",
+      "title": "Review"
+    },
+    {
+      "person": "Ada",
+      "day": "Wed",
+      "start": "14:30",
+      "end": "15:00",
+      "title": "Planning"
+    },
+    {
+      "person": "Alan",
+      "day": "Mon",
+      "start": "09:00",
+      "end": "10:00",
+      "title": "1:1"
+    },
+    {
+      "person": "Alan",
+      "day": "Mon",
+      "start": "13:00",
+      "end": "14:00",
+      "title": "Standup"
+    },
+    {
+      "person": "Alan",
+      "day": "Mon",
+      "start": "16:00",
+      "end": "16:30",
+      "title": "Lunch"
+    },
+    {
+      "person": "Alan",
+      "day": "Tue",
+      "start": "09:00",
+      "end": "09:30",
+      "title": "1:1"
+    },
+    {
+      "person": "Alan",
+      "day": "Tue",
+      "start": "12:00",
+      "end": "12:30",
+      "title": "Standup"
+    },
+    {
+      "person": "Alan",
+      "day": "Tue",
+      "start": "13:30",
+      "end": "14:00",
+      "title": "Focus time"
+    },
+    {
+      "person": "Alan",
+      "day": "Wed",
+      "start": "11:00",
+      "end": "11:30",
+      "title": "Planning"
+    },
+    {
+      "person": "Alan",
+      "day": "Wed",
+      "start": "12:30",
+      "end": "13:30",
+      "title": "Customer call"
+    },
+    {
+      "person": "Alan",
+      "day": "Wed",
+      "start": "14:30",
+      "end": "16:00",
+      "title": "Standup"
+    },
+    {
+      "person": "Grace",
+      "day": "Mon",
+      "start": "13:00",
+      "end": "14:00",
+      "title": "Planning"
+    },
+    {
+      "person": "Grace",
+      "day": "Mon",
+      "start": "14:00",
+      "end": "15:00",
+      "title": "Review"
+    },
+    {
+      "person": "Grace",
+      "day": "Mon",
+      "start": "15:00",
+      "end": "16:30",
+      "title": "Planning"
+    },
+    {
+      "person": "Grace",
+      "day": "Tue",
+      "start": "11:00",
+      "end": "11:30",
+      "title": "Lunch"
+    },
+    {
+      "person": "Grace",
+      "day": "Tue",
+      "start": "14:00",
+      "end": "15:30",
+      "title": "Focus time"
+    },
+    {
+      "person": "Grace",
+      "day": "Tue",
+      "start": "16:30",
+      "end": "17:00",
+      "title": "Planning"
+    },
+    {
+      "person": "Grace",
+      "day": "Wed",
+      "start": "09:00",
+      "end": "09:30",
+      "title": "Focus time"
+    },
+    {
+      "person": "Grace",
+      "day": "Wed",
+      "start": "12:00",
+      "end": "12:30",
+      "title": "Standup"
+    },
+    {
+      "person": "Grace",
+      "day": "Wed",
+      "start": "13:30",
+      "end": "14:30",
+      "title": "Planning"
+    }
+  ]
+}
+</data>
+
+Question: Working hours are 09:00–17:00. List every 1-hour slot starting on the full hour on Tue when Ada, Alan and Grace are all free (no event overlaps the slot).
+
+Answer with JSON only (no prose): {"result": [{"day": <string>, "start": <string>, "end": <string>}, ...]}

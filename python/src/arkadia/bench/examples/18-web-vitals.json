@@ -1,0 +1,120 @@
+{
+  "id": 18,
+  "slug": "web-vitals",
+  "title": "Web vitals: slow pages",
+  "description": "Largest Contentful Paint in milliseconds, budget 2.5 s.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which pages have an LCP worse than 2500 ms? Slowest first.",
+  "answer": {
+    "name": "slow",
+    "fields": [
+      [
+        "page",
+        "string"
+      ],
+      [
+        "lcp",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "page": "/pricing",
+      "lcp": 4082
+    },
+    {
+      "page": "/akdata",
+      "lcp": 4060
+    },
+    {
+      "page": "/",
+      "lcp": 3511
+    },
+    {
+      "page": "/blog",
+      "lcp": 2582
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Core Web Vitals, 75th percentile, last 28 days.",
+      "`pages.lcp`: Largest Contentful Paint in ms; good below 2500",
+      "`pages.inp`: Interaction to Next Paint in ms"
+    ],
+    "attributes": [
+      "document: $site=\"arkadia.solutions\" $percentile=75",
+      "`pages.lcp`: $unit=\"ms\" $budget=2500",
+      "`pages.inp`: $unit=\"ms\""
+    ]
+  },
+  "akd_meta": "// $site=\"arkadia.solutions\" $percentile=75 // /* Core Web Vitals, 75th percentile, last 28 days. */ <pages:<[page:string,lcp:number $unit=\"ms\" $budget=2500 /* Largest Contentful Paint in ms; good below 2500 */,cls:number,inp:number $unit=\"ms\" /* Interaction to Next Paint in ms */]>>([(\"/\",3511,0.108,372),(\"/pricing\",4082,0.191,104),(\"/docs\",1207,0.171,52),(\"/blog\",2582,0.185,65),(\"/login\",2235,0.15,343),(\"/signup\",947,0.121,166),(\"/akdata\",4060,0.114,334),(\"/contact\",1691,0.225,394),(\"/about\",2347,0.0,318),(\"/careers\",1604,0.195,424)])",
+  "data": {
+    "pages": [
+      {
+        "page": "/",
+        "lcp": 3511,
+        "cls": 0.108,
+        "inp": 372
+      },
+      {
+        "page": "/pricing",
+        "lcp": 4082,
+        "cls": 0.191,
+        "inp": 104
+      },
+      {
+        "page": "/docs",
+        "lcp": 1207,
+        "cls": 0.171,
+        "inp": 52
+      },
+      {
+        "page": "/blog",
+        "lcp": 2582,
+        "cls": 0.185,
+        "inp": 65
+      },
+      {
+        "page": "/login",
+        "lcp": 2235,
+        "cls": 0.15,
+        "inp": 343
+      },
+      {
+        "page": "/signup",
+        "lcp": 947,
+        "cls": 0.121,
+        "inp": 166
+      },
+      {
+        "page": "/akdata",
+        "lcp": 4060,
+        "cls": 0.114,
+        "inp": 334
+      },
+      {
+        "page": "/contact",
+        "lcp": 1691,
+        "cls": 0.225,
+        "inp": 394
+      },
+      {
+        "page": "/about",
+        "lcp": 2347,
+        "cls": 0.0,
+        "inp": 318
+      },
+      {
+        "page": "/careers",
+        "lcp": 1604,
+        "cls": 0.195,
+        "inp": 424
+      }
+    ]
+  }
+}

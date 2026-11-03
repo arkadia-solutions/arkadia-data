@@ -1,0 +1,43 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `recipes.minutes`: total time in minutes
+
+Attributes of the data:
+- `recipes.minutes`: $unit="min"
+- recipes name="Granola": #breakfast
+- recipes name="Omelette": #breakfast
+
+<data>
+recipes[7]:
+  - name: Pierogi
+    minutes: 90
+    ingredients[4]: flour,potatoes,cheese,onion
+  - name: Pesto pasta
+    minutes: 20
+    ingredients[4]: pasta,basil,pine nuts,parmesan
+  - name: Tomato soup
+    minutes: 35
+    ingredients[3]: tomatoes,onion,cream
+  - name: Granola
+    minutes: 40
+    ingredients[4]: oats,honey,almonds,walnuts
+  - name: Omelette
+    minutes: 10
+    ingredients[3]: eggs,butter,chives
+  - name: Satay
+    minutes: 45
+    ingredients[4]: chicken,peanuts,soy sauce,lime
+  - name: Ratatouille
+    minutes: 60
+    ingredients[4]: eggplant,zucchini,tomatoes,pepper
+</data>
+
+Question: Which recipes contain no nuts of any kind and take at most 45 minutes?
+
+Answer in TOON only (no prose, no code fences): recipes[N]{name,minutes}: followed by one row per item.

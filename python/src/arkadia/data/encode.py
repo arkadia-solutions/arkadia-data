@@ -15,6 +15,7 @@ DEFAULT_CONFIG: Config = {
     "colorize": False,
     "include_comments": True,
     "include_array_size": False,
+    "array_size_min": 1,
     "include_schema": True,
     "include_type": True,
     "prompt_output": False,
@@ -53,7 +54,13 @@ def encode(data: object, config: Config = DEFAULT_CONFIG) -> str:
             Include comments in the generated output.
 
         include_array_size (bool): False
-            Include array size information in list representations.
+            Write the number of elements of every list as metadata:
+            [//$size=3// 1,2,3]. Decoders ignore it; models do not have to
+            count the items.
+
+        array_size_min (int): 1
+            With include_array_size: only lists with at least this many
+            elements get $size.
 
         include_type (bool): True
             Include type information in the output.

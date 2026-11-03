@@ -1,0 +1,108 @@
+{
+  "id": 29,
+  "slug": "library-overdue",
+  "title": "Library: overdue loans",
+  "description": "Dates as text.",
+  "tags": [],
+  "needs_meta": false,
+  "question": "Which loans are overdue on 2026-10-15? Oldest due date first.",
+  "answer": {
+    "name": "overdue",
+    "fields": [
+      [
+        "book",
+        "string"
+      ],
+      [
+        "reader",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "book": "The Witcher",
+      "reader": "Grace"
+    },
+    {
+      "book": "Ferdydurke",
+      "reader": "Alan"
+    },
+    {
+      "book": "Drive Your Plow",
+      "reader": "Alan"
+    },
+    {
+      "book": "Quo Vadis",
+      "reader": "Alan"
+    },
+    {
+      "book": "Pan Tadeusz",
+      "reader": "Dennis"
+    },
+    {
+      "book": "The Peasants",
+      "reader": "Alan"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "data": {
+    "loans": [
+      {
+        "book": "Solaris",
+        "reader": "Ada",
+        "due": "2026-11-15"
+      },
+      {
+        "book": "Quo Vadis",
+        "reader": "Alan",
+        "due": "2026-10-05"
+      },
+      {
+        "book": "The Doll",
+        "reader": "Alan",
+        "due": "2026-11-23"
+      },
+      {
+        "book": "Ferdydurke",
+        "reader": "Alan",
+        "due": "2026-09-11"
+      },
+      {
+        "book": "Pan Tadeusz",
+        "reader": "Dennis",
+        "due": "2026-10-08"
+      },
+      {
+        "book": "The Witcher",
+        "reader": "Grace",
+        "due": "2026-09-10"
+      },
+      {
+        "book": "Flights",
+        "reader": "Ada",
+        "due": "2026-10-27"
+      },
+      {
+        "book": "Drive Your Plow",
+        "reader": "Alan",
+        "due": "2026-10-04"
+      },
+      {
+        "book": "The Peasants",
+        "reader": "Alan",
+        "due": "2026-10-11"
+      },
+      {
+        "book": "Faraon",
+        "reader": "Margaret",
+        "due": "2026-10-25"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- primary key
+- monthly revenue, EUR
+- trial ended
+
+Attributes of the data:
+- $source="crm" $exported="2026-10-29" #snapshot
+- $values="free|pro|team"
+- #enterprise
+- #enterprise
+
+<data>
+customers[4]{id,name,plan,mrr}:
+  1,Acme,team,1200
+  2,Globex,pro,99
+  3,Initech,free,0
+  4,Umbrella,team,2400
+</data>
+
+Question: What is the total monthly revenue (mrr) per plan? Highest first.
+
+Answer in TOON only (no prose, no code fences): mrr[N]{plan,mrr}: followed by one row per item.

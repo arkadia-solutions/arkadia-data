@@ -1,5 +1,5 @@
-import { MetaInfo } from '../models/Meta';
-import { Node, Primitive } from '../models/Node';
+import { type AttrValue, MetaInfo } from '../models/Meta';
+import { Node, type Primitive } from '../models/Node';
 import { Schema, SchemaKind } from '../models/Schema';
 
 // --- ANSI Colors Helper ---
@@ -14,7 +14,7 @@ class Ansi {
   static MAGENTA = '\x1b[35m';
 }
 
-// eslint-disable-next-line no-control-regex
+// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes start with ESC
 const ANSI_RE = /\x1b\[[0-9;]*m/g;
 
 // --- Error/Warning Data Structures ---
@@ -216,14 +216,14 @@ export class Decoder {
     this.skipWhitespace();
 
     if (this.peek() === '<') {
-      this._dbg(`defining type ${typeName}`);
+      if (this.debug) this._dbg(`defining type ${typeName}`);
       const schema = this.parseSchemaBody(typeName);
       if (schema.isAny) schema.kind = SchemaKind.RECORD;
       this.namedSchemas.set(typeName, schema);
       return schema;
     }
 
-    this._dbg(`referencing type ${typeName}`);
+    if (this.debug) this._dbg(`referencing type ${typeName}`);
     if (this.namedSchemas.has(typeName)) {
       return this.namedSchemas.get(typeName)!;
     }
@@ -233,7 +233,7 @@ export class Decoder {
 
   private parseSchemaBody(typeName: string = ''): Schema {
     const typeNamePrefix = typeName ? `@${typeName}` : '';
-    this._dbg(`START parse_schema_body '<' ${typeNamePrefix}`);
+    if (this.debug) this._dbg(`START parse_schema_body '<' ${typeNamePrefix}`);
 
     if (!this.expect('<')) {
       const s = this.createSchema(SchemaKind.ANY, typeName);
@@ -245,7 +245,7 @@ export class Decoder {
     this.parseSchemaBodyContent(schema, '>');
     this.popSchema();
 
-    this._dbg(`END parse_schema_body '>' ${typeNamePrefix}`);
+    if (this.debug) this._dbg(`END parse_schema_body '>' ${typeNamePrefix}`);
     return schema;
   }
 
@@ -281,6 +281,17 @@ export class Decoder {
         return;
       }
 
+      if (ch === '<' && endChar === ']') {
+        // Nested header inside a list type: [<[id:number]>]
+        const inner = this.parseSchemaBody();
+        schema.kind = inner.kind;
+        schema.typeName = inner.typeName;
+        schema.element = inner.element;
+        schema.clearFields();
+        for (const f of inner.fields) schema.addField(f);
+        continue;
+      }
+
       if (ch === ',') {
         this.applyMeta(fieldSchema || schema);
         this.advance(1);
@@ -302,6 +313,12 @@ export class Decoder {
         schema.typeName = Decoder.PRIMITIVES_MAPPING[name];
         continue;
       }
+      if (name === 'any' && endChar === ']' && this.peek() !== ':') {
+        // [any]: elements of any type
+        schema.kind = SchemaKind.PRIMITIVE;
+        schema.typeName = 'any';
+        continue;
+      }
 
       if (this.peek() === ':') {
         this.advance(1);
@@ -310,6 +327,11 @@ export class Decoder {
         fieldSchema = new Schema(SchemaKind.PRIMITIVE, { typeName: 'any' });
       }
 
+      // A named type (@User) is shared: each field using it gets its own copy,
+      // so naming this field does not rename the others.
+      if ([...this.namedSchemas.values()].includes(fieldSchema)) {
+        fieldSchema = Decoder.fork(fieldSchema);
+      }
       fieldSchema.name = name;
       this.applyMeta(fieldSchema);
 
@@ -341,7 +363,7 @@ export class Decoder {
       this.parseMeta(this.currentSchema);
 
       if (this.peek() === '<') {
-        this._dbg(`Inline definition for @${name}`);
+        if (this.debug) this._dbg(`Inline definition for @${name}`);
         const s = this.parseSchemaBody(name);
         if (s.isAny) s.kind = SchemaKind.RECORD;
         this.namedSchemas.set(name, s);
@@ -358,6 +380,11 @@ export class Decoder {
     const name = this.parseIdent();
     if (Decoder.PRIMITIVES.has(name)) {
       const s = new Schema(SchemaKind.PRIMITIVE, { typeName: Decoder.PRIMITIVES_MAPPING[name] });
+      this.applyMeta(s);
+      return s;
+    }
+    if (name === 'any') {
+      const s = new Schema(SchemaKind.PRIMITIVE, { typeName: 'any' });
       this.applyMeta(s);
       return s;
     }
@@ -416,9 +443,48 @@ export class Decoder {
     return node;
   }
 
+  private static isBareAny(schema: Schema): boolean {
+    if (!schema.isRecord || schema.fields.length !== 1) return false;
+    const f = schema.fields[0];
+    return f.name === 'any' && f.isPrimitive && f.typeName === 'any';
+  }
+
+  /**
+   * A shallow copy of a schema that is about to be pushed for one value.
+   * Header schemas are shared by every element of a list, and parsing a value
+   * refines the schema on the stack in place (type inference), so each value
+   * gets its own copy: one element's shape no longer leaks into the next.
+   */
+  private static fork(schema: Schema): Schema {
+    const own = new Schema(schema.kind, {
+      typeName: schema.typeName,
+      name: schema.name,
+      element: schema.element || undefined,
+      key: schema.key || undefined,
+      value: schema.value || undefined,
+      comments: [...(schema.comments || [])],
+      attr: { ...(schema.attr || {}) },
+      tags: [...(schema.tags || [])],
+      required: schema.required,
+    });
+    for (const f of schema.fields) own.addField(f);
+    return own;
+  }
+
   private parseNodeWithInlineSchema(): Node {
     this._dbg('Start Node with Inline (<)');
     const schema = this.parseSchemaBody();
+    // "<any> {...}" / "<any> [...]": the value describes itself.
+    if (Decoder.isBareAny(schema)) {
+      this.skipWhitespace();
+      const ch = this.peek();
+      if (ch === '{' || ch === '[') {
+        this.pushSchema(new Schema(SchemaKind.ANY));
+        const n = this.parseNode();
+        this.popSchema();
+        return n;
+      }
+    }
     this.pushSchema(schema);
     const node = this.parseNode();
     this.popSchema();
@@ -445,7 +511,7 @@ export class Decoder {
 
     const parentSchema = node.schema;
     let childSchema = new Schema(SchemaKind.ANY);
-    if (parentSchema && parentSchema.isList && parentSchema.element) {
+    if (parentSchema?.isList && parentSchema.element) {
       childSchema = parentSchema.element;
     }
 
@@ -453,7 +519,7 @@ export class Decoder {
 
     while (true) {
       this.parseMeta(node); // Passes node, so blocks /.../ apply to list
-      this.pushSchema(childSchema);
+      this.pushSchema(Decoder.fork(childSchema));
 
       if (this.eof()) {
         this.addError('Unexpected EOF: List not closed');
@@ -474,7 +540,7 @@ export class Decoder {
       childNode = this.parseNode(node);
       node.elements.push(childNode);
 
-      if (parentSchema.element && parentSchema.element.isAny && childNode.schema) {
+      if (parentSchema.element?.isAny && childNode.schema) {
         parentSchema.element = childNode.schema;
       }
 
@@ -497,6 +563,7 @@ export class Decoder {
       node.schema.typeName = 'any';
     }
 
+    let closed = false;
     let index = 0;
     const predefinedFields = node.schema.fields ? [...node.schema.fields] : [];
     let valNode: Node | null = null;
@@ -507,6 +574,7 @@ export class Decoder {
       if (this.peek() === ')') {
         this.applyMeta(valNode || node);
         this.advance(1);
+        closed = true;
         break;
       }
       if (this.peek() === ',') {
@@ -520,12 +588,15 @@ export class Decoder {
         fieldSchema = predefinedFields[index];
       }
 
-      this.pushSchema(fieldSchema);
+      const pushed = Decoder.fork(fieldSchema);
+      this.pushSchema(pushed);
       valNode = this.parseNode();
 
       if (index < predefinedFields.length) {
         const name = predefinedFields[index].name;
         node.fields[name] = valNode;
+        // The value refined its (copied) field schema, e.g. [any] -> [string].
+        if (valNode.schema === pushed) node.schema.replaceField(pushed);
       } else {
         const name = `_${index}`;
         const inferred = new Schema(valNode.schema.kind, {
@@ -541,6 +612,7 @@ export class Decoder {
       this.popSchema();
       index++;
     }
+    if (!closed) this.addError("Unexpected EOF: Record not closed, expected ')'");
     this._dbg('End RECORD )');
     return node;
   }
@@ -550,7 +622,7 @@ export class Decoder {
     this.advance(1); // {
 
     const node = this.createNode();
-    node.fields = {};
+    node.fields = Object.create(null);
 
     if (node.schema.kind !== SchemaKind.RECORD) {
       node.schema.kind = SchemaKind.RECORD;
@@ -559,6 +631,7 @@ export class Decoder {
 
     const currentSchema = node.schema;
     let valNode: Node | null = null;
+    let closed = false;
 
     while (!this.eof()) {
       this.parseMeta(node);
@@ -566,6 +639,7 @@ export class Decoder {
       if (this.peek() === '}') {
         this.applyMeta(valNode || node);
         this.advance(1);
+        closed = true;
         break;
       }
       if (this.peek() === ',') {
@@ -588,18 +662,24 @@ export class Decoder {
       this.skipWhitespace();
       this.expect(':');
 
+      // An empty key has no header field (headers name every field).
+      const tracked = currentSchema.isRecord && keyName !== '';
       let fieldSchema = new Schema(SchemaKind.ANY);
-      if (currentSchema && currentSchema.isRecord) {
+      if (tracked) {
         const existing = currentSchema.getField(keyName);
         if (existing) fieldSchema = existing;
       }
 
-      this.pushSchema(fieldSchema);
+      const pushed = Decoder.fork(fieldSchema);
+      this.pushSchema(pushed);
       valNode = this.parseNode();
+      if (tracked && valNode.schema === pushed && currentSchema.getField(keyName)) {
+        currentSchema.replaceField(pushed);
+      }
 
-      if (currentSchema.isRecord) {
+      if (tracked) {
         const existing = currentSchema.getField(keyName);
-        if (existing && existing.isAny && !valNode.schema.isAny) {
+        if (existing?.isAny && !valNode.schema.isAny) {
           valNode.schema.name = keyName;
           currentSchema.replaceField(valNode.schema);
         } else if (!existing) {
@@ -616,6 +696,7 @@ export class Decoder {
       this.popNode();
       this.popSchema();
     }
+    if (!closed) this.addError("Unexpected EOF: Record not closed, expected '}'");
     this._dbg('End NAMED RECORD }');
     return node;
   }
@@ -728,7 +809,14 @@ export class Decoder {
 
       // Implicit Attribute (Legacy support: key=value without $)
       if (/[a-zA-Z0-9_`]/.test(ch || '')) {
+        const start = this.i;
         const key = this.parseIdent();
+        // A digit cannot start a name: skip it (an unclosed // block would loop).
+        if (this.i === start) {
+          this.addError(`Unexpected token in meta block: ${ch}`);
+          this.advance(1);
+          continue;
+        }
         let val: Primitive = true;
 
         this.skipWhitespace();
@@ -738,7 +826,12 @@ export class Decoder {
         }
         this.addWarning(`Implicit attribute '${key}'. Use '$${key}' instead.`);
 
-        meta.attr[key] = val;
+        Object.defineProperty(meta.attr, key, {
+          value: val,
+          enumerable: true,
+          configurable: true,
+          writable: true,
+        });
         continue;
       }
 
@@ -760,26 +853,96 @@ export class Decoder {
   private parseMetaAttribute(meta: MetaInfo): void {
     this.advance(1); // $
     const key = this.parseIdent();
-    let val: Primitive = true;
+    let val: AttrValue = true;
     this.skipWhitespace();
     if (this.peek() === '=') {
       this.advance(1);
-      val = this.parsePrimitiveValue();
+      this.skipWhitespace();
+      const ch = this.peek();
+      if (ch === '<' || ch === '[' || ch === '(' || ch === '{' || ch === '@') {
+        val = this.parseStructuredAttribute();
+      } else {
+        val = this.parsePrimitiveValue();
+      }
     }
     if (key === 'required') {
       meta.required = true;
       this._dbg('Meta Flag: $required');
     } else {
-      meta.attr[key] = val;
+      Object.defineProperty(meta.attr, key, {
+        value: val,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
     }
-    this._dbg(`Meta Attr: $${key}=${val}`);
+    if (this.debug) this._dbg(`Meta Attr: $${key}=${val}`);
+  }
+
+  /** A structured attribute value (`$changes=[…]`), read with its own decoder. */
+  private parseStructuredAttribute(): AttrValue {
+    const start = this.i;
+    this.skipValue();
+    const result = new Decoder(this.text.slice(start, this.i)).decode();
+    if (result.errors.length) this.addError(`Invalid attribute value: ${result.errors[0]}`);
+    return result.node ? (result.node.dict() as AttrValue) : null;
+  }
+
+  /** Skips `<header> value`, `@Type value`, a bracketed group or a primitive. */
+  private skipValue(): void {
+    this.skipWhitespace();
+    const ch = this.peek();
+    if (ch === '<') {
+      this.skipGroup();
+      this.skipValue();
+    } else if (ch === '@') {
+      this.advance(1);
+      this.parseIdent();
+      this.skipWhitespace();
+      if (this.peek() === '<') this.skipGroup();
+      this.skipValue();
+    } else if (ch === '[' || ch === '(' || ch === '{') {
+      this.skipGroup();
+    } else if (ch !== null && ch !== undefined) {
+      this.parsePrimitiveValue();
+    }
+  }
+
+  /** Skips a balanced group; strings, `names` and comments inside are skipped whole. */
+  private skipGroup(): void {
+    let depth = 0;
+    while (!this.eof()) {
+      const ch = this.text[this.i];
+      if (ch === '"') {
+        this.readQuotedString();
+        continue;
+      }
+      if (ch === '`') {
+        this.parseIdent();
+        continue;
+      }
+      if (ch === '/' && this.peekNext() === '*') {
+        this.parseCommentBlock();
+        continue;
+      }
+      if ('<[({'.includes(ch)) depth++;
+      else if ('>])}'.includes(ch)) {
+        depth--;
+        if (depth <= 0) {
+          this.advance(1);
+          return;
+        }
+      }
+      this.advance(1);
+    }
+    this.addError('Unterminated attribute value');
   }
 
   private parseMetaTag(meta: MetaInfo): void {
     this.advance(1); // #
     const tag = this.parseIdent();
     meta.tags.push(tag);
-    this._dbg(`Meta Tag: #${tag}`);
+    if (this.debug) this._dbg(`Meta Tag: #${tag}`);
   }
 
   // =========================================================
@@ -930,7 +1093,7 @@ export class Decoder {
 
     const raw = this.text.substring(start, this.i);
     const num = parseFloat(raw);
-    if (isNaN(num)) {
+    if (Number.isNaN(num)) {
       this.addError(`Invalid number format: ${raw}`);
       return 0;
     }
@@ -954,16 +1117,16 @@ export class Decoder {
 
   private pushSchema(s: Schema): void {
     this.schemaStack.push(s);
-    this._dbg(`PUSH SCHEMA ${s.toString().substring(0, 30)}...`);
+    if (this.debug) this._dbg(`PUSH SCHEMA ${s.toString().substring(0, 30)}...`);
   }
 
   private popSchema(): Schema | null {
     const s = this.schemaStack.pop() || null;
-    if (s && s.isList && s.element) {
+    if (s?.isList && s.element) {
       s.applyMeta(s.element);
       s.element.clearMeta();
     }
-    this._dbg(`POP SCHEMA ${s ? s.toString().substring(0, 30) : 'null'}...`);
+    if (this.debug) this._dbg(`POP SCHEMA ${s ? s.toString().substring(0, 30) : 'null'}...`);
 
     return s;
   }
@@ -974,12 +1137,12 @@ export class Decoder {
 
   private pushNode(n: Node): void {
     this.nodeStack.push(n);
-    this._dbg(`PUSH NODE ${n.toString().substring(0, 30)}...`);
+    if (this.debug) this._dbg(`PUSH NODE ${n.toString().substring(0, 30)}...`);
   }
 
   private popNode(): Node | null {
     const n = this.nodeStack.pop() || null;
-    this._dbg(`POP NODE ${n ? n.toString().substring(0, 30) : 'null'}...`);
+    if (this.debug) this._dbg(`POP NODE ${n ? n.toString().substring(0, 30) : 'null'}...`);
     return n;
   }
 
@@ -1087,12 +1250,12 @@ export class Decoder {
 
   private addError(msg: string): void {
     if (this.errors.length >= Decoder.MAX_ERRORS) return;
-    this._dbg(`ERROR: ${msg}`);
+    if (this.debug) this._dbg(`ERROR: ${msg}`);
     this.errors.push(new DecodeError(msg, this.i, this.currentSchema, this.currentNode));
   }
 
   private addWarning(msg: string): void {
-    this._dbg(`WARNING: ${msg}`);
+    if (this.debug) this._dbg(`WARNING: ${msg}`);
     this.warnings.push(new DecodeWarning(msg, this.i, this.currentSchema, this.currentNode));
   }
 
@@ -1105,7 +1268,7 @@ export class Decoder {
     let treePrefix = '';
     if (depth > 0) {
       // Python: "│ " * (depth - 1)
-      treePrefix = Ansi.DIM + '│ '.repeat(depth - 1) + '├─ ' + Ansi.RESET;
+      treePrefix = `${Ansi.DIM + '│ '.repeat(depth - 1)}├─ ${Ansi.RESET}`;
     }
 
     const start = Math.max(0, this.i - 10);

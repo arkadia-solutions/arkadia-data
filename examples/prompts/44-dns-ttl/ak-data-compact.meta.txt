@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $zone="arkadia.solutions" // <records:<[name:string,type:string,value:string,ttl:number $unit="s" /* time to live in seconds */]>>([("@","A","203.0.113.10",3600),("www","CNAME","arkadia.solutions.",3600),("api","A","203.0.113.22",60),("@","MX","10 mail.example.net.",14400),("status","CNAME","status.example.io.",120),("_dmarc","TXT","v=DMARC1; p=none",300)])
+</data>
+
+Question: Which records have a TTL below 300 seconds?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<short:<[name:string,type:string,ttl:number]>>

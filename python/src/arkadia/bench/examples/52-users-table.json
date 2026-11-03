@@ -1,0 +1,80 @@
+{
+  "id": 52,
+  "slug": "users-table",
+  "title": "Flat table: users",
+  "description": "A list of records sharing one header: field names are written once, every record is a (…) tuple in header order.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which active users are admins?",
+  "answer": {
+    "name": "admins",
+    "fields": [
+      [
+        "id",
+        "number"
+      ],
+      [
+        "name",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "id": 1,
+      "name": "Ada Lovelace"
+    },
+    {
+      "id": 5,
+      "name": "Margaret Hamilton"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Ada Lovelace",
+        "email": "ada@example.com",
+        "role": "admin",
+        "active": true
+      },
+      {
+        "id": 2,
+        "name": "Alan Turing",
+        "email": "alan@example.com",
+        "role": "user",
+        "active": true
+      },
+      {
+        "id": 3,
+        "name": "Grace Hopper",
+        "email": "grace@example.com",
+        "role": "admin",
+        "active": false
+      },
+      {
+        "id": 4,
+        "name": "Linus Torvalds",
+        "email": "linus@example.com",
+        "role": "user",
+        "active": true
+      },
+      {
+        "id": 5,
+        "name": "Margaret Hamilton",
+        "email": "margaret@example.com",
+        "role": "admin",
+        "active": true
+      }
+    ]
+  }
+}

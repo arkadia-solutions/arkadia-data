@@ -1,0 +1,110 @@
+The data below is in JSON.
+
+<data>
+{
+  "students": [
+    {
+      "student": "Ada",
+      "class": "3A",
+      "math": 3,
+      "pl": 5,
+      "eng": 3
+    },
+    {
+      "student": "Alan",
+      "class": "3B",
+      "math": 3,
+      "pl": 4,
+      "eng": 4
+    },
+    {
+      "student": "Grace",
+      "class": "3A",
+      "math": 5,
+      "pl": 4,
+      "eng": 2
+    },
+    {
+      "student": "Linus",
+      "class": "3B",
+      "math": 4,
+      "pl": 4,
+      "eng": 5
+    },
+    {
+      "student": "Margaret",
+      "class": "3A",
+      "math": 4,
+      "pl": 4,
+      "eng": 3
+    },
+    {
+      "student": "Dennis",
+      "class": "3B",
+      "math": 3,
+      "pl": 5,
+      "eng": 4
+    },
+    {
+      "student": "Barbara",
+      "class": "3A",
+      "math": 6,
+      "pl": 4,
+      "eng": 3
+    },
+    {
+      "student": "Ken",
+      "class": "3B",
+      "math": 3,
+      "pl": 3,
+      "eng": 2
+    },
+    {
+      "student": "Radia",
+      "class": "3A",
+      "math": 3,
+      "pl": 3,
+      "eng": 3
+    },
+    {
+      "student": "Edsger",
+      "class": "3B",
+      "math": 3,
+      "pl": 5,
+      "eng": 5
+    },
+    {
+      "student": "Hedy",
+      "class": "3A",
+      "math": 4,
+      "pl": 4,
+      "eng": 4
+    },
+    {
+      "student": "Tim",
+      "class": "3B",
+      "math": 3,
+      "pl": 3,
+      "eng": 6
+    },
+    {
+      "student": "Katherine",
+      "class": "3A",
+      "math": 6,
+      "pl": 5,
+      "eng": 2
+    },
+    {
+      "student": "John",
+      "class": "3B",
+      "math": 6,
+      "pl": 3,
+      "eng": 3
+    }
+  ]
+}
+</data>
+
+Question: What is the average math grade in each class, rounded to 2 decimals?
+
+Answer with JSON only (no prose): {"classes": [{"class": <string>, "avg_math": <number>}, ...]}

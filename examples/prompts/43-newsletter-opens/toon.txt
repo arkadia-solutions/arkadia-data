@@ -1,0 +1,24 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+campaigns[10]{campaign,sent,open,click}:
+  NL-01,7826,211,15
+  NL-02,3718,257,68
+  NL-03,4459,126,87
+  NL-04,5217,154,65
+  NL-05,4581,138,69
+  NL-06,7185,176,22
+  NL-07,3224,245,50
+  NL-08,3464,176,23
+  NL-09,7457,308,83
+  NL-10,8220,128,77
+</data>
+
+Question: Which campaigns have an open rate above 25 %? Give the rate in percent, highest first.
+
+Answer in TOON only (no prose, no code fences): good[N]{campaign,open_pct}: followed by one row per item.

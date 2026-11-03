@@ -1,0 +1,141 @@
+{
+ "id": 25,
+ "slug": "hr-leave",
+ "title": "HR: approved leave per person",
+ "description": "Status is a one-letter code.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "How many days of approved leave does each person have? Most first.",
+ "tokens": {
+  "json": {
+   "none": 578,
+   "comments": 607,
+   "attributes": 612,
+   "both": 641
+  },
+  "toon": {
+   "none": 303,
+   "comments": 332,
+   "attributes": 337,
+   "both": 366
+  },
+  "akd": {
+   "none": 462,
+   "comments": 481,
+   "attributes": 484,
+   "both": 500
+  },
+  "akcd": {
+   "none": 408,
+   "comments": 423,
+   "attributes": 425,
+   "both": 442
+  }
+ },
+ "answer": {
+  "name": "approved",
+  "fields": [
+   [
+    "who",
+    "string"
+   ],
+   [
+    "days",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "who": "Dennis",
+   "days": 18
+  },
+  {
+   "who": "Linus",
+   "days": 15
+  },
+  {
+   "who": "Alan",
+   "days": 6
+  },
+  {
+   "who": "Margaret",
+   "days": 6
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`requests.st`: status: A approved, P pending, R rejected",
+   "`requests.days`: working days"
+  ],
+  "attributes": [
+   "`requests.st`: $enum=\"A=approved,P=pending,R=rejected\"",
+   "`requests.days`: $unit=\"working days\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"requests\": [\n    {\n      \"req\": \"LV-50\",\n      \"who\": \"Ada\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-51\",\n      \"who\": \"Dennis\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-52\",\n      \"who\": \"Alan\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-53\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-54\",\n      \"who\": \"Dennis\",\n      \"days\": 6,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-55\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-56\",\n      \"who\": \"Alan\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-57\",\n      \"who\": \"Linus\",\n      \"days\": 10,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-58\",\n      \"who\": \"Margaret\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-59\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-60\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-61\",\n      \"who\": \"Grace\",\n      \"days\": 5,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-62\",\n      \"who\": \"Dennis\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-63\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-64\",\n      \"who\": \"Ada\",\n      \"days\": 9,\n      \"st\": \"R\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer with JSON only (no prose): {\"approved\": [{\"who\": <string>, \"days\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `requests.st`: status: A approved, P pending, R rejected\n- `requests.days`: working days\n\n<data>\n{\n  \"requests\": [\n    {\n      \"req\": \"LV-50\",\n      \"who\": \"Ada\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-51\",\n      \"who\": \"Dennis\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-52\",\n      \"who\": \"Alan\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-53\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-54\",\n      \"who\": \"Dennis\",\n      \"days\": 6,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-55\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-56\",\n      \"who\": \"Alan\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-57\",\n      \"who\": \"Linus\",\n      \"days\": 10,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-58\",\n      \"who\": \"Margaret\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-59\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-60\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-61\",\n      \"who\": \"Grace\",\n      \"days\": 5,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-62\",\n      \"who\": \"Dennis\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-63\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-64\",\n      \"who\": \"Ada\",\n      \"days\": 9,\n      \"st\": \"R\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer with JSON only (no prose): {\"approved\": [{\"who\": <string>, \"days\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `requests.st`: $enum=\"A=approved,P=pending,R=rejected\"\n- `requests.days`: $unit=\"working days\"\n\n<data>\n{\n  \"requests\": [\n    {\n      \"req\": \"LV-50\",\n      \"who\": \"Ada\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-51\",\n      \"who\": \"Dennis\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-52\",\n      \"who\": \"Alan\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-53\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-54\",\n      \"who\": \"Dennis\",\n      \"days\": 6,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-55\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-56\",\n      \"who\": \"Alan\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-57\",\n      \"who\": \"Linus\",\n      \"days\": 10,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-58\",\n      \"who\": \"Margaret\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-59\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-60\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-61\",\n      \"who\": \"Grace\",\n      \"days\": 5,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-62\",\n      \"who\": \"Dennis\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-63\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-64\",\n      \"who\": \"Ada\",\n      \"days\": 9,\n      \"st\": \"R\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer with JSON only (no prose): {\"approved\": [{\"who\": <string>, \"days\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `requests.st`: status: A approved, P pending, R rejected\n- `requests.days`: working days\n\nAttributes of the data:\n- `requests.st`: $enum=\"A=approved,P=pending,R=rejected\"\n- `requests.days`: $unit=\"working days\"\n\n<data>\n{\n  \"requests\": [\n    {\n      \"req\": \"LV-50\",\n      \"who\": \"Ada\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-51\",\n      \"who\": \"Dennis\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-52\",\n      \"who\": \"Alan\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-53\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-54\",\n      \"who\": \"Dennis\",\n      \"days\": 6,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-55\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-56\",\n      \"who\": \"Alan\",\n      \"days\": 1,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-57\",\n      \"who\": \"Linus\",\n      \"days\": 10,\n      \"st\": \"R\"\n    },\n    {\n      \"req\": \"LV-58\",\n      \"who\": \"Margaret\",\n      \"days\": 6,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-59\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-60\",\n      \"who\": \"Dennis\",\n      \"days\": 9,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-61\",\n      \"who\": \"Grace\",\n      \"days\": 5,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-62\",\n      \"who\": \"Dennis\",\n      \"days\": 7,\n      \"st\": \"P\"\n    },\n    {\n      \"req\": \"LV-63\",\n      \"who\": \"Linus\",\n      \"days\": 5,\n      \"st\": \"A\"\n    },\n    {\n      \"req\": \"LV-64\",\n      \"who\": \"Ada\",\n      \"days\": 9,\n      \"st\": \"R\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer with JSON only (no prose): {\"approved\": [{\"who\": <string>, \"days\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrequests[15]{req,who,days,st}:\n  LV-50,Ada,7,P\n  LV-51,Dennis,1,R\n  LV-52,Alan,6,A\n  LV-53,Linus,5,A\n  LV-54,Dennis,6,R\n  LV-55,Linus,5,A\n  LV-56,Alan,1,R\n  LV-57,Linus,10,R\n  LV-58,Margaret,6,A\n  LV-59,Dennis,9,A\n  LV-60,Dennis,9,A\n  LV-61,Grace,5,P\n  LV-62,Dennis,7,P\n  LV-63,Linus,5,A\n  LV-64,Ada,9,R\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in TOON only (no prose, no code fences): approved[N]{who,days}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `requests.st`: status: A approved, P pending, R rejected\n- `requests.days`: working days\n\n<data>\nrequests[15]{req,who,days,st}:\n  LV-50,Ada,7,P\n  LV-51,Dennis,1,R\n  LV-52,Alan,6,A\n  LV-53,Linus,5,A\n  LV-54,Dennis,6,R\n  LV-55,Linus,5,A\n  LV-56,Alan,1,R\n  LV-57,Linus,10,R\n  LV-58,Margaret,6,A\n  LV-59,Dennis,9,A\n  LV-60,Dennis,9,A\n  LV-61,Grace,5,P\n  LV-62,Dennis,7,P\n  LV-63,Linus,5,A\n  LV-64,Ada,9,R\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in TOON only (no prose, no code fences): approved[N]{who,days}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `requests.st`: $enum=\"A=approved,P=pending,R=rejected\"\n- `requests.days`: $unit=\"working days\"\n\n<data>\nrequests[15]{req,who,days,st}:\n  LV-50,Ada,7,P\n  LV-51,Dennis,1,R\n  LV-52,Alan,6,A\n  LV-53,Linus,5,A\n  LV-54,Dennis,6,R\n  LV-55,Linus,5,A\n  LV-56,Alan,1,R\n  LV-57,Linus,10,R\n  LV-58,Margaret,6,A\n  LV-59,Dennis,9,A\n  LV-60,Dennis,9,A\n  LV-61,Grace,5,P\n  LV-62,Dennis,7,P\n  LV-63,Linus,5,A\n  LV-64,Ada,9,R\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in TOON only (no prose, no code fences): approved[N]{who,days}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `requests.st`: status: A approved, P pending, R rejected\n- `requests.days`: working days\n\nAttributes of the data:\n- `requests.st`: $enum=\"A=approved,P=pending,R=rejected\"\n- `requests.days`: $unit=\"working days\"\n\n<data>\nrequests[15]{req,who,days,st}:\n  LV-50,Ada,7,P\n  LV-51,Dennis,1,R\n  LV-52,Alan,6,A\n  LV-53,Linus,5,A\n  LV-54,Dennis,6,R\n  LV-55,Linus,5,A\n  LV-56,Alan,1,R\n  LV-57,Linus,10,R\n  LV-58,Margaret,6,A\n  LV-59,Dennis,9,A\n  LV-60,Dennis,9,A\n  LV-61,Grace,5,P\n  LV-62,Dennis,7,P\n  LV-63,Linus,5,A\n  LV-64,Ada,9,R\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in TOON only (no prose, no code fences): approved[N]{who,days}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[req:string, who:string, days:number, st:string]>>\n([\n  (\"LV-50\", \"Ada\", 7, \"P\"),\n  (\"LV-51\", \"Dennis\", 1, \"R\"),\n  (\"LV-52\", \"Alan\", 6, \"A\"),\n  (\"LV-53\", \"Linus\", 5, \"A\"),\n  (\"LV-54\", \"Dennis\", 6, \"R\"),\n  (\"LV-55\", \"Linus\", 5, \"A\"),\n  (\"LV-56\", \"Alan\", 1, \"R\"),\n  (\"LV-57\", \"Linus\", 10, \"R\"),\n  (\"LV-58\", \"Margaret\", 6, \"A\"),\n  (\"LV-59\", \"Dennis\", 9, \"A\"),\n  (\"LV-60\", \"Dennis\", 9, \"A\"),\n  (\"LV-61\", \"Grace\", 5, \"P\"),\n  (\"LV-62\", \"Dennis\", 7, \"P\"),\n  (\"LV-63\", \"Linus\", 5, \"A\"),\n  (\"LV-64\", \"Ada\", 9, \"R\")\n])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[\n  req:string,\n  who:string,\n  days:number /* working days */,\n  st:string /* status: A approved, P pending, R rejected */\n]>>\n([\n  (\"LV-50\", \"Ada\", 7, \"P\"),\n  (\"LV-51\", \"Dennis\", 1, \"R\"),\n  (\"LV-52\", \"Alan\", 6, \"A\"),\n  (\"LV-53\", \"Linus\", 5, \"A\"),\n  (\"LV-54\", \"Dennis\", 6, \"R\"),\n  (\"LV-55\", \"Linus\", 5, \"A\"),\n  (\"LV-56\", \"Alan\", 1, \"R\"),\n  (\"LV-57\", \"Linus\", 10, \"R\"),\n  (\"LV-58\", \"Margaret\", 6, \"A\"),\n  (\"LV-59\", \"Dennis\", 9, \"A\"),\n  (\"LV-60\", \"Dennis\", 9, \"A\"),\n  (\"LV-61\", \"Grace\", 5, \"P\"),\n  (\"LV-62\", \"Dennis\", 7, \"P\"),\n  (\"LV-63\", \"Linus\", 5, \"A\"),\n  (\"LV-64\", \"Ada\", 9, \"R\")\n])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[\n  req:string,\n  who:string,\n  days:number $unit=\"working days\",\n  st:string $enum=\"A=approved,P=pending,R=rejected\"\n]>>\n([\n  (\"LV-50\", \"Ada\", 7, \"P\"),\n  (\"LV-51\", \"Dennis\", 1, \"R\"),\n  (\"LV-52\", \"Alan\", 6, \"A\"),\n  (\"LV-53\", \"Linus\", 5, \"A\"),\n  (\"LV-54\", \"Dennis\", 6, \"R\"),\n  (\"LV-55\", \"Linus\", 5, \"A\"),\n  (\"LV-56\", \"Alan\", 1, \"R\"),\n  (\"LV-57\", \"Linus\", 10, \"R\"),\n  (\"LV-58\", \"Margaret\", 6, \"A\"),\n  (\"LV-59\", \"Dennis\", 9, \"A\"),\n  (\"LV-60\", \"Dennis\", 9, \"A\"),\n  (\"LV-61\", \"Grace\", 5, \"P\"),\n  (\"LV-62\", \"Dennis\", 7, \"P\"),\n  (\"LV-63\", \"Linus\", 5, \"A\"),\n  (\"LV-64\", \"Ada\", 9, \"R\")\n])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[\n  req:string,\n  who:string,\n  days:number $unit=\"working days\" /* working days */,\n  st:string $enum=\"A=approved,P=pending,R=rejected\" /* status: A approved, P pending, R rejected */\n]>>\n([\n  (\"LV-50\", \"Ada\", 7, \"P\"),\n  (\"LV-51\", \"Dennis\", 1, \"R\"),\n  (\"LV-52\", \"Alan\", 6, \"A\"),\n  (\"LV-53\", \"Linus\", 5, \"A\"),\n  (\"LV-54\", \"Dennis\", 6, \"R\"),\n  (\"LV-55\", \"Linus\", 5, \"A\"),\n  (\"LV-56\", \"Alan\", 1, \"R\"),\n  (\"LV-57\", \"Linus\", 10, \"R\"),\n  (\"LV-58\", \"Margaret\", 6, \"A\"),\n  (\"LV-59\", \"Dennis\", 9, \"A\"),\n  (\"LV-60\", \"Dennis\", 9, \"A\"),\n  (\"LV-61\", \"Grace\", 5, \"P\"),\n  (\"LV-62\", \"Dennis\", 7, \"P\"),\n  (\"LV-63\", \"Linus\", 5, \"A\"),\n  (\"LV-64\", \"Ada\", 9, \"R\")\n])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[req:string,who:string,days:number,st:string]>>([(\"LV-50\",\"Ada\",7,\"P\"),(\"LV-51\",\"Dennis\",1,\"R\"),(\"LV-52\",\"Alan\",6,\"A\"),(\"LV-53\",\"Linus\",5,\"A\"),(\"LV-54\",\"Dennis\",6,\"R\"),(\"LV-55\",\"Linus\",5,\"A\"),(\"LV-56\",\"Alan\",1,\"R\"),(\"LV-57\",\"Linus\",10,\"R\"),(\"LV-58\",\"Margaret\",6,\"A\"),(\"LV-59\",\"Dennis\",9,\"A\"),(\"LV-60\",\"Dennis\",9,\"A\"),(\"LV-61\",\"Grace\",5,\"P\"),(\"LV-62\",\"Dennis\",7,\"P\"),(\"LV-63\",\"Linus\",5,\"A\"),(\"LV-64\",\"Ada\",9,\"R\")])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[req:string,who:string,days:number /* working days */,st:string /* status: A approved, P pending, R rejected */]>>([(\"LV-50\",\"Ada\",7,\"P\"),(\"LV-51\",\"Dennis\",1,\"R\"),(\"LV-52\",\"Alan\",6,\"A\"),(\"LV-53\",\"Linus\",5,\"A\"),(\"LV-54\",\"Dennis\",6,\"R\"),(\"LV-55\",\"Linus\",5,\"A\"),(\"LV-56\",\"Alan\",1,\"R\"),(\"LV-57\",\"Linus\",10,\"R\"),(\"LV-58\",\"Margaret\",6,\"A\"),(\"LV-59\",\"Dennis\",9,\"A\"),(\"LV-60\",\"Dennis\",9,\"A\"),(\"LV-61\",\"Grace\",5,\"P\"),(\"LV-62\",\"Dennis\",7,\"P\"),(\"LV-63\",\"Linus\",5,\"A\"),(\"LV-64\",\"Ada\",9,\"R\")])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[req:string,who:string,days:number $unit=\"working days\",st:string $enum=\"A=approved,P=pending,R=rejected\"]>>([(\"LV-50\",\"Ada\",7,\"P\"),(\"LV-51\",\"Dennis\",1,\"R\"),(\"LV-52\",\"Alan\",6,\"A\"),(\"LV-53\",\"Linus\",5,\"A\"),(\"LV-54\",\"Dennis\",6,\"R\"),(\"LV-55\",\"Linus\",5,\"A\"),(\"LV-56\",\"Alan\",1,\"R\"),(\"LV-57\",\"Linus\",10,\"R\"),(\"LV-58\",\"Margaret\",6,\"A\"),(\"LV-59\",\"Dennis\",9,\"A\"),(\"LV-60\",\"Dennis\",9,\"A\"),(\"LV-61\",\"Grace\",5,\"P\"),(\"LV-62\",\"Dennis\",7,\"P\"),(\"LV-63\",\"Linus\",5,\"A\"),(\"LV-64\",\"Ada\",9,\"R\")])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<requests:<[req:string,who:string,days:number $unit=\"working days\" /* working days */,st:string $enum=\"A=approved,P=pending,R=rejected\" /* status: A approved, P pending, R rejected */]>>([(\"LV-50\",\"Ada\",7,\"P\"),(\"LV-51\",\"Dennis\",1,\"R\"),(\"LV-52\",\"Alan\",6,\"A\"),(\"LV-53\",\"Linus\",5,\"A\"),(\"LV-54\",\"Dennis\",6,\"R\"),(\"LV-55\",\"Linus\",5,\"A\"),(\"LV-56\",\"Alan\",1,\"R\"),(\"LV-57\",\"Linus\",10,\"R\"),(\"LV-58\",\"Margaret\",6,\"A\"),(\"LV-59\",\"Dennis\",9,\"A\"),(\"LV-60\",\"Dennis\",9,\"A\"),(\"LV-61\",\"Grace\",5,\"P\"),(\"LV-62\",\"Dennis\",7,\"P\"),(\"LV-63\",\"Linus\",5,\"A\"),(\"LV-64\",\"Ada\",9,\"R\")])\n</data>\n\nQuestion: How many days of approved leave does each person have? Most first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<approved:<[who:string,days:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 524,
+   "comments": 524,
+   "attributes": 524,
+   "both": 524
+  },
+  "toon": {
+   "none": 167,
+   "comments": 167,
+   "attributes": 167,
+   "both": 167
+  },
+  "akd": {
+   "none": 249,
+   "comments": 268,
+   "attributes": 271,
+   "both": 287
+  },
+  "akcd": {
+   "none": 189,
+   "comments": 204,
+   "attributes": 206,
+   "both": 223
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"approved\": [\n    {\n      \"who\": \"Dennis\",\n      \"days\": 18\n    },\n    {\n      \"who\": \"Linus\",\n      \"days\": 15\n    },\n    {\n      \"who\": \"Alan\",\n      \"days\": 6\n    },\n    {\n      \"who\": \"Margaret\",\n      \"days\": 6\n    }\n  ]\n}",
+  "akcd": "<approved:<[who:string,days:number]>>([(\"Dennis\",18),(\"Linus\",15),(\"Alan\",6),(\"Margaret\",6)])",
+  "toon": "approved[4]{who,days}:\n  Dennis,18\n  Linus,15\n  Alan,6\n  Margaret,6"
+ },
+ "answer_tokens": {
+  "json": 83,
+  "akcd": 34,
+  "toon": 29
+ }
+}

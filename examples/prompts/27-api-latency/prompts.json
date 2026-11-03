@@ -1,0 +1,153 @@
+{
+ "id": 27,
+ "slug": "api-latency",
+ "title": "API: slow endpoints",
+ "description": "p95 latency in microseconds.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.",
+ "tokens": {
+  "json": {
+   "none": 376,
+   "comments": 408,
+   "attributes": 412,
+   "both": 444
+  },
+  "toon": {
+   "none": 269,
+   "comments": 301,
+   "attributes": 305,
+   "both": 337
+  },
+  "akd": {
+   "none": 382,
+   "comments": 399,
+   "attributes": 401,
+   "both": 415
+  },
+  "akcd": {
+   "none": 356,
+   "comments": 370,
+   "attributes": 371,
+   "both": 386
+  }
+ },
+ "answer": {
+  "name": "slow",
+  "fields": [
+   [
+    "endpoint",
+    "string"
+   ],
+   [
+    "p95_ms",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "endpoint": "GET /products",
+   "p95_ms": 591.8
+  },
+  {
+   "endpoint": "POST /orders",
+   "p95_ms": 501.4
+  },
+  {
+   "endpoint": "POST /login",
+   "p95_ms": 407.9
+  },
+  {
+   "endpoint": "GET /reports",
+   "p95_ms": 371.7
+  },
+  {
+   "endpoint": "GET /search",
+   "p95_ms": 357.4
+  },
+  {
+   "endpoint": "PUT /cart",
+   "p95_ms": 287.9
+  },
+  {
+   "endpoint": "GET /users/:id",
+   "p95_ms": 272.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`endpoints.p95`: 95th percentile latency in microseconds",
+   "`endpoints.rpm`: requests per minute"
+  ],
+  "attributes": [
+   "`endpoints.p95`: $unit=\"us\" $percentile=95",
+   "`endpoints.rpm`: $unit=\"req/min\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"endpoints\": [\n    {\n      \"endpoint\": \"GET /orders\",\n      \"p95\": 62534,\n      \"rpm\": 3782\n    },\n    {\n      \"endpoint\": \"POST /orders\",\n      \"p95\": 501401,\n      \"rpm\": 8999\n    },\n    {\n      \"endpoint\": \"GET /users/:id\",\n      \"p95\": 271958,\n      \"rpm\": 7556\n    },\n    {\n      \"endpoint\": \"GET /search\",\n      \"p95\": 357424,\n      \"rpm\": 2396\n    },\n    {\n      \"endpoint\": \"POST /login\",\n      \"p95\": 407872,\n      \"rpm\": 4043\n    },\n    {\n      \"endpoint\": \"GET /health\",\n      \"p95\": 195998,\n      \"rpm\": 4850\n    },\n    {\n      \"endpoint\": \"PUT /cart\",\n      \"p95\": 287930,\n      \"rpm\": 2516\n    },\n    {\n      \"endpoint\": \"GET /products\",\n      \"p95\": 591816,\n      \"rpm\": 197\n    },\n    {\n      \"endpoint\": \"POST /pay\",\n      \"p95\": 70501,\n      \"rpm\": 5352\n    },\n    {\n      \"endpoint\": \"GET /reports\",\n      \"p95\": 371676,\n      \"rpm\": 854\n    }\n  ]\n}\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"endpoint\": <string>, \"p95_ms\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `endpoints.p95`: 95th percentile latency in microseconds\n- `endpoints.rpm`: requests per minute\n\n<data>\n{\n  \"endpoints\": [\n    {\n      \"endpoint\": \"GET /orders\",\n      \"p95\": 62534,\n      \"rpm\": 3782\n    },\n    {\n      \"endpoint\": \"POST /orders\",\n      \"p95\": 501401,\n      \"rpm\": 8999\n    },\n    {\n      \"endpoint\": \"GET /users/:id\",\n      \"p95\": 271958,\n      \"rpm\": 7556\n    },\n    {\n      \"endpoint\": \"GET /search\",\n      \"p95\": 357424,\n      \"rpm\": 2396\n    },\n    {\n      \"endpoint\": \"POST /login\",\n      \"p95\": 407872,\n      \"rpm\": 4043\n    },\n    {\n      \"endpoint\": \"GET /health\",\n      \"p95\": 195998,\n      \"rpm\": 4850\n    },\n    {\n      \"endpoint\": \"PUT /cart\",\n      \"p95\": 287930,\n      \"rpm\": 2516\n    },\n    {\n      \"endpoint\": \"GET /products\",\n      \"p95\": 591816,\n      \"rpm\": 197\n    },\n    {\n      \"endpoint\": \"POST /pay\",\n      \"p95\": 70501,\n      \"rpm\": 5352\n    },\n    {\n      \"endpoint\": \"GET /reports\",\n      \"p95\": 371676,\n      \"rpm\": 854\n    }\n  ]\n}\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"endpoint\": <string>, \"p95_ms\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `endpoints.p95`: $unit=\"us\" $percentile=95\n- `endpoints.rpm`: $unit=\"req/min\"\n\n<data>\n{\n  \"endpoints\": [\n    {\n      \"endpoint\": \"GET /orders\",\n      \"p95\": 62534,\n      \"rpm\": 3782\n    },\n    {\n      \"endpoint\": \"POST /orders\",\n      \"p95\": 501401,\n      \"rpm\": 8999\n    },\n    {\n      \"endpoint\": \"GET /users/:id\",\n      \"p95\": 271958,\n      \"rpm\": 7556\n    },\n    {\n      \"endpoint\": \"GET /search\",\n      \"p95\": 357424,\n      \"rpm\": 2396\n    },\n    {\n      \"endpoint\": \"POST /login\",\n      \"p95\": 407872,\n      \"rpm\": 4043\n    },\n    {\n      \"endpoint\": \"GET /health\",\n      \"p95\": 195998,\n      \"rpm\": 4850\n    },\n    {\n      \"endpoint\": \"PUT /cart\",\n      \"p95\": 287930,\n      \"rpm\": 2516\n    },\n    {\n      \"endpoint\": \"GET /products\",\n      \"p95\": 591816,\n      \"rpm\": 197\n    },\n    {\n      \"endpoint\": \"POST /pay\",\n      \"p95\": 70501,\n      \"rpm\": 5352\n    },\n    {\n      \"endpoint\": \"GET /reports\",\n      \"p95\": 371676,\n      \"rpm\": 854\n    }\n  ]\n}\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"endpoint\": <string>, \"p95_ms\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `endpoints.p95`: 95th percentile latency in microseconds\n- `endpoints.rpm`: requests per minute\n\nAttributes of the data:\n- `endpoints.p95`: $unit=\"us\" $percentile=95\n- `endpoints.rpm`: $unit=\"req/min\"\n\n<data>\n{\n  \"endpoints\": [\n    {\n      \"endpoint\": \"GET /orders\",\n      \"p95\": 62534,\n      \"rpm\": 3782\n    },\n    {\n      \"endpoint\": \"POST /orders\",\n      \"p95\": 501401,\n      \"rpm\": 8999\n    },\n    {\n      \"endpoint\": \"GET /users/:id\",\n      \"p95\": 271958,\n      \"rpm\": 7556\n    },\n    {\n      \"endpoint\": \"GET /search\",\n      \"p95\": 357424,\n      \"rpm\": 2396\n    },\n    {\n      \"endpoint\": \"POST /login\",\n      \"p95\": 407872,\n      \"rpm\": 4043\n    },\n    {\n      \"endpoint\": \"GET /health\",\n      \"p95\": 195998,\n      \"rpm\": 4850\n    },\n    {\n      \"endpoint\": \"PUT /cart\",\n      \"p95\": 287930,\n      \"rpm\": 2516\n    },\n    {\n      \"endpoint\": \"GET /products\",\n      \"p95\": 591816,\n      \"rpm\": 197\n    },\n    {\n      \"endpoint\": \"POST /pay\",\n      \"p95\": 70501,\n      \"rpm\": 5352\n    },\n    {\n      \"endpoint\": \"GET /reports\",\n      \"p95\": 371676,\n      \"rpm\": 854\n    }\n  ]\n}\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"endpoint\": <string>, \"p95_ms\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nendpoints[10]{endpoint,p95,rpm}:\n  GET /orders,62534,3782\n  POST /orders,501401,8999\n  \"GET /users/:id\",271958,7556\n  GET /search,357424,2396\n  POST /login,407872,4043\n  GET /health,195998,4850\n  PUT /cart,287930,2516\n  GET /products,591816,197\n  POST /pay,70501,5352\n  GET /reports,371676,854\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{endpoint,p95_ms}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `endpoints.p95`: 95th percentile latency in microseconds\n- `endpoints.rpm`: requests per minute\n\n<data>\nendpoints[10]{endpoint,p95,rpm}:\n  GET /orders,62534,3782\n  POST /orders,501401,8999\n  \"GET /users/:id\",271958,7556\n  GET /search,357424,2396\n  POST /login,407872,4043\n  GET /health,195998,4850\n  PUT /cart,287930,2516\n  GET /products,591816,197\n  POST /pay,70501,5352\n  GET /reports,371676,854\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{endpoint,p95_ms}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `endpoints.p95`: $unit=\"us\" $percentile=95\n- `endpoints.rpm`: $unit=\"req/min\"\n\n<data>\nendpoints[10]{endpoint,p95,rpm}:\n  GET /orders,62534,3782\n  POST /orders,501401,8999\n  \"GET /users/:id\",271958,7556\n  GET /search,357424,2396\n  POST /login,407872,4043\n  GET /health,195998,4850\n  PUT /cart,287930,2516\n  GET /products,591816,197\n  POST /pay,70501,5352\n  GET /reports,371676,854\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{endpoint,p95_ms}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `endpoints.p95`: 95th percentile latency in microseconds\n- `endpoints.rpm`: requests per minute\n\nAttributes of the data:\n- `endpoints.p95`: $unit=\"us\" $percentile=95\n- `endpoints.rpm`: $unit=\"req/min\"\n\n<data>\nendpoints[10]{endpoint,p95,rpm}:\n  GET /orders,62534,3782\n  POST /orders,501401,8999\n  \"GET /users/:id\",271958,7556\n  GET /search,357424,2396\n  POST /login,407872,4043\n  GET /health,195998,4850\n  PUT /cart,287930,2516\n  GET /products,591816,197\n  POST /pay,70501,5352\n  GET /reports,371676,854\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{endpoint,p95_ms}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[endpoint:string, p95:number, rpm:number]>>\n([\n  (\"GET /orders\", 62534, 3782),\n  (\"POST /orders\", 501401, 8999),\n  (\"GET /users/:id\", 271958, 7556),\n  (\"GET /search\", 357424, 2396),\n  (\"POST /login\", 407872, 4043),\n  (\"GET /health\", 195998, 4850),\n  (\"PUT /cart\", 287930, 2516),\n  (\"GET /products\", 591816, 197),\n  (\"POST /pay\", 70501, 5352),\n  (\"GET /reports\", 371676, 854)\n])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[\n  endpoint:string,\n  p95:number /* 95th percentile latency in microseconds */,\n  rpm:number /* requests per minute */\n]>>\n([\n  (\"GET /orders\", 62534, 3782),\n  (\"POST /orders\", 501401, 8999),\n  (\"GET /users/:id\", 271958, 7556),\n  (\"GET /search\", 357424, 2396),\n  (\"POST /login\", 407872, 4043),\n  (\"GET /health\", 195998, 4850),\n  (\"PUT /cart\", 287930, 2516),\n  (\"GET /products\", 591816, 197),\n  (\"POST /pay\", 70501, 5352),\n  (\"GET /reports\", 371676, 854)\n])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[\n  endpoint:string,\n  p95:number $unit=\"us\" $percentile=95,\n  rpm:number $unit=\"req/min\"\n]>>\n([\n  (\"GET /orders\", 62534, 3782),\n  (\"POST /orders\", 501401, 8999),\n  (\"GET /users/:id\", 271958, 7556),\n  (\"GET /search\", 357424, 2396),\n  (\"POST /login\", 407872, 4043),\n  (\"GET /health\", 195998, 4850),\n  (\"PUT /cart\", 287930, 2516),\n  (\"GET /products\", 591816, 197),\n  (\"POST /pay\", 70501, 5352),\n  (\"GET /reports\", 371676, 854)\n])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[\n  endpoint:string,\n  p95:number $unit=\"us\" $percentile=95 /* 95th percentile latency in microseconds */,\n  rpm:number $unit=\"req/min\" /* requests per minute */\n]>>\n([\n  (\"GET /orders\", 62534, 3782),\n  (\"POST /orders\", 501401, 8999),\n  (\"GET /users/:id\", 271958, 7556),\n  (\"GET /search\", 357424, 2396),\n  (\"POST /login\", 407872, 4043),\n  (\"GET /health\", 195998, 4850),\n  (\"PUT /cart\", 287930, 2516),\n  (\"GET /products\", 591816, 197),\n  (\"POST /pay\", 70501, 5352),\n  (\"GET /reports\", 371676, 854)\n])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[endpoint:string,p95:number,rpm:number]>>([(\"GET /orders\",62534,3782),(\"POST /orders\",501401,8999),(\"GET /users/:id\",271958,7556),(\"GET /search\",357424,2396),(\"POST /login\",407872,4043),(\"GET /health\",195998,4850),(\"PUT /cart\",287930,2516),(\"GET /products\",591816,197),(\"POST /pay\",70501,5352),(\"GET /reports\",371676,854)])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[endpoint:string,p95:number /* 95th percentile latency in microseconds */,rpm:number /* requests per minute */]>>([(\"GET /orders\",62534,3782),(\"POST /orders\",501401,8999),(\"GET /users/:id\",271958,7556),(\"GET /search\",357424,2396),(\"POST /login\",407872,4043),(\"GET /health\",195998,4850),(\"PUT /cart\",287930,2516),(\"GET /products\",591816,197),(\"POST /pay\",70501,5352),(\"GET /reports\",371676,854)])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[endpoint:string,p95:number $unit=\"us\" $percentile=95,rpm:number $unit=\"req/min\"]>>([(\"GET /orders\",62534,3782),(\"POST /orders\",501401,8999),(\"GET /users/:id\",271958,7556),(\"GET /search\",357424,2396),(\"POST /login\",407872,4043),(\"GET /health\",195998,4850),(\"PUT /cart\",287930,2516),(\"GET /products\",591816,197),(\"POST /pay\",70501,5352),(\"GET /reports\",371676,854)])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<endpoints:<[endpoint:string,p95:number $unit=\"us\" $percentile=95 /* 95th percentile latency in microseconds */,rpm:number $unit=\"req/min\" /* requests per minute */]>>([(\"GET /orders\",62534,3782),(\"POST /orders\",501401,8999),(\"GET /users/:id\",271958,7556),(\"GET /search\",357424,2396),(\"POST /login\",407872,4043),(\"GET /health\",195998,4850),(\"PUT /cart\",287930,2516),(\"GET /products\",591816,197),(\"POST /pay\",70501,5352),(\"GET /reports\",371676,854)])\n</data>\n\nQuestion: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[endpoint:string,p95_ms:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 310,
+   "comments": 310,
+   "attributes": 310,
+   "both": 310
+  },
+  "toon": {
+   "none": 122,
+   "comments": 122,
+   "attributes": 122,
+   "both": 122
+  },
+  "akd": {
+   "none": 158,
+   "comments": 175,
+   "attributes": 177,
+   "both": 191
+  },
+  "akcd": {
+   "none": 126,
+   "comments": 140,
+   "attributes": 141,
+   "both": 156
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"slow\": [\n    {\n      \"endpoint\": \"GET /products\",\n      \"p95_ms\": 591.8\n    },\n    {\n      \"endpoint\": \"POST /orders\",\n      \"p95_ms\": 501.4\n    },\n    {\n      \"endpoint\": \"POST /login\",\n      \"p95_ms\": 407.9\n    },\n    {\n      \"endpoint\": \"GET /reports\",\n      \"p95_ms\": 371.7\n    },\n    {\n      \"endpoint\": \"GET /search\",\n      \"p95_ms\": 357.4\n    },\n    {\n      \"endpoint\": \"PUT /cart\",\n      \"p95_ms\": 287.9\n    },\n    {\n      \"endpoint\": \"GET /users/:id\",\n      \"p95_ms\": 272.0\n    }\n  ]\n}",
+  "akcd": "<slow:<[endpoint:string,p95_ms:number]>>([(\"GET /products\",591.8),(\"POST /orders\",501.4),(\"POST /login\",407.9),(\"GET /reports\",371.7),(\"GET /search\",357.4),(\"PUT /cart\",287.9),(\"GET /users/:id\",272.0)])",
+  "toon": "slow[7]{endpoint,p95_ms}:\n  GET /products,591.8\n  POST /orders,501.4\n  POST /login,407.9\n  GET /reports,371.7\n  GET /search,357.4\n  PUT /cart,287.9\n  \"GET /users/:id\",272"
+ },
+ "answer_tokens": {
+  "json": 179,
+  "akcd": 78,
+  "toon": 73
+ }
+}

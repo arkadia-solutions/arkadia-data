@@ -1,0 +1,131 @@
+{
+  "id": 49,
+  "slug": "sensors-meta",
+  "title": "Sensors: tenths of a degree, UTC times, calibrating",
+  "description": "Temperatures are tenths of °C, times are UTC, two sensors are being calibrated and their values are not valid.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which room was the warmest, using only valid readings? Give the sensor, the room and the temperature in °C.",
+  "answer": {
+    "name": "warmest",
+    "fields": [
+      [
+        "sensor",
+        "string"
+      ],
+      [
+        "room",
+        "string"
+      ],
+      [
+        "celsius",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "sensor": "S-1",
+      "room": "lab",
+      "celsius": 28.9
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Hourly readings from the Warsaw office. Sensors being calibrated report values that must be ignored.",
+      "`readings.temp`: temperature in tenths of a degree Celsius (215 = 21.5 °C)",
+      "`readings.hum`: relative humidity in percent",
+      "`readings.at`: time of the reading, UTC",
+      "readings sensor=\"S-3\": being calibrated, value not valid",
+      "readings sensor=\"S-8\": being calibrated, value not valid"
+    ],
+    "attributes": [
+      "document: $site=\"Warsaw HQ\" $interval=\"1h\" #telemetry",
+      "`readings.sensor`: $required",
+      "`readings.temp`: $unit=\"0.1 C\"",
+      "`readings.hum`: $unit=\"%\"",
+      "`readings.at`: $tz=\"UTC\"",
+      "readings sensor=\"S-3\": #calibrating $valid=false",
+      "readings sensor=\"S-8\": #calibrating $valid=false"
+    ]
+  },
+  "akd_meta": "// $site=\"Warsaw HQ\" $interval=\"1h\" #telemetry // /* Hourly readings from the Warsaw office. Sensors being calibrated report values that must be ignored. */ <readings:<[sensor:string $required,room:string,temp:number $unit=\"0.1 C\" /* temperature in tenths of a degree Celsius (215 = 21.5 °C) */,hum:number $unit=\"%\" /* relative humidity in percent */,at:string $tz=\"UTC\" /* time of the reading, UTC */]>>([(\"S-1\",\"lab\",289,38,\"2026-10-29T08:00:00Z\"),(\"S-2\",\"office\",213,39,\"2026-10-29T09:00:00Z\"),(\"S-3\",\"server\",412,51,\"2026-10-29T10:00:00Z\") #calibrating $valid=false /* being calibrated, value not valid */,(\"S-4\",\"hall\",282,34,\"2026-10-29T11:00:00Z\"),(\"S-5\",\"kitchen\",250,55,\"2026-10-29T12:00:00Z\"),(\"S-6\",\"lab\",200,56,\"2026-10-29T13:00:00Z\"),(\"S-7\",\"office\",260,57,\"2026-10-29T14:00:00Z\"),(\"S-8\",\"server\",239,48,\"2026-10-29T15:00:00Z\") #calibrating $valid=false /* being calibrated, value not valid */,(\"S-9\",\"store\",259,39,\"2026-10-29T16:00:00Z\"),(\"S-10\",\"hall\",221,43,\"2026-10-29T17:00:00Z\")])",
+  "data": {
+    "readings": [
+      {
+        "sensor": "S-1",
+        "room": "lab",
+        "temp": 289,
+        "hum": 38,
+        "at": "2026-10-29T08:00:00Z"
+      },
+      {
+        "sensor": "S-2",
+        "room": "office",
+        "temp": 213,
+        "hum": 39,
+        "at": "2026-10-29T09:00:00Z"
+      },
+      {
+        "sensor": "S-3",
+        "room": "server",
+        "temp": 412,
+        "hum": 51,
+        "at": "2026-10-29T10:00:00Z"
+      },
+      {
+        "sensor": "S-4",
+        "room": "hall",
+        "temp": 282,
+        "hum": 34,
+        "at": "2026-10-29T11:00:00Z"
+      },
+      {
+        "sensor": "S-5",
+        "room": "kitchen",
+        "temp": 250,
+        "hum": 55,
+        "at": "2026-10-29T12:00:00Z"
+      },
+      {
+        "sensor": "S-6",
+        "room": "lab",
+        "temp": 200,
+        "hum": 56,
+        "at": "2026-10-29T13:00:00Z"
+      },
+      {
+        "sensor": "S-7",
+        "room": "office",
+        "temp": 260,
+        "hum": 57,
+        "at": "2026-10-29T14:00:00Z"
+      },
+      {
+        "sensor": "S-8",
+        "room": "server",
+        "temp": 239,
+        "hum": 48,
+        "at": "2026-10-29T15:00:00Z"
+      },
+      {
+        "sensor": "S-9",
+        "room": "store",
+        "temp": 259,
+        "hum": 39,
+        "at": "2026-10-29T16:00:00Z"
+      },
+      {
+        "sensor": "S-10",
+        "room": "hall",
+        "temp": 221,
+        "hum": 43,
+        "at": "2026-10-29T17:00:00Z"
+      }
+    ]
+  }
+}

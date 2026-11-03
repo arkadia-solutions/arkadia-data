@@ -1,0 +1,1 @@
+<verified:<[sku:string,eur:number]>>([("PROD-123",89.0),("PROD-125",199.0)])

@@ -1,0 +1,1 @@
+<hot:<[host:string,cpu_pct:number]>>([("web-08",97.2),("web-06",95.1),("web-03",84.7)])

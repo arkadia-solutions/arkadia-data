@@ -1,0 +1,90 @@
+{
+ "id": 52,
+ "slug": "users-table",
+ "title": "Flat table: users",
+ "description": "A list of records sharing one header: field names are written once, every record is a (…) tuple in header order.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which active users are admins?",
+ "tokens": {
+  "json": {
+   "none": 271
+  },
+  "toon": {
+   "none": 217
+  },
+  "akd": {
+   "none": 328
+  },
+  "akcd": {
+   "none": 306
+  }
+ },
+ "answer": {
+  "name": "admins",
+  "fields": [
+   [
+    "id",
+    "number"
+   ],
+   [
+    "name",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "id": 1,
+   "name": "Ada Lovelace"
+  },
+  {
+   "id": 5,
+   "name": "Margaret Hamilton"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"users\": [\n    {\n      \"id\": 1,\n      \"name\": \"Ada Lovelace\",\n      \"email\": \"ada@example.com\",\n      \"role\": \"admin\",\n      \"active\": true\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Alan Turing\",\n      \"email\": \"alan@example.com\",\n      \"role\": \"user\",\n      \"active\": true\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Grace Hopper\",\n      \"email\": \"grace@example.com\",\n      \"role\": \"admin\",\n      \"active\": false\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Linus Torvalds\",\n      \"email\": \"linus@example.com\",\n      \"role\": \"user\",\n      \"active\": true\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Margaret Hamilton\",\n      \"email\": \"margaret@example.com\",\n      \"role\": \"admin\",\n      \"active\": true\n    }\n  ]\n}\n</data>\n\nQuestion: Which active users are admins?\n\nAnswer with JSON only (no prose): {\"admins\": [{\"id\": <number>, \"name\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nusers[5]{id,name,email,role,active}:\n  1,Ada Lovelace,ada@example.com,admin,true\n  2,Alan Turing,alan@example.com,user,true\n  3,Grace Hopper,grace@example.com,admin,false\n  4,Linus Torvalds,linus@example.com,user,true\n  5,Margaret Hamilton,margaret@example.com,admin,true\n</data>\n\nQuestion: Which active users are admins?\n\nAnswer in TOON only (no prose, no code fences): admins[N]{id,name}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<users:<[id:number, name:string, email:string, role:string, active:bool]>>\n([\n  (1, \"Ada Lovelace\", \"ada@example.com\", \"admin\", true),\n  (2, \"Alan Turing\", \"alan@example.com\", \"user\", true),\n  (3, \"Grace Hopper\", \"grace@example.com\", \"admin\", false),\n  (4, \"Linus Torvalds\", \"linus@example.com\", \"user\", true),\n  (5, \"Margaret Hamilton\", \"margaret@example.com\", \"admin\", true)\n])\n</data>\n\nQuestion: Which active users are admins?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<admins:<[id:number,name:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<users:<[id:number,name:string,email:string,role:string,active:bool]>>([(1,\"Ada Lovelace\",\"ada@example.com\",\"admin\",true),(2,\"Alan Turing\",\"alan@example.com\",\"user\",true),(3,\"Grace Hopper\",\"grace@example.com\",\"admin\",false),(4,\"Linus Torvalds\",\"linus@example.com\",\"user\",true),(5,\"Margaret Hamilton\",\"margaret@example.com\",\"admin\",true)])\n</data>\n\nQuestion: Which active users are admins?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<admins:<[id:number,name:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 225
+  },
+  "toon": {
+   "none": 90
+  },
+  "akd": {
+   "none": 124
+  },
+  "akcd": {
+   "none": 96
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"admins\": [\n    {\n      \"id\": 1,\n      \"name\": \"Ada Lovelace\"\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Margaret Hamilton\"\n    }\n  ]\n}",
+  "akcd": "<admins:<[id:number,name:string]>>([(1,\"Ada Lovelace\"),(5,\"Margaret Hamilton\")])",
+  "toon": "admins[2]{id,name}:\n  1,Ada Lovelace\n  5,Margaret Hamilton"
+ },
+ "answer_tokens": {
+  "json": 50,
+  "akcd": 26,
+  "toon": 24
+ }
+}

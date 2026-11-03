@@ -1,0 +1,1 @@
+<seniors:<[name:string,yearly_pln:number]>>([("Grace",252000),("Edsger",100800)])

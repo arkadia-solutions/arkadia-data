@@ -1,0 +1,16 @@
+{
+  "hours": [
+    {
+      "project": "cli",
+      "hours": 15.25
+    },
+    {
+      "project": "landing",
+      "hours": 12.0
+    },
+    {
+      "project": "akd",
+      "hours": 6.5
+    }
+  ]
+}

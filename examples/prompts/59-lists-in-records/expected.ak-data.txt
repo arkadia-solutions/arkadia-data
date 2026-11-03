@@ -1,0 +1,1 @@
+<repos:<[name:string,stars:number]>>([("arkadia-data",1840),("universal-timer",210)])

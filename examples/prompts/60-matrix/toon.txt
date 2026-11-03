@@ -1,0 +1,20 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+name: distance (km)
+cities[4]: Warsaw,Kraków,Gdańsk,Wrocław
+km[4]:
+  - [4]: 0,293,340,344
+  - [4]: 293,0,591,269
+  - [4]: 340,591,0,482
+  - [4]: 344,269,482,0
+</data>
+
+Question: Which two cities are farthest apart, and how far?
+
+Answer in TOON only (no prose, no code fences): pair[N]{from,to,km}: followed by one row per item.

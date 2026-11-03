@@ -1,0 +1,20 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+tool: web_search
+query: agent memory
+results[4]{rank,title,url,score}:
+  1,Agent memory in production,"https://example.org/a",0.97
+  2,Token budgets for agents,"https://example.org/b",0.94
+  3,Context engineering,"https://example.org/c",0.88
+  4,Vector stores compared,"https://example.org/d",0.71
+</data>
+
+Question: Which results have a score of at least 0.9?
+
+Answer in TOON only (no prose, no code fences): hits[N]{rank,url}: followed by one row per item.

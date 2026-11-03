@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $site="Warsaw HQ" $interval="1h" #telemetry // /* Hourly readings from the Warsaw office. Sensors being calibrated report values that must be ignored. */ <readings:<[sensor:string $required,room:string,temp:number $unit="0.1 C" /* temperature in tenths of a degree Celsius (215 = 21.5 °C) */,hum:number $unit="%" /* relative humidity in percent */,at:string $tz="UTC" /* time of the reading, UTC */]>>([("S-1","lab",289,38,"2026-10-29T08:00:00Z"),("S-2","office",213,39,"2026-10-29T09:00:00Z"),("S-3","server",412,51,"2026-10-29T10:00:00Z") #calibrating $valid=false /* being calibrated, value not valid */,("S-4","hall",282,34,"2026-10-29T11:00:00Z"),("S-5","kitchen",250,55,"2026-10-29T12:00:00Z"),("S-6","lab",200,56,"2026-10-29T13:00:00Z"),("S-7","office",260,57,"2026-10-29T14:00:00Z"),("S-8","server",239,48,"2026-10-29T15:00:00Z") #calibrating $valid=false /* being calibrated, value not valid */,("S-9","store",259,39,"2026-10-29T16:00:00Z"),("S-10","hall",221,43,"2026-10-29T17:00:00Z")])
+</data>
+
+Question: Which room was the warmest, using only valid readings? Give the sensor, the room and the temperature in °C.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<warmest:<[sensor:string,room:string,celsius:number]>>

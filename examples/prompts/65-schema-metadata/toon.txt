@@ -1,0 +1,30 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+products[4]:
+  - sku: PROD-123
+    name: Keyboard
+    price: 89
+    tags[2]: new,wireless
+  - sku: PROD-124
+    name: Mouse
+    price: 39.5
+    tags: []
+  - sku: PROD-125
+    name: Dock
+    price: 199
+    tags[1]: usb-c
+  - sku: PROD-126
+    name: Cable
+    price: 9.99
+    tags[1]: usb-c
+</data>
+
+Question: Which products are verified and not discontinued? Give the sku and the price in EUR.
+
+Answer in TOON only (no prose, no code fences): verified[N]{sku,eur}: followed by one row per item.

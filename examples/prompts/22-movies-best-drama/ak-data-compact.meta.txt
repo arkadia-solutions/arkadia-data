@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<films:<[title:string,year:number,rating:number $scale="1-10" $source="imdb" /* average user rating, 1–10 */,genres:[string]]>>([("Solaris",2013,6.5,["history","drama"]),("Stalker",1995,8.1,["thriller","sci-fi"]),("Ida",1971,7.4,["thriller","drama"]),("Cold War",1993,6.6,["sci-fi","war"]),("Decalogue",1998,6.4,["drama","war"]),("Blind Chance",1984,8.6,["sci-fi","drama"]),("The Pianist",1962,8.4,["thriller","sci-fi"]),("Knife in the Water",2004,8.9,["history","thriller"]),("Ashes and Diamonds",2019,6.8,["war","thriller"]),("Man of Marble",1998,7.0,["sci-fi","drama"]),("Corpus Christi",1984,7.7,["war","history"]),("EO",1968,8.1,["sci-fi","war"])])
+</data>
+
+Question: Which film tagged drama has the highest rating? Give the title, year and rating.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<best:<[title:string,year:number,rating:number]>>

@@ -1,0 +1,40 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $meter="PL-WAW-77" #smart_meter //
+/* 3-hourly energy readings. */
+<readings:<[
+  day:string,
+  hour:number,
+  wh:number $unit="Wh" /* energy in watt-hours over the 3-hour slot */
+]>>
+([
+  ("2026-10-27", 0, 507),
+  ("2026-10-27", 3, 1074),
+  ("2026-10-27", 6, 2109),
+  ("2026-10-27", 9, 583),
+  ("2026-10-27", 12, 832),
+  ("2026-10-27", 15, 1777),
+  ("2026-10-27", 18, 538),
+  ("2026-10-27", 21, 1055),
+  ("2026-10-28", 0, 2196),
+  ("2026-10-28", 3, 1365),
+  ("2026-10-28", 6, 436),
+  ("2026-10-28", 9, 1036),
+  ("2026-10-28", 12, 695),
+  ("2026-10-28", 15, 473),
+  ("2026-10-28", 18, 2180),
+  ("2026-10-28", 21, 1558)
+])
+</data>
+
+Question: What is the total energy per day in kWh (2 decimals)?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<daily:<[day:string,kwh:number]>>

@@ -1,0 +1,134 @@
+{
+ "id": 24,
+ "slug": "hotel-revenue",
+ "title": "Hotel: revenue per room type",
+ "description": "Nights × nightly rate.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "What is the revenue (nights × rate) per room type? Highest first.",
+ "tokens": {
+  "json": {
+   "none": 545,
+   "comments": 562,
+   "attributes": 567,
+   "both": 584
+  },
+  "toon": {
+   "none": 285,
+   "comments": 302,
+   "attributes": 307,
+   "both": 324
+  },
+  "akd": {
+   "none": 433,
+   "comments": 444,
+   "attributes": 448,
+   "both": 455
+  },
+  "akcd": {
+   "none": 382,
+   "comments": 389,
+   "attributes": 392,
+   "both": 400
+  }
+ },
+ "answer": {
+  "name": "revenue",
+  "fields": [
+   [
+    "room",
+    "string"
+   ],
+   [
+    "revenue",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "room": "double",
+   "revenue": 13820
+  },
+  {
+   "room": "single",
+   "revenue": 6420
+  },
+  {
+   "room": "suite",
+   "revenue": 2960
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`bookings.rate`: price per night in PLN"
+  ],
+  "attributes": [
+   "`bookings.rate`: $unit=\"PLN\" $per=\"night\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"bookings\": [\n    {\n      \"booking\": \"B700\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B701\",\n      \"room\": \"single\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B702\",\n      \"room\": \"double\",\n      \"nights\": 2,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B703\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B704\",\n      \"room\": \"single\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B705\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B706\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B707\",\n      \"room\": \"double\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B708\",\n      \"room\": \"suite\",\n      \"nights\": 5,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B709\",\n      \"room\": \"double\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B710\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B711\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B712\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B713\",\n      \"room\": \"double\",\n      \"nights\": 3,\n      \"rate\": 240\n    }\n  ]\n}\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer with JSON only (no prose): {\"revenue\": [{\"room\": <string>, \"revenue\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `bookings.rate`: price per night in PLN\n\n<data>\n{\n  \"bookings\": [\n    {\n      \"booking\": \"B700\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B701\",\n      \"room\": \"single\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B702\",\n      \"room\": \"double\",\n      \"nights\": 2,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B703\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B704\",\n      \"room\": \"single\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B705\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B706\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B707\",\n      \"room\": \"double\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B708\",\n      \"room\": \"suite\",\n      \"nights\": 5,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B709\",\n      \"room\": \"double\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B710\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B711\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B712\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B713\",\n      \"room\": \"double\",\n      \"nights\": 3,\n      \"rate\": 240\n    }\n  ]\n}\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer with JSON only (no prose): {\"revenue\": [{\"room\": <string>, \"revenue\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `bookings.rate`: $unit=\"PLN\" $per=\"night\"\n\n<data>\n{\n  \"bookings\": [\n    {\n      \"booking\": \"B700\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B701\",\n      \"room\": \"single\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B702\",\n      \"room\": \"double\",\n      \"nights\": 2,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B703\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B704\",\n      \"room\": \"single\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B705\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B706\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B707\",\n      \"room\": \"double\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B708\",\n      \"room\": \"suite\",\n      \"nights\": 5,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B709\",\n      \"room\": \"double\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B710\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B711\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B712\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B713\",\n      \"room\": \"double\",\n      \"nights\": 3,\n      \"rate\": 240\n    }\n  ]\n}\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer with JSON only (no prose): {\"revenue\": [{\"room\": <string>, \"revenue\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `bookings.rate`: price per night in PLN\n\nAttributes of the data:\n- `bookings.rate`: $unit=\"PLN\" $per=\"night\"\n\n<data>\n{\n  \"bookings\": [\n    {\n      \"booking\": \"B700\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B701\",\n      \"room\": \"single\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B702\",\n      \"room\": \"double\",\n      \"nights\": 2,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B703\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B704\",\n      \"room\": \"single\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B705\",\n      \"room\": \"single\",\n      \"nights\": 3,\n      \"rate\": 650\n    },\n    {\n      \"booking\": \"B706\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B707\",\n      \"room\": \"double\",\n      \"nights\": 4,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B708\",\n      \"room\": \"suite\",\n      \"nights\": 5,\n      \"rate\": 240\n    },\n    {\n      \"booking\": \"B709\",\n      \"room\": \"double\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B710\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B711\",\n      \"room\": \"suite\",\n      \"nights\": 1,\n      \"rate\": 880\n    },\n    {\n      \"booking\": \"B712\",\n      \"room\": \"double\",\n      \"nights\": 6,\n      \"rate\": 390\n    },\n    {\n      \"booking\": \"B713\",\n      \"room\": \"double\",\n      \"nights\": 3,\n      \"rate\": 240\n    }\n  ]\n}\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer with JSON only (no prose): {\"revenue\": [{\"room\": <string>, \"revenue\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nbookings[14]{booking,room,nights,rate}:\n  B700,single,3,390\n  B701,single,6,390\n  B702,double,2,650\n  B703,suite,1,880\n  B704,single,4,240\n  B705,single,3,650\n  B706,double,6,880\n  B707,double,4,240\n  B708,suite,5,240\n  B709,double,1,880\n  B710,double,6,390\n  B711,suite,1,880\n  B712,double,6,390\n  B713,double,3,240\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in TOON only (no prose, no code fences): revenue[N]{room,revenue}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `bookings.rate`: price per night in PLN\n\n<data>\nbookings[14]{booking,room,nights,rate}:\n  B700,single,3,390\n  B701,single,6,390\n  B702,double,2,650\n  B703,suite,1,880\n  B704,single,4,240\n  B705,single,3,650\n  B706,double,6,880\n  B707,double,4,240\n  B708,suite,5,240\n  B709,double,1,880\n  B710,double,6,390\n  B711,suite,1,880\n  B712,double,6,390\n  B713,double,3,240\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in TOON only (no prose, no code fences): revenue[N]{room,revenue}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `bookings.rate`: $unit=\"PLN\" $per=\"night\"\n\n<data>\nbookings[14]{booking,room,nights,rate}:\n  B700,single,3,390\n  B701,single,6,390\n  B702,double,2,650\n  B703,suite,1,880\n  B704,single,4,240\n  B705,single,3,650\n  B706,double,6,880\n  B707,double,4,240\n  B708,suite,5,240\n  B709,double,1,880\n  B710,double,6,390\n  B711,suite,1,880\n  B712,double,6,390\n  B713,double,3,240\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in TOON only (no prose, no code fences): revenue[N]{room,revenue}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `bookings.rate`: price per night in PLN\n\nAttributes of the data:\n- `bookings.rate`: $unit=\"PLN\" $per=\"night\"\n\n<data>\nbookings[14]{booking,room,nights,rate}:\n  B700,single,3,390\n  B701,single,6,390\n  B702,double,2,650\n  B703,suite,1,880\n  B704,single,4,240\n  B705,single,3,650\n  B706,double,6,880\n  B707,double,4,240\n  B708,suite,5,240\n  B709,double,1,880\n  B710,double,6,390\n  B711,suite,1,880\n  B712,double,6,390\n  B713,double,3,240\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in TOON only (no prose, no code fences): revenue[N]{room,revenue}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[booking:string, room:string, nights:number, rate:number]>>\n([\n  (\"B700\", \"single\", 3, 390),\n  (\"B701\", \"single\", 6, 390),\n  (\"B702\", \"double\", 2, 650),\n  (\"B703\", \"suite\", 1, 880),\n  (\"B704\", \"single\", 4, 240),\n  (\"B705\", \"single\", 3, 650),\n  (\"B706\", \"double\", 6, 880),\n  (\"B707\", \"double\", 4, 240),\n  (\"B708\", \"suite\", 5, 240),\n  (\"B709\", \"double\", 1, 880),\n  (\"B710\", \"double\", 6, 390),\n  (\"B711\", \"suite\", 1, 880),\n  (\"B712\", \"double\", 6, 390),\n  (\"B713\", \"double\", 3, 240)\n])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[\n  booking:string,\n  room:string,\n  nights:number,\n  rate:number /* price per night in PLN */\n]>>\n([\n  (\"B700\", \"single\", 3, 390),\n  (\"B701\", \"single\", 6, 390),\n  (\"B702\", \"double\", 2, 650),\n  (\"B703\", \"suite\", 1, 880),\n  (\"B704\", \"single\", 4, 240),\n  (\"B705\", \"single\", 3, 650),\n  (\"B706\", \"double\", 6, 880),\n  (\"B707\", \"double\", 4, 240),\n  (\"B708\", \"suite\", 5, 240),\n  (\"B709\", \"double\", 1, 880),\n  (\"B710\", \"double\", 6, 390),\n  (\"B711\", \"suite\", 1, 880),\n  (\"B712\", \"double\", 6, 390),\n  (\"B713\", \"double\", 3, 240)\n])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[\n  booking:string,\n  room:string,\n  nights:number,\n  rate:number $unit=\"PLN\" $per=\"night\"\n]>>\n([\n  (\"B700\", \"single\", 3, 390),\n  (\"B701\", \"single\", 6, 390),\n  (\"B702\", \"double\", 2, 650),\n  (\"B703\", \"suite\", 1, 880),\n  (\"B704\", \"single\", 4, 240),\n  (\"B705\", \"single\", 3, 650),\n  (\"B706\", \"double\", 6, 880),\n  (\"B707\", \"double\", 4, 240),\n  (\"B708\", \"suite\", 5, 240),\n  (\"B709\", \"double\", 1, 880),\n  (\"B710\", \"double\", 6, 390),\n  (\"B711\", \"suite\", 1, 880),\n  (\"B712\", \"double\", 6, 390),\n  (\"B713\", \"double\", 3, 240)\n])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[\n  booking:string,\n  room:string,\n  nights:number,\n  rate:number $unit=\"PLN\" $per=\"night\" /* price per night in PLN */\n]>>\n([\n  (\"B700\", \"single\", 3, 390),\n  (\"B701\", \"single\", 6, 390),\n  (\"B702\", \"double\", 2, 650),\n  (\"B703\", \"suite\", 1, 880),\n  (\"B704\", \"single\", 4, 240),\n  (\"B705\", \"single\", 3, 650),\n  (\"B706\", \"double\", 6, 880),\n  (\"B707\", \"double\", 4, 240),\n  (\"B708\", \"suite\", 5, 240),\n  (\"B709\", \"double\", 1, 880),\n  (\"B710\", \"double\", 6, 390),\n  (\"B711\", \"suite\", 1, 880),\n  (\"B712\", \"double\", 6, 390),\n  (\"B713\", \"double\", 3, 240)\n])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[booking:string,room:string,nights:number,rate:number]>>([(\"B700\",\"single\",3,390),(\"B701\",\"single\",6,390),(\"B702\",\"double\",2,650),(\"B703\",\"suite\",1,880),(\"B704\",\"single\",4,240),(\"B705\",\"single\",3,650),(\"B706\",\"double\",6,880),(\"B707\",\"double\",4,240),(\"B708\",\"suite\",5,240),(\"B709\",\"double\",1,880),(\"B710\",\"double\",6,390),(\"B711\",\"suite\",1,880),(\"B712\",\"double\",6,390),(\"B713\",\"double\",3,240)])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[booking:string,room:string,nights:number,rate:number /* price per night in PLN */]>>([(\"B700\",\"single\",3,390),(\"B701\",\"single\",6,390),(\"B702\",\"double\",2,650),(\"B703\",\"suite\",1,880),(\"B704\",\"single\",4,240),(\"B705\",\"single\",3,650),(\"B706\",\"double\",6,880),(\"B707\",\"double\",4,240),(\"B708\",\"suite\",5,240),(\"B709\",\"double\",1,880),(\"B710\",\"double\",6,390),(\"B711\",\"suite\",1,880),(\"B712\",\"double\",6,390),(\"B713\",\"double\",3,240)])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[booking:string,room:string,nights:number,rate:number $unit=\"PLN\" $per=\"night\"]>>([(\"B700\",\"single\",3,390),(\"B701\",\"single\",6,390),(\"B702\",\"double\",2,650),(\"B703\",\"suite\",1,880),(\"B704\",\"single\",4,240),(\"B705\",\"single\",3,650),(\"B706\",\"double\",6,880),(\"B707\",\"double\",4,240),(\"B708\",\"suite\",5,240),(\"B709\",\"double\",1,880),(\"B710\",\"double\",6,390),(\"B711\",\"suite\",1,880),(\"B712\",\"double\",6,390),(\"B713\",\"double\",3,240)])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<bookings:<[booking:string,room:string,nights:number,rate:number $unit=\"PLN\" $per=\"night\" /* price per night in PLN */]>>([(\"B700\",\"single\",3,390),(\"B701\",\"single\",6,390),(\"B702\",\"double\",2,650),(\"B703\",\"suite\",1,880),(\"B704\",\"single\",4,240),(\"B705\",\"single\",3,650),(\"B706\",\"double\",6,880),(\"B707\",\"double\",4,240),(\"B708\",\"suite\",5,240),(\"B709\",\"double\",1,880),(\"B710\",\"double\",6,390),(\"B711\",\"suite\",1,880),(\"B712\",\"double\",6,390),(\"B713\",\"double\",3,240)])\n</data>\n\nQuestion: What is the revenue (nights × rate) per room type? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<revenue:<[room:string,revenue:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 486,
+   "comments": 486,
+   "attributes": 486,
+   "both": 486
+  },
+  "toon": {
+   "none": 146,
+   "comments": 146,
+   "attributes": 146,
+   "both": 146
+  },
+  "akd": {
+   "none": 216,
+   "comments": 227,
+   "attributes": 231,
+   "both": 238
+  },
+  "akcd": {
+   "none": 159,
+   "comments": 166,
+   "attributes": 169,
+   "both": 177
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"revenue\": [\n    {\n      \"room\": \"double\",\n      \"revenue\": 13820\n    },\n    {\n      \"room\": \"single\",\n      \"revenue\": 6420\n    },\n    {\n      \"room\": \"suite\",\n      \"revenue\": 2960\n    }\n  ]\n}",
+  "akcd": "<revenue:<[room:string,revenue:number]>>([(\"double\",13820),(\"single\",6420),(\"suite\",2960)])",
+  "toon": "revenue[3]{room,revenue}:\n  double,13820\n  single,6420\n  suite,2960"
+ },
+ "answer_tokens": {
+  "json": 70,
+  "akcd": 31,
+  "toon": 27
+ }
+}

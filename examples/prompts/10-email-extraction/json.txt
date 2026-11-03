@@ -1,0 +1,32 @@
+The data below is in JSON.
+
+<data>
+{
+  "emails": [
+    {
+      "from": "customer1@example.com",
+      "subject": "Order request #1",
+      "body": "Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak"
+    },
+    {
+      "from": "customer2@example.com",
+      "subject": "Order request #2",
+      "body": "Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\"), delivery on 2026-11-06 if possible."
+    },
+    {
+      "from": "customer3@example.com",
+      "subject": "Order request #3",
+      "body": "Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address."
+    },
+    {
+      "from": "customer4@example.com",
+      "subject": "Order request #4",
+      "body": "Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!"
+    }
+  ]
+}
+</data>
+
+Question: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.
+
+Answer with JSON only (no prose): {"orders": [{"customer": <string>, "product": <string>, "quantity": <number>, "delivery_date": <string>}, ...]}

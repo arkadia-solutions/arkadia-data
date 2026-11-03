@@ -1,0 +1,32 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `endpoints.p95`: 95th percentile latency in microseconds
+- `endpoints.rpm`: requests per minute
+
+Attributes of the data:
+- `endpoints.p95`: $unit="us" $percentile=95
+- `endpoints.rpm`: $unit="req/min"
+
+<data>
+endpoints[10]{endpoint,p95,rpm}:
+  GET /orders,62534,3782
+  POST /orders,501401,8999
+  "GET /users/:id",271958,7556
+  GET /search,357424,2396
+  POST /login,407872,4043
+  GET /health,195998,4850
+  PUT /cart,287930,2516
+  GET /products,591816,197
+  POST /pay,70501,5352
+  GET /reports,371676,854
+</data>
+
+Question: Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.
+
+Answer in TOON only (no prose, no code fences): slow[N]{endpoint,p95_ms}: followed by one row per item.

@@ -1,0 +1,1 @@
+<approved:<[who:string,days:number]>>([("Dennis",18),("Linus",15),("Alan",6),("Margaret",6)])

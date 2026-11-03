@@ -1,0 +1,1 @@
+<slow:<[endpoint:string,p95_ms:number]>>([("GET /products",591.8),("POST /orders",501.4),("POST /login",407.9),("GET /reports",371.7),("GET /search",357.4),("PUT /cart",287.9),("GET /users/:id",272.0)])

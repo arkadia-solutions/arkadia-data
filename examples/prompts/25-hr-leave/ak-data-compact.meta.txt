@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<requests:<[req:string,who:string,days:number $unit="working days" /* working days */,st:string $enum="A=approved,P=pending,R=rejected" /* status: A approved, P pending, R rejected */]>>([("LV-50","Ada",7,"P"),("LV-51","Dennis",1,"R"),("LV-52","Alan",6,"A"),("LV-53","Linus",5,"A"),("LV-54","Dennis",6,"R"),("LV-55","Linus",5,"A"),("LV-56","Alan",1,"R"),("LV-57","Linus",10,"R"),("LV-58","Margaret",6,"A"),("LV-59","Dennis",9,"A"),("LV-60","Dennis",9,"A"),("LV-61","Grace",5,"P"),("LV-62","Dennis",7,"P"),("LV-63","Linus",5,"A"),("LV-64","Ada",9,"R")])
+</data>
+
+Question: How many days of approved leave does each person have? Most first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<approved:<[who:string,days:number]>>

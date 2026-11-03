@@ -1,0 +1,103 @@
+The data below is in JSON.
+
+Notes about the data:
+- `questions.answers`: Likert scale: 1 strongly disagree … 5 strongly agree
+
+Attributes of the data:
+- `questions.answers`: $enum="1=strongly disagree,2=disagree,3=neutral,4=agree,5=strongly agree"
+
+<data>
+{
+  "questions": [
+    {
+      "q": "The app is easy to use",
+      "answers": [
+        2,
+        1,
+        1,
+        3,
+        5,
+        4,
+        5,
+        1,
+        4,
+        5,
+        5,
+        3
+      ]
+    },
+    {
+      "q": "Support answers quickly",
+      "answers": [
+        4,
+        5,
+        2,
+        1,
+        4,
+        4,
+        5,
+        1,
+        5,
+        3,
+        4,
+        4
+      ]
+    },
+    {
+      "q": "Prices are fair",
+      "answers": [
+        4,
+        4,
+        5,
+        5,
+        4,
+        5,
+        2,
+        3,
+        4,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "q": "I would recommend it",
+      "answers": [
+        1,
+        2,
+        1,
+        3,
+        3,
+        4,
+        2,
+        3,
+        5,
+        5,
+        5,
+        1
+      ]
+    },
+    {
+      "q": "Docs are clear",
+      "answers": [
+        4,
+        1,
+        5,
+        4,
+        2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5
+      ]
+    }
+  ]
+}
+</data>
+
+Question: For each statement, what percent of answers agree (agree or strongly agree)? Round to whole percent.
+
+Answer with JSON only (no prose): {"agree": [{"q": <string>, "agree_pct": <number>}, ...]}

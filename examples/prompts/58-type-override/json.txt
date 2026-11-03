@@ -1,0 +1,36 @@
+The data below is in JSON.
+
+<data>
+{
+  "products": [
+    {
+      "sku": "KB-01",
+      "name": "Keyboard",
+      "price": 89.0,
+      "stock": 14
+    },
+    {
+      "sku": "MS-02",
+      "name": "Mouse",
+      "price": 39.5,
+      "stock": 0
+    },
+    {
+      "sku": 3001,
+      "name": "USB cable",
+      "price": null,
+      "stock": 120
+    },
+    {
+      "sku": "HD-10",
+      "name": "Headset",
+      "price": 129.9,
+      "stock": "on order"
+    }
+  ]
+}
+</data>
+
+Question: Which products cannot be sold right now (no price, no stock, or stock not a number)?
+
+Answer with JSON only (no prose): {"blocked": [{"name": <string>}, ...]}

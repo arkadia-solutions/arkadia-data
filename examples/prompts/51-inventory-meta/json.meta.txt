@@ -1,0 +1,99 @@
+The data below is in JSON.
+
+Notes about the data:
+- Stock in warehouse WAW-1. Discontinued items are never reordered.
+- `items.qty`: pieces in stock
+- `items.min`: reorder level: order more when qty is below it
+- items sku="SKU-201": discontinued, do not reorder
+- items sku="SKU-208": discontinued, do not reorder
+
+Attributes of the data:
+- document: $warehouse="WAW-1" $counted="2026-10-28" #stock
+- `items.sku`: $required
+- `items.qty`: $unit="pcs"
+- `items.min`: $role="reorder_level"
+- items sku="SKU-201": #discontinued
+- items sku="SKU-208": #discontinued
+
+<data>
+{
+  "items": [
+    {
+      "sku": "SKU-200",
+      "item": "cable",
+      "qty": 11,
+      "min": 20
+    },
+    {
+      "sku": "SKU-201",
+      "item": "mouse",
+      "qty": 0,
+      "min": 10
+    },
+    {
+      "sku": "SKU-202",
+      "item": "keyboard",
+      "qty": 4,
+      "min": 5
+    },
+    {
+      "sku": "SKU-203",
+      "item": "dock",
+      "qty": 12,
+      "min": 15
+    },
+    {
+      "sku": "SKU-204",
+      "item": "headset",
+      "qty": 31,
+      "min": 5
+    },
+    {
+      "sku": "SKU-205",
+      "item": "monitor",
+      "qty": 8,
+      "min": 10
+    },
+    {
+      "sku": "SKU-206",
+      "item": "webcam",
+      "qty": 7,
+      "min": 10
+    },
+    {
+      "sku": "SKU-207",
+      "item": "charger",
+      "qty": 2,
+      "min": 20
+    },
+    {
+      "sku": "SKU-208",
+      "item": "hub",
+      "qty": 14,
+      "min": 10
+    },
+    {
+      "sku": "SKU-209",
+      "item": "stand",
+      "qty": 13,
+      "min": 10
+    },
+    {
+      "sku": "SKU-210",
+      "item": "lamp",
+      "qty": 21,
+      "min": 10
+    },
+    {
+      "sku": "SKU-211",
+      "item": "mic",
+      "qty": 0,
+      "min": 5
+    }
+  ]
+}
+</data>
+
+Question: Which items must be reordered and how many pieces are missing to reach the reorder level?
+
+Answer with JSON only (no prose): {"reorder": [{"sku": <string>, "missing": <number>}, ...]}

@@ -1,0 +1,1 @@
+<result:<[department:string,employees:number,avg_salary:number]>>([("Engineering",8,135312),("Finance",2,133250),("Research",7,124929)])

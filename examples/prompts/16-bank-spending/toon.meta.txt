@@ -1,0 +1,40 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- October statement of a personal account.
+- `transactions.amt`: amount in grosze; negative means money going out
+
+Attributes of the data:
+- document: $account="PL61…0001" $currency="PLN" #statement
+- `transactions.amt`: $unit="grosze" $sign="negative=debit"
+
+<data>
+transactions[18]{date,cat,amt}:
+  2026-10-01,food,-24649
+  2026-10-02,fun,-31849
+  2026-10-03,food,-15699
+  2026-10-04,food,-12000
+  2026-10-05,transport,-59399
+  2026-10-06,rent,-7399
+  2026-10-07,food,-30600
+  2026-10-08,food,-23199
+  2026-10-09,fun,-56099
+  2026-10-10,salary,706900
+  2026-10-11,transport,-20049
+  2026-10-12,food,-19049
+  2026-10-13,rent,-54899
+  2026-10-14,food,-51700
+  2026-10-15,transport,-16300
+  2026-10-16,salary,888900
+  2026-10-17,fun,-50799
+  2026-10-18,food,-39549
+</data>
+
+Question: How much was spent in each category (money going out), in PLN? Most first.
+
+Answer in TOON only (no prose, no code fences): spending[N]{cat,spent}: followed by one row per item.

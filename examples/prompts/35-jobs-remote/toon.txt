@@ -1,0 +1,24 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+jobs[10]{role,remote,min,max,city}:
+  Rust engineer,true,17000,23000,Wrocław
+  Data analyst,false,10000,14000,Kraków
+  Product designer,false,18000,27000,Poznań
+  Python developer,true,13000,22000,Gdańsk
+  DevOps,true,10000,16000,Poznań
+  QA engineer,false,12000,15000,Wrocław
+  Tech writer,true,9000,17000,Poznań
+  ML engineer,false,15000,21000,Poznań
+  Frontend dev,false,10000,13000,Poznań
+  Support lead,true,12000,17000,Wrocław
+</data>
+
+Question: Which remote jobs pay at least 20,000 at the top of the range? Highest first.
+
+Answer in TOON only (no prose, no code fences): jobs[N]{role,max}: followed by one row per item.

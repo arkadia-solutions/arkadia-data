@@ -1,0 +1,62 @@
+The data below is in JSON.
+
+<data>
+{
+  "coins": [
+    {
+      "sym": "BTC",
+      "price": 52573.39,
+      "chg": -619
+    },
+    {
+      "sym": "ETH",
+      "price": 18246.56,
+      "chg": -186
+    },
+    {
+      "sym": "SOL",
+      "price": 15262.19,
+      "chg": -210
+    },
+    {
+      "sym": "ADA",
+      "price": 43554.26,
+      "chg": 1459
+    },
+    {
+      "sym": "DOT",
+      "price": 52881.88,
+      "chg": -617
+    },
+    {
+      "sym": "XRP",
+      "price": 6570.86,
+      "chg": -408
+    },
+    {
+      "sym": "LTC",
+      "price": 48086.6,
+      "chg": -636
+    },
+    {
+      "sym": "AVAX",
+      "price": 30564.45,
+      "chg": -1022
+    },
+    {
+      "sym": "LINK",
+      "price": 11487.17,
+      "chg": -1127
+    },
+    {
+      "sym": "ATOM",
+      "price": 45941.08,
+      "chg": 226
+    }
+  ]
+}
+</data>
+
+Question: Which 3 coins rose the most in 24 hours? Give the change in percent.
+
+Answer with JSON only (no prose): {"movers": [{"sym": <string>, "change_pct": <number>}, ...]}

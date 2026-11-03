@@ -36,7 +36,7 @@ describe('AK List Handling', () => {
     expect(node.schema.isRecord).toBe(true);
     expect(node.fields).toHaveProperty('tests');
 
-    const testsNode = node.fields['tests'];
+    const testsNode = node.fields.tests;
     expect(testsNode.isList).toBe(true);
     expect(testsNode.schema).not.toBeNull();
     expect(testsNode.schema.element).not.toBeNull();
@@ -88,7 +88,7 @@ describe('AK List Handling', () => {
     expect(result.errors).toHaveLength(0);
 
     // 3. Verify Internal State
-    const testsNode = node.fields['tests'];
+    const testsNode = node.fields.tests;
 
     // Verify the list definition
     const elementSchema = testsNode.schema.element;

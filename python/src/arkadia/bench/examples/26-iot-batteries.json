@@ -1,0 +1,147 @@
+{
+  "id": 26,
+  "slug": "iot-batteries",
+  "title": "IoT tags: low battery",
+  "description": "Battery is in millivolts.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.",
+  "answer": {
+    "name": "low",
+    "fields": [
+      [
+        "device",
+        "string"
+      ],
+      [
+        "volts",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "device": "TAG-08",
+      "volts": 2.945
+    },
+    {
+      "device": "TAG-05",
+      "volts": 3.008
+    },
+    {
+      "device": "TAG-13",
+      "volts": 3.045
+    },
+    {
+      "device": "TAG-01",
+      "volts": 3.232
+    },
+    {
+      "device": "TAG-12",
+      "volts": 3.264
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`tags.batt`: battery voltage in millivolts",
+      "`tags.rssi`: signal strength in dBm"
+    ],
+    "attributes": [
+      "`tags.batt`: $unit=\"mV\"",
+      "`tags.rssi`: $unit=\"dBm\""
+    ]
+  },
+  "akd_meta": "<tags:<[device:string,zone:string,batt:number $unit=\"mV\" /* battery voltage in millivolts */,rssi:number $unit=\"dBm\" /* signal strength in dBm */]>>([(\"TAG-01\",\"hall\",3232,-92),(\"TAG-02\",\"hall\",4086,-73),(\"TAG-03\",\"hall\",3610,-77),(\"TAG-04\",\"dock\",3526,-55),(\"TAG-05\",\"dock\",3008,-86),(\"TAG-06\",\"hall\",3920,-42),(\"TAG-07\",\"yard\",3388,-59),(\"TAG-08\",\"hall\",2945,-69),(\"TAG-09\",\"hall\",3488,-60),(\"TAG-10\",\"dock\",3605,-89),(\"TAG-11\",\"dock\",3304,-62),(\"TAG-12\",\"yard\",3264,-87),(\"TAG-13\",\"hall\",3045,-80),(\"TAG-14\",\"hall\",4017,-84)])",
+  "data": {
+    "tags": [
+      {
+        "device": "TAG-01",
+        "zone": "hall",
+        "batt": 3232,
+        "rssi": -92
+      },
+      {
+        "device": "TAG-02",
+        "zone": "hall",
+        "batt": 4086,
+        "rssi": -73
+      },
+      {
+        "device": "TAG-03",
+        "zone": "hall",
+        "batt": 3610,
+        "rssi": -77
+      },
+      {
+        "device": "TAG-04",
+        "zone": "dock",
+        "batt": 3526,
+        "rssi": -55
+      },
+      {
+        "device": "TAG-05",
+        "zone": "dock",
+        "batt": 3008,
+        "rssi": -86
+      },
+      {
+        "device": "TAG-06",
+        "zone": "hall",
+        "batt": 3920,
+        "rssi": -42
+      },
+      {
+        "device": "TAG-07",
+        "zone": "yard",
+        "batt": 3388,
+        "rssi": -59
+      },
+      {
+        "device": "TAG-08",
+        "zone": "hall",
+        "batt": 2945,
+        "rssi": -69
+      },
+      {
+        "device": "TAG-09",
+        "zone": "hall",
+        "batt": 3488,
+        "rssi": -60
+      },
+      {
+        "device": "TAG-10",
+        "zone": "dock",
+        "batt": 3605,
+        "rssi": -89
+      },
+      {
+        "device": "TAG-11",
+        "zone": "dock",
+        "batt": 3304,
+        "rssi": -62
+      },
+      {
+        "device": "TAG-12",
+        "zone": "yard",
+        "batt": 3264,
+        "rssi": -87
+      },
+      {
+        "device": "TAG-13",
+        "zone": "hall",
+        "batt": 3045,
+        "rssi": -80
+      },
+      {
+        "device": "TAG-14",
+        "zone": "hall",
+        "batt": 4017,
+        "rssi": -84
+      }
+    ]
+  }
+}

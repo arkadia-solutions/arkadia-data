@@ -1,0 +1,1 @@
+<slow:<[page:string,lcp:number]>>([("/pricing",4082),("/akdata",4060),("/",3511),("/blog",2582)])

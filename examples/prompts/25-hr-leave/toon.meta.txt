@@ -1,0 +1,37 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `requests.st`: status: A approved, P pending, R rejected
+- `requests.days`: working days
+
+Attributes of the data:
+- `requests.st`: $enum="A=approved,P=pending,R=rejected"
+- `requests.days`: $unit="working days"
+
+<data>
+requests[15]{req,who,days,st}:
+  LV-50,Ada,7,P
+  LV-51,Dennis,1,R
+  LV-52,Alan,6,A
+  LV-53,Linus,5,A
+  LV-54,Dennis,6,R
+  LV-55,Linus,5,A
+  LV-56,Alan,1,R
+  LV-57,Linus,10,R
+  LV-58,Margaret,6,A
+  LV-59,Dennis,9,A
+  LV-60,Dennis,9,A
+  LV-61,Grace,5,P
+  LV-62,Dennis,7,P
+  LV-63,Linus,5,A
+  LV-64,Ada,9,R
+</data>
+
+Question: How many days of approved leave does each person have? Most first.
+
+Answer in TOON only (no prose, no code fences): approved[N]{who,days}: followed by one row per item.

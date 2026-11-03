@@ -1,0 +1,112 @@
+{
+ "id": 10,
+ "slug": "email-extraction",
+ "title": "Extraction: emails to structured orders (output format)",
+ "description": "Free text in, structured data out. Shows the answer format saving output tokens.",
+ "tags": [],
+ "question": "Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.",
+ "tokens": {
+  "json": {
+   "none": 349
+  },
+  "toon": {
+   "none": 352
+  },
+  "akd": {
+   "none": 473
+  },
+  "akcd": {
+   "none": 445
+  }
+ },
+ "answer": {
+  "name": "orders",
+  "fields": [
+   [
+    "customer",
+    "string"
+   ],
+   [
+    "product",
+    "string"
+   ],
+   [
+    "quantity",
+    "number"
+   ],
+   [
+    "delivery_date",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "customer": "Marta Nowak",
+   "product": "Keyboard",
+   "quantity": 3,
+   "delivery_date": "2026-11-04"
+  },
+  {
+   "customer": "Jan Kowalski",
+   "product": "Monitor 27\"",
+   "quantity": 1,
+   "delivery_date": "2026-11-06"
+  },
+  {
+   "customer": "Acme Sp. z o.o.",
+   "product": "USB-C cable",
+   "quantity": 25,
+   "delivery_date": "2026-11-03"
+  },
+  {
+   "customer": "Ola Wiśniewska",
+   "product": "Headset",
+   "quantity": 2,
+   "delivery_date": "2026-11-10"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"emails\": [\n    {\n      \"from\": \"customer1@example.com\",\n      \"subject\": \"Order request #1\",\n      \"body\": \"Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak\"\n    },\n    {\n      \"from\": \"customer2@example.com\",\n      \"subject\": \"Order request #2\",\n      \"body\": \"Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\\\"), delivery on 2026-11-06 if possible.\"\n    },\n    {\n      \"from\": \"customer3@example.com\",\n      \"subject\": \"Order request #3\",\n      \"body\": \"Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address.\"\n    },\n    {\n      \"from\": \"customer4@example.com\",\n      \"subject\": \"Order request #4\",\n      \"body\": \"Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!\"\n    }\n  ]\n}\n</data>\n\nQuestion: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.\n\nAnswer with JSON only (no prose): {\"orders\": [{\"customer\": <string>, \"product\": <string>, \"quantity\": <number>, \"delivery_date\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nemails[4]{from,subject,body}:\n  customer1@example.com,Order request #1,\"Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak\"\n  customer2@example.com,Order request #2,\"Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\\\"), delivery on 2026-11-06 if possible.\"\n  customer3@example.com,Order request #3,\"Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address.\"\n  customer4@example.com,Order request #4,\"Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!\"\n</data>\n\nQuestion: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.\n\nAnswer in TOON only (no prose, no code fences): orders[N]{customer,product,quantity,delivery_date}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<emails:<[from:string, subject:string, body:string]>>\n([\n  (\n    \"customer1@example.com\",\n    \"Order request #1\",\n    \"Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak\"\n  ),\n  (\n    \"customer2@example.com\",\n    \"Order request #2\",\n    \"Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\\\"), delivery on 2026-11-06 if possible.\"\n  ),\n  (\n    \"customer3@example.com\",\n    \"Order request #3\",\n    \"Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address.\"\n  ),\n  (\n    \"customer4@example.com\",\n    \"Order request #4\",\n    \"Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!\"\n  )\n])\n</data>\n\nQuestion: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<orders:<[customer:string,product:string,quantity:number,delivery_date:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<emails:<[from:string,subject:string,body:string]>>([(\"customer1@example.com\",\"Order request #1\",\"Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak\"),(\"customer2@example.com\",\"Order request #2\",\"Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\\\"), delivery on 2026-11-06 if possible.\"),(\"customer3@example.com\",\"Order request #3\",\"Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address.\"),(\"customer4@example.com\",\"Order request #4\",\"Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!\")])\n</data>\n\nQuestion: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27\", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<orders:<[customer:string,product:string,quantity:number,delivery_date:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 252
+  },
+  "toon": {
+   "none": 182
+  },
+  "akd": {
+   "none": 223
+  },
+  "akcd": {
+   "none": 189
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"orders\": [\n    {\n      \"customer\": \"Marta Nowak\",\n      \"product\": \"Keyboard\",\n      \"quantity\": 3,\n      \"delivery_date\": \"2026-11-04\"\n    },\n    {\n      \"customer\": \"Jan Kowalski\",\n      \"product\": \"Monitor 27\\\"\",\n      \"quantity\": 1,\n      \"delivery_date\": \"2026-11-06\"\n    },\n    {\n      \"customer\": \"Acme Sp. z o.o.\",\n      \"product\": \"USB-C cable\",\n      \"quantity\": 25,\n      \"delivery_date\": \"2026-11-03\"\n    },\n    {\n      \"customer\": \"Ola Wiśniewska\",\n      \"product\": \"Headset\",\n      \"quantity\": 2,\n      \"delivery_date\": \"2026-11-10\"\n    }\n  ]\n}",
+  "akcd": "<orders:<[customer:string,product:string,quantity:number,delivery_date:string]>>([(\"Marta Nowak\",\"Keyboard\",3,\"2026-11-04\"),(\"Jan Kowalski\",\"Monitor 27\\\"\",1,\"2026-11-06\"),(\"Acme Sp. z o.o.\",\"USB-C cable\",25,\"2026-11-03\"),(\"Ola Wiśniewska\",\"Headset\",2,\"2026-11-10\")])",
+  "toon": "orders[4]{customer,product,quantity,delivery_date}:\n  Marta Nowak,Keyboard,3,2026-11-04\n  Jan Kowalski,\"Monitor 27\\\"\",1,2026-11-06\n  Acme Sp. z o.o.,USB-C cable,25,2026-11-03\n  Ola Wiśniewska,Headset,2,2026-11-10"
+ },
+ "answer_tokens": {
+  "json": 185,
+  "akcd": 99,
+  "toon": 90
+ }
+}

@@ -1,0 +1,40 @@
+The data below is in JSON.
+
+<data>
+{
+  "cart": {
+    "customer": "Ada",
+    "currency": "PLN",
+    "items": [
+      {
+        "sku": "KB-01",
+        "qty": 2,
+        "price": 8900,
+        "disc": 1000
+      },
+      {
+        "sku": "MS-02",
+        "qty": 1,
+        "price": 3950,
+        "disc": 0
+      },
+      {
+        "sku": "HD-10",
+        "qty": 1,
+        "price": 12990,
+        "disc": 2500
+      },
+      {
+        "sku": "CB-03",
+        "qty": 3,
+        "price": 990,
+        "disc": 0
+      }
+    ]
+  }
+}
+</data>
+
+Question: What is the cart total in PLN after the per-item discounts?
+
+Answer with JSON only (no prose): {"total": [{"pln": <number>}, ...]}

@@ -1,0 +1,1 @@
+<no_2fa:<[user_id:number,email:string]>>([(18,"alan@example.com"),(19,"grace@example.com")])

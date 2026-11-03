@@ -1,0 +1,85 @@
+{
+  "id": 47,
+  "slug": "nutrition-protein",
+  "title": "Nutrition: protein per portion",
+  "description": "Values per 100 g, portions in grams.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).",
+  "answer": {
+    "name": "protein",
+    "fields": [
+      [
+        "food",
+        "string"
+      ],
+      [
+        "grams",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "food": "Chicken breast",
+      "grams": 46.5
+    },
+    {
+      "food": "Lentils (cooked)",
+      "grams": 18.0
+    },
+    {
+      "food": "Greek yogurt",
+      "grams": 17.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`foods.protein`: grams of protein per 100 g",
+      "`foods.portion`: portion size in grams"
+    ],
+    "attributes": [
+      "`foods.protein`: $unit=\"g\" $per=\"100 g\"",
+      "`foods.portion`: $unit=\"g\""
+    ]
+  },
+  "akd_meta": "<foods:<[food:string,protein:number $unit=\"g\" $per=\"100 g\" /* grams of protein per 100 g */,portion:number $unit=\"g\" /* portion size in grams */]>>([(\"Oats\",13.2,50),(\"Chicken breast\",31.0,150),(\"Tofu\",12.0,120),(\"Lentils (cooked)\",9.0,200),(\"Greek yogurt\",10.0,170),(\"Almonds\",21.2,30)])",
+  "data": {
+    "foods": [
+      {
+        "food": "Oats",
+        "protein": 13.2,
+        "portion": 50
+      },
+      {
+        "food": "Chicken breast",
+        "protein": 31.0,
+        "portion": 150
+      },
+      {
+        "food": "Tofu",
+        "protein": 12.0,
+        "portion": 120
+      },
+      {
+        "food": "Lentils (cooked)",
+        "protein": 9.0,
+        "portion": 200
+      },
+      {
+        "food": "Greek yogurt",
+        "protein": 10.0,
+        "portion": 170
+      },
+      {
+        "food": "Almonds",
+        "protein": 21.2,
+        "portion": 30
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+ "id": 15,
+ "slug": "forecast-fahrenheit",
+ "title": "Weather: Fahrenheit forecast",
+ "description": "Temperatures are in °F; the question asks about °C.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.",
+ "tokens": {
+  "json": {
+   "none": 300,
+   "comments": 348,
+   "attributes": 350,
+   "both": 398
+  },
+  "toon": {
+   "none": 224,
+   "comments": 272,
+   "attributes": 274,
+   "both": 322
+  },
+  "akd": {
+   "none": 336,
+   "comments": 369,
+   "attributes": 364,
+   "both": 395
+  },
+  "akcd": {
+   "none": 313,
+   "comments": 342,
+   "attributes": 336,
+   "both": 367
+  }
+ },
+ "answer": {
+  "name": "cold",
+  "fields": [
+   [
+    "day",
+    "string"
+   ],
+   [
+    "hi_c",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "day": "Mon",
+   "hi_c": 3.9
+  },
+  {
+   "day": "Tue",
+   "hi_c": 9.4
+  },
+  {
+   "day": "Wed",
+   "hi_c": 3.3
+  },
+  {
+   "day": "Fri",
+   "hi_c": 4.4
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "7-day forecast for Chicago.",
+   "`forecast.hi`: daily high in degrees Fahrenheit",
+   "`forecast.lo`: daily low in degrees Fahrenheit",
+   "`forecast.rain`: chance of rain in percent"
+  ],
+  "attributes": [
+   "document: $city=\"Chicago\" $source=\"nws\"",
+   "`forecast.hi`: $unit=\"F\"",
+   "`forecast.lo`: $unit=\"F\"",
+   "`forecast.rain`: $unit=\"%\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"forecast\": [\n    {\n      \"day\": \"Mon\",\n      \"hi\": 39,\n      \"lo\": 40,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Tue\",\n      \"hi\": 49,\n      \"lo\": 37,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Wed\",\n      \"hi\": 38,\n      \"lo\": 42,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Thu\",\n      \"hi\": 60,\n      \"lo\": 32,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Fri\",\n      \"hi\": 40,\n      \"lo\": 31,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sat\",\n      \"hi\": 58,\n      \"lo\": 28,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sun\",\n      \"hi\": 60,\n      \"lo\": 29,\n      \"rain\": 60\n    }\n  ]\n}\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer with JSON only (no prose): {\"cold\": [{\"day\": <string>, \"hi_c\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- 7-day forecast for Chicago.\n- `forecast.hi`: daily high in degrees Fahrenheit\n- `forecast.lo`: daily low in degrees Fahrenheit\n- `forecast.rain`: chance of rain in percent\n\n<data>\n{\n  \"forecast\": [\n    {\n      \"day\": \"Mon\",\n      \"hi\": 39,\n      \"lo\": 40,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Tue\",\n      \"hi\": 49,\n      \"lo\": 37,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Wed\",\n      \"hi\": 38,\n      \"lo\": 42,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Thu\",\n      \"hi\": 60,\n      \"lo\": 32,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Fri\",\n      \"hi\": 40,\n      \"lo\": 31,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sat\",\n      \"hi\": 58,\n      \"lo\": 28,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sun\",\n      \"hi\": 60,\n      \"lo\": 29,\n      \"rain\": 60\n    }\n  ]\n}\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer with JSON only (no prose): {\"cold\": [{\"day\": <string>, \"hi_c\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $city=\"Chicago\" $source=\"nws\"\n- `forecast.hi`: $unit=\"F\"\n- `forecast.lo`: $unit=\"F\"\n- `forecast.rain`: $unit=\"%\"\n\n<data>\n{\n  \"forecast\": [\n    {\n      \"day\": \"Mon\",\n      \"hi\": 39,\n      \"lo\": 40,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Tue\",\n      \"hi\": 49,\n      \"lo\": 37,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Wed\",\n      \"hi\": 38,\n      \"lo\": 42,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Thu\",\n      \"hi\": 60,\n      \"lo\": 32,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Fri\",\n      \"hi\": 40,\n      \"lo\": 31,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sat\",\n      \"hi\": 58,\n      \"lo\": 28,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sun\",\n      \"hi\": 60,\n      \"lo\": 29,\n      \"rain\": 60\n    }\n  ]\n}\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer with JSON only (no prose): {\"cold\": [{\"day\": <string>, \"hi_c\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- 7-day forecast for Chicago.\n- `forecast.hi`: daily high in degrees Fahrenheit\n- `forecast.lo`: daily low in degrees Fahrenheit\n- `forecast.rain`: chance of rain in percent\n\nAttributes of the data:\n- document: $city=\"Chicago\" $source=\"nws\"\n- `forecast.hi`: $unit=\"F\"\n- `forecast.lo`: $unit=\"F\"\n- `forecast.rain`: $unit=\"%\"\n\n<data>\n{\n  \"forecast\": [\n    {\n      \"day\": \"Mon\",\n      \"hi\": 39,\n      \"lo\": 40,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Tue\",\n      \"hi\": 49,\n      \"lo\": 37,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Wed\",\n      \"hi\": 38,\n      \"lo\": 42,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Thu\",\n      \"hi\": 60,\n      \"lo\": 32,\n      \"rain\": 60\n    },\n    {\n      \"day\": \"Fri\",\n      \"hi\": 40,\n      \"lo\": 31,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sat\",\n      \"hi\": 58,\n      \"lo\": 28,\n      \"rain\": 90\n    },\n    {\n      \"day\": \"Sun\",\n      \"hi\": 60,\n      \"lo\": 29,\n      \"rain\": 60\n    }\n  ]\n}\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer with JSON only (no prose): {\"cold\": [{\"day\": <string>, \"hi_c\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nforecast[7]{day,hi,lo,rain}:\n  Mon,39,40,90\n  Tue,49,37,60\n  Wed,38,42,90\n  Thu,60,32,60\n  Fri,40,31,90\n  Sat,58,28,90\n  Sun,60,29,60\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in TOON only (no prose, no code fences): cold[N]{day,hi_c}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- 7-day forecast for Chicago.\n- `forecast.hi`: daily high in degrees Fahrenheit\n- `forecast.lo`: daily low in degrees Fahrenheit\n- `forecast.rain`: chance of rain in percent\n\n<data>\nforecast[7]{day,hi,lo,rain}:\n  Mon,39,40,90\n  Tue,49,37,60\n  Wed,38,42,90\n  Thu,60,32,60\n  Fri,40,31,90\n  Sat,58,28,90\n  Sun,60,29,60\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in TOON only (no prose, no code fences): cold[N]{day,hi_c}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $city=\"Chicago\" $source=\"nws\"\n- `forecast.hi`: $unit=\"F\"\n- `forecast.lo`: $unit=\"F\"\n- `forecast.rain`: $unit=\"%\"\n\n<data>\nforecast[7]{day,hi,lo,rain}:\n  Mon,39,40,90\n  Tue,49,37,60\n  Wed,38,42,90\n  Thu,60,32,60\n  Fri,40,31,90\n  Sat,58,28,90\n  Sun,60,29,60\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in TOON only (no prose, no code fences): cold[N]{day,hi_c}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- 7-day forecast for Chicago.\n- `forecast.hi`: daily high in degrees Fahrenheit\n- `forecast.lo`: daily low in degrees Fahrenheit\n- `forecast.rain`: chance of rain in percent\n\nAttributes of the data:\n- document: $city=\"Chicago\" $source=\"nws\"\n- `forecast.hi`: $unit=\"F\"\n- `forecast.lo`: $unit=\"F\"\n- `forecast.rain`: $unit=\"%\"\n\n<data>\nforecast[7]{day,hi,lo,rain}:\n  Mon,39,40,90\n  Tue,49,37,60\n  Wed,38,42,90\n  Thu,60,32,60\n  Fri,40,31,90\n  Sat,58,28,90\n  Sun,60,29,60\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in TOON only (no prose, no code fences): cold[N]{day,hi_c}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<forecast:<[day:string, hi:number, lo:number, rain:number]>>\n([\n  (\"Mon\", 39, 40, 90),\n  (\"Tue\", 49, 37, 60),\n  (\"Wed\", 38, 42, 90),\n  (\"Thu\", 60, 32, 60),\n  (\"Fri\", 40, 31, 90),\n  (\"Sat\", 58, 28, 90),\n  (\"Sun\", 60, 29, 60)\n])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* 7-day forecast for Chicago. */\n<forecast:<[\n  day:string,\n  hi:number /* daily high in degrees Fahrenheit */,\n  lo:number /* daily low in degrees Fahrenheit */,\n  rain:number /* chance of rain in percent */\n]>>\n([\n  (\"Mon\", 39, 40, 90),\n  (\"Tue\", 49, 37, 60),\n  (\"Wed\", 38, 42, 90),\n  (\"Thu\", 60, 32, 60),\n  (\"Fri\", 40, 31, 90),\n  (\"Sat\", 58, 28, 90),\n  (\"Sun\", 60, 29, 60)\n])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $city=\"Chicago\" $source=\"nws\" //\n<forecast:<[\n  day:string,\n  hi:number $unit=\"F\",\n  lo:number $unit=\"F\",\n  rain:number $unit=\"%\"\n]>>\n([\n  (\"Mon\", 39, 40, 90),\n  (\"Tue\", 49, 37, 60),\n  (\"Wed\", 38, 42, 90),\n  (\"Thu\", 60, 32, 60),\n  (\"Fri\", 40, 31, 90),\n  (\"Sat\", 58, 28, 90),\n  (\"Sun\", 60, 29, 60)\n])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $city=\"Chicago\" $source=\"nws\" //\n/* 7-day forecast for Chicago. */\n<forecast:<[\n  day:string,\n  hi:number $unit=\"F\" /* daily high in degrees Fahrenheit */,\n  lo:number $unit=\"F\" /* daily low in degrees Fahrenheit */,\n  rain:number $unit=\"%\" /* chance of rain in percent */\n]>>\n([\n  (\"Mon\", 39, 40, 90),\n  (\"Tue\", 49, 37, 60),\n  (\"Wed\", 38, 42, 90),\n  (\"Thu\", 60, 32, 60),\n  (\"Fri\", 40, 31, 90),\n  (\"Sat\", 58, 28, 90),\n  (\"Sun\", 60, 29, 60)\n])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<forecast:<[day:string,hi:number,lo:number,rain:number]>>([(\"Mon\",39,40,90),(\"Tue\",49,37,60),(\"Wed\",38,42,90),(\"Thu\",60,32,60),(\"Fri\",40,31,90),(\"Sat\",58,28,90),(\"Sun\",60,29,60)])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* 7-day forecast for Chicago. */ <forecast:<[day:string,hi:number /* daily high in degrees Fahrenheit */,lo:number /* daily low in degrees Fahrenheit */,rain:number /* chance of rain in percent */]>>([(\"Mon\",39,40,90),(\"Tue\",49,37,60),(\"Wed\",38,42,90),(\"Thu\",60,32,60),(\"Fri\",40,31,90),(\"Sat\",58,28,90),(\"Sun\",60,29,60)])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $city=\"Chicago\" $source=\"nws\" // <forecast:<[day:string,hi:number $unit=\"F\",lo:number $unit=\"F\",rain:number $unit=\"%\"]>>([(\"Mon\",39,40,90),(\"Tue\",49,37,60),(\"Wed\",38,42,90),(\"Thu\",60,32,60),(\"Fri\",40,31,90),(\"Sat\",58,28,90),(\"Sun\",60,29,60)])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $city=\"Chicago\" $source=\"nws\" // /* 7-day forecast for Chicago. */ <forecast:<[day:string,hi:number $unit=\"F\" /* daily high in degrees Fahrenheit */,lo:number $unit=\"F\" /* daily low in degrees Fahrenheit */,rain:number $unit=\"%\" /* chance of rain in percent */]>>([(\"Mon\",39,40,90),(\"Tue\",49,37,60),(\"Wed\",38,42,90),(\"Thu\",60,32,60),(\"Fri\",40,31,90),(\"Sat\",58,28,90),(\"Sun\",60,29,60)])\n</data>\n\nQuestion: On which days will the high stay below 10 °C? Give the high in °C, rounded to 1 decimal.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<cold:<[day:string,hi_c:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 233,
+   "comments": 233,
+   "attributes": 233,
+   "both": 233
+  },
+  "toon": {
+   "none": 75,
+   "comments": 75,
+   "attributes": 75,
+   "both": 75
+  },
+  "akd": {
+   "none": 110,
+   "comments": 142,
+   "attributes": 139,
+   "both": 170
+  },
+  "akcd": {
+   "none": 81,
+   "comments": 109,
+   "attributes": 105,
+   "both": 136
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"cold\": [\n    {\n      \"day\": \"Mon\",\n      \"hi_c\": 3.9\n    },\n    {\n      \"day\": \"Tue\",\n      \"hi_c\": 9.4\n    },\n    {\n      \"day\": \"Wed\",\n      \"hi_c\": 3.3\n    },\n    {\n      \"day\": \"Fri\",\n      \"hi_c\": 4.4\n    }\n  ]\n}",
+  "akcd": "<cold:<[day:string,hi_c:number]>>([(\"Mon\",3.9),(\"Tue\",9.4),(\"Wed\",3.3),(\"Fri\",4.4)])",
+  "toon": "cold[4]{day,hi_c}:\n  Mon,3.9\n  Tue,9.4\n  Wed,3.3\n  Fri,4.4"
+ },
+ "answer_tokens": {
+  "json": 93,
+  "akcd": 41,
+  "toon": 37
+ }
+}

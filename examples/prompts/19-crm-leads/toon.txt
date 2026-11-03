@@ -1,0 +1,29 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+leads[15]{lead,company,score,stage,owner}:
+  L-300,Acme,34,3,Ada
+  L-301,Globex,89,3,Ada
+  L-302,Initech,24,2,Alan
+  L-303,Umbrella,82,1,Ada
+  L-304,Hooli,14,3,Ada
+  L-305,Stark,40,1,Margaret
+  L-306,Wayne,92,4,Linus
+  L-307,Tyrell,60,2,Ada
+  L-308,Soylent,73,1,Margaret
+  L-309,Wonka,87,2,Alan
+  L-310,Cyberdyne,49,4,Grace
+  L-311,Vandelay,32,2,Alan
+  L-312,Acme,52,3,Ada
+  L-313,Globex,13,3,Ada
+  L-314,Initech,11,2,Alan
+</data>
+
+Question: Which leads are in the proposal stage? Highest score first.
+
+Answer in TOON only (no prose, no code fences): proposal[N]{lead,company}: followed by one row per item.

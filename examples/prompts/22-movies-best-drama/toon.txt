@@ -1,0 +1,62 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+films[12]:
+  - title: Solaris
+    year: 2013
+    rating: 6.5
+    genres[2]: history,drama
+  - title: Stalker
+    year: 1995
+    rating: 8.1
+    genres[2]: thriller,sci-fi
+  - title: Ida
+    year: 1971
+    rating: 7.4
+    genres[2]: thriller,drama
+  - title: Cold War
+    year: 1993
+    rating: 6.6
+    genres[2]: sci-fi,war
+  - title: Decalogue
+    year: 1998
+    rating: 6.4
+    genres[2]: drama,war
+  - title: Blind Chance
+    year: 1984
+    rating: 8.6
+    genres[2]: sci-fi,drama
+  - title: The Pianist
+    year: 1962
+    rating: 8.4
+    genres[2]: thriller,sci-fi
+  - title: Knife in the Water
+    year: 2004
+    rating: 8.9
+    genres[2]: history,thriller
+  - title: Ashes and Diamonds
+    year: 2019
+    rating: 6.8
+    genres[2]: war,thriller
+  - title: Man of Marble
+    year: 1998
+    rating: 7
+    genres[2]: sci-fi,drama
+  - title: Corpus Christi
+    year: 1984
+    rating: 7.7
+    genres[2]: war,history
+  - title: EO
+    year: 1968
+    rating: 8.1
+    genres[2]: sci-fi,war
+</data>
+
+Question: Which film tagged drama has the highest rating? Give the title, year and rating.
+
+Answer in TOON only (no prose, no code fences): best[N]{title,year,rating}: followed by one row per item.

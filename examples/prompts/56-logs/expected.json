@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "service": "billing",
+      "errors": 3
+    },
+    {
+      "service": "api",
+      "errors": 1
+    }
+  ]
+}

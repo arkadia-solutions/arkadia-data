@@ -1,0 +1,38 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<emails:<[from:string, subject:string, body:string]>>
+([
+  (
+    "customer1@example.com",
+    "Order request #1",
+    "Hi, please send 3 keyboards to our Kraków office. We need them by 4 November 2026. Thanks, Marta Nowak"
+  ),
+  (
+    "customer2@example.com",
+    "Order request #2",
+    "Hello — Jan Kowalski here. I'd like to order one 27-inch monitor (Monitor 27\"), delivery on 2026-11-06 if possible."
+  ),
+  (
+    "customer3@example.com",
+    "Order request #3",
+    "Order from Acme Sp. z o.o.: 25 × USB-C cable. Delivery: 3rd of November 2026. Invoice to the usual address."
+  ),
+  (
+    "customer4@example.com",
+    "Order request #4",
+    "Could you ship two headsets for Ola Wiśniewska? Delivery date: Nov 10, 2026. Thank you!"
+  )
+])
+</data>
+
+Question: Extract every order from these emails: the customer name, the product (as named in our catalogue: Keyboard, Monitor 27", USB-C cable, Headset), the quantity and the delivery date as YYYY-MM-DD.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<orders:<[customer:string,product:string,quantity:number,delivery_date:string]>>

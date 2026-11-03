@@ -1,0 +1,70 @@
+The data below is in JSON.
+
+<data>
+{
+  "orders": [
+    {
+      "id": "ORD-1001",
+      "status": "paid",
+      "customer": {
+        "id": 7,
+        "name": "Hedy Johnson",
+        "country": "PL"
+      },
+      "items": [
+        {
+          "sku": "KB-01",
+          "qty": 2,
+          "price": 89.0
+        },
+        {
+          "sku": "MS-02",
+          "qty": 1,
+          "price": 39.5
+        }
+      ]
+    },
+    {
+      "id": "ORD-1002",
+      "status": "pending",
+      "customer": {
+        "id": 9,
+        "name": "Ada Torvalds",
+        "country": "DE"
+      },
+      "items": [
+        {
+          "sku": "HD-10",
+          "qty": 1,
+          "price": 129.9
+        }
+      ]
+    },
+    {
+      "id": "ORD-1003",
+      "status": "paid",
+      "customer": {
+        "id": 7,
+        "name": "Hedy Johnson",
+        "country": "PL"
+      },
+      "items": [
+        {
+          "sku": "DK-05",
+          "qty": 1,
+          "price": 199.0
+        },
+        {
+          "sku": "KB-01",
+          "qty": 1,
+          "price": 89.0
+        }
+      ]
+    }
+  ]
+}
+</data>
+
+Question: What is the total (qty × price) of every paid order?
+
+Answer with JSON only (no prose): {"paid": [{"id": <string>, "total": <number>}, ...]}

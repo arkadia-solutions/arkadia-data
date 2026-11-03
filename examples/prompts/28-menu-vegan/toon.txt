@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+menu[8]:
+  - dish: Hummus plate
+    price: 2400
+    tags[2]: vegan,gluten-free
+  - dish: Pierogi ruskie
+    price: 3200
+    tags[1]: vegetarian
+  - dish: Falafel wrap
+    price: 1900
+    tags[1]: vegan
+  - dish: Beef burger
+    price: 4200
+    tags: []
+  - dish: Lentil soup
+    price: 1600
+    tags[2]: vegan,gluten-free
+  - dish: Caesar salad
+    price: 2900
+    tags: []
+  - dish: Tofu curry
+    price: 3100
+    tags[1]: vegan
+  - dish: Fries
+    price: 1200
+    tags[1]: vegan
+</data>
+
+Question: Which vegan dishes cost less than 25 PLN? Give the price in PLN.
+
+Answer in TOON only (no prose, no code fences): vegan[N]{dish,pln}: followed by one row per item.

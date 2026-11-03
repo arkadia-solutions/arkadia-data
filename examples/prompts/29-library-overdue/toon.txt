@@ -1,0 +1,24 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+loans[10]{book,reader,due}:
+  Solaris,Ada,2026-11-15
+  Quo Vadis,Alan,2026-10-05
+  The Doll,Alan,2026-11-23
+  Ferdydurke,Alan,2026-09-11
+  Pan Tadeusz,Dennis,2026-10-08
+  The Witcher,Grace,2026-09-10
+  Flights,Ada,2026-10-27
+  Drive Your Plow,Alan,2026-10-04
+  The Peasants,Alan,2026-10-11
+  Faraon,Margaret,2026-10-25
+</data>
+
+Question: Which loans are overdue on 2026-10-15? Oldest due date first.
+
+Answer in TOON only (no prose, no code fences): overdue[N]{book,reader}: followed by one row per item.

@@ -1,0 +1,125 @@
+{
+ "id": 63,
+ "slug": "named-types",
+ "title": "Named types: @User defined once, used three times",
+ "description": "@User<…> names a header; lead:@User and members:[@User] reuse it. Hand-written AK-DATA (the encoder writes inline headers).",
+ "tags": [
+  "feature",
+  "metadata"
+ ],
+ "question": "How many people are in the team, including the lead? Give the team name too.",
+ "tokens": {
+  "json": {
+   "none": 197,
+   "comments": 213,
+   "attributes": 197,
+   "both": 213
+  },
+  "toon": {
+   "none": 214,
+   "comments": 230,
+   "attributes": 214,
+   "both": 230
+  },
+  "akd": {
+   "none": 312,
+   "comments": 324,
+   "attributes": 312,
+   "both": 324
+  },
+  "akcd": {
+   "none": 296,
+   "comments": 308,
+   "attributes": 296,
+   "both": 308
+  }
+ },
+ "answer": {
+  "name": "team",
+  "fields": [
+   [
+    "name",
+    "string"
+   ],
+   [
+    "people",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "platform",
+   "people": 4
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Team directory: one type, used three times"
+  ],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"team\": \"platform\",\n  \"lead\": {\n    \"id\": 1,\n    \"name\": \"Ada Lovelace\",\n    \"email\": \"ada@example.com\"\n  },\n  \"members\": [\n    {\n      \"id\": 2,\n      \"name\": \"Alan Turing\",\n      \"email\": \"alan@example.com\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Grace Hopper\",\n      \"email\": \"grace@example.com\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Linus Torvalds\",\n      \"email\": \"linus@example.com\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer with JSON only (no prose): {\"team\": [{\"name\": <string>, \"people\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Team directory: one type, used three times\n\n<data>\n{\n  \"team\": \"platform\",\n  \"lead\": {\n    \"id\": 1,\n    \"name\": \"Ada Lovelace\",\n    \"email\": \"ada@example.com\"\n  },\n  \"members\": [\n    {\n      \"id\": 2,\n      \"name\": \"Alan Turing\",\n      \"email\": \"alan@example.com\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Grace Hopper\",\n      \"email\": \"grace@example.com\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Linus Torvalds\",\n      \"email\": \"linus@example.com\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer with JSON only (no prose): {\"team\": [{\"name\": <string>, \"people\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\n<data>\n{\n  \"team\": \"platform\",\n  \"lead\": {\n    \"id\": 1,\n    \"name\": \"Ada Lovelace\",\n    \"email\": \"ada@example.com\"\n  },\n  \"members\": [\n    {\n      \"id\": 2,\n      \"name\": \"Alan Turing\",\n      \"email\": \"alan@example.com\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Grace Hopper\",\n      \"email\": \"grace@example.com\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Linus Torvalds\",\n      \"email\": \"linus@example.com\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer with JSON only (no prose): {\"team\": [{\"name\": <string>, \"people\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Team directory: one type, used three times\n\n<data>\n{\n  \"team\": \"platform\",\n  \"lead\": {\n    \"id\": 1,\n    \"name\": \"Ada Lovelace\",\n    \"email\": \"ada@example.com\"\n  },\n  \"members\": [\n    {\n      \"id\": 2,\n      \"name\": \"Alan Turing\",\n      \"email\": \"alan@example.com\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Grace Hopper\",\n      \"email\": \"grace@example.com\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Linus Torvalds\",\n      \"email\": \"linus@example.com\"\n    }\n  ]\n}\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer with JSON only (no prose): {\"team\": [{\"name\": <string>, \"people\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nteam: platform\nlead:\n  id: 1\n  name: Ada Lovelace\n  email: ada@example.com\nmembers[3]{id,name,email}:\n  2,Alan Turing,alan@example.com\n  3,Grace Hopper,grace@example.com\n  4,Linus Torvalds,linus@example.com\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in TOON only (no prose, no code fences): team[N]{name,people}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Team directory: one type, used three times\n\n<data>\nteam: platform\nlead:\n  id: 1\n  name: Ada Lovelace\n  email: ada@example.com\nmembers[3]{id,name,email}:\n  2,Alan Turing,alan@example.com\n  3,Grace Hopper,grace@example.com\n  4,Linus Torvalds,linus@example.com\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in TOON only (no prose, no code fences): team[N]{name,people}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nteam: platform\nlead:\n  id: 1\n  name: Ada Lovelace\n  email: ada@example.com\nmembers[3]{id,name,email}:\n  2,Alan Turing,alan@example.com\n  3,Grace Hopper,grace@example.com\n  4,Linus Torvalds,linus@example.com\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in TOON only (no prose, no code fences): team[N]{name,people}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Team directory: one type, used three times\n\n<data>\nteam: platform\nlead:\n  id: 1\n  name: Ada Lovelace\n  email: ada@example.com\nmembers[3]{id,name,email}:\n  2,Alan Turing,alan@example.com\n  3,Grace Hopper,grace@example.com\n  4,Linus Torvalds,linus@example.com\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in TOON only (no prose, no code fences): team[N]{name,people}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@User<id:number, name:string, email:string>\n<team:string, lead:@User, members:[@User]>\n(\n  \"platform\",\n  (1, \"Ada Lovelace\", \"ada@example.com\"),\n  [\n    (2, \"Alan Turing\", \"alan@example.com\"),\n    (3, \"Grace Hopper\", \"grace@example.com\"),\n    (4, \"Linus Torvalds\", \"linus@example.com\")\n  ]\n)\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Team directory: one type, used three times */\n@User<id:number, name:string, email:string>\n<team:string, lead:@User, members:[@User]>\n(\n  \"platform\",\n  (1, \"Ada Lovelace\", \"ada@example.com\"),\n  [\n    (2, \"Alan Turing\", \"alan@example.com\"),\n    (3, \"Grace Hopper\", \"grace@example.com\"),\n    (4, \"Linus Torvalds\", \"linus@example.com\")\n  ]\n)\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@User<id:number, name:string, email:string>\n<team:string, lead:@User, members:[@User]>\n(\n  \"platform\",\n  (1, \"Ada Lovelace\", \"ada@example.com\"),\n  [\n    (2, \"Alan Turing\", \"alan@example.com\"),\n    (3, \"Grace Hopper\", \"grace@example.com\"),\n    (4, \"Linus Torvalds\", \"linus@example.com\")\n  ]\n)\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Team directory: one type, used three times */\n@User<id:number, name:string, email:string>\n<team:string, lead:@User, members:[@User]>\n(\n  \"platform\",\n  (1, \"Ada Lovelace\", \"ada@example.com\"),\n  [\n    (2, \"Alan Turing\", \"alan@example.com\"),\n    (3, \"Grace Hopper\", \"grace@example.com\"),\n    (4, \"Linus Torvalds\", \"linus@example.com\")\n  ]\n)\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Team directory: one type, used three times */ @User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n@User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Team directory: one type, used three times */ @User<id:number,name:string,email:string><team:string,lead:@User,members:[@User]>(\"platform\",(1,\"Ada Lovelace\",\"ada@example.com\"),[(2,\"Alan Turing\",\"alan@example.com\"),(3,\"Grace Hopper\",\"grace@example.com\"),(4,\"Linus Torvalds\",\"linus@example.com\")])\n</data>\n\nQuestion: How many people are in the team, including the lead? Give the team name too.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<team:<[name:string,people:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 139,
+   "comments": 139,
+   "attributes": 139,
+   "both": 139
+  },
+  "toon": {
+   "none": 74,
+   "comments": 74,
+   "attributes": 74,
+   "both": 74
+  },
+  "akd": {
+   "none": 95,
+   "comments": 106,
+   "attributes": 95,
+   "both": 106
+  },
+  "akcd": {
+   "none": 73,
+   "comments": 84,
+   "attributes": 73,
+   "both": 84
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"team\": [\n    {\n      \"name\": \"platform\",\n      \"people\": 4\n    }\n  ]\n}",
+  "akcd": "<team:<[name:string,people:number]>>([(\"platform\",4)])",
+  "toon": "team[1]{name,people}:\n  platform,4"
+ },
+ "answer_tokens": {
+  "json": 27,
+  "akcd": 17,
+  "toon": 13
+ }
+}

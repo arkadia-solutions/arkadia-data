@@ -1,0 +1,38 @@
+The data below is in JSON.
+
+<data>
+{
+  "tool": "web_search",
+  "query": "agent memory",
+  "results": [
+    {
+      "rank": 1,
+      "title": "Agent memory in production",
+      "url": "https://example.org/a",
+      "score": 0.97
+    },
+    {
+      "rank": 2,
+      "title": "Token budgets for agents",
+      "url": "https://example.org/b",
+      "score": 0.94
+    },
+    {
+      "rank": 3,
+      "title": "Context engineering",
+      "url": "https://example.org/c",
+      "score": 0.88
+    },
+    {
+      "rank": 4,
+      "title": "Vector stores compared",
+      "url": "https://example.org/d",
+      "score": 0.71
+    }
+  ]
+}
+</data>
+
+Question: Which results have a score of at least 0.9?
+
+Answer with JSON only (no prose): {"hits": [{"rank": <number>, "url": <string>}, ...]}

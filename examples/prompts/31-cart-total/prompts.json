@@ -1,0 +1,124 @@
+{
+ "id": 31,
+ "slug": "cart-total",
+ "title": "Shopping cart: total after discounts",
+ "description": "Prices in grosze, discounts in basis points.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "What is the cart total in PLN after the per-item discounts?",
+ "tokens": {
+  "json": {
+   "none": 220,
+   "comments": 256,
+   "attributes": 250,
+   "both": 286
+  },
+  "toon": {
+   "none": 208,
+   "comments": 244,
+   "attributes": 238,
+   "both": 274
+  },
+  "akd": {
+   "none": 320,
+   "comments": 345,
+   "attributes": 337,
+   "both": 357
+  },
+  "akcd": {
+   "none": 298,
+   "comments": 317,
+   "attributes": 308,
+   "both": 329
+  }
+ },
+ "answer": {
+  "name": "total",
+  "fields": [
+   [
+    "pln",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "pln": 326.82
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`cart.items.price`: unit price in grosze",
+   "`cart.items.disc`: discount in basis points (1000 = 10 %)"
+  ],
+  "attributes": [
+   "`cart.items.price`: $unit=\"grosze\"",
+   "`cart.items.disc`: $unit=\"bp\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"cart\": {\n    \"customer\": \"Ada\",\n    \"currency\": \"PLN\",\n    \"items\": [\n      {\n        \"sku\": \"KB-01\",\n        \"qty\": 2,\n        \"price\": 8900,\n        \"disc\": 1000\n      },\n      {\n        \"sku\": \"MS-02\",\n        \"qty\": 1,\n        \"price\": 3950,\n        \"disc\": 0\n      },\n      {\n        \"sku\": \"HD-10\",\n        \"qty\": 1,\n        \"price\": 12990,\n        \"disc\": 2500\n      },\n      {\n        \"sku\": \"CB-03\",\n        \"qty\": 3,\n        \"price\": 990,\n        \"disc\": 0\n      }\n    ]\n  }\n}\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer with JSON only (no prose): {\"total\": [{\"pln\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `cart.items.price`: unit price in grosze\n- `cart.items.disc`: discount in basis points (1000 = 10 %)\n\n<data>\n{\n  \"cart\": {\n    \"customer\": \"Ada\",\n    \"currency\": \"PLN\",\n    \"items\": [\n      {\n        \"sku\": \"KB-01\",\n        \"qty\": 2,\n        \"price\": 8900,\n        \"disc\": 1000\n      },\n      {\n        \"sku\": \"MS-02\",\n        \"qty\": 1,\n        \"price\": 3950,\n        \"disc\": 0\n      },\n      {\n        \"sku\": \"HD-10\",\n        \"qty\": 1,\n        \"price\": 12990,\n        \"disc\": 2500\n      },\n      {\n        \"sku\": \"CB-03\",\n        \"qty\": 3,\n        \"price\": 990,\n        \"disc\": 0\n      }\n    ]\n  }\n}\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer with JSON only (no prose): {\"total\": [{\"pln\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `cart.items.price`: $unit=\"grosze\"\n- `cart.items.disc`: $unit=\"bp\"\n\n<data>\n{\n  \"cart\": {\n    \"customer\": \"Ada\",\n    \"currency\": \"PLN\",\n    \"items\": [\n      {\n        \"sku\": \"KB-01\",\n        \"qty\": 2,\n        \"price\": 8900,\n        \"disc\": 1000\n      },\n      {\n        \"sku\": \"MS-02\",\n        \"qty\": 1,\n        \"price\": 3950,\n        \"disc\": 0\n      },\n      {\n        \"sku\": \"HD-10\",\n        \"qty\": 1,\n        \"price\": 12990,\n        \"disc\": 2500\n      },\n      {\n        \"sku\": \"CB-03\",\n        \"qty\": 3,\n        \"price\": 990,\n        \"disc\": 0\n      }\n    ]\n  }\n}\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer with JSON only (no prose): {\"total\": [{\"pln\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `cart.items.price`: unit price in grosze\n- `cart.items.disc`: discount in basis points (1000 = 10 %)\n\nAttributes of the data:\n- `cart.items.price`: $unit=\"grosze\"\n- `cart.items.disc`: $unit=\"bp\"\n\n<data>\n{\n  \"cart\": {\n    \"customer\": \"Ada\",\n    \"currency\": \"PLN\",\n    \"items\": [\n      {\n        \"sku\": \"KB-01\",\n        \"qty\": 2,\n        \"price\": 8900,\n        \"disc\": 1000\n      },\n      {\n        \"sku\": \"MS-02\",\n        \"qty\": 1,\n        \"price\": 3950,\n        \"disc\": 0\n      },\n      {\n        \"sku\": \"HD-10\",\n        \"qty\": 1,\n        \"price\": 12990,\n        \"disc\": 2500\n      },\n      {\n        \"sku\": \"CB-03\",\n        \"qty\": 3,\n        \"price\": 990,\n        \"disc\": 0\n      }\n    ]\n  }\n}\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer with JSON only (no prose): {\"total\": [{\"pln\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ncart:\n  customer: Ada\n  currency: PLN\n  items[4]{sku,qty,price,disc}:\n    KB-01,2,8900,1000\n    MS-02,1,3950,0\n    HD-10,1,12990,2500\n    CB-03,3,990,0\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in TOON only (no prose, no code fences): total[N]{pln}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `cart.items.price`: unit price in grosze\n- `cart.items.disc`: discount in basis points (1000 = 10 %)\n\n<data>\ncart:\n  customer: Ada\n  currency: PLN\n  items[4]{sku,qty,price,disc}:\n    KB-01,2,8900,1000\n    MS-02,1,3950,0\n    HD-10,1,12990,2500\n    CB-03,3,990,0\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in TOON only (no prose, no code fences): total[N]{pln}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `cart.items.price`: $unit=\"grosze\"\n- `cart.items.disc`: $unit=\"bp\"\n\n<data>\ncart:\n  customer: Ada\n  currency: PLN\n  items[4]{sku,qty,price,disc}:\n    KB-01,2,8900,1000\n    MS-02,1,3950,0\n    HD-10,1,12990,2500\n    CB-03,3,990,0\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in TOON only (no prose, no code fences): total[N]{pln}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `cart.items.price`: unit price in grosze\n- `cart.items.disc`: discount in basis points (1000 = 10 %)\n\nAttributes of the data:\n- `cart.items.price`: $unit=\"grosze\"\n- `cart.items.disc`: $unit=\"bp\"\n\n<data>\ncart:\n  customer: Ada\n  currency: PLN\n  items[4]{sku,qty,price,disc}:\n    KB-01,2,8900,1000\n    MS-02,1,3950,0\n    HD-10,1,12990,2500\n    CB-03,3,990,0\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in TOON only (no prose, no code fences): total[N]{pln}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<\n  customer:string,\n  currency:string,\n  items:<[sku:string, qty:number, price:number, disc:number]>\n>>\n((\n  \"Ada\",\n  \"PLN\",\n  [\n    (\"KB-01\", 2, 8900, 1000),\n    (\"MS-02\", 1, 3950, 0),\n    (\"HD-10\", 1, 12990, 2500),\n    (\"CB-03\", 3, 990, 0)\n  ]\n))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<\n  customer:string,\n  currency:string,\n  items:<[\n    sku:string,\n    qty:number,\n    price:number /* unit price in grosze */,\n    disc:number /* discount in basis points (1000 = 10 %) */\n  ]>\n>>\n((\n  \"Ada\",\n  \"PLN\",\n  [\n    (\"KB-01\", 2, 8900, 1000),\n    (\"MS-02\", 1, 3950, 0),\n    (\"HD-10\", 1, 12990, 2500),\n    (\"CB-03\", 3, 990, 0)\n  ]\n))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<\n  customer:string,\n  currency:string,\n  items:<[\n    sku:string,\n    qty:number,\n    price:number $unit=\"grosze\",\n    disc:number $unit=\"bp\"\n  ]>\n>>\n((\n  \"Ada\",\n  \"PLN\",\n  [\n    (\"KB-01\", 2, 8900, 1000),\n    (\"MS-02\", 1, 3950, 0),\n    (\"HD-10\", 1, 12990, 2500),\n    (\"CB-03\", 3, 990, 0)\n  ]\n))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<\n  customer:string,\n  currency:string,\n  items:<[\n    sku:string,\n    qty:number,\n    price:number $unit=\"grosze\" /* unit price in grosze */,\n    disc:number $unit=\"bp\" /* discount in basis points (1000 = 10 %) */\n  ]>\n>>\n((\n  \"Ada\",\n  \"PLN\",\n  [\n    (\"KB-01\", 2, 8900, 1000),\n    (\"MS-02\", 1, 3950, 0),\n    (\"HD-10\", 1, 12990, 2500),\n    (\"CB-03\", 3, 990, 0)\n  ]\n))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number,disc:number]>>>((\"Ada\",\"PLN\",[(\"KB-01\",2,8900,1000),(\"MS-02\",1,3950,0),(\"HD-10\",1,12990,2500),(\"CB-03\",3,990,0)]))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number /* unit price in grosze */,disc:number /* discount in basis points (1000 = 10 %) */]>>>((\"Ada\",\"PLN\",[(\"KB-01\",2,8900,1000),(\"MS-02\",1,3950,0),(\"HD-10\",1,12990,2500),(\"CB-03\",3,990,0)]))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number $unit=\"grosze\",disc:number $unit=\"bp\"]>>>((\"Ada\",\"PLN\",[(\"KB-01\",2,8900,1000),(\"MS-02\",1,3950,0),(\"HD-10\",1,12990,2500),(\"CB-03\",3,990,0)]))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<cart:<customer:string,currency:string,items:<[sku:string,qty:number,price:number $unit=\"grosze\" /* unit price in grosze */,disc:number $unit=\"bp\" /* discount in basis points (1000 = 10 %) */]>>>((\"Ada\",\"PLN\",[(\"KB-01\",2,8900,1000),(\"MS-02\",1,3950,0),(\"HD-10\",1,12990,2500),(\"CB-03\",3,990,0)]))\n</data>\n\nQuestion: What is the cart total in PLN after the per-item discounts?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<total:<[pln:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 172,
+   "comments": 172,
+   "attributes": 172,
+   "both": 172
+  },
+  "toon": {
+   "none": 74,
+   "comments": 74,
+   "attributes": 74,
+   "both": 74
+  },
+  "akd": {
+   "none": 110,
+   "comments": 135,
+   "attributes": 127,
+   "both": 147
+  },
+  "akcd": {
+   "none": 82,
+   "comments": 101,
+   "attributes": 92,
+   "both": 113
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"total\": [\n    {\n      \"pln\": 326.82\n    }\n  ]\n}",
+  "akcd": "<total:<[pln:number]>>([(326.82)])",
+  "toon": "total[1]{pln}:\n  326.82"
+ },
+ "answer_tokens": {
+  "json": 23,
+  "akcd": 14,
+  "toon": 13
+ }
+}

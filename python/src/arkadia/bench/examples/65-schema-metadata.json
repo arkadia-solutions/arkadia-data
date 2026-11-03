@@ -1,0 +1,94 @@
+{
+  "id": 65,
+  "slug": "schema-metadata",
+  "title": "Schema and instance metadata",
+  "description": "Metadata on the header ($required, $unit, $maxItems, comments) describes every record; metadata on a value ($verified, #featured, #discontinued) describes one record. Both are skipped when decoding — the JSON is the same — but a model reads them.",
+  "tags": [
+    "feature",
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which products are verified and not discontinued? Give the sku and the price in EUR.",
+  "answer": {
+    "name": "verified",
+    "fields": [
+      [
+        "sku",
+        "string"
+      ],
+      [
+        "eur",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "sku": "PROD-123",
+      "eur": 89.0
+    },
+    {
+      "sku": "PROD-125",
+      "eur": 199.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Product catalogue: one named type with schema metadata",
+      "Schema metadata: rules for every product",
+      "stock keeping unit",
+      "Instance metadata: facts about one product",
+      "sold out, no restock"
+    ],
+    "attributes": [
+      "$source=\"catalogue\" $exported=\"2026-10-30\" #snapshot",
+      "$required",
+      "$required",
+      "$unit=\"EUR\"",
+      "$min=0",
+      "$maxItems=3",
+      "$verified=true",
+      "#featured",
+      "$verified=true",
+      "#discontinued"
+    ]
+  },
+  "akd_meta": "// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot // /* Product catalogue: one named type with schema metadata */ @Product<[/* Schema metadata: rules for every product */ sku:string $required /* stock keeping unit */,name:string $required,price:number $unit=\"EUR\" $min=0,tags:[string] $maxItems=3]><products:@Product>([/* Instance metadata: facts about one product */ $verified=true (\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]) #featured,(\"PROD-124\",\"Mouse\",39.5,[]),$verified=true (\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"]) #discontinued /* sold out, no restock */])",
+  "akd": "// $source=\"catalogue\" $exported=\"2026-10-30\" #snapshot // /* Product catalogue: one named type with schema metadata */ @Product<[/* Schema metadata: rules for every product */ sku:string $required /* stock keeping unit */,name:string $required,price:number $unit=\"EUR\" $min=0,tags:[string] $maxItems=3]><products:@Product>([/* Instance metadata: facts about one product */ $verified=true (\"PROD-123\",\"Keyboard\",89.0,[\"new\",\"wireless\"]) #featured,(\"PROD-124\",\"Mouse\",39.5,[]),$verified=true (\"PROD-125\",\"Dock\",199.0,[\"usb-c\"]),(\"PROD-126\",\"Cable\",9.99,[\"usb-c\"]) #discontinued /* sold out, no restock */])",
+  "data": {
+    "products": [
+      {
+        "sku": "PROD-123",
+        "name": "Keyboard",
+        "price": 89.0,
+        "tags": [
+          "new",
+          "wireless"
+        ]
+      },
+      {
+        "sku": "PROD-124",
+        "name": "Mouse",
+        "price": 39.5,
+        "tags": []
+      },
+      {
+        "sku": "PROD-125",
+        "name": "Dock",
+        "price": 199.0,
+        "tags": [
+          "usb-c"
+        ]
+      },
+      {
+        "sku": "PROD-126",
+        "name": "Cable",
+        "price": 9.99,
+        "tags": [
+          "usb-c"
+        ]
+      }
+    ]
+  }
+}

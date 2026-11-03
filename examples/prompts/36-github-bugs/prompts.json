@@ -1,0 +1,84 @@
+{
+ "id": 36,
+ "slug": "github-bugs",
+ "title": "GitHub: open bugs",
+ "description": "Label lists per issue.",
+ "tags": [],
+ "question": "Which issues are open and labelled bug?",
+ "tokens": {
+  "json": {
+   "none": 648
+  },
+  "toon": {
+   "none": 542
+  },
+  "akd": {
+   "none": 476
+  },
+  "akcd": {
+   "none": 422
+  }
+ },
+ "answer": {
+  "name": "bugs",
+  "fields": [
+   [
+    "n",
+    "number"
+   ],
+   [
+    "title",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "n": 100,
+   "title": "Header parse error"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"issues\": [\n    {\n      \"n\": 100,\n      \"title\": \"Header parse error\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"bug\",\n        \"good first issue\"\n      ]\n    },\n    {\n      \"n\": 101,\n      \"title\": \"Wrong token count\",\n      \"state\": \"open\",\n      \"labels\": []\n    },\n    {\n      \"n\": 102,\n      \"title\": \"Dark mode\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"perf\",\n        \"good first issue\"\n      ]\n    },\n    {\n      \"n\": 103,\n      \"title\": \"Wrong token count\",\n      \"state\": \"closed\",\n      \"labels\": [\n        \"good first issue\"\n      ]\n    },\n    {\n      \"n\": 104,\n      \"title\": \"Wrong token count\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"docs\"\n      ]\n    },\n    {\n      \"n\": 105,\n      \"title\": \"Add Go port\",\n      \"state\": \"open\",\n      \"labels\": []\n    },\n    {\n      \"n\": 106,\n      \"title\": \"Dark mode\",\n      \"state\": \"closed\",\n      \"labels\": []\n    },\n    {\n      \"n\": 107,\n      \"title\": \"Dark mode\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"good first issue\",\n        \"perf\"\n      ]\n    },\n    {\n      \"n\": 108,\n      \"title\": \"Slow decode\",\n      \"state\": \"closed\",\n      \"labels\": [\n        \"enhancement\"\n      ]\n    },\n    {\n      \"n\": 109,\n      \"title\": \"Dark mode\",\n      \"state\": \"open\",\n      \"labels\": []\n    },\n    {\n      \"n\": 110,\n      \"title\": \"Wrong token count\",\n      \"state\": \"open\",\n      \"labels\": []\n    },\n    {\n      \"n\": 111,\n      \"title\": \"Crash on start\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"docs\"\n      ]\n    },\n    {\n      \"n\": 112,\n      \"title\": \"Typo in docs\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"good first issue\"\n      ]\n    },\n    {\n      \"n\": 113,\n      \"title\": \"Dark mode\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"docs\"\n      ]\n    },\n    {\n      \"n\": 114,\n      \"title\": \"Add Go port\",\n      \"state\": \"open\",\n      \"labels\": []\n    },\n    {\n      \"n\": 115,\n      \"title\": \"Dark mode\",\n      \"state\": \"open\",\n      \"labels\": [\n        \"good first issue\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which issues are open and labelled bug?\n\nAnswer with JSON only (no prose): {\"bugs\": [{\"n\": <number>, \"title\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nissues[16]:\n  - n: 100\n    title: Header parse error\n    state: open\n    labels[2]: bug,good first issue\n  - n: 101\n    title: Wrong token count\n    state: open\n    labels: []\n  - n: 102\n    title: Dark mode\n    state: open\n    labels[2]: perf,good first issue\n  - n: 103\n    title: Wrong token count\n    state: closed\n    labels[1]: good first issue\n  - n: 104\n    title: Wrong token count\n    state: open\n    labels[1]: docs\n  - n: 105\n    title: Add Go port\n    state: open\n    labels: []\n  - n: 106\n    title: Dark mode\n    state: closed\n    labels: []\n  - n: 107\n    title: Dark mode\n    state: open\n    labels[2]: good first issue,perf\n  - n: 108\n    title: Slow decode\n    state: closed\n    labels[1]: enhancement\n  - n: 109\n    title: Dark mode\n    state: open\n    labels: []\n  - n: 110\n    title: Wrong token count\n    state: open\n    labels: []\n  - n: 111\n    title: Crash on start\n    state: open\n    labels[1]: docs\n  - n: 112\n    title: Typo in docs\n    state: open\n    labels[1]: good first issue\n  - n: 113\n    title: Dark mode\n    state: open\n    labels[1]: docs\n  - n: 114\n    title: Add Go port\n    state: open\n    labels: []\n  - n: 115\n    title: Dark mode\n    state: open\n    labels[1]: good first issue\n</data>\n\nQuestion: Which issues are open and labelled bug?\n\nAnswer in TOON only (no prose, no code fences): bugs[N]{n,title}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<issues:<[n:number, title:string, state:string, labels:[string]]>>\n([\n  (100, \"Header parse error\", \"open\", [\"bug\", \"good first issue\"]),\n  (101, \"Wrong token count\", \"open\", []),\n  (102, \"Dark mode\", \"open\", [\"perf\", \"good first issue\"]),\n  (103, \"Wrong token count\", \"closed\", [\"good first issue\"]),\n  (104, \"Wrong token count\", \"open\", [\"docs\"]),\n  (105, \"Add Go port\", \"open\", []),\n  (106, \"Dark mode\", \"closed\", []),\n  (107, \"Dark mode\", \"open\", [\"good first issue\", \"perf\"]),\n  (108, \"Slow decode\", \"closed\", [\"enhancement\"]),\n  (109, \"Dark mode\", \"open\", []),\n  (110, \"Wrong token count\", \"open\", []),\n  (111, \"Crash on start\", \"open\", [\"docs\"]),\n  (112, \"Typo in docs\", \"open\", [\"good first issue\"]),\n  (113, \"Dark mode\", \"open\", [\"docs\"]),\n  (114, \"Add Go port\", \"open\", []),\n  (115, \"Dark mode\", \"open\", [\"good first issue\"])\n])\n</data>\n\nQuestion: Which issues are open and labelled bug?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<bugs:<[n:number,title:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<issues:<[n:number,title:string,state:string,labels:[string]]>>([(100,\"Header parse error\",\"open\",[\"bug\",\"good first issue\"]),(101,\"Wrong token count\",\"open\",[]),(102,\"Dark mode\",\"open\",[\"perf\",\"good first issue\"]),(103,\"Wrong token count\",\"closed\",[\"good first issue\"]),(104,\"Wrong token count\",\"open\",[\"docs\"]),(105,\"Add Go port\",\"open\",[]),(106,\"Dark mode\",\"closed\",[]),(107,\"Dark mode\",\"open\",[\"good first issue\",\"perf\"]),(108,\"Slow decode\",\"closed\",[\"enhancement\"]),(109,\"Dark mode\",\"open\",[]),(110,\"Wrong token count\",\"open\",[]),(111,\"Crash on start\",\"open\",[\"docs\"]),(112,\"Typo in docs\",\"open\",[\"good first issue\"]),(113,\"Dark mode\",\"open\",[\"docs\"]),(114,\"Add Go port\",\"open\",[]),(115,\"Dark mode\",\"open\",[\"good first issue\"])])\n</data>\n\nQuestion: Which issues are open and labelled bug?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<bugs:<[n:number,title:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 600
+  },
+  "toon": {
+   "none": 413
+  },
+  "akd": {
+   "none": 270
+  },
+  "akcd": {
+   "none": 210
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"bugs\": [\n    {\n      \"n\": 100,\n      \"title\": \"Header parse error\"\n    }\n  ]\n}",
+  "akcd": "<bugs:<[n:number,title:string]>>([(100,\"Header parse error\")])",
+  "toon": "bugs[1]{n,title}:\n  100,Header parse error"
+ },
+ "answer_tokens": {
+  "json": 29,
+  "akcd": 18,
+  "toon": 15
+ }
+}

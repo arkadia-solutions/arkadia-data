@@ -52,10 +52,16 @@ export interface EncoderConfig {
   includeComments: boolean;
 
   /**
-   * Include array size information (e.g. [ $size=5 : ... ]).
+   * Write the number of elements of every list as metadata: [//$size=3// 1,2,3].
    * Default: false
    */
   includeArraySize: boolean;
+
+  /**
+   * With includeArraySize: only lists with at least this many elements get $size.
+   * Default: 1
+   */
+  arraySizeMin: number;
 
   /**
    * Include the schema definition header (e.g. <name: string>).
@@ -88,6 +94,7 @@ export const DEFAULT_CONFIG: EncoderConfig = {
   colorize: false,
   includeComments: true,
   includeArraySize: false,
+  arraySizeMin: 1,
   includeSchema: true,
   includeMeta: true,
   includeType: true,

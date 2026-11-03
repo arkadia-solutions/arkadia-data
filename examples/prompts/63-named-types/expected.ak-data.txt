@@ -1,0 +1,1 @@
+<team:<[name:string,people:number]>>([("platform",4)])

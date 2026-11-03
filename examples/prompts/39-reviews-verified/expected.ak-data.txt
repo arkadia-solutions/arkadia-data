@@ -1,0 +1,1 @@
+<rating:<[avg_stars:number]>>([(3.83)])

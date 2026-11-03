@@ -1,0 +1,32 @@
+{
+  "slow": [
+    {
+      "endpoint": "GET /products",
+      "p95_ms": 591.8
+    },
+    {
+      "endpoint": "POST /orders",
+      "p95_ms": 501.4
+    },
+    {
+      "endpoint": "POST /login",
+      "p95_ms": 407.9
+    },
+    {
+      "endpoint": "GET /reports",
+      "p95_ms": 371.7
+    },
+    {
+      "endpoint": "GET /search",
+      "p95_ms": 357.4
+    },
+    {
+      "endpoint": "PUT /cart",
+      "p95_ms": 287.9
+    },
+    {
+      "endpoint": "GET /users/:id",
+      "p95_ms": 272.0
+    }
+  ]
+}

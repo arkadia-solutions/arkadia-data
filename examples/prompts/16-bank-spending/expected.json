@@ -1,0 +1,20 @@
+{
+  "spending": [
+    {
+      "cat": "food",
+      "spent": 2164.45
+    },
+    {
+      "cat": "fun",
+      "spent": 1387.47
+    },
+    {
+      "cat": "transport",
+      "spent": 957.48
+    },
+    {
+      "cat": "rent",
+      "spent": 622.98
+    }
+  ]
+}

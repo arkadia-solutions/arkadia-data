@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $site="shop" $tz="UTC" // /* Daily traffic and sales. */ <metric_window:string,rows:<[date:string,visits:number,signups:number,revenue:number,bounce_rate:number]>>("daily",[("2026-07-01",2119,19,3839.16,0.532),("2026-07-02",3487,13,5725.99,0.486),("2026-07-03",919,6,755.88,0.546),("2026-07-04",3383,15,2896.98,0.539),("2026-07-05",1147,20,4652.05,0.373),("2026-07-06",2779,28,3782.09,0.342),("2026-07-07",2459,23,3286.62,0.396),("2026-07-08",1484,18,1495.06,0.425),("2026-07-09",2169,28,2408.7,0.487),("2026-07-10",1352,25,3327.9,0.565),("2026-07-11",2916,59,2755.0,0.634),("2026-07-12",825,19,3021.56,0.318),("2026-07-13",1595,16,1822.57,0.584),("2026-07-14",2137,14,4582.48,0.489),("2026-07-15",3633,74,1337.42,0.512),("2026-07-16",2327,57,2195.75,0.6),("2026-07-17",1838,6,501.38,0.444),("2026-07-18",1329,9,1568.04,0.547),("2026-07-19",2799,18,3284.42,0.6),("2026-07-20",1228,22,1184.83,0.303),("2026-07-21",2187,9,5416.42,0.673),("2026-07-22",2593,63,2450.69,0.321),("2026-07-23",3507,24,2047.24,0.438),("2026-07-24",2366,24,5198.21,0.48),("2026-07-25",1356,16,1940.19,0.272),("2026-07-26",2553,17,3959.29,0.578),("2026-07-27",2101,42,4060.09,0.415),("2026-07-28",2704,37,1265.77,0.308)])
+</data>
+
+Question: Which 3 days had the highest revenue? Give the date, revenue, visits and signups.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<result:<[date:string,revenue:number,visits:number,signups:number]>>

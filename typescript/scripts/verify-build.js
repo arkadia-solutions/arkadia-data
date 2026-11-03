@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const { execSync } = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
 
 // Load package.json to get the real package name (e.g., @arkadia/data)
 const pkg = require('../package.json');
@@ -196,7 +194,7 @@ try {
 
   try {
     const tgzFiles = fs.readdirSync(ROOT_DIR).filter((f) => f.endsWith('.tgz'));
-    tgzFiles.forEach((f) => fs.unlinkSync(path.join(ROOT_DIR, f)));
+    for (const f of tgzFiles) fs.unlinkSync(path.join(ROOT_DIR, f));
   } catch (e) {
     console.error(e.message || e);
   }

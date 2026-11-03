@@ -1,0 +1,21 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+base: EUR
+date: 2026-10-29
+rates[5]{ccy,rate}:
+  PLN,4.2675
+  USD,1.0812
+  GBP,0.8423
+  CHF,0.9411
+  CZK,25.08
+</data>
+
+Question: How much is 500 EUR in each currency (2 decimals)?
+
+Answer in TOON only (no prose, no code fences): converted[N]{ccy,amount}: followed by one row per item.

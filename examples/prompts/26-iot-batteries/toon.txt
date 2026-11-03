@@ -1,0 +1,28 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+tags[14]{device,zone,batt,rssi}:
+  TAG-01,hall,3232,-92
+  TAG-02,hall,4086,-73
+  TAG-03,hall,3610,-77
+  TAG-04,dock,3526,-55
+  TAG-05,dock,3008,-86
+  TAG-06,hall,3920,-42
+  TAG-07,yard,3388,-59
+  TAG-08,hall,2945,-69
+  TAG-09,hall,3488,-60
+  TAG-10,dock,3605,-89
+  TAG-11,dock,3304,-62
+  TAG-12,yard,3264,-87
+  TAG-13,hall,3045,-80
+  TAG-14,hall,4017,-84
+</data>
+
+Question: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.
+
+Answer in TOON only (no prose, no code fences): low[N]{device,volts}: followed by one row per item.

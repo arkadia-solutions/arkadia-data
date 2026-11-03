@@ -1,0 +1,75 @@
+{
+  "id": 57,
+  "slug": "irregular",
+  "title": "Irregular data: a record that does not fit the header",
+  "description": "The third agent has temperature instead of max_steps, so it is written as <any> {key:value} with its own keys — still lossless.",
+  "tags": [
+    "feature"
+  ],
+  "needs_meta": false,
+  "question": "Which agent can use the most tools, and how many?",
+  "answer": {
+    "name": "agent",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "tools",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "planner",
+      "tools": 3
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "akd": null,
+  "data": {
+    "service": "workspace",
+    "agents": [
+      {
+        "name": "planner",
+        "tools": [
+          "search",
+          "files",
+          "calendar"
+        ],
+        "max_steps": 12
+      },
+      {
+        "name": "writer",
+        "tools": [
+          "files"
+        ],
+        "max_steps": 6
+      },
+      {
+        "name": "reviewer",
+        "tools": [
+          "files",
+          "search"
+        ],
+        "temperature": 0.2
+      }
+    ],
+    "limits": {
+      "tokens": 120000,
+      "retries": [
+        1,
+        5,
+        30
+      ]
+    },
+    "storage": null
+  }
+}

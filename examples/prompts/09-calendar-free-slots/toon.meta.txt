@@ -1,0 +1,50 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Busy slots, local time.
+
+Attributes of the data:
+- document: $tz="Europe/Warsaw" #calendar
+
+<data>
+workday:
+  start: "09:00"
+  end: "17:00"
+events[27]{person,day,start,end,title}:
+  Ada,Mon,"09:00","10:00",Focus time
+  Ada,Mon,"11:00","12:00",Focus time
+  Ada,Mon,"16:30","17:00",Lunch
+  Ada,Tue,"11:30","12:30",Focus time
+  Ada,Tue,"12:00","13:00",Lunch
+  Ada,Tue,"13:00","14:00",Customer call
+  Ada,Wed,"09:00","09:30",Review
+  Ada,Wed,"11:30","12:30",Review
+  Ada,Wed,"14:30","15:00",Planning
+  Alan,Mon,"09:00","10:00","1:1"
+  Alan,Mon,"13:00","14:00",Standup
+  Alan,Mon,"16:00","16:30",Lunch
+  Alan,Tue,"09:00","09:30","1:1"
+  Alan,Tue,"12:00","12:30",Standup
+  Alan,Tue,"13:30","14:00",Focus time
+  Alan,Wed,"11:00","11:30",Planning
+  Alan,Wed,"12:30","13:30",Customer call
+  Alan,Wed,"14:30","16:00",Standup
+  Grace,Mon,"13:00","14:00",Planning
+  Grace,Mon,"14:00","15:00",Review
+  Grace,Mon,"15:00","16:30",Planning
+  Grace,Tue,"11:00","11:30",Lunch
+  Grace,Tue,"14:00","15:30",Focus time
+  Grace,Tue,"16:30","17:00",Planning
+  Grace,Wed,"09:00","09:30",Focus time
+  Grace,Wed,"12:00","12:30",Standup
+  Grace,Wed,"13:30","14:30",Planning
+</data>
+
+Question: Working hours are 09:00–17:00. List every 1-hour slot starting on the full hour on Tue when Ada, Alan and Grace are all free (no event overlaps the slot).
+
+Answer in TOON only (no prose, no code fences): result[N]{day,start,end}: followed by one row per item.

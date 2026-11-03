@@ -1,0 +1,215 @@
+The data below is in JSON.
+
+Notes about the data:
+- Daily traffic and sales.
+
+Attributes of the data:
+- document: $site="shop" $tz="UTC"
+
+<data>
+{
+  "metric_window": "daily",
+  "rows": [
+    {
+      "date": "2026-07-01",
+      "visits": 2119,
+      "signups": 19,
+      "revenue": 3839.16,
+      "bounce_rate": 0.532
+    },
+    {
+      "date": "2026-07-02",
+      "visits": 3487,
+      "signups": 13,
+      "revenue": 5725.99,
+      "bounce_rate": 0.486
+    },
+    {
+      "date": "2026-07-03",
+      "visits": 919,
+      "signups": 6,
+      "revenue": 755.88,
+      "bounce_rate": 0.546
+    },
+    {
+      "date": "2026-07-04",
+      "visits": 3383,
+      "signups": 15,
+      "revenue": 2896.98,
+      "bounce_rate": 0.539
+    },
+    {
+      "date": "2026-07-05",
+      "visits": 1147,
+      "signups": 20,
+      "revenue": 4652.05,
+      "bounce_rate": 0.373
+    },
+    {
+      "date": "2026-07-06",
+      "visits": 2779,
+      "signups": 28,
+      "revenue": 3782.09,
+      "bounce_rate": 0.342
+    },
+    {
+      "date": "2026-07-07",
+      "visits": 2459,
+      "signups": 23,
+      "revenue": 3286.62,
+      "bounce_rate": 0.396
+    },
+    {
+      "date": "2026-07-08",
+      "visits": 1484,
+      "signups": 18,
+      "revenue": 1495.06,
+      "bounce_rate": 0.425
+    },
+    {
+      "date": "2026-07-09",
+      "visits": 2169,
+      "signups": 28,
+      "revenue": 2408.7,
+      "bounce_rate": 0.487
+    },
+    {
+      "date": "2026-07-10",
+      "visits": 1352,
+      "signups": 25,
+      "revenue": 3327.9,
+      "bounce_rate": 0.565
+    },
+    {
+      "date": "2026-07-11",
+      "visits": 2916,
+      "signups": 59,
+      "revenue": 2755.0,
+      "bounce_rate": 0.634
+    },
+    {
+      "date": "2026-07-12",
+      "visits": 825,
+      "signups": 19,
+      "revenue": 3021.56,
+      "bounce_rate": 0.318
+    },
+    {
+      "date": "2026-07-13",
+      "visits": 1595,
+      "signups": 16,
+      "revenue": 1822.57,
+      "bounce_rate": 0.584
+    },
+    {
+      "date": "2026-07-14",
+      "visits": 2137,
+      "signups": 14,
+      "revenue": 4582.48,
+      "bounce_rate": 0.489
+    },
+    {
+      "date": "2026-07-15",
+      "visits": 3633,
+      "signups": 74,
+      "revenue": 1337.42,
+      "bounce_rate": 0.512
+    },
+    {
+      "date": "2026-07-16",
+      "visits": 2327,
+      "signups": 57,
+      "revenue": 2195.75,
+      "bounce_rate": 0.6
+    },
+    {
+      "date": "2026-07-17",
+      "visits": 1838,
+      "signups": 6,
+      "revenue": 501.38,
+      "bounce_rate": 0.444
+    },
+    {
+      "date": "2026-07-18",
+      "visits": 1329,
+      "signups": 9,
+      "revenue": 1568.04,
+      "bounce_rate": 0.547
+    },
+    {
+      "date": "2026-07-19",
+      "visits": 2799,
+      "signups": 18,
+      "revenue": 3284.42,
+      "bounce_rate": 0.6
+    },
+    {
+      "date": "2026-07-20",
+      "visits": 1228,
+      "signups": 22,
+      "revenue": 1184.83,
+      "bounce_rate": 0.303
+    },
+    {
+      "date": "2026-07-21",
+      "visits": 2187,
+      "signups": 9,
+      "revenue": 5416.42,
+      "bounce_rate": 0.673
+    },
+    {
+      "date": "2026-07-22",
+      "visits": 2593,
+      "signups": 63,
+      "revenue": 2450.69,
+      "bounce_rate": 0.321
+    },
+    {
+      "date": "2026-07-23",
+      "visits": 3507,
+      "signups": 24,
+      "revenue": 2047.24,
+      "bounce_rate": 0.438
+    },
+    {
+      "date": "2026-07-24",
+      "visits": 2366,
+      "signups": 24,
+      "revenue": 5198.21,
+      "bounce_rate": 0.48
+    },
+    {
+      "date": "2026-07-25",
+      "visits": 1356,
+      "signups": 16,
+      "revenue": 1940.19,
+      "bounce_rate": 0.272
+    },
+    {
+      "date": "2026-07-26",
+      "visits": 2553,
+      "signups": 17,
+      "revenue": 3959.29,
+      "bounce_rate": 0.578
+    },
+    {
+      "date": "2026-07-27",
+      "visits": 2101,
+      "signups": 42,
+      "revenue": 4060.09,
+      "bounce_rate": 0.415
+    },
+    {
+      "date": "2026-07-28",
+      "visits": 2704,
+      "signups": 37,
+      "revenue": 1265.77,
+      "bounce_rate": 0.308
+    }
+  ]
+}
+</data>
+
+Question: Which 3 days had the highest revenue? Give the date, revenue, visits and signups.
+
+Answer with JSON only (no prose): {"result": [{"date": <string>, "revenue": <number>, "visits": <number>, "signups": <number>}, ...]}

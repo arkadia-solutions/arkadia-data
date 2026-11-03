@@ -1,0 +1,34 @@
+{
+  "result": [
+    {
+      "country": "PT",
+      "orders": 4,
+      "revenue": 4491.8
+    },
+    {
+      "country": "CA",
+      "orders": 2,
+      "revenue": 1241.4
+    },
+    {
+      "country": "US",
+      "orders": 2,
+      "revenue": 919.5
+    },
+    {
+      "country": "PL",
+      "orders": 1,
+      "revenue": 842.0
+    },
+    {
+      "country": "GB",
+      "orders": 1,
+      "revenue": 756.7
+    },
+    {
+      "country": "DE",
+      "orders": 1,
+      "revenue": 707.2
+    }
+  ]
+}

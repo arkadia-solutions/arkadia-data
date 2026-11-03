@@ -1,0 +1,1 @@
+<blocked:<[name:string]>>([("Mouse"),("USB cable"),("Headset")])

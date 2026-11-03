@@ -1,0 +1,90 @@
+{
+ "id": 56,
+ "slug": "logs",
+ "title": "Logs: which service is failing?",
+ "description": "Repeated rows are where AK-DATA saves most: the five field names appear once instead of eight times.",
+ "tags": [
+  "feature"
+ ],
+ "question": "How many errors does each service have? Most errors first.",
+ "tokens": {
+  "json": {
+   "none": 419
+  },
+  "toon": {
+   "none": 289
+  },
+  "akd": {
+   "none": 407
+  },
+  "akcd": {
+   "none": 371
+  }
+ },
+ "answer": {
+  "name": "errors",
+  "fields": [
+   [
+    "service",
+    "string"
+   ],
+   [
+    "errors",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "service": "billing",
+   "errors": 3
+  },
+  {
+   "service": "api",
+   "errors": 1
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"events\": [\n    {\n      \"ts\": \"12:00:01\",\n      \"level\": \"info\",\n      \"service\": \"api\",\n      \"msg\": \"GET /orders\",\n      \"ms\": 42\n    },\n    {\n      \"ts\": \"12:00:03\",\n      \"level\": \"error\",\n      \"service\": \"billing\",\n      \"msg\": \"card declined\",\n      \"ms\": 380\n    },\n    {\n      \"ts\": \"12:00:04\",\n      \"level\": \"warn\",\n      \"service\": \"api\",\n      \"msg\": \"slow query\",\n      \"ms\": 1210\n    },\n    {\n      \"ts\": \"12:00:07\",\n      \"level\": \"error\",\n      \"service\": \"billing\",\n      \"msg\": \"timeout\",\n      \"ms\": 5000\n    },\n    {\n      \"ts\": \"12:00:09\",\n      \"level\": \"info\",\n      \"service\": \"auth\",\n      \"msg\": \"login ok\",\n      \"ms\": 18\n    },\n    {\n      \"ts\": \"12:00:11\",\n      \"level\": \"error\",\n      \"service\": \"api\",\n      \"msg\": \"upstream 502\",\n      \"ms\": 2210\n    },\n    {\n      \"ts\": \"12:00:12\",\n      \"level\": \"error\",\n      \"service\": \"billing\",\n      \"msg\": \"timeout\",\n      \"ms\": 5000\n    },\n    {\n      \"ts\": \"12:00:15\",\n      \"level\": \"info\",\n      \"service\": \"api\",\n      \"msg\": \"GET /users\",\n      \"ms\": 37\n    }\n  ]\n}\n</data>\n\nQuestion: How many errors does each service have? Most errors first.\n\nAnswer with JSON only (no prose): {\"errors\": [{\"service\": <string>, \"errors\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nevents[8]{ts,level,service,msg,ms}:\n  \"12:00:01\",info,api,GET /orders,42\n  \"12:00:03\",error,billing,card declined,380\n  \"12:00:04\",warn,api,slow query,1210\n  \"12:00:07\",error,billing,timeout,5000\n  \"12:00:09\",info,auth,login ok,18\n  \"12:00:11\",error,api,upstream 502,2210\n  \"12:00:12\",error,billing,timeout,5000\n  \"12:00:15\",info,api,GET /users,37\n</data>\n\nQuestion: How many errors does each service have? Most errors first.\n\nAnswer in TOON only (no prose, no code fences): errors[N]{service,errors}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<events:<[ts:string, level:string, service:string, msg:string, ms:number]>>\n([\n  (\"12:00:01\", \"info\", \"api\", \"GET /orders\", 42),\n  (\"12:00:03\", \"error\", \"billing\", \"card declined\", 380),\n  (\"12:00:04\", \"warn\", \"api\", \"slow query\", 1210),\n  (\"12:00:07\", \"error\", \"billing\", \"timeout\", 5000),\n  (\"12:00:09\", \"info\", \"auth\", \"login ok\", 18),\n  (\"12:00:11\", \"error\", \"api\", \"upstream 502\", 2210),\n  (\"12:00:12\", \"error\", \"billing\", \"timeout\", 5000),\n  (\"12:00:15\", \"info\", \"api\", \"GET /users\", 37)\n])\n</data>\n\nQuestion: How many errors does each service have? Most errors first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<errors:<[service:string,errors:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<events:<[ts:string,level:string,service:string,msg:string,ms:number]>>([(\"12:00:01\",\"info\",\"api\",\"GET /orders\",42),(\"12:00:03\",\"error\",\"billing\",\"card declined\",380),(\"12:00:04\",\"warn\",\"api\",\"slow query\",1210),(\"12:00:07\",\"error\",\"billing\",\"timeout\",5000),(\"12:00:09\",\"info\",\"auth\",\"login ok\",18),(\"12:00:11\",\"error\",\"api\",\"upstream 502\",2210),(\"12:00:12\",\"error\",\"billing\",\"timeout\",5000),(\"12:00:15\",\"info\",\"api\",\"GET /users\",37)])\n</data>\n\nQuestion: How many errors does each service have? Most errors first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<errors:<[service:string,errors:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 367
+  },
+  "toon": {
+   "none": 155
+  },
+  "akd": {
+   "none": 196
+  },
+  "akcd": {
+   "none": 154
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"errors\": [\n    {\n      \"service\": \"billing\",\n      \"errors\": 3\n    },\n    {\n      \"service\": \"api\",\n      \"errors\": 1\n    }\n  ]\n}",
+  "akcd": "<errors:<[service:string,errors:number]>>([(\"billing\",3),(\"api\",1)])",
+  "toon": "errors[2]{service,errors}:\n  billing,3\n  api,1"
+ },
+ "answer_tokens": {
+  "json": 45,
+  "akcd": 22,
+  "toon": 18
+ }
+}

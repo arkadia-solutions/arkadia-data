@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<loans:<[book:string,reader:string,due:string]>>([("Solaris","Ada","2026-11-15"),("Quo Vadis","Alan","2026-10-05"),("The Doll","Alan","2026-11-23"),("Ferdydurke","Alan","2026-09-11"),("Pan Tadeusz","Dennis","2026-10-08"),("The Witcher","Grace","2026-09-10"),("Flights","Ada","2026-10-27"),("Drive Your Plow","Alan","2026-10-04"),("The Peasants","Alan","2026-10-11"),("Faraon","Margaret","2026-10-25")])
+</data>
+
+Question: Which loans are overdue on 2026-10-15? Oldest due date first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<overdue:<[book:string,reader:string]>>

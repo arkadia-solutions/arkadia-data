@@ -1,0 +1,173 @@
+{
+  "query": "How should an agent store tool results?",
+  "chunks": [
+    {
+      "doc_id": "doc-4",
+      "chunk": 1,
+      "page": 9,
+      "score": 0.617,
+      "text": "Retrieval result tool token nested token agent prompt retrieval type header model schema list answer tool agent list answer nested format result list format memory nested token token source context memory schema value retrieval answer memory tool tool compact result record answer prompt header result."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 2,
+      "page": 29,
+      "score": 0.767,
+      "text": "Agent result context nested type retrieval agent context result list memory compact record schema nested memory compact agent compact record retrieval nested agent context token prompt tool context model answer list field retrieval list answer value nested tool value format compact nested."
+    },
+    {
+      "doc_id": "doc-4",
+      "chunk": 3,
+      "page": 28,
+      "score": 0.958,
+      "text": "Format result retrieval field type type header value schema retrieval retrieval token prompt tool tool schema model prompt value prompt source list compact schema compact memory model answer context list field prompt retrieval compact tool context format retrieval context compact result context compact tool record type."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 4,
+      "page": 36,
+      "score": 0.684,
+      "text": "Prompt compact retrieval nested token type retrieval record list list compact value model format token type format nested token schema retrieval nested format record result format compact type agent header compact nested nested retrieval record source field context value context field field format type compact compact model compact agent format value value value prompt retrieval record model compact list memory nested format."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 5,
+      "page": 10,
+      "score": 0.716,
+      "text": "Field tool value header list source field compact format record tool result list schema list model tool prompt record answer result context compact tool schema field model schema compact schema compact tool compact record result list answer memory value result context tool header token tool nested list value schema record field list tool value nested."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 6,
+      "page": 28,
+      "score": 0.751,
+      "text": "Value result nested retrieval agent list list record type model field context nested result record token answer prompt value memory memory tool nested compact list retrieval format value field source memory field agent nested answer token header retrieval retrieval compact value token value field token schema schema schema source type retrieval schema answer list answer format."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 7,
+      "page": 21,
+      "score": 0.942,
+      "text": "Answer source nested model list format list result header answer model memory tool prompt list field schema context source value compact nested prompt result tool source nested header value nested context format compact token answer prompt source schema header result agent agent tool list nested nested value compact value model retrieval field result header source value field compact value schema tool schema retrieval agent agent agent."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 8,
+      "page": 25,
+      "score": 0.607,
+      "text": "List list token model format model format memory source token format memory schema retrieval memory header prompt nested memory schema field context answer answer header format tool schema agent prompt model answer context source value nested tool nested result value model token type record tool header."
+    },
+    {
+      "doc_id": "doc-6",
+      "chunk": 9,
+      "page": 36,
+      "score": 0.898,
+      "text": "Result memory compact schema result result context record model tool tool retrieval schema header record source retrieval context retrieval memory retrieval list schema schema compact type prompt tool retrieval answer schema context value value header context value prompt list compact compact compact list token memory format compact token answer schema compact prompt prompt."
+    },
+    {
+      "doc_id": "doc-4",
+      "chunk": 10,
+      "page": 40,
+      "score": 0.882,
+      "text": "Value list prompt tool compact tool memory schema nested schema retrieval context list schema agent prompt model compact header result tool result schema tool source list compact agent compact result model retrieval field agent type format record prompt record model token field tool header compact schema token type format header memory schema answer type retrieval retrieval record schema header retrieval header type prompt nested value source list."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 11,
+      "page": 18,
+      "score": 0.797,
+      "text": "Schema format agent context source nested tool value format answer model nested record schema format token agent context retrieval memory format tool header result model record source context context result agent header memory compact field value result compact token retrieval header."
+    },
+    {
+      "doc_id": "doc-3",
+      "chunk": 12,
+      "page": 17,
+      "score": 0.575,
+      "text": "Retrieval token model record tool record result nested retrieval value source nested record prompt retrieval value retrieval token header compact record model record agent model retrieval retrieval type source schema answer value header agent memory type tool field agent retrieval answer context field field context result agent type type retrieval header header nested context value context prompt retrieval token schema retrieval nested model field."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 13,
+      "page": 30,
+      "score": 0.752,
+      "text": "Retrieval list result list agent context value schema format field schema memory model token model field model retrieval compact record record prompt list list source model field record header prompt record result schema token context model list list list tool value tool agent list agent compact source record agent tool source answer compact field compact memory result result field compact list result header result answer record format prompt source."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 14,
+      "page": 39,
+      "score": 0.885,
+      "text": "Answer memory header compact list result header format source type tool record record header source type model token memory header model header context tool context result answer format record compact token header schema list token list prompt retrieval nested source context context value memory retrieval nested compact retrieval model schema source format tool nested format result header value."
+    },
+    {
+      "doc_id": "doc-2",
+      "chunk": 15,
+      "page": 14,
+      "score": 0.687,
+      "text": "Type type compact memory nested type result value record list memory type format result nested prompt source tool field agent format schema retrieval field list prompt answer prompt token agent value context agent schema list list type nested prompt header type source field header field agent prompt field type format list type."
+    },
+    {
+      "doc_id": "doc-3",
+      "chunk": 16,
+      "page": 27,
+      "score": 0.892,
+      "text": "Type compact field compact retrieval retrieval memory token tool retrieval field agent prompt source nested nested result token token schema compact result agent compact token token schema list token agent schema schema agent answer nested schema schema field context schema agent format."
+    },
+    {
+      "doc_id": "doc-1",
+      "chunk": 17,
+      "page": 38,
+      "score": 0.615,
+      "text": "Field nested type retrieval answer list context answer header format token type value record value memory value type schema tool header header agent value compact context header context record list value record memory record compact source value agent source retrieval value source context value list value list memory record source header list header memory schema field source type nested source."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 18,
+      "page": 33,
+      "score": 0.969,
+      "text": "Model retrieval prompt memory nested nested token nested list format result memory result compact answer nested prompt schema compact tool token field value nested type type result answer list prompt memory retrieval format record schema prompt compact schema schema token type type value."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 19,
+      "page": 23,
+      "score": 0.64,
+      "text": "Header prompt list list compact answer agent source compact list type type list schema record schema header model result source value header value header record record context format memory result model compact source memory list list field token compact model."
+    },
+    {
+      "doc_id": "doc-4",
+      "chunk": 20,
+      "page": 29,
+      "score": 0.577,
+      "text": "Field header context field prompt agent tool record retrieval field value header source source header token agent value agent retrieval agent model prompt nested schema header agent list retrieval memory compact nested prompt model result record answer answer tool list agent token source source type list format nested schema schema record."
+    },
+    {
+      "doc_id": "doc-6",
+      "chunk": 21,
+      "page": 2,
+      "score": 0.76,
+      "text": "Context field answer type source format result list answer agent type answer header type schema source record format token compact record result value token token record list token source memory token tool value list tool memory type tool source value format field prompt nested record header schema context record source model answer record model field value model format compact list token answer header."
+    },
+    {
+      "doc_id": "doc-1",
+      "chunk": 22,
+      "page": 32,
+      "score": 0.816,
+      "text": "Prompt value model header agent format source source nested compact tool model record header context result prompt answer type memory prompt source nested prompt memory memory nested tool model field list agent compact record token list schema model context type retrieval nested retrieval result prompt format value prompt compact token list format memory retrieval type."
+    },
+    {
+      "doc_id": "doc-4",
+      "chunk": 23,
+      "page": 8,
+      "score": 0.615,
+      "text": "Context format model context list header header format value result schema format header schema memory retrieval tool list list token header prompt prompt nested prompt result model source answer list list retrieval agent header list source answer answer field context compact answer memory result agent header value source model type record value model compact memory header model nested result retrieval memory schema source answer memory field context answer retrieval nested."
+    },
+    {
+      "doc_id": "doc-5",
+      "chunk": 24,
+      "page": 7,
+      "score": 0.873,
+      "text": "Record model record context token tool retrieval result retrieval header agent memory compact agent token record compact result compact value tool list token type prompt tool header record list retrieval context value result prompt context compact memory type prompt answer list agent compact field field value compact schema."
+    }
+  ]
+}

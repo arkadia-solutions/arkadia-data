@@ -1,8 +1,11 @@
-import { Primitive } from './Node';
+import type { Primitive } from './Node';
+
+/** An attribute value: a primitive, or structured (`$changes=[…]`). */
+export type AttrValue = Primitive | unknown[] | { [key: string]: unknown };
 
 export interface MetaProps {
   comments?: string[];
-  attr?: Record<string, Primitive>;
+  attr?: Record<string, AttrValue>;
   tags?: string[];
 }
 
@@ -11,12 +14,12 @@ export interface MetaProps {
  */
 export class Meta {
   comments: string[];
-  attr: Record<string, Primitive>;
+  attr: Record<string, AttrValue>;
   tags: string[];
 
   constructor({ comments, attr, tags }: MetaProps = {}) {
     this.comments = comments ? [...comments] : [];
-    this.attr = attr ? { ...attr } : {};
+    this.attr = attr ? { ...attr } : Object.create(null);
     this.tags = tags ? [...tags] : [];
   }
 
@@ -25,7 +28,7 @@ export class Meta {
    */
   clearCommonMeta(): void {
     this.comments = [];
-    this.attr = {};
+    this.attr = Object.create(null);
     this.tags = [];
   }
 
@@ -41,7 +44,14 @@ export class Meta {
 
     // Merge attributes ($key=value)
     if (Object.keys(info.attr).length > 0) {
-      Object.assign(this.attr, info.attr);
+      for (const [key, value] of Object.entries(info.attr)) {
+        Object.defineProperty(this.attr, key, {
+          value,
+          enumerable: true,
+          configurable: true,
+          writable: true,
+        });
+      }
     }
 
     // Append tags
@@ -122,7 +132,7 @@ export class MetaInfo extends Meta {
     if (this.comments.length > 0) {
       if (this.comments.length === 1) {
         const c = this.comments[0];
-        const preview = c.length > 15 ? c.substring(0, 15) + '..' : c;
+        const preview = c.length > 15 ? `${c.substring(0, 15)}..` : c;
         parts.push(`/* ${preview} */`);
       } else {
         parts.push(`/* ${this.comments.length} comments */`);

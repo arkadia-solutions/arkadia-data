@@ -1,5 +1,5 @@
-import { Meta, MetaInfo, MetaProps } from './Meta';
-import { Schema } from './Schema';
+import { Meta, type MetaInfo, type MetaProps } from './Meta';
+import type { Schema } from './Schema';
 
 export type Primitive = string | number | boolean | undefined | null;
 
@@ -26,7 +26,7 @@ export class Node extends Meta {
     this.schema = schema;
     this.name = props.name || '';
     this.value = props.value ?? null;
-    this.fields = props.fields || {};
+    this.fields = props.fields || Object.create(null);
     this.elements = props.elements ? [...props.elements] : [];
   }
 
@@ -35,13 +35,13 @@ export class Node extends Meta {
   // -----------------------------------------------------------
 
   get isPrimitive(): boolean {
-    return this.schema && this.schema.isPrimitive;
+    return this.schema?.isPrimitive;
   }
   get isRecord(): boolean {
-    return this.schema && this.schema.isRecord;
+    return this.schema?.isRecord;
   }
   get isList(): boolean {
-    return this.schema && this.schema.isList;
+    return this.schema?.isList;
   }
 
   // -----------------------------------------------------------
@@ -77,7 +77,12 @@ export class Node extends Meta {
     if (this.isRecord) {
       const result: Record<string, unknown> = {};
       for (const [key, fieldNode] of Object.entries(this.fields)) {
-        result[key] = fieldNode.dict();
+        Object.defineProperty(result, key, {
+          value: fieldNode.dict(),
+          enumerable: true,
+          configurable: true,
+          writable: true,
+        });
       }
       return result;
     }
@@ -180,7 +185,7 @@ export class Node extends Meta {
     if (this.isPrimitive) {
       let v = String(this.value);
       if (typeof this.value === 'string') v = `"${v}"`;
-      if (v.length > 50) v = v.substring(0, 47) + '...';
+      if (v.length > 50) v = `${v.substring(0, 47)}...`;
       content.push(`val=${v}`);
     } else if (this.isList) {
       content.push(`len=${this.elements.length}`);
@@ -188,7 +193,7 @@ export class Node extends Meta {
       const keys = Object.keys(this.fields);
       let keysStr = '';
       if (keys.length > 3) {
-        keysStr = keys.slice(0, 3).join(', ') + ', ...';
+        keysStr = `${keys.slice(0, 3).join(', ')}, ...`;
       } else {
         keysStr = keys.join(', ');
       }
@@ -196,7 +201,7 @@ export class Node extends Meta {
     } else {
       // Fallback
       let v = String(this.value);
-      if (v.length > 50) v = v.substring(0, 47) + '...';
+      if (v.length > 50) v = `${v.substring(0, 47)}...`;
       content.push(`val=${v}`);
     }
 
@@ -211,7 +216,7 @@ export class Node extends Meta {
       content.push(`tags=[${this.tags.join(', ')}]`);
     }
 
-    const detailsStr = content.length > 0 ? ' ' + content.join(' ') : '';
+    const detailsStr = content.length > 0 ? ` ${content.join(' ')}` : '';
     return `${header}${detailsStr}>`;
   }
 }

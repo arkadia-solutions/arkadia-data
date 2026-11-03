@@ -1,0 +1,172 @@
+{
+  "id": 23,
+  "slug": "git-commits",
+  "title": "Git log: most active authors",
+  "description": "Twenty commits.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which 3 authors made the most commits? Ties alphabetically.",
+  "answer": {
+    "name": "authors",
+    "fields": [
+      [
+        "author",
+        "string"
+      ],
+      [
+        "commits",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "author": "Dennis",
+      "commits": 5
+    },
+    {
+      "author": "Margaret",
+      "commits": 4
+    },
+    {
+      "author": "Ada",
+      "commits": 3
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Last 20 commits on main."
+    ],
+    "attributes": [
+      "document: $repo=\"arkadia-data\" $branch=\"main\""
+    ]
+  },
+  "akd_meta": "// $repo=\"arkadia-data\" $branch=\"main\" // /* Last 20 commits on main. */ <commits:<[sha:string,author:string,files:number,msg:string]>>([(\"4b97b10\",\"Grace\",4,\"chore: deps\"),(\"7399a1d\",\"Margaret\",6,\"docs: readme\"),(\"41ccd01\",\"Linus\",10,\"test: fuzz\"),(\"77174a0\",\"Dennis\",12,\"fix: decoder\"),(\"2f9af60\",\"Ada\",11,\"fix: decoder\"),(\"fea8177\",\"Margaret\",11,\"test: fuzz\"),(\"ed62305\",\"Dennis\",7,\"refactor: parser\"),(\"d168e48\",\"Margaret\",2,\"test: fuzz\"),(\"7a8d8d2\",\"Linus\",9,\"test: fuzz\"),(\"ae28801\",\"Dennis\",5,\"chore: deps\"),(\"212b9a0\",\"Grace\",12,\"chore: deps\"),(\"3d9f644\",\"Dennis\",2,\"chore: deps\"),(\"da6d3ec\",\"Alan\",10,\"feat: layout\"),(\"620d785\",\"Alan\",9,\"refactor: parser\"),(\"b65b5eb\",\"Alan\",13,\"docs: readme\"),(\"6d419ec\",\"Ada\",4,\"docs: readme\"),(\"4d90bad\",\"Margaret\",5,\"refactor: parser\"),(\"e1db904\",\"Ada\",1,\"feat: layout\"),(\"fc1b124\",\"Grace\",14,\"docs: readme\"),(\"86ed06a\",\"Dennis\",7,\"refactor: parser\")])",
+  "data": {
+    "commits": [
+      {
+        "sha": "4b97b10",
+        "author": "Grace",
+        "files": 4,
+        "msg": "chore: deps"
+      },
+      {
+        "sha": "7399a1d",
+        "author": "Margaret",
+        "files": 6,
+        "msg": "docs: readme"
+      },
+      {
+        "sha": "41ccd01",
+        "author": "Linus",
+        "files": 10,
+        "msg": "test: fuzz"
+      },
+      {
+        "sha": "77174a0",
+        "author": "Dennis",
+        "files": 12,
+        "msg": "fix: decoder"
+      },
+      {
+        "sha": "2f9af60",
+        "author": "Ada",
+        "files": 11,
+        "msg": "fix: decoder"
+      },
+      {
+        "sha": "fea8177",
+        "author": "Margaret",
+        "files": 11,
+        "msg": "test: fuzz"
+      },
+      {
+        "sha": "ed62305",
+        "author": "Dennis",
+        "files": 7,
+        "msg": "refactor: parser"
+      },
+      {
+        "sha": "d168e48",
+        "author": "Margaret",
+        "files": 2,
+        "msg": "test: fuzz"
+      },
+      {
+        "sha": "7a8d8d2",
+        "author": "Linus",
+        "files": 9,
+        "msg": "test: fuzz"
+      },
+      {
+        "sha": "ae28801",
+        "author": "Dennis",
+        "files": 5,
+        "msg": "chore: deps"
+      },
+      {
+        "sha": "212b9a0",
+        "author": "Grace",
+        "files": 12,
+        "msg": "chore: deps"
+      },
+      {
+        "sha": "3d9f644",
+        "author": "Dennis",
+        "files": 2,
+        "msg": "chore: deps"
+      },
+      {
+        "sha": "da6d3ec",
+        "author": "Alan",
+        "files": 10,
+        "msg": "feat: layout"
+      },
+      {
+        "sha": "620d785",
+        "author": "Alan",
+        "files": 9,
+        "msg": "refactor: parser"
+      },
+      {
+        "sha": "b65b5eb",
+        "author": "Alan",
+        "files": 13,
+        "msg": "docs: readme"
+      },
+      {
+        "sha": "6d419ec",
+        "author": "Ada",
+        "files": 4,
+        "msg": "docs: readme"
+      },
+      {
+        "sha": "4d90bad",
+        "author": "Margaret",
+        "files": 5,
+        "msg": "refactor: parser"
+      },
+      {
+        "sha": "e1db904",
+        "author": "Ada",
+        "files": 1,
+        "msg": "feat: layout"
+      },
+      {
+        "sha": "fc1b124",
+        "author": "Grace",
+        "files": 14,
+        "msg": "docs: readme"
+      },
+      {
+        "sha": "86ed06a",
+        "author": "Dennis",
+        "files": 7,
+        "msg": "refactor: parser"
+      }
+    ]
+  }
+}

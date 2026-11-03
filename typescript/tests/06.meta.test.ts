@@ -16,7 +16,7 @@ describe('AK Data Metadata (Meta)', () => {
     const res = decode(text, { debug: false });
     expect(res.errors).toHaveLength(0);
 
-    expect(res.node.fields['id'].value).toBe(5);
+    expect(res.node.fields.id.value).toBe(5);
 
     assertRoundtrip(text, expected, false);
   });
@@ -91,8 +91,8 @@ describe('AK Data Metadata (Meta)', () => {
     expect(schema).not.toBeNull();
     expect(schema!.kind).toBe(SchemaKind.LIST);
 
-    expect(schema!.attr['listAttr']).toBe('GlobalList');
-    expect(schema!.attr['b']).toBe(4);
+    expect(schema!.attr.listAttr).toBe('GlobalList');
+    expect(schema!.attr.b).toBe(4);
     expect(schema!.tags).toContain('tag');
 
     const expected =
@@ -130,7 +130,7 @@ describe('AK Data Metadata (Meta)', () => {
     const decodedNode = result.node;
 
     expect(result.errors).toHaveLength(0);
-    expect(decodedNode.schema!.attr['key']).toBe('value');
+    expect(decodedNode.schema!.attr.key).toBe('value');
     expect(decodedNode.schema!.tags).toContain('urgent');
 
     // Test cleaning meta
@@ -166,8 +166,8 @@ describe('AK Data Metadata (Meta)', () => {
     const node = results.node;
 
     expect(results.errors).toHaveLength(0);
-    expect(node.schema!.attr['listAttr']).toBe('GlobalList');
-    expect(node.schema!.attr['elemAttr']).toBe('InnerRecord');
+    expect(node.schema!.attr.listAttr).toBe('GlobalList');
+    expect(node.schema!.attr.elemAttr).toBe('InnerRecord');
 
     const expected =
       '<[///*com-in*/ /*comm-header-0*/ /*comm-header-1 /* comm-header-1.1*/*/ /*comm-after-header-0*/ /*comm-inside-header-0*/ $listAttr="GlobalList" $b=4 $elemAttr="InnerRecord" #elem0// /*comm-inside-field-0*/ #elem1 id:number]>[(///*comm-data-v1*/ /*comm-data-v2*/// 1)]';
@@ -242,8 +242,8 @@ describe('AK Data Metadata (Meta)', () => {
 
     const fId = node.schema!.fields.find((f) => f.name === 'id')!;
     expect(fId.required).toBe(true);
-    expect(fId.attr['key']).toBe(101);
-    expect(node.attr['id']).toBe(3);
+    expect(fId.attr.key).toBe(101);
+    expect(node.attr.id).toBe(3);
 
     const expected =
       '<///*comm2 /* comm2.5*/*/ $id=0// /*comm0*/ /*comm3*/ /*Modifiers block before field name*/ $required $key=101 id:number,$desc="User Name" name:string>(///*comment2*/ $id=3// /*comment0*/ /*comment3*/ 1,/*comment4*/ $id=65 #alice "Alice")';
@@ -257,8 +257,8 @@ describe('AK Data Metadata (Meta)', () => {
     const node = results.node;
     expect(results.errors).toHaveLength(0);
 
-    expect(node.attr['size']).toBe(3);
-    expect(node.attr['author']).toBe('me');
+    expect(node.attr.size).toBe(3);
+    expect(node.attr.author).toBe('me');
 
     const expected = '<[number]>[//$size=3 $author="me"// 1,2,3]';
     assertRoundtrip(akdText, expected, false);
@@ -283,9 +283,9 @@ describe('AK Data Metadata (Meta)', () => {
     const node = results.node;
     expect(results.errors).toHaveLength(0);
 
-    expect(node.attr['level']).toBe(0);
-    expect(node.elements[0].attr['level']).toBe(1);
-    expect(node.elements[1].attr['level']).toBe(2);
+    expect(node.attr.level).toBe(0);
+    expect(node.elements[0].attr.level).toBe(1);
+    expect(node.elements[1].attr.level).toBe(2);
 
     const expected = '<[[number]]>[//$level=0// [//$level=1// 1,2],[//$level=2// 3,4]]';
     assertRoundtrip(akdText, expected, false);
@@ -297,7 +297,7 @@ describe('AK Data Metadata (Meta)', () => {
 
     const result = decode(akdText, { debug: false });
     expect(result.errors).toHaveLength(0);
-    expect(result.node.attr['info']).toBe('mixed');
+    expect(result.node.attr.info).toBe('mixed');
     expect(result.node.schema!.element?.typeName).toBe('number');
 
     assertRoundtrip(result.node, expected, false);
@@ -308,7 +308,7 @@ describe('AK Data Metadata (Meta)', () => {
 
     const result = decode(akdText, { debug: false });
     expect(result.errors).toHaveLength(0);
-    expect(result.node.attr['tag']).toBe(1);
+    expect(result.node.attr.tag).toBe(1);
 
     const expected = '<[number]>[//$tag=1// 1,2]';
     assertRoundtrip(result.node, expected, false);

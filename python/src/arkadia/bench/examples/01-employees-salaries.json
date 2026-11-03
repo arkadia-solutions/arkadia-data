@@ -1,0 +1,362 @@
+{
+  "id": 1,
+  "slug": "employees-salaries",
+  "title": "HR table: average salary by department",
+  "description": "30 employee records. Aggregation over a filtered table.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Among active employees, which 3 departments have the highest average salary? Give the department, the number of active employees and the average salary rounded to a whole number.",
+  "answer": {
+    "name": "result",
+    "fields": [
+      [
+        "department",
+        "string"
+      ],
+      [
+        "employees",
+        "number"
+      ],
+      [
+        "avg_salary",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "department": "Engineering",
+      "employees": 8,
+      "avg_salary": 135312
+    },
+    {
+      "department": "Finance",
+      "employees": 2,
+      "avg_salary": 133250
+    },
+    {
+      "department": "Research",
+      "employees": 7,
+      "avg_salary": 124929
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Employee list exported from HR.",
+      "`employees.salary`: gross yearly salary in EUR",
+      "`employees.active`: false = left the company"
+    ],
+    "attributes": [
+      "document: $source=\"hr\" $as_of=\"2026-10-01\" #confidential",
+      "`employees.salary`: $unit=\"EUR\" $period=\"year\""
+    ]
+  },
+  "akd_meta": "// $source=\"hr\" $as_of=\"2026-10-01\" #confidential // /* Employee list exported from HR. */ <employees:<[id:number,name:string,email:string,department:string,city:string,salary:number $unit=\"EUR\" $period=\"year\" /* gross yearly salary in EUR */,active:bool /* false = left the company */,hired:string]>>([(1,\"Tim Dijkstra\",\"tim.dijkstra1@example.com\",\"Sales\",\"Warsaw\",109500,true,\"2012-12-27\"),(2,\"Margaret Turing\",\"margaret.turing2@example.com\",\"Sales\",\"Kraków\",126500,true,\"2025-11-20\"),(3,\"Linus Liskov\",\"linus.liskov3@example.com\",\"Sales\",\"Lisbon\",77500,true,\"2019-01-19\"),(4,\"Linus Berners-Lee\",\"linus.bernerslee4@example.com\",\"Sales\",\"Lisbon\",137000,true,\"2012-03-05\"),(5,\"Hedy Hopper\",\"hedy.hopper5@example.com\",\"Engineering\",\"Lisbon\",105000,true,\"2020-06-04\"),(6,\"Dennis Backus\",\"dennis.backus6@example.com\",\"Finance\",\"Toronto\",154500,true,\"2018-08-23\"),(7,\"Alan Hamilton\",\"alan.hamilton7@example.com\",\"Support\",\"Lisbon\",101000,true,\"2025-02-12\"),(8,\"Linus Dijkstra\",\"linus.dijkstra8@example.com\",\"Finance\",\"Kraków\",49000,false,\"2018-04-19\"),(9,\"Donald Knuth\",\"donald.knuth9@example.com\",\"Research\",\"Warsaw\",184000,true,\"2012-06-02\"),(10,\"Katherine Lovelace\",\"katherine.lovelace10@example.com\",\"Research\",\"London\",57000,true,\"2012-12-06\"),(11,\"Edsger Berners-Lee\",\"edsger.bernerslee11@example.com\",\"Research\",\"Warsaw\",126500,true,\"2025-02-01\"),(12,\"Edsger Turing\",\"edsger.turing12@example.com\",\"Engineering\",\"Austin\",177000,true,\"2018-09-09\"),(13,\"John Lovelace\",\"john.lovelace13@example.com\",\"Support\",\"Austin\",134500,true,\"2023-06-21\"),(14,\"Donald Allen\",\"donald.allen14@example.com\",\"Research\",\"Austin\",113500,true,\"2018-09-27\"),(15,\"Tim Berners-Lee\",\"tim.bernerslee15@example.com\",\"Sales\",\"Kraków\",176000,true,\"2020-05-15\"),(16,\"Margaret Lovelace\",\"margaret.lovelace16@example.com\",\"Engineering\",\"Toronto\",165500,true,\"2016-11-18\"),(17,\"Ken Torvalds\",\"ken.torvalds17@example.com\",\"Research\",\"Toronto\",172500,true,\"2026-09-05\"),(18,\"Margaret Knuth\",\"margaret.knuth18@example.com\",\"Sales\",\"Lisbon\",52500,true,\"2020-10-12\"),(19,\"Grace Ritchie\",\"grace.ritchie19@example.com\",\"Support\",\"Berlin\",62000,true,\"2026-02-20\"),(20,\"Barbara Lovelace\",\"barbara.lovelace20@example.com\",\"Research\",\"Berlin\",139500,true,\"2020-08-03\"),(21,\"Ada Hamilton\",\"ada.hamilton21@example.com\",\"Sales\",\"London\",99500,true,\"2013-02-07\"),(22,\"Donald Thompson\",\"donald.thompson22@example.com\",\"Sales\",\"London\",156500,true,\"2026-12-13\"),(23,\"Radia Dijkstra\",\"radia.dijkstra23@example.com\",\"Engineering\",\"Warsaw\",72500,true,\"2019-09-08\"),(24,\"Donald Hamilton\",\"donald.hamilton24@example.com\",\"Engineering\",\"Berlin\",93500,true,\"2019-07-12\"),(25,\"Katherine Perlman\",\"katherine.perlman25@example.com\",\"Engineering\",\"Lisbon\",105000,true,\"2020-12-08\"),(26,\"Katherine Lamarr\",\"katherine.lamarr26@example.com\",\"Engineering\",\"London\",177500,true,\"2020-02-06\"),(27,\"Grace Hopper\",\"grace.hopper27@example.com\",\"Research\",\"Lisbon\",166000,false,\"2024-04-18\"),(28,\"Edsger Ritchie\",\"edsger.ritchie28@example.com\",\"Finance\",\"Berlin\",112000,true,\"2020-05-21\"),(29,\"Tim Turing\",\"tim.turing29@example.com\",\"Engineering\",\"Lisbon\",186500,true,\"2016-03-10\"),(30,\"Tim Berners-Lee\",\"tim.bernerslee30@example.com\",\"Research\",\"Warsaw\",81500,true,\"2014-07-19\")])",
+  "data": {
+    "employees": [
+      {
+        "id": 1,
+        "name": "Tim Dijkstra",
+        "email": "tim.dijkstra1@example.com",
+        "department": "Sales",
+        "city": "Warsaw",
+        "salary": 109500,
+        "active": true,
+        "hired": "2012-12-27"
+      },
+      {
+        "id": 2,
+        "name": "Margaret Turing",
+        "email": "margaret.turing2@example.com",
+        "department": "Sales",
+        "city": "Kraków",
+        "salary": 126500,
+        "active": true,
+        "hired": "2025-11-20"
+      },
+      {
+        "id": 3,
+        "name": "Linus Liskov",
+        "email": "linus.liskov3@example.com",
+        "department": "Sales",
+        "city": "Lisbon",
+        "salary": 77500,
+        "active": true,
+        "hired": "2019-01-19"
+      },
+      {
+        "id": 4,
+        "name": "Linus Berners-Lee",
+        "email": "linus.bernerslee4@example.com",
+        "department": "Sales",
+        "city": "Lisbon",
+        "salary": 137000,
+        "active": true,
+        "hired": "2012-03-05"
+      },
+      {
+        "id": 5,
+        "name": "Hedy Hopper",
+        "email": "hedy.hopper5@example.com",
+        "department": "Engineering",
+        "city": "Lisbon",
+        "salary": 105000,
+        "active": true,
+        "hired": "2020-06-04"
+      },
+      {
+        "id": 6,
+        "name": "Dennis Backus",
+        "email": "dennis.backus6@example.com",
+        "department": "Finance",
+        "city": "Toronto",
+        "salary": 154500,
+        "active": true,
+        "hired": "2018-08-23"
+      },
+      {
+        "id": 7,
+        "name": "Alan Hamilton",
+        "email": "alan.hamilton7@example.com",
+        "department": "Support",
+        "city": "Lisbon",
+        "salary": 101000,
+        "active": true,
+        "hired": "2025-02-12"
+      },
+      {
+        "id": 8,
+        "name": "Linus Dijkstra",
+        "email": "linus.dijkstra8@example.com",
+        "department": "Finance",
+        "city": "Kraków",
+        "salary": 49000,
+        "active": false,
+        "hired": "2018-04-19"
+      },
+      {
+        "id": 9,
+        "name": "Donald Knuth",
+        "email": "donald.knuth9@example.com",
+        "department": "Research",
+        "city": "Warsaw",
+        "salary": 184000,
+        "active": true,
+        "hired": "2012-06-02"
+      },
+      {
+        "id": 10,
+        "name": "Katherine Lovelace",
+        "email": "katherine.lovelace10@example.com",
+        "department": "Research",
+        "city": "London",
+        "salary": 57000,
+        "active": true,
+        "hired": "2012-12-06"
+      },
+      {
+        "id": 11,
+        "name": "Edsger Berners-Lee",
+        "email": "edsger.bernerslee11@example.com",
+        "department": "Research",
+        "city": "Warsaw",
+        "salary": 126500,
+        "active": true,
+        "hired": "2025-02-01"
+      },
+      {
+        "id": 12,
+        "name": "Edsger Turing",
+        "email": "edsger.turing12@example.com",
+        "department": "Engineering",
+        "city": "Austin",
+        "salary": 177000,
+        "active": true,
+        "hired": "2018-09-09"
+      },
+      {
+        "id": 13,
+        "name": "John Lovelace",
+        "email": "john.lovelace13@example.com",
+        "department": "Support",
+        "city": "Austin",
+        "salary": 134500,
+        "active": true,
+        "hired": "2023-06-21"
+      },
+      {
+        "id": 14,
+        "name": "Donald Allen",
+        "email": "donald.allen14@example.com",
+        "department": "Research",
+        "city": "Austin",
+        "salary": 113500,
+        "active": true,
+        "hired": "2018-09-27"
+      },
+      {
+        "id": 15,
+        "name": "Tim Berners-Lee",
+        "email": "tim.bernerslee15@example.com",
+        "department": "Sales",
+        "city": "Kraków",
+        "salary": 176000,
+        "active": true,
+        "hired": "2020-05-15"
+      },
+      {
+        "id": 16,
+        "name": "Margaret Lovelace",
+        "email": "margaret.lovelace16@example.com",
+        "department": "Engineering",
+        "city": "Toronto",
+        "salary": 165500,
+        "active": true,
+        "hired": "2016-11-18"
+      },
+      {
+        "id": 17,
+        "name": "Ken Torvalds",
+        "email": "ken.torvalds17@example.com",
+        "department": "Research",
+        "city": "Toronto",
+        "salary": 172500,
+        "active": true,
+        "hired": "2026-09-05"
+      },
+      {
+        "id": 18,
+        "name": "Margaret Knuth",
+        "email": "margaret.knuth18@example.com",
+        "department": "Sales",
+        "city": "Lisbon",
+        "salary": 52500,
+        "active": true,
+        "hired": "2020-10-12"
+      },
+      {
+        "id": 19,
+        "name": "Grace Ritchie",
+        "email": "grace.ritchie19@example.com",
+        "department": "Support",
+        "city": "Berlin",
+        "salary": 62000,
+        "active": true,
+        "hired": "2026-02-20"
+      },
+      {
+        "id": 20,
+        "name": "Barbara Lovelace",
+        "email": "barbara.lovelace20@example.com",
+        "department": "Research",
+        "city": "Berlin",
+        "salary": 139500,
+        "active": true,
+        "hired": "2020-08-03"
+      },
+      {
+        "id": 21,
+        "name": "Ada Hamilton",
+        "email": "ada.hamilton21@example.com",
+        "department": "Sales",
+        "city": "London",
+        "salary": 99500,
+        "active": true,
+        "hired": "2013-02-07"
+      },
+      {
+        "id": 22,
+        "name": "Donald Thompson",
+        "email": "donald.thompson22@example.com",
+        "department": "Sales",
+        "city": "London",
+        "salary": 156500,
+        "active": true,
+        "hired": "2026-12-13"
+      },
+      {
+        "id": 23,
+        "name": "Radia Dijkstra",
+        "email": "radia.dijkstra23@example.com",
+        "department": "Engineering",
+        "city": "Warsaw",
+        "salary": 72500,
+        "active": true,
+        "hired": "2019-09-08"
+      },
+      {
+        "id": 24,
+        "name": "Donald Hamilton",
+        "email": "donald.hamilton24@example.com",
+        "department": "Engineering",
+        "city": "Berlin",
+        "salary": 93500,
+        "active": true,
+        "hired": "2019-07-12"
+      },
+      {
+        "id": 25,
+        "name": "Katherine Perlman",
+        "email": "katherine.perlman25@example.com",
+        "department": "Engineering",
+        "city": "Lisbon",
+        "salary": 105000,
+        "active": true,
+        "hired": "2020-12-08"
+      },
+      {
+        "id": 26,
+        "name": "Katherine Lamarr",
+        "email": "katherine.lamarr26@example.com",
+        "department": "Engineering",
+        "city": "London",
+        "salary": 177500,
+        "active": true,
+        "hired": "2020-02-06"
+      },
+      {
+        "id": 27,
+        "name": "Grace Hopper",
+        "email": "grace.hopper27@example.com",
+        "department": "Research",
+        "city": "Lisbon",
+        "salary": 166000,
+        "active": false,
+        "hired": "2024-04-18"
+      },
+      {
+        "id": 28,
+        "name": "Edsger Ritchie",
+        "email": "edsger.ritchie28@example.com",
+        "department": "Finance",
+        "city": "Berlin",
+        "salary": 112000,
+        "active": true,
+        "hired": "2020-05-21"
+      },
+      {
+        "id": 29,
+        "name": "Tim Turing",
+        "email": "tim.turing29@example.com",
+        "department": "Engineering",
+        "city": "Lisbon",
+        "salary": 186500,
+        "active": true,
+        "hired": "2016-03-10"
+      },
+      {
+        "id": 30,
+        "name": "Tim Berners-Lee",
+        "email": "tim.bernerslee30@example.com",
+        "department": "Research",
+        "city": "Warsaw",
+        "salary": 81500,
+        "active": true,
+        "hired": "2014-07-19"
+      }
+    ]
+  }
+}

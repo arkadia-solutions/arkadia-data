@@ -1,0 +1,9 @@
+{
+  "warmest": [
+    {
+      "sensor": "S-1",
+      "room": "lab",
+      "celsius": 28.9
+    }
+  ]
+}

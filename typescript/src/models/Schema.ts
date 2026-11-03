@@ -1,4 +1,4 @@
-import { Meta, MetaInfo, MetaProps } from './Meta';
+import { Meta, type MetaInfo, type MetaProps } from './Meta';
 
 export enum SchemaKind {
   PRIMITIVE = 'PRIMITIVE', // int, string, bool, null
@@ -48,7 +48,7 @@ export class Schema extends Meta {
     this.required = props.required || false;
 
     if (props.fields) {
-      props.fields.forEach((f) => this.addField(f));
+      for (const f of props.fields) this.addField(f);
     }
   }
 
@@ -195,8 +195,7 @@ export class Schema extends Meta {
     if (this.required) details.push('$required');
 
     const attrKeys = Object.keys(this.attr);
-    if (attrKeys.length > 0)
-      details.push(`attr=[${attrKeys.map((a) => '"' + a + '"').join(', ')}]`);
+    if (attrKeys.length > 0) details.push(`attr=[${attrKeys.map((a) => `"${a}"`).join(', ')}]`);
 
     if (this.tags.length > 0) details.push(`tags=[${this.tags.join(', ')}]`);
     if (this.comments.length > 0) details.push(`comments=${this.comments.length}`);
@@ -220,7 +219,7 @@ export class Schema extends Meta {
       details.push(`element=${elKind}:${elType}`);
     }
 
-    const detailsStr = details.length > 0 ? ' ' + details.join(' ') : '';
+    const detailsStr = details.length > 0 ? ` ${details.join(' ')}` : '';
 
     return `${header}${nameStr}${detailsStr}>`;
   }

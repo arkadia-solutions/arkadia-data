@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<jobs:<[role:string,remote:bool,min:number $unit="PLN" $period="month" $gross=true /* monthly gross, PLN */,max:number $unit="PLN" $period="month" $gross=true /* monthly gross, PLN */,city:string]>>([("Rust engineer",true,17000,23000,"Wrocław"),("Data analyst",false,10000,14000,"Kraków"),("Product designer",false,18000,27000,"Poznań"),("Python developer",true,13000,22000,"Gdańsk"),("DevOps",true,10000,16000,"Poznań"),("QA engineer",false,12000,15000,"Wrocław"),("Tech writer",true,9000,17000,"Poznań"),("ML engineer",false,15000,21000,"Poznań"),("Frontend dev",false,10000,13000,"Poznań"),("Support lead",true,12000,17000,"Wrocław")])
+</data>
+
+Question: Which remote jobs pay at least 20,000 at the top of the range? Highest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<jobs:<[role:string,max:number]>>

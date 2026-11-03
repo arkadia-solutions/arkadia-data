@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { decode } from '../src/index';
 import { assertRoundtrip } from './utils';
 
@@ -25,8 +25,8 @@ describe('AK Data Schema Definitions', () => {
 
     // Since we have a schema, positional arguments should be mapped to fields
     // Check by key (Decoder maps positional to fields if schema exists)
-    expect(node.fields['id'].value).toBe(1);
-    expect(node.fields['name'].value).toBe('Admin');
+    expect(node.fields.id.value).toBe(1);
+    expect(node.fields.name.value).toBe('Admin');
 
     assertRoundtrip(node, '@User<id:number,name:string>(1,"Admin")', false);
   });
@@ -48,12 +48,12 @@ describe('AK Data Schema Definitions', () => {
     const node = res.node;
 
     // id should be 1
-    expect(node.fields['id'].value).toBe(1);
+    expect(node.fields.id.value).toBe(1);
 
     // profile should be a node
-    const profileNode = node.fields['profile'];
+    const profileNode = node.fields.profile;
     expect(profileNode).toBeDefined();
-    expect(profileNode.fields['level'].value).toBe(99);
+    expect(profileNode.fields.level.value).toBe(99);
 
     assertRoundtrip(node, '@User<id:number,profile:@Profile<level:number>>(1,(99))', false);
   });

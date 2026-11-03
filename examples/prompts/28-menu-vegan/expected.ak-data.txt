@@ -1,0 +1,1 @@
+<vegan:<[dish:string,pln:number]>>([("Hummus plate",24.0),("Falafel wrap",19.0),("Lentil soup",16.0),("Fries",12.0)])

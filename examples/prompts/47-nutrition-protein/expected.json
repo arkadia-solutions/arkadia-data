@@ -1,0 +1,16 @@
+{
+  "protein": [
+    {
+      "food": "Chicken breast",
+      "grams": 46.5
+    },
+    {
+      "food": "Lentils (cooked)",
+      "grams": 18.0
+    },
+    {
+      "food": "Greek yogurt",
+      "grams": 17.0
+    }
+  ]
+}

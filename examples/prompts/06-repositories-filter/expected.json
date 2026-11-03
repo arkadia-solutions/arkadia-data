@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "name": "open-parser-22",
+      "language": "Rust",
+      "stars": 88594,
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "deep-agent-9",
+      "language": "Python",
+      "stars": 85505,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "smart-store-5",
+      "language": "Rust",
+      "stars": 81958,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "smart-parser-1",
+      "language": "Python",
+      "stars": 67210,
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "tiny-store-23",
+      "language": "Rust",
+      "stars": 43981,
+      "license": "MIT"
+    },
+    {
+      "name": "tiny-store-18",
+      "language": "Rust",
+      "stars": 25014,
+      "license": null
+    },
+    {
+      "name": "smart-parser-7",
+      "language": "Python",
+      "stars": 23853,
+      "license": "Apache-2.0"
+    }
+  ]
+}

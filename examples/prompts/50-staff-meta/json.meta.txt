@@ -1,0 +1,113 @@
+The data below is in JSON.
+
+Notes about the data:
+- Payroll snapshot from 1 October 2026. Contractors are not employees.
+- `staff.dept`: department: ENG engineering, OPS operations, FIN finance
+- `staff.lvl`: level: 1 junior, 2 mid, 3 senior
+- `staff.sal`: gross salary per month in PLN
+- staff id=104: contractor, not an employee
+- staff id=110: contractor, not an employee
+
+Attributes of the data:
+- document: $company="Arkadia" $as_of="2026-10-01" #hr #confidential
+- `staff.id`: $required
+- `staff.dept`: $enum="ENG=engineering,OPS=operations,FIN=finance"
+- `staff.lvl`: $enum="1=junior,2=mid,3=senior"
+- `staff.sal`: $unit="PLN" $period="month"
+- staff id=104: #contractor
+- staff id=110: #contractor
+
+<data>
+{
+  "staff": [
+    {
+      "id": 100,
+      "name": "Ada",
+      "dept": "ENG",
+      "lvl": 2,
+      "sal": 7300
+    },
+    {
+      "id": 101,
+      "name": "Alan",
+      "dept": "OPS",
+      "lvl": 1,
+      "sal": 17200
+    },
+    {
+      "id": 102,
+      "name": "Grace",
+      "dept": "FIN",
+      "lvl": 3,
+      "sal": 21000
+    },
+    {
+      "id": 103,
+      "name": "Linus",
+      "dept": "ENG",
+      "lvl": 2,
+      "sal": 18100
+    },
+    {
+      "id": 104,
+      "name": "Margaret",
+      "dept": "OPS",
+      "lvl": 2,
+      "sal": 14400
+    },
+    {
+      "id": 105,
+      "name": "Dennis",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 8200
+    },
+    {
+      "id": 106,
+      "name": "Barbara",
+      "dept": "ENG",
+      "lvl": 1,
+      "sal": 23500
+    },
+    {
+      "id": 107,
+      "name": "Ken",
+      "dept": "OPS",
+      "lvl": 2,
+      "sal": 10000
+    },
+    {
+      "id": 108,
+      "name": "Radia",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 23000
+    },
+    {
+      "id": 109,
+      "name": "Edsger",
+      "dept": "ENG",
+      "lvl": 3,
+      "sal": 8400
+    },
+    {
+      "id": 110,
+      "name": "Hedy",
+      "dept": "OPS",
+      "lvl": 1,
+      "sal": 20100
+    },
+    {
+      "id": 111,
+      "name": "Tim",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 10800
+    }
+  ]
+}
+</data>
+
+Question: List the senior people who are employees (not contractors) with their yearly salary in PLN.
+
+Answer with JSON only (no prose): {"seniors": [{"name": <string>, "yearly_pln": <number>}, ...]}

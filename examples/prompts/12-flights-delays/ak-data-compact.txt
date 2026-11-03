@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<departures:<[flight:string,to:string,sched:string,delay:number]>>([("LH587","LHR","6:45",25),("W6724","AMS","7:00",5),("LO516","FRA","8:45",75),("LH446","VIE","9:00",75),("W6599","AMS","10:15",5),("LO471","CDG","11:45",0),("LO394","VIE","12:15",0),("W6499","CDG","13:45",0),("LO349","OSL","14:00",12),("KL124","VIE","15:15",12),("LO112","CDG","16:15",75),("FR953","AMS","17:00",130),("LH253","CDG","18:00",5),("FR998","AMS","19:00",130),("W6520","FRA","20:30",12),("LO924","AMS","21:30",0)])
+</data>
+
+Question: Which flights are delayed by more than 30 minutes? Longest delay first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<delayed:<[flight:string,delay:number]>>

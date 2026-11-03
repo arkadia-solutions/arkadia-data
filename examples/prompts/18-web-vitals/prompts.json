@@ -1,0 +1,142 @@
+{
+ "id": 18,
+ "slug": "web-vitals",
+ "title": "Web vitals: slow pages",
+ "description": "Largest Contentful Paint in milliseconds, budget 2.5 s.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which pages have an LCP worse than 2500 ms? Slowest first.",
+ "tokens": {
+  "json": {
+   "none": 427,
+   "comments": 480,
+   "attributes": 477,
+   "both": 530
+  },
+  "toon": {
+   "none": 279,
+   "comments": 332,
+   "attributes": 329,
+   "both": 382
+  },
+  "akd": {
+   "none": 406,
+   "comments": 449,
+   "attributes": 439,
+   "both": 478
+  },
+  "akcd": {
+   "none": 359,
+   "comments": 398,
+   "attributes": 387,
+   "both": 426
+  }
+ },
+ "answer": {
+  "name": "slow",
+  "fields": [
+   [
+    "page",
+    "string"
+   ],
+   [
+    "lcp",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "page": "/pricing",
+   "lcp": 4082
+  },
+  {
+   "page": "/akdata",
+   "lcp": 4060
+  },
+  {
+   "page": "/",
+   "lcp": 3511
+  },
+  {
+   "page": "/blog",
+   "lcp": 2582
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Core Web Vitals, 75th percentile, last 28 days.",
+   "`pages.lcp`: Largest Contentful Paint in ms; good below 2500",
+   "`pages.inp`: Interaction to Next Paint in ms"
+  ],
+  "attributes": [
+   "document: $site=\"arkadia.solutions\" $percentile=75",
+   "`pages.lcp`: $unit=\"ms\" $budget=2500",
+   "`pages.inp`: $unit=\"ms\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"pages\": [\n    {\n      \"page\": \"/\",\n      \"lcp\": 3511,\n      \"cls\": 0.108,\n      \"inp\": 372\n    },\n    {\n      \"page\": \"/pricing\",\n      \"lcp\": 4082,\n      \"cls\": 0.191,\n      \"inp\": 104\n    },\n    {\n      \"page\": \"/docs\",\n      \"lcp\": 1207,\n      \"cls\": 0.171,\n      \"inp\": 52\n    },\n    {\n      \"page\": \"/blog\",\n      \"lcp\": 2582,\n      \"cls\": 0.185,\n      \"inp\": 65\n    },\n    {\n      \"page\": \"/login\",\n      \"lcp\": 2235,\n      \"cls\": 0.15,\n      \"inp\": 343\n    },\n    {\n      \"page\": \"/signup\",\n      \"lcp\": 947,\n      \"cls\": 0.121,\n      \"inp\": 166\n    },\n    {\n      \"page\": \"/akdata\",\n      \"lcp\": 4060,\n      \"cls\": 0.114,\n      \"inp\": 334\n    },\n    {\n      \"page\": \"/contact\",\n      \"lcp\": 1691,\n      \"cls\": 0.225,\n      \"inp\": 394\n    },\n    {\n      \"page\": \"/about\",\n      \"lcp\": 2347,\n      \"cls\": 0.0,\n      \"inp\": 318\n    },\n    {\n      \"page\": \"/careers\",\n      \"lcp\": 1604,\n      \"cls\": 0.195,\n      \"inp\": 424\n    }\n  ]\n}\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"page\": <string>, \"lcp\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Core Web Vitals, 75th percentile, last 28 days.\n- `pages.lcp`: Largest Contentful Paint in ms; good below 2500\n- `pages.inp`: Interaction to Next Paint in ms\n\n<data>\n{\n  \"pages\": [\n    {\n      \"page\": \"/\",\n      \"lcp\": 3511,\n      \"cls\": 0.108,\n      \"inp\": 372\n    },\n    {\n      \"page\": \"/pricing\",\n      \"lcp\": 4082,\n      \"cls\": 0.191,\n      \"inp\": 104\n    },\n    {\n      \"page\": \"/docs\",\n      \"lcp\": 1207,\n      \"cls\": 0.171,\n      \"inp\": 52\n    },\n    {\n      \"page\": \"/blog\",\n      \"lcp\": 2582,\n      \"cls\": 0.185,\n      \"inp\": 65\n    },\n    {\n      \"page\": \"/login\",\n      \"lcp\": 2235,\n      \"cls\": 0.15,\n      \"inp\": 343\n    },\n    {\n      \"page\": \"/signup\",\n      \"lcp\": 947,\n      \"cls\": 0.121,\n      \"inp\": 166\n    },\n    {\n      \"page\": \"/akdata\",\n      \"lcp\": 4060,\n      \"cls\": 0.114,\n      \"inp\": 334\n    },\n    {\n      \"page\": \"/contact\",\n      \"lcp\": 1691,\n      \"cls\": 0.225,\n      \"inp\": 394\n    },\n    {\n      \"page\": \"/about\",\n      \"lcp\": 2347,\n      \"cls\": 0.0,\n      \"inp\": 318\n    },\n    {\n      \"page\": \"/careers\",\n      \"lcp\": 1604,\n      \"cls\": 0.195,\n      \"inp\": 424\n    }\n  ]\n}\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"page\": <string>, \"lcp\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $site=\"arkadia.solutions\" $percentile=75\n- `pages.lcp`: $unit=\"ms\" $budget=2500\n- `pages.inp`: $unit=\"ms\"\n\n<data>\n{\n  \"pages\": [\n    {\n      \"page\": \"/\",\n      \"lcp\": 3511,\n      \"cls\": 0.108,\n      \"inp\": 372\n    },\n    {\n      \"page\": \"/pricing\",\n      \"lcp\": 4082,\n      \"cls\": 0.191,\n      \"inp\": 104\n    },\n    {\n      \"page\": \"/docs\",\n      \"lcp\": 1207,\n      \"cls\": 0.171,\n      \"inp\": 52\n    },\n    {\n      \"page\": \"/blog\",\n      \"lcp\": 2582,\n      \"cls\": 0.185,\n      \"inp\": 65\n    },\n    {\n      \"page\": \"/login\",\n      \"lcp\": 2235,\n      \"cls\": 0.15,\n      \"inp\": 343\n    },\n    {\n      \"page\": \"/signup\",\n      \"lcp\": 947,\n      \"cls\": 0.121,\n      \"inp\": 166\n    },\n    {\n      \"page\": \"/akdata\",\n      \"lcp\": 4060,\n      \"cls\": 0.114,\n      \"inp\": 334\n    },\n    {\n      \"page\": \"/contact\",\n      \"lcp\": 1691,\n      \"cls\": 0.225,\n      \"inp\": 394\n    },\n    {\n      \"page\": \"/about\",\n      \"lcp\": 2347,\n      \"cls\": 0.0,\n      \"inp\": 318\n    },\n    {\n      \"page\": \"/careers\",\n      \"lcp\": 1604,\n      \"cls\": 0.195,\n      \"inp\": 424\n    }\n  ]\n}\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"page\": <string>, \"lcp\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Core Web Vitals, 75th percentile, last 28 days.\n- `pages.lcp`: Largest Contentful Paint in ms; good below 2500\n- `pages.inp`: Interaction to Next Paint in ms\n\nAttributes of the data:\n- document: $site=\"arkadia.solutions\" $percentile=75\n- `pages.lcp`: $unit=\"ms\" $budget=2500\n- `pages.inp`: $unit=\"ms\"\n\n<data>\n{\n  \"pages\": [\n    {\n      \"page\": \"/\",\n      \"lcp\": 3511,\n      \"cls\": 0.108,\n      \"inp\": 372\n    },\n    {\n      \"page\": \"/pricing\",\n      \"lcp\": 4082,\n      \"cls\": 0.191,\n      \"inp\": 104\n    },\n    {\n      \"page\": \"/docs\",\n      \"lcp\": 1207,\n      \"cls\": 0.171,\n      \"inp\": 52\n    },\n    {\n      \"page\": \"/blog\",\n      \"lcp\": 2582,\n      \"cls\": 0.185,\n      \"inp\": 65\n    },\n    {\n      \"page\": \"/login\",\n      \"lcp\": 2235,\n      \"cls\": 0.15,\n      \"inp\": 343\n    },\n    {\n      \"page\": \"/signup\",\n      \"lcp\": 947,\n      \"cls\": 0.121,\n      \"inp\": 166\n    },\n    {\n      \"page\": \"/akdata\",\n      \"lcp\": 4060,\n      \"cls\": 0.114,\n      \"inp\": 334\n    },\n    {\n      \"page\": \"/contact\",\n      \"lcp\": 1691,\n      \"cls\": 0.225,\n      \"inp\": 394\n    },\n    {\n      \"page\": \"/about\",\n      \"lcp\": 2347,\n      \"cls\": 0.0,\n      \"inp\": 318\n    },\n    {\n      \"page\": \"/careers\",\n      \"lcp\": 1604,\n      \"cls\": 0.195,\n      \"inp\": 424\n    }\n  ]\n}\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer with JSON only (no prose): {\"slow\": [{\"page\": <string>, \"lcp\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\npages[10]{page,lcp,cls,inp}:\n  /,3511,0.108,372\n  /pricing,4082,0.191,104\n  /docs,1207,0.171,52\n  /blog,2582,0.185,65\n  /login,2235,0.15,343\n  /signup,947,0.121,166\n  /akdata,4060,0.114,334\n  /contact,1691,0.225,394\n  /about,2347,0,318\n  /careers,1604,0.195,424\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{page,lcp}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Core Web Vitals, 75th percentile, last 28 days.\n- `pages.lcp`: Largest Contentful Paint in ms; good below 2500\n- `pages.inp`: Interaction to Next Paint in ms\n\n<data>\npages[10]{page,lcp,cls,inp}:\n  /,3511,0.108,372\n  /pricing,4082,0.191,104\n  /docs,1207,0.171,52\n  /blog,2582,0.185,65\n  /login,2235,0.15,343\n  /signup,947,0.121,166\n  /akdata,4060,0.114,334\n  /contact,1691,0.225,394\n  /about,2347,0,318\n  /careers,1604,0.195,424\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{page,lcp}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $site=\"arkadia.solutions\" $percentile=75\n- `pages.lcp`: $unit=\"ms\" $budget=2500\n- `pages.inp`: $unit=\"ms\"\n\n<data>\npages[10]{page,lcp,cls,inp}:\n  /,3511,0.108,372\n  /pricing,4082,0.191,104\n  /docs,1207,0.171,52\n  /blog,2582,0.185,65\n  /login,2235,0.15,343\n  /signup,947,0.121,166\n  /akdata,4060,0.114,334\n  /contact,1691,0.225,394\n  /about,2347,0,318\n  /careers,1604,0.195,424\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{page,lcp}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Core Web Vitals, 75th percentile, last 28 days.\n- `pages.lcp`: Largest Contentful Paint in ms; good below 2500\n- `pages.inp`: Interaction to Next Paint in ms\n\nAttributes of the data:\n- document: $site=\"arkadia.solutions\" $percentile=75\n- `pages.lcp`: $unit=\"ms\" $budget=2500\n- `pages.inp`: $unit=\"ms\"\n\n<data>\npages[10]{page,lcp,cls,inp}:\n  /,3511,0.108,372\n  /pricing,4082,0.191,104\n  /docs,1207,0.171,52\n  /blog,2582,0.185,65\n  /login,2235,0.15,343\n  /signup,947,0.121,166\n  /akdata,4060,0.114,334\n  /contact,1691,0.225,394\n  /about,2347,0,318\n  /careers,1604,0.195,424\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in TOON only (no prose, no code fences): slow[N]{page,lcp}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<pages:<[page:string, lcp:number, cls:number, inp:number]>>\n([\n  (\"/\", 3511, 0.108, 372),\n  (\"/pricing\", 4082, 0.191, 104),\n  (\"/docs\", 1207, 0.171, 52),\n  (\"/blog\", 2582, 0.185, 65),\n  (\"/login\", 2235, 0.15, 343),\n  (\"/signup\", 947, 0.121, 166),\n  (\"/akdata\", 4060, 0.114, 334),\n  (\"/contact\", 1691, 0.225, 394),\n  (\"/about\", 2347, 0.0, 318),\n  (\"/careers\", 1604, 0.195, 424)\n])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Core Web Vitals, 75th percentile, last 28 days. */\n<pages:<[\n  page:string,\n  lcp:number /* Largest Contentful Paint in ms; good below 2500 */,\n  cls:number,\n  inp:number /* Interaction to Next Paint in ms */\n]>>\n([\n  (\"/\", 3511, 0.108, 372),\n  (\"/pricing\", 4082, 0.191, 104),\n  (\"/docs\", 1207, 0.171, 52),\n  (\"/blog\", 2582, 0.185, 65),\n  (\"/login\", 2235, 0.15, 343),\n  (\"/signup\", 947, 0.121, 166),\n  (\"/akdata\", 4060, 0.114, 334),\n  (\"/contact\", 1691, 0.225, 394),\n  (\"/about\", 2347, 0.0, 318),\n  (\"/careers\", 1604, 0.195, 424)\n])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $site=\"arkadia.solutions\" $percentile=75 //\n<pages:<[\n  page:string,\n  lcp:number $unit=\"ms\" $budget=2500,\n  cls:number,\n  inp:number $unit=\"ms\"\n]>>\n([\n  (\"/\", 3511, 0.108, 372),\n  (\"/pricing\", 4082, 0.191, 104),\n  (\"/docs\", 1207, 0.171, 52),\n  (\"/blog\", 2582, 0.185, 65),\n  (\"/login\", 2235, 0.15, 343),\n  (\"/signup\", 947, 0.121, 166),\n  (\"/akdata\", 4060, 0.114, 334),\n  (\"/contact\", 1691, 0.225, 394),\n  (\"/about\", 2347, 0.0, 318),\n  (\"/careers\", 1604, 0.195, 424)\n])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $site=\"arkadia.solutions\" $percentile=75 //\n/* Core Web Vitals, 75th percentile, last 28 days. */\n<pages:<[\n  page:string,\n  lcp:number $unit=\"ms\" $budget=2500 /* Largest Contentful Paint in ms; good below 2500 */,\n  cls:number,\n  inp:number $unit=\"ms\" /* Interaction to Next Paint in ms */\n]>>\n([\n  (\"/\", 3511, 0.108, 372),\n  (\"/pricing\", 4082, 0.191, 104),\n  (\"/docs\", 1207, 0.171, 52),\n  (\"/blog\", 2582, 0.185, 65),\n  (\"/login\", 2235, 0.15, 343),\n  (\"/signup\", 947, 0.121, 166),\n  (\"/akdata\", 4060, 0.114, 334),\n  (\"/contact\", 1691, 0.225, 394),\n  (\"/about\", 2347, 0.0, 318),\n  (\"/careers\", 1604, 0.195, 424)\n])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<pages:<[page:string,lcp:number,cls:number,inp:number]>>([(\"/\",3511,0.108,372),(\"/pricing\",4082,0.191,104),(\"/docs\",1207,0.171,52),(\"/blog\",2582,0.185,65),(\"/login\",2235,0.15,343),(\"/signup\",947,0.121,166),(\"/akdata\",4060,0.114,334),(\"/contact\",1691,0.225,394),(\"/about\",2347,0.0,318),(\"/careers\",1604,0.195,424)])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Core Web Vitals, 75th percentile, last 28 days. */ <pages:<[page:string,lcp:number /* Largest Contentful Paint in ms; good below 2500 */,cls:number,inp:number /* Interaction to Next Paint in ms */]>>([(\"/\",3511,0.108,372),(\"/pricing\",4082,0.191,104),(\"/docs\",1207,0.171,52),(\"/blog\",2582,0.185,65),(\"/login\",2235,0.15,343),(\"/signup\",947,0.121,166),(\"/akdata\",4060,0.114,334),(\"/contact\",1691,0.225,394),(\"/about\",2347,0.0,318),(\"/careers\",1604,0.195,424)])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $site=\"arkadia.solutions\" $percentile=75 // <pages:<[page:string,lcp:number $unit=\"ms\" $budget=2500,cls:number,inp:number $unit=\"ms\"]>>([(\"/\",3511,0.108,372),(\"/pricing\",4082,0.191,104),(\"/docs\",1207,0.171,52),(\"/blog\",2582,0.185,65),(\"/login\",2235,0.15,343),(\"/signup\",947,0.121,166),(\"/akdata\",4060,0.114,334),(\"/contact\",1691,0.225,394),(\"/about\",2347,0.0,318),(\"/careers\",1604,0.195,424)])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $site=\"arkadia.solutions\" $percentile=75 // /* Core Web Vitals, 75th percentile, last 28 days. */ <pages:<[page:string,lcp:number $unit=\"ms\" $budget=2500 /* Largest Contentful Paint in ms; good below 2500 */,cls:number,inp:number $unit=\"ms\" /* Interaction to Next Paint in ms */]>>([(\"/\",3511,0.108,372),(\"/pricing\",4082,0.191,104),(\"/docs\",1207,0.171,52),(\"/blog\",2582,0.185,65),(\"/login\",2235,0.15,343),(\"/signup\",947,0.121,166),(\"/akdata\",4060,0.114,334),(\"/contact\",1691,0.225,394),(\"/about\",2347,0.0,318),(\"/careers\",1604,0.195,424)])\n</data>\n\nQuestion: Which pages have an LCP worse than 2500 ms? Slowest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<slow:<[page:string,lcp:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 369,
+   "comments": 369,
+   "attributes": 369,
+   "both": 369
+  },
+  "toon": {
+   "none": 140,
+   "comments": 140,
+   "attributes": 140,
+   "both": 140
+  },
+  "akd": {
+   "none": 190,
+   "comments": 232,
+   "attributes": 224,
+   "both": 263
+  },
+  "akcd": {
+   "none": 137,
+   "comments": 175,
+   "attributes": 166,
+   "both": 205
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"slow\": [\n    {\n      \"page\": \"/pricing\",\n      \"lcp\": 4082\n    },\n    {\n      \"page\": \"/akdata\",\n      \"lcp\": 4060\n    },\n    {\n      \"page\": \"/\",\n      \"lcp\": 3511\n    },\n    {\n      \"page\": \"/blog\",\n      \"lcp\": 2582\n    }\n  ]\n}",
+  "akcd": "<slow:<[page:string,lcp:number]>>([(\"/pricing\",4082),(\"/akdata\",4060),(\"/\",3511),(\"/blog\",2582)])",
+  "toon": "slow[4]{page,lcp}:\n  /pricing,4082\n  /akdata,4060\n  /,3511\n  /blog,2582"
+ },
+ "answer_tokens": {
+  "json": 89,
+  "akcd": 35,
+  "toon": 36
+ }
+}

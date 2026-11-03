@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { Schema, SchemaKind, Node } from '../src/index';
+import { describe, expect, it } from 'vitest';
+import { Node, Schema, SchemaKind } from '../src/index';
 
 describe('AI Node test', () => {
   it('should encode raw object', () => {

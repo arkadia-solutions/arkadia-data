@@ -1,0 +1,120 @@
+{
+ "id": 7,
+ "slug": "support-triage",
+ "title": "Support: unassigned urgent tickets",
+ "description": "25 support tickets with nulls. Triage filter.",
+ "tags": [],
+ "question": "Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.",
+ "tokens": {
+  "json": {
+   "none": 1754
+  },
+  "toon": {
+   "none": 843
+  },
+  "akd": {
+   "none": 1156
+  },
+  "akcd": {
+   "none": 964
+  }
+ },
+ "answer": {
+  "name": "result",
+  "fields": [
+   [
+    "id",
+    "string"
+   ],
+   [
+    "priority",
+    "string"
+   ],
+   [
+    "customer",
+    "string"
+   ],
+   [
+    "subject",
+    "string"
+   ],
+   [
+    "created",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "id": "T-2425",
+   "priority": "high",
+   "customer": "Hooli",
+   "subject": "Cannot invite new users",
+   "created": "2026-10-03"
+  },
+  {
+   "id": "T-2403",
+   "priority": "urgent",
+   "customer": "Acme",
+   "subject": "Cannot invite new users",
+   "created": "2026-10-04"
+  },
+  {
+   "id": "T-2408",
+   "priority": "high",
+   "customer": "Umbrella",
+   "subject": "Data missing after import",
+   "created": "2026-10-04"
+  },
+  {
+   "id": "T-2412",
+   "priority": "high",
+   "customer": "Wayne",
+   "subject": "Invoice shows wrong VAT",
+   "created": "2026-10-21"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"id\": \"T-2401\",\n      \"priority\": \"low\",\n      \"status\": \"pending\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"Invoice shows wrong VAT\",\n      \"created\": \"2026-10-08\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2402\",\n      \"priority\": \"urgent\",\n      \"status\": \"closed\",\n      \"customer\": \"Wayne\",\n      \"subject\": \"Data missing after import\",\n      \"created\": \"2026-10-08\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2403\",\n      \"priority\": \"urgent\",\n      \"status\": \"open\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-04\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2404\",\n      \"priority\": \"low\",\n      \"status\": \"closed\",\n      \"customer\": \"Stark\",\n      \"subject\": \"Dashboard is slow\",\n      \"created\": \"2026-10-07\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2405\",\n      \"priority\": \"normal\",\n      \"status\": \"pending\",\n      \"customer\": \"Initech\",\n      \"subject\": \"API returns 500 on /orders\",\n      \"created\": \"2026-10-17\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2406\",\n      \"priority\": \"normal\",\n      \"status\": \"open\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-10\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2407\",\n      \"priority\": \"normal\",\n      \"status\": \"pending\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Dashboard is slow\",\n      \"created\": \"2026-10-12\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2408\",\n      \"priority\": \"high\",\n      \"status\": \"open\",\n      \"customer\": \"Umbrella\",\n      \"subject\": \"Data missing after import\",\n      \"created\": \"2026-10-04\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2409\",\n      \"priority\": \"urgent\",\n      \"status\": \"closed\",\n      \"customer\": \"Umbrella\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-14\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2410\",\n      \"priority\": \"urgent\",\n      \"status\": \"open\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"Webhook not delivered\",\n      \"created\": \"2026-10-05\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2411\",\n      \"priority\": \"urgent\",\n      \"status\": \"open\",\n      \"customer\": \"Stark\",\n      \"subject\": \"API returns 500 on /orders\",\n      \"created\": \"2026-10-16\",\n      \"assignee\": \"Piotr\"\n    },\n    {\n      \"id\": \"T-2412\",\n      \"priority\": \"high\",\n      \"status\": \"open\",\n      \"customer\": \"Wayne\",\n      \"subject\": \"Invoice shows wrong VAT\",\n      \"created\": \"2026-10-21\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2413\",\n      \"priority\": \"high\",\n      \"status\": \"pending\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"API returns 500 on /orders\",\n      \"created\": \"2026-10-22\",\n      \"assignee\": \"Kasia\"\n    },\n    {\n      \"id\": \"T-2414\",\n      \"priority\": \"urgent\",\n      \"status\": \"closed\",\n      \"customer\": \"Wayne\",\n      \"subject\": \"API returns 500 on /orders\",\n      \"created\": \"2026-10-14\",\n      \"assignee\": \"Piotr\"\n    },\n    {\n      \"id\": \"T-2415\",\n      \"priority\": \"normal\",\n      \"status\": \"pending\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Login fails after password reset\",\n      \"created\": \"2026-10-05\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2416\",\n      \"priority\": \"urgent\",\n      \"status\": \"closed\",\n      \"customer\": \"Initech\",\n      \"subject\": \"Webhook not delivered\",\n      \"created\": \"2026-10-09\",\n      \"assignee\": null\n    },\n    {\n      \"id\": \"T-2417\",\n      \"priority\": \"high\",\n      \"status\": \"closed\",\n      \"customer\": \"Wayne\",\n      \"subject\": \"API returns 500 on /orders\",\n      \"created\": \"2026-10-18\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2418\",\n      \"priority\": \"normal\",\n      \"status\": \"pending\",\n      \"customer\": \"Umbrella\",\n      \"subject\": \"Invoice shows wrong VAT\",\n      \"created\": \"2026-10-15\",\n      \"assignee\": \"Kasia\"\n    },\n    {\n      \"id\": \"T-2419\",\n      \"priority\": \"high\",\n      \"status\": \"open\",\n      \"customer\": \"Umbrella\",\n      \"subject\": \"Data missing after import\",\n      \"created\": \"2026-10-03\",\n      \"assignee\": \"Kasia\"\n    },\n    {\n      \"id\": \"T-2420\",\n      \"priority\": \"high\",\n      \"status\": \"pending\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Webhook not delivered\",\n      \"created\": \"2026-10-14\",\n      \"assignee\": \"Piotr\"\n    },\n    {\n      \"id\": \"T-2421\",\n      \"priority\": \"high\",\n      \"status\": \"open\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Login fails after password reset\",\n      \"created\": \"2026-10-15\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2422\",\n      \"priority\": \"urgent\",\n      \"status\": \"open\",\n      \"customer\": \"Globex\",\n      \"subject\": \"Invoice shows wrong VAT\",\n      \"created\": \"2026-10-20\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2423\",\n      \"priority\": \"urgent\",\n      \"status\": \"pending\",\n      \"customer\": \"Stark\",\n      \"subject\": \"Dashboard is slow\",\n      \"created\": \"2026-10-05\",\n      \"assignee\": \"Ola\"\n    },\n    {\n      \"id\": \"T-2424\",\n      \"priority\": \"normal\",\n      \"status\": \"closed\",\n      \"customer\": \"Stark\",\n      \"subject\": \"Export to Excel times out\",\n      \"created\": \"2026-10-18\",\n      \"assignee\": \"Piotr\"\n    },\n    {\n      \"id\": \"T-2425\",\n      \"priority\": \"high\",\n      \"status\": \"open\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-03\",\n      \"assignee\": null\n    }\n  ]\n}\n</data>\n\nQuestion: Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.\n\nAnswer with JSON only (no prose): {\"result\": [{\"id\": <string>, \"priority\": <string>, \"customer\": <string>, \"subject\": <string>, \"created\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ntickets[25]{id,priority,status,customer,subject,created,assignee}:\n  T-2401,low,pending,Hooli,Invoice shows wrong VAT,2026-10-08,null\n  T-2402,urgent,closed,Wayne,Data missing after import,2026-10-08,Ola\n  T-2403,urgent,open,Acme,Cannot invite new users,2026-10-04,null\n  T-2404,low,closed,Stark,Dashboard is slow,2026-10-07,null\n  T-2405,normal,pending,Initech,API returns 500 on /orders,2026-10-17,Ola\n  T-2406,normal,open,Hooli,Cannot invite new users,2026-10-10,null\n  T-2407,normal,pending,Acme,Dashboard is slow,2026-10-12,null\n  T-2408,high,open,Umbrella,Data missing after import,2026-10-04,null\n  T-2409,urgent,closed,Umbrella,Cannot invite new users,2026-10-14,null\n  T-2410,urgent,open,Hooli,Webhook not delivered,2026-10-05,Ola\n  T-2411,urgent,open,Stark,API returns 500 on /orders,2026-10-16,Piotr\n  T-2412,high,open,Wayne,Invoice shows wrong VAT,2026-10-21,null\n  T-2413,high,pending,Hooli,API returns 500 on /orders,2026-10-22,Kasia\n  T-2414,urgent,closed,Wayne,API returns 500 on /orders,2026-10-14,Piotr\n  T-2415,normal,pending,Acme,Login fails after password reset,2026-10-05,null\n  T-2416,urgent,closed,Initech,Webhook not delivered,2026-10-09,null\n  T-2417,high,closed,Wayne,API returns 500 on /orders,2026-10-18,Ola\n  T-2418,normal,pending,Umbrella,Invoice shows wrong VAT,2026-10-15,Kasia\n  T-2419,high,open,Umbrella,Data missing after import,2026-10-03,Kasia\n  T-2420,high,pending,Acme,Webhook not delivered,2026-10-14,Piotr\n  T-2421,high,open,Acme,Login fails after password reset,2026-10-15,Ola\n  T-2422,urgent,open,Globex,Invoice shows wrong VAT,2026-10-20,Ola\n  T-2423,urgent,pending,Stark,Dashboard is slow,2026-10-05,Ola\n  T-2424,normal,closed,Stark,Export to Excel times out,2026-10-18,Piotr\n  T-2425,high,open,Hooli,Cannot invite new users,2026-10-03,null\n</data>\n\nQuestion: Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.\n\nAnswer in TOON only (no prose, no code fences): result[N]{id,priority,customer,subject,created}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[\n  id:string,\n  priority:string,\n  status:string,\n  customer:string,\n  subject:string,\n  created:string,\n  assignee:string\n]>>\n([\n  (\"T-2401\", \"low\", \"pending\", \"Hooli\", \"Invoice shows wrong VAT\", \"2026-10-08\",\n   null),\n  (\"T-2402\", \"urgent\", \"closed\", \"Wayne\", \"Data missing after import\",\n   \"2026-10-08\", \"Ola\"),\n  (\"T-2403\", \"urgent\", \"open\", \"Acme\", \"Cannot invite new users\", \"2026-10-04\",\n   null),\n  (\"T-2404\", \"low\", \"closed\", \"Stark\", \"Dashboard is slow\", \"2026-10-07\", null),\n  (\"T-2405\", \"normal\", \"pending\", \"Initech\", \"API returns 500 on /orders\",\n   \"2026-10-17\", \"Ola\"),\n  (\"T-2406\", \"normal\", \"open\", \"Hooli\", \"Cannot invite new users\", \"2026-10-10\",\n   null),\n  (\"T-2407\", \"normal\", \"pending\", \"Acme\", \"Dashboard is slow\", \"2026-10-12\",\n   null),\n  (\"T-2408\", \"high\", \"open\", \"Umbrella\", \"Data missing after import\",\n   \"2026-10-04\", null),\n  (\"T-2409\", \"urgent\", \"closed\", \"Umbrella\", \"Cannot invite new users\",\n   \"2026-10-14\", null),\n  (\"T-2410\", \"urgent\", \"open\", \"Hooli\", \"Webhook not delivered\", \"2026-10-05\",\n   \"Ola\"),\n  (\"T-2411\", \"urgent\", \"open\", \"Stark\", \"API returns 500 on /orders\",\n   \"2026-10-16\", \"Piotr\"),\n  (\"T-2412\", \"high\", \"open\", \"Wayne\", \"Invoice shows wrong VAT\", \"2026-10-21\",\n   null),\n  (\"T-2413\", \"high\", \"pending\", \"Hooli\", \"API returns 500 on /orders\",\n   \"2026-10-22\", \"Kasia\"),\n  (\"T-2414\", \"urgent\", \"closed\", \"Wayne\", \"API returns 500 on /orders\",\n   \"2026-10-14\", \"Piotr\"),\n  (\"T-2415\", \"normal\", \"pending\", \"Acme\", \"Login fails after password reset\",\n   \"2026-10-05\", null),\n  (\"T-2416\", \"urgent\", \"closed\", \"Initech\", \"Webhook not delivered\",\n   \"2026-10-09\", null),\n  (\"T-2417\", \"high\", \"closed\", \"Wayne\", \"API returns 500 on /orders\",\n   \"2026-10-18\", \"Ola\"),\n  (\"T-2418\", \"normal\", \"pending\", \"Umbrella\", \"Invoice shows wrong VAT\",\n   \"2026-10-15\", \"Kasia\"),\n  (\"T-2419\", \"high\", \"open\", \"Umbrella\", \"Data missing after import\",\n   \"2026-10-03\", \"Kasia\"),\n  (\"T-2420\", \"high\", \"pending\", \"Acme\", \"Webhook not delivered\", \"2026-10-14\",\n   \"Piotr\"),\n  (\"T-2421\", \"high\", \"open\", \"Acme\", \"Login fails after password reset\",\n   \"2026-10-15\", \"Ola\"),\n  (\"T-2422\", \"urgent\", \"open\", \"Globex\", \"Invoice shows wrong VAT\",\n   \"2026-10-20\", \"Ola\"),\n  (\"T-2423\", \"urgent\", \"pending\", \"Stark\", \"Dashboard is slow\", \"2026-10-05\",\n   \"Ola\"),\n  (\"T-2424\", \"normal\", \"closed\", \"Stark\", \"Export to Excel times out\",\n   \"2026-10-18\", \"Piotr\"),\n  (\"T-2425\", \"high\", \"open\", \"Hooli\", \"Cannot invite new users\", \"2026-10-03\",\n   null)\n])\n</data>\n\nQuestion: Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<result:<[id:string,priority:string,customer:string,subject:string,created:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[id:string,priority:string,status:string,customer:string,subject:string,created:string,assignee:string]>>([(\"T-2401\",\"low\",\"pending\",\"Hooli\",\"Invoice shows wrong VAT\",\"2026-10-08\",null),(\"T-2402\",\"urgent\",\"closed\",\"Wayne\",\"Data missing after import\",\"2026-10-08\",\"Ola\"),(\"T-2403\",\"urgent\",\"open\",\"Acme\",\"Cannot invite new users\",\"2026-10-04\",null),(\"T-2404\",\"low\",\"closed\",\"Stark\",\"Dashboard is slow\",\"2026-10-07\",null),(\"T-2405\",\"normal\",\"pending\",\"Initech\",\"API returns 500 on /orders\",\"2026-10-17\",\"Ola\"),(\"T-2406\",\"normal\",\"open\",\"Hooli\",\"Cannot invite new users\",\"2026-10-10\",null),(\"T-2407\",\"normal\",\"pending\",\"Acme\",\"Dashboard is slow\",\"2026-10-12\",null),(\"T-2408\",\"high\",\"open\",\"Umbrella\",\"Data missing after import\",\"2026-10-04\",null),(\"T-2409\",\"urgent\",\"closed\",\"Umbrella\",\"Cannot invite new users\",\"2026-10-14\",null),(\"T-2410\",\"urgent\",\"open\",\"Hooli\",\"Webhook not delivered\",\"2026-10-05\",\"Ola\"),(\"T-2411\",\"urgent\",\"open\",\"Stark\",\"API returns 500 on /orders\",\"2026-10-16\",\"Piotr\"),(\"T-2412\",\"high\",\"open\",\"Wayne\",\"Invoice shows wrong VAT\",\"2026-10-21\",null),(\"T-2413\",\"high\",\"pending\",\"Hooli\",\"API returns 500 on /orders\",\"2026-10-22\",\"Kasia\"),(\"T-2414\",\"urgent\",\"closed\",\"Wayne\",\"API returns 500 on /orders\",\"2026-10-14\",\"Piotr\"),(\"T-2415\",\"normal\",\"pending\",\"Acme\",\"Login fails after password reset\",\"2026-10-05\",null),(\"T-2416\",\"urgent\",\"closed\",\"Initech\",\"Webhook not delivered\",\"2026-10-09\",null),(\"T-2417\",\"high\",\"closed\",\"Wayne\",\"API returns 500 on /orders\",\"2026-10-18\",\"Ola\"),(\"T-2418\",\"normal\",\"pending\",\"Umbrella\",\"Invoice shows wrong VAT\",\"2026-10-15\",\"Kasia\"),(\"T-2419\",\"high\",\"open\",\"Umbrella\",\"Data missing after import\",\"2026-10-03\",\"Kasia\"),(\"T-2420\",\"high\",\"pending\",\"Acme\",\"Webhook not delivered\",\"2026-10-14\",\"Piotr\"),(\"T-2421\",\"high\",\"open\",\"Acme\",\"Login fails after password reset\",\"2026-10-15\",\"Ola\"),(\"T-2422\",\"urgent\",\"open\",\"Globex\",\"Invoice shows wrong VAT\",\"2026-10-20\",\"Ola\"),(\"T-2423\",\"urgent\",\"pending\",\"Stark\",\"Dashboard is slow\",\"2026-10-05\",\"Ola\"),(\"T-2424\",\"normal\",\"closed\",\"Stark\",\"Export to Excel times out\",\"2026-10-18\",\"Piotr\"),(\"T-2425\",\"high\",\"open\",\"Hooli\",\"Cannot invite new users\",\"2026-10-03\",null)])\n</data>\n\nQuestion: Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<result:<[id:string,priority:string,customer:string,subject:string,created:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 1674
+  },
+  "toon": {
+   "none": 693
+  },
+  "akd": {
+   "none": 926
+  },
+  "akcd": {
+   "none": 728
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"result\": [\n    {\n      \"id\": \"T-2425\",\n      \"priority\": \"high\",\n      \"customer\": \"Hooli\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-03\"\n    },\n    {\n      \"id\": \"T-2403\",\n      \"priority\": \"urgent\",\n      \"customer\": \"Acme\",\n      \"subject\": \"Cannot invite new users\",\n      \"created\": \"2026-10-04\"\n    },\n    {\n      \"id\": \"T-2408\",\n      \"priority\": \"high\",\n      \"customer\": \"Umbrella\",\n      \"subject\": \"Data missing after import\",\n      \"created\": \"2026-10-04\"\n    },\n    {\n      \"id\": \"T-2412\",\n      \"priority\": \"high\",\n      \"customer\": \"Wayne\",\n      \"subject\": \"Invoice shows wrong VAT\",\n      \"created\": \"2026-10-21\"\n    }\n  ]\n}",
+  "akcd": "<result:<[id:string,priority:string,customer:string,subject:string,created:string]>>([(\"T-2425\",\"high\",\"Hooli\",\"Cannot invite new users\",\"2026-10-03\"),(\"T-2403\",\"urgent\",\"Acme\",\"Cannot invite new users\",\"2026-10-04\"),(\"T-2408\",\"high\",\"Umbrella\",\"Data missing after import\",\"2026-10-04\"),(\"T-2412\",\"high\",\"Wayne\",\"Invoice shows wrong VAT\",\"2026-10-21\")])",
+  "toon": "result[4]{id,priority,customer,subject,created}:\n  T-2425,high,Hooli,Cannot invite new users,2026-10-03\n  T-2403,urgent,Acme,Cannot invite new users,2026-10-04\n  T-2408,high,Umbrella,Data missing after import,2026-10-04\n  T-2412,high,Wayne,Invoice shows wrong VAT,2026-10-21"
+ },
+ "answer_tokens": {
+  "json": 213,
+  "akcd": 114,
+  "toon": 105
+ }
+}

@@ -1,0 +1,34 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<issues:<[n:number, title:string, state:string, labels:[string]]>>
+([
+  (100, "Header parse error", "open", ["bug", "good first issue"]),
+  (101, "Wrong token count", "open", []),
+  (102, "Dark mode", "open", ["perf", "good first issue"]),
+  (103, "Wrong token count", "closed", ["good first issue"]),
+  (104, "Wrong token count", "open", ["docs"]),
+  (105, "Add Go port", "open", []),
+  (106, "Dark mode", "closed", []),
+  (107, "Dark mode", "open", ["good first issue", "perf"]),
+  (108, "Slow decode", "closed", ["enhancement"]),
+  (109, "Dark mode", "open", []),
+  (110, "Wrong token count", "open", []),
+  (111, "Crash on start", "open", ["docs"]),
+  (112, "Typo in docs", "open", ["good first issue"]),
+  (113, "Dark mode", "open", ["docs"]),
+  (114, "Add Go port", "open", []),
+  (115, "Dark mode", "open", ["good first issue"])
+])
+</data>
+
+Question: Which issues are open and labelled bug?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<bugs:<[n:number,title:string]>>

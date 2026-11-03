@@ -1,0 +1,122 @@
+{
+  "id": 39,
+  "slug": "reviews-verified",
+  "title": "Reviews: rating of verified buyers",
+  "description": "Verified purchases are tagged — only in the metadata.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "What is the average star rating of verified purchases only (2 decimals)?",
+  "answer": {
+    "name": "rating",
+    "fields": [
+      [
+        "avg_stars",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "avg_stars": 3.83
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`reviews.stars`: 1 to 5 stars",
+      "reviews id=1: verified purchase",
+      "reviews id=3: verified purchase",
+      "reviews id=4: verified purchase",
+      "reviews id=7: verified purchase",
+      "reviews id=10: verified purchase",
+      "reviews id=13: verified purchase"
+    ],
+    "attributes": [
+      "`reviews.stars`: $scale=\"1-5\"",
+      "reviews id=1: #verified",
+      "reviews id=3: #verified",
+      "reviews id=4: #verified",
+      "reviews id=7: #verified",
+      "reviews id=10: #verified",
+      "reviews id=13: #verified"
+    ]
+  },
+  "akd_meta": "<reviews:<[id:number,stars:number $scale=\"1-5\" /* 1 to 5 stars */,text:string]>>([(1,5,\"Fast delivery\") #verified /* verified purchase */,(2,3,\"Great!\"),(3,1,\"Okay\") #verified /* verified purchase */,(4,4,\"Great!\") #verified /* verified purchase */,(5,3,\"Broke after a week\"),(6,4,\"Fast delivery\"),(7,4,\"Okay\") #verified /* verified purchase */,(8,3,\"Okay\"),(9,3,\"Broke after a week\"),(10,4,\"Broke after a week\") #verified /* verified purchase */,(11,5,\"Fast delivery\"),(12,5,\"Fast delivery\"),(13,5,\"Fast delivery\") #verified /* verified purchase */,(14,5,\"Broke after a week\")])",
+  "data": {
+    "reviews": [
+      {
+        "id": 1,
+        "stars": 5,
+        "text": "Fast delivery"
+      },
+      {
+        "id": 2,
+        "stars": 3,
+        "text": "Great!"
+      },
+      {
+        "id": 3,
+        "stars": 1,
+        "text": "Okay"
+      },
+      {
+        "id": 4,
+        "stars": 4,
+        "text": "Great!"
+      },
+      {
+        "id": 5,
+        "stars": 3,
+        "text": "Broke after a week"
+      },
+      {
+        "id": 6,
+        "stars": 4,
+        "text": "Fast delivery"
+      },
+      {
+        "id": 7,
+        "stars": 4,
+        "text": "Okay"
+      },
+      {
+        "id": 8,
+        "stars": 3,
+        "text": "Okay"
+      },
+      {
+        "id": 9,
+        "stars": 3,
+        "text": "Broke after a week"
+      },
+      {
+        "id": 10,
+        "stars": 4,
+        "text": "Broke after a week"
+      },
+      {
+        "id": 11,
+        "stars": 5,
+        "text": "Fast delivery"
+      },
+      {
+        "id": 12,
+        "stars": 5,
+        "text": "Fast delivery"
+      },
+      {
+        "id": 13,
+        "stars": 5,
+        "text": "Fast delivery"
+      },
+      {
+        "id": 14,
+        "stars": 5,
+        "text": "Broke after a week"
+      }
+    ]
+  }
+}

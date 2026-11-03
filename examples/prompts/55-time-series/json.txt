@@ -1,0 +1,55 @@
+The data below is in JSON.
+
+<data>
+{
+  "metric": "daily",
+  "days": [
+    {
+      "date": "2026-10-19",
+      "visits": 1840,
+      "signups": 31,
+      "revenue": 1290.5
+    },
+    {
+      "date": "2026-10-20",
+      "visits": 2210,
+      "signups": 44,
+      "revenue": 1980.0
+    },
+    {
+      "date": "2026-10-21",
+      "visits": 1975,
+      "signups": 29,
+      "revenue": 1405.25
+    },
+    {
+      "date": "2026-10-22",
+      "visits": 2650,
+      "signups": 57,
+      "revenue": 2410.0
+    },
+    {
+      "date": "2026-10-23",
+      "visits": 2390,
+      "signups": 48,
+      "revenue": 2005.75
+    },
+    {
+      "date": "2026-10-24",
+      "visits": 1210,
+      "signups": 12,
+      "revenue": 640.0
+    },
+    {
+      "date": "2026-10-25",
+      "visits": 1105,
+      "signups": 15,
+      "revenue": 702.5
+    }
+  ]
+}
+</data>
+
+Question: Which day had the most signups, and what was the revenue that day?
+
+Answer with JSON only (no prose): {"best": [{"date": <string>, "signups": <number>, "revenue": <number>}, ...]}

@@ -1,0 +1,134 @@
+{
+ "id": 39,
+ "slug": "reviews-verified",
+ "title": "Reviews: rating of verified buyers",
+ "description": "Verified purchases are tagged — only in the metadata.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "What is the average star rating of verified purchases only (2 decimals)?",
+ "tokens": {
+  "json": {
+   "none": 430,
+   "comments": 502,
+   "attributes": 502,
+   "both": 574
+  },
+  "toon": {
+   "none": 274,
+   "comments": 346,
+   "attributes": 346,
+   "both": 418
+  },
+  "akd": {
+   "none": 391,
+   "comments": 421,
+   "attributes": 414,
+   "both": 444
+  },
+  "akcd": {
+   "none": 353,
+   "comments": 384,
+   "attributes": 371,
+   "both": 403
+  }
+ },
+ "answer": {
+  "name": "rating",
+  "fields": [
+   [
+    "avg_stars",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "avg_stars": 3.83
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`reviews.stars`: 1 to 5 stars",
+   "reviews id=1: verified purchase",
+   "reviews id=3: verified purchase",
+   "reviews id=4: verified purchase",
+   "reviews id=7: verified purchase",
+   "reviews id=10: verified purchase",
+   "reviews id=13: verified purchase"
+  ],
+  "attributes": [
+   "`reviews.stars`: $scale=\"1-5\"",
+   "reviews id=1: #verified",
+   "reviews id=3: #verified",
+   "reviews id=4: #verified",
+   "reviews id=7: #verified",
+   "reviews id=10: #verified",
+   "reviews id=13: #verified"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"reviews\": [\n    {\n      \"id\": 1,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 2,\n      \"stars\": 3,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 3,\n      \"stars\": 1,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 4,\n      \"stars\": 4,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 5,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 6,\n      \"stars\": 4,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 7,\n      \"stars\": 4,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 8,\n      \"stars\": 3,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 9,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 10,\n      \"stars\": 4,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 11,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 12,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 13,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 14,\n      \"stars\": 5,\n      \"text\": \"Broke after a week\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer with JSON only (no prose): {\"rating\": [{\"avg_stars\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `reviews.stars`: 1 to 5 stars\n- reviews id=1: verified purchase\n- reviews id=3: verified purchase\n- reviews id=4: verified purchase\n- reviews id=7: verified purchase\n- reviews id=10: verified purchase\n- reviews id=13: verified purchase\n\n<data>\n{\n  \"reviews\": [\n    {\n      \"id\": 1,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 2,\n      \"stars\": 3,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 3,\n      \"stars\": 1,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 4,\n      \"stars\": 4,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 5,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 6,\n      \"stars\": 4,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 7,\n      \"stars\": 4,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 8,\n      \"stars\": 3,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 9,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 10,\n      \"stars\": 4,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 11,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 12,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 13,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 14,\n      \"stars\": 5,\n      \"text\": \"Broke after a week\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer with JSON only (no prose): {\"rating\": [{\"avg_stars\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `reviews.stars`: $scale=\"1-5\"\n- reviews id=1: #verified\n- reviews id=3: #verified\n- reviews id=4: #verified\n- reviews id=7: #verified\n- reviews id=10: #verified\n- reviews id=13: #verified\n\n<data>\n{\n  \"reviews\": [\n    {\n      \"id\": 1,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 2,\n      \"stars\": 3,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 3,\n      \"stars\": 1,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 4,\n      \"stars\": 4,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 5,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 6,\n      \"stars\": 4,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 7,\n      \"stars\": 4,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 8,\n      \"stars\": 3,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 9,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 10,\n      \"stars\": 4,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 11,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 12,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 13,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 14,\n      \"stars\": 5,\n      \"text\": \"Broke after a week\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer with JSON only (no prose): {\"rating\": [{\"avg_stars\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `reviews.stars`: 1 to 5 stars\n- reviews id=1: verified purchase\n- reviews id=3: verified purchase\n- reviews id=4: verified purchase\n- reviews id=7: verified purchase\n- reviews id=10: verified purchase\n- reviews id=13: verified purchase\n\nAttributes of the data:\n- `reviews.stars`: $scale=\"1-5\"\n- reviews id=1: #verified\n- reviews id=3: #verified\n- reviews id=4: #verified\n- reviews id=7: #verified\n- reviews id=10: #verified\n- reviews id=13: #verified\n\n<data>\n{\n  \"reviews\": [\n    {\n      \"id\": 1,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 2,\n      \"stars\": 3,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 3,\n      \"stars\": 1,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 4,\n      \"stars\": 4,\n      \"text\": \"Great!\"\n    },\n    {\n      \"id\": 5,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 6,\n      \"stars\": 4,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 7,\n      \"stars\": 4,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 8,\n      \"stars\": 3,\n      \"text\": \"Okay\"\n    },\n    {\n      \"id\": 9,\n      \"stars\": 3,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 10,\n      \"stars\": 4,\n      \"text\": \"Broke after a week\"\n    },\n    {\n      \"id\": 11,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 12,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 13,\n      \"stars\": 5,\n      \"text\": \"Fast delivery\"\n    },\n    {\n      \"id\": 14,\n      \"stars\": 5,\n      \"text\": \"Broke after a week\"\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer with JSON only (no prose): {\"rating\": [{\"avg_stars\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nreviews[14]{id,stars,text}:\n  1,5,Fast delivery\n  2,3,Great!\n  3,1,Okay\n  4,4,Great!\n  5,3,Broke after a week\n  6,4,Fast delivery\n  7,4,Okay\n  8,3,Okay\n  9,3,Broke after a week\n  10,4,Broke after a week\n  11,5,Fast delivery\n  12,5,Fast delivery\n  13,5,Fast delivery\n  14,5,Broke after a week\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): rating[N]{avg_stars}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `reviews.stars`: 1 to 5 stars\n- reviews id=1: verified purchase\n- reviews id=3: verified purchase\n- reviews id=4: verified purchase\n- reviews id=7: verified purchase\n- reviews id=10: verified purchase\n- reviews id=13: verified purchase\n\n<data>\nreviews[14]{id,stars,text}:\n  1,5,Fast delivery\n  2,3,Great!\n  3,1,Okay\n  4,4,Great!\n  5,3,Broke after a week\n  6,4,Fast delivery\n  7,4,Okay\n  8,3,Okay\n  9,3,Broke after a week\n  10,4,Broke after a week\n  11,5,Fast delivery\n  12,5,Fast delivery\n  13,5,Fast delivery\n  14,5,Broke after a week\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): rating[N]{avg_stars}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `reviews.stars`: $scale=\"1-5\"\n- reviews id=1: #verified\n- reviews id=3: #verified\n- reviews id=4: #verified\n- reviews id=7: #verified\n- reviews id=10: #verified\n- reviews id=13: #verified\n\n<data>\nreviews[14]{id,stars,text}:\n  1,5,Fast delivery\n  2,3,Great!\n  3,1,Okay\n  4,4,Great!\n  5,3,Broke after a week\n  6,4,Fast delivery\n  7,4,Okay\n  8,3,Okay\n  9,3,Broke after a week\n  10,4,Broke after a week\n  11,5,Fast delivery\n  12,5,Fast delivery\n  13,5,Fast delivery\n  14,5,Broke after a week\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): rating[N]{avg_stars}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `reviews.stars`: 1 to 5 stars\n- reviews id=1: verified purchase\n- reviews id=3: verified purchase\n- reviews id=4: verified purchase\n- reviews id=7: verified purchase\n- reviews id=10: verified purchase\n- reviews id=13: verified purchase\n\nAttributes of the data:\n- `reviews.stars`: $scale=\"1-5\"\n- reviews id=1: #verified\n- reviews id=3: #verified\n- reviews id=4: #verified\n- reviews id=7: #verified\n- reviews id=10: #verified\n- reviews id=13: #verified\n\n<data>\nreviews[14]{id,stars,text}:\n  1,5,Fast delivery\n  2,3,Great!\n  3,1,Okay\n  4,4,Great!\n  5,3,Broke after a week\n  6,4,Fast delivery\n  7,4,Okay\n  8,3,Okay\n  9,3,Broke after a week\n  10,4,Broke after a week\n  11,5,Fast delivery\n  12,5,Fast delivery\n  13,5,Fast delivery\n  14,5,Broke after a week\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in TOON only (no prose, no code fences): rating[N]{avg_stars}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number, stars:number, text:string]>>\n([\n  (1, 5, \"Fast delivery\"),\n  (2, 3, \"Great!\"),\n  (3, 1, \"Okay\"),\n  (4, 4, \"Great!\"),\n  (5, 3, \"Broke after a week\"),\n  (6, 4, \"Fast delivery\"),\n  (7, 4, \"Okay\"),\n  (8, 3, \"Okay\"),\n  (9, 3, \"Broke after a week\"),\n  (10, 4, \"Broke after a week\"),\n  (11, 5, \"Fast delivery\"),\n  (12, 5, \"Fast delivery\"),\n  (13, 5, \"Fast delivery\"),\n  (14, 5, \"Broke after a week\")\n])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number, stars:number /* 1 to 5 stars */, text:string]>>\n([\n  (1, 5, \"Fast delivery\") /* verified purchase */,\n  (2, 3, \"Great!\"),\n  (3, 1, \"Okay\") /* verified purchase */,\n  (4, 4, \"Great!\") /* verified purchase */,\n  (5, 3, \"Broke after a week\"),\n  (6, 4, \"Fast delivery\"),\n  (7, 4, \"Okay\") /* verified purchase */,\n  (8, 3, \"Okay\"),\n  (9, 3, \"Broke after a week\"),\n  (10, 4, \"Broke after a week\") /* verified purchase */,\n  (11, 5, \"Fast delivery\"),\n  (12, 5, \"Fast delivery\"),\n  (13, 5, \"Fast delivery\") /* verified purchase */,\n  (14, 5, \"Broke after a week\")\n])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number, stars:number $scale=\"1-5\", text:string]>>\n([\n  (1, 5, \"Fast delivery\") #verified,\n  (2, 3, \"Great!\"),\n  (3, 1, \"Okay\") #verified,\n  (4, 4, \"Great!\") #verified,\n  (5, 3, \"Broke after a week\"),\n  (6, 4, \"Fast delivery\"),\n  (7, 4, \"Okay\") #verified,\n  (8, 3, \"Okay\"),\n  (9, 3, \"Broke after a week\"),\n  (10, 4, \"Broke after a week\") #verified,\n  (11, 5, \"Fast delivery\"),\n  (12, 5, \"Fast delivery\"),\n  (13, 5, \"Fast delivery\") #verified,\n  (14, 5, \"Broke after a week\")\n])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[\n  id:number,\n  stars:number $scale=\"1-5\" /* 1 to 5 stars */,\n  text:string\n]>>\n([\n  (1, 5, \"Fast delivery\") #verified /* verified purchase */,\n  (2, 3, \"Great!\"),\n  (3, 1, \"Okay\") #verified /* verified purchase */,\n  (4, 4, \"Great!\") #verified /* verified purchase */,\n  (5, 3, \"Broke after a week\"),\n  (6, 4, \"Fast delivery\"),\n  (7, 4, \"Okay\") #verified /* verified purchase */,\n  (8, 3, \"Okay\"),\n  (9, 3, \"Broke after a week\"),\n  (10, 4, \"Broke after a week\") #verified /* verified purchase */,\n  (11, 5, \"Fast delivery\"),\n  (12, 5, \"Fast delivery\"),\n  (13, 5, \"Fast delivery\") #verified /* verified purchase */,\n  (14, 5, \"Broke after a week\")\n])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number,stars:number,text:string]>>([(1,5,\"Fast delivery\"),(2,3,\"Great!\"),(3,1,\"Okay\"),(4,4,\"Great!\"),(5,3,\"Broke after a week\"),(6,4,\"Fast delivery\"),(7,4,\"Okay\"),(8,3,\"Okay\"),(9,3,\"Broke after a week\"),(10,4,\"Broke after a week\"),(11,5,\"Fast delivery\"),(12,5,\"Fast delivery\"),(13,5,\"Fast delivery\"),(14,5,\"Broke after a week\")])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number,stars:number /* 1 to 5 stars */,text:string]>>([(1,5,\"Fast delivery\") /* verified purchase */,(2,3,\"Great!\"),(3,1,\"Okay\") /* verified purchase */,(4,4,\"Great!\") /* verified purchase */,(5,3,\"Broke after a week\"),(6,4,\"Fast delivery\"),(7,4,\"Okay\") /* verified purchase */,(8,3,\"Okay\"),(9,3,\"Broke after a week\"),(10,4,\"Broke after a week\") /* verified purchase */,(11,5,\"Fast delivery\"),(12,5,\"Fast delivery\"),(13,5,\"Fast delivery\") /* verified purchase */,(14,5,\"Broke after a week\")])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number,stars:number $scale=\"1-5\",text:string]>>([(1,5,\"Fast delivery\") #verified,(2,3,\"Great!\"),(3,1,\"Okay\") #verified,(4,4,\"Great!\") #verified,(5,3,\"Broke after a week\"),(6,4,\"Fast delivery\"),(7,4,\"Okay\") #verified,(8,3,\"Okay\"),(9,3,\"Broke after a week\"),(10,4,\"Broke after a week\") #verified,(11,5,\"Fast delivery\"),(12,5,\"Fast delivery\"),(13,5,\"Fast delivery\") #verified,(14,5,\"Broke after a week\")])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<reviews:<[id:number,stars:number $scale=\"1-5\" /* 1 to 5 stars */,text:string]>>([(1,5,\"Fast delivery\") #verified /* verified purchase */,(2,3,\"Great!\"),(3,1,\"Okay\") #verified /* verified purchase */,(4,4,\"Great!\") #verified /* verified purchase */,(5,3,\"Broke after a week\"),(6,4,\"Fast delivery\"),(7,4,\"Okay\") #verified /* verified purchase */,(8,3,\"Okay\"),(9,3,\"Broke after a week\"),(10,4,\"Broke after a week\") #verified /* verified purchase */,(11,5,\"Fast delivery\"),(12,5,\"Fast delivery\"),(13,5,\"Fast delivery\") #verified /* verified purchase */,(14,5,\"Broke after a week\")])\n</data>\n\nQuestion: What is the average star rating of verified purchases only (2 decimals)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<rating:<[avg_stars:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 380,
+   "comments": 380,
+   "attributes": 380,
+   "both": 380
+  },
+  "toon": {
+   "none": 138,
+   "comments": 138,
+   "attributes": 138,
+   "both": 138
+  },
+  "akd": {
+   "none": 179,
+   "comments": 209,
+   "attributes": 202,
+   "both": 232
+  },
+  "akcd": {
+   "none": 135,
+   "comments": 166,
+   "attributes": 153,
+   "both": 185
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"rating\": [\n    {\n      \"avg_stars\": 3.83\n    }\n  ]\n}",
+  "akcd": "<rating:<[avg_stars:number]>>([(3.83)])",
+  "toon": "rating[1]{avg_stars}:\n  3.83"
+ },
+ "answer_tokens": {
+  "json": 24,
+  "akcd": 15,
+  "toon": 14
+ }
+}

@@ -1,0 +1,55 @@
+The data below is in JSON.
+
+Notes about the data:
+- `records.ttl`: time to live in seconds
+
+Attributes of the data:
+- document: $zone="arkadia.solutions"
+- `records.ttl`: $unit="s"
+
+<data>
+{
+  "records": [
+    {
+      "name": "@",
+      "type": "A",
+      "value": "203.0.113.10",
+      "ttl": 3600
+    },
+    {
+      "name": "www",
+      "type": "CNAME",
+      "value": "arkadia.solutions.",
+      "ttl": 3600
+    },
+    {
+      "name": "api",
+      "type": "A",
+      "value": "203.0.113.22",
+      "ttl": 60
+    },
+    {
+      "name": "@",
+      "type": "MX",
+      "value": "10 mail.example.net.",
+      "ttl": 14400
+    },
+    {
+      "name": "status",
+      "type": "CNAME",
+      "value": "status.example.io.",
+      "ttl": 120
+    },
+    {
+      "name": "_dmarc",
+      "type": "TXT",
+      "value": "v=DMARC1; p=none",
+      "ttl": 300
+    }
+  ]
+}
+</data>
+
+Question: Which records have a TTL below 300 seconds?
+
+Answer with JSON only (no prose): {"short": [{"name": <string>, "type": <string>, "ttl": <number>}, ...]}

@@ -1,0 +1,132 @@
+{
+ "id": 35,
+ "slug": "jobs-remote",
+ "title": "Job board: remote and well paid",
+ "description": "Salary ranges per month.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "Which remote jobs pay at least 20,000 at the top of the range? Highest first.",
+ "tokens": {
+  "json": {
+   "none": 500,
+   "comments": 525,
+   "attributes": 545,
+   "both": 570
+  },
+  "toon": {
+   "none": 300,
+   "comments": 325,
+   "attributes": 345,
+   "both": 370
+  },
+  "akd": {
+   "none": 442,
+   "comments": 458,
+   "attributes": 476,
+   "both": 486
+  },
+  "akcd": {
+   "none": 406,
+   "comments": 417,
+   "attributes": 434,
+   "both": 445
+  }
+ },
+ "answer": {
+  "name": "jobs",
+  "fields": [
+   [
+    "role",
+    "string"
+   ],
+   [
+    "max",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "role": "Rust engineer",
+   "max": 23000
+  },
+  {
+   "role": "Python developer",
+   "max": 22000
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`jobs.min`: monthly gross, PLN",
+   "`jobs.max`: monthly gross, PLN"
+  ],
+  "attributes": [
+   "`jobs.min`: $unit=\"PLN\" $period=\"month\" $gross=true",
+   "`jobs.max`: $unit=\"PLN\" $period=\"month\" $gross=true"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"jobs\": [\n    {\n      \"role\": \"Rust engineer\",\n      \"remote\": true,\n      \"min\": 17000,\n      \"max\": 23000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Data analyst\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 14000,\n      \"city\": \"Kraków\"\n    },\n    {\n      \"role\": \"Product designer\",\n      \"remote\": false,\n      \"min\": 18000,\n      \"max\": 27000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Python developer\",\n      \"remote\": true,\n      \"min\": 13000,\n      \"max\": 22000,\n      \"city\": \"Gdańsk\"\n    },\n    {\n      \"role\": \"DevOps\",\n      \"remote\": true,\n      \"min\": 10000,\n      \"max\": 16000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"QA engineer\",\n      \"remote\": false,\n      \"min\": 12000,\n      \"max\": 15000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Tech writer\",\n      \"remote\": true,\n      \"min\": 9000,\n      \"max\": 17000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"ML engineer\",\n      \"remote\": false,\n      \"min\": 15000,\n      \"max\": 21000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Frontend dev\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 13000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Support lead\",\n      \"remote\": true,\n      \"min\": 12000,\n      \"max\": 17000,\n      \"city\": \"Wrocław\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer with JSON only (no prose): {\"jobs\": [{\"role\": <string>, \"max\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `jobs.min`: monthly gross, PLN\n- `jobs.max`: monthly gross, PLN\n\n<data>\n{\n  \"jobs\": [\n    {\n      \"role\": \"Rust engineer\",\n      \"remote\": true,\n      \"min\": 17000,\n      \"max\": 23000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Data analyst\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 14000,\n      \"city\": \"Kraków\"\n    },\n    {\n      \"role\": \"Product designer\",\n      \"remote\": false,\n      \"min\": 18000,\n      \"max\": 27000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Python developer\",\n      \"remote\": true,\n      \"min\": 13000,\n      \"max\": 22000,\n      \"city\": \"Gdańsk\"\n    },\n    {\n      \"role\": \"DevOps\",\n      \"remote\": true,\n      \"min\": 10000,\n      \"max\": 16000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"QA engineer\",\n      \"remote\": false,\n      \"min\": 12000,\n      \"max\": 15000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Tech writer\",\n      \"remote\": true,\n      \"min\": 9000,\n      \"max\": 17000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"ML engineer\",\n      \"remote\": false,\n      \"min\": 15000,\n      \"max\": 21000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Frontend dev\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 13000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Support lead\",\n      \"remote\": true,\n      \"min\": 12000,\n      \"max\": 17000,\n      \"city\": \"Wrocław\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer with JSON only (no prose): {\"jobs\": [{\"role\": <string>, \"max\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `jobs.min`: $unit=\"PLN\" $period=\"month\" $gross=true\n- `jobs.max`: $unit=\"PLN\" $period=\"month\" $gross=true\n\n<data>\n{\n  \"jobs\": [\n    {\n      \"role\": \"Rust engineer\",\n      \"remote\": true,\n      \"min\": 17000,\n      \"max\": 23000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Data analyst\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 14000,\n      \"city\": \"Kraków\"\n    },\n    {\n      \"role\": \"Product designer\",\n      \"remote\": false,\n      \"min\": 18000,\n      \"max\": 27000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Python developer\",\n      \"remote\": true,\n      \"min\": 13000,\n      \"max\": 22000,\n      \"city\": \"Gdańsk\"\n    },\n    {\n      \"role\": \"DevOps\",\n      \"remote\": true,\n      \"min\": 10000,\n      \"max\": 16000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"QA engineer\",\n      \"remote\": false,\n      \"min\": 12000,\n      \"max\": 15000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Tech writer\",\n      \"remote\": true,\n      \"min\": 9000,\n      \"max\": 17000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"ML engineer\",\n      \"remote\": false,\n      \"min\": 15000,\n      \"max\": 21000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Frontend dev\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 13000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Support lead\",\n      \"remote\": true,\n      \"min\": 12000,\n      \"max\": 17000,\n      \"city\": \"Wrocław\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer with JSON only (no prose): {\"jobs\": [{\"role\": <string>, \"max\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `jobs.min`: monthly gross, PLN\n- `jobs.max`: monthly gross, PLN\n\nAttributes of the data:\n- `jobs.min`: $unit=\"PLN\" $period=\"month\" $gross=true\n- `jobs.max`: $unit=\"PLN\" $period=\"month\" $gross=true\n\n<data>\n{\n  \"jobs\": [\n    {\n      \"role\": \"Rust engineer\",\n      \"remote\": true,\n      \"min\": 17000,\n      \"max\": 23000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Data analyst\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 14000,\n      \"city\": \"Kraków\"\n    },\n    {\n      \"role\": \"Product designer\",\n      \"remote\": false,\n      \"min\": 18000,\n      \"max\": 27000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Python developer\",\n      \"remote\": true,\n      \"min\": 13000,\n      \"max\": 22000,\n      \"city\": \"Gdańsk\"\n    },\n    {\n      \"role\": \"DevOps\",\n      \"remote\": true,\n      \"min\": 10000,\n      \"max\": 16000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"QA engineer\",\n      \"remote\": false,\n      \"min\": 12000,\n      \"max\": 15000,\n      \"city\": \"Wrocław\"\n    },\n    {\n      \"role\": \"Tech writer\",\n      \"remote\": true,\n      \"min\": 9000,\n      \"max\": 17000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"ML engineer\",\n      \"remote\": false,\n      \"min\": 15000,\n      \"max\": 21000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Frontend dev\",\n      \"remote\": false,\n      \"min\": 10000,\n      \"max\": 13000,\n      \"city\": \"Poznań\"\n    },\n    {\n      \"role\": \"Support lead\",\n      \"remote\": true,\n      \"min\": 12000,\n      \"max\": 17000,\n      \"city\": \"Wrocław\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer with JSON only (no prose): {\"jobs\": [{\"role\": <string>, \"max\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\njobs[10]{role,remote,min,max,city}:\n  Rust engineer,true,17000,23000,Wrocław\n  Data analyst,false,10000,14000,Kraków\n  Product designer,false,18000,27000,Poznań\n  Python developer,true,13000,22000,Gdańsk\n  DevOps,true,10000,16000,Poznań\n  QA engineer,false,12000,15000,Wrocław\n  Tech writer,true,9000,17000,Poznań\n  ML engineer,false,15000,21000,Poznań\n  Frontend dev,false,10000,13000,Poznań\n  Support lead,true,12000,17000,Wrocław\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in TOON only (no prose, no code fences): jobs[N]{role,max}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `jobs.min`: monthly gross, PLN\n- `jobs.max`: monthly gross, PLN\n\n<data>\njobs[10]{role,remote,min,max,city}:\n  Rust engineer,true,17000,23000,Wrocław\n  Data analyst,false,10000,14000,Kraków\n  Product designer,false,18000,27000,Poznań\n  Python developer,true,13000,22000,Gdańsk\n  DevOps,true,10000,16000,Poznań\n  QA engineer,false,12000,15000,Wrocław\n  Tech writer,true,9000,17000,Poznań\n  ML engineer,false,15000,21000,Poznań\n  Frontend dev,false,10000,13000,Poznań\n  Support lead,true,12000,17000,Wrocław\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in TOON only (no prose, no code fences): jobs[N]{role,max}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `jobs.min`: $unit=\"PLN\" $period=\"month\" $gross=true\n- `jobs.max`: $unit=\"PLN\" $period=\"month\" $gross=true\n\n<data>\njobs[10]{role,remote,min,max,city}:\n  Rust engineer,true,17000,23000,Wrocław\n  Data analyst,false,10000,14000,Kraków\n  Product designer,false,18000,27000,Poznań\n  Python developer,true,13000,22000,Gdańsk\n  DevOps,true,10000,16000,Poznań\n  QA engineer,false,12000,15000,Wrocław\n  Tech writer,true,9000,17000,Poznań\n  ML engineer,false,15000,21000,Poznań\n  Frontend dev,false,10000,13000,Poznań\n  Support lead,true,12000,17000,Wrocław\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in TOON only (no prose, no code fences): jobs[N]{role,max}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `jobs.min`: monthly gross, PLN\n- `jobs.max`: monthly gross, PLN\n\nAttributes of the data:\n- `jobs.min`: $unit=\"PLN\" $period=\"month\" $gross=true\n- `jobs.max`: $unit=\"PLN\" $period=\"month\" $gross=true\n\n<data>\njobs[10]{role,remote,min,max,city}:\n  Rust engineer,true,17000,23000,Wrocław\n  Data analyst,false,10000,14000,Kraków\n  Product designer,false,18000,27000,Poznań\n  Python developer,true,13000,22000,Gdańsk\n  DevOps,true,10000,16000,Poznań\n  QA engineer,false,12000,15000,Wrocław\n  Tech writer,true,9000,17000,Poznań\n  ML engineer,false,15000,21000,Poznań\n  Frontend dev,false,10000,13000,Poznań\n  Support lead,true,12000,17000,Wrocław\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in TOON only (no prose, no code fences): jobs[N]{role,max}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[role:string, remote:bool, min:number, max:number, city:string]>>\n([\n  (\"Rust engineer\", true, 17000, 23000, \"Wrocław\"),\n  (\"Data analyst\", false, 10000, 14000, \"Kraków\"),\n  (\"Product designer\", false, 18000, 27000, \"Poznań\"),\n  (\"Python developer\", true, 13000, 22000, \"Gdańsk\"),\n  (\"DevOps\", true, 10000, 16000, \"Poznań\"),\n  (\"QA engineer\", false, 12000, 15000, \"Wrocław\"),\n  (\"Tech writer\", true, 9000, 17000, \"Poznań\"),\n  (\"ML engineer\", false, 15000, 21000, \"Poznań\"),\n  (\"Frontend dev\", false, 10000, 13000, \"Poznań\"),\n  (\"Support lead\", true, 12000, 17000, \"Wrocław\")\n])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[\n  role:string,\n  remote:bool,\n  min:number /* monthly gross, PLN */,\n  max:number /* monthly gross, PLN */,\n  city:string\n]>>\n([\n  (\"Rust engineer\", true, 17000, 23000, \"Wrocław\"),\n  (\"Data analyst\", false, 10000, 14000, \"Kraków\"),\n  (\"Product designer\", false, 18000, 27000, \"Poznań\"),\n  (\"Python developer\", true, 13000, 22000, \"Gdańsk\"),\n  (\"DevOps\", true, 10000, 16000, \"Poznań\"),\n  (\"QA engineer\", false, 12000, 15000, \"Wrocław\"),\n  (\"Tech writer\", true, 9000, 17000, \"Poznań\"),\n  (\"ML engineer\", false, 15000, 21000, \"Poznań\"),\n  (\"Frontend dev\", false, 10000, 13000, \"Poznań\"),\n  (\"Support lead\", true, 12000, 17000, \"Wrocław\")\n])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[\n  role:string,\n  remote:bool,\n  min:number $unit=\"PLN\" $period=\"month\" $gross=true,\n  max:number $unit=\"PLN\" $period=\"month\" $gross=true,\n  city:string\n]>>\n([\n  (\"Rust engineer\", true, 17000, 23000, \"Wrocław\"),\n  (\"Data analyst\", false, 10000, 14000, \"Kraków\"),\n  (\"Product designer\", false, 18000, 27000, \"Poznań\"),\n  (\"Python developer\", true, 13000, 22000, \"Gdańsk\"),\n  (\"DevOps\", true, 10000, 16000, \"Poznań\"),\n  (\"QA engineer\", false, 12000, 15000, \"Wrocław\"),\n  (\"Tech writer\", true, 9000, 17000, \"Poznań\"),\n  (\"ML engineer\", false, 15000, 21000, \"Poznań\"),\n  (\"Frontend dev\", false, 10000, 13000, \"Poznań\"),\n  (\"Support lead\", true, 12000, 17000, \"Wrocław\")\n])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[\n  role:string,\n  remote:bool,\n  min:number $unit=\"PLN\" $period=\"month\" $gross=true /* monthly gross, PLN */,\n  max:number $unit=\"PLN\" $period=\"month\" $gross=true /* monthly gross, PLN */,\n  city:string\n]>>\n([\n  (\"Rust engineer\", true, 17000, 23000, \"Wrocław\"),\n  (\"Data analyst\", false, 10000, 14000, \"Kraków\"),\n  (\"Product designer\", false, 18000, 27000, \"Poznań\"),\n  (\"Python developer\", true, 13000, 22000, \"Gdańsk\"),\n  (\"DevOps\", true, 10000, 16000, \"Poznań\"),\n  (\"QA engineer\", false, 12000, 15000, \"Wrocław\"),\n  (\"Tech writer\", true, 9000, 17000, \"Poznań\"),\n  (\"ML engineer\", false, 15000, 21000, \"Poznań\"),\n  (\"Frontend dev\", false, 10000, 13000, \"Poznań\"),\n  (\"Support lead\", true, 12000, 17000, \"Wrocław\")\n])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[role:string,remote:bool,min:number,max:number,city:string]>>([(\"Rust engineer\",true,17000,23000,\"Wrocław\"),(\"Data analyst\",false,10000,14000,\"Kraków\"),(\"Product designer\",false,18000,27000,\"Poznań\"),(\"Python developer\",true,13000,22000,\"Gdańsk\"),(\"DevOps\",true,10000,16000,\"Poznań\"),(\"QA engineer\",false,12000,15000,\"Wrocław\"),(\"Tech writer\",true,9000,17000,\"Poznań\"),(\"ML engineer\",false,15000,21000,\"Poznań\"),(\"Frontend dev\",false,10000,13000,\"Poznań\"),(\"Support lead\",true,12000,17000,\"Wrocław\")])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[role:string,remote:bool,min:number /* monthly gross, PLN */,max:number /* monthly gross, PLN */,city:string]>>([(\"Rust engineer\",true,17000,23000,\"Wrocław\"),(\"Data analyst\",false,10000,14000,\"Kraków\"),(\"Product designer\",false,18000,27000,\"Poznań\"),(\"Python developer\",true,13000,22000,\"Gdańsk\"),(\"DevOps\",true,10000,16000,\"Poznań\"),(\"QA engineer\",false,12000,15000,\"Wrocław\"),(\"Tech writer\",true,9000,17000,\"Poznań\"),(\"ML engineer\",false,15000,21000,\"Poznań\"),(\"Frontend dev\",false,10000,13000,\"Poznań\"),(\"Support lead\",true,12000,17000,\"Wrocław\")])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[role:string,remote:bool,min:number $unit=\"PLN\" $period=\"month\" $gross=true,max:number $unit=\"PLN\" $period=\"month\" $gross=true,city:string]>>([(\"Rust engineer\",true,17000,23000,\"Wrocław\"),(\"Data analyst\",false,10000,14000,\"Kraków\"),(\"Product designer\",false,18000,27000,\"Poznań\"),(\"Python developer\",true,13000,22000,\"Gdańsk\"),(\"DevOps\",true,10000,16000,\"Poznań\"),(\"QA engineer\",false,12000,15000,\"Wrocław\"),(\"Tech writer\",true,9000,17000,\"Poznań\"),(\"ML engineer\",false,15000,21000,\"Poznań\"),(\"Frontend dev\",false,10000,13000,\"Poznań\"),(\"Support lead\",true,12000,17000,\"Wrocław\")])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<jobs:<[role:string,remote:bool,min:number $unit=\"PLN\" $period=\"month\" $gross=true /* monthly gross, PLN */,max:number $unit=\"PLN\" $period=\"month\" $gross=true /* monthly gross, PLN */,city:string]>>([(\"Rust engineer\",true,17000,23000,\"Wrocław\"),(\"Data analyst\",false,10000,14000,\"Kraków\"),(\"Product designer\",false,18000,27000,\"Poznań\"),(\"Python developer\",true,13000,22000,\"Gdańsk\"),(\"DevOps\",true,10000,16000,\"Poznań\"),(\"QA engineer\",false,12000,15000,\"Wrocław\"),(\"Tech writer\",true,9000,17000,\"Poznań\"),(\"ML engineer\",false,15000,21000,\"Poznań\"),(\"Frontend dev\",false,10000,13000,\"Poznań\"),(\"Support lead\",true,12000,17000,\"Wrocław\")])\n</data>\n\nQuestion: Which remote jobs pay at least 20,000 at the top of the range? Highest first.\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<jobs:<[role:string,max:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 440,
+   "comments": 440,
+   "attributes": 440,
+   "both": 440
+  },
+  "toon": {
+   "none": 159,
+   "comments": 159,
+   "attributes": 159,
+   "both": 159
+  },
+  "akd": {
+   "none": 224,
+   "comments": 240,
+   "attributes": 258,
+   "both": 268
+  },
+  "akcd": {
+   "none": 182,
+   "comments": 193,
+   "attributes": 210,
+   "both": 221
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"jobs\": [\n    {\n      \"role\": \"Rust engineer\",\n      \"max\": 23000\n    },\n    {\n      \"role\": \"Python developer\",\n      \"max\": 22000\n    }\n  ]\n}",
+  "akcd": "<jobs:<[role:string,max:number]>>([(\"Rust engineer\",23000),(\"Python developer\",22000)])",
+  "toon": "jobs[2]{role,max}:\n  Rust engineer,23000\n  Python developer,22000"
+ },
+ "answer_tokens": {
+  "json": 49,
+  "akcd": 25,
+  "toon": 21
+ }
+}

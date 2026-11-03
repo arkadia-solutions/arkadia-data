@@ -1,0 +1,82 @@
+{
+  "id": 38,
+  "slug": "fx-rates",
+  "title": "Exchange rates: convert 500 EUR",
+  "description": "One base currency, a list of rates.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "How much is 500 EUR in each currency (2 decimals)?",
+  "answer": {
+    "name": "converted",
+    "fields": [
+      [
+        "ccy",
+        "string"
+      ],
+      [
+        "amount",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "ccy": "PLN",
+      "amount": 2133.75
+    },
+    {
+      "ccy": "USD",
+      "amount": 540.6
+    },
+    {
+      "ccy": "GBP",
+      "amount": 421.15
+    },
+    {
+      "ccy": "CHF",
+      "amount": 470.55
+    },
+    {
+      "ccy": "CZK",
+      "amount": 12540.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "ECB reference rates: units of currency per 1 EUR."
+    ],
+    "attributes": [
+      "document: $source=\"ECB\" #reference_rates"
+    ]
+  },
+  "akd_meta": "// $source=\"ECB\" #reference_rates // /* ECB reference rates: units of currency per 1 EUR. */ <base:string,date:string,rates:<[ccy:string,rate:number]>>(\"EUR\",\"2026-10-29\",[(\"PLN\",4.2675),(\"USD\",1.0812),(\"GBP\",0.8423),(\"CHF\",0.9411),(\"CZK\",25.08)])",
+  "data": {
+    "base": "EUR",
+    "date": "2026-10-29",
+    "rates": [
+      {
+        "ccy": "PLN",
+        "rate": 4.2675
+      },
+      {
+        "ccy": "USD",
+        "rate": 1.0812
+      },
+      {
+        "ccy": "GBP",
+        "rate": 0.8423
+      },
+      {
+        "ccy": "CHF",
+        "rate": 0.9411
+      },
+      {
+        "ccy": "CZK",
+        "rate": 25.08
+      }
+    ]
+  }
+}

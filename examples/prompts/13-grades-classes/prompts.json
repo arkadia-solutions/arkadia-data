@@ -1,0 +1,136 @@
+{
+ "id": 13,
+ "slug": "grades-classes",
+ "title": "School grades: average per class",
+ "description": "Polish 1–6 grade scale (6 is the best) — said in the metadata.",
+ "tags": [
+  "metadata"
+ ],
+ "question": "What is the average math grade in each class, rounded to 2 decimals?",
+ "tokens": {
+  "json": {
+   "none": 633,
+   "comments": 678,
+   "attributes": 690,
+   "both": 735
+  },
+  "toon": {
+   "none": 325,
+   "comments": 370,
+   "attributes": 382,
+   "both": 427
+  },
+  "akd": {
+   "none": 483,
+   "comments": 516,
+   "attributes": 520,
+   "both": 550
+  },
+  "akcd": {
+   "none": 417,
+   "comments": 445,
+   "attributes": 448,
+   "both": 478
+  }
+ },
+ "answer": {
+  "name": "classes",
+  "fields": [
+   [
+    "class",
+    "string"
+   ],
+   [
+    "avg_math",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "class": "3A",
+   "avg_math": 4.43
+  },
+  {
+   "class": "3B",
+   "avg_math": 3.57
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Grades on the Polish scale: 1 (fail) to 6 (excellent).",
+   "`students.math`: mathematics",
+   "`students.pl`: Polish language",
+   "`students.eng`: English"
+  ],
+  "attributes": [
+   "document: $term=\"2026/27-1\" #school",
+   "`students.math`: $scale=\"1-6\"",
+   "`students.pl`: $scale=\"1-6\"",
+   "`students.eng`: $scale=\"1-6\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"students\": [\n    {\n      \"student\": \"Ada\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Alan\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Grace\",\n      \"class\": \"3A\",\n      \"math\": 5,\n      \"pl\": 4,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Linus\",\n      \"class\": \"3B\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Margaret\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Dennis\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Barbara\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Ken\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Radia\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Edsger\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Hedy\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Tim\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 6\n    },\n    {\n      \"student\": \"Katherine\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 5,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"John\",\n      \"class\": \"3B\",\n      \"math\": 6,\n      \"pl\": 3,\n      \"eng\": 3\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer with JSON only (no prose): {\"classes\": [{\"class\": <string>, \"avg_math\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Grades on the Polish scale: 1 (fail) to 6 (excellent).\n- `students.math`: mathematics\n- `students.pl`: Polish language\n- `students.eng`: English\n\n<data>\n{\n  \"students\": [\n    {\n      \"student\": \"Ada\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Alan\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Grace\",\n      \"class\": \"3A\",\n      \"math\": 5,\n      \"pl\": 4,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Linus\",\n      \"class\": \"3B\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Margaret\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Dennis\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Barbara\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Ken\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Radia\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Edsger\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Hedy\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Tim\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 6\n    },\n    {\n      \"student\": \"Katherine\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 5,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"John\",\n      \"class\": \"3B\",\n      \"math\": 6,\n      \"pl\": 3,\n      \"eng\": 3\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer with JSON only (no prose): {\"classes\": [{\"class\": <string>, \"avg_math\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $term=\"2026/27-1\" #school\n- `students.math`: $scale=\"1-6\"\n- `students.pl`: $scale=\"1-6\"\n- `students.eng`: $scale=\"1-6\"\n\n<data>\n{\n  \"students\": [\n    {\n      \"student\": \"Ada\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Alan\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Grace\",\n      \"class\": \"3A\",\n      \"math\": 5,\n      \"pl\": 4,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Linus\",\n      \"class\": \"3B\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Margaret\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Dennis\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Barbara\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Ken\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Radia\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Edsger\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Hedy\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Tim\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 6\n    },\n    {\n      \"student\": \"Katherine\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 5,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"John\",\n      \"class\": \"3B\",\n      \"math\": 6,\n      \"pl\": 3,\n      \"eng\": 3\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer with JSON only (no prose): {\"classes\": [{\"class\": <string>, \"avg_math\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Grades on the Polish scale: 1 (fail) to 6 (excellent).\n- `students.math`: mathematics\n- `students.pl`: Polish language\n- `students.eng`: English\n\nAttributes of the data:\n- document: $term=\"2026/27-1\" #school\n- `students.math`: $scale=\"1-6\"\n- `students.pl`: $scale=\"1-6\"\n- `students.eng`: $scale=\"1-6\"\n\n<data>\n{\n  \"students\": [\n    {\n      \"student\": \"Ada\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Alan\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Grace\",\n      \"class\": \"3A\",\n      \"math\": 5,\n      \"pl\": 4,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Linus\",\n      \"class\": \"3B\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Margaret\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Dennis\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Barbara\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 4,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Ken\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"Radia\",\n      \"class\": \"3A\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 3\n    },\n    {\n      \"student\": \"Edsger\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 5,\n      \"eng\": 5\n    },\n    {\n      \"student\": \"Hedy\",\n      \"class\": \"3A\",\n      \"math\": 4,\n      \"pl\": 4,\n      \"eng\": 4\n    },\n    {\n      \"student\": \"Tim\",\n      \"class\": \"3B\",\n      \"math\": 3,\n      \"pl\": 3,\n      \"eng\": 6\n    },\n    {\n      \"student\": \"Katherine\",\n      \"class\": \"3A\",\n      \"math\": 6,\n      \"pl\": 5,\n      \"eng\": 2\n    },\n    {\n      \"student\": \"John\",\n      \"class\": \"3B\",\n      \"math\": 6,\n      \"pl\": 3,\n      \"eng\": 3\n    }\n  ]\n}\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer with JSON only (no prose): {\"classes\": [{\"class\": <string>, \"avg_math\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nstudents[14]{student,class,math,pl,eng}:\n  Ada,3A,3,5,3\n  Alan,3B,3,4,4\n  Grace,3A,5,4,2\n  Linus,3B,4,4,5\n  Margaret,3A,4,4,3\n  Dennis,3B,3,5,4\n  Barbara,3A,6,4,3\n  Ken,3B,3,3,2\n  Radia,3A,3,3,3\n  Edsger,3B,3,5,5\n  Hedy,3A,4,4,4\n  Tim,3B,3,3,6\n  Katherine,3A,6,5,2\n  John,3B,6,3,3\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in TOON only (no prose, no code fences): classes[N]{class,avg_math}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Grades on the Polish scale: 1 (fail) to 6 (excellent).\n- `students.math`: mathematics\n- `students.pl`: Polish language\n- `students.eng`: English\n\n<data>\nstudents[14]{student,class,math,pl,eng}:\n  Ada,3A,3,5,3\n  Alan,3B,3,4,4\n  Grace,3A,5,4,2\n  Linus,3B,4,4,5\n  Margaret,3A,4,4,3\n  Dennis,3B,3,5,4\n  Barbara,3A,6,4,3\n  Ken,3B,3,3,2\n  Radia,3A,3,3,3\n  Edsger,3B,3,5,5\n  Hedy,3A,4,4,4\n  Tim,3B,3,3,6\n  Katherine,3A,6,5,2\n  John,3B,6,3,3\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in TOON only (no prose, no code fences): classes[N]{class,avg_math}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $term=\"2026/27-1\" #school\n- `students.math`: $scale=\"1-6\"\n- `students.pl`: $scale=\"1-6\"\n- `students.eng`: $scale=\"1-6\"\n\n<data>\nstudents[14]{student,class,math,pl,eng}:\n  Ada,3A,3,5,3\n  Alan,3B,3,4,4\n  Grace,3A,5,4,2\n  Linus,3B,4,4,5\n  Margaret,3A,4,4,3\n  Dennis,3B,3,5,4\n  Barbara,3A,6,4,3\n  Ken,3B,3,3,2\n  Radia,3A,3,3,3\n  Edsger,3B,3,5,5\n  Hedy,3A,4,4,4\n  Tim,3B,3,3,6\n  Katherine,3A,6,5,2\n  John,3B,6,3,3\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in TOON only (no prose, no code fences): classes[N]{class,avg_math}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Grades on the Polish scale: 1 (fail) to 6 (excellent).\n- `students.math`: mathematics\n- `students.pl`: Polish language\n- `students.eng`: English\n\nAttributes of the data:\n- document: $term=\"2026/27-1\" #school\n- `students.math`: $scale=\"1-6\"\n- `students.pl`: $scale=\"1-6\"\n- `students.eng`: $scale=\"1-6\"\n\n<data>\nstudents[14]{student,class,math,pl,eng}:\n  Ada,3A,3,5,3\n  Alan,3B,3,4,4\n  Grace,3A,5,4,2\n  Linus,3B,4,4,5\n  Margaret,3A,4,4,3\n  Dennis,3B,3,5,4\n  Barbara,3A,6,4,3\n  Ken,3B,3,3,2\n  Radia,3A,3,3,3\n  Edsger,3B,3,5,5\n  Hedy,3A,4,4,4\n  Tim,3B,3,3,6\n  Katherine,3A,6,5,2\n  John,3B,6,3,3\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in TOON only (no prose, no code fences): classes[N]{class,avg_math}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<students:<[student:string, class:string, math:number, pl:number, eng:number]>>\n([\n  (\"Ada\", \"3A\", 3, 5, 3),\n  (\"Alan\", \"3B\", 3, 4, 4),\n  (\"Grace\", \"3A\", 5, 4, 2),\n  (\"Linus\", \"3B\", 4, 4, 5),\n  (\"Margaret\", \"3A\", 4, 4, 3),\n  (\"Dennis\", \"3B\", 3, 5, 4),\n  (\"Barbara\", \"3A\", 6, 4, 3),\n  (\"Ken\", \"3B\", 3, 3, 2),\n  (\"Radia\", \"3A\", 3, 3, 3),\n  (\"Edsger\", \"3B\", 3, 5, 5),\n  (\"Hedy\", \"3A\", 4, 4, 4),\n  (\"Tim\", \"3B\", 3, 3, 6),\n  (\"Katherine\", \"3A\", 6, 5, 2),\n  (\"John\", \"3B\", 6, 3, 3)\n])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Grades on the Polish scale: 1 (fail) to 6 (excellent). */\n<students:<[\n  student:string,\n  class:string,\n  math:number /* mathematics */,\n  pl:number /* Polish language */,\n  eng:number /* English */\n]>>\n([\n  (\"Ada\", \"3A\", 3, 5, 3),\n  (\"Alan\", \"3B\", 3, 4, 4),\n  (\"Grace\", \"3A\", 5, 4, 2),\n  (\"Linus\", \"3B\", 4, 4, 5),\n  (\"Margaret\", \"3A\", 4, 4, 3),\n  (\"Dennis\", \"3B\", 3, 5, 4),\n  (\"Barbara\", \"3A\", 6, 4, 3),\n  (\"Ken\", \"3B\", 3, 3, 2),\n  (\"Radia\", \"3A\", 3, 3, 3),\n  (\"Edsger\", \"3B\", 3, 5, 5),\n  (\"Hedy\", \"3A\", 4, 4, 4),\n  (\"Tim\", \"3B\", 3, 3, 6),\n  (\"Katherine\", \"3A\", 6, 5, 2),\n  (\"John\", \"3B\", 6, 3, 3)\n])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $term=\"2026/27-1\" #school //\n<students:<[\n  student:string,\n  class:string,\n  math:number $scale=\"1-6\",\n  pl:number $scale=\"1-6\",\n  eng:number $scale=\"1-6\"\n]>>\n([\n  (\"Ada\", \"3A\", 3, 5, 3),\n  (\"Alan\", \"3B\", 3, 4, 4),\n  (\"Grace\", \"3A\", 5, 4, 2),\n  (\"Linus\", \"3B\", 4, 4, 5),\n  (\"Margaret\", \"3A\", 4, 4, 3),\n  (\"Dennis\", \"3B\", 3, 5, 4),\n  (\"Barbara\", \"3A\", 6, 4, 3),\n  (\"Ken\", \"3B\", 3, 3, 2),\n  (\"Radia\", \"3A\", 3, 3, 3),\n  (\"Edsger\", \"3B\", 3, 5, 5),\n  (\"Hedy\", \"3A\", 4, 4, 4),\n  (\"Tim\", \"3B\", 3, 3, 6),\n  (\"Katherine\", \"3A\", 6, 5, 2),\n  (\"John\", \"3B\", 6, 3, 3)\n])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $term=\"2026/27-1\" #school //\n/* Grades on the Polish scale: 1 (fail) to 6 (excellent). */\n<students:<[\n  student:string,\n  class:string,\n  math:number $scale=\"1-6\" /* mathematics */,\n  pl:number $scale=\"1-6\" /* Polish language */,\n  eng:number $scale=\"1-6\" /* English */\n]>>\n([\n  (\"Ada\", \"3A\", 3, 5, 3),\n  (\"Alan\", \"3B\", 3, 4, 4),\n  (\"Grace\", \"3A\", 5, 4, 2),\n  (\"Linus\", \"3B\", 4, 4, 5),\n  (\"Margaret\", \"3A\", 4, 4, 3),\n  (\"Dennis\", \"3B\", 3, 5, 4),\n  (\"Barbara\", \"3A\", 6, 4, 3),\n  (\"Ken\", \"3B\", 3, 3, 2),\n  (\"Radia\", \"3A\", 3, 3, 3),\n  (\"Edsger\", \"3B\", 3, 5, 5),\n  (\"Hedy\", \"3A\", 4, 4, 4),\n  (\"Tim\", \"3B\", 3, 3, 6),\n  (\"Katherine\", \"3A\", 6, 5, 2),\n  (\"John\", \"3B\", 6, 3, 3)\n])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<students:<[student:string,class:string,math:number,pl:number,eng:number]>>([(\"Ada\",\"3A\",3,5,3),(\"Alan\",\"3B\",3,4,4),(\"Grace\",\"3A\",5,4,2),(\"Linus\",\"3B\",4,4,5),(\"Margaret\",\"3A\",4,4,3),(\"Dennis\",\"3B\",3,5,4),(\"Barbara\",\"3A\",6,4,3),(\"Ken\",\"3B\",3,3,2),(\"Radia\",\"3A\",3,3,3),(\"Edsger\",\"3B\",3,5,5),(\"Hedy\",\"3A\",4,4,4),(\"Tim\",\"3B\",3,3,6),(\"Katherine\",\"3A\",6,5,2),(\"John\",\"3B\",6,3,3)])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Grades on the Polish scale: 1 (fail) to 6 (excellent). */ <students:<[student:string,class:string,math:number /* mathematics */,pl:number /* Polish language */,eng:number /* English */]>>([(\"Ada\",\"3A\",3,5,3),(\"Alan\",\"3B\",3,4,4),(\"Grace\",\"3A\",5,4,2),(\"Linus\",\"3B\",4,4,5),(\"Margaret\",\"3A\",4,4,3),(\"Dennis\",\"3B\",3,5,4),(\"Barbara\",\"3A\",6,4,3),(\"Ken\",\"3B\",3,3,2),(\"Radia\",\"3A\",3,3,3),(\"Edsger\",\"3B\",3,5,5),(\"Hedy\",\"3A\",4,4,4),(\"Tim\",\"3B\",3,3,6),(\"Katherine\",\"3A\",6,5,2),(\"John\",\"3B\",6,3,3)])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $term=\"2026/27-1\" #school // <students:<[student:string,class:string,math:number $scale=\"1-6\",pl:number $scale=\"1-6\",eng:number $scale=\"1-6\"]>>([(\"Ada\",\"3A\",3,5,3),(\"Alan\",\"3B\",3,4,4),(\"Grace\",\"3A\",5,4,2),(\"Linus\",\"3B\",4,4,5),(\"Margaret\",\"3A\",4,4,3),(\"Dennis\",\"3B\",3,5,4),(\"Barbara\",\"3A\",6,4,3),(\"Ken\",\"3B\",3,3,2),(\"Radia\",\"3A\",3,3,3),(\"Edsger\",\"3B\",3,5,5),(\"Hedy\",\"3A\",4,4,4),(\"Tim\",\"3B\",3,3,6),(\"Katherine\",\"3A\",6,5,2),(\"John\",\"3B\",6,3,3)])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $term=\"2026/27-1\" #school // /* Grades on the Polish scale: 1 (fail) to 6 (excellent). */ <students:<[student:string,class:string,math:number $scale=\"1-6\" /* mathematics */,pl:number $scale=\"1-6\" /* Polish language */,eng:number $scale=\"1-6\" /* English */]>>([(\"Ada\",\"3A\",3,5,3),(\"Alan\",\"3B\",3,4,4),(\"Grace\",\"3A\",5,4,2),(\"Linus\",\"3B\",4,4,5),(\"Margaret\",\"3A\",4,4,3),(\"Dennis\",\"3B\",3,5,4),(\"Barbara\",\"3A\",6,4,3),(\"Ken\",\"3B\",3,3,2),(\"Radia\",\"3A\",3,3,3),(\"Edsger\",\"3B\",3,5,5),(\"Hedy\",\"3A\",4,4,4),(\"Tim\",\"3B\",3,3,6),(\"Katherine\",\"3A\",6,5,2),(\"John\",\"3B\",6,3,3)])\n</data>\n\nQuestion: What is the average math grade in each class, rounded to 2 decimals?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<classes:<[class:string,avg_math:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 576,
+   "comments": 576,
+   "attributes": 576,
+   "both": 576
+  },
+  "toon": {
+   "none": 186,
+   "comments": 186,
+   "attributes": 186,
+   "both": 186
+  },
+  "akd": {
+   "none": 267,
+   "comments": 299,
+   "attributes": 305,
+   "both": 335
+  },
+  "akcd": {
+   "none": 195,
+   "comments": 222,
+   "attributes": 227,
+   "both": 257
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"classes\": [\n    {\n      \"class\": \"3A\",\n      \"avg_math\": 4.43\n    },\n    {\n      \"class\": \"3B\",\n      \"avg_math\": 3.57\n    }\n  ]\n}",
+  "akcd": "<classes:<[class:string,avg_math:number]>>([(\"3A\",4.43),(\"3B\",3.57)])",
+  "toon": "classes[2]{class,avg_math}:\n  3A,4.43\n  3B,3.57"
+ },
+ "answer_tokens": {
+  "json": 53,
+  "akcd": 29,
+  "toon": 27
+ }
+}

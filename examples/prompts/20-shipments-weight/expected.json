@@ -1,0 +1,20 @@
+{
+  "weight": [
+    {
+      "carrier": "DHL",
+      "kg": 93.046
+    },
+    {
+      "carrier": "UPS",
+      "kg": 54.727
+    },
+    {
+      "carrier": "DPD",
+      "kg": 42.148
+    },
+    {
+      "carrier": "InPost",
+      "kg": 25.733
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+<proposal:<[lead:string,company:string]>>([("L-301","Globex"),("L-312","Acme"),("L-300","Acme"),("L-304","Hooli"),("L-313","Globex")])

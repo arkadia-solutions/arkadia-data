@@ -1,0 +1,87 @@
+{
+ "id": 58,
+ "slug": "type-override",
+ "title": "Type overrides: values that differ from the header",
+ "description": "When one value has another type than its column, it is prefixed with <type> — <number> 3001, <string> \"on order\"; null fits every type.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which products cannot be sold right now (no price, no stock, or stock not a number)?",
+ "tokens": {
+  "json": {
+   "none": 206
+  },
+  "toon": {
+   "none": 200
+  },
+  "akd": {
+   "none": 308
+  },
+  "akcd": {
+   "none": 298
+  }
+ },
+ "answer": {
+  "name": "blocked",
+  "fields": [
+   [
+    "name",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "name": "Mouse"
+  },
+  {
+   "name": "USB cable"
+  },
+  {
+   "name": "Headset"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"products\": [\n    {\n      \"sku\": \"KB-01\",\n      \"name\": \"Keyboard\",\n      \"price\": 89.0,\n      \"stock\": 14\n    },\n    {\n      \"sku\": \"MS-02\",\n      \"name\": \"Mouse\",\n      \"price\": 39.5,\n      \"stock\": 0\n    },\n    {\n      \"sku\": 3001,\n      \"name\": \"USB cable\",\n      \"price\": null,\n      \"stock\": 120\n    },\n    {\n      \"sku\": \"HD-10\",\n      \"name\": \"Headset\",\n      \"price\": 129.9,\n      \"stock\": \"on order\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which products cannot be sold right now (no price, no stock, or stock not a number)?\n\nAnswer with JSON only (no prose): {\"blocked\": [{\"name\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nproducts[4]{sku,name,price,stock}:\n  KB-01,Keyboard,89,14\n  MS-02,Mouse,39.5,0\n  3001,USB cable,null,120\n  HD-10,Headset,129.9,on order\n</data>\n\nQuestion: Which products cannot be sold right now (no price, no stock, or stock not a number)?\n\nAnswer in TOON only (no prose, no code fences): blocked[N]{name}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<products:<[sku:string, name:string, price:number, stock:number]>>\n([\n  (\"KB-01\", \"Keyboard\", 89.0, 14),\n  (\"MS-02\", \"Mouse\", 39.5, 0),\n  (<number> 3001, \"USB cable\", null, 120),\n  (\"HD-10\", \"Headset\", 129.9, <string> \"on order\")\n])\n</data>\n\nQuestion: Which products cannot be sold right now (no price, no stock, or stock not a number)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<blocked:<[name:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<products:<[sku:string,name:string,price:number,stock:number]>>([(\"KB-01\",\"Keyboard\",89.0,14),(\"MS-02\",\"Mouse\",39.5,0),(<number> 3001,\"USB cable\",null,120),(\"HD-10\",\"Headset\",129.9,<string> \"on order\")])\n</data>\n\nQuestion: Which products cannot be sold right now (no price, no stock, or stock not a number)?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<blocked:<[name:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 152
+  },
+  "toon": {
+   "none": 60
+  },
+  "akd": {
+   "none": 92
+  },
+  "akcd": {
+   "none": 76
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"blocked\": [\n    {\n      \"name\": \"Mouse\"\n    },\n    {\n      \"name\": \"USB cable\"\n    },\n    {\n      \"name\": \"Headset\"\n    }\n  ]\n}",
+  "akcd": "<blocked:<[name:string]>>([(\"Mouse\"),(\"USB cable\"),(\"Headset\")])",
+  "toon": "blocked[3]{name}:\n  Mouse\n  USB cable\n  Headset"
+ },
+ "answer_tokens": {
+  "json": 44,
+  "akcd": 21,
+  "toon": 17
+ }
+}

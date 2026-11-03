@@ -1,0 +1,1 @@
+<admins:<[id:number,name:string]>>([(1,"Ada Lovelace"),(5,"Margaret Hamilton")])

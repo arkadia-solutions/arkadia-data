@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<entries:<[who:string,project:string,mins:number]>>([("Grace","cli",120),("Alan","akd",30),("Grace","akd",30),("Grace","cli",45),("Linus","cli",240),("Grace","cli",240),("Alan","landing",120),("Linus","cli",240),("Linus","landing",30),("Ada","akd",60),("Alan","cli",30),("Grace","landing",30),("Alan","landing",120),("Ada","akd",30),("Grace","akd",240),("Alan","landing",240),("Grace","landing",90),("Alan","landing",90)])
+</data>
+
+Question: How many hours were logged per project (2 decimals)? Most first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<hours:<[project:string,hours:number]>>

@@ -1,0 +1,16 @@
+{
+  "pnl": [
+    {
+      "ticker": "CDR",
+      "pnl": 748.0
+    },
+    {
+      "ticker": "PKN",
+      "pnl": 396.0
+    },
+    {
+      "ticker": "ALE",
+      "pnl": -660.0
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+The data below is in JSON.
+
+Notes about the data:
+- `leads.stage`: pipeline stage: 1 new, 2 qualified, 3 proposal, 4 won
+- `leads.score`: lead score, higher is better
+
+Attributes of the data:
+- `leads.stage`: $enum="1=new,2=qualified,3=proposal,4=won"
+- `leads.score`: $range="0-100"
+
+<data>
+{
+  "leads": [
+    {
+      "lead": "L-300",
+      "company": "Acme",
+      "score": 34,
+      "stage": 3,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-301",
+      "company": "Globex",
+      "score": 89,
+      "stage": 3,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-302",
+      "company": "Initech",
+      "score": 24,
+      "stage": 2,
+      "owner": "Alan"
+    },
+    {
+      "lead": "L-303",
+      "company": "Umbrella",
+      "score": 82,
+      "stage": 1,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-304",
+      "company": "Hooli",
+      "score": 14,
+      "stage": 3,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-305",
+      "company": "Stark",
+      "score": 40,
+      "stage": 1,
+      "owner": "Margaret"
+    },
+    {
+      "lead": "L-306",
+      "company": "Wayne",
+      "score": 92,
+      "stage": 4,
+      "owner": "Linus"
+    },
+    {
+      "lead": "L-307",
+      "company": "Tyrell",
+      "score": 60,
+      "stage": 2,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-308",
+      "company": "Soylent",
+      "score": 73,
+      "stage": 1,
+      "owner": "Margaret"
+    },
+    {
+      "lead": "L-309",
+      "company": "Wonka",
+      "score": 87,
+      "stage": 2,
+      "owner": "Alan"
+    },
+    {
+      "lead": "L-310",
+      "company": "Cyberdyne",
+      "score": 49,
+      "stage": 4,
+      "owner": "Grace"
+    },
+    {
+      "lead": "L-311",
+      "company": "Vandelay",
+      "score": 32,
+      "stage": 2,
+      "owner": "Alan"
+    },
+    {
+      "lead": "L-312",
+      "company": "Acme",
+      "score": 52,
+      "stage": 3,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-313",
+      "company": "Globex",
+      "score": 13,
+      "stage": 3,
+      "owner": "Ada"
+    },
+    {
+      "lead": "L-314",
+      "company": "Initech",
+      "score": 11,
+      "stage": 2,
+      "owner": "Alan"
+    }
+  ]
+}
+</data>
+
+Question: Which leads are in the proposal stage? Highest score first.
+
+Answer with JSON only (no prose): {"proposal": [{"lead": <string>, "company": <string>}, ...]}

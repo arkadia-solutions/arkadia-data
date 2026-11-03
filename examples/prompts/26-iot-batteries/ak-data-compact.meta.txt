@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<tags:<[device:string,zone:string,batt:number $unit="mV" /* battery voltage in millivolts */,rssi:number $unit="dBm" /* signal strength in dBm */]>>([("TAG-01","hall",3232,-92),("TAG-02","hall",4086,-73),("TAG-03","hall",3610,-77),("TAG-04","dock",3526,-55),("TAG-05","dock",3008,-86),("TAG-06","hall",3920,-42),("TAG-07","yard",3388,-59),("TAG-08","hall",2945,-69),("TAG-09","hall",3488,-60),("TAG-10","dock",3605,-89),("TAG-11","dock",3304,-62),("TAG-12","yard",3264,-87),("TAG-13","hall",3045,-80),("TAG-14","hall",4017,-84)])
+</data>
+
+Question: Which devices have a battery below 3.3 V? Give the voltage in volts, lowest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<low:<[device:string,volts:number]>>

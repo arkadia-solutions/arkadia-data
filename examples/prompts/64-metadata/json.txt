@@ -1,0 +1,36 @@
+The data below is in JSON.
+
+<data>
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Acme",
+      "plan": "team",
+      "mrr": 1200
+    },
+    {
+      "id": 2,
+      "name": "Globex",
+      "plan": "pro",
+      "mrr": 99
+    },
+    {
+      "id": 3,
+      "name": "Initech",
+      "plan": "free",
+      "mrr": 0
+    },
+    {
+      "id": 4,
+      "name": "Umbrella",
+      "plan": "team",
+      "mrr": 2400
+    }
+  ]
+}
+</data>
+
+Question: What is the total monthly revenue (mrr) per plan? Highest first.
+
+Answer with JSON only (no prose): {"mrr": [{"plan": <string>, "mrr": <number>}, ...]}

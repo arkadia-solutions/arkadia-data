@@ -1,0 +1,160 @@
+{
+ "id": 51,
+ "slug": "inventory-meta",
+ "title": "Inventory: reorder levels and discontinued items",
+ "description": "min is the reorder level and two items are discontinued (never reordered) — only the metadata explains it.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which items must be reordered and how many pieces are missing to reach the reorder level?",
+ "tokens": {
+  "json": {
+   "none": 478,
+   "comments": 552,
+   "attributes": 563,
+   "both": 637
+  },
+  "toon": {
+   "none": 283,
+   "comments": 357,
+   "attributes": 368,
+   "both": 442
+  },
+  "akd": {
+   "none": 419,
+   "comments": 471,
+   "attributes": 466,
+   "both": 513
+  },
+  "akcd": {
+   "none": 374,
+   "comments": 423,
+   "attributes": 417,
+   "both": 464
+  }
+ },
+ "answer": {
+  "name": "reorder",
+  "fields": [
+   [
+    "sku",
+    "string"
+   ],
+   [
+    "missing",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "sku": "SKU-200",
+   "missing": 9
+  },
+  {
+   "sku": "SKU-202",
+   "missing": 1
+  },
+  {
+   "sku": "SKU-203",
+   "missing": 3
+  },
+  {
+   "sku": "SKU-205",
+   "missing": 2
+  },
+  {
+   "sku": "SKU-206",
+   "missing": 3
+  },
+  {
+   "sku": "SKU-207",
+   "missing": 18
+  },
+  {
+   "sku": "SKU-211",
+   "missing": 5
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "Stock in warehouse WAW-1. Discontinued items are never reordered.",
+   "`items.qty`: pieces in stock",
+   "`items.min`: reorder level: order more when qty is below it",
+   "items sku=\"SKU-201\": discontinued, do not reorder",
+   "items sku=\"SKU-208\": discontinued, do not reorder"
+  ],
+  "attributes": [
+   "document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock",
+   "`items.sku`: $required",
+   "`items.qty`: $unit=\"pcs\"",
+   "`items.min`: $role=\"reorder_level\"",
+   "items sku=\"SKU-201\": #discontinued",
+   "items sku=\"SKU-208\": #discontinued"
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"items\": [\n    {\n      \"sku\": \"SKU-200\",\n      \"item\": \"cable\",\n      \"qty\": 11,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-201\",\n      \"item\": \"mouse\",\n      \"qty\": 0,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-202\",\n      \"item\": \"keyboard\",\n      \"qty\": 4,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-203\",\n      \"item\": \"dock\",\n      \"qty\": 12,\n      \"min\": 15\n    },\n    {\n      \"sku\": \"SKU-204\",\n      \"item\": \"headset\",\n      \"qty\": 31,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-205\",\n      \"item\": \"monitor\",\n      \"qty\": 8,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-206\",\n      \"item\": \"webcam\",\n      \"qty\": 7,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-207\",\n      \"item\": \"charger\",\n      \"qty\": 2,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-208\",\n      \"item\": \"hub\",\n      \"qty\": 14,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-209\",\n      \"item\": \"stand\",\n      \"qty\": 13,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-210\",\n      \"item\": \"lamp\",\n      \"qty\": 21,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-211\",\n      \"item\": \"mic\",\n      \"qty\": 0,\n      \"min\": 5\n    }\n  ]\n}\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer with JSON only (no prose): {\"reorder\": [{\"sku\": <string>, \"missing\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- Stock in warehouse WAW-1. Discontinued items are never reordered.\n- `items.qty`: pieces in stock\n- `items.min`: reorder level: order more when qty is below it\n- items sku=\"SKU-201\": discontinued, do not reorder\n- items sku=\"SKU-208\": discontinued, do not reorder\n\n<data>\n{\n  \"items\": [\n    {\n      \"sku\": \"SKU-200\",\n      \"item\": \"cable\",\n      \"qty\": 11,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-201\",\n      \"item\": \"mouse\",\n      \"qty\": 0,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-202\",\n      \"item\": \"keyboard\",\n      \"qty\": 4,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-203\",\n      \"item\": \"dock\",\n      \"qty\": 12,\n      \"min\": 15\n    },\n    {\n      \"sku\": \"SKU-204\",\n      \"item\": \"headset\",\n      \"qty\": 31,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-205\",\n      \"item\": \"monitor\",\n      \"qty\": 8,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-206\",\n      \"item\": \"webcam\",\n      \"qty\": 7,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-207\",\n      \"item\": \"charger\",\n      \"qty\": 2,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-208\",\n      \"item\": \"hub\",\n      \"qty\": 14,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-209\",\n      \"item\": \"stand\",\n      \"qty\": 13,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-210\",\n      \"item\": \"lamp\",\n      \"qty\": 21,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-211\",\n      \"item\": \"mic\",\n      \"qty\": 0,\n      \"min\": 5\n    }\n  ]\n}\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer with JSON only (no prose): {\"reorder\": [{\"sku\": <string>, \"missing\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock\n- `items.sku`: $required\n- `items.qty`: $unit=\"pcs\"\n- `items.min`: $role=\"reorder_level\"\n- items sku=\"SKU-201\": #discontinued\n- items sku=\"SKU-208\": #discontinued\n\n<data>\n{\n  \"items\": [\n    {\n      \"sku\": \"SKU-200\",\n      \"item\": \"cable\",\n      \"qty\": 11,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-201\",\n      \"item\": \"mouse\",\n      \"qty\": 0,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-202\",\n      \"item\": \"keyboard\",\n      \"qty\": 4,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-203\",\n      \"item\": \"dock\",\n      \"qty\": 12,\n      \"min\": 15\n    },\n    {\n      \"sku\": \"SKU-204\",\n      \"item\": \"headset\",\n      \"qty\": 31,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-205\",\n      \"item\": \"monitor\",\n      \"qty\": 8,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-206\",\n      \"item\": \"webcam\",\n      \"qty\": 7,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-207\",\n      \"item\": \"charger\",\n      \"qty\": 2,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-208\",\n      \"item\": \"hub\",\n      \"qty\": 14,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-209\",\n      \"item\": \"stand\",\n      \"qty\": 13,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-210\",\n      \"item\": \"lamp\",\n      \"qty\": 21,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-211\",\n      \"item\": \"mic\",\n      \"qty\": 0,\n      \"min\": 5\n    }\n  ]\n}\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer with JSON only (no prose): {\"reorder\": [{\"sku\": <string>, \"missing\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- Stock in warehouse WAW-1. Discontinued items are never reordered.\n- `items.qty`: pieces in stock\n- `items.min`: reorder level: order more when qty is below it\n- items sku=\"SKU-201\": discontinued, do not reorder\n- items sku=\"SKU-208\": discontinued, do not reorder\n\nAttributes of the data:\n- document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock\n- `items.sku`: $required\n- `items.qty`: $unit=\"pcs\"\n- `items.min`: $role=\"reorder_level\"\n- items sku=\"SKU-201\": #discontinued\n- items sku=\"SKU-208\": #discontinued\n\n<data>\n{\n  \"items\": [\n    {\n      \"sku\": \"SKU-200\",\n      \"item\": \"cable\",\n      \"qty\": 11,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-201\",\n      \"item\": \"mouse\",\n      \"qty\": 0,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-202\",\n      \"item\": \"keyboard\",\n      \"qty\": 4,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-203\",\n      \"item\": \"dock\",\n      \"qty\": 12,\n      \"min\": 15\n    },\n    {\n      \"sku\": \"SKU-204\",\n      \"item\": \"headset\",\n      \"qty\": 31,\n      \"min\": 5\n    },\n    {\n      \"sku\": \"SKU-205\",\n      \"item\": \"monitor\",\n      \"qty\": 8,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-206\",\n      \"item\": \"webcam\",\n      \"qty\": 7,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-207\",\n      \"item\": \"charger\",\n      \"qty\": 2,\n      \"min\": 20\n    },\n    {\n      \"sku\": \"SKU-208\",\n      \"item\": \"hub\",\n      \"qty\": 14,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-209\",\n      \"item\": \"stand\",\n      \"qty\": 13,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-210\",\n      \"item\": \"lamp\",\n      \"qty\": 21,\n      \"min\": 10\n    },\n    {\n      \"sku\": \"SKU-211\",\n      \"item\": \"mic\",\n      \"qty\": 0,\n      \"min\": 5\n    }\n  ]\n}\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer with JSON only (no prose): {\"reorder\": [{\"sku\": <string>, \"missing\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nitems[12]{sku,item,qty,min}:\n  SKU-200,cable,11,20\n  SKU-201,mouse,0,10\n  SKU-202,keyboard,4,5\n  SKU-203,dock,12,15\n  SKU-204,headset,31,5\n  SKU-205,monitor,8,10\n  SKU-206,webcam,7,10\n  SKU-207,charger,2,20\n  SKU-208,hub,14,10\n  SKU-209,stand,13,10\n  SKU-210,lamp,21,10\n  SKU-211,mic,0,5\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in TOON only (no prose, no code fences): reorder[N]{sku,missing}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Stock in warehouse WAW-1. Discontinued items are never reordered.\n- `items.qty`: pieces in stock\n- `items.min`: reorder level: order more when qty is below it\n- items sku=\"SKU-201\": discontinued, do not reorder\n- items sku=\"SKU-208\": discontinued, do not reorder\n\n<data>\nitems[12]{sku,item,qty,min}:\n  SKU-200,cable,11,20\n  SKU-201,mouse,0,10\n  SKU-202,keyboard,4,5\n  SKU-203,dock,12,15\n  SKU-204,headset,31,5\n  SKU-205,monitor,8,10\n  SKU-206,webcam,7,10\n  SKU-207,charger,2,20\n  SKU-208,hub,14,10\n  SKU-209,stand,13,10\n  SKU-210,lamp,21,10\n  SKU-211,mic,0,5\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in TOON only (no prose, no code fences): reorder[N]{sku,missing}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock\n- `items.sku`: $required\n- `items.qty`: $unit=\"pcs\"\n- `items.min`: $role=\"reorder_level\"\n- items sku=\"SKU-201\": #discontinued\n- items sku=\"SKU-208\": #discontinued\n\n<data>\nitems[12]{sku,item,qty,min}:\n  SKU-200,cable,11,20\n  SKU-201,mouse,0,10\n  SKU-202,keyboard,4,5\n  SKU-203,dock,12,15\n  SKU-204,headset,31,5\n  SKU-205,monitor,8,10\n  SKU-206,webcam,7,10\n  SKU-207,charger,2,20\n  SKU-208,hub,14,10\n  SKU-209,stand,13,10\n  SKU-210,lamp,21,10\n  SKU-211,mic,0,5\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in TOON only (no prose, no code fences): reorder[N]{sku,missing}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- Stock in warehouse WAW-1. Discontinued items are never reordered.\n- `items.qty`: pieces in stock\n- `items.min`: reorder level: order more when qty is below it\n- items sku=\"SKU-201\": discontinued, do not reorder\n- items sku=\"SKU-208\": discontinued, do not reorder\n\nAttributes of the data:\n- document: $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock\n- `items.sku`: $required\n- `items.qty`: $unit=\"pcs\"\n- `items.min`: $role=\"reorder_level\"\n- items sku=\"SKU-201\": #discontinued\n- items sku=\"SKU-208\": #discontinued\n\n<data>\nitems[12]{sku,item,qty,min}:\n  SKU-200,cable,11,20\n  SKU-201,mouse,0,10\n  SKU-202,keyboard,4,5\n  SKU-203,dock,12,15\n  SKU-204,headset,31,5\n  SKU-205,monitor,8,10\n  SKU-206,webcam,7,10\n  SKU-207,charger,2,20\n  SKU-208,hub,14,10\n  SKU-209,stand,13,10\n  SKU-210,lamp,21,10\n  SKU-211,mic,0,5\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in TOON only (no prose, no code fences): reorder[N]{sku,missing}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<items:<[sku:string, item:string, qty:number, min:number]>>\n([\n  (\"SKU-200\", \"cable\", 11, 20),\n  (\"SKU-201\", \"mouse\", 0, 10),\n  (\"SKU-202\", \"keyboard\", 4, 5),\n  (\"SKU-203\", \"dock\", 12, 15),\n  (\"SKU-204\", \"headset\", 31, 5),\n  (\"SKU-205\", \"monitor\", 8, 10),\n  (\"SKU-206\", \"webcam\", 7, 10),\n  (\"SKU-207\", \"charger\", 2, 20),\n  (\"SKU-208\", \"hub\", 14, 10),\n  (\"SKU-209\", \"stand\", 13, 10),\n  (\"SKU-210\", \"lamp\", 21, 10),\n  (\"SKU-211\", \"mic\", 0, 5)\n])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Stock in warehouse WAW-1. Discontinued items are never reordered. */\n<items:<[\n  sku:string,\n  item:string,\n  qty:number /* pieces in stock */,\n  min:number /* reorder level: order more when qty is below it */\n]>>\n([\n  (\"SKU-200\", \"cable\", 11, 20),\n  (\"SKU-201\", \"mouse\", 0, 10) /* discontinued, do not reorder */,\n  (\"SKU-202\", \"keyboard\", 4, 5),\n  (\"SKU-203\", \"dock\", 12, 15),\n  (\"SKU-204\", \"headset\", 31, 5),\n  (\"SKU-205\", \"monitor\", 8, 10),\n  (\"SKU-206\", \"webcam\", 7, 10),\n  (\"SKU-207\", \"charger\", 2, 20),\n  (\"SKU-208\", \"hub\", 14, 10) /* discontinued, do not reorder */,\n  (\"SKU-209\", \"stand\", 13, 10),\n  (\"SKU-210\", \"lamp\", 21, 10),\n  (\"SKU-211\", \"mic\", 0, 5)\n])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock //\n<items:<[\n  sku:string $required,\n  item:string,\n  qty:number $unit=\"pcs\",\n  min:number $role=\"reorder_level\"\n]>>\n([\n  (\"SKU-200\", \"cable\", 11, 20),\n  (\"SKU-201\", \"mouse\", 0, 10) #discontinued,\n  (\"SKU-202\", \"keyboard\", 4, 5),\n  (\"SKU-203\", \"dock\", 12, 15),\n  (\"SKU-204\", \"headset\", 31, 5),\n  (\"SKU-205\", \"monitor\", 8, 10),\n  (\"SKU-206\", \"webcam\", 7, 10),\n  (\"SKU-207\", \"charger\", 2, 20),\n  (\"SKU-208\", \"hub\", 14, 10) #discontinued,\n  (\"SKU-209\", \"stand\", 13, 10),\n  (\"SKU-210\", \"lamp\", 21, 10),\n  (\"SKU-211\", \"mic\", 0, 5)\n])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock //\n/* Stock in warehouse WAW-1. Discontinued items are never reordered. */\n<items:<[\n  sku:string $required,\n  item:string,\n  qty:number $unit=\"pcs\" /* pieces in stock */,\n  min:number $role=\"reorder_level\" /* reorder level: order more when qty is below it */\n]>>\n([\n  (\"SKU-200\", \"cable\", 11, 20),\n  (\"SKU-201\", \"mouse\", 0, 10) #discontinued /* discontinued, do not reorder */,\n  (\"SKU-202\", \"keyboard\", 4, 5),\n  (\"SKU-203\", \"dock\", 12, 15),\n  (\"SKU-204\", \"headset\", 31, 5),\n  (\"SKU-205\", \"monitor\", 8, 10),\n  (\"SKU-206\", \"webcam\", 7, 10),\n  (\"SKU-207\", \"charger\", 2, 20),\n  (\"SKU-208\", \"hub\", 14, 10) #discontinued /* discontinued, do not reorder */,\n  (\"SKU-209\", \"stand\", 13, 10),\n  (\"SKU-210\", \"lamp\", 21, 10),\n  (\"SKU-211\", \"mic\", 0, 5)\n])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<items:<[sku:string,item:string,qty:number,min:number]>>([(\"SKU-200\",\"cable\",11,20),(\"SKU-201\",\"mouse\",0,10),(\"SKU-202\",\"keyboard\",4,5),(\"SKU-203\",\"dock\",12,15),(\"SKU-204\",\"headset\",31,5),(\"SKU-205\",\"monitor\",8,10),(\"SKU-206\",\"webcam\",7,10),(\"SKU-207\",\"charger\",2,20),(\"SKU-208\",\"hub\",14,10),(\"SKU-209\",\"stand\",13,10),(\"SKU-210\",\"lamp\",21,10),(\"SKU-211\",\"mic\",0,5)])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n/* Stock in warehouse WAW-1. Discontinued items are never reordered. */ <items:<[sku:string,item:string,qty:number /* pieces in stock */,min:number /* reorder level: order more when qty is below it */]>>([(\"SKU-200\",\"cable\",11,20),(\"SKU-201\",\"mouse\",0,10) /* discontinued, do not reorder */,(\"SKU-202\",\"keyboard\",4,5),(\"SKU-203\",\"dock\",12,15),(\"SKU-204\",\"headset\",31,5),(\"SKU-205\",\"monitor\",8,10),(\"SKU-206\",\"webcam\",7,10),(\"SKU-207\",\"charger\",2,20),(\"SKU-208\",\"hub\",14,10) /* discontinued, do not reorder */,(\"SKU-209\",\"stand\",13,10),(\"SKU-210\",\"lamp\",21,10),(\"SKU-211\",\"mic\",0,5)])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock // <items:<[sku:string $required,item:string,qty:number $unit=\"pcs\",min:number $role=\"reorder_level\"]>>([(\"SKU-200\",\"cable\",11,20),(\"SKU-201\",\"mouse\",0,10) #discontinued,(\"SKU-202\",\"keyboard\",4,5),(\"SKU-203\",\"dock\",12,15),(\"SKU-204\",\"headset\",31,5),(\"SKU-205\",\"monitor\",8,10),(\"SKU-206\",\"webcam\",7,10),(\"SKU-207\",\"charger\",2,20),(\"SKU-208\",\"hub\",14,10) #discontinued,(\"SKU-209\",\"stand\",13,10),(\"SKU-210\",\"lamp\",21,10),(\"SKU-211\",\"mic\",0,5)])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n// $warehouse=\"WAW-1\" $counted=\"2026-10-28\" #stock // /* Stock in warehouse WAW-1. Discontinued items are never reordered. */ <items:<[sku:string $required,item:string,qty:number $unit=\"pcs\" /* pieces in stock */,min:number $role=\"reorder_level\" /* reorder level: order more when qty is below it */]>>([(\"SKU-200\",\"cable\",11,20),(\"SKU-201\",\"mouse\",0,10) #discontinued /* discontinued, do not reorder */,(\"SKU-202\",\"keyboard\",4,5),(\"SKU-203\",\"dock\",12,15),(\"SKU-204\",\"headset\",31,5),(\"SKU-205\",\"monitor\",8,10),(\"SKU-206\",\"webcam\",7,10),(\"SKU-207\",\"charger\",2,20),(\"SKU-208\",\"hub\",14,10) #discontinued /* discontinued, do not reorder */,(\"SKU-209\",\"stand\",13,10),(\"SKU-210\",\"lamp\",21,10),(\"SKU-211\",\"mic\",0,5)])\n</data>\n\nQuestion: Which items must be reordered and how many pieces are missing to reach the reorder level?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<reorder:<[sku:string,missing:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 420,
+   "comments": 420,
+   "attributes": 420,
+   "both": 420
+  },
+  "toon": {
+   "none": 144,
+   "comments": 144,
+   "attributes": 144,
+   "both": 144
+  },
+  "akd": {
+   "none": 202,
+   "comments": 253,
+   "attributes": 250,
+   "both": 297
+  },
+  "akcd": {
+   "none": 151,
+   "comments": 199,
+   "attributes": 195,
+   "both": 242
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"reorder\": [\n    {\n      \"sku\": \"SKU-200\",\n      \"missing\": 9\n    },\n    {\n      \"sku\": \"SKU-202\",\n      \"missing\": 1\n    },\n    {\n      \"sku\": \"SKU-203\",\n      \"missing\": 3\n    },\n    {\n      \"sku\": \"SKU-205\",\n      \"missing\": 2\n    },\n    {\n      \"sku\": \"SKU-206\",\n      \"missing\": 3\n    },\n    {\n      \"sku\": \"SKU-207\",\n      \"missing\": 18\n    },\n    {\n      \"sku\": \"SKU-211\",\n      \"missing\": 5\n    }\n  ]\n}",
+  "akcd": "<reorder:<[sku:string,missing:number]>>([(\"SKU-200\",9),(\"SKU-202\",1),(\"SKU-203\",3),(\"SKU-205\",2),(\"SKU-206\",3),(\"SKU-207\",18),(\"SKU-211\",5)])",
+  "toon": "reorder[7]{sku,missing}:\n  SKU-200,9\n  SKU-202,1\n  SKU-203,3\n  SKU-205,2\n  SKU-206,3\n  SKU-207,18\n  SKU-211,5"
+ },
+ "answer_tokens": {
+  "json": 150,
+  "akcd": 62,
+  "toon": 58
+ }
+}

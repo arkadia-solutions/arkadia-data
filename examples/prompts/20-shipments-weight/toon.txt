@@ -1,0 +1,30 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+shipments[16]{id,carrier,w}:
+  SH-001,DHL,21945
+  SH-002,DHL,23840
+  SH-003,UPS,583
+  SH-004,InPost,2048
+  SH-005,InPost,12994
+  SH-006,UPS,19871
+  SH-007,UPS,12398
+  SH-008,DPD,20024
+  SH-009,DHL,2929
+  SH-010,UPS,14823
+  SH-011,DHL,23860
+  SH-012,DHL,20472
+  SH-013,DPD,2385
+  SH-014,InPost,10691
+  SH-015,UPS,7052
+  SH-016,DPD,19739
+</data>
+
+Question: What is the total weight in kilograms per carrier? Heaviest first.
+
+Answer in TOON only (no prose, no code fences): weight[N]{carrier,kg}: followed by one row per item.

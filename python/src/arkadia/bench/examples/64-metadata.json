@@ -1,0 +1,79 @@
+{
+  "id": 64,
+  "slug": "metadata",
+  "title": "Comments, attributes and tags",
+  "description": "/* comments */, $attr=value, #tags and // … // blocks are notes for the reader: they are skipped when decoding, the data is unchanged.",
+  "tags": [
+    "feature",
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "What is the total monthly revenue (mrr) per plan? Highest first.",
+  "answer": {
+    "name": "mrr",
+    "fields": [
+      [
+        "plan",
+        "string"
+      ],
+      [
+        "mrr",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "plan": "team",
+      "mrr": 3600
+    },
+    {
+      "plan": "pro",
+      "mrr": 99
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "primary key",
+      "monthly revenue, EUR",
+      "trial ended"
+    ],
+    "attributes": [
+      "$source=\"crm\" $exported=\"2026-10-29\" #snapshot",
+      "$values=\"free|pro|team\"",
+      "#enterprise",
+      "#enterprise"
+    ]
+  },
+  "akd_meta": "// $source=\"crm\" $exported=\"2026-10-29\" #snapshot // <customers:<[id:number /* primary key */,name:string,plan:string $values=\"free|pro|team\",mrr:number /* monthly revenue, EUR */]>>([(1,\"Acme\",\"team\",1200) #enterprise,(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0) /* trial ended */,(4,\"Umbrella\",\"team\",2400) #enterprise])",
+  "akd": "// $source=\"crm\" $exported=\"2026-10-29\" #snapshot // <customers:<[id:number /* primary key */,name:string,plan:string $values=\"free|pro|team\",mrr:number /* monthly revenue, EUR */]>>([(1,\"Acme\",\"team\",1200) #enterprise,(2,\"Globex\",\"pro\",99),(3,\"Initech\",\"free\",0) /* trial ended */,(4,\"Umbrella\",\"team\",2400) #enterprise])",
+  "data": {
+    "customers": [
+      {
+        "id": 1,
+        "name": "Acme",
+        "plan": "team",
+        "mrr": 1200
+      },
+      {
+        "id": 2,
+        "name": "Globex",
+        "plan": "pro",
+        "mrr": 99
+      },
+      {
+        "id": 3,
+        "name": "Initech",
+        "plan": "free",
+        "mrr": 0
+      },
+      {
+        "id": 4,
+        "name": "Umbrella",
+        "plan": "team",
+        "mrr": 2400
+      }
+    ]
+  }
+}

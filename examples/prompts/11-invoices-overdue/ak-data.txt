@@ -1,0 +1,32 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<invoices:<[no:string, client:string, gross:number, due:string, st:number]>>
+([
+  ("FV/001/2026", "Acme", 468800, "2026-10-20", 1),
+  ("FV/002/2026", "Globex", 33550, "2026-10-02", 1),
+  ("FV/003/2026", "Initech", 715150, "2026-10-26", 1),
+  ("FV/004/2026", "Umbrella", 865700, "2026-10-25", 1),
+  ("FV/005/2026", "Hooli", 788850, "2026-10-07", 2),
+  ("FV/006/2026", "Stark", 581350, "2026-10-27", 1),
+  ("FV/007/2026", "Wayne", 295650, "2026-10-23", 0),
+  ("FV/008/2026", "Tyrell", 458450, "2026-10-02", 1),
+  ("FV/009/2026", "Soylent", 187800, "2026-10-26", 1),
+  ("FV/010/2026", "Wonka", 579600, "2026-10-07", 0),
+  ("FV/011/2026", "Cyberdyne", 493250, "2026-10-26", 2),
+  ("FV/012/2026", "Vandelay", 483350, "2026-10-16", 1),
+  ("FV/013/2026", "Acme", 77100, "2026-10-24", 1),
+  ("FV/014/2026", "Globex", 358950, "2026-10-18", 0)
+])
+</data>
+
+Question: Which invoices are unpaid and overdue on 2026-10-20? Give the number and the gross amount in PLN.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<overdue:<[no:string,pln:number]>>

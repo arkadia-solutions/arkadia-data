@@ -1,0 +1,91 @@
+{
+ "id": 55,
+ "slug": "time-series",
+ "title": "Time series: a week of metrics",
+ "description": "Numbers stay numbers (no quotes); a time series is just a list of records with a date field.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which day had the most signups, and what was the revenue that day?",
+ "tokens": {
+  "json": {
+   "none": 386
+  },
+  "toon": {
+   "none": 284
+  },
+  "akd": {
+   "none": 404
+  },
+  "akcd": {
+   "none": 374
+  }
+ },
+ "answer": {
+  "name": "best",
+  "fields": [
+   [
+    "date",
+    "string"
+   ],
+   [
+    "signups",
+    "number"
+   ],
+   [
+    "revenue",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "date": "2026-10-22",
+   "signups": 57,
+   "revenue": 2410.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"metric\": \"daily\",\n  \"days\": [\n    {\n      \"date\": \"2026-10-19\",\n      \"visits\": 1840,\n      \"signups\": 31,\n      \"revenue\": 1290.5\n    },\n    {\n      \"date\": \"2026-10-20\",\n      \"visits\": 2210,\n      \"signups\": 44,\n      \"revenue\": 1980.0\n    },\n    {\n      \"date\": \"2026-10-21\",\n      \"visits\": 1975,\n      \"signups\": 29,\n      \"revenue\": 1405.25\n    },\n    {\n      \"date\": \"2026-10-22\",\n      \"visits\": 2650,\n      \"signups\": 57,\n      \"revenue\": 2410.0\n    },\n    {\n      \"date\": \"2026-10-23\",\n      \"visits\": 2390,\n      \"signups\": 48,\n      \"revenue\": 2005.75\n    },\n    {\n      \"date\": \"2026-10-24\",\n      \"visits\": 1210,\n      \"signups\": 12,\n      \"revenue\": 640.0\n    },\n    {\n      \"date\": \"2026-10-25\",\n      \"visits\": 1105,\n      \"signups\": 15,\n      \"revenue\": 702.5\n    }\n  ]\n}\n</data>\n\nQuestion: Which day had the most signups, and what was the revenue that day?\n\nAnswer with JSON only (no prose): {\"best\": [{\"date\": <string>, \"signups\": <number>, \"revenue\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nmetric: daily\ndays[7]{date,visits,signups,revenue}:\n  2026-10-19,1840,31,1290.5\n  2026-10-20,2210,44,1980\n  2026-10-21,1975,29,1405.25\n  2026-10-22,2650,57,2410\n  2026-10-23,2390,48,2005.75\n  2026-10-24,1210,12,640\n  2026-10-25,1105,15,702.5\n</data>\n\nQuestion: Which day had the most signups, and what was the revenue that day?\n\nAnswer in TOON only (no prose, no code fences): best[N]{date,signups,revenue}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<\n  metric:string,\n  days:<[date:string, visits:number, signups:number, revenue:number]>\n>\n(\n  \"daily\",\n  [\n    (\"2026-10-19\", 1840, 31, 1290.5),\n    (\"2026-10-20\", 2210, 44, 1980.0),\n    (\"2026-10-21\", 1975, 29, 1405.25),\n    (\"2026-10-22\", 2650, 57, 2410.0),\n    (\"2026-10-23\", 2390, 48, 2005.75),\n    (\"2026-10-24\", 1210, 12, 640.0),\n    (\"2026-10-25\", 1105, 15, 702.5)\n  ]\n)\n</data>\n\nQuestion: Which day had the most signups, and what was the revenue that day?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<best:<[date:string,signups:number,revenue:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<metric:string,days:<[date:string,visits:number,signups:number,revenue:number]>>(\"daily\",[(\"2026-10-19\",1840,31,1290.5),(\"2026-10-20\",2210,44,1980.0),(\"2026-10-21\",1975,29,1405.25),(\"2026-10-22\",2650,57,2410.0),(\"2026-10-23\",2390,48,2005.75),(\"2026-10-24\",1210,12,640.0),(\"2026-10-25\",1105,15,702.5)])\n</data>\n\nQuestion: Which day had the most signups, and what was the revenue that day?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<best:<[date:string,signups:number,revenue:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 322
+  },
+  "toon": {
+   "none": 143
+  },
+  "akd": {
+   "none": 185
+  },
+  "akcd": {
+   "none": 149
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"best\": [\n    {\n      \"date\": \"2026-10-22\",\n      \"signups\": 57,\n      \"revenue\": 2410.0\n    }\n  ]\n}",
+  "akcd": "<best:<[date:string,signups:number,revenue:number]>>([(\"2026-10-22\",57,2410.0)])",
+  "toon": "best[1]{date,signups,revenue}:\n  2026-10-22,57,2410"
+ },
+ "answer_tokens": {
+  "json": 44,
+  "akcd": 31,
+  "toon": 25
+ }
+}

@@ -1,0 +1,333 @@
+{
+  "id": 8,
+  "slug": "inventory-reorder",
+  "title": "Inventory: what to reorder and how much",
+  "description": "25 products. Comparison between two fields plus arithmetic.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which products have stock below their reorder_level? For each, suggest an order quantity that covers 30 days of sales: 30 × daily_sales − stock, rounded up.",
+  "answer": {
+    "name": "result",
+    "fields": [
+      [
+        "sku",
+        "string"
+      ],
+      [
+        "name",
+        "string"
+      ],
+      [
+        "stock",
+        "number"
+      ],
+      [
+        "order_qty",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "sku": "PE-101",
+      "name": "Keyboard",
+      "stock": 17,
+      "order_qty": 73
+    },
+    {
+      "sku": "PE-102",
+      "name": "Keyboard Pro",
+      "stock": 49,
+      "order_qty": 0
+    },
+    {
+      "sku": "PE-104",
+      "name": "Mouse Pro",
+      "stock": 9,
+      "order_qty": 6
+    },
+    {
+      "sku": "PE-105",
+      "name": "Headset",
+      "stock": 3,
+      "order_qty": 12
+    },
+    {
+      "sku": "PE-106",
+      "name": "Headset Pro",
+      "stock": 41,
+      "order_qty": 79
+    },
+    {
+      "sku": "PE-107",
+      "name": "Webcam",
+      "stock": 41,
+      "order_qty": 0
+    },
+    {
+      "sku": "DI-111",
+      "name": "Monitor 27\"",
+      "stock": 8,
+      "order_qty": 82
+    },
+    {
+      "sku": "CA-118",
+      "name": "HDMI cable Pro",
+      "stock": 10,
+      "order_qty": 50
+    },
+    {
+      "sku": "OF-121",
+      "name": "Desk lamp",
+      "stock": 22,
+      "order_qty": 23
+    },
+    {
+      "sku": "OF-123",
+      "name": "Notebook",
+      "stock": 12,
+      "order_qty": 18
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Stock levels in warehouse WAW-1."
+    ],
+    "attributes": [
+      "document: $warehouse=\"WAW-1\" #stock"
+    ]
+  },
+  "akd_meta": "// $warehouse=\"WAW-1\" #stock // /* Stock levels in warehouse WAW-1. */ <products:<[sku:string,name:string,category:string,stock:number,reorder_level:number,daily_sales:number,supplier:string]>>([(\"PE-101\",\"Keyboard\",\"Peripherals\",17,20,3,\"EuroParts\"),(\"PE-102\",\"Keyboard Pro\",\"Peripherals\",49,50,1,\"TechSource\"),(\"PE-103\",\"Mouse\",\"Peripherals\",48,20,0.5,\"Nordic Supply\"),(\"PE-104\",\"Mouse Pro\",\"Peripherals\",9,50,0.5,\"EuroParts\"),(\"PE-105\",\"Headset\",\"Peripherals\",3,30,0.5,\"TechSource\"),(\"PE-106\",\"Headset Pro\",\"Peripherals\",41,50,4,\"EuroParts\"),(\"PE-107\",\"Webcam\",\"Peripherals\",41,50,0.5,\"EuroParts\"),(\"PE-108\",\"Webcam Pro\",\"Peripherals\",73,50,3,\"Nordic Supply\"),(\"DI-109\",\"Monitor 24\\\"\",\"Displays\",75,20,3,\"Nordic Supply\"),(\"DI-110\",\"Monitor 24\\\" Pro\",\"Displays\",79,50,1.5,\"EuroParts\"),(\"DI-111\",\"Monitor 27\\\"\",\"Displays\",8,20,3,\"EuroParts\"),(\"DI-112\",\"Monitor 27\\\" Pro\",\"Displays\",25,10,4,\"Nordic Supply\"),(\"DI-113\",\"Monitor arm\",\"Displays\",69,10,0.5,\"EuroParts\"),(\"DI-114\",\"Monitor arm Pro\",\"Displays\",61,20,4,\"TechSource\"),(\"CA-115\",\"USB-C cable\",\"Cables\",16,10,4,\"TechSource\"),(\"CA-116\",\"USB-C cable Pro\",\"Cables\",66,20,1,\"Nordic Supply\"),(\"CA-117\",\"HDMI cable\",\"Cables\",49,20,1.5,\"EuroParts\"),(\"CA-118\",\"HDMI cable Pro\",\"Cables\",10,50,2,\"EuroParts\"),(\"CA-119\",\"Ethernet cable\",\"Cables\",44,20,1,\"EuroParts\"),(\"CA-120\",\"Ethernet cable Pro\",\"Cables\",63,50,2,\"EuroParts\"),(\"OF-121\",\"Desk lamp\",\"Office\",22,50,1.5,\"TechSource\"),(\"OF-122\",\"Desk lamp Pro\",\"Office\",56,50,0.5,\"TechSource\"),(\"OF-123\",\"Notebook\",\"Office\",12,30,1,\"Nordic Supply\"),(\"OF-124\",\"Notebook Pro\",\"Office\",11,10,2,\"TechSource\"),(\"OF-125\",\"Chair mat\",\"Office\",52,30,3,\"TechSource\")])",
+  "data": {
+    "products": [
+      {
+        "sku": "PE-101",
+        "name": "Keyboard",
+        "category": "Peripherals",
+        "stock": 17,
+        "reorder_level": 20,
+        "daily_sales": 3,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "PE-102",
+        "name": "Keyboard Pro",
+        "category": "Peripherals",
+        "stock": 49,
+        "reorder_level": 50,
+        "daily_sales": 1,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "PE-103",
+        "name": "Mouse",
+        "category": "Peripherals",
+        "stock": 48,
+        "reorder_level": 20,
+        "daily_sales": 0.5,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "PE-104",
+        "name": "Mouse Pro",
+        "category": "Peripherals",
+        "stock": 9,
+        "reorder_level": 50,
+        "daily_sales": 0.5,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "PE-105",
+        "name": "Headset",
+        "category": "Peripherals",
+        "stock": 3,
+        "reorder_level": 30,
+        "daily_sales": 0.5,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "PE-106",
+        "name": "Headset Pro",
+        "category": "Peripherals",
+        "stock": 41,
+        "reorder_level": 50,
+        "daily_sales": 4,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "PE-107",
+        "name": "Webcam",
+        "category": "Peripherals",
+        "stock": 41,
+        "reorder_level": 50,
+        "daily_sales": 0.5,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "PE-108",
+        "name": "Webcam Pro",
+        "category": "Peripherals",
+        "stock": 73,
+        "reorder_level": 50,
+        "daily_sales": 3,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "DI-109",
+        "name": "Monitor 24\"",
+        "category": "Displays",
+        "stock": 75,
+        "reorder_level": 20,
+        "daily_sales": 3,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "DI-110",
+        "name": "Monitor 24\" Pro",
+        "category": "Displays",
+        "stock": 79,
+        "reorder_level": 50,
+        "daily_sales": 1.5,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "DI-111",
+        "name": "Monitor 27\"",
+        "category": "Displays",
+        "stock": 8,
+        "reorder_level": 20,
+        "daily_sales": 3,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "DI-112",
+        "name": "Monitor 27\" Pro",
+        "category": "Displays",
+        "stock": 25,
+        "reorder_level": 10,
+        "daily_sales": 4,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "DI-113",
+        "name": "Monitor arm",
+        "category": "Displays",
+        "stock": 69,
+        "reorder_level": 10,
+        "daily_sales": 0.5,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "DI-114",
+        "name": "Monitor arm Pro",
+        "category": "Displays",
+        "stock": 61,
+        "reorder_level": 20,
+        "daily_sales": 4,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "CA-115",
+        "name": "USB-C cable",
+        "category": "Cables",
+        "stock": 16,
+        "reorder_level": 10,
+        "daily_sales": 4,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "CA-116",
+        "name": "USB-C cable Pro",
+        "category": "Cables",
+        "stock": 66,
+        "reorder_level": 20,
+        "daily_sales": 1,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "CA-117",
+        "name": "HDMI cable",
+        "category": "Cables",
+        "stock": 49,
+        "reorder_level": 20,
+        "daily_sales": 1.5,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "CA-118",
+        "name": "HDMI cable Pro",
+        "category": "Cables",
+        "stock": 10,
+        "reorder_level": 50,
+        "daily_sales": 2,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "CA-119",
+        "name": "Ethernet cable",
+        "category": "Cables",
+        "stock": 44,
+        "reorder_level": 20,
+        "daily_sales": 1,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "CA-120",
+        "name": "Ethernet cable Pro",
+        "category": "Cables",
+        "stock": 63,
+        "reorder_level": 50,
+        "daily_sales": 2,
+        "supplier": "EuroParts"
+      },
+      {
+        "sku": "OF-121",
+        "name": "Desk lamp",
+        "category": "Office",
+        "stock": 22,
+        "reorder_level": 50,
+        "daily_sales": 1.5,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "OF-122",
+        "name": "Desk lamp Pro",
+        "category": "Office",
+        "stock": 56,
+        "reorder_level": 50,
+        "daily_sales": 0.5,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "OF-123",
+        "name": "Notebook",
+        "category": "Office",
+        "stock": 12,
+        "reorder_level": 30,
+        "daily_sales": 1,
+        "supplier": "Nordic Supply"
+      },
+      {
+        "sku": "OF-124",
+        "name": "Notebook Pro",
+        "category": "Office",
+        "stock": 11,
+        "reorder_level": 10,
+        "daily_sales": 2,
+        "supplier": "TechSource"
+      },
+      {
+        "sku": "OF-125",
+        "name": "Chair mat",
+        "category": "Office",
+        "stock": 52,
+        "reorder_level": 30,
+        "daily_sales": 3,
+        "supplier": "TechSource"
+      }
+    ]
+  }
+}

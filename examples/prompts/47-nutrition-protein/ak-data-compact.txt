@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<foods:<[food:string,protein:number,portion:number]>>([("Oats",13.2,50),("Chicken breast",31.0,150),("Tofu",12.0,120),("Lentils (cooked)",9.0,200),("Greek yogurt",10.0,170),("Almonds",21.2,30)])
+</data>
+
+Question: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<protein:<[food:string,grams:number]>>

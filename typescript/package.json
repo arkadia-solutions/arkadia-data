@@ -1,42 +1,56 @@
 {
   "name": "@arkadia/data",
-  "version": "0.1.11",
-  "description": "Parser and Stringifier for Arkadia Data Format (AKD)",
+  "version": "0.3.0",
+  "description": "AK-DATA (Arkadia Data Format): Lossless, token-efficient text form of JSON for LLM prompts, tool results and agent memory: a header names each field once, records follow by position.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "check": "prettier --check . && eslint .",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check .",
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
     "verify": "node scripts/verify-build.js",
     "watch": "tsc -w",
     "prepublishOnly": "npm run build",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "fix": "biome check --write ."
   },
   "keywords": [
+    "arkadia",
+    "llm",
     "ai",
-    "data",
-    "format",
-    "parser",
-    "schema",
-    "arkadia"
+    "agents",
+    "tokens",
+    "json",
+    "toon",
+    "serialization",
+    "prompt",
+    "mcp",
+    "ak-data"
   ],
   "author": "Arkadia Solutions",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arkadia-solutions/arkadia-data.git",
+    "directory": "typescript"
+  },
+  "homepage": "https://arkadia.solutions/akdata",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@biomejs/biome": "2.5.15",
     "@types/node": "^20.19.31",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.9",
-    "globals": "^17.3.0",
-    "prettier": "^3.8.1",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0",
     "vitest": "^3.2.4"
+  },
+  "bugs": {
+    "url": "https://github.com/arkadia-solutions/arkadia-data/issues"
   }
 }

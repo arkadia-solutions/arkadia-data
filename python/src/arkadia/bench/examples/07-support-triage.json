@@ -1,0 +1,299 @@
+{
+  "id": 7,
+  "slug": "support-triage",
+  "title": "Support: unassigned urgent tickets",
+  "description": "25 support tickets with nulls. Triage filter.",
+  "tags": [],
+  "needs_meta": false,
+  "question": "Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.",
+  "answer": {
+    "name": "result",
+    "fields": [
+      [
+        "id",
+        "string"
+      ],
+      [
+        "priority",
+        "string"
+      ],
+      [
+        "customer",
+        "string"
+      ],
+      [
+        "subject",
+        "string"
+      ],
+      [
+        "created",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "id": "T-2425",
+      "priority": "high",
+      "customer": "Hooli",
+      "subject": "Cannot invite new users",
+      "created": "2026-10-03"
+    },
+    {
+      "id": "T-2403",
+      "priority": "urgent",
+      "customer": "Acme",
+      "subject": "Cannot invite new users",
+      "created": "2026-10-04"
+    },
+    {
+      "id": "T-2408",
+      "priority": "high",
+      "customer": "Umbrella",
+      "subject": "Data missing after import",
+      "created": "2026-10-04"
+    },
+    {
+      "id": "T-2412",
+      "priority": "high",
+      "customer": "Wayne",
+      "subject": "Invoice shows wrong VAT",
+      "created": "2026-10-21"
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [],
+    "attributes": []
+  },
+  "akd_meta": null,
+  "data": {
+    "tickets": [
+      {
+        "id": "T-2401",
+        "priority": "low",
+        "status": "pending",
+        "customer": "Hooli",
+        "subject": "Invoice shows wrong VAT",
+        "created": "2026-10-08",
+        "assignee": null
+      },
+      {
+        "id": "T-2402",
+        "priority": "urgent",
+        "status": "closed",
+        "customer": "Wayne",
+        "subject": "Data missing after import",
+        "created": "2026-10-08",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2403",
+        "priority": "urgent",
+        "status": "open",
+        "customer": "Acme",
+        "subject": "Cannot invite new users",
+        "created": "2026-10-04",
+        "assignee": null
+      },
+      {
+        "id": "T-2404",
+        "priority": "low",
+        "status": "closed",
+        "customer": "Stark",
+        "subject": "Dashboard is slow",
+        "created": "2026-10-07",
+        "assignee": null
+      },
+      {
+        "id": "T-2405",
+        "priority": "normal",
+        "status": "pending",
+        "customer": "Initech",
+        "subject": "API returns 500 on /orders",
+        "created": "2026-10-17",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2406",
+        "priority": "normal",
+        "status": "open",
+        "customer": "Hooli",
+        "subject": "Cannot invite new users",
+        "created": "2026-10-10",
+        "assignee": null
+      },
+      {
+        "id": "T-2407",
+        "priority": "normal",
+        "status": "pending",
+        "customer": "Acme",
+        "subject": "Dashboard is slow",
+        "created": "2026-10-12",
+        "assignee": null
+      },
+      {
+        "id": "T-2408",
+        "priority": "high",
+        "status": "open",
+        "customer": "Umbrella",
+        "subject": "Data missing after import",
+        "created": "2026-10-04",
+        "assignee": null
+      },
+      {
+        "id": "T-2409",
+        "priority": "urgent",
+        "status": "closed",
+        "customer": "Umbrella",
+        "subject": "Cannot invite new users",
+        "created": "2026-10-14",
+        "assignee": null
+      },
+      {
+        "id": "T-2410",
+        "priority": "urgent",
+        "status": "open",
+        "customer": "Hooli",
+        "subject": "Webhook not delivered",
+        "created": "2026-10-05",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2411",
+        "priority": "urgent",
+        "status": "open",
+        "customer": "Stark",
+        "subject": "API returns 500 on /orders",
+        "created": "2026-10-16",
+        "assignee": "Piotr"
+      },
+      {
+        "id": "T-2412",
+        "priority": "high",
+        "status": "open",
+        "customer": "Wayne",
+        "subject": "Invoice shows wrong VAT",
+        "created": "2026-10-21",
+        "assignee": null
+      },
+      {
+        "id": "T-2413",
+        "priority": "high",
+        "status": "pending",
+        "customer": "Hooli",
+        "subject": "API returns 500 on /orders",
+        "created": "2026-10-22",
+        "assignee": "Kasia"
+      },
+      {
+        "id": "T-2414",
+        "priority": "urgent",
+        "status": "closed",
+        "customer": "Wayne",
+        "subject": "API returns 500 on /orders",
+        "created": "2026-10-14",
+        "assignee": "Piotr"
+      },
+      {
+        "id": "T-2415",
+        "priority": "normal",
+        "status": "pending",
+        "customer": "Acme",
+        "subject": "Login fails after password reset",
+        "created": "2026-10-05",
+        "assignee": null
+      },
+      {
+        "id": "T-2416",
+        "priority": "urgent",
+        "status": "closed",
+        "customer": "Initech",
+        "subject": "Webhook not delivered",
+        "created": "2026-10-09",
+        "assignee": null
+      },
+      {
+        "id": "T-2417",
+        "priority": "high",
+        "status": "closed",
+        "customer": "Wayne",
+        "subject": "API returns 500 on /orders",
+        "created": "2026-10-18",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2418",
+        "priority": "normal",
+        "status": "pending",
+        "customer": "Umbrella",
+        "subject": "Invoice shows wrong VAT",
+        "created": "2026-10-15",
+        "assignee": "Kasia"
+      },
+      {
+        "id": "T-2419",
+        "priority": "high",
+        "status": "open",
+        "customer": "Umbrella",
+        "subject": "Data missing after import",
+        "created": "2026-10-03",
+        "assignee": "Kasia"
+      },
+      {
+        "id": "T-2420",
+        "priority": "high",
+        "status": "pending",
+        "customer": "Acme",
+        "subject": "Webhook not delivered",
+        "created": "2026-10-14",
+        "assignee": "Piotr"
+      },
+      {
+        "id": "T-2421",
+        "priority": "high",
+        "status": "open",
+        "customer": "Acme",
+        "subject": "Login fails after password reset",
+        "created": "2026-10-15",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2422",
+        "priority": "urgent",
+        "status": "open",
+        "customer": "Globex",
+        "subject": "Invoice shows wrong VAT",
+        "created": "2026-10-20",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2423",
+        "priority": "urgent",
+        "status": "pending",
+        "customer": "Stark",
+        "subject": "Dashboard is slow",
+        "created": "2026-10-05",
+        "assignee": "Ola"
+      },
+      {
+        "id": "T-2424",
+        "priority": "normal",
+        "status": "closed",
+        "customer": "Stark",
+        "subject": "Export to Excel times out",
+        "created": "2026-10-18",
+        "assignee": "Piotr"
+      },
+      {
+        "id": "T-2425",
+        "priority": "high",
+        "status": "open",
+        "customer": "Hooli",
+        "subject": "Cannot invite new users",
+        "created": "2026-10-03",
+        "assignee": null
+      }
+    ]
+  }
+}

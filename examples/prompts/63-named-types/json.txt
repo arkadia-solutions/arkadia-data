@@ -1,0 +1,33 @@
+The data below is in JSON.
+
+<data>
+{
+  "team": "platform",
+  "lead": {
+    "id": 1,
+    "name": "Ada Lovelace",
+    "email": "ada@example.com"
+  },
+  "members": [
+    {
+      "id": 2,
+      "name": "Alan Turing",
+      "email": "alan@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Grace Hopper",
+      "email": "grace@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Linus Torvalds",
+      "email": "linus@example.com"
+    }
+  ]
+}
+</data>
+
+Question: How many people are in the team, including the lead? Give the team name too.
+
+Answer with JSON only (no prose): {"team": [{"name": <string>, "people": <number>}, ...]}

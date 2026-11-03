@@ -1,0 +1,100 @@
+The data below is in JSON.
+
+Notes about the data:
+- 3-hourly energy readings.
+- `readings.wh`: energy in watt-hours over the 3-hour slot
+
+Attributes of the data:
+- document: $meter="PL-WAW-77" #smart_meter
+- `readings.wh`: $unit="Wh"
+
+<data>
+{
+  "readings": [
+    {
+      "day": "2026-10-27",
+      "hour": 0,
+      "wh": 507
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 3,
+      "wh": 1074
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 6,
+      "wh": 2109
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 9,
+      "wh": 583
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 12,
+      "wh": 832
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 15,
+      "wh": 1777
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 18,
+      "wh": 538
+    },
+    {
+      "day": "2026-10-27",
+      "hour": 21,
+      "wh": 1055
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 0,
+      "wh": 2196
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 3,
+      "wh": 1365
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 6,
+      "wh": 436
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 9,
+      "wh": 1036
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 12,
+      "wh": 695
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 15,
+      "wh": 473
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 18,
+      "wh": 2180
+    },
+    {
+      "day": "2026-10-28",
+      "hour": 21,
+      "wh": 1558
+    }
+  ]
+}
+</data>
+
+Question: What is the total energy per day in kWh (2 decimals)?
+
+Answer with JSON only (no prose): {"daily": [{"day": <string>, "kwh": <number>}, ...]}

@@ -60,8 +60,8 @@ describe('AK Data Primitives', () => {
     const node = res.node;
 
     expect(node.isRecord).toBe(true);
-    expect(node.fields['id'].value).toBe(1);
-    expect(node.fields['name'].value).toBe('Test');
+    expect(node.fields.id.value).toBe(1);
+    expect(node.fields.name.value).toBe('Test');
 
     assertRoundtrip(node, '<id:number,name:string>(1,"Test")', false);
   });
@@ -76,8 +76,8 @@ describe('AK Data Primitives', () => {
     expect(node.isRecord).toBe(true);
 
     // Verify if the parser mapped positional fields to _0, _1
-    expect(node.fields['_0'].value).toBe(10);
-    expect(node.fields['_1'].value).toBe('Alice');
+    expect(node.fields._0.value).toBe(10);
+    expect(node.fields._1.value).toBe('Alice');
 
     assertRoundtrip(node, '<_0:number,_1:string>(10,"Alice")', false);
   });
@@ -88,8 +88,8 @@ describe('AK Data Primitives', () => {
     expect(res.errors).toHaveLength(0);
 
     const node = res.node;
-    expect(node.fields['color'].value).toBe('red');
-    expect(node.fields['status'].value).toBe('active');
+    expect(node.fields.color.value).toBe('red');
+    expect(node.fields.status.value).toBe('active');
 
     assertRoundtrip(node, '<color:string,status:string>("red","active")', false);
   });
@@ -107,7 +107,7 @@ describe('String Escaping', () => {
 
     const node = res.node;
     // Check in-memory value
-    expect(node.fields['text'].value).toBe('say "hello"');
+    expect(node.fields.text.value).toBe('say "hello"');
 
     // Roundtrip check:
     // Encoder must add backslashes before quotes: "say \"hello\""
@@ -125,7 +125,7 @@ describe('String Escaping', () => {
 
     const node = res.node;
     // Check in-memory value (single backslash)
-    expect(node.fields['path'].value).toBe('C:\\Program Files');
+    expect(node.fields.path.value).toBe('C:\\Program Files');
 
     // Roundtrip check:
     // Encoder must escape the backslash: "C:\\Program Files"

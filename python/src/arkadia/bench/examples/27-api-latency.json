@@ -1,0 +1,121 @@
+{
+  "id": 27,
+  "slug": "api-latency",
+  "title": "API: slow endpoints",
+  "description": "p95 latency in microseconds.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which endpoints have a p95 latency above 200 ms? Give it in ms (1 decimal), slowest first.",
+  "answer": {
+    "name": "slow",
+    "fields": [
+      [
+        "endpoint",
+        "string"
+      ],
+      [
+        "p95_ms",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "endpoint": "GET /products",
+      "p95_ms": 591.8
+    },
+    {
+      "endpoint": "POST /orders",
+      "p95_ms": 501.4
+    },
+    {
+      "endpoint": "POST /login",
+      "p95_ms": 407.9
+    },
+    {
+      "endpoint": "GET /reports",
+      "p95_ms": 371.7
+    },
+    {
+      "endpoint": "GET /search",
+      "p95_ms": 357.4
+    },
+    {
+      "endpoint": "PUT /cart",
+      "p95_ms": 287.9
+    },
+    {
+      "endpoint": "GET /users/:id",
+      "p95_ms": 272.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`endpoints.p95`: 95th percentile latency in microseconds",
+      "`endpoints.rpm`: requests per minute"
+    ],
+    "attributes": [
+      "`endpoints.p95`: $unit=\"us\" $percentile=95",
+      "`endpoints.rpm`: $unit=\"req/min\""
+    ]
+  },
+  "akd_meta": "<endpoints:<[endpoint:string,p95:number $unit=\"us\" $percentile=95 /* 95th percentile latency in microseconds */,rpm:number $unit=\"req/min\" /* requests per minute */]>>([(\"GET /orders\",62534,3782),(\"POST /orders\",501401,8999),(\"GET /users/:id\",271958,7556),(\"GET /search\",357424,2396),(\"POST /login\",407872,4043),(\"GET /health\",195998,4850),(\"PUT /cart\",287930,2516),(\"GET /products\",591816,197),(\"POST /pay\",70501,5352),(\"GET /reports\",371676,854)])",
+  "data": {
+    "endpoints": [
+      {
+        "endpoint": "GET /orders",
+        "p95": 62534,
+        "rpm": 3782
+      },
+      {
+        "endpoint": "POST /orders",
+        "p95": 501401,
+        "rpm": 8999
+      },
+      {
+        "endpoint": "GET /users/:id",
+        "p95": 271958,
+        "rpm": 7556
+      },
+      {
+        "endpoint": "GET /search",
+        "p95": 357424,
+        "rpm": 2396
+      },
+      {
+        "endpoint": "POST /login",
+        "p95": 407872,
+        "rpm": 4043
+      },
+      {
+        "endpoint": "GET /health",
+        "p95": 195998,
+        "rpm": 4850
+      },
+      {
+        "endpoint": "PUT /cart",
+        "p95": 287930,
+        "rpm": 2516
+      },
+      {
+        "endpoint": "GET /products",
+        "p95": 591816,
+        "rpm": 197
+      },
+      {
+        "endpoint": "POST /pay",
+        "p95": 70501,
+        "rpm": 5352
+      },
+      {
+        "endpoint": "GET /reports",
+        "p95": 371676,
+        "rpm": 854
+      }
+    ]
+  }
+}

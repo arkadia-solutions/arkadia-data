@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    {
+      "room": "Borealis",
+      "seats": 10
+    },
+    {
+      "room": "Cirrus",
+      "seats": 8
+    },
+    {
+      "room": "Echo",
+      "seats": 14
+    }
+  ]
+}

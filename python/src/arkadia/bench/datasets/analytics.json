@@ -1,0 +1,635 @@
+{
+  "metric_window": "daily",
+  "rows": [
+    {
+      "date": "2026-07-01",
+      "visits": 2119,
+      "signups": 19,
+      "revenue": 3839.16,
+      "bounce_rate": 0.532
+    },
+    {
+      "date": "2026-07-02",
+      "visits": 3487,
+      "signups": 13,
+      "revenue": 5725.99,
+      "bounce_rate": 0.486
+    },
+    {
+      "date": "2026-07-03",
+      "visits": 919,
+      "signups": 6,
+      "revenue": 755.88,
+      "bounce_rate": 0.546
+    },
+    {
+      "date": "2026-07-04",
+      "visits": 3383,
+      "signups": 15,
+      "revenue": 2896.98,
+      "bounce_rate": 0.539
+    },
+    {
+      "date": "2026-07-05",
+      "visits": 1147,
+      "signups": 20,
+      "revenue": 4652.05,
+      "bounce_rate": 0.373
+    },
+    {
+      "date": "2026-07-06",
+      "visits": 2779,
+      "signups": 28,
+      "revenue": 3782.09,
+      "bounce_rate": 0.342
+    },
+    {
+      "date": "2026-07-07",
+      "visits": 2459,
+      "signups": 23,
+      "revenue": 3286.62,
+      "bounce_rate": 0.396
+    },
+    {
+      "date": "2026-07-08",
+      "visits": 1484,
+      "signups": 18,
+      "revenue": 1495.06,
+      "bounce_rate": 0.425
+    },
+    {
+      "date": "2026-07-09",
+      "visits": 2169,
+      "signups": 28,
+      "revenue": 2408.7,
+      "bounce_rate": 0.487
+    },
+    {
+      "date": "2026-07-10",
+      "visits": 1352,
+      "signups": 25,
+      "revenue": 3327.9,
+      "bounce_rate": 0.565
+    },
+    {
+      "date": "2026-07-11",
+      "visits": 2916,
+      "signups": 59,
+      "revenue": 2755.0,
+      "bounce_rate": 0.634
+    },
+    {
+      "date": "2026-07-12",
+      "visits": 825,
+      "signups": 19,
+      "revenue": 3021.56,
+      "bounce_rate": 0.318
+    },
+    {
+      "date": "2026-07-13",
+      "visits": 1595,
+      "signups": 16,
+      "revenue": 1822.57,
+      "bounce_rate": 0.584
+    },
+    {
+      "date": "2026-07-14",
+      "visits": 2137,
+      "signups": 14,
+      "revenue": 4582.48,
+      "bounce_rate": 0.489
+    },
+    {
+      "date": "2026-07-15",
+      "visits": 3633,
+      "signups": 74,
+      "revenue": 1337.42,
+      "bounce_rate": 0.512
+    },
+    {
+      "date": "2026-07-16",
+      "visits": 2327,
+      "signups": 57,
+      "revenue": 2195.75,
+      "bounce_rate": 0.6
+    },
+    {
+      "date": "2026-07-17",
+      "visits": 1838,
+      "signups": 6,
+      "revenue": 501.38,
+      "bounce_rate": 0.444
+    },
+    {
+      "date": "2026-07-18",
+      "visits": 1329,
+      "signups": 9,
+      "revenue": 1568.04,
+      "bounce_rate": 0.547
+    },
+    {
+      "date": "2026-07-19",
+      "visits": 2799,
+      "signups": 18,
+      "revenue": 3284.42,
+      "bounce_rate": 0.6
+    },
+    {
+      "date": "2026-07-20",
+      "visits": 1228,
+      "signups": 22,
+      "revenue": 1184.83,
+      "bounce_rate": 0.303
+    },
+    {
+      "date": "2026-07-21",
+      "visits": 2187,
+      "signups": 9,
+      "revenue": 5416.42,
+      "bounce_rate": 0.673
+    },
+    {
+      "date": "2026-07-22",
+      "visits": 2593,
+      "signups": 63,
+      "revenue": 2450.69,
+      "bounce_rate": 0.321
+    },
+    {
+      "date": "2026-07-23",
+      "visits": 3507,
+      "signups": 24,
+      "revenue": 2047.24,
+      "bounce_rate": 0.438
+    },
+    {
+      "date": "2026-07-24",
+      "visits": 2366,
+      "signups": 24,
+      "revenue": 5198.21,
+      "bounce_rate": 0.48
+    },
+    {
+      "date": "2026-07-25",
+      "visits": 1356,
+      "signups": 16,
+      "revenue": 1940.19,
+      "bounce_rate": 0.272
+    },
+    {
+      "date": "2026-07-26",
+      "visits": 2553,
+      "signups": 17,
+      "revenue": 3959.29,
+      "bounce_rate": 0.578
+    },
+    {
+      "date": "2026-07-27",
+      "visits": 2101,
+      "signups": 42,
+      "revenue": 4060.09,
+      "bounce_rate": 0.415
+    },
+    {
+      "date": "2026-07-28",
+      "visits": 2704,
+      "signups": 37,
+      "revenue": 1265.77,
+      "bounce_rate": 0.308
+    },
+    {
+      "date": "2026-07-29",
+      "visits": 2274,
+      "signups": 34,
+      "revenue": 4486.15,
+      "bounce_rate": 0.445
+    },
+    {
+      "date": "2026-07-30",
+      "visits": 3137,
+      "signups": 64,
+      "revenue": 4894.24,
+      "bounce_rate": 0.62
+    },
+    {
+      "date": "2026-07-31",
+      "visits": 3664,
+      "signups": 80,
+      "revenue": 3711.37,
+      "bounce_rate": 0.659
+    },
+    {
+      "date": "2026-08-01",
+      "visits": 2071,
+      "signups": 15,
+      "revenue": 5397.66,
+      "bounce_rate": 0.378
+    },
+    {
+      "date": "2026-08-02",
+      "visits": 1873,
+      "signups": 7,
+      "revenue": 2641.23,
+      "bounce_rate": 0.357
+    },
+    {
+      "date": "2026-08-03",
+      "visits": 1130,
+      "signups": 17,
+      "revenue": 1162.76,
+      "bounce_rate": 0.681
+    },
+    {
+      "date": "2026-08-04",
+      "visits": 2600,
+      "signups": 10,
+      "revenue": 4144.3,
+      "bounce_rate": 0.332
+    },
+    {
+      "date": "2026-08-05",
+      "visits": 1546,
+      "signups": 34,
+      "revenue": 1608.77,
+      "bounce_rate": 0.514
+    },
+    {
+      "date": "2026-08-06",
+      "visits": 3718,
+      "signups": 49,
+      "revenue": 2936.74,
+      "bounce_rate": 0.263
+    },
+    {
+      "date": "2026-08-07",
+      "visits": 3437,
+      "signups": 53,
+      "revenue": 1088.13,
+      "bounce_rate": 0.61
+    },
+    {
+      "date": "2026-08-08",
+      "visits": 923,
+      "signups": 13,
+      "revenue": 2853.77,
+      "bounce_rate": 0.694
+    },
+    {
+      "date": "2026-08-09",
+      "visits": 1185,
+      "signups": 16,
+      "revenue": 524.1,
+      "bounce_rate": 0.316
+    },
+    {
+      "date": "2026-08-10",
+      "visits": 3891,
+      "signups": 65,
+      "revenue": 3220.55,
+      "bounce_rate": 0.272
+    },
+    {
+      "date": "2026-08-11",
+      "visits": 3556,
+      "signups": 9,
+      "revenue": 2290.07,
+      "bounce_rate": 0.685
+    },
+    {
+      "date": "2026-08-12",
+      "visits": 3513,
+      "signups": 46,
+      "revenue": 1614.31,
+      "bounce_rate": 0.286
+    },
+    {
+      "date": "2026-08-13",
+      "visits": 1431,
+      "signups": 13,
+      "revenue": 2543.07,
+      "bounce_rate": 0.476
+    },
+    {
+      "date": "2026-08-14",
+      "visits": 2436,
+      "signups": 12,
+      "revenue": 4395.04,
+      "bounce_rate": 0.645
+    },
+    {
+      "date": "2026-08-15",
+      "visits": 3111,
+      "signups": 57,
+      "revenue": 4048.69,
+      "bounce_rate": 0.505
+    },
+    {
+      "date": "2026-08-16",
+      "visits": 2008,
+      "signups": 33,
+      "revenue": 2528.72,
+      "bounce_rate": 0.418
+    },
+    {
+      "date": "2026-08-17",
+      "visits": 3533,
+      "signups": 5,
+      "revenue": 629.52,
+      "bounce_rate": 0.504
+    },
+    {
+      "date": "2026-08-18",
+      "visits": 3073,
+      "signups": 24,
+      "revenue": 5281.37,
+      "bounce_rate": 0.336
+    },
+    {
+      "date": "2026-08-19",
+      "visits": 3771,
+      "signups": 84,
+      "revenue": 4106.72,
+      "bounce_rate": 0.589
+    },
+    {
+      "date": "2026-08-20",
+      "visits": 3493,
+      "signups": 49,
+      "revenue": 4561.52,
+      "bounce_rate": 0.256
+    },
+    {
+      "date": "2026-08-21",
+      "visits": 2553,
+      "signups": 62,
+      "revenue": 3018.9,
+      "bounce_rate": 0.51
+    },
+    {
+      "date": "2026-08-22",
+      "visits": 4000,
+      "signups": 75,
+      "revenue": 3684.49,
+      "bounce_rate": 0.551
+    },
+    {
+      "date": "2026-08-23",
+      "visits": 2905,
+      "signups": 36,
+      "revenue": 1432.78,
+      "bounce_rate": 0.26
+    },
+    {
+      "date": "2026-08-24",
+      "visits": 2975,
+      "signups": 22,
+      "revenue": 320.48,
+      "bounce_rate": 0.449
+    },
+    {
+      "date": "2026-08-25",
+      "visits": 1909,
+      "signups": 25,
+      "revenue": 411.29,
+      "bounce_rate": 0.527
+    },
+    {
+      "date": "2026-08-26",
+      "visits": 2599,
+      "signups": 34,
+      "revenue": 1378.06,
+      "bounce_rate": 0.639
+    },
+    {
+      "date": "2026-08-27",
+      "visits": 1424,
+      "signups": 5,
+      "revenue": 2637.24,
+      "bounce_rate": 0.302
+    },
+    {
+      "date": "2026-08-28",
+      "visits": 2149,
+      "signups": 22,
+      "revenue": 2381.31,
+      "bounce_rate": 0.51
+    },
+    {
+      "date": "2026-08-29",
+      "visits": 3812,
+      "signups": 52,
+      "revenue": 404.79,
+      "bounce_rate": 0.565
+    },
+    {
+      "date": "2026-08-30",
+      "visits": 2143,
+      "signups": 14,
+      "revenue": 688.15,
+      "bounce_rate": 0.262
+    },
+    {
+      "date": "2026-08-31",
+      "visits": 2420,
+      "signups": 25,
+      "revenue": 3071.49,
+      "bounce_rate": 0.447
+    },
+    {
+      "date": "2026-09-01",
+      "visits": 1838,
+      "signups": 14,
+      "revenue": 1020.14,
+      "bounce_rate": 0.408
+    },
+    {
+      "date": "2026-09-02",
+      "visits": 2473,
+      "signups": 53,
+      "revenue": 3673.33,
+      "bounce_rate": 0.645
+    },
+    {
+      "date": "2026-09-03",
+      "visits": 3812,
+      "signups": 26,
+      "revenue": 2072.12,
+      "bounce_rate": 0.642
+    },
+    {
+      "date": "2026-09-04",
+      "visits": 2601,
+      "signups": 20,
+      "revenue": 922.04,
+      "bounce_rate": 0.518
+    },
+    {
+      "date": "2026-09-05",
+      "visits": 1087,
+      "signups": 16,
+      "revenue": 492.75,
+      "bounce_rate": 0.682
+    },
+    {
+      "date": "2026-09-06",
+      "visits": 3565,
+      "signups": 28,
+      "revenue": 5379.98,
+      "bounce_rate": 0.657
+    },
+    {
+      "date": "2026-09-07",
+      "visits": 2587,
+      "signups": 57,
+      "revenue": 515.32,
+      "bounce_rate": 0.642
+    },
+    {
+      "date": "2026-09-08",
+      "visits": 2112,
+      "signups": 46,
+      "revenue": 5474.13,
+      "bounce_rate": 0.585
+    },
+    {
+      "date": "2026-09-09",
+      "visits": 1017,
+      "signups": 11,
+      "revenue": 4008.63,
+      "bounce_rate": 0.326
+    },
+    {
+      "date": "2026-09-10",
+      "visits": 852,
+      "signups": 19,
+      "revenue": 2792.03,
+      "bounce_rate": 0.339
+    },
+    {
+      "date": "2026-09-11",
+      "visits": 2459,
+      "signups": 32,
+      "revenue": 5101.29,
+      "bounce_rate": 0.404
+    },
+    {
+      "date": "2026-09-12",
+      "visits": 3225,
+      "signups": 46,
+      "revenue": 5167.87,
+      "bounce_rate": 0.577
+    },
+    {
+      "date": "2026-09-13",
+      "visits": 1587,
+      "signups": 22,
+      "revenue": 3947.43,
+      "bounce_rate": 0.459
+    },
+    {
+      "date": "2026-09-14",
+      "visits": 1620,
+      "signups": 6,
+      "revenue": 5059.03,
+      "bounce_rate": 0.334
+    },
+    {
+      "date": "2026-09-15",
+      "visits": 2559,
+      "signups": 34,
+      "revenue": 1421.62,
+      "bounce_rate": 0.316
+    },
+    {
+      "date": "2026-09-16",
+      "visits": 1683,
+      "signups": 42,
+      "revenue": 526.5,
+      "bounce_rate": 0.649
+    },
+    {
+      "date": "2026-09-17",
+      "visits": 3722,
+      "signups": 44,
+      "revenue": 3704.88,
+      "bounce_rate": 0.44
+    },
+    {
+      "date": "2026-09-18",
+      "visits": 1633,
+      "signups": 6,
+      "revenue": 1631.6,
+      "bounce_rate": 0.517
+    },
+    {
+      "date": "2026-09-19",
+      "visits": 1094,
+      "signups": 22,
+      "revenue": 2234.01,
+      "bounce_rate": 0.595
+    },
+    {
+      "date": "2026-09-20",
+      "visits": 954,
+      "signups": 5,
+      "revenue": 3211.64,
+      "bounce_rate": 0.373
+    },
+    {
+      "date": "2026-09-21",
+      "visits": 3573,
+      "signups": 47,
+      "revenue": 467.96,
+      "bounce_rate": 0.688
+    },
+    {
+      "date": "2026-09-22",
+      "visits": 3454,
+      "signups": 31,
+      "revenue": 1220.39,
+      "bounce_rate": 0.672
+    },
+    {
+      "date": "2026-09-23",
+      "visits": 3434,
+      "signups": 34,
+      "revenue": 3045.84,
+      "bounce_rate": 0.304
+    },
+    {
+      "date": "2026-09-24",
+      "visits": 3392,
+      "signups": 65,
+      "revenue": 3178.15,
+      "bounce_rate": 0.382
+    },
+    {
+      "date": "2026-09-25",
+      "visits": 3760,
+      "signups": 75,
+      "revenue": 1061.82,
+      "bounce_rate": 0.503
+    },
+    {
+      "date": "2026-09-26",
+      "visits": 1951,
+      "signups": 24,
+      "revenue": 540.11,
+      "bounce_rate": 0.579
+    },
+    {
+      "date": "2026-09-27",
+      "visits": 3307,
+      "signups": 26,
+      "revenue": 5082.93,
+      "bounce_rate": 0.271
+    },
+    {
+      "date": "2026-09-28",
+      "visits": 3838,
+      "signups": 67,
+      "revenue": 5805.4,
+      "bounce_rate": 0.496
+    }
+  ]
+}

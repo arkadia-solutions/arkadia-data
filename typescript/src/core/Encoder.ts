@@ -1,7 +1,8 @@
-import { EncoderConfig } from '../config';
-import { Meta } from '../models/Meta';
-import { Node, Primitive } from '../models/Node';
-import { Schema } from '../models/Schema';
+import type { EncoderConfig } from '../config';
+import type { Meta } from '../models/Meta';
+import { Node, type Primitive } from '../models/Node';
+import { type Schema, SchemaKind } from '../models/Schema';
+import { parseDataToNode } from './Parser';
 
 class Colors {
   static RESET = '\x1b[0m';
@@ -15,6 +16,11 @@ class Colors {
   static TAG = '\x1b[35m';
   static ATTR = '\x1b[93m';
 }
+
+// Object.hasOwn needs ES2022; the package targets older runtimes too.
+const hasOwn = (o: object, k: string): boolean =>
+  // biome-ignore lint/suspicious/noPrototypeBuiltins: Object.hasOwn is ES2022
+  Object.prototype.hasOwnProperty.call(o, k);
 
 export class Encoder {
   private config: EncoderConfig;
@@ -47,12 +53,28 @@ export class Encoder {
           schemaPrefix = sTxt;
         } else {
           // Newline formatting for schema header
-          schemaPrefix = sTxt + '\n' + ' '.repeat(baseIndent);
+          schemaPrefix = `${sTxt}\n${' '.repeat(baseIndent)}`;
         }
       }
     }
 
     // 3. Encode Data
+    const headerless =
+      node.isRecord &&
+      node.schema &&
+      node.schema.fields.length === 0 &&
+      Object.keys(node.fields).length > 0;
+    if (
+      node.isRecord &&
+      node.schema &&
+      !this.config.promptOutput &&
+      (headerless || !this.fits(node, node.schema))
+    ) {
+      // The record's own schema cannot describe it (e.g. an empty key):
+      // write it self-describing, without a header.
+      return this.named(node);
+    }
+
     let data = '';
     if (node.isList) {
       data = this.encodeList(node, baseIndent, false);
@@ -90,7 +112,7 @@ export class Encoder {
     if (schema.isPrimitive) {
       const metaPrefix = includeMeta ? this.metaInline(schema) : '';
       // Python: return ind + ((meta_prefix + " ") if meta_prefix else "") + self._c(...)
-      const metaStr = metaPrefix ? metaPrefix + ' ' : '';
+      const metaStr = metaPrefix ? `${metaPrefix} ` : '';
       const escapedType = this.escapeIdent(schema.typeName);
       return ind + metaStr + this.c(escapedType, Colors.TYPE);
     }
@@ -105,17 +127,17 @@ export class Encoder {
       const listMeta = includeMeta ? this.metaWrapped(schema) : '';
 
       // Special Case: List of Records < [ ... ] >
-      if (schema.element && schema.element.isRecord) {
+      if (schema.element?.isRecord) {
         // We reuse the _record_fields logic but wrap in <[ ... ]>
         const innerFields = this.encodeSchemaFields(schema.element);
 
         // FIX: Use 'pad' variable to remove spaces in compact mode
-        return ind + prefix + '<' + pad + '[' + listMeta + innerFields + pad + ']' + pad + '>';
+        return `${ind + prefix}<${pad}[${listMeta}${innerFields}${pad}]${pad}>`;
       }
 
       // Standard List [Type]
       const inner = this.encodeSchema(schema.element!, 0, false).trim();
-      return ind + '[' + listMeta + this.c(inner, Colors.TYPE) + ']';
+      return `${ind}[${listMeta}${this.c(inner, Colors.TYPE)}]`;
     }
 
     // --- RECORD ---
@@ -129,19 +151,19 @@ export class Encoder {
         if (!prefix && !recordMeta && schema.isAny) {
           return '';
         }
-        return ind + prefix + '<' + pad + recordMeta + 'any' + pad + '>';
+        return `${ind + prefix}<${pad}${recordMeta}any${pad}>`;
       }
 
       // Encode Fields
       const innerFields = this.encodeSchemaFields(schema);
 
       // FIX: Use 'pad' variable to remove spaces in compact mode
-      return ind + prefix + '<' + pad + recordMeta + innerFields + pad + '>';
+      return `${ind + prefix}<${pad}${recordMeta}${innerFields}${pad}>`;
     }
 
     // Fallback (ANY)
     const meta = includeMeta ? this.metaWrapped(schema) : '';
-    return ind + `<${meta}any>`;
+    return `${ind}<${meta}any>`;
   }
 
   // --- Helper to deduplicate field encoding logic ---
@@ -154,7 +176,7 @@ export class Encoder {
 
       const metaPrefix = this.metaInline(field);
       if (metaPrefix) {
-        str += metaPrefix + ' ';
+        str += `${metaPrefix} `;
       }
 
       // 3. Field Name
@@ -168,7 +190,7 @@ export class Encoder {
       const isExplicitPrimitive = this.config.includeType && field.typeName !== 'any';
 
       if (fieldType && (isStructure || isExplicitPrimitive)) {
-        str += `:${pad}${this.c(fieldType, Colors.TYPE)}`;
+        str += `:${this.c(fieldType, Colors.TYPE)}`;
       }
 
       parts.push(str);
@@ -183,8 +205,14 @@ export class Encoder {
   // -------------------------------------------------------------
 
   private schemasAreCompatible(nodeSchema: Schema | null, expectedSchema: Schema | null): boolean {
-    if (!expectedSchema || expectedSchema.isAny) return true;
+    if (Encoder.isOpen(expectedSchema)) return true;
+    if (!expectedSchema) return true;
     if (!nodeSchema) return true;
+
+    // null decodes as null under any primitive type: no tag needed.
+    if (nodeSchema.isPrimitive && nodeSchema.typeName === 'null' && expectedSchema.isPrimitive) {
+      return true;
+    }
 
     // Check general kind
     if (nodeSchema.kind !== expectedSchema.kind) return false;
@@ -253,7 +281,17 @@ export class Encoder {
         if (typeof v === 'boolean' && v === true) {
           items.push(this.c(`$${escapedKey}`, Colors.ATTR));
         } else {
-          const valStr = this.primitiveValue(v);
+          // A structured value ($changes=[…]) is written as compact AK-DATA.
+          const valStr =
+            v !== null && typeof v === 'object'
+              ? new Encoder({
+                  ...this.config,
+                  compact: true,
+                  escapeNewLines: true,
+                  colorize: false,
+                  includeArraySize: false,
+                }).encode(parseDataToNode(v))
+              : this.primitiveValue(v as Primitive);
           items.push(this.c(`$${escapedKey}=`, Colors.ATTR) + valStr);
         }
       }
@@ -273,7 +311,7 @@ export class Encoder {
     if (wrapped) {
       const wrappedContent =
         this.c(`//${pad}`, Colors.SCHEMA) + content + this.c(`${pad}//`, Colors.SCHEMA);
-      return this.config.compact ? wrappedContent + ' ' : ' ' + wrappedContent + ' ';
+      return this.config.compact ? `${wrappedContent} ` : ` ${wrappedContent} `;
     }
 
     // Inline: /* c1 */ !req $a=1
@@ -299,7 +337,7 @@ export class Encoder {
   private encodePrimitiveNode(node: Node): string {
     const innerMeta = this.metaInline(node);
     const str = this.primitiveValue(node.value as Primitive);
-    return (innerMeta ? innerMeta + ' ' : '') + str;
+    return (innerMeta ? `${innerMeta} ` : '') + str;
   }
 
   private primitiveValue(v: Primitive): string {
@@ -333,7 +371,7 @@ export class Encoder {
    * Regex: [a-zA-Z_][a-zA-Z0-9_]*
    */
   private escapeIdent(name: string): string {
-    if (!name) return '';
+    if (!name) return '""'; // empty key: only valid in named records {"": value}
 
     // Standard identifier pattern
     const pattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
@@ -347,6 +385,125 @@ export class Encoder {
   }
 
   // -------------------------------------------------------------
+  // LOSSLESS ENCODING: positional only when the decoder can map it
+  // -------------------------------------------------------------
+
+  /** True when `expected` puts no structural constraint on a value. */
+  private static isOpen(expected: Schema | null): boolean {
+    if (!expected || expected.kind === SchemaKind.ANY) return true;
+    if (expected.isRecord) return expected.fields.length === 0;
+    return expected.isPrimitive && expected.typeName === 'any';
+  }
+
+  /** True when `node` can be written positionally under `expected`. */
+  private fits(node: Node, expected: Schema | null): boolean {
+    if (Encoder.isOpen(expected) || !expected) return true;
+    if (!node.schema) return true;
+    if (node.isRecord) {
+      if (!expected.isRecord) return false;
+      const names = expected.fields.map((f) => f.name);
+      const keys = Object.keys(node.fields);
+      // Same names as the header, or as its first k fields (the decoder leaves
+      // the missing trailing fields out); differing values are tagged in encodeRecord.
+      const k = keys.length;
+      return (
+        k >= 1 &&
+        k <= names.length &&
+        new Set(names).size === names.length &&
+        names.slice(0, k).every((n) => hasOwn(node.fields, n))
+      );
+    }
+    if (node.isList) return expected.isList;
+    return true;
+  }
+
+  private elementValue(el: Node, expected: Schema | null): string {
+    if (el.isRecord || el.isList) return this.value(el, expected);
+    const val = this.encode(el, 0, false).trim();
+    if (!this.schemasAreCompatible(el.schema, expected)) {
+      const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
+      return `${this.c(`<${label}>`, Colors.SCHEMA)} ${val}`;
+    }
+    return val;
+  }
+
+  /** Key of a named record; a key with a backtick is written quoted. */
+  private recordKey(key: string): string {
+    if (!key.includes('`')) return this.escapeIdent(key);
+    const body = key
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, '\\n')
+      .replace(/\r/g, '\\r')
+      .replace(/\t/g, '\\t');
+    return `"${body}"`;
+  }
+
+  /** Self-describing record form {key: value} that needs no header. */
+  private named(node: Node): string {
+    const sep = this.config.compact ? ',' : ', ';
+    const items: string[] = [];
+    for (const [key, child] of Object.entries(node.fields)) {
+      const k = this.c(this.recordKey(key), Colors.KEY);
+      items.push(`${k}:${this.config.compact ? '' : ' '}${this.value(child, null)}`);
+    }
+    return `{${this.metaWrapped(node)}${items.join(sep)}}`;
+  }
+
+  /** Elements of a nested list, without a header (it is in the parent's). */
+  /** $size=N on a list (includeArraySize, lists of arraySizeMin+ items). */
+  private size(node: Node): void {
+    if (this.config.includeArraySize && node.elements.length >= this.config.arraySizeMin) {
+      node.attr.size = node.elements.length;
+    }
+  }
+
+  private listValues(node: Node, element: Schema | null): string {
+    this.size(node);
+    const sep = this.config.compact ? ',' : ', ';
+    const items = node.elements.map((el) => this.elementValue(el, element));
+    return `[${this.metaWrapped(node)}${items.join(sep)}]`;
+  }
+
+  /**
+   * Encodes a nested value that the decoder will read with schema `expected`.
+   * Positional forms are used only when `expected` describes the value;
+   * otherwise the value describes itself (named record, tagged list).
+   */
+  private value(node: Node, expected: Schema | null): string {
+    const open = Encoder.isOpen(expected);
+    const anyTag = `${this.c('<any>', Colors.SCHEMA)} `;
+
+    if (node.isRecord) {
+      if (!open && this.fits(node, expected)) return this.encodeRecord(node, 0, expected);
+      const named = this.named(node);
+      return open ? named : anyTag + named;
+    }
+
+    if (node.isList) {
+      if (!open && expected && expected.isList) return this.listValues(node, expected.element);
+      const element = node.schema ? node.schema.element : null;
+      if (
+        element &&
+        !Encoder.isOpen(element) &&
+        node.elements.every((el) => this.fits(el, element)) &&
+        (element.isRecord || !open) &&
+        !(element.isRecord && node.elements.length < 2)
+      ) {
+        // The list carries its own header, e.g. <[id:number,name:string]>.
+        let tag = this.encodeSchema(node.schema!, 0, false).trim();
+        if (!tag.startsWith('<')) tag = `<${tag}>`;
+        return `${this.c(tag, Colors.SCHEMA)} ${this.listValues(node, element)}`;
+      }
+      const body = this.listValues(node, null);
+      return open ? body : anyTag + body;
+    }
+
+    const val = this.encode(node, 0, false).trim();
+    return this.applyTypeTag(val, node.schema, expected);
+  }
+
+  // -------------------------------------------------------------
   // LIST
   // -------------------------------------------------------------
   private encodeList(node: Node, indent: number, includeSchema: boolean = false): string {
@@ -354,14 +511,12 @@ export class Encoder {
     const childIndent = indent + this.config.indent;
     const isPrompt = this.config.promptOutput;
 
-    if (this.config.includeArraySize) {
-      node.attr['size'] = node.elements.length;
-    }
+    this.size(node);
     const innerMeta = this.metaWrapped(node);
 
     // 1. Generate Header Schema (Standard only)
     let schemaHeader = '';
-    if (!isPrompt && includeSchema && node.schema && node.schema.element) {
+    if (!isPrompt && includeSchema && node.schema?.element) {
       schemaHeader = this.encodeSchema(node.schema.element, 0).trim();
       if (schemaHeader) schemaHeader += ' ';
     }
@@ -370,25 +525,25 @@ export class Encoder {
 
     // --- PROMPT MODE (Full Structural Expansion) ---
     if (isPrompt) {
-      let res = ind + '[\n';
+      let res = `${ind}[\n`;
       if (innerMeta) {
-        res += ' '.repeat(childIndent) + innerMeta.trim() + '\n';
+        res += `${' '.repeat(childIndent) + innerMeta.trim()}\n`;
       }
 
-      if (node.schema && node.schema.element) {
+      if (node.schema?.element) {
         // Force recursion into the element's structure using a Dummy Node
         const dummy = new Node(node.schema.element, { value: null });
 
         // We trim() the blueprint because we manually handle child indentation
         const blueprint = this.encode(dummy, childIndent, false).trim();
 
-        res += ' '.repeat(childIndent) + blueprint + ',\n';
-        res += ' '.repeat(childIndent) + '... /* repeat pattern for additional items */\n';
+        res += `${' '.repeat(childIndent) + blueprint},\n`;
+        res += `${' '.repeat(childIndent)}... /* repeat pattern for additional items */\n`;
       } else {
-        res += ' '.repeat(childIndent) + '/* any content */\n';
+        res += `${' '.repeat(childIndent)}/* any content */\n`;
       }
 
-      res += ind + ']';
+      res += `${ind}]`;
       return res;
     }
 
@@ -396,57 +551,57 @@ export class Encoder {
     if (this.config.compact) {
       const items: string[] = [];
       for (const el of node.elements) {
-        let val = this.encode(el, 0, false).trim();
-        if (!this.schemasAreCompatible(el.schema, expectedChild)) {
-          const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
-          const tag = this.c(`<${label}>`, Colors.SCHEMA);
-          val = `${tag} ${val}`;
-        }
-        items.push(val);
+        items.push(this.elementValue(el, expectedChild));
       }
-      return ind + '[' + innerMeta + schemaHeader + items.join(',') + ']';
+      return `${ind}[${innerMeta}${schemaHeader}${items.join(',')}]`;
     }
 
     // --- PRETTY MODE ---
-    let res = ind + '[\n';
+    let res = `${ind}[\n`;
     if (innerMeta) {
-      res += ' '.repeat(childIndent) + innerMeta.trim() + '\n';
+      res += `${' '.repeat(childIndent) + innerMeta.trim()}\n`;
     }
     if (schemaHeader) {
-      res += ' '.repeat(childIndent) + schemaHeader.trim() + '\n';
+      res += `${' '.repeat(childIndent) + schemaHeader.trim()}\n`;
     }
 
     const elementLines: string[] = [];
     for (const el of node.elements) {
-      let val = this.encode(el, 0, false).trim();
-      if (!this.schemasAreCompatible(el.schema, expectedChild)) {
-        const label = el.schema ? this.getTypeLabel(el.schema) : 'any';
-        const tag = this.c(`<${label}>`, Colors.SCHEMA);
-        val = `${tag} ${val}`;
-      }
-      elementLines.push(' '.repeat(childIndent) + val);
+      elementLines.push(' '.repeat(childIndent) + this.elementValue(el, expectedChild));
     }
 
     if (elementLines.length > 0) {
-      res += elementLines.join(',\n') + '\n';
+      res += `${elementLines.join(',\n')}\n`;
     }
 
-    res += ind + ']';
+    res += `${ind}]`;
     return res;
   }
 
   // -------------------------------------------------------------
   // RECORD
   // -------------------------------------------------------------
-  private encodeRecord(node: Node, indent: number): string {
+  private encodeRecord(node: Node, indent: number, expected: Schema | null = null): string {
     const innerMeta = this.metaWrapped(node);
     const parts: string[] = [];
     const isPrompt = this.config.promptOutput;
     const baseInd = ' '.repeat(indent);
     const childInd = ' '.repeat(indent + this.config.indent);
+    // Positional order is the order of the schema the decoder will apply.
+    const layout = expected?.isRecord ? expected : node.schema;
 
-    if (node.schema && node.schema.fields && node.schema.fields.length > 0) {
-      for (const fieldDef of node.schema.fields) {
+    if (layout?.fields && layout.fields.length > 0) {
+      let fields = layout.fields;
+      if (!isPrompt) {
+        // A record that has only the first k fields of the header is written
+        // with k values (missing trailing fields stay absent).
+        let last = -1;
+        fields.forEach((f, i) => {
+          if (hasOwn(node.fields, f.name)) last = i;
+        });
+        if (last >= 0) fields = fields.slice(0, last + 1);
+      }
+      for (const fieldDef of fields) {
         if (isPrompt) {
           // --- PROMPT MODE: Type Label or Structural Expansion ---
           const fieldName = this.escapeIdent(fieldDef.name);
@@ -472,25 +627,30 @@ export class Encoder {
           // --- STANDARD MODE (Data values) ---
           const fieldNode = node.fields[fieldDef.name];
           if (fieldNode) {
-            let val = this.encode(fieldNode, 0, false).trim();
-            val = this.applyTypeTag(val, fieldNode.schema, fieldDef);
-            parts.push(val);
+            parts.push(this.value(fieldNode, fieldDef));
           } else {
             parts.push(this.c('null', Colors.NULL));
           }
         }
       }
+    } else if (
+      !isPrompt &&
+      Object.keys(node.fields).length === 0 &&
+      !(layout && (layout.comments.length || Object.keys(layout.attr).length || layout.tags.length))
+    ) {
+      // An empty JSON object. (A schema carrying meta keeps "<// meta // any>(null)".)
+      return `{${innerMeta}}`;
     } else {
       parts.push(this.c('null', Colors.NULL));
     }
 
     if (isPrompt) {
-      const body = parts.join(',\n' + childInd);
-      const metaStr = innerMeta ? childInd + innerMeta.trim() + '\n' : '';
-      return '{\n' + metaStr + childInd + body + '\n' + baseInd + '}';
+      const body = parts.join(`,\n${childInd}`);
+      const metaStr = innerMeta ? `${childInd + innerMeta.trim()}\n` : '';
+      return `{\n${metaStr}${childInd}${body}\n${baseInd}}`;
     }
 
     const sep = this.config.compact ? ',' : ', ';
-    return '(' + innerMeta + parts.join(sep) + ')';
+    return `(${innerMeta}${parts.join(sep)})`;
   }
 }

@@ -1,0 +1,137 @@
+{
+  "id": 20,
+  "slug": "shipments-weight",
+  "title": "Shipments: weight per carrier",
+  "description": "Weight is in grams.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "What is the total weight in kilograms per carrier? Heaviest first.",
+  "answer": {
+    "name": "weight",
+    "fields": [
+      [
+        "carrier",
+        "string"
+      ],
+      [
+        "kg",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "carrier": "DHL",
+      "kg": 93.046
+    },
+    {
+      "carrier": "UPS",
+      "kg": 54.727
+    },
+    {
+      "carrier": "DPD",
+      "kg": 42.148
+    },
+    {
+      "carrier": "InPost",
+      "kg": 25.733
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`shipments.w`: parcel weight in grams"
+    ],
+    "attributes": [
+      "`shipments.w`: $unit=\"g\""
+    ]
+  },
+  "akd_meta": "<shipments:<[id:string,carrier:string,w:number $unit=\"g\" /* parcel weight in grams */]>>([(\"SH-001\",\"DHL\",21945),(\"SH-002\",\"DHL\",23840),(\"SH-003\",\"UPS\",583),(\"SH-004\",\"InPost\",2048),(\"SH-005\",\"InPost\",12994),(\"SH-006\",\"UPS\",19871),(\"SH-007\",\"UPS\",12398),(\"SH-008\",\"DPD\",20024),(\"SH-009\",\"DHL\",2929),(\"SH-010\",\"UPS\",14823),(\"SH-011\",\"DHL\",23860),(\"SH-012\",\"DHL\",20472),(\"SH-013\",\"DPD\",2385),(\"SH-014\",\"InPost\",10691),(\"SH-015\",\"UPS\",7052),(\"SH-016\",\"DPD\",19739)])",
+  "data": {
+    "shipments": [
+      {
+        "id": "SH-001",
+        "carrier": "DHL",
+        "w": 21945
+      },
+      {
+        "id": "SH-002",
+        "carrier": "DHL",
+        "w": 23840
+      },
+      {
+        "id": "SH-003",
+        "carrier": "UPS",
+        "w": 583
+      },
+      {
+        "id": "SH-004",
+        "carrier": "InPost",
+        "w": 2048
+      },
+      {
+        "id": "SH-005",
+        "carrier": "InPost",
+        "w": 12994
+      },
+      {
+        "id": "SH-006",
+        "carrier": "UPS",
+        "w": 19871
+      },
+      {
+        "id": "SH-007",
+        "carrier": "UPS",
+        "w": 12398
+      },
+      {
+        "id": "SH-008",
+        "carrier": "DPD",
+        "w": 20024
+      },
+      {
+        "id": "SH-009",
+        "carrier": "DHL",
+        "w": 2929
+      },
+      {
+        "id": "SH-010",
+        "carrier": "UPS",
+        "w": 14823
+      },
+      {
+        "id": "SH-011",
+        "carrier": "DHL",
+        "w": 23860
+      },
+      {
+        "id": "SH-012",
+        "carrier": "DHL",
+        "w": 20472
+      },
+      {
+        "id": "SH-013",
+        "carrier": "DPD",
+        "w": 2385
+      },
+      {
+        "id": "SH-014",
+        "carrier": "InPost",
+        "w": 10691
+      },
+      {
+        "id": "SH-015",
+        "carrier": "UPS",
+        "w": 7052
+      },
+      {
+        "id": "SH-016",
+        "carrier": "DPD",
+        "w": 19739
+      }
+    ]
+  }
+}

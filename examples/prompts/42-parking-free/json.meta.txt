@@ -1,0 +1,108 @@
+The data below is in JSON.
+
+Notes about the data:
+- `spots.occ`: 0 free, 1 occupied
+
+Attributes of the data:
+- `spots.occ`: $enum="0=free,1=occupied"
+
+<data>
+{
+  "spots": [
+    {
+      "spot": "P1-01",
+      "level": "P1",
+      "occ": 1
+    },
+    {
+      "spot": "P1-02",
+      "level": "P1",
+      "occ": 1
+    },
+    {
+      "spot": "P1-03",
+      "level": "P1",
+      "occ": 1
+    },
+    {
+      "spot": "P1-04",
+      "level": "P1",
+      "occ": 0
+    },
+    {
+      "spot": "P1-05",
+      "level": "P1",
+      "occ": 0
+    },
+    {
+      "spot": "P1-06",
+      "level": "P1",
+      "occ": 1
+    },
+    {
+      "spot": "P2-01",
+      "level": "P2",
+      "occ": 1
+    },
+    {
+      "spot": "P2-02",
+      "level": "P2",
+      "occ": 1
+    },
+    {
+      "spot": "P2-03",
+      "level": "P2",
+      "occ": 0
+    },
+    {
+      "spot": "P2-04",
+      "level": "P2",
+      "occ": 0
+    },
+    {
+      "spot": "P2-05",
+      "level": "P2",
+      "occ": 1
+    },
+    {
+      "spot": "P2-06",
+      "level": "P2",
+      "occ": 1
+    },
+    {
+      "spot": "P3-01",
+      "level": "P3",
+      "occ": 1
+    },
+    {
+      "spot": "P3-02",
+      "level": "P3",
+      "occ": 1
+    },
+    {
+      "spot": "P3-03",
+      "level": "P3",
+      "occ": 0
+    },
+    {
+      "spot": "P3-04",
+      "level": "P3",
+      "occ": 1
+    },
+    {
+      "spot": "P3-05",
+      "level": "P3",
+      "occ": 1
+    },
+    {
+      "spot": "P3-06",
+      "level": "P3",
+      "occ": 1
+    }
+  ]
+}
+</data>
+
+Question: How many spots are free on each level?
+
+Answer with JSON only (no prose): {"free": [{"level": <string>, "free": <number>}, ...]}

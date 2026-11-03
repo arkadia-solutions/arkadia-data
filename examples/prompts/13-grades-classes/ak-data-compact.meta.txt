@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $term="2026/27-1" #school // /* Grades on the Polish scale: 1 (fail) to 6 (excellent). */ <students:<[student:string,class:string,math:number $scale="1-6" /* mathematics */,pl:number $scale="1-6" /* Polish language */,eng:number $scale="1-6" /* English */]>>([("Ada","3A",3,5,3),("Alan","3B",3,4,4),("Grace","3A",5,4,2),("Linus","3B",4,4,5),("Margaret","3A",4,4,3),("Dennis","3B",3,5,4),("Barbara","3A",6,4,3),("Ken","3B",3,3,2),("Radia","3A",3,3,3),("Edsger","3B",3,5,5),("Hedy","3A",4,4,4),("Tim","3B",3,3,6),("Katherine","3A",6,5,2),("John","3B",6,3,3)])
+</data>
+
+Question: What is the average math grade in each class, rounded to 2 decimals?
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<classes:<[class:string,avg_math:number]>>

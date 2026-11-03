@@ -1,0 +1,102 @@
+The data below is in JSON.
+
+<data>
+{
+  "transactions": [
+    {
+      "date": "2026-10-01",
+      "cat": "food",
+      "amt": -24649
+    },
+    {
+      "date": "2026-10-02",
+      "cat": "fun",
+      "amt": -31849
+    },
+    {
+      "date": "2026-10-03",
+      "cat": "food",
+      "amt": -15699
+    },
+    {
+      "date": "2026-10-04",
+      "cat": "food",
+      "amt": -12000
+    },
+    {
+      "date": "2026-10-05",
+      "cat": "transport",
+      "amt": -59399
+    },
+    {
+      "date": "2026-10-06",
+      "cat": "rent",
+      "amt": -7399
+    },
+    {
+      "date": "2026-10-07",
+      "cat": "food",
+      "amt": -30600
+    },
+    {
+      "date": "2026-10-08",
+      "cat": "food",
+      "amt": -23199
+    },
+    {
+      "date": "2026-10-09",
+      "cat": "fun",
+      "amt": -56099
+    },
+    {
+      "date": "2026-10-10",
+      "cat": "salary",
+      "amt": 706900
+    },
+    {
+      "date": "2026-10-11",
+      "cat": "transport",
+      "amt": -20049
+    },
+    {
+      "date": "2026-10-12",
+      "cat": "food",
+      "amt": -19049
+    },
+    {
+      "date": "2026-10-13",
+      "cat": "rent",
+      "amt": -54899
+    },
+    {
+      "date": "2026-10-14",
+      "cat": "food",
+      "amt": -51700
+    },
+    {
+      "date": "2026-10-15",
+      "cat": "transport",
+      "amt": -16300
+    },
+    {
+      "date": "2026-10-16",
+      "cat": "salary",
+      "amt": 888900
+    },
+    {
+      "date": "2026-10-17",
+      "cat": "fun",
+      "amt": -50799
+    },
+    {
+      "date": "2026-10-18",
+      "cat": "food",
+      "amt": -39549
+    }
+  ]
+}
+</data>
+
+Question: How much was spent in each category (money going out), in PLN? Most first.
+
+Answer with JSON only (no prose): {"spending": [{"cat": <string>, "spent": <number>}, ...]}

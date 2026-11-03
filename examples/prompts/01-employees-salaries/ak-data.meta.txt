@@ -1,0 +1,89 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $source="hr" $as_of="2026-10-01" #confidential //
+/* Employee list exported from HR. */
+<employees:<[
+  id:number,
+  name:string,
+  email:string,
+  department:string,
+  city:string,
+  salary:number $unit="EUR" $period="year" /* gross yearly salary in EUR */,
+  active:bool /* false = left the company */,
+  hired:string
+]>>
+([
+  (1, "Tim Dijkstra", "tim.dijkstra1@example.com", "Sales", "Warsaw", 109500,
+   true, "2012-12-27"),
+  (2, "Margaret Turing", "margaret.turing2@example.com", "Sales", "Kraków",
+   126500, true, "2025-11-20"),
+  (3, "Linus Liskov", "linus.liskov3@example.com", "Sales", "Lisbon", 77500,
+   true, "2019-01-19"),
+  (4, "Linus Berners-Lee", "linus.bernerslee4@example.com", "Sales", "Lisbon",
+   137000, true, "2012-03-05"),
+  (5, "Hedy Hopper", "hedy.hopper5@example.com", "Engineering", "Lisbon",
+   105000, true, "2020-06-04"),
+  (6, "Dennis Backus", "dennis.backus6@example.com", "Finance", "Toronto",
+   154500, true, "2018-08-23"),
+  (7, "Alan Hamilton", "alan.hamilton7@example.com", "Support", "Lisbon",
+   101000, true, "2025-02-12"),
+  (8, "Linus Dijkstra", "linus.dijkstra8@example.com", "Finance", "Kraków",
+   49000, false, "2018-04-19"),
+  (9, "Donald Knuth", "donald.knuth9@example.com", "Research", "Warsaw", 184000,
+   true, "2012-06-02"),
+  (10, "Katherine Lovelace", "katherine.lovelace10@example.com", "Research",
+   "London", 57000, true, "2012-12-06"),
+  (11, "Edsger Berners-Lee", "edsger.bernerslee11@example.com", "Research",
+   "Warsaw", 126500, true, "2025-02-01"),
+  (12, "Edsger Turing", "edsger.turing12@example.com", "Engineering", "Austin",
+   177000, true, "2018-09-09"),
+  (13, "John Lovelace", "john.lovelace13@example.com", "Support", "Austin",
+   134500, true, "2023-06-21"),
+  (14, "Donald Allen", "donald.allen14@example.com", "Research", "Austin",
+   113500, true, "2018-09-27"),
+  (15, "Tim Berners-Lee", "tim.bernerslee15@example.com", "Sales", "Kraków",
+   176000, true, "2020-05-15"),
+  (16, "Margaret Lovelace", "margaret.lovelace16@example.com", "Engineering",
+   "Toronto", 165500, true, "2016-11-18"),
+  (17, "Ken Torvalds", "ken.torvalds17@example.com", "Research", "Toronto",
+   172500, true, "2026-09-05"),
+  (18, "Margaret Knuth", "margaret.knuth18@example.com", "Sales", "Lisbon",
+   52500, true, "2020-10-12"),
+  (19, "Grace Ritchie", "grace.ritchie19@example.com", "Support", "Berlin",
+   62000, true, "2026-02-20"),
+  (20, "Barbara Lovelace", "barbara.lovelace20@example.com", "Research",
+   "Berlin", 139500, true, "2020-08-03"),
+  (21, "Ada Hamilton", "ada.hamilton21@example.com", "Sales", "London", 99500,
+   true, "2013-02-07"),
+  (22, "Donald Thompson", "donald.thompson22@example.com", "Sales", "London",
+   156500, true, "2026-12-13"),
+  (23, "Radia Dijkstra", "radia.dijkstra23@example.com", "Engineering",
+   "Warsaw", 72500, true, "2019-09-08"),
+  (24, "Donald Hamilton", "donald.hamilton24@example.com", "Engineering",
+   "Berlin", 93500, true, "2019-07-12"),
+  (25, "Katherine Perlman", "katherine.perlman25@example.com", "Engineering",
+   "Lisbon", 105000, true, "2020-12-08"),
+  (26, "Katherine Lamarr", "katherine.lamarr26@example.com", "Engineering",
+   "London", 177500, true, "2020-02-06"),
+  (27, "Grace Hopper", "grace.hopper27@example.com", "Research", "Lisbon",
+   166000, false, "2024-04-18"),
+  (28, "Edsger Ritchie", "edsger.ritchie28@example.com", "Finance", "Berlin",
+   112000, true, "2020-05-21"),
+  (29, "Tim Turing", "tim.turing29@example.com", "Engineering", "Lisbon",
+   186500, true, "2016-03-10"),
+  (30, "Tim Berners-Lee", "tim.bernerslee30@example.com", "Research", "Warsaw",
+   81500, true, "2014-07-19")
+])
+</data>
+
+Question: Among active employees, which 3 departments have the highest average salary? Give the department, the number of active employees and the average salary rounded to a whole number.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<result:<[department:string,employees:number,avg_salary:number]>>

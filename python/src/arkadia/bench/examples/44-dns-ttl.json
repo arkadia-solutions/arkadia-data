@@ -1,0 +1,91 @@
+{
+  "id": 44,
+  "slug": "dns-ttl",
+  "title": "DNS zone: short TTLs",
+  "description": "TTL in seconds; documentation IP ranges.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which records have a TTL below 300 seconds?",
+  "answer": {
+    "name": "short",
+    "fields": [
+      [
+        "name",
+        "string"
+      ],
+      [
+        "type",
+        "string"
+      ],
+      [
+        "ttl",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "name": "api",
+      "type": "A",
+      "ttl": 60
+    },
+    {
+      "name": "status",
+      "type": "CNAME",
+      "ttl": 120
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`records.ttl`: time to live in seconds"
+    ],
+    "attributes": [
+      "document: $zone=\"arkadia.solutions\"",
+      "`records.ttl`: $unit=\"s\""
+    ]
+  },
+  "akd_meta": "// $zone=\"arkadia.solutions\" // <records:<[name:string,type:string,value:string,ttl:number $unit=\"s\" /* time to live in seconds */]>>([(\"@\",\"A\",\"203.0.113.10\",3600),(\"www\",\"CNAME\",\"arkadia.solutions.\",3600),(\"api\",\"A\",\"203.0.113.22\",60),(\"@\",\"MX\",\"10 mail.example.net.\",14400),(\"status\",\"CNAME\",\"status.example.io.\",120),(\"_dmarc\",\"TXT\",\"v=DMARC1; p=none\",300)])",
+  "data": {
+    "records": [
+      {
+        "name": "@",
+        "type": "A",
+        "value": "203.0.113.10",
+        "ttl": 3600
+      },
+      {
+        "name": "www",
+        "type": "CNAME",
+        "value": "arkadia.solutions.",
+        "ttl": 3600
+      },
+      {
+        "name": "api",
+        "type": "A",
+        "value": "203.0.113.22",
+        "ttl": 60
+      },
+      {
+        "name": "@",
+        "type": "MX",
+        "value": "10 mail.example.net.",
+        "ttl": 14400
+      },
+      {
+        "name": "status",
+        "type": "CNAME",
+        "value": "status.example.io.",
+        "ttl": 120
+      },
+      {
+        "name": "_dmarc",
+        "type": "TXT",
+        "value": "v=DMARC1; p=none",
+        "ttl": 300
+      }
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+orders[15]:
+  - id: ORD-1001
+    status: paid
+    customer:
+      id: 2
+      name: Hedy Johnson
+      country: US
+    items[4]{sku,title,qty,price}:
+      DK-05,Dock,3,199
+      MS-02,Mouse,2,39.5
+      CB-USB,USB-C cable,3,12
+      KB-01,Keyboard,1,89
+    total: 801
+    note: "Gift wrap, please"
+  - id: ORD-1002
+    status: paid
+    customer:
+      id: 25
+      name: Ada Torvalds
+      country: CA
+    items[3]{sku,title,qty,price}:
+      MS-02,Mouse,3,39.5
+      HD-10,Headset,1,129.9
+      MN-27,"Monitor 27\"",1,319
+    total: 567.4
+    note: Invoice to company
+  - id: ORD-1003
+    status: pending
+    customer:
+      id: 26
+      name: Dennis Lovelace
+      country: DE
+    items[4]{sku,title,qty,price}:
+      DK-05,Dock,3,199
+      HD-10,Headset,2,129.9
+      KB-01,Keyboard,1,89
+      MS-02,Mouse,2,39.5
+    total: 1024.8
+    note: null
+  - id: ORD-1004
+    status: pending
+    customer:
+      id: 53
+      name: Katherine Allen
+      country: PT
+    items[4]{sku,title,qty,price}:
+      KB-01,Keyboard,3,89
+      DK-05,Dock,1,199
+      MS-02,Mouse,2,39.5
+      MN-27,"Monitor 27\"",3,319
+    total: 1502
+    note: null
+  - id: ORD-1005
+    status: paid
+    customer:
+      id: 13
+      name: Donald Lamarr
+      country: PT
+    items[4]{sku,title,qty,price}:
+      HD-10,Headset,1,129.9
+      MN-27,"Monitor 27\"",3,319
+      DK-05,Dock,1,199
+      KB-01,Keyboard,2,89
+    total: 1463.9
+    note: Leave at the door
+  - id: ORD-1006
+    status: pending
+    customer:
+      id: 16
+      name: Donald Torvalds
+      country: US
+    items[3]{sku,title,qty,price}:
+      HD-10,Headset,3,129.9
+      MS-02,Mouse,1,39.5
+      DK-05,Dock,3,199
+    total: 1026.2
+    note: "Gift wrap, please"
+  - id: ORD-1007
+    status: shipped
+    customer:
+      id: 21
+      name: Katherine Lamarr
+      country: PL
+    items[4]{sku,title,qty,price}:
+      KB-01,Keyboard,1,89
+      CB-USB,USB-C cable,3,12
+      MN-27,"Monitor 27\"",2,319
+      MS-02,Mouse,2,39.5
+    total: 842
+    note: null
+  - id: ORD-1008
+    status: delivered
+    customer:
+      id: 15
+      name: Barbara Lamarr
+      country: PT
+    items[1]{sku,title,qty,price}:
+      KB-01,Keyboard,2,89
+    total: 178
+    note: "Gift wrap, please"
+  - id: ORD-1009
+    status: paid
+    customer:
+      id: 50
+      name: Margaret Allen
+      country: CA
+    items[2]{sku,title,qty,price}:
+      MN-27,"Monitor 27\"",2,319
+      CB-USB,USB-C cable,3,12
+    total: 674
+    note: Invoice to company
+  - id: ORD-1010
+    status: paid
+    customer:
+      id: 47
+      name: Edsger Lovelace
+      country: US
+    items[1]{sku,title,qty,price}:
+      MS-02,Mouse,3,39.5
+    total: 118.5
+    note: Invoice to company
+  - id: ORD-1011
+    status: shipped
+    customer:
+      id: 33
+      name: Barbara Johnson
+      country: PT
+    items[3]{sku,title,qty,price}:
+      MN-27,"Monitor 27\"",2,319
+      DK-05,Dock,3,199
+      HD-10,Headset,3,129.9
+    total: 1624.7
+    note: Invoice to company
+  - id: ORD-1012
+    status: paid
+    customer:
+      id: 17
+      name: Donald Liskov
+      country: GB
+    items[4]{sku,title,qty,price}:
+      KB-01,Keyboard,1,89
+      MS-02,Mouse,2,39.5
+      DK-05,Dock,1,199
+      HD-10,Headset,3,129.9
+    total: 756.7
+    note: null
+  - id: ORD-1013
+    status: refunded
+    customer:
+      id: 55
+      name: Dennis Liskov
+      country: DE
+    items[3]{sku,title,qty,price}:
+      CB-USB,USB-C cable,3,12
+      MS-02,Mouse,3,39.5
+      KB-01,Keyboard,2,89
+    total: 332.5
+    note: "Gift wrap, please"
+  - id: ORD-1014
+    status: shipped
+    customer:
+      id: 34
+      name: Donald Thompson
+      country: DE
+    items[3]{sku,title,qty,price}:
+      MS-02,Mouse,3,39.5
+      HD-10,Headset,3,129.9
+      DK-05,Dock,1,199
+    total: 707.2
+    note: null
+  - id: ORD-1015
+    status: delivered
+    customer:
+      id: 43
+      name: Dennis Torvalds
+      country: PT
+    items[4]{sku,title,qty,price}:
+      DK-05,Dock,2,199
+      MS-02,Mouse,3,39.5
+      MN-27,"Monitor 27\"",1,319
+      HD-10,Headset,3,129.9
+    total: 1225.2
+    note: null
+</data>
+
+Question: For orders with status paid, shipped or delivered, what is the number of orders and the total revenue (sum of total) per customer country? Sort by revenue, highest first.
+
+Answer in TOON only (no prose, no code fences): result[N]{country,orders,revenue}: followed by one row per item.

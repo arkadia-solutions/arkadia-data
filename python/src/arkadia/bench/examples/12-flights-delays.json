@@ -1,0 +1,160 @@
+{
+  "id": 12,
+  "slug": "flights-delays",
+  "title": "Departures: delayed flights",
+  "description": "Delay is in minutes and times are UTC.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which flights are delayed by more than 30 minutes? Longest delay first.",
+  "answer": {
+    "name": "delayed",
+    "fields": [
+      [
+        "flight",
+        "string"
+      ],
+      [
+        "delay",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "flight": "FR953",
+      "delay": 130
+    },
+    {
+      "flight": "FR998",
+      "delay": 130
+    },
+    {
+      "flight": "LO516",
+      "delay": 75
+    },
+    {
+      "flight": "LH446",
+      "delay": 75
+    },
+    {
+      "flight": "LO112",
+      "delay": 75
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Departures board of Warsaw Chopin airport.",
+      "`departures.sched`: scheduled departure, UTC",
+      "`departures.delay`: delay in minutes"
+    ],
+    "attributes": [
+      "document: $airport=\"WAW\" $date=\"2026-10-30\" #live",
+      "`departures.sched`: $tz=\"UTC\"",
+      "`departures.delay`: $unit=\"min\""
+    ]
+  },
+  "akd_meta": "// $airport=\"WAW\" $date=\"2026-10-30\" #live // /* Departures board of Warsaw Chopin airport. */ <departures:<[flight:string,to:string,sched:string $tz=\"UTC\" /* scheduled departure, UTC */,delay:number $unit=\"min\" /* delay in minutes */]>>([(\"LH587\",\"LHR\",\"6:45\",25),(\"W6724\",\"AMS\",\"7:00\",5),(\"LO516\",\"FRA\",\"8:45\",75),(\"LH446\",\"VIE\",\"9:00\",75),(\"W6599\",\"AMS\",\"10:15\",5),(\"LO471\",\"CDG\",\"11:45\",0),(\"LO394\",\"VIE\",\"12:15\",0),(\"W6499\",\"CDG\",\"13:45\",0),(\"LO349\",\"OSL\",\"14:00\",12),(\"KL124\",\"VIE\",\"15:15\",12),(\"LO112\",\"CDG\",\"16:15\",75),(\"FR953\",\"AMS\",\"17:00\",130),(\"LH253\",\"CDG\",\"18:00\",5),(\"FR998\",\"AMS\",\"19:00\",130),(\"W6520\",\"FRA\",\"20:30\",12),(\"LO924\",\"AMS\",\"21:30\",0)])",
+  "data": {
+    "departures": [
+      {
+        "flight": "LH587",
+        "to": "LHR",
+        "sched": "6:45",
+        "delay": 25
+      },
+      {
+        "flight": "W6724",
+        "to": "AMS",
+        "sched": "7:00",
+        "delay": 5
+      },
+      {
+        "flight": "LO516",
+        "to": "FRA",
+        "sched": "8:45",
+        "delay": 75
+      },
+      {
+        "flight": "LH446",
+        "to": "VIE",
+        "sched": "9:00",
+        "delay": 75
+      },
+      {
+        "flight": "W6599",
+        "to": "AMS",
+        "sched": "10:15",
+        "delay": 5
+      },
+      {
+        "flight": "LO471",
+        "to": "CDG",
+        "sched": "11:45",
+        "delay": 0
+      },
+      {
+        "flight": "LO394",
+        "to": "VIE",
+        "sched": "12:15",
+        "delay": 0
+      },
+      {
+        "flight": "W6499",
+        "to": "CDG",
+        "sched": "13:45",
+        "delay": 0
+      },
+      {
+        "flight": "LO349",
+        "to": "OSL",
+        "sched": "14:00",
+        "delay": 12
+      },
+      {
+        "flight": "KL124",
+        "to": "VIE",
+        "sched": "15:15",
+        "delay": 12
+      },
+      {
+        "flight": "LO112",
+        "to": "CDG",
+        "sched": "16:15",
+        "delay": 75
+      },
+      {
+        "flight": "FR953",
+        "to": "AMS",
+        "sched": "17:00",
+        "delay": 130
+      },
+      {
+        "flight": "LH253",
+        "to": "CDG",
+        "sched": "18:00",
+        "delay": 5
+      },
+      {
+        "flight": "FR998",
+        "to": "AMS",
+        "sched": "19:00",
+        "delay": 130
+      },
+      {
+        "flight": "W6520",
+        "to": "FRA",
+        "sched": "20:30",
+        "delay": 12
+      },
+      {
+        "flight": "LO924",
+        "to": "AMS",
+        "sched": "21:30",
+        "delay": 0
+      }
+    ]
+  }
+}

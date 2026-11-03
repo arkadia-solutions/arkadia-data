@@ -1,0 +1,24 @@
+{
+  "proposal": [
+    {
+      "lead": "L-301",
+      "company": "Globex"
+    },
+    {
+      "lead": "L-312",
+      "company": "Acme"
+    },
+    {
+      "lead": "L-300",
+      "company": "Acme"
+    },
+    {
+      "lead": "L-304",
+      "company": "Hooli"
+    },
+    {
+      "lead": "L-313",
+      "company": "Globex"
+    }
+  ]
+}

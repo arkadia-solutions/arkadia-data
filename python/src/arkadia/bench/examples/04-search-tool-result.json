@@ -1,0 +1,179 @@
+{
+  "id": 4,
+  "slug": "search-tool-result",
+  "title": "Agent tool result: pick the best search hits",
+  "description": "A web_search tool result with 15 hits, as an agent would receive it.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which 3 results best answer 'how should agents manage memory'? Give the rank, the url and a one-sentence reason for each.",
+  "answer": {
+    "name": "result",
+    "fields": [
+      [
+        "rank",
+        "number"
+      ],
+      [
+        "url",
+        "string"
+      ],
+      [
+        "reason",
+        "string"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "rank": 2,
+      "url": "https://example.org/articles/agent-memory-2"
+    },
+    {
+      "rank": 7,
+      "url": "https://example.org/articles/agent-memory-7"
+    },
+    {
+      "rank": 9,
+      "url": "https://example.org/articles/agent-memory-9"
+    }
+  ],
+  "expected_note": "Reasons are free text; ranks and urls should match the hits about agent memory with the highest scores.",
+  "notes": {
+    "comments": [
+      "Raw result of the web_search tool."
+    ],
+    "attributes": [
+      "document: $tool=\"web_search\" $engine=\"brave\""
+    ]
+  },
+  "akd_meta": "// $tool=\"web_search\" $engine=\"brave\" // /* Raw result of the web_search tool. */ <tool:string,query:string,took_ms:number,results:<[rank:number,title:string,url:string,snippet:string,score:number,published:string]>>(\"web_search\",\"managing context for AI agents\",412,[(1,\"How teams manage context window in production (2025)\",\"https://example.org/articles/context-window-1\",\"A practical look at context window: trade-offs, costs and what changed for agents.\",0.973,\"2026-06-14\"),(2,\"How teams manage agent memory in production (2026)\",\"https://example.org/articles/agent-memory-2\",\"A practical look at agent memory: trade-offs, costs and what changed for agents.\",0.946,\"2026-08-12\"),(3,\"How teams manage token budget in production (2024)\",\"https://example.org/articles/token-budget-3\",\"A practical look at token budget: trade-offs, costs and what changed for agents.\",0.919,\"2026-02-16\"),(4,\"How teams manage token budget in production (2025)\",\"https://example.org/articles/token-budget-4\",\"A practical look at token budget: trade-offs, costs and what changed for agents.\",0.892,\"2026-07-26\"),(5,\"How teams manage token budget in production (2026)\",\"https://example.org/articles/token-budget-5\",\"A practical look at token budget: trade-offs, costs and what changed for agents.\",0.865,\"2026-04-19\"),(6,\"How teams manage vector database in production (2024)\",\"https://example.org/articles/vector-database-6\",\"A practical look at vector database: trade-offs, costs and what changed for agents.\",0.838,\"2026-09-28\"),(7,\"How teams manage agent memory in production (2025)\",\"https://example.org/articles/agent-memory-7\",\"A practical look at agent memory: trade-offs, costs and what changed for agents.\",0.811,\"2026-06-10\"),(8,\"How teams manage token budget in production (2026)\",\"https://example.org/articles/token-budget-8\",\"A practical look at token budget: trade-offs, costs and what changed for agents.\",0.784,\"2026-04-21\"),(9,\"How teams manage agent memory in production (2024)\",\"https://example.org/articles/agent-memory-9\",\"A practical look at agent memory: trade-offs, costs and what changed for agents.\",0.757,\"2026-01-09\"),(10,\"How teams manage context window in production (2025)\",\"https://example.org/articles/context-window-10\",\"A practical look at context window: trade-offs, costs and what changed for agents.\",0.73,\"2026-09-21\"),(11,\"How teams manage tool calling in production (2026)\",\"https://example.org/articles/tool-calling-11\",\"A practical look at tool calling: trade-offs, costs and what changed for agents.\",0.703,\"2026-04-20\"),(12,\"How teams manage context window in production (2024)\",\"https://example.org/articles/context-window-12\",\"A practical look at context window: trade-offs, costs and what changed for agents.\",0.676,\"2026-02-25\"),(13,\"How teams manage context window in production (2025)\",\"https://example.org/articles/context-window-13\",\"A practical look at context window: trade-offs, costs and what changed for agents.\",0.649,\"2026-07-28\"),(14,\"How teams manage vector database in production (2026)\",\"https://example.org/articles/vector-database-14\",\"A practical look at vector database: trade-offs, costs and what changed for agents.\",0.622,\"2026-01-06\"),(15,\"How teams manage agent memory in production (2024)\",\"https://example.org/articles/agent-memory-15\",\"A practical look at agent memory: trade-offs, costs and what changed for agents.\",0.595,\"2026-04-23\")])",
+  "data": {
+    "tool": "web_search",
+    "query": "managing context for AI agents",
+    "took_ms": 412,
+    "results": [
+      {
+        "rank": 1,
+        "title": "How teams manage context window in production (2025)",
+        "url": "https://example.org/articles/context-window-1",
+        "snippet": "A practical look at context window: trade-offs, costs and what changed for agents.",
+        "score": 0.973,
+        "published": "2026-06-14"
+      },
+      {
+        "rank": 2,
+        "title": "How teams manage agent memory in production (2026)",
+        "url": "https://example.org/articles/agent-memory-2",
+        "snippet": "A practical look at agent memory: trade-offs, costs and what changed for agents.",
+        "score": 0.946,
+        "published": "2026-08-12"
+      },
+      {
+        "rank": 3,
+        "title": "How teams manage token budget in production (2024)",
+        "url": "https://example.org/articles/token-budget-3",
+        "snippet": "A practical look at token budget: trade-offs, costs and what changed for agents.",
+        "score": 0.919,
+        "published": "2026-02-16"
+      },
+      {
+        "rank": 4,
+        "title": "How teams manage token budget in production (2025)",
+        "url": "https://example.org/articles/token-budget-4",
+        "snippet": "A practical look at token budget: trade-offs, costs and what changed for agents.",
+        "score": 0.892,
+        "published": "2026-07-26"
+      },
+      {
+        "rank": 5,
+        "title": "How teams manage token budget in production (2026)",
+        "url": "https://example.org/articles/token-budget-5",
+        "snippet": "A practical look at token budget: trade-offs, costs and what changed for agents.",
+        "score": 0.865,
+        "published": "2026-04-19"
+      },
+      {
+        "rank": 6,
+        "title": "How teams manage vector database in production (2024)",
+        "url": "https://example.org/articles/vector-database-6",
+        "snippet": "A practical look at vector database: trade-offs, costs and what changed for agents.",
+        "score": 0.838,
+        "published": "2026-09-28"
+      },
+      {
+        "rank": 7,
+        "title": "How teams manage agent memory in production (2025)",
+        "url": "https://example.org/articles/agent-memory-7",
+        "snippet": "A practical look at agent memory: trade-offs, costs and what changed for agents.",
+        "score": 0.811,
+        "published": "2026-06-10"
+      },
+      {
+        "rank": 8,
+        "title": "How teams manage token budget in production (2026)",
+        "url": "https://example.org/articles/token-budget-8",
+        "snippet": "A practical look at token budget: trade-offs, costs and what changed for agents.",
+        "score": 0.784,
+        "published": "2026-04-21"
+      },
+      {
+        "rank": 9,
+        "title": "How teams manage agent memory in production (2024)",
+        "url": "https://example.org/articles/agent-memory-9",
+        "snippet": "A practical look at agent memory: trade-offs, costs and what changed for agents.",
+        "score": 0.757,
+        "published": "2026-01-09"
+      },
+      {
+        "rank": 10,
+        "title": "How teams manage context window in production (2025)",
+        "url": "https://example.org/articles/context-window-10",
+        "snippet": "A practical look at context window: trade-offs, costs and what changed for agents.",
+        "score": 0.73,
+        "published": "2026-09-21"
+      },
+      {
+        "rank": 11,
+        "title": "How teams manage tool calling in production (2026)",
+        "url": "https://example.org/articles/tool-calling-11",
+        "snippet": "A practical look at tool calling: trade-offs, costs and what changed for agents.",
+        "score": 0.703,
+        "published": "2026-04-20"
+      },
+      {
+        "rank": 12,
+        "title": "How teams manage context window in production (2024)",
+        "url": "https://example.org/articles/context-window-12",
+        "snippet": "A practical look at context window: trade-offs, costs and what changed for agents.",
+        "score": 0.676,
+        "published": "2026-02-25"
+      },
+      {
+        "rank": 13,
+        "title": "How teams manage context window in production (2025)",
+        "url": "https://example.org/articles/context-window-13",
+        "snippet": "A practical look at context window: trade-offs, costs and what changed for agents.",
+        "score": 0.649,
+        "published": "2026-07-28"
+      },
+      {
+        "rank": 14,
+        "title": "How teams manage vector database in production (2026)",
+        "url": "https://example.org/articles/vector-database-14",
+        "snippet": "A practical look at vector database: trade-offs, costs and what changed for agents.",
+        "score": 0.622,
+        "published": "2026-01-06"
+      },
+      {
+        "rank": 15,
+        "title": "How teams manage agent memory in production (2024)",
+        "url": "https://example.org/articles/agent-memory-15",
+        "snippet": "A practical look at agent memory: trade-offs, costs and what changed for agents.",
+        "score": 0.595,
+        "published": "2026-04-23"
+      }
+    ]
+  }
+}

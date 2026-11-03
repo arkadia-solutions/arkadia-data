@@ -1,0 +1,18 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+products[4]{sku,name,price,stock}:
+  KB-01,Keyboard,89,14
+  MS-02,Mouse,39.5,0
+  3001,USB cable,null,120
+  HD-10,Headset,129.9,on order
+</data>
+
+Question: Which products cannot be sold right now (no price, no stock, or stock not a number)?
+
+Answer in TOON only (no prose, no code fences): blocked[N]{name}: followed by one row per item.

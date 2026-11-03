@@ -1,0 +1,107 @@
+{
+  "id": 14,
+  "slug": "crypto-movers",
+  "title": "Crypto prices: top movers",
+  "description": "24h change is in basis points (1/100 of a percent) — only the metadata says so.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which 3 coins rose the most in 24 hours? Give the change in percent.",
+  "answer": {
+    "name": "movers",
+    "fields": [
+      [
+        "sym",
+        "string"
+      ],
+      [
+        "change_pct",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "sym": "ADA",
+      "change_pct": 14.59
+    },
+    {
+      "sym": "ATOM",
+      "change_pct": 2.26
+    },
+    {
+      "sym": "ETH",
+      "change_pct": -1.86
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "Prices in USD, change over the last 24 hours.",
+      "`coins.price`: price in US dollars",
+      "`coins.chg`: 24h change in basis points (125 = +1.25 %)"
+    ],
+    "attributes": [
+      "document: $quote=\"USD\" $window=\"24h\"",
+      "`coins.price`: $unit=\"USD\"",
+      "`coins.chg`: $unit=\"bp\""
+    ]
+  },
+  "akd_meta": "// $quote=\"USD\" $window=\"24h\" // /* Prices in USD, change over the last 24 hours. */ <coins:<[sym:string,price:number $unit=\"USD\" /* price in US dollars */,chg:number $unit=\"bp\" /* 24h change in basis points (125 = +1.25 %) */]>>([(\"BTC\",52573.39,-619),(\"ETH\",18246.56,-186),(\"SOL\",15262.19,-210),(\"ADA\",43554.26,1459),(\"DOT\",52881.88,-617),(\"XRP\",6570.86,-408),(\"LTC\",48086.6,-636),(\"AVAX\",30564.45,-1022),(\"LINK\",11487.17,-1127),(\"ATOM\",45941.08,226)])",
+  "data": {
+    "coins": [
+      {
+        "sym": "BTC",
+        "price": 52573.39,
+        "chg": -619
+      },
+      {
+        "sym": "ETH",
+        "price": 18246.56,
+        "chg": -186
+      },
+      {
+        "sym": "SOL",
+        "price": 15262.19,
+        "chg": -210
+      },
+      {
+        "sym": "ADA",
+        "price": 43554.26,
+        "chg": 1459
+      },
+      {
+        "sym": "DOT",
+        "price": 52881.88,
+        "chg": -617
+      },
+      {
+        "sym": "XRP",
+        "price": 6570.86,
+        "chg": -408
+      },
+      {
+        "sym": "LTC",
+        "price": 48086.6,
+        "chg": -636
+      },
+      {
+        "sym": "AVAX",
+        "price": 30564.45,
+        "chg": -1022
+      },
+      {
+        "sym": "LINK",
+        "price": 11487.17,
+        "chg": -1127
+      },
+      {
+        "sym": "ATOM",
+        "price": 45941.08,
+        "chg": 226
+      }
+    ]
+  }
+}

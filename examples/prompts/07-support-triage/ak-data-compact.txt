@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<tickets:<[id:string,priority:string,status:string,customer:string,subject:string,created:string,assignee:string]>>([("T-2401","low","pending","Hooli","Invoice shows wrong VAT","2026-10-08",null),("T-2402","urgent","closed","Wayne","Data missing after import","2026-10-08","Ola"),("T-2403","urgent","open","Acme","Cannot invite new users","2026-10-04",null),("T-2404","low","closed","Stark","Dashboard is slow","2026-10-07",null),("T-2405","normal","pending","Initech","API returns 500 on /orders","2026-10-17","Ola"),("T-2406","normal","open","Hooli","Cannot invite new users","2026-10-10",null),("T-2407","normal","pending","Acme","Dashboard is slow","2026-10-12",null),("T-2408","high","open","Umbrella","Data missing after import","2026-10-04",null),("T-2409","urgent","closed","Umbrella","Cannot invite new users","2026-10-14",null),("T-2410","urgent","open","Hooli","Webhook not delivered","2026-10-05","Ola"),("T-2411","urgent","open","Stark","API returns 500 on /orders","2026-10-16","Piotr"),("T-2412","high","open","Wayne","Invoice shows wrong VAT","2026-10-21",null),("T-2413","high","pending","Hooli","API returns 500 on /orders","2026-10-22","Kasia"),("T-2414","urgent","closed","Wayne","API returns 500 on /orders","2026-10-14","Piotr"),("T-2415","normal","pending","Acme","Login fails after password reset","2026-10-05",null),("T-2416","urgent","closed","Initech","Webhook not delivered","2026-10-09",null),("T-2417","high","closed","Wayne","API returns 500 on /orders","2026-10-18","Ola"),("T-2418","normal","pending","Umbrella","Invoice shows wrong VAT","2026-10-15","Kasia"),("T-2419","high","open","Umbrella","Data missing after import","2026-10-03","Kasia"),("T-2420","high","pending","Acme","Webhook not delivered","2026-10-14","Piotr"),("T-2421","high","open","Acme","Login fails after password reset","2026-10-15","Ola"),("T-2422","urgent","open","Globex","Invoice shows wrong VAT","2026-10-20","Ola"),("T-2423","urgent","pending","Stark","Dashboard is slow","2026-10-05","Ola"),("T-2424","normal","closed","Stark","Export to Excel times out","2026-10-18","Piotr"),("T-2425","high","open","Hooli","Cannot invite new users","2026-10-03",null)])
+</data>
+
+Question: Which open tickets with priority high or urgent have no assignee? Sort them by created date, oldest first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<result:<[id:string,priority:string,customer:string,subject:string,created:string]>>

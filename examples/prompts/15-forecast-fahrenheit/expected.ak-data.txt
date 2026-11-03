@@ -1,0 +1,1 @@
+<cold:<[day:string,hi_c:number]>>([("Mon",3.9),("Tue",9.4),("Wed",3.3),("Fri",4.4)])

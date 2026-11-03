@@ -1,0 +1,40 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- Grades on the Polish scale: 1 (fail) to 6 (excellent).
+- `students.math`: mathematics
+- `students.pl`: Polish language
+- `students.eng`: English
+
+Attributes of the data:
+- document: $term="2026/27-1" #school
+- `students.math`: $scale="1-6"
+- `students.pl`: $scale="1-6"
+- `students.eng`: $scale="1-6"
+
+<data>
+students[14]{student,class,math,pl,eng}:
+  Ada,3A,3,5,3
+  Alan,3B,3,4,4
+  Grace,3A,5,4,2
+  Linus,3B,4,4,5
+  Margaret,3A,4,4,3
+  Dennis,3B,3,5,4
+  Barbara,3A,6,4,3
+  Ken,3B,3,3,2
+  Radia,3A,3,3,3
+  Edsger,3B,3,5,5
+  Hedy,3A,4,4,4
+  Tim,3B,3,3,6
+  Katherine,3A,6,5,2
+  John,3B,6,3,3
+</data>
+
+Question: What is the average math grade in each class, rounded to 2 decimals?
+
+Answer in TOON only (no prose, no code fences): classes[N]{class,avg_math}: followed by one row per item.

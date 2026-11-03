@@ -1,0 +1,1 @@
+<result:<[day:string,start:string,end:string]>>([("Tue","10:00","11:00")])

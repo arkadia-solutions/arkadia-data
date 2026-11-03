@@ -1,0 +1,1 @@
+<top:<[team:string,goals:number]>>([("Górnik",10)])

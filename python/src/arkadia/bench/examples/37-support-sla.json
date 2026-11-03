@@ -1,0 +1,163 @@
+{
+  "id": 37,
+  "slug": "support-sla",
+  "title": "Support: SLA breaches",
+  "description": "SLA limits per priority are in the metadata.",
+  "tags": [
+    "metadata",
+    "needs metadata"
+  ],
+  "needs_meta": true,
+  "question": "Which tickets have breached their SLA, and by how many hours?",
+  "answer": {
+    "name": "breached",
+    "fields": [
+      [
+        "ticket",
+        "string"
+      ],
+      [
+        "over_h",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "ticket": "T-900",
+      "over_h": 29
+    },
+    {
+      "ticket": "T-901",
+      "over_h": 25
+    },
+    {
+      "ticket": "T-903",
+      "over_h": 28
+    },
+    {
+      "ticket": "T-905",
+      "over_h": 52
+    },
+    {
+      "ticket": "T-906",
+      "over_h": 37
+    },
+    {
+      "ticket": "T-907",
+      "over_h": 44
+    },
+    {
+      "ticket": "T-909",
+      "over_h": 58
+    },
+    {
+      "ticket": "T-910",
+      "over_h": 19
+    },
+    {
+      "ticket": "T-913",
+      "over_h": 92
+    },
+    {
+      "ticket": "T-914",
+      "over_h": 6
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h",
+      "`tickets.open_h`: hours since the ticket was opened"
+    ],
+    "attributes": [
+      "`tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"",
+      "`tickets.open_h`: $unit=\"h\""
+    ]
+  },
+  "akd_meta": "<tickets:<[ticket:string,prio:string $sla_hours=\"P1=4,P2=24,P3=72,P4=168\" /* SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h */,open_h:number $unit=\"h\" /* hours since the ticket was opened */]>>([(\"T-900\",\"P1\",33),(\"T-901\",\"P1\",29),(\"T-902\",\"P3\",48),(\"T-903\",\"P2\",52),(\"T-904\",\"P4\",105),(\"T-905\",\"P2\",76),(\"T-906\",\"P3\",109),(\"T-907\",\"P2\",68),(\"T-908\",\"P4\",51),(\"T-909\",\"P2\",82),(\"T-910\",\"P3\",91),(\"T-911\",\"P2\",10),(\"T-912\",\"P4\",89),(\"T-913\",\"P2\",116),(\"T-914\",\"P3\",78),(\"T-915\",\"P4\",23)])",
+  "data": {
+    "tickets": [
+      {
+        "ticket": "T-900",
+        "prio": "P1",
+        "open_h": 33
+      },
+      {
+        "ticket": "T-901",
+        "prio": "P1",
+        "open_h": 29
+      },
+      {
+        "ticket": "T-902",
+        "prio": "P3",
+        "open_h": 48
+      },
+      {
+        "ticket": "T-903",
+        "prio": "P2",
+        "open_h": 52
+      },
+      {
+        "ticket": "T-904",
+        "prio": "P4",
+        "open_h": 105
+      },
+      {
+        "ticket": "T-905",
+        "prio": "P2",
+        "open_h": 76
+      },
+      {
+        "ticket": "T-906",
+        "prio": "P3",
+        "open_h": 109
+      },
+      {
+        "ticket": "T-907",
+        "prio": "P2",
+        "open_h": 68
+      },
+      {
+        "ticket": "T-908",
+        "prio": "P4",
+        "open_h": 51
+      },
+      {
+        "ticket": "T-909",
+        "prio": "P2",
+        "open_h": 82
+      },
+      {
+        "ticket": "T-910",
+        "prio": "P3",
+        "open_h": 91
+      },
+      {
+        "ticket": "T-911",
+        "prio": "P2",
+        "open_h": 10
+      },
+      {
+        "ticket": "T-912",
+        "prio": "P4",
+        "open_h": 89
+      },
+      {
+        "ticket": "T-913",
+        "prio": "P2",
+        "open_h": 116
+      },
+      {
+        "ticket": "T-914",
+        "prio": "P3",
+        "open_h": 78
+      },
+      {
+        "ticket": "T-915",
+        "prio": "P4",
+        "open_h": 23
+      }
+    ]
+  }
+}

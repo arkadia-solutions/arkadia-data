@@ -1,0 +1,489 @@
+The data below is in JSON.
+
+<data>
+{
+  "orders": [
+    {
+      "id": "ORD-1001",
+      "status": "paid",
+      "customer": {
+        "id": 2,
+        "name": "Hedy Johnson",
+        "country": "US"
+      },
+      "items": [
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 3,
+          "price": 199.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 2,
+          "price": 39.5
+        },
+        {
+          "sku": "CB-USB",
+          "title": "USB-C cable",
+          "qty": 3,
+          "price": 12.0
+        },
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 1,
+          "price": 89.0
+        }
+      ],
+      "total": 801.0,
+      "note": "Gift wrap, please"
+    },
+    {
+      "id": "ORD-1002",
+      "status": "paid",
+      "customer": {
+        "id": 25,
+        "name": "Ada Torvalds",
+        "country": "CA"
+      },
+      "items": [
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 3,
+          "price": 39.5
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 1,
+          "price": 129.9
+        },
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 1,
+          "price": 319.0
+        }
+      ],
+      "total": 567.4,
+      "note": "Invoice to company"
+    },
+    {
+      "id": "ORD-1003",
+      "status": "pending",
+      "customer": {
+        "id": 26,
+        "name": "Dennis Lovelace",
+        "country": "DE"
+      },
+      "items": [
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 3,
+          "price": 199.0
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 2,
+          "price": 129.9
+        },
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 1,
+          "price": 89.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 2,
+          "price": 39.5
+        }
+      ],
+      "total": 1024.8,
+      "note": null
+    },
+    {
+      "id": "ORD-1004",
+      "status": "pending",
+      "customer": {
+        "id": 53,
+        "name": "Katherine Allen",
+        "country": "PT"
+      },
+      "items": [
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 3,
+          "price": 89.0
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 1,
+          "price": 199.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 2,
+          "price": 39.5
+        },
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 3,
+          "price": 319.0
+        }
+      ],
+      "total": 1502.0,
+      "note": null
+    },
+    {
+      "id": "ORD-1005",
+      "status": "paid",
+      "customer": {
+        "id": 13,
+        "name": "Donald Lamarr",
+        "country": "PT"
+      },
+      "items": [
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 1,
+          "price": 129.9
+        },
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 3,
+          "price": 319.0
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 1,
+          "price": 199.0
+        },
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 2,
+          "price": 89.0
+        }
+      ],
+      "total": 1463.9,
+      "note": "Leave at the door"
+    },
+    {
+      "id": "ORD-1006",
+      "status": "pending",
+      "customer": {
+        "id": 16,
+        "name": "Donald Torvalds",
+        "country": "US"
+      },
+      "items": [
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 3,
+          "price": 129.9
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 1,
+          "price": 39.5
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 3,
+          "price": 199.0
+        }
+      ],
+      "total": 1026.2,
+      "note": "Gift wrap, please"
+    },
+    {
+      "id": "ORD-1007",
+      "status": "shipped",
+      "customer": {
+        "id": 21,
+        "name": "Katherine Lamarr",
+        "country": "PL"
+      },
+      "items": [
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 1,
+          "price": 89.0
+        },
+        {
+          "sku": "CB-USB",
+          "title": "USB-C cable",
+          "qty": 3,
+          "price": 12.0
+        },
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 2,
+          "price": 319.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 2,
+          "price": 39.5
+        }
+      ],
+      "total": 842.0,
+      "note": null
+    },
+    {
+      "id": "ORD-1008",
+      "status": "delivered",
+      "customer": {
+        "id": 15,
+        "name": "Barbara Lamarr",
+        "country": "PT"
+      },
+      "items": [
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 2,
+          "price": 89.0
+        }
+      ],
+      "total": 178.0,
+      "note": "Gift wrap, please"
+    },
+    {
+      "id": "ORD-1009",
+      "status": "paid",
+      "customer": {
+        "id": 50,
+        "name": "Margaret Allen",
+        "country": "CA"
+      },
+      "items": [
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 2,
+          "price": 319.0
+        },
+        {
+          "sku": "CB-USB",
+          "title": "USB-C cable",
+          "qty": 3,
+          "price": 12.0
+        }
+      ],
+      "total": 674.0,
+      "note": "Invoice to company"
+    },
+    {
+      "id": "ORD-1010",
+      "status": "paid",
+      "customer": {
+        "id": 47,
+        "name": "Edsger Lovelace",
+        "country": "US"
+      },
+      "items": [
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 3,
+          "price": 39.5
+        }
+      ],
+      "total": 118.5,
+      "note": "Invoice to company"
+    },
+    {
+      "id": "ORD-1011",
+      "status": "shipped",
+      "customer": {
+        "id": 33,
+        "name": "Barbara Johnson",
+        "country": "PT"
+      },
+      "items": [
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 2,
+          "price": 319.0
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 3,
+          "price": 199.0
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 3,
+          "price": 129.9
+        }
+      ],
+      "total": 1624.7,
+      "note": "Invoice to company"
+    },
+    {
+      "id": "ORD-1012",
+      "status": "paid",
+      "customer": {
+        "id": 17,
+        "name": "Donald Liskov",
+        "country": "GB"
+      },
+      "items": [
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 1,
+          "price": 89.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 2,
+          "price": 39.5
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 1,
+          "price": 199.0
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 3,
+          "price": 129.9
+        }
+      ],
+      "total": 756.7,
+      "note": null
+    },
+    {
+      "id": "ORD-1013",
+      "status": "refunded",
+      "customer": {
+        "id": 55,
+        "name": "Dennis Liskov",
+        "country": "DE"
+      },
+      "items": [
+        {
+          "sku": "CB-USB",
+          "title": "USB-C cable",
+          "qty": 3,
+          "price": 12.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 3,
+          "price": 39.5
+        },
+        {
+          "sku": "KB-01",
+          "title": "Keyboard",
+          "qty": 2,
+          "price": 89.0
+        }
+      ],
+      "total": 332.5,
+      "note": "Gift wrap, please"
+    },
+    {
+      "id": "ORD-1014",
+      "status": "shipped",
+      "customer": {
+        "id": 34,
+        "name": "Donald Thompson",
+        "country": "DE"
+      },
+      "items": [
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 3,
+          "price": 39.5
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 3,
+          "price": 129.9
+        },
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 1,
+          "price": 199.0
+        }
+      ],
+      "total": 707.2,
+      "note": null
+    },
+    {
+      "id": "ORD-1015",
+      "status": "delivered",
+      "customer": {
+        "id": 43,
+        "name": "Dennis Torvalds",
+        "country": "PT"
+      },
+      "items": [
+        {
+          "sku": "DK-05",
+          "title": "Dock",
+          "qty": 2,
+          "price": 199.0
+        },
+        {
+          "sku": "MS-02",
+          "title": "Mouse",
+          "qty": 3,
+          "price": 39.5
+        },
+        {
+          "sku": "MN-27",
+          "title": "Monitor 27\"",
+          "qty": 1,
+          "price": 319.0
+        },
+        {
+          "sku": "HD-10",
+          "title": "Headset",
+          "qty": 3,
+          "price": 129.9
+        }
+      ],
+      "total": 1225.2,
+      "note": null
+    }
+  ]
+}
+</data>
+
+Question: For orders with status paid, shipped or delivered, what is the number of orders and the total revenue (sum of total) per customer country? Sort by revenue, highest first.
+
+Answer with JSON only (no prose): {"result": [{"country": <string>, "orders": <number>, "revenue": <number>}, ...]}

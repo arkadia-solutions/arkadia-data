@@ -1,0 +1,16 @@
+The data below is in AK-DATA (compact, single-line form).
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+<events:<[ts:string,level:string,service:string,msg:string,ms:number]>>([("12:00:01","info","api","GET /orders",42),("12:00:03","error","billing","card declined",380),("12:00:04","warn","api","slow query",1210),("12:00:07","error","billing","timeout",5000),("12:00:09","info","auth","login ok",18),("12:00:11","error","api","upstream 502",2210),("12:00:12","error","billing","timeout",5000),("12:00:15","info","api","GET /users",37)])
+</data>
+
+Question: How many errors does each service have? Most errors first.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<errors:<[service:string,errors:number]>>

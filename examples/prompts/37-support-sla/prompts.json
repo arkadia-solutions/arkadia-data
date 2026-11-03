@@ -1,0 +1,165 @@
+{
+ "id": 37,
+ "slug": "support-sla",
+ "title": "Support: SLA breaches",
+ "description": "SLA limits per priority are in the metadata.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which tickets have breached their SLA, and by how many hours?",
+ "tokens": {
+  "json": {
+   "none": 528,
+   "comments": 580,
+   "attributes": 571,
+   "both": 623
+  },
+  "toon": {
+   "none": 291,
+   "comments": 343,
+   "attributes": 334,
+   "both": 386
+  },
+  "akd": {
+   "none": 440,
+   "comments": 479,
+   "attributes": 468,
+   "both": 505
+  },
+  "akcd": {
+   "none": 396,
+   "comments": 432,
+   "attributes": 420,
+   "both": 458
+  }
+ },
+ "answer": {
+  "name": "breached",
+  "fields": [
+   [
+    "ticket",
+    "string"
+   ],
+   [
+    "over_h",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "ticket": "T-900",
+   "over_h": 29
+  },
+  {
+   "ticket": "T-901",
+   "over_h": 25
+  },
+  {
+   "ticket": "T-903",
+   "over_h": 28
+  },
+  {
+   "ticket": "T-905",
+   "over_h": 52
+  },
+  {
+   "ticket": "T-906",
+   "over_h": 37
+  },
+  {
+   "ticket": "T-907",
+   "over_h": 44
+  },
+  {
+   "ticket": "T-909",
+   "over_h": 58
+  },
+  {
+   "ticket": "T-910",
+   "over_h": 19
+  },
+  {
+   "ticket": "T-913",
+   "over_h": 92
+  },
+  {
+   "ticket": "T-914",
+   "over_h": 6
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h",
+   "`tickets.open_h`: hours since the ticket was opened"
+  ],
+  "attributes": [
+   "`tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"",
+   "`tickets.open_h`: $unit=\"h\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"ticket\": \"T-900\",\n      \"prio\": \"P1\",\n      \"open_h\": 33\n    },\n    {\n      \"ticket\": \"T-901\",\n      \"prio\": \"P1\",\n      \"open_h\": 29\n    },\n    {\n      \"ticket\": \"T-902\",\n      \"prio\": \"P3\",\n      \"open_h\": 48\n    },\n    {\n      \"ticket\": \"T-903\",\n      \"prio\": \"P2\",\n      \"open_h\": 52\n    },\n    {\n      \"ticket\": \"T-904\",\n      \"prio\": \"P4\",\n      \"open_h\": 105\n    },\n    {\n      \"ticket\": \"T-905\",\n      \"prio\": \"P2\",\n      \"open_h\": 76\n    },\n    {\n      \"ticket\": \"T-906\",\n      \"prio\": \"P3\",\n      \"open_h\": 109\n    },\n    {\n      \"ticket\": \"T-907\",\n      \"prio\": \"P2\",\n      \"open_h\": 68\n    },\n    {\n      \"ticket\": \"T-908\",\n      \"prio\": \"P4\",\n      \"open_h\": 51\n    },\n    {\n      \"ticket\": \"T-909\",\n      \"prio\": \"P2\",\n      \"open_h\": 82\n    },\n    {\n      \"ticket\": \"T-910\",\n      \"prio\": \"P3\",\n      \"open_h\": 91\n    },\n    {\n      \"ticket\": \"T-911\",\n      \"prio\": \"P2\",\n      \"open_h\": 10\n    },\n    {\n      \"ticket\": \"T-912\",\n      \"prio\": \"P4\",\n      \"open_h\": 89\n    },\n    {\n      \"ticket\": \"T-913\",\n      \"prio\": \"P2\",\n      \"open_h\": 116\n    },\n    {\n      \"ticket\": \"T-914\",\n      \"prio\": \"P3\",\n      \"open_h\": 78\n    },\n    {\n      \"ticket\": \"T-915\",\n      \"prio\": \"P4\",\n      \"open_h\": 23\n    }\n  ]\n}\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer with JSON only (no prose): {\"breached\": [{\"ticket\": <string>, \"over_h\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h\n- `tickets.open_h`: hours since the ticket was opened\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"ticket\": \"T-900\",\n      \"prio\": \"P1\",\n      \"open_h\": 33\n    },\n    {\n      \"ticket\": \"T-901\",\n      \"prio\": \"P1\",\n      \"open_h\": 29\n    },\n    {\n      \"ticket\": \"T-902\",\n      \"prio\": \"P3\",\n      \"open_h\": 48\n    },\n    {\n      \"ticket\": \"T-903\",\n      \"prio\": \"P2\",\n      \"open_h\": 52\n    },\n    {\n      \"ticket\": \"T-904\",\n      \"prio\": \"P4\",\n      \"open_h\": 105\n    },\n    {\n      \"ticket\": \"T-905\",\n      \"prio\": \"P2\",\n      \"open_h\": 76\n    },\n    {\n      \"ticket\": \"T-906\",\n      \"prio\": \"P3\",\n      \"open_h\": 109\n    },\n    {\n      \"ticket\": \"T-907\",\n      \"prio\": \"P2\",\n      \"open_h\": 68\n    },\n    {\n      \"ticket\": \"T-908\",\n      \"prio\": \"P4\",\n      \"open_h\": 51\n    },\n    {\n      \"ticket\": \"T-909\",\n      \"prio\": \"P2\",\n      \"open_h\": 82\n    },\n    {\n      \"ticket\": \"T-910\",\n      \"prio\": \"P3\",\n      \"open_h\": 91\n    },\n    {\n      \"ticket\": \"T-911\",\n      \"prio\": \"P2\",\n      \"open_h\": 10\n    },\n    {\n      \"ticket\": \"T-912\",\n      \"prio\": \"P4\",\n      \"open_h\": 89\n    },\n    {\n      \"ticket\": \"T-913\",\n      \"prio\": \"P2\",\n      \"open_h\": 116\n    },\n    {\n      \"ticket\": \"T-914\",\n      \"prio\": \"P3\",\n      \"open_h\": 78\n    },\n    {\n      \"ticket\": \"T-915\",\n      \"prio\": \"P4\",\n      \"open_h\": 23\n    }\n  ]\n}\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer with JSON only (no prose): {\"breached\": [{\"ticket\": <string>, \"over_h\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"\n- `tickets.open_h`: $unit=\"h\"\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"ticket\": \"T-900\",\n      \"prio\": \"P1\",\n      \"open_h\": 33\n    },\n    {\n      \"ticket\": \"T-901\",\n      \"prio\": \"P1\",\n      \"open_h\": 29\n    },\n    {\n      \"ticket\": \"T-902\",\n      \"prio\": \"P3\",\n      \"open_h\": 48\n    },\n    {\n      \"ticket\": \"T-903\",\n      \"prio\": \"P2\",\n      \"open_h\": 52\n    },\n    {\n      \"ticket\": \"T-904\",\n      \"prio\": \"P4\",\n      \"open_h\": 105\n    },\n    {\n      \"ticket\": \"T-905\",\n      \"prio\": \"P2\",\n      \"open_h\": 76\n    },\n    {\n      \"ticket\": \"T-906\",\n      \"prio\": \"P3\",\n      \"open_h\": 109\n    },\n    {\n      \"ticket\": \"T-907\",\n      \"prio\": \"P2\",\n      \"open_h\": 68\n    },\n    {\n      \"ticket\": \"T-908\",\n      \"prio\": \"P4\",\n      \"open_h\": 51\n    },\n    {\n      \"ticket\": \"T-909\",\n      \"prio\": \"P2\",\n      \"open_h\": 82\n    },\n    {\n      \"ticket\": \"T-910\",\n      \"prio\": \"P3\",\n      \"open_h\": 91\n    },\n    {\n      \"ticket\": \"T-911\",\n      \"prio\": \"P2\",\n      \"open_h\": 10\n    },\n    {\n      \"ticket\": \"T-912\",\n      \"prio\": \"P4\",\n      \"open_h\": 89\n    },\n    {\n      \"ticket\": \"T-913\",\n      \"prio\": \"P2\",\n      \"open_h\": 116\n    },\n    {\n      \"ticket\": \"T-914\",\n      \"prio\": \"P3\",\n      \"open_h\": 78\n    },\n    {\n      \"ticket\": \"T-915\",\n      \"prio\": \"P4\",\n      \"open_h\": 23\n    }\n  ]\n}\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer with JSON only (no prose): {\"breached\": [{\"ticket\": <string>, \"over_h\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h\n- `tickets.open_h`: hours since the ticket was opened\n\nAttributes of the data:\n- `tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"\n- `tickets.open_h`: $unit=\"h\"\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"ticket\": \"T-900\",\n      \"prio\": \"P1\",\n      \"open_h\": 33\n    },\n    {\n      \"ticket\": \"T-901\",\n      \"prio\": \"P1\",\n      \"open_h\": 29\n    },\n    {\n      \"ticket\": \"T-902\",\n      \"prio\": \"P3\",\n      \"open_h\": 48\n    },\n    {\n      \"ticket\": \"T-903\",\n      \"prio\": \"P2\",\n      \"open_h\": 52\n    },\n    {\n      \"ticket\": \"T-904\",\n      \"prio\": \"P4\",\n      \"open_h\": 105\n    },\n    {\n      \"ticket\": \"T-905\",\n      \"prio\": \"P2\",\n      \"open_h\": 76\n    },\n    {\n      \"ticket\": \"T-906\",\n      \"prio\": \"P3\",\n      \"open_h\": 109\n    },\n    {\n      \"ticket\": \"T-907\",\n      \"prio\": \"P2\",\n      \"open_h\": 68\n    },\n    {\n      \"ticket\": \"T-908\",\n      \"prio\": \"P4\",\n      \"open_h\": 51\n    },\n    {\n      \"ticket\": \"T-909\",\n      \"prio\": \"P2\",\n      \"open_h\": 82\n    },\n    {\n      \"ticket\": \"T-910\",\n      \"prio\": \"P3\",\n      \"open_h\": 91\n    },\n    {\n      \"ticket\": \"T-911\",\n      \"prio\": \"P2\",\n      \"open_h\": 10\n    },\n    {\n      \"ticket\": \"T-912\",\n      \"prio\": \"P4\",\n      \"open_h\": 89\n    },\n    {\n      \"ticket\": \"T-913\",\n      \"prio\": \"P2\",\n      \"open_h\": 116\n    },\n    {\n      \"ticket\": \"T-914\",\n      \"prio\": \"P3\",\n      \"open_h\": 78\n    },\n    {\n      \"ticket\": \"T-915\",\n      \"prio\": \"P4\",\n      \"open_h\": 23\n    }\n  ]\n}\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer with JSON only (no prose): {\"breached\": [{\"ticket\": <string>, \"over_h\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ntickets[16]{ticket,prio,open_h}:\n  T-900,P1,33\n  T-901,P1,29\n  T-902,P3,48\n  T-903,P2,52\n  T-904,P4,105\n  T-905,P2,76\n  T-906,P3,109\n  T-907,P2,68\n  T-908,P4,51\n  T-909,P2,82\n  T-910,P3,91\n  T-911,P2,10\n  T-912,P4,89\n  T-913,P2,116\n  T-914,P3,78\n  T-915,P4,23\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in TOON only (no prose, no code fences): breached[N]{ticket,over_h}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h\n- `tickets.open_h`: hours since the ticket was opened\n\n<data>\ntickets[16]{ticket,prio,open_h}:\n  T-900,P1,33\n  T-901,P1,29\n  T-902,P3,48\n  T-903,P2,52\n  T-904,P4,105\n  T-905,P2,76\n  T-906,P3,109\n  T-907,P2,68\n  T-908,P4,51\n  T-909,P2,82\n  T-910,P3,91\n  T-911,P2,10\n  T-912,P4,89\n  T-913,P2,116\n  T-914,P3,78\n  T-915,P4,23\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in TOON only (no prose, no code fences): breached[N]{ticket,over_h}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"\n- `tickets.open_h`: $unit=\"h\"\n\n<data>\ntickets[16]{ticket,prio,open_h}:\n  T-900,P1,33\n  T-901,P1,29\n  T-902,P3,48\n  T-903,P2,52\n  T-904,P4,105\n  T-905,P2,76\n  T-906,P3,109\n  T-907,P2,68\n  T-908,P4,51\n  T-909,P2,82\n  T-910,P3,91\n  T-911,P2,10\n  T-912,P4,89\n  T-913,P2,116\n  T-914,P3,78\n  T-915,P4,23\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in TOON only (no prose, no code fences): breached[N]{ticket,over_h}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h\n- `tickets.open_h`: hours since the ticket was opened\n\nAttributes of the data:\n- `tickets.prio`: $sla_hours=\"P1=4,P2=24,P3=72,P4=168\"\n- `tickets.open_h`: $unit=\"h\"\n\n<data>\ntickets[16]{ticket,prio,open_h}:\n  T-900,P1,33\n  T-901,P1,29\n  T-902,P3,48\n  T-903,P2,52\n  T-904,P4,105\n  T-905,P2,76\n  T-906,P3,109\n  T-907,P2,68\n  T-908,P4,51\n  T-909,P2,82\n  T-910,P3,91\n  T-911,P2,10\n  T-912,P4,89\n  T-913,P2,116\n  T-914,P3,78\n  T-915,P4,23\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in TOON only (no prose, no code fences): breached[N]{ticket,over_h}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[ticket:string, prio:string, open_h:number]>>\n([\n  (\"T-900\", \"P1\", 33),\n  (\"T-901\", \"P1\", 29),\n  (\"T-902\", \"P3\", 48),\n  (\"T-903\", \"P2\", 52),\n  (\"T-904\", \"P4\", 105),\n  (\"T-905\", \"P2\", 76),\n  (\"T-906\", \"P3\", 109),\n  (\"T-907\", \"P2\", 68),\n  (\"T-908\", \"P4\", 51),\n  (\"T-909\", \"P2\", 82),\n  (\"T-910\", \"P3\", 91),\n  (\"T-911\", \"P2\", 10),\n  (\"T-912\", \"P4\", 89),\n  (\"T-913\", \"P2\", 116),\n  (\"T-914\", \"P3\", 78),\n  (\"T-915\", \"P4\", 23)\n])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[\n  ticket:string,\n  prio:string /* SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h */,\n  open_h:number /* hours since the ticket was opened */\n]>>\n([\n  (\"T-900\", \"P1\", 33),\n  (\"T-901\", \"P1\", 29),\n  (\"T-902\", \"P3\", 48),\n  (\"T-903\", \"P2\", 52),\n  (\"T-904\", \"P4\", 105),\n  (\"T-905\", \"P2\", 76),\n  (\"T-906\", \"P3\", 109),\n  (\"T-907\", \"P2\", 68),\n  (\"T-908\", \"P4\", 51),\n  (\"T-909\", \"P2\", 82),\n  (\"T-910\", \"P3\", 91),\n  (\"T-911\", \"P2\", 10),\n  (\"T-912\", \"P4\", 89),\n  (\"T-913\", \"P2\", 116),\n  (\"T-914\", \"P3\", 78),\n  (\"T-915\", \"P4\", 23)\n])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[\n  ticket:string,\n  prio:string $sla_hours=\"P1=4,P2=24,P3=72,P4=168\",\n  open_h:number $unit=\"h\"\n]>>\n([\n  (\"T-900\", \"P1\", 33),\n  (\"T-901\", \"P1\", 29),\n  (\"T-902\", \"P3\", 48),\n  (\"T-903\", \"P2\", 52),\n  (\"T-904\", \"P4\", 105),\n  (\"T-905\", \"P2\", 76),\n  (\"T-906\", \"P3\", 109),\n  (\"T-907\", \"P2\", 68),\n  (\"T-908\", \"P4\", 51),\n  (\"T-909\", \"P2\", 82),\n  (\"T-910\", \"P3\", 91),\n  (\"T-911\", \"P2\", 10),\n  (\"T-912\", \"P4\", 89),\n  (\"T-913\", \"P2\", 116),\n  (\"T-914\", \"P3\", 78),\n  (\"T-915\", \"P4\", 23)\n])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[\n  ticket:string,\n  prio:string $sla_hours=\"P1=4,P2=24,P3=72,P4=168\" /* SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h */,\n  open_h:number $unit=\"h\" /* hours since the ticket was opened */\n]>>\n([\n  (\"T-900\", \"P1\", 33),\n  (\"T-901\", \"P1\", 29),\n  (\"T-902\", \"P3\", 48),\n  (\"T-903\", \"P2\", 52),\n  (\"T-904\", \"P4\", 105),\n  (\"T-905\", \"P2\", 76),\n  (\"T-906\", \"P3\", 109),\n  (\"T-907\", \"P2\", 68),\n  (\"T-908\", \"P4\", 51),\n  (\"T-909\", \"P2\", 82),\n  (\"T-910\", \"P3\", 91),\n  (\"T-911\", \"P2\", 10),\n  (\"T-912\", \"P4\", 89),\n  (\"T-913\", \"P2\", 116),\n  (\"T-914\", \"P3\", 78),\n  (\"T-915\", \"P4\", 23)\n])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[ticket:string,prio:string,open_h:number]>>([(\"T-900\",\"P1\",33),(\"T-901\",\"P1\",29),(\"T-902\",\"P3\",48),(\"T-903\",\"P2\",52),(\"T-904\",\"P4\",105),(\"T-905\",\"P2\",76),(\"T-906\",\"P3\",109),(\"T-907\",\"P2\",68),(\"T-908\",\"P4\",51),(\"T-909\",\"P2\",82),(\"T-910\",\"P3\",91),(\"T-911\",\"P2\",10),(\"T-912\",\"P4\",89),(\"T-913\",\"P2\",116),(\"T-914\",\"P3\",78),(\"T-915\",\"P4\",23)])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[ticket:string,prio:string /* SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h */,open_h:number /* hours since the ticket was opened */]>>([(\"T-900\",\"P1\",33),(\"T-901\",\"P1\",29),(\"T-902\",\"P3\",48),(\"T-903\",\"P2\",52),(\"T-904\",\"P4\",105),(\"T-905\",\"P2\",76),(\"T-906\",\"P3\",109),(\"T-907\",\"P2\",68),(\"T-908\",\"P4\",51),(\"T-909\",\"P2\",82),(\"T-910\",\"P3\",91),(\"T-911\",\"P2\",10),(\"T-912\",\"P4\",89),(\"T-913\",\"P2\",116),(\"T-914\",\"P3\",78),(\"T-915\",\"P4\",23)])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[ticket:string,prio:string $sla_hours=\"P1=4,P2=24,P3=72,P4=168\",open_h:number $unit=\"h\"]>>([(\"T-900\",\"P1\",33),(\"T-901\",\"P1\",29),(\"T-902\",\"P3\",48),(\"T-903\",\"P2\",52),(\"T-904\",\"P4\",105),(\"T-905\",\"P2\",76),(\"T-906\",\"P3\",109),(\"T-907\",\"P2\",68),(\"T-908\",\"P4\",51),(\"T-909\",\"P2\",82),(\"T-910\",\"P3\",91),(\"T-911\",\"P2\",10),(\"T-912\",\"P4\",89),(\"T-913\",\"P2\",116),(\"T-914\",\"P3\",78),(\"T-915\",\"P4\",23)])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[ticket:string,prio:string $sla_hours=\"P1=4,P2=24,P3=72,P4=168\" /* SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h */,open_h:number $unit=\"h\" /* hours since the ticket was opened */]>>([(\"T-900\",\"P1\",33),(\"T-901\",\"P1\",29),(\"T-902\",\"P3\",48),(\"T-903\",\"P2\",52),(\"T-904\",\"P4\",105),(\"T-905\",\"P2\",76),(\"T-906\",\"P3\",109),(\"T-907\",\"P2\",68),(\"T-908\",\"P4\",51),(\"T-909\",\"P2\",82),(\"T-910\",\"P3\",91),(\"T-911\",\"P2\",10),(\"T-912\",\"P4\",89),(\"T-913\",\"P2\",116),(\"T-914\",\"P3\",78),(\"T-915\",\"P4\",23)])\n</data>\n\nQuestion: Which tickets have breached their SLA, and by how many hours?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<breached:<[ticket:string,over_h:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 473,
+   "comments": 473,
+   "attributes": 473,
+   "both": 473
+  },
+  "toon": {
+   "none": 155,
+   "comments": 155,
+   "attributes": 155,
+   "both": 155
+  },
+  "akd": {
+   "none": 226,
+   "comments": 265,
+   "attributes": 254,
+   "both": 291
+  },
+  "akcd": {
+   "none": 176,
+   "comments": 212,
+   "attributes": 200,
+   "both": 238
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"breached\": [\n    {\n      \"ticket\": \"T-900\",\n      \"over_h\": 29\n    },\n    {\n      \"ticket\": \"T-901\",\n      \"over_h\": 25\n    },\n    {\n      \"ticket\": \"T-903\",\n      \"over_h\": 28\n    },\n    {\n      \"ticket\": \"T-905\",\n      \"over_h\": 52\n    },\n    {\n      \"ticket\": \"T-906\",\n      \"over_h\": 37\n    },\n    {\n      \"ticket\": \"T-907\",\n      \"over_h\": 44\n    },\n    {\n      \"ticket\": \"T-909\",\n      \"over_h\": 58\n    },\n    {\n      \"ticket\": \"T-910\",\n      \"over_h\": 19\n    },\n    {\n      \"ticket\": \"T-913\",\n      \"over_h\": 92\n    },\n    {\n      \"ticket\": \"T-914\",\n      \"over_h\": 6\n    }\n  ]\n}",
+  "akcd": "<breached:<[ticket:string,over_h:number]>>([(\"T-900\",29),(\"T-901\",25),(\"T-903\",28),(\"T-905\",52),(\"T-906\",37),(\"T-907\",44),(\"T-909\",58),(\"T-910\",19),(\"T-913\",92),(\"T-914\",6)])",
+  "toon": "breached[10]{ticket,over_h}:\n  T-900,29\n  T-901,25\n  T-903,28\n  T-905,52\n  T-906,37\n  T-907,44\n  T-909,58\n  T-910,19\n  T-913,92\n  T-914,6"
+ },
+ "answer_tokens": {
+  "json": 220,
+  "akcd": 84,
+  "toon": 80
+ }
+}

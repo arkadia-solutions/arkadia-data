@@ -1,0 +1,38 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+Notes about the data:
+- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h
+- `tickets.open_h`: hours since the ticket was opened
+
+Attributes of the data:
+- `tickets.prio`: $sla_hours="P1=4,P2=24,P3=72,P4=168"
+- `tickets.open_h`: $unit="h"
+
+<data>
+tickets[16]{ticket,prio,open_h}:
+  T-900,P1,33
+  T-901,P1,29
+  T-902,P3,48
+  T-903,P2,52
+  T-904,P4,105
+  T-905,P2,76
+  T-906,P3,109
+  T-907,P2,68
+  T-908,P4,51
+  T-909,P2,82
+  T-910,P3,91
+  T-911,P2,10
+  T-912,P4,89
+  T-913,P2,116
+  T-914,P3,78
+  T-915,P4,23
+</data>
+
+Question: Which tickets have breached their SLA, and by how many hours?
+
+Answer in TOON only (no prose, no code fences): breached[N]{ticket,over_h}: followed by one row per item.

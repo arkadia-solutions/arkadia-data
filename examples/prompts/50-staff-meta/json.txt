@@ -1,0 +1,96 @@
+The data below is in JSON.
+
+<data>
+{
+  "staff": [
+    {
+      "id": 100,
+      "name": "Ada",
+      "dept": "ENG",
+      "lvl": 2,
+      "sal": 7300
+    },
+    {
+      "id": 101,
+      "name": "Alan",
+      "dept": "OPS",
+      "lvl": 1,
+      "sal": 17200
+    },
+    {
+      "id": 102,
+      "name": "Grace",
+      "dept": "FIN",
+      "lvl": 3,
+      "sal": 21000
+    },
+    {
+      "id": 103,
+      "name": "Linus",
+      "dept": "ENG",
+      "lvl": 2,
+      "sal": 18100
+    },
+    {
+      "id": 104,
+      "name": "Margaret",
+      "dept": "OPS",
+      "lvl": 2,
+      "sal": 14400
+    },
+    {
+      "id": 105,
+      "name": "Dennis",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 8200
+    },
+    {
+      "id": 106,
+      "name": "Barbara",
+      "dept": "ENG",
+      "lvl": 1,
+      "sal": 23500
+    },
+    {
+      "id": 107,
+      "name": "Ken",
+      "dept": "OPS",
+      "lvl": 2,
+      "sal": 10000
+    },
+    {
+      "id": 108,
+      "name": "Radia",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 23000
+    },
+    {
+      "id": 109,
+      "name": "Edsger",
+      "dept": "ENG",
+      "lvl": 3,
+      "sal": 8400
+    },
+    {
+      "id": 110,
+      "name": "Hedy",
+      "dept": "OPS",
+      "lvl": 1,
+      "sal": 20100
+    },
+    {
+      "id": 111,
+      "name": "Tim",
+      "dept": "FIN",
+      "lvl": 1,
+      "sal": 10800
+    }
+  ]
+}
+</data>
+
+Question: List the senior people who are employees (not contractors) with their yearly salary in PLN.
+
+Answer with JSON only (no prose): {"seniors": [{"name": <string>, "yearly_pln": <number>}, ...]}

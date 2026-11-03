@@ -1,0 +1,40 @@
+The data below is in AK-DATA.
+
+AK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.
+<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.
+{key:value} is a record with names; <type> or <any> before a value overrides the header type.
+Strings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.
+A record with fewer values than its header has only the first fields; //$size=N// before list items is their count.
+
+<data>
+// $repo="arkadia-data" $branch="main" //
+/* Last 20 commits on main. */
+<commits:<[sha:string, author:string, files:number, msg:string]>>
+([
+  ("4b97b10", "Grace", 4, "chore: deps"),
+  ("7399a1d", "Margaret", 6, "docs: readme"),
+  ("41ccd01", "Linus", 10, "test: fuzz"),
+  ("77174a0", "Dennis", 12, "fix: decoder"),
+  ("2f9af60", "Ada", 11, "fix: decoder"),
+  ("fea8177", "Margaret", 11, "test: fuzz"),
+  ("ed62305", "Dennis", 7, "refactor: parser"),
+  ("d168e48", "Margaret", 2, "test: fuzz"),
+  ("7a8d8d2", "Linus", 9, "test: fuzz"),
+  ("ae28801", "Dennis", 5, "chore: deps"),
+  ("212b9a0", "Grace", 12, "chore: deps"),
+  ("3d9f644", "Dennis", 2, "chore: deps"),
+  ("da6d3ec", "Alan", 10, "feat: layout"),
+  ("620d785", "Alan", 9, "refactor: parser"),
+  ("b65b5eb", "Alan", 13, "docs: readme"),
+  ("6d419ec", "Ada", 4, "docs: readme"),
+  ("4d90bad", "Margaret", 5, "refactor: parser"),
+  ("e1db904", "Ada", 1, "feat: layout"),
+  ("fc1b124", "Grace", 14, "docs: readme"),
+  ("86ed06a", "Dennis", 7, "refactor: parser")
+])
+</data>
+
+Question: Which 3 authors made the most commits? Ties alphabetically.
+
+Answer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:
+<authors:<[author:string,commits:number]>>

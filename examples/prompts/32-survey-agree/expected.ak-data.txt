@@ -1,0 +1,1 @@
+<agree:<[q:string,agree_pct:number]>>([("The app is easy to use",50),("Support answers quickly",67),("Prices are fair",67),("I would recommend it",33),("Docs are clear",83)])

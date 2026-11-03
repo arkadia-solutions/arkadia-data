@@ -1,0 +1,39 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+products[25]{sku,name,category,stock,reorder_level,daily_sales,supplier}:
+  PE-101,Keyboard,Peripherals,17,20,3,EuroParts
+  PE-102,Keyboard Pro,Peripherals,49,50,1,TechSource
+  PE-103,Mouse,Peripherals,48,20,0.5,Nordic Supply
+  PE-104,Mouse Pro,Peripherals,9,50,0.5,EuroParts
+  PE-105,Headset,Peripherals,3,30,0.5,TechSource
+  PE-106,Headset Pro,Peripherals,41,50,4,EuroParts
+  PE-107,Webcam,Peripherals,41,50,0.5,EuroParts
+  PE-108,Webcam Pro,Peripherals,73,50,3,Nordic Supply
+  DI-109,"Monitor 24\"",Displays,75,20,3,Nordic Supply
+  DI-110,"Monitor 24\" Pro",Displays,79,50,1.5,EuroParts
+  DI-111,"Monitor 27\"",Displays,8,20,3,EuroParts
+  DI-112,"Monitor 27\" Pro",Displays,25,10,4,Nordic Supply
+  DI-113,Monitor arm,Displays,69,10,0.5,EuroParts
+  DI-114,Monitor arm Pro,Displays,61,20,4,TechSource
+  CA-115,USB-C cable,Cables,16,10,4,TechSource
+  CA-116,USB-C cable Pro,Cables,66,20,1,Nordic Supply
+  CA-117,HDMI cable,Cables,49,20,1.5,EuroParts
+  CA-118,HDMI cable Pro,Cables,10,50,2,EuroParts
+  CA-119,Ethernet cable,Cables,44,20,1,EuroParts
+  CA-120,Ethernet cable Pro,Cables,63,50,2,EuroParts
+  OF-121,Desk lamp,Office,22,50,1.5,TechSource
+  OF-122,Desk lamp Pro,Office,56,50,0.5,TechSource
+  OF-123,Notebook,Office,12,30,1,Nordic Supply
+  OF-124,Notebook Pro,Office,11,10,2,TechSource
+  OF-125,Chair mat,Office,52,30,3,TechSource
+</data>
+
+Question: Which products have stock below their reorder_level? For each, suggest an order quantity that covers 30 days of sales: 30 × daily_sales − stock, rounded up.
+
+Answer in TOON only (no prose, no code fences): result[N]{sku,name,stock,order_qty}: followed by one row per item.

@@ -1,0 +1,90 @@
+{
+ "id": 61,
+ "slug": "nulls",
+ "title": "Missing values: support tickets",
+ "description": "A nested record that is missing is <null> null (or null): the header still describes the record when it is there.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which urgent tickets have nobody assigned?",
+ "tokens": {
+  "json": {
+   "none": 278
+  },
+  "toon": {
+   "none": 285
+  },
+  "akd": {
+   "none": 333
+  },
+  "akcd": {
+   "none": 313
+  }
+ },
+ "answer": {
+  "name": "unassigned",
+  "fields": [
+   [
+    "id",
+    "number"
+   ],
+   [
+    "subject",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "id": 502,
+   "subject": "Cannot log in"
+  },
+  {
+   "id": 504,
+   "subject": "App crashes on start"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"tickets\": [\n    {\n      \"id\": 501,\n      \"subject\": \"Invoice is wrong\",\n      \"priority\": \"normal\",\n      \"assignee\": {\n        \"id\": 3,\n        \"name\": \"Ola\"\n      },\n      \"tags\": [\n        \"billing\"\n      ]\n    },\n    {\n      \"id\": 502,\n      \"subject\": \"Cannot log in\",\n      \"priority\": \"urgent\",\n      \"assignee\": null,\n      \"tags\": [\n        \"auth\"\n      ]\n    },\n    {\n      \"id\": 503,\n      \"subject\": \"Data export fails\",\n      \"priority\": \"urgent\",\n      \"assignee\": {\n        \"id\": 5,\n        \"name\": \"Piotr\"\n      },\n      \"tags\": [\n        \"export\",\n        \"bug\"\n      ]\n    },\n    {\n      \"id\": 504,\n      \"subject\": \"App crashes on start\",\n      \"priority\": \"urgent\",\n      \"assignee\": null,\n      \"tags\": [\n        \"mobile\",\n        \"bug\"\n      ]\n    }\n  ]\n}\n</data>\n\nQuestion: Which urgent tickets have nobody assigned?\n\nAnswer with JSON only (no prose): {\"unassigned\": [{\"id\": <number>, \"subject\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\ntickets[4]:\n  - id: 501\n    subject: Invoice is wrong\n    priority: normal\n    assignee:\n      id: 3\n      name: Ola\n    tags[1]: billing\n  - id: 502\n    subject: Cannot log in\n    priority: urgent\n    assignee: null\n    tags[1]: auth\n  - id: 503\n    subject: Data export fails\n    priority: urgent\n    assignee:\n      id: 5\n      name: Piotr\n    tags[2]: export,bug\n  - id: 504\n    subject: App crashes on start\n    priority: urgent\n    assignee: null\n    tags[2]: mobile,bug\n</data>\n\nQuestion: Which urgent tickets have nobody assigned?\n\nAnswer in TOON only (no prose, no code fences): unassigned[N]{id,subject}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[\n  id:number,\n  subject:string,\n  priority:string,\n  assignee:<id:number, name:string>,\n  tags:[string]\n]>>\n([\n  (501, \"Invoice is wrong\", \"normal\", (3, \"Ola\"), [\"billing\"]),\n  (502, \"Cannot log in\", \"urgent\", <null> null, [\"auth\"]),\n  (503, \"Data export fails\", \"urgent\", (5, \"Piotr\"), [\"export\", \"bug\"]),\n  (504, \"App crashes on start\", \"urgent\", <null> null, [\"mobile\", \"bug\"])\n])\n</data>\n\nQuestion: Which urgent tickets have nobody assigned?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<unassigned:<[id:number,subject:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<tickets:<[id:number,subject:string,priority:string,assignee:<id:number,name:string>,tags:[string]]>>([(501,\"Invoice is wrong\",\"normal\",(3,\"Ola\"),[\"billing\"]),(502,\"Cannot log in\",\"urgent\",<null> null,[\"auth\"]),(503,\"Data export fails\",\"urgent\",(5,\"Piotr\"),[\"export\",\"bug\"]),(504,\"App crashes on start\",\"urgent\",<null> null,[\"mobile\",\"bug\"])])\n</data>\n\nQuestion: Which urgent tickets have nobody assigned?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<unassigned:<[id:number,subject:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 230
+  },
+  "toon": {
+   "none": 155
+  },
+  "akd": {
+   "none": 126
+  },
+  "akcd": {
+   "none": 100
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"unassigned\": [\n    {\n      \"id\": 502,\n      \"subject\": \"Cannot log in\"\n    },\n    {\n      \"id\": 504,\n      \"subject\": \"App crashes on start\"\n    }\n  ]\n}",
+  "akcd": "<unassigned:<[id:number,subject:string]>>([(502,\"Cannot log in\"),(504,\"App crashes on start\")])",
+  "toon": "unassigned[2]{id,subject}:\n  502,Cannot log in\n  504,App crashes on start"
+ },
+ "answer_tokens": {
+  "json": 51,
+  "akcd": 28,
+  "toon": 26
+ }
+}

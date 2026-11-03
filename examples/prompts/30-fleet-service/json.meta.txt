@@ -1,0 +1,92 @@
+The data below is in JSON.
+
+Notes about the data:
+- `cars.km`: odometer
+- `cars.last_service_km`: odometer at the last service
+
+Attributes of the data:
+- `cars.km`: $unit="km"
+- `cars.last_service_km`: $unit="km"
+
+<data>
+{
+  "cars": [
+    {
+      "car": "WX 6723",
+      "model": "Model 3",
+      "km": 46271,
+      "last_service_km": 41048
+    },
+    {
+      "car": "WX 2157",
+      "model": "Corolla",
+      "km": 105112,
+      "last_service_km": 95343
+    },
+    {
+      "car": "WX 9267",
+      "model": "Model 3",
+      "km": 120314,
+      "last_service_km": 106383
+    },
+    {
+      "car": "WX 5238",
+      "model": "Model 3",
+      "km": 92153,
+      "last_service_km": 73433
+    },
+    {
+      "car": "WX 4246",
+      "model": "Octavia",
+      "km": 46910,
+      "last_service_km": 30031
+    },
+    {
+      "car": "WX 4083",
+      "model": "Octavia",
+      "km": 95525,
+      "last_service_km": 86060
+    },
+    {
+      "car": "WX 6288",
+      "model": "Corolla",
+      "km": 69551,
+      "last_service_km": 62611
+    },
+    {
+      "car": "WX 2226",
+      "model": "Corolla",
+      "km": 142401,
+      "last_service_km": 122379
+    },
+    {
+      "car": "WX 8982",
+      "model": "Octavia",
+      "km": 75861,
+      "last_service_km": 69265
+    },
+    {
+      "car": "WX 5845",
+      "model": "Golf",
+      "km": 141963,
+      "last_service_km": 126895
+    },
+    {
+      "car": "WX 7076",
+      "model": "Corolla",
+      "km": 37779,
+      "last_service_km": 35743
+    },
+    {
+      "car": "WX 9882",
+      "model": "Octavia",
+      "km": 156593,
+      "last_service_km": 141713
+    }
+  ]
+}
+</data>
+
+Question: Which cars have driven more than 15,000 km since the last service? Most first; give the distance.
+
+Answer with JSON only (no prose): {"due": [{"car": <string>, "since": <number>}, ...]}

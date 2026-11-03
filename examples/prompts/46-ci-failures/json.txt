@@ -1,0 +1,120 @@
+The data below is in JSON.
+
+<data>
+{
+  "runs": [
+    {
+      "run": 4000,
+      "branch": "feat/layout",
+      "st": 1,
+      "secs": 530
+    },
+    {
+      "run": 4001,
+      "branch": "feat/layout",
+      "st": 2,
+      "secs": 806
+    },
+    {
+      "run": 4002,
+      "branch": "feat/layout",
+      "st": 0,
+      "secs": 143
+    },
+    {
+      "run": 4003,
+      "branch": "dev",
+      "st": 0,
+      "secs": 748
+    },
+    {
+      "run": 4004,
+      "branch": "fix/meta",
+      "st": 0,
+      "secs": 843
+    },
+    {
+      "run": 4005,
+      "branch": "fix/meta",
+      "st": 1,
+      "secs": 631
+    },
+    {
+      "run": 4006,
+      "branch": "main",
+      "st": 2,
+      "secs": 704
+    },
+    {
+      "run": 4007,
+      "branch": "feat/layout",
+      "st": 0,
+      "secs": 240
+    },
+    {
+      "run": 4008,
+      "branch": "feat/layout",
+      "st": 0,
+      "secs": 284
+    },
+    {
+      "run": 4009,
+      "branch": "feat/layout",
+      "st": 1,
+      "secs": 483
+    },
+    {
+      "run": 4010,
+      "branch": "dev",
+      "st": 0,
+      "secs": 400
+    },
+    {
+      "run": 4011,
+      "branch": "feat/layout",
+      "st": 1,
+      "secs": 596
+    },
+    {
+      "run": 4012,
+      "branch": "feat/layout",
+      "st": 1,
+      "secs": 488
+    },
+    {
+      "run": 4013,
+      "branch": "feat/layout",
+      "st": 0,
+      "secs": 652
+    },
+    {
+      "run": 4014,
+      "branch": "dev",
+      "st": 0,
+      "secs": 406
+    },
+    {
+      "run": 4015,
+      "branch": "feat/layout",
+      "st": 0,
+      "secs": 510
+    },
+    {
+      "run": 4016,
+      "branch": "dev",
+      "st": 0,
+      "secs": 457
+    },
+    {
+      "run": 4017,
+      "branch": "fix/meta",
+      "st": 0,
+      "secs": 545
+    }
+  ]
+}
+</data>
+
+Question: How many runs failed on each branch? Most first.
+
+Answer with JSON only (no prose): {"failures": [{"branch": <string>, "failed": <number>}, ...]}

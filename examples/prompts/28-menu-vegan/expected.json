@@ -1,0 +1,20 @@
+{
+  "vegan": [
+    {
+      "dish": "Hummus plate",
+      "pln": 24.0
+    },
+    {
+      "dish": "Falafel wrap",
+      "pln": 19.0
+    },
+    {
+      "dish": "Lentil soup",
+      "pln": 16.0
+    },
+    {
+      "dish": "Fries",
+      "pln": 12.0
+    }
+  ]
+}

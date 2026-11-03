@@ -1,0 +1,100 @@
+The data below is in JSON.
+
+Notes about the data:
+- `tickets.prio`: SLA to resolve: P1 4 h, P2 24 h, P3 72 h, P4 168 h
+- `tickets.open_h`: hours since the ticket was opened
+
+Attributes of the data:
+- `tickets.prio`: $sla_hours="P1=4,P2=24,P3=72,P4=168"
+- `tickets.open_h`: $unit="h"
+
+<data>
+{
+  "tickets": [
+    {
+      "ticket": "T-900",
+      "prio": "P1",
+      "open_h": 33
+    },
+    {
+      "ticket": "T-901",
+      "prio": "P1",
+      "open_h": 29
+    },
+    {
+      "ticket": "T-902",
+      "prio": "P3",
+      "open_h": 48
+    },
+    {
+      "ticket": "T-903",
+      "prio": "P2",
+      "open_h": 52
+    },
+    {
+      "ticket": "T-904",
+      "prio": "P4",
+      "open_h": 105
+    },
+    {
+      "ticket": "T-905",
+      "prio": "P2",
+      "open_h": 76
+    },
+    {
+      "ticket": "T-906",
+      "prio": "P3",
+      "open_h": 109
+    },
+    {
+      "ticket": "T-907",
+      "prio": "P2",
+      "open_h": 68
+    },
+    {
+      "ticket": "T-908",
+      "prio": "P4",
+      "open_h": 51
+    },
+    {
+      "ticket": "T-909",
+      "prio": "P2",
+      "open_h": 82
+    },
+    {
+      "ticket": "T-910",
+      "prio": "P3",
+      "open_h": 91
+    },
+    {
+      "ticket": "T-911",
+      "prio": "P2",
+      "open_h": 10
+    },
+    {
+      "ticket": "T-912",
+      "prio": "P4",
+      "open_h": 89
+    },
+    {
+      "ticket": "T-913",
+      "prio": "P2",
+      "open_h": 116
+    },
+    {
+      "ticket": "T-914",
+      "prio": "P3",
+      "open_h": 78
+    },
+    {
+      "ticket": "T-915",
+      "prio": "P4",
+      "open_h": 23
+    }
+  ]
+}
+</data>
+
+Question: Which tickets have breached their SLA, and by how many hours?
+
+Answer with JSON only (no prose): {"breached": [{"ticket": <string>, "over_h": <number>}, ...]}

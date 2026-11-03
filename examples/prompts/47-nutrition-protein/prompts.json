@@ -1,0 +1,137 @@
+{
+ "id": 47,
+ "slug": "nutrition-protein",
+ "title": "Nutrition: protein per portion",
+ "description": "Values per 100 g, portions in grams.",
+ "tags": [
+  "metadata",
+  "needs metadata"
+ ],
+ "question": "Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).",
+ "tokens": {
+  "json": {
+   "none": 241,
+   "comments": 271,
+   "attributes": 274,
+   "both": 304
+  },
+  "toon": {
+   "none": 206,
+   "comments": 236,
+   "attributes": 239,
+   "both": 269
+  },
+  "akd": {
+   "none": 317,
+   "comments": 334,
+   "attributes": 335,
+   "both": 350
+  },
+  "akcd": {
+   "none": 304,
+   "comments": 318,
+   "attributes": 318,
+   "both": 334
+  }
+ },
+ "answer": {
+  "name": "protein",
+  "fields": [
+   [
+    "food",
+    "string"
+   ],
+   [
+    "grams",
+    "number"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "food": "Chicken breast",
+   "grams": 46.5
+  },
+  {
+   "food": "Lentils (cooked)",
+   "grams": 18.0
+  },
+  {
+   "food": "Greek yogurt",
+   "grams": 17.0
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [
+   "`foods.protein`: grams of protein per 100 g",
+   "`foods.portion`: portion size in grams"
+  ],
+  "attributes": [
+   "`foods.protein`: $unit=\"g\" $per=\"100 g\"",
+   "`foods.portion`: $unit=\"g\""
+  ]
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"foods\": [\n    {\n      \"food\": \"Oats\",\n      \"protein\": 13.2,\n      \"portion\": 50\n    },\n    {\n      \"food\": \"Chicken breast\",\n      \"protein\": 31.0,\n      \"portion\": 150\n    },\n    {\n      \"food\": \"Tofu\",\n      \"protein\": 12.0,\n      \"portion\": 120\n    },\n    {\n      \"food\": \"Lentils (cooked)\",\n      \"protein\": 9.0,\n      \"portion\": 200\n    },\n    {\n      \"food\": \"Greek yogurt\",\n      \"protein\": 10.0,\n      \"portion\": 170\n    },\n    {\n      \"food\": \"Almonds\",\n      \"protein\": 21.2,\n      \"portion\": 30\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer with JSON only (no prose): {\"protein\": [{\"food\": <string>, \"grams\": <number>}, ...]}\n",
+   "comments": "The data below is in JSON.\n\nNotes about the data:\n- `foods.protein`: grams of protein per 100 g\n- `foods.portion`: portion size in grams\n\n<data>\n{\n  \"foods\": [\n    {\n      \"food\": \"Oats\",\n      \"protein\": 13.2,\n      \"portion\": 50\n    },\n    {\n      \"food\": \"Chicken breast\",\n      \"protein\": 31.0,\n      \"portion\": 150\n    },\n    {\n      \"food\": \"Tofu\",\n      \"protein\": 12.0,\n      \"portion\": 120\n    },\n    {\n      \"food\": \"Lentils (cooked)\",\n      \"protein\": 9.0,\n      \"portion\": 200\n    },\n    {\n      \"food\": \"Greek yogurt\",\n      \"protein\": 10.0,\n      \"portion\": 170\n    },\n    {\n      \"food\": \"Almonds\",\n      \"protein\": 21.2,\n      \"portion\": 30\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer with JSON only (no prose): {\"protein\": [{\"food\": <string>, \"grams\": <number>}, ...]}\n",
+   "attributes": "The data below is in JSON.\n\nAttributes of the data:\n- `foods.protein`: $unit=\"g\" $per=\"100 g\"\n- `foods.portion`: $unit=\"g\"\n\n<data>\n{\n  \"foods\": [\n    {\n      \"food\": \"Oats\",\n      \"protein\": 13.2,\n      \"portion\": 50\n    },\n    {\n      \"food\": \"Chicken breast\",\n      \"protein\": 31.0,\n      \"portion\": 150\n    },\n    {\n      \"food\": \"Tofu\",\n      \"protein\": 12.0,\n      \"portion\": 120\n    },\n    {\n      \"food\": \"Lentils (cooked)\",\n      \"protein\": 9.0,\n      \"portion\": 200\n    },\n    {\n      \"food\": \"Greek yogurt\",\n      \"protein\": 10.0,\n      \"portion\": 170\n    },\n    {\n      \"food\": \"Almonds\",\n      \"protein\": 21.2,\n      \"portion\": 30\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer with JSON only (no prose): {\"protein\": [{\"food\": <string>, \"grams\": <number>}, ...]}\n",
+   "both": "The data below is in JSON.\n\nNotes about the data:\n- `foods.protein`: grams of protein per 100 g\n- `foods.portion`: portion size in grams\n\nAttributes of the data:\n- `foods.protein`: $unit=\"g\" $per=\"100 g\"\n- `foods.portion`: $unit=\"g\"\n\n<data>\n{\n  \"foods\": [\n    {\n      \"food\": \"Oats\",\n      \"protein\": 13.2,\n      \"portion\": 50\n    },\n    {\n      \"food\": \"Chicken breast\",\n      \"protein\": 31.0,\n      \"portion\": 150\n    },\n    {\n      \"food\": \"Tofu\",\n      \"protein\": 12.0,\n      \"portion\": 120\n    },\n    {\n      \"food\": \"Lentils (cooked)\",\n      \"protein\": 9.0,\n      \"portion\": 200\n    },\n    {\n      \"food\": \"Greek yogurt\",\n      \"protein\": 10.0,\n      \"portion\": 170\n    },\n    {\n      \"food\": \"Almonds\",\n      \"protein\": 21.2,\n      \"portion\": 30\n    }\n  ]\n}\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer with JSON only (no prose): {\"protein\": [{\"food\": <string>, \"grams\": <number>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nfoods[6]{food,protein,portion}:\n  Oats,13.2,50\n  Chicken breast,31,150\n  Tofu,12,120\n  Lentils (cooked),9,200\n  Greek yogurt,10,170\n  Almonds,21.2,30\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in TOON only (no prose, no code fences): protein[N]{food,grams}: followed by one row per item.\n",
+   "comments": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `foods.protein`: grams of protein per 100 g\n- `foods.portion`: portion size in grams\n\n<data>\nfoods[6]{food,protein,portion}:\n  Oats,13.2,50\n  Chicken breast,31,150\n  Tofu,12,120\n  Lentils (cooked),9,200\n  Greek yogurt,10,170\n  Almonds,21.2,30\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in TOON only (no prose, no code fences): protein[N]{food,grams}: followed by one row per item.\n",
+   "attributes": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nAttributes of the data:\n- `foods.protein`: $unit=\"g\" $per=\"100 g\"\n- `foods.portion`: $unit=\"g\"\n\n<data>\nfoods[6]{food,protein,portion}:\n  Oats,13.2,50\n  Chicken breast,31,150\n  Tofu,12,120\n  Lentils (cooked),9,200\n  Greek yogurt,10,170\n  Almonds,21.2,30\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in TOON only (no prose, no code fences): protein[N]{food,grams}: followed by one row per item.\n",
+   "both": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\nNotes about the data:\n- `foods.protein`: grams of protein per 100 g\n- `foods.portion`: portion size in grams\n\nAttributes of the data:\n- `foods.protein`: $unit=\"g\" $per=\"100 g\"\n- `foods.portion`: $unit=\"g\"\n\n<data>\nfoods[6]{food,protein,portion}:\n  Oats,13.2,50\n  Chicken breast,31,150\n  Tofu,12,120\n  Lentils (cooked),9,200\n  Greek yogurt,10,170\n  Almonds,21.2,30\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in TOON only (no prose, no code fences): protein[N]{food,grams}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[food:string, protein:number, portion:number]>>\n([\n  (\"Oats\", 13.2, 50),\n  (\"Chicken breast\", 31.0, 150),\n  (\"Tofu\", 12.0, 120),\n  (\"Lentils (cooked)\", 9.0, 200),\n  (\"Greek yogurt\", 10.0, 170),\n  (\"Almonds\", 21.2, 30)\n])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "comments": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[\n  food:string,\n  protein:number /* grams of protein per 100 g */,\n  portion:number /* portion size in grams */\n]>>\n([\n  (\"Oats\", 13.2, 50),\n  (\"Chicken breast\", 31.0, 150),\n  (\"Tofu\", 12.0, 120),\n  (\"Lentils (cooked)\", 9.0, 200),\n  (\"Greek yogurt\", 10.0, 170),\n  (\"Almonds\", 21.2, 30)\n])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "attributes": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[\n  food:string,\n  protein:number $unit=\"g\" $per=\"100 g\",\n  portion:number $unit=\"g\"\n]>>\n([\n  (\"Oats\", 13.2, 50),\n  (\"Chicken breast\", 31.0, 150),\n  (\"Tofu\", 12.0, 120),\n  (\"Lentils (cooked)\", 9.0, 200),\n  (\"Greek yogurt\", 10.0, 170),\n  (\"Almonds\", 21.2, 30)\n])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "both": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[\n  food:string,\n  protein:number $unit=\"g\" $per=\"100 g\" /* grams of protein per 100 g */,\n  portion:number $unit=\"g\" /* portion size in grams */\n]>>\n([\n  (\"Oats\", 13.2, 50),\n  (\"Chicken breast\", 31.0, 150),\n  (\"Tofu\", 12.0, 120),\n  (\"Lentils (cooked)\", 9.0, 200),\n  (\"Greek yogurt\", 10.0, 170),\n  (\"Almonds\", 21.2, 30)\n])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[food:string,protein:number,portion:number]>>([(\"Oats\",13.2,50),(\"Chicken breast\",31.0,150),(\"Tofu\",12.0,120),(\"Lentils (cooked)\",9.0,200),(\"Greek yogurt\",10.0,170),(\"Almonds\",21.2,30)])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "comments": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[food:string,protein:number /* grams of protein per 100 g */,portion:number /* portion size in grams */]>>([(\"Oats\",13.2,50),(\"Chicken breast\",31.0,150),(\"Tofu\",12.0,120),(\"Lentils (cooked)\",9.0,200),(\"Greek yogurt\",10.0,170),(\"Almonds\",21.2,30)])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "attributes": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[food:string,protein:number $unit=\"g\" $per=\"100 g\",portion:number $unit=\"g\"]>>([(\"Oats\",13.2,50),(\"Chicken breast\",31.0,150),(\"Tofu\",12.0,120),(\"Lentils (cooked)\",9.0,200),(\"Greek yogurt\",10.0,170),(\"Almonds\",21.2,30)])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n",
+   "both": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<foods:<[food:string,protein:number $unit=\"g\" $per=\"100 g\" /* grams of protein per 100 g */,portion:number $unit=\"g\" /* portion size in grams */]>>([(\"Oats\",13.2,50),(\"Chicken breast\",31.0,150),(\"Tofu\",12.0,120),(\"Lentils (cooked)\",9.0,200),(\"Greek yogurt\",10.0,170),(\"Almonds\",21.2,30)])\n</data>\n\nQuestion: Which 3 foods give the most protein per portion? Give grams of protein (1 decimal).\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<protein:<[food:string,grams:number]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 182,
+   "comments": 182,
+   "attributes": 182,
+   "both": 182
+  },
+  "toon": {
+   "none": 65,
+   "comments": 65,
+   "attributes": 65,
+   "both": 65
+  },
+  "akd": {
+   "none": 99,
+   "comments": 116,
+   "attributes": 117,
+   "both": 132
+  },
+  "akcd": {
+   "none": 80,
+   "comments": 94,
+   "attributes": 94,
+   "both": 110
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"protein\": [\n    {\n      \"food\": \"Chicken breast\",\n      \"grams\": 46.5\n    },\n    {\n      \"food\": \"Lentils (cooked)\",\n      \"grams\": 18.0\n    },\n    {\n      \"food\": \"Greek yogurt\",\n      \"grams\": 17.0\n    }\n  ]\n}",
+  "akcd": "<protein:<[food:string,grams:number]>>([(\"Chicken breast\",46.5),(\"Lentils (cooked)\",18.0),(\"Greek yogurt\",17.0)])",
+  "toon": "protein[3]{food,grams}:\n  Chicken breast,46.5\n  Lentils (cooked),18\n  Greek yogurt,17"
+ },
+ "answer_tokens": {
+  "json": 76,
+  "akcd": 40,
+  "toon": 31
+ }
+}

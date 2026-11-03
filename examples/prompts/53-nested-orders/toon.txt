@@ -1,0 +1,40 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+orders[3]:
+  - id: ORD-1001
+    status: paid
+    customer:
+      id: 7
+      name: Hedy Johnson
+      country: PL
+    items[2]{sku,qty,price}:
+      KB-01,2,89
+      MS-02,1,39.5
+  - id: ORD-1002
+    status: pending
+    customer:
+      id: 9
+      name: Ada Torvalds
+      country: DE
+    items[1]{sku,qty,price}:
+      HD-10,1,129.9
+  - id: ORD-1003
+    status: paid
+    customer:
+      id: 7
+      name: Hedy Johnson
+      country: PL
+    items[2]{sku,qty,price}:
+      DK-05,1,199
+      KB-01,1,89
+</data>
+
+Question: What is the total (qty × price) of every paid order?
+
+Answer in TOON only (no prose, no code fences): paid[N]{id,total}: followed by one row per item.

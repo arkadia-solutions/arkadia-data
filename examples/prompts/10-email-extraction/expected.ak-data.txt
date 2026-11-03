@@ -1,0 +1,1 @@
+<orders:<[customer:string,product:string,quantity:number,delivery_date:string]>>([("Marta Nowak","Keyboard",3,"2026-11-04"),("Jan Kowalski","Monitor 27\"",1,"2026-11-06"),("Acme Sp. z o.o.","USB-C cable",25,"2026-11-03"),("Ola Wiśniewska","Headset",2,"2026-11-10")])

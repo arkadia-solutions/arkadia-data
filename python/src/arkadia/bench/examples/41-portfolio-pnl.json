@@ -1,0 +1,86 @@
+{
+  "id": 41,
+  "slug": "portfolio-pnl",
+  "title": "Portfolio: profit per position",
+  "description": "Average buy price vs last price.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "What is the profit or loss of each PLN position (qty × (last − avg), 2 decimals)?",
+  "answer": {
+    "name": "pnl",
+    "fields": [
+      [
+        "ticker",
+        "string"
+      ],
+      [
+        "pnl",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "ticker": "CDR",
+      "pnl": 748.0
+    },
+    {
+      "ticker": "PKN",
+      "pnl": 396.0
+    },
+    {
+      "ticker": "ALE",
+      "pnl": -660.0
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`positions.avg`: average buy price per share",
+      "`positions.last`: last traded price per share"
+    ],
+    "attributes": []
+  },
+  "akd_meta": "<positions:<[ticker:string,qty:number,avg:number /* average buy price per share */,last:number /* last traded price per share */,ccy:string]>>([(\"CDR\",40,112.5,131.2,\"PLN\"),(\"PKN\",120,58.1,61.4,\"PLN\"),(\"AAPL\",10,172.0,189.3,\"USD\"),(\"ALE\",200,31.2,27.9,\"PLN\"),(\"MSFT\",6,330.0,402.1,\"USD\")])",
+  "data": {
+    "positions": [
+      {
+        "ticker": "CDR",
+        "qty": 40,
+        "avg": 112.5,
+        "last": 131.2,
+        "ccy": "PLN"
+      },
+      {
+        "ticker": "PKN",
+        "qty": 120,
+        "avg": 58.1,
+        "last": 61.4,
+        "ccy": "PLN"
+      },
+      {
+        "ticker": "AAPL",
+        "qty": 10,
+        "avg": 172.0,
+        "last": 189.3,
+        "ccy": "USD"
+      },
+      {
+        "ticker": "ALE",
+        "qty": 200,
+        "avg": 31.2,
+        "last": 27.9,
+        "ccy": "PLN"
+      },
+      {
+        "ticker": "MSFT",
+        "qty": 6,
+        "avg": 330.0,
+        "last": 402.1,
+        "ccy": "USD"
+      }
+    ]
+  }
+}

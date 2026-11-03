@@ -1,0 +1,157 @@
+{
+  "id": 22,
+  "slug": "movies-best-drama",
+  "title": "Films: best-rated drama",
+  "description": "Genre lists inside records.",
+  "tags": [
+    "metadata"
+  ],
+  "needs_meta": false,
+  "question": "Which film tagged drama has the highest rating? Give the title, year and rating.",
+  "answer": {
+    "name": "best",
+    "fields": [
+      [
+        "title",
+        "string"
+      ],
+      [
+        "year",
+        "number"
+      ],
+      [
+        "rating",
+        "number"
+      ]
+    ]
+  },
+  "expected": [
+    {
+      "title": "Blind Chance",
+      "year": 1984,
+      "rating": 8.6
+    }
+  ],
+  "expected_note": "",
+  "notes": {
+    "comments": [
+      "`films.rating`: average user rating, 1–10"
+    ],
+    "attributes": [
+      "`films.rating`: $scale=\"1-10\" $source=\"imdb\""
+    ]
+  },
+  "akd_meta": "<films:<[title:string,year:number,rating:number $scale=\"1-10\" $source=\"imdb\" /* average user rating, 1–10 */,genres:[string]]>>([(\"Solaris\",2013,6.5,[\"history\",\"drama\"]),(\"Stalker\",1995,8.1,[\"thriller\",\"sci-fi\"]),(\"Ida\",1971,7.4,[\"thriller\",\"drama\"]),(\"Cold War\",1993,6.6,[\"sci-fi\",\"war\"]),(\"Decalogue\",1998,6.4,[\"drama\",\"war\"]),(\"Blind Chance\",1984,8.6,[\"sci-fi\",\"drama\"]),(\"The Pianist\",1962,8.4,[\"thriller\",\"sci-fi\"]),(\"Knife in the Water\",2004,8.9,[\"history\",\"thriller\"]),(\"Ashes and Diamonds\",2019,6.8,[\"war\",\"thriller\"]),(\"Man of Marble\",1998,7.0,[\"sci-fi\",\"drama\"]),(\"Corpus Christi\",1984,7.7,[\"war\",\"history\"]),(\"EO\",1968,8.1,[\"sci-fi\",\"war\"])])",
+  "data": {
+    "films": [
+      {
+        "title": "Solaris",
+        "year": 2013,
+        "rating": 6.5,
+        "genres": [
+          "history",
+          "drama"
+        ]
+      },
+      {
+        "title": "Stalker",
+        "year": 1995,
+        "rating": 8.1,
+        "genres": [
+          "thriller",
+          "sci-fi"
+        ]
+      },
+      {
+        "title": "Ida",
+        "year": 1971,
+        "rating": 7.4,
+        "genres": [
+          "thriller",
+          "drama"
+        ]
+      },
+      {
+        "title": "Cold War",
+        "year": 1993,
+        "rating": 6.6,
+        "genres": [
+          "sci-fi",
+          "war"
+        ]
+      },
+      {
+        "title": "Decalogue",
+        "year": 1998,
+        "rating": 6.4,
+        "genres": [
+          "drama",
+          "war"
+        ]
+      },
+      {
+        "title": "Blind Chance",
+        "year": 1984,
+        "rating": 8.6,
+        "genres": [
+          "sci-fi",
+          "drama"
+        ]
+      },
+      {
+        "title": "The Pianist",
+        "year": 1962,
+        "rating": 8.4,
+        "genres": [
+          "thriller",
+          "sci-fi"
+        ]
+      },
+      {
+        "title": "Knife in the Water",
+        "year": 2004,
+        "rating": 8.9,
+        "genres": [
+          "history",
+          "thriller"
+        ]
+      },
+      {
+        "title": "Ashes and Diamonds",
+        "year": 2019,
+        "rating": 6.8,
+        "genres": [
+          "war",
+          "thriller"
+        ]
+      },
+      {
+        "title": "Man of Marble",
+        "year": 1998,
+        "rating": 7.0,
+        "genres": [
+          "sci-fi",
+          "drama"
+        ]
+      },
+      {
+        "title": "Corpus Christi",
+        "year": 1984,
+        "rating": 7.7,
+        "genres": [
+          "war",
+          "history"
+        ]
+      },
+      {
+        "title": "EO",
+        "year": 1968,
+        "rating": 8.1,
+        "genres": [
+          "sci-fi",
+          "war"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+ "id": 62,
+ "slug": "special-names",
+ "title": "Names with spaces and symbols",
+ "description": "Field names that are not simple identifiers go in backticks: `user id`, `e-mail`, `2fa`.",
+ "tags": [
+  "feature"
+ ],
+ "question": "Which users do not have 2FA enabled?",
+ "tokens": {
+  "json": {
+   "none": 190
+  },
+  "toon": {
+   "none": 201
+  },
+  "akd": {
+   "none": 300
+  },
+  "akcd": {
+   "none": 296
+  }
+ },
+ "answer": {
+  "name": "no_2fa",
+  "fields": [
+   [
+    "user_id",
+    "number"
+   ],
+   [
+    "email",
+    "string"
+   ]
+  ]
+ },
+ "expected": [
+  {
+   "user_id": 18,
+   "email": "alan@example.com"
+  },
+  {
+   "user_id": 19,
+   "email": "grace@example.com"
+  }
+ ],
+ "expected_note": "",
+ "notes": {
+  "comments": [],
+  "attributes": []
+ },
+ "prompts": {
+  "json": {
+   "none": "The data below is in JSON.\n\n<data>\n{\n  \"rows\": [\n    {\n      \"user id\": 17,\n      \"e-mail\": \"ada@example.com\",\n      \"2fa\": true,\n      \"last login\": \"2026-10-28\"\n    },\n    {\n      \"user id\": 18,\n      \"e-mail\": \"alan@example.com\",\n      \"2fa\": false,\n      \"last login\": \"2026-09-02\"\n    },\n    {\n      \"user id\": 19,\n      \"e-mail\": \"grace@example.com\",\n      \"2fa\": false,\n      \"last login\": \"2026-10-27\"\n    }\n  ]\n}\n</data>\n\nQuestion: Which users do not have 2FA enabled?\n\nAnswer with JSON only (no prose): {\"no_2fa\": [{\"user_id\": <number>, \"email\": <string>}, ...]}\n"
+  },
+  "toon": {
+   "none": "The data below is in TOON.\n\nTOON (Token-Oriented Object Notation) — how to read it:\n- Indentation shows nesting; \"key: value\" is a field.\n- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.\n- key[N]: a,b,c is a list of N values; \"- \" starts an item of a list of objects.\n\n<data>\nrows[3]{\"user id\",\"e-mail\",\"2fa\",\"last login\"}:\n  17,ada@example.com,true,2026-10-28\n  18,alan@example.com,false,2026-09-02\n  19,grace@example.com,false,2026-10-27\n</data>\n\nQuestion: Which users do not have 2FA enabled?\n\nAnswer in TOON only (no prose, no code fences): no_2fa[N]{user_id,email}: followed by one row per item.\n"
+  },
+  "akd": {
+   "none": "The data below is in AK-DATA.\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rows:<[`user id`:number, `e-mail`:string, `2fa`:bool, `last login`:string]>>\n([\n  (17, \"ada@example.com\", true, \"2026-10-28\"),\n  (18, \"alan@example.com\", false, \"2026-09-02\"),\n  (19, \"grace@example.com\", false, \"2026-10-27\")\n])\n</data>\n\nQuestion: Which users do not have 2FA enabled?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<no_2fa:<[user_id:number,email:string]>>\n"
+  },
+  "akcd": {
+   "none": "The data below is in AK-DATA (compact, single-line form).\n\nAK-DATA (Arkadia Data Format): <a:type,b:type> is a header; (v1,v2) is a record whose values follow the header order.\n<[a:type,...]>[(...),(...)] is a list of records sharing that header; headers nest, e.g. items:<[sku:string,qty:number]>.\n{key:value} is a record with names; <type> or <any> before a value overrides the header type.\nStrings are quoted; numbers, true, false, null as in JSON; /*...*/, $attr, #tag are metadata, not data.\nA record with fewer values than its header has only the first fields; //$size=N// before list items is their count.\n\n<data>\n<rows:<[`user id`:number,`e-mail`:string,`2fa`:bool,`last login`:string]>>([(17,\"ada@example.com\",true,\"2026-10-28\"),(18,\"alan@example.com\",false,\"2026-09-02\"),(19,\"grace@example.com\",false,\"2026-10-27\")])\n</data>\n\nQuestion: Which users do not have 2FA enabled?\n\nAnswer in AK-DATA only (no prose, no code fences), with exactly this header and one record per item:\n<no_2fa:<[user_id:number,email:string]>>\n"
+  }
+ },
+ "data_tokens": {
+  "json": {
+   "none": 136
+  },
+  "toon": {
+   "none": 66
+  },
+  "akd": {
+   "none": 88
+  },
+  "akcd": {
+   "none": 78
+  }
+ },
+ "expected_answers": {
+  "json": "{\n  \"no_2fa\": [\n    {\n      \"user_id\": 18,\n      \"email\": \"alan@example.com\"\n    },\n    {\n      \"user_id\": 19,\n      \"email\": \"grace@example.com\"\n    }\n  ]\n}",
+  "akcd": "<no_2fa:<[user_id:number,email:string]>>([(18,\"alan@example.com\"),(19,\"grace@example.com\")])",
+  "toon": "no_2fa[2]{user_id,email}:\n  18,alan@example.com\n  19,grace@example.com"
+ },
+ "answer_tokens": {
+  "json": 55,
+  "akcd": 30,
+  "toon": 28
+ }
+}

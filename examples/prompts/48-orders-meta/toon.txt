@@ -1,0 +1,28 @@
+The data below is in TOON.
+
+TOON (Token-Oriented Object Notation) — how to read it:
+- Indentation shows nesting; "key: value" is a field.
+- key[N]{f1,f2,...}: is followed by N rows of comma-separated values in field order.
+- key[N]: a,b,c is a list of N values; "- " starts an item of a list of objects.
+
+<data>
+orders[14]{id,cust,st,amt,items}:
+  A-1001,Acme,3,4750,5
+  A-1002,Globex,3,15600,5
+  A-1003,Initech,3,21050,1
+  A-1004,Umbrella,1,6250,2
+  A-1005,Hooli,3,5250,3
+  A-1006,Stark,4,28650,2
+  A-1007,Wayne,3,9600,4
+  A-1008,Tyrell,3,35499,5
+  A-1009,Soylent,3,10999,4
+  A-1010,Wonka,3,15199,2
+  A-1011,Acme,3,25099,2
+  A-1012,Globex,3,39650,5
+  A-1013,Initech,4,33950,4
+  A-1014,Umbrella,3,5999,3
+</data>
+
+Question: Which real orders (not tests) were refunded, and how much was each in euros?
+
+Answer in TOON only (no prose, no code fences): refunds[N]{id,eur}: followed by one row per item.
