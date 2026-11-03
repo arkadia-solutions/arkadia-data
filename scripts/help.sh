@@ -6,7 +6,8 @@ accent='' bold='' dim='' cyan='' reset=''
 if [[ -z ${NO_COLOR+x} && ( -t 1 || ${COLOR:-auto} == always ) ]]; then
   accent=$'\033[38;5;34m'; bold=$'\033[1;97m'; dim=$'\033[90m'; cyan=$'\033[36m'; reset=$'\033[0m'
 fi
-version=$(tr -d " \n" < VERSION)
+IFS= read -r version < VERSION || true
+version=${version//[[:space:]]/}  # also drops \r (Windows checkouts)
 IFS=. read -r v_major v_minor _ <<< "$version"
 next="$v_major.$((v_minor + 1)).0"
 printf '\n%s' "$accent"

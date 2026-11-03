@@ -7,7 +7,8 @@
 #   scripts/version.sh bump [minor|major|patch]   raise it (default minor), then sync
 set -euo pipefail
 cd "$(dirname "$0")/.."
-current=$(tr -d ' \n' < VERSION)
+IFS= read -r current < VERSION || true
+current=${current//[[:space:]]/}  # also drops \r (Windows checkouts)
 [[ $current =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "VERSION is not x.y.z: '$current'" >&2; exit 1; }
 
 sync() {

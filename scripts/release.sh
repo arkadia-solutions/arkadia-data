@@ -51,7 +51,8 @@ if [[ -f .env ]]; then
   done < .env
 fi
 
-version=$(tr -d ' \n' < VERSION)
+IFS= read -r version < VERSION || true
+version=${version//[[:space:]]/}  # also drops \r (Windows checkouts)
 bash scripts/version.sh sync > /dev/null
 out="$root/dist/release"
 mkdir -p "$out"

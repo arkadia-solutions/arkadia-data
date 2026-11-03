@@ -22,7 +22,8 @@ jobs:
       - id: v
         name: The tag matches ./VERSION and every package uses it
         run: |
-          version=$(tr -d ' \n' < VERSION)
+          IFS= read -r version < VERSION || true
+          version=${version//[[:space:]]/}  # also drops \r (Windows checkouts)
           if [[ $GITHUB_REF_TYPE == tag && $GITHUB_REF_NAME != "v$version" ]]; then
             echo "::error::tag $GITHUB_REF_NAME does not match VERSION $version"; exit 1
           fi
