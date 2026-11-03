@@ -1,7 +1,7 @@
 {
   "name": "@arkadia/data",
   "version": "0.3.0",
-  "description": "AK-DATA (Arkadia Data Format): a lossless, schema-first JSON alternative that cuts LLM tokens for prompts, tool results and agent memory. The ak-data command line tool is the Rust crate arkadia-data.",
+  "description": "AK-DATA (Arkadia Data Format): Lossless, token-efficient text form of JSON for LLM prompts, tool results and agent memory: a header names each field once, records follow by position.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

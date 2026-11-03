@@ -12,7 +12,7 @@ npm install @arkadia/data
 ```
 
 This package is a library. The `ak-data` command line tool is the Rust
-crate `arkadia-data` (`make install` in the repository, or
+crate `arkadia-data` (`brew install arkadia-solutions/tap/ak-data` or
 `cargo install arkadia-data`) and writes exactly the same text.
 
 ## Library
@@ -73,13 +73,17 @@ return {
 };
 ```
 
-## Development
+## Changes and history
 
-```bash
-npm ci
-npm test         # includes seeded random round-trip tests
-npm run check    # Biome: lint + format check (npm run fix applies the fixes)
-npm run build
+```ts
+import { diff } from '@arkadia/data';
+
+const changes = diff.diff(before, after); // [{ op: 'change', path: 'users[id=2].name', old: 'Alan', new: 'Alan T.' }]
+diff.apply(before, changes); // deep-equals after; throws ConflictError when a change does not fit
+const text = diff.commit(oldText, after, { title: 'Rename Alan', author: 'Ada' }); // data + history
+diff.history(text); // [{ id, date, author, title, description, changes }]
 ```
 
-MIT © Arkadia Solutions · https://arkadia.solutions/akdata
+The history is metadata: `loads(text)` still returns exactly the data.
+
+MIT © Arkadia Solutions · https://arkadia.solutions/akdata · [changelog](https://github.com/arkadia-solutions/arkadia-data/blob/main/CHANGELOG.md)

@@ -11,7 +11,7 @@ pip install "arkadia-data[bench]"   # + tiktoken, toon-format, PyYAML (exact cou
 ```
 
 This package is a library. The `ak-data` command line tool is the Rust
-crate of the same name (`make install` in the repository, or
+crate of the same name (`brew install arkadia-solutions/tap/ak-data` or
 `cargo install arkadia-data`) and writes exactly the same text.
 
 ## Library
@@ -47,7 +47,7 @@ akd.count_tokens(text)       # exact with tiktoken, approximate otherwise
 ```python
 from arkadia.bench.prompts import build_prompt, get_example
 
-ex = get_example("3")                         # one of the ten bundled examples
+ex = get_example("3")                         # one of the 66 bundled examples
 ex.prompt("ak-data-compact")                  # definition + data + question + answer format
 build_prompt(data, "Who joined first?", "toon", answer=("result", [("name", "string")]))
 ```
@@ -55,41 +55,18 @@ build_prompt(data, "Who joined first?", "toon", answer=("result", [("name", "str
 Formats: `json`, `toon` (extra `bench`), `ak-data`, `ak-data-compact`. The
 same prompts on the command line: `ak-data prompt --example 3 -f toon`.
 
-## Benchmarks (repository only)
+## Changes and history
 
-The benchmarks are not an `ak-data` command. From the repository root:
+```python
+from arkadia.data import diff
 
-```bash
-make benchmark                      # tokens → AI → reports/report.html
-make benchmark ONLY_SHOW=1          # print every AI-benchmark prompt, run nothing
-make benchmark DIR=~/my-json MODEL=gpt-4o-mini
-# or directly: uv run --all-extras python -m arkadia.bench --help
+changes = diff.diff(old, new)        # [Change(op='change', path='users[id=2].name', …)]
+diff.apply(old, changes) == new      # ConflictError when a change does not fit
+diff.apply(new, diff.reverse(changes)) == old
+text = diff.commit(text, new, title="Rename Alan", author="Ada")   # data + its history ($changes)
+diff.history(text)                   # [ChangeSet(id, date, author, title, …)]
 ```
 
-Without `--dir` eight bundled datasets are used. Token counts are exact with
-tiktoken (extra `bench`) and fall back to a calibrated estimate offline. The
-AI step asks a model questions with known answers about each dataset in
-every format and scores the replies — OpenAI or any OpenAI-compatible server
-(`OPENAI_API_KEY`, `OPENAI_BASE_URL`, `PROVIDER=ollama|openrouter`) and
-Anthropic (`ANTHROPIC_API_KEY`); without a key it is a dry run. Code:
-`arkadia.bench` (`bench`, `ai_bench`, `report`, `cli`).
+The history is metadata: `akd.loads(text)` still returns exactly the data.
 
-## Development
-
-```bash
-make install && make test         # from the repository root (uv + npm); make e2e before a commit
-# or: uv sync --all-extras && uv run pytest && uv run ruff check src tests
-python scripts/make_datasets.py   # regenerate the bundled datasets
-python scripts/make_examples.py   # regenerate the copy-paste examples
-```
-
-TypeScript / JavaScript: `npm install @arkadia/data`.
-
-MIT © Arkadia Solutions · https://arkadia.solutions/akdata
-
-
-## Version 0.3.0 and network boundary
-
-This is version 0.3.0 ([changelog](../CHANGELOG.md)). Until it is on PyPI (which still serves 0.1.11), install it from a checkout of https://github.com/arkadia-solutions/arkadia-data: `pip install ./python`. The `ak-data` command line tool is the Rust program: a ready-made binary from GitHub Releases, `brew install arkadia-solutions/tap/ak-data` or `cargo install arkadia-data`.
-
-`make benchmark` is offline by default, even if API keys exist in the environment or `.env`. Explicitly use `make benchmark NETWORK=1 MODEL=...` (CLI: `--allow-network`) to send the selected datasets to a provider. Local/remote Ollama also requires this opt-in. The provider host, model and data source are printed before requests. Reports may contain data, prompts, answers and local paths; they are private by default. `--offline` and `--allow-network` are mutually exclusive. Ordinary encode/decode operations do not call models.
+MIT © Arkadia Solutions · https://arkadia.solutions/akdata · [changelog](https://github.com/arkadia-solutions/arkadia-data/blob/main/CHANGELOG.md)
