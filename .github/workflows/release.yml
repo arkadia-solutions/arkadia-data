@@ -98,11 +98,28 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           v=${{ needs.check.outputs.version }}
-          if gh release view "v$v" > /dev/null 2>&1; then
-            gh release upload "v$v" dist/release/* --clobber
-          else
-            gh release create "v$v" dist/release/* --title "AK-DATA $v" --notes-file notes.md --verify-tag
-          fi
+          # GitHub may answer 504 to one long request: create the release
+          # first, then upload each file on its own, retrying.
+          retry() {
+            local n
+            for n in 1 2 3 4 5; do
+              "$@" && return 0
+              echo "::warning::attempt $n failed: $*"
+              sleep $((n * 15))
+            done
+            return 1
+          }
+          ls -la dist/release
+          # A timed-out create may still have created the release: check first.
+          create() {
+            gh release view "v$v" > /dev/null 2>&1 ||
+              gh release create "v$v" --title "AK-DATA $v" --notes-file notes.md --verify-tag
+          }
+          retry create
+          for f in dist/release/*; do
+            retry gh release upload "v$v" "$f" --clobber
+          done
+          gh release view "v$v"
       - uses: actions/upload-artifact@v4
         with:
           name: release-files
