@@ -3,9 +3,9 @@ name: ak-data-install
 description: Install and use the AK-DATA tools (Arkadia Data Format) — the `ak-data` command (Rust) and the libraries PyPI `arkadia-data`, npm `@arkadia/data`, crates.io `arkadia-data` — to convert JSON to AK-DATA, count tokens and build prompts. Use when asked to set up AK-DATA, reduce tokens of JSON tool results/files, or run `ak-data`.
 ---
 
-## Release boundary — version 0.3.0
+## Release boundary — version 0.3.1
 
-The current version is 0.3.0. `ak-data` comes from GitHub Releases (signed macOS binary), `brew install arkadia-solutions/tap/ak-data` or `cargo install arkadia-data`. PyPI and npm may still serve 0.1.11: for 0.3 library features use a reviewed checkout of https://github.com/arkadia-solutions/arkadia-data (its `VERSION` says 0.3.0), then `pip install ./python` or build TypeScript with `npm --prefix typescript ci && npm --prefix typescript run build`. Never publish or upload private data. Benchmark networking requires explicit `NETWORK=1` / `--allow-network`; encode/decode stays local.
+The current version is 0.3.1. `ak-data` comes from GitHub Releases (signed macOS binary), `brew install arkadia-solutions/tap/ak-data` or `cargo install arkadia-data`. PyPI and npm may still serve 0.1.11: for 0.3 library features use a reviewed checkout of https://github.com/arkadia-solutions/arkadia-data (its `VERSION` says 0.3.1), then `pip install ./python` or build TypeScript with `npm --prefix typescript ci && npm --prefix typescript run build`. Never publish or upload private data. Benchmark networking requires explicit `NETWORK=1` / `--allow-network`; encode/decode stays local.
 
 
 # AK-DATA tools: install and use

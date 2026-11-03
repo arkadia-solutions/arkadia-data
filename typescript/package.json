@@ -1,6 +1,6 @@
 {
   "name": "@arkadia/data",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "AK-DATA (Arkadia Data Format): Lossless, token-efficient text form of JSON for LLM prompts, tool results and agent memory: a header names each field once, records follow by position.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
