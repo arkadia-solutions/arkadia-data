@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!coverage", "!node_modules"]
+    "includes": ["**", "!dist", "!coverage", "!node_modules", "!tests/fixtures"]
   },
   "formatter": {
     "enabled": true,

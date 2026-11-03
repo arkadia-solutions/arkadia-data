@@ -57,10 +57,14 @@ def main():
                     errors.append(
                         "Secret pattern in history: " + pair[1].decode(errors="replace")
                     )
-    source = (ROOT / "python/tests/fixtures/conformance.json").read_bytes()
-    for language in ["typescript", "rust"]:
-        if (ROOT / language / "tests/fixtures/conformance.json").read_bytes() != source:
-            errors.append(f"{language}: shared vectors are stale")
+    for name in ["conformance.json", "diff.json"]:
+        source = (ROOT / "python/tests/fixtures" / name).read_bytes()
+        for language in ["typescript", "rust"]:
+            if (ROOT / language / "tests/fixtures" / name).read_bytes() != source:
+                errors.append(
+                    f"{language}: shared vectors are stale ({name}); "
+                    f"copy python/tests/fixtures/{name}"
+                )
     if errors:
         print("\n".join(errors))
         return 1
