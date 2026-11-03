@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-11-03
+
+### Added
+* **npm and PyPI from the release tag**: after the GitHub Release the
+  workflow publishes `@arkadia/data` (npm, with provenance) and
+  `arkadia-data` (PyPI), next to crates.io and Homebrew. Secrets:
+  `NPM_TOKEN`, `PYPI_API_TOKEN` (or PyPI trusted publishing with the
+  repository variable `PYPI_TRUSTED_PUBLISHING=true`). A version already in
+  a registry is skipped.
+
+### Fixed
+* Windows release build: `VERSION` was read with `\r` (`.gitattributes` was
+  not committed); the scripts now read it without `tr`.
+* GitHub Release upload timed out (504) with all files in one request; files
+  are uploaded one by one with retries.
+* The TypeScript formatter rewrote the shared test vectors; `tests/fixtures`
+  is excluded and `check_release.py` also compares `diff.json`.
+
 ## [0.3.0] - 2026-11-03
 
 ### Fixed

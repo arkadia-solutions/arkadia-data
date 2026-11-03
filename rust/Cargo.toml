@@ -1,6 +1,6 @@
 [package]
 name = "arkadia-data"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 rust-version = "1.80"
 description = "AK-DATA (Arkadia Data Format): Lossless, token-efficient text form of JSON for LLM prompts, tool results and agent memory: a header names each field once, records follow by position. Library and the ak-data command."

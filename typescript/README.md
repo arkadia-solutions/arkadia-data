@@ -1,5 +1,9 @@
 # @arkadia/data — AK-DATA (Arkadia Data Format) for TypeScript / JavaScript
 
+[![npm version](https://img.shields.io/npm/v/@arkadia/data.svg?labelColor=1b1b1f&color=2ea44f)](https://www.npmjs.com/package/@arkadia/data)
+[![npm downloads](https://img.shields.io/npm/dt/@arkadia/data.svg?label=npm%20downloads&labelColor=1b1b1f&color=2ea44f)](https://www.npmjs.com/package/@arkadia/data)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f?labelColor=1b1b1f)](https://github.com/arkadia-solutions/arkadia-data/blob/main/LICENCE)
+
 **Lossless, schema-first data for LLMs and agents.** AK-DATA writes JSON
 data with a header that names each field once and records that follow it by
 position — about **55% fewer tokens than JSON** and **14% fewer than TOON**

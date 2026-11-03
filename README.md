@@ -1,13 +1,13 @@
 # AK-DATA — Arkadia Data Format
 
 [![CI](https://github.com/arkadia-solutions/arkadia-data/actions/workflows/ci.yml/badge.svg)](https://github.com/arkadia-solutions/arkadia-data/actions/workflows/ci.yml)
-[![version 0.3.0](https://img.shields.io/badge/version-0.3.0-2ea44f)](CHANGELOG.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f)](LICENCE)
-<!-- After publishing to the registries:
-[![npm](https://img.shields.io/npm/v/@arkadia/data.svg)](https://www.npmjs.com/package/@arkadia/data)
-[![PyPI](https://img.shields.io/pypi/v/arkadia-data.svg)](https://pypi.org/project/arkadia-data/)
-[![crates.io](https://img.shields.io/crates/v/arkadia-data.svg)](https://crates.io/crates/arkadia-data)
--->
+[![npm version](https://img.shields.io/npm/v/@arkadia/data.svg?labelColor=1b1b1f&color=2ea44f)](https://www.npmjs.com/package/@arkadia/data)
+[![npm downloads](https://img.shields.io/npm/dt/@arkadia/data.svg?label=npm%20downloads&labelColor=1b1b1f&color=2ea44f)](https://www.npmjs.com/package/@arkadia/data)
+[![PyPI version](https://img.shields.io/pypi/v/arkadia-data.svg?labelColor=1b1b1f&color=2ea44f)](https://pypi.org/project/arkadia-data/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/arkadia-data.svg?label=PyPI%20downloads&labelColor=1b1b1f&color=2ea44f)](https://pypi.org/project/arkadia-data/)
+[![crates.io](https://img.shields.io/crates/v/arkadia-data.svg?labelColor=1b1b1f&color=2ea44f)](https://crates.io/crates/arkadia-data)
+[![crates.io downloads](https://img.shields.io/crates/d/arkadia-data.svg?label=crates%20downloads&labelColor=1b1b1f&color=2ea44f)](https://crates.io/crates/arkadia-data)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f?labelColor=1b1b1f)](LICENCE)
 
 ```text
                                    ; i  :J                                      
@@ -63,7 +63,7 @@ and **14.1% fewer than TOON**.
 - [Using AK-DATA with LLMs](#using-ak-data-with-llms)
 - [Syntax in One Minute](#syntax-in-one-minute)
 - [Documentation](#documentation)
-- [What's New in 0.3.0](#whats-new-in-030)
+- [What's New in 0.3](#whats-new-in-03)
 
 ## Why AK-DATA?
 
@@ -280,8 +280,9 @@ exist in `@arkadia/data` and in `arkadia_data::diff` as well.
 - [arkadia.solutions/akdata](https://arkadia.solutions/akdata) — playground, syntax, examples, benchmarks.
 - Files use the extension `.akd` (or `.ak-data`); in Markdown, fence AK-DATA as `` ```akd ``.
 
-## What's New in 0.3.0
+## What's New in 0.3
 
+- 0.3.1: one tag publishes everything — GitHub Release, Homebrew, crates.io, npm and PyPI.
 - `ak-data` reads without a command — a file, text or stdin; `-t`, `-i`, `-o`.
 - Changes and history: `diff`, `merge`, `apply`, `history` in the CLI and in all three libraries.
 - Structured attribute values (`$changes=[…]`), records with optional fields under one header, list sizes.

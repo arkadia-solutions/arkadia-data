@@ -1,5 +1,9 @@
 # arkadia-data (Rust) — AK-DATA, Arkadia Data Format
 
+[![crates.io](https://img.shields.io/crates/v/arkadia-data.svg?labelColor=1b1b1f&color=2ea44f)](https://crates.io/crates/arkadia-data)
+[![crates.io downloads](https://img.shields.io/crates/d/arkadia-data.svg?label=crates%20downloads&labelColor=1b1b1f&color=2ea44f)](https://crates.io/crates/arkadia-data)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f?labelColor=1b1b1f)](https://github.com/arkadia-solutions/arkadia-data/blob/main/LICENCE)
+
 Lossless, token-efficient text for JSON in LLM prompts, tool results and
 agent memory: one header with the field names, then positional records.
 Decoding always returns the original JSON. The Rust crate writes exactly the
