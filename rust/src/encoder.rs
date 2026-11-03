@@ -604,10 +604,10 @@ impl Encoder<'_> {
         parts.join(&format!(",{pad}"))
     }
 
-    fn type_label(&self, schema: &Sch) -> String {
+    fn type_label(schema: &Sch) -> String {
         match schema {
             Sch::Prim(t) => escape_ident(t),
-            Sch::List(el) => format!("[{}]", self.type_label(el)),
+            Sch::List(el) => format!("[{}]", Self::type_label(el)),
             Sch::Record(_) => "any".to_string(),
         }
     }
@@ -678,7 +678,7 @@ impl Encoder<'_> {
                 if compatible(&el.schema, expected) {
                     val
                 } else {
-                    self.tagged(&self.type_label(&el.schema), val)
+                    self.tagged(&Self::type_label(&el.schema), val)
                 }
             }
             _ => self.value(el, expected),
@@ -787,7 +787,7 @@ impl Encoder<'_> {
                 if compatible(&node.schema, expected) {
                     val
                 } else {
-                    self.tagged(&self.type_label(&node.schema), val)
+                    self.tagged(&Self::type_label(&node.schema), val)
                 }
             }
         }
@@ -901,7 +901,7 @@ impl Encoder<'_> {
                 .iter()
                 .map(|(name, def)| {
                     let structure = if def.is_prim() {
-                        self.c(&self.type_label(def), C_TYPE)
+                        self.c(&Self::type_label(def), C_TYPE)
                     } else {
                         self.prompt_value(def, child_indent).trim().to_string()
                     };
