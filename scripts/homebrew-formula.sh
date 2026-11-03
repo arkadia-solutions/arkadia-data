@@ -10,7 +10,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 dir=${1:-dist/release}
-version=$(tr -d ' \n' < VERSION)
+IFS= read -r version < VERSION || true
+version=${version//[[:space:]]/}  # also drops \r (Windows checkouts)
 repo=${GITHUB_REPOSITORY:-arkadia-solutions/arkadia-data}
 base="https://github.com/$repo/releases/download/v$version"
 

@@ -1,0 +1,5 @@
+# Same bytes on every OS: the release scripts read these files on Windows too.
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.icns binary
