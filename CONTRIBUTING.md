@@ -11,10 +11,10 @@ Python: `uv run --locked --all-extras pytest`, `uv run ruff check .`, `uv run ru
 ## Layout
 
 ```
-python/       arkadia-data: arkadia.data (format), arkadia.bench (benchmarks), tests, datasets
+python/       arkadia-data: arkadia.data (format), arkadia.bench (benchmarks & check), tests, datasets
 typescript/   @arkadia/data
 rust/         arkadia-data crate: library + the ak-data command
-examples/     copy-paste prompts in JSON, TOON, AK-DATA, AK-DATA compact
+examples/     copy-paste prompts (examples/prompts/) and 5 metadata-trap cases (examples/meta-traps/cases.md)
 skills/       ak-data-install and ak-data-format
 benchmarks/   numbers and runs produced by `make benchmark`
 ```
@@ -40,6 +40,8 @@ make benchmark                               # tokens and a dry AI run → repor
 make benchmark DIR=~/my-json                 # on your own JSON files
 make benchmark NETWORK=1 MODEL=gpt-5.4-mini  # with a model (OPENAI_API_KEY / ANTHROPIC_API_KEY)
 make analyze                                 # paired tests, weak question types, misses
+make check                                   # 5 metadata-trap cases × 4 forms across OpenAI, Anthropic, Google
+make check DRY=1                             # validate cases and count tokens without API calls (DEMO=1: fake run)
 ```
 
 The benchmark is offline unless `NETWORK=1` is given; with it, the selected
