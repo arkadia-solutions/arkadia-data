@@ -159,6 +159,39 @@ lengths) over the bundled and 24 generated datasets:
 > answer: [arkadia.solutions/akdata/runs](https://arkadia.solutions/akdata/runs) ·
 > the analysis: [the article](https://arkadia.solutions/articles/ak-data).
 
+### Metadata traps (`make check`)
+
+Five small tables whose numbers mean something a model cannot guess — a reversed
+sign, amounts in grosze or cents, an error code, a single test record (`/* test record */`),
+a grading scale that flips — each in four forms: JSON (`A`), JSON with a `_meta`
+object (`B`), AK-DATA (`C`), and AK-DATA with `/* comments */` (on schema, fields, or
+individual records) and `//$size=N//` (`D`, [examples/meta-traps/cases.md](examples/meta-traps/cases.md)).
+
+| form | A · JSON | B · JSON + `_meta` | C · AK-DATA | D · AK-DATA + `/* comment */` |
+|---|---:|---:|---:|---:|
+| prompt tokens (5 cases, `o200k_base`) | 795 | 1,111 (+40%) | 604 (−24%) | **820** (−26% vs JSON + `_meta`) |
+
+Without metadata (`A`, `C`) models rely on default habits and fall into the traps;
+with `/* comments */` in AK-DATA (`D`) the notes sit next to the schema, fields, or
+single record they describe at **26% fewer prompt tokens** than JSON with `_meta` (`B`).
+
+`make check` sends all 20 prompts to OpenAI, Anthropic and Google models (keys from
+`.env`), prints every case's four prompts (ready to copy into ChatGPT, Claude or
+Gemini by hand, and saved to `reports/prompts/*.txt` + `all.md`), colours every
+answer (`✓` right, `✗ trap`, `✗` wrong, `!` error), prints the summary table, and
+writes the full report with raw replies to `reports/check-<date>.json`:
+
+```bash
+make check                                  # every provider with a key in .env (20 calls per model)
+make check PROVIDERS="openai google" OPENAI_MODEL=gpt-5.5,gpt-5.4-mini
+make check CASES=1,4 FORMS=BD TRIALS=3      # a subset, three tries each (REASONING=low|medium|high)
+make check SHOW=4                           # print the four prompts of case 4 (SHOW=all: every case)
+make check COPY=4D                          # prompt 4D to the clipboard — paste it into ChatGPT
+make check PROMPTS=0                        # answers only, without the prompts
+make check DEMO=1                           # invented answers, no calls — to see the output
+make check DRY=1                            # check that the four forms carry the same data, count tokens
+```
+
 ## Installation & Quick Start
 
 | | Python | TypeScript / JavaScript | Rust |

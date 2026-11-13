@@ -209,6 +209,23 @@ class Decoder:
         # 3. Parse Root Node
         if self._eof():
             root_node = self._create_node(None)
+        elif (
+            root_schema_context is not None
+            and root_schema_context.is_record
+            and len(root_schema_context.fields) == 1
+            and root_schema_context.fields[0].is_list
+            and self._peek() == "["
+        ):
+            field_schema = root_schema_context.fields[0]
+            self._push_schema(field_schema)
+            list_node = self._parse_node()
+            self._pop_schema()
+            self._pop_node()
+            root_node = Node(
+                schema=root_schema_context,
+                fields={field_schema.name: list_node},
+            )
+            self._push_node(root_node)
         else:
             # Note: The cursor is now looking at the data (e.g. '(' or '{').
             root_node = self._parse_node()
