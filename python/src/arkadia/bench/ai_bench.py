@@ -492,12 +492,28 @@ class Provider:
         raise NotImplementedError
 
 
+def _retry_after(exc: "urllib.error.HTTPError", detail: str) -> float:
+    """Seconds the server asks us to wait: Retry-After, or Google's retryDelay."""
+    header = exc.headers.get("Retry-After") if exc.headers else None
+    if header:
+        try:
+            return float(header)
+        except ValueError:
+            pass
+    match = re.search(r'"retryDelay"\s*:\s*"(\d+(?:\.\d+)?)s"', detail)
+    return float(match.group(1)) if match else 0.0
+
+
 def _post(
     url: str, headers: Dict[str, str], body: Dict[str, Any], timeout: float = 120
 ) -> Dict[str, Any]:
     data = json.dumps(body).encode("utf-8")
     delay = 2.0
-    for attempt in range(5):
+    # Rate limits (429) get more patience than server errors: free tiers allow
+    # only a few requests a minute and say how long to wait.
+    attempts = {"rate": 8, "server": 5}
+    tries = {"rate": 0, "server": 0, "network": 0}
+    while True:
         req = urllib.request.Request(
             url, data=data, headers={"Content-Type": "application/json", **headers}
         )
@@ -505,18 +521,21 @@ def _post(
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", "replace")[:300]
-            if exc.code in (429, 500, 502, 503, 504, 529) and attempt < 4:
-                time.sleep(delay)
-                delay *= 2
-                continue
-            raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
+            detail = exc.read().decode("utf-8", "replace")
+            kind = "rate" if exc.code == 429 else "server"
+            if exc.code in (429, 500, 502, 503, 504, 529):
+                tries[kind] += 1
+                if tries[kind] < attempts[kind]:
+                    time.sleep(min(90.0, max(delay, _retry_after(exc, detail))))
+                    delay = min(delay * 2, 60.0)
+                    continue
+            raise RuntimeError(f"HTTP {exc.code} from {url}: {detail[:800]}") from exc
         except urllib.error.URLError as exc:
-            if attempt < 2:
+            tries["network"] += 1
+            if tries["network"] < 3:
                 time.sleep(delay)
                 continue
             raise RuntimeError(f"Cannot reach {url}: {exc.reason}") from exc
-    raise RuntimeError(f"Giving up on {url}")
 
 
 class OpenAICompatible(Provider):
@@ -547,9 +566,15 @@ class OpenAICompatible(Provider):
             ],
         }
         if self.reasoning_model:
-            # GPT-5 / o-series: no temperature; the token limit also covers
-            # the hidden reasoning, so it gets room for it.
-            body["max_completion_tokens"] = max_tokens + REASONING_BUDGET
+            # GPT-5 / o-series / Gemini 3: no temperature; the token limit also
+            # covers the hidden reasoning, so it gets room for it. OpenAI names
+            # it max_completion_tokens; other compatible APIs keep max_tokens.
+            limit = (
+                "max_completion_tokens"
+                if "api.openai.com" in self.base_url
+                else "max_tokens"
+            )
+            body[limit] = max_tokens + REASONING_BUDGET
             if self.reasoning:
                 body["reasoning_effort"] = self.reasoning
         else:
@@ -561,21 +586,31 @@ class OpenAICompatible(Provider):
         t0 = time.perf_counter()
         headers = {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
         url = f"{self.base_url}/chat/completions"
+        body = self._body(system, user, max_tokens)
         try:
-            out = _post(url, headers, self._body(system, user, max_tokens))
+            out = _post(url, headers, body)
         except RuntimeError as exc:
             # A model that rejects temperature / max_tokens is a reasoning model.
+            # Decided by this request's body: parallel requests may all be
+            # refused before the first one switches the shared flag.
             text = str(exc)
             if (
-                self.reasoning_model
+                "temperature" not in body
                 or "HTTP 400" not in text
                 or not ("temperature" in text or "max_tokens" in text)
             ):
                 raise
             self.reasoning_model = True
             out = _post(url, headers, self._body(system, user, max_tokens))
+        choice = (out.get("choices") or [{}])[0]
+        text = choice.get("message", {}).get("content") or ""
+        if choice.get("finish_reason") == "length" and "temperature" in body:
+            # Cut off by max_tokens (reasoning or step-by-step work): ask again with room for it.
+            self.reasoning_model = True
+            out = _post(url, headers, self._body(system, user, max_tokens))
+            choice = (out.get("choices") or [{}])[0]
+            text = choice.get("message", {}).get("content") or ""
         usage = out.get("usage") or {}
-        text = (out.get("choices") or [{}])[0].get("message", {}).get("content") or ""
         return Reply(
             text,
             usage.get("prompt_tokens"),
@@ -593,29 +628,61 @@ class Anthropic(Provider):
         self.model = model
         self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "")
         self.base_url = (base_url or "https://api.anthropic.com").rstrip("/")
+        # Newer models reason before they answer: they reject `temperature` and
+        # need room for the reasoning in max_tokens (like GPT-5). Switched on by
+        # the first refusal or the first reply cut off before any text.
+        self.reasoning_model = False
+
+    def _body(self, system: str, user: str, max_tokens: int) -> Dict[str, Any]:
+        body: Dict[str, Any] = {
+            "model": self.model,
+            "max_tokens": max_tokens,
+            "system": system,
+            "messages": [{"role": "user", "content": user}],
+        }
+        if self.reasoning_model:
+            body["max_tokens"] = max_tokens + REASONING_BUDGET
+        else:
+            body["temperature"] = 0
+        return body
 
     def complete(self, system: str, user: str, max_tokens: int = 800) -> Reply:
         t0 = time.perf_counter()
-        out = _post(
-            f"{self.base_url}/v1/messages",
-            {"x-api-key": self.api_key, "anthropic-version": "2023-06-01"},
-            {
-                "model": self.model,
-                "max_tokens": max_tokens,
-                "temperature": 0,
-                "system": system,
-                "messages": [{"role": "user", "content": user}],
-            },
-        )
+        url = f"{self.base_url}/v1/messages"
+        headers = {"x-api-key": self.api_key, "anthropic-version": "2023-06-01"}
+        body = self._body(system, user, max_tokens)
+        try:
+            out = _post(url, headers, body)
+        except RuntimeError as exc:
+            # Decided by this request's body, not the shared flag: parallel
+            # requests may all be refused before the first one switches it.
+            text = str(exc)
+            if (
+                "temperature" not in body
+                or "HTTP 400" not in text
+                or "temperature" not in text
+            ):
+                raise
+            self.reasoning_model = True
+            out = _post(url, headers, self._body(system, user, max_tokens))
+        text = self._text(out)
+        if out.get("stop_reason") == "max_tokens" and "temperature" in body:
+            # Cut off by max_tokens (reasoning or step-by-step work): ask again with room for it.
+            self.reasoning_model = True
+            out = _post(url, headers, self._body(system, user, max_tokens))
+            text = self._text(out)
         usage = out.get("usage") or {}
-        text = "".join(
-            b.get("text", "") for b in out.get("content", []) if b.get("type") == "text"
-        )
         return Reply(
             text,
             usage.get("input_tokens"),
             usage.get("output_tokens"),
             time.perf_counter() - t0,
+        )
+
+    @staticmethod
+    def _text(out: Dict[str, Any]) -> str:
+        return "".join(
+            b.get("text", "") for b in out.get("content", []) if b.get("type") == "text"
         )
 
 
